@@ -24,6 +24,7 @@ the_silver_searcher
 tmux
 tree
 vint
+vivaldi
 xboard
 zathura
 zsh
