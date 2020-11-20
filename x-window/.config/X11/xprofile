@@ -1,0 +1,87 @@
+# merge in defaults and keymaps {{{1
+
+# Xresources {{{2
+sysresources=/etc/X11/xinit/.Xresources
+userresources=$XDG_CONFIG_HOME/X11/xinit/.Xresources
+
+[ -f $sysresources ] && xrdb -merge "$sysresources"
+[ -f "$userresources" ] && xrdb -merge "$userresources"
+# }}}
+
+# Xmodmap {{{2
+sysmodmap=/etc/X11/xinit/.Xmodmap
+usermodmap=$XDG_CONFIG_HOME/X11/xinit/.Xmodmap
+
+[ -f $sysmodmap ] && xmodmap "$sysmodmap"
+[ -f "$usermodmap" ] && xmodmap "$usermodmap"
+# }}}
+
+# }}}
+
+# User preference options for the display {{{1
+
+# Display Power Management Signaling: {{{2
+# Screen Saver(s): (timeout cycle)
+# Energy Star(dpms): inactivity period [s] (standby suspend off)
+xset s 480 dpms 600 1200 1200 &
+# }}}
+
+# Mouse Acceleration: {{{2
+# slowing down ThinkPad track-point (acceleration and threshold [px/10ms] )
+xset m 1/2 0 &
+# }}}
+
+# Keyboard Auto repetition {{{2
+# delay[ms] and rate[Nrep/s]
+xset r rate 400 30 &
+# }}}
+
+# Screen Auto locker {{{2
+xautolock -detectsleep -time 15 -notifier "notify-send -u critical -t 2000 -- 'Locking Screen...'" -notify 50 -corners +000 -cornerdelay 2 -cornerredelay 2 -cornersize 2 -locker slock &
+# }}}
+
+# }}}
+
+# Start Programs {{{1
+
+# Get Auth Work With Polkit-gnome
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+# Desktop notifications {{{2
+dunst &
+# }}}
+
+# Music daemon {{{2
+[ ! -s ~/.config/mpd/pid ] && mpd
+# }}}
+
+# Transparency {{{2
+# xcompmgr &
+picom -cC &
+# }}}
+
+# System Tray {{{2
+stalonetray -c $XDG_CONFIG_HOME/stalonetrayrc &
+
+# Network manager-applet
+nm-applet &
+
+# Bluetooth
+blueberry-tray &
+
+# System Clipboard
+qlipper &
+# }}}
+
+# Screen configuration and wallpaper {{{2
+# Xrandr wrapper to setup the native monitor even when on a dock station
+Thinkpad &
+
+# Feh wrapper to pick a random wallpaper from ~/Pictures/wallpapers
+setbg &
+
+# }}}
+
+# }}}
+
+# vim:ft=sh:fdm=marker

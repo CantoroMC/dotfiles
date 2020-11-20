@@ -1,0 +1,93 @@
+[user]
+	name = Marco Cantoro
+	email = marco.cantoro92@outlook.it
+
+[core]
+	editor = nvim
+	pager = diff-so-fancy | less --tabs=4 -RFX
+	autocrlf = input
+	trustctime = false
+
+[credential]
+	username = CantoroMC
+	helper = store
+
+[commit]
+	template = ~/.config/git/commitMessage.txt
+	status = true
+
+[help]
+	autocorrect = 20
+	browser = firefox
+
+[alias]
+	alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
+	visual = !gitk
+    # Examine History and State
+	contrib = shortlog --summary --numbered
+	d = diff
+	df = diff --word-diff
+	dca = diff --cached
+	ds = diff --staged
+	l = log
+	last = log -1 HEAD
+	lg = log -p
+	lst = log --stat -p
+	lgd = log --graph --decorate --all
+	ll = log --pretty=oneline --graph --abbrev-commit
+	lol = log --oneline --decorate --graph
+	lolD = log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'
+	lolS = log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --stat
+	ld = "!sh -c \"git log --since '${1:-1} days ago' --oneline --author $(git config user.email)\" -"
+	st = status
+	sts = status -sb
+	stl = ls-files -m -o --exclude-standard
+	fg = ls-files | grep
+    # Work on the current change
+	aa = add --all
+	ap = add --patch
+	br = branch
+	co = checkout
+	unstage = reset --hard HEAD
+    # Grow, Mark and Tweak your common history
+	ci = commit
+	cim = commit -m
+	cia = commit -a
+	amend = commit --amend --reuse-message=HEAD
+    # Collaborate
+	pom = push origin "$(git_current_branch)"
+	puom = pull origin "$(git_current_branch)"
+	pf = push --force
+    # FigureOut
+	cr = clone --recursive
+	g = grep --break --heading --line-number
+	patch = !git --no-pager diff --no-color
+	pr = "!f() { git fetch -fu ${2:-origin} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
+	show-ignored = "! git clean -ndX | perl -pe 's/Would remove/Ignored:/'"
+
+[color]
+	ui = true
+	status = auto
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[color "diff"]
+	meta = 11
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+	deleted = red
+
+; vim:fdm=indent:tw=78:ft=gitconfig

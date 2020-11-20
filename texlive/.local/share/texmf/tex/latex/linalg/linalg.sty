@@ -1,0 +1,70 @@
+%% linalg.sty
+%   LaTeX macros for typesetting tensor algebra.
+
+% Intro {{{1
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{linalg}[2020/06/19 LaTeX macros to typesetting tensor algebra]
+\RequirePackage{mathtools}
+\RequirePackage{amsfonts}
+\RequirePackage{amssymb}
+% }}}
+% Pair Delimiters {{{1
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+% }}}
+% Tensor Style {{{1
+\renewcommand{\vec}[1] {\ensuremath{\mathbf #1}}
+\newcommand{\bvec}[1] {\ensuremath{\mbox{\boldmath$\bf#1$} }}
+% }}}
+% Products {{{1
+\newcommand{\cprod} {\ensuremath{\times}}
+\newcommand{\dprod} {\ensuremath{\,{\scriptscriptstyle\stackrel{\bullet}{ {} } }\,}}
+\newcommand{\ddprod} {\ensuremath{\,{\scriptscriptstyle\stackrel{\bullet}{\bullet}}\,}}
+\newcommand{\tdprod} {\ensuremath{\,{\scriptscriptstyle\stackrel{3}{\bullet}}\,}}
+\newcommand{\tprod} {\ensuremath{\,{\scriptscriptstyle\stackrel{\otimes}{ { } } }\,}}
+% }}}
+% Operators {{{1
+\newcommand{\devs}[1] {\ensuremath{\overset{\scriptscriptstyle\circ}{#1} }}
+\newcommand{\transp}[1] {\ensuremath{#1^{\operatorname{T}} }}
+\newcommand{\symms}[1] {\overleftrightarrow{#1}}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\Hodge}{\stackrel{\displaystyle\ast}{}}
+\DeclareMathOperator{\inv}{inv}
+\DeclareMathOperator{\sym}{symm}
+\DeclareMathOperator{\skw}{skew}
+\DeclareMathOperator{\tr}{tr}
+% }}}
+% Spatial Derivatives {{{1
+\newcommand{\Curl} {\ensuremath{\nabla\cprod}}
+\newcommand{\Div} {\ensuremath{\nabla\dprod}}
+\newcommand{\Grad} {\ensuremath{\nabla}}
+\newcommand{\Laplac} {\ensuremath{\nabla^{2} }}
+% }}}
+% Temporal Derivatives {{{1
+\newcommand{\ddt}[1] {\ensuremath{\dfrac{\partial #1}{\partial t} }}
+\newcommand{\sddt}[1] {\ensuremath{\dfrac{\partial ^2 #1}{\partial t^2} }}
+\newcommand{\DDt}[1] {\ensuremath{\dfrac{D #1}{D t} }}
+\newcommand{\DpDt}[2] {\ensuremath{\dfrac{d_{#1} #2}{d t } }}
+\newcommand{\rate}[1] {\ensuremath{\dot{#1} }}
+% }}}
+% General Derivatives {{{1
+\newcommand{\pD}[2]{\ensuremath{\dfrac{\partial #1}{\partial #2} }}
+\newcommand{\spD}[2]{\ensuremath{\dfrac{\partial ^2 #1}{\partial ^2 #2} }}
+\newcommand{\mpD}[3]{\ensuremath{\dfrac{\partial ^2 #1}{\partial #2\,\partial #3} }}
+\newcommand{\deltai}[1] {\ensuremath{\partial_{#1} }}
+% }}}
+% Time Average Symbols {{{1
+\newcommand{\av}[1] {\ensuremath{\overline{#1} }}
+\newcommand{\corrtwo}[2] {{\dwea{\dprime{#1} \dprime{#2}} }}
+\newcommand{\dprime}[1] {\ensuremath{{#1}^{^{\prime \prime}} }}
+\newcommand{\dwea}[1] {\ensuremath{\widetilde{#1} }}
+\newcommand{\fluc}[1] {\ensuremath{#1^{\prime} }}
+% }}}
+% Vector Indices {{{1
+\newcommand{\veci}[2][i] {\ensuremath{#2_{#1} }}
+\newcommand{\teni}[2][ij] {\ensuremath{#2_{#1} }}
+\newcommand{\tenTi}[2][ji] {\ensuremath{#2_{#1} }}
+% }}}
+% Sub-Subscripts {{{1
+\newcommand{\eff} {\ensuremath{\scriptscriptstyle{e\!f\!\!f\!}} }
+% }}}

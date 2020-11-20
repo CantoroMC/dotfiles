@@ -1,0 +1,315 @@
+*mapVim.txt*    Summary of the injected vim mappings
+
+Author:   Marco Cantoro
+License:  Same terms as Vim itself (see |license|)
+
+===============================================================================
+CONTENTS                                       *mapVimContents*
+
+  1. Introduction..............................|mapVim|
+  2. User Mappings from VimRC..................|mapVimUser|
+      2.1. Vim Configuration File..............|mapVimUserConfig|
+      2.1. Configured External Plugins.........|mapVimUserPlugins|
+  3. User Mappings from Unimpaired.............|mapVimUnimpaired|
+      3.1. Option Toggling.....................|mapVimUnimpairedToggle|
+      3.2. Next and Previous...................|mapVimUnimpairedNextPrev|
+      3.3. Line Operations.....................|mapVimUnimpairedLine|
+  4. Windmill Plugin...........................|mapWindmill|
+  5. Edible Plugin.............................|mapEdible|
+  6. Plugin Mappings...........................|mapVimPlugins|
+      6.1. Fold Markers........................|mapVimPluginsFoldMarkers|
+      6.2. Show Marks..........................|mapVimPluginsShowMarks|
+      6.3. Exprw...............................|mapVimPluginsExpRW|
+      6.4. Vim Calendar........................|calendar|
+      6.5. Commentary..........................|commentary.txt|
+      6.6. Surround............................|surround.txt|
+      6.7. Abolish.............................|abolish.txt|
+  7. Filetype Mappings.........................|mapVimFiletype|
+      7.1. Vim scripts.........................|mapVimFtVim|
+      7.2. Latex...............................|mapVimFtTex|
+      7.3. Markdown............................|mapVimFtMarkdown|
+      7.4. Matlab..............................|mapVimFtMatlab|
+      7.5. C and C++...........................|mapVimFtC|
+
+===============================================================================
+INTRODUCTION 1.                                *mapVim*
+
+This help file provide a summary of the mappings injected in vim by the vim's
+user and the used plugins.
+
+===============================================================================
+USER MAPPINGS FROM VIMRC 2.                    *mapVimUser*
+
+Mapping for vim's functionalities defined by me in the vim configuration file
+
+-------------------------------------------------------------------------------
+VIM CONFIGURATION FILE 2.1.                    *mapVimUserConfig*
+
+Mode  Keys           Command or Functionality
+
+i     *jk*              <Esc>
+n     *Q*               <Nop>
+n     *<Leader>sh*      Syntax highlight definition of current object
+n     *[cc*             Remove ColorColumn highlighting
+n     *<Leader>vw*      :sfind $HOME/dotfiles/nvim/vimWiki/index.md<CR>
+n     *<Leader>sv*      :source $MYVIMRC<CR>
+n     *<Leader>ev*      :split $MYVIMRC<CR> :res 15<CR>
+n     *<Leader>sf*      :source %<CR>
+n,v   *<Leader>sl*      Source current line or selection
+n     *<Leader>vm*      ovim:fen:fdm=marker:fdl=0:ts=2:sts=2:et:sw=2:sr<Esc>
+
+-------------------------------------------------------------------------------
+CONFIGURED EXTERNAL PLUGINS 2.2.               *mapVimUserPlugins*
+
+Mode  Keys          Command or Functionality
+
+n     *<F1>*          UndotreeToggle
+n     *<F2>*          NERDTreeToggle
+n     *<F3>*          TagbarToggle
+n     *<F4>*          Nuake
+n     *<F10>*         IndentLinesToggle
+
+n     *<Leader>T*     FZFTemplates
+n     *<Leader>D*     FZFDotFiles
+n     *<C-P>*         FZFFiles
+
+n     *<Leader>Rc*    SlimuxREPLConfigure
+n,v   *<Leader>Rl*    SlimuxREPLSendLine, SlimuxREPLSendSelection
+n     *<Leader>Rb*    SlimuxREPLSendBuffer
+n     *<Leader>Rk*    SlimuxSendKeysLast
+n     *<Leader>Rp*    SlimuxREPLSendParagraph
+n     *<Leader>at*    Tabularize /|
+n     <Leader>a"    Tabularize /"/l1c1l0
+n     *<Leader>a=*    Tabularize /=/l1c1l0
+n     *<Leader>a/*    Tabularize ////l8c1l0
+
+n     *]g*            <Plug>(coc-diagnostic-next)
+n     *[g*            <Plug>(coc-diagnostic-prev)
+n     *<Leader>gi*    <Plug>(coc-implementation)
+n     *<Leader>gy*    <Plug>(coc-type-definition)
+n     *<Leader>gd*    <Plug>(coc-definition)
+n,x   *<Leader>gf*    <Plug>(coc-format-selected)
+n,x   *<Leader>a*     <Plug>(coc-codeaction-selected)
+n     *<Leader>qf*    <Plug>(coc-fix-current)
+n     *<Leader>cS*    CocList snippets
+n     *<Leader>H*     Show documentation
+n     *<Leader>cR*    CocRestart
+
+===============================================================================
+USER MAPPINGS FROM UNIMPAIRED 3.               *mapVimUnimpaired*
+
+Mappings from the unimpaired plugin by Tim Pope.
+
+-------------------------------------------------------------------------------
+OPTION TOGGLING 3.1.                           *mapVimUnimpairedToggle*
+
+ On     Off    Toggle     Option
+*[ob*     *]ob*     *yob*     'background' (dark is off, light is on)
+*[oc*     *]oc*     *yoc*     'listchars' (listchars+=space:␣)
+*[od*     *]od*     *yod*     'diff' (actually |:diffthis| / |:diffoff|)
+*[oe*     *]oe*     *yoe*     ToggleSyntax
+*[oh*     *]oh*     *yoh*     'hlsearch'
+*[oi*     *]oi*     *yoi*     'ignorecase'
+*[ol*     *]ol*     *yol*     'list'
+*[on*     *]on*     *yon*     'number'
+*[op*     *]op*     *yop*     WordProcessingToggle (|wrap|, |lbr|, |list| and |tw|)
+*[or*     *]or*     *yor*     'relativenumber'
+*[os*     *]os*     *yos*     'spell'
+*[ov*     *]ov*     *yov*     'virtualedit'
+*[ow*     *]ow*     *yow*     'wrap'
+*[ox*     *]ox*     *yox*     'cursorline' 'cursorcolumn' (x as in crosshairs)
+*[o_*     *]o_*     *yo_*     'cursorline'
+*[o<Bar>* *]o<Bar>* *yo<Bar>* 'cursorcolumn'
+
+-------------------------------------------------------------------------------
+NEXT AND PREVIOUS 3.2.                         *mapVimUnimpairedNextPrev*
+
+The following maps all correspond to normal mode commands.  If a count is
+given, it becomes an argument to the command.
+
+*[a*     |:previous|
+*]a*     |:next|
+*[A*     |:first|
+*]A*     |:last|
+*[b*     |:bprevious|
+*]b*     |:bnext|
+*[B*     |:bfirst|
+*]B*     |:blast|
+*[l*     |:lprevious|
+*]l*     |:lnext|
+*[L*     |:lfirst|
+*]L*     |:llast|
+*[<C-L>* |:lpfile|
+*]<C-L>* |:lnfile|
+*[q*     |:cprevious|
+*]q*     |:cnext|
+*[Q*     |:cfirst|
+*]Q*     |:clast|
+*[<C-Q>* |:cpfile| (Note that <C-Q> only works in a terminal if you disable
+*]<C-Q>* |:cnfile| flow control: stty -ixon)
+*[t*     |:tprevious|
+*]t*     |:tnext|
+*[T*     |:tfirst|
+*]T*     |:tlast|
+*[<C-T>* |:ptprevious|
+*]<C-T>* |:ptnext|
+                                 *[f*
+[f       Go to the file preceding the current one
+         alphabetically in the current file's directory.
+
+                                 *]f*
+]f       Go to the file succeeding the current one
+         alphabetically in the current file's directory.
+
+                                 *[n*
+[n       Go to the previous SCM conflict marker or diff/patch
+         hunk.  Try d[n inside a conflict.
+
+                                 *]n*
+]n       Go to the next SCM conflict marker or diff/patch hunk.
+         Try d]n inside a conflict.
+
+-------------------------------------------------------------------------------
+LINE OPERATIONS 3.3.                           *mapVimUnimpairedLine*
+
+                                                *[<Space>*
+[<Space>                Add [count] blank lines above the cursor.
+
+                                                *]<Space>*
+]<Space>                Add [count] blank lines below the cursor.
+
+                                                *[e* *v_[e*
+[e                      Exchange the current line with [count] lines above it.
+
+                                                *]e* *v_]e*
+]e                      Exchange the current line with [count] lines below it.
+
+===============================================================================
+WINDMILL PLUGIN 4.                             *mapWindmill*
+
+Mode  Keys          Command or Functionality
+
+n     <Leader>*     Search for current word in a small top split
+n     *<Leader>v*     Vertical split and go to previous buffer
+n     *<Leader>h*     Horizontal split and go to previous buffer
+n     *<Leader>-*     res -5
+n     *<Leader>+*     res +5
+n     *<Leader><*     vertical res -5<CR>
+n     *<Leader>>*     vertical res +5<CR>
+n     *<Leader>fw*    Fit window height to the number of lines
+n,v   *<Leader>gr*    Quick fix list of grep operator
+n     *<Leader>bd*    Keep Win Layout but close buffer
+n     *<Leader>bw*    Wipe out all buffers
+n     *<Leader>cd*    Cd to the current file directory
+n     *<Leader>cr*    Cd to the vcs root directory
+
+===============================================================================
+EDIBLE PLUGIN 5.                               *mapEdible*
+
+Mode  Keys             Command or Functionality
+
+n     *<Leader>ra*       Find and Replace all
+n,x   *<LocalLeader>tc*  Titlecase words
+n     *<LocalLeader>tcc* Titlecase lines
+n     *<Space>fw*        Retab and fuck white spaces
+n,x   *<Leader>y*        Copy to system clipboard (reg +)
+n     *<Leader>Y*        Copy line to system clipboard (reg +)
+n     *<Leader>p*        "+p
+n     *<Leader>P*        "+P
+n     *<Leader>]p*       "+]p
+n     *<Leader>]P*       "+]P
+n     *<Leader>gp*       "+gp
+n     *<Leader>gP*       "+gP
+n,v   *<Leader>c*        Clear text
+n     *<Leader>ct*       Create a centered titlecased title
+n     *<Leader>=*        Reindent whole file
+n     *<Leader>S*        Open a small bottom split with scratch file
+n     *[sf*              Lucky fix previous spelling error
+n     *]sf*              Lucky fix next spelling error
+v     *<*                <gv
+v     *>*                >gv
+v     *J*                move '>+1<CR>gv=gv
+v     *K*                move '<-2<CR>gv=gv
+
+===============================================================================
+PLUGIN MAPPINGS 6.                             *mapVimPlugins*
+
+Mappings dedicated to the use of plugins.
+
+-------------------------------------------------------------------------------
+FOLD MARKERS 6.1.                              *mapVimPluginsFoldMarkers*
+
+n     *[co[N]*           Comment Line and append opening fold markers with level N
+n     *]co*              Comment Line and append closing fold markers
+
+-------------------------------------------------------------------------------
+SHOW MARKS 6.2.                                *mapVimPluginsShowMarks*
+
+n     *<S-F10>*          Toggle Show Marks
+n     *<Leader>mo*       Show Marks On
+n     *<Leader>mm*       Place mark
+n     *<Leader>ma*       Clear all mark
+n     *<Leader>mc*       Clear current mark
+
+-------------------------------------------------------------------------------
+EXPRW 6.3.                                     *mapVimPluginsExpRW*
+
+n     *<S-F2>*           Toggle Netrw
+
+-------------------------------------------------------------------------------
+CALENDAR 6.4.                                  |calendar|
+
+n     *<Leader>CH*       Toggle Horizontal Calendar
+n     *<Leader>CV*       Toggle Vertical Calendar
+
+-------------------------------------------------------------------------------
+COMMENTARY 6.5.                                |commentary.txt|
+
+-------------------------------------------------------------------------------
+SURROUND 6.6.                                  |surround.txt|
+
+-------------------------------------------------------------------------------
+ABOLISH 6.7.                                   |abolish.txt|
+
+===============================================================================
+FILETYPE MAPPINGS 7.                           *mapVimFiletype*
+
+Mappings for specific filetypes.
+
+-------------------------------------------------------------------------------
+VIM SCRIPTS 7.1.                               *mapVimFtVim*
+
+-------------------------------------------------------------------------------
+LATEX 7.2.                                     *mapVimFtTex*
+
+Mode  Keys          Command or Functionality
+n     <F9>          LLPStartPreview
+
+-------------------------------------------------------------------------------
+MARKDOWN 7.3.                                  *mapVimFtMarkdown*
+
+Mode  Keys                    Command or Functionality
+n     <F9>                    MarkdownPreview
+n     <S-F9>                  MarkdownPreviewStop
+
+n     <LocalLeader>H{number}  Markdown Header with #
+i     <Leader>sT              HTML color
+i     <Leader>tR              HTML reference
+i     <Leader>cO              Special Comment
+
+-------------------------------------------------------------------------------
+MATLAB 7.4.                                    *mapVimFtMatlab*
+
+Mode  Keys              Command or Functionality
+n     <LocalLeader>ml   MlintRunLint
+n     <LocalLeader>mo   MlintOutline
+
+-------------------------------------------------------------------------------
+C AND CPP 7.5.                                 *mapVimFtC*
+
+Mode  Keys          Command or Functionality
+n     <Leader>co    Write and Run compiling script with optimization
+n     <F8>          Write and Run compiling script with debugging
+n     <F5>          Run executable with the same name as current file
+
+vim:tw=78:et:ft=help:norl:sw=2:ts=2

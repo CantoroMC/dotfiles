@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# weather
+
+LOCATION=${LOCATION:-Milan}
+
+weatherreport="${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport"
+
+getforecast() {
+  curl -sf "wttr.in/$LOCATION?qF" > "$weatherreport" || exit 1 ;
+}
+
+main() {
+  # Test if weather report is updated the day. If not download a new one.
+  [ "$(stat -c %y "$weatherreport" 2>/dev/null | cut -d' ' -f1)" = "$(date '+%Y-%m-%d')" ] || \
+    getforecast
+
+  # Show the weather report in a pager
+  setsid -f st -n weatherreport -t weatherreport -f "SauceCodePro Nerd Font:size=7" less -Srf $weatherreport
+}
+
+main "$@"

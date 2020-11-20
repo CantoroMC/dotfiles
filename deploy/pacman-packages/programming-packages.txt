@@ -1,0 +1,9 @@
+clang
+cmake
+extra-cmake-modules
+ghc
+hlint
+go
+go-tools
+lua
+npm

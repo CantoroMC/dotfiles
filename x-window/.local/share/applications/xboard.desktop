@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Xboard
+Comment=Chess Game
+GenericName=Chess Game
+Type=Application
+Categories=Game;BoardGame;
+Exec=xboard -fcp "/home/cantoro/Documents/chess/engines/stockfish12_modern" -fd "/home/cantoro/Documents/chess/engines" -fn "Stockfish12" -fUCI
+Icon=xboard

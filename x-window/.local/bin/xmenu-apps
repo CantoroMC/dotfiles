@@ -1,0 +1,6 @@
+#!/bin/sh
+XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+MENU_FILE=$XDG_CACHE_HOME/xdg-xmenu/menu
+
+[ -f "$MENU_FILE" ] || mkdir -p "$XDG_CACHE_HOME/xdg-xmenu"; xdg-xmenu > "$MENU_FILE"
+[ -f "$MENU_FILE" ] && xmenu "$@" < "$MENU_FILE" | sh &

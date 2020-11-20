@@ -1,0 +1,11 @@
+bibtool
+imagewriter
+latex-enumitem
+neovim-nightly
+polyglot-winboard-git
+qlipper
+radiotray-ng
+ttf-font-awesome-4
+ttf-wps-fonts
+wps-office-fonts
+wps-office

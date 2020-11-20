@@ -1,0 +1,6 @@
+#!/bin/sh
+
+instances=($(xdotool search --class mpv))
+for instance in ${instances[@]}; do
+  xdotool key --window $instance q
+done

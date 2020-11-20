@@ -1,0 +1,22 @@
+background "#151a1e"
+# parent_bg true
+decorations none
+dockapp_mode none
+transparent false
+fuzzy_edges 0
+geometry 5x1-0+1
+max_geometry 8x1
+grow_gravity NE
+icon_gravity NE
+icon_size 14
+slot_size 16
+kludges force_icons_size,fix_window_pos
+no_shrink false
+scrollbars none
+skip_taskbar false
+sticky true
+window_strut auto
+window_type dock
+window_layer bottom
+
+# vim:ft=config

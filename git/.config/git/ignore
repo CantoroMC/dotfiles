@@ -1,0 +1,261 @@
+.directory
+.DS_Store
+.vscode
+.*.swp
+*~
+
+# === C and C++ gitignore  === {{{1
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+# Linker output
+*.ilk
+*.map
+*.exp
+# Precompiled Headers
+*.gch
+*.pch
+# Libraries
+*.lib
+*.a
+*.la
+*.lai
+*.slo
+*.lo
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+# Kernel Module Compile Results
+*.mod*
+*.smod
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
+# }}}
+
+# === LaTeX  === {{{1
+## Core latex/pdflatex auxiliary files:
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+## Intermediate documents:
+*.dvi
+*.xdv
+*-converted-to.*
+## Bibliography auxiliary files (bibtex/biblatex/biber):
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+## Build tool auxiliary files:
+*.fdb_latexmk
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+## Build tool directories for auxiliary files
+latex.out/
+## Auxiliary and intermediate files from other packages:
+# algorithms
+*.alg
+*.loa
+# achemso
+acs-*.bib
+# amsthm
+*.thm
+# beamer
+*.nav
+*.pre
+*.snm
+*.vrb
+# changes
+*.soc
+# comment
+*.cut
+# cprotect
+*.cpt
+# elsarticle (documentclass of Elsevier journals)
+*.spl
+# endnotes
+*.ent
+# fixme
+*.lox
+# feynmf/feynmp
+*.mf
+*.mp
+*.t[1-9]
+*.t[1-9][0-9]
+*.tfm
+#(r)(e)ledmac/(r)(e)ledpar
+*.end
+*.?end
+*.eledsec[1-9]
+*.eledsec[1-9]R
+*.eledsec[1-9][0-9]
+*.eledsec[1-9][0-9]R
+*.eledsec[1-9][0-9][0-9]
+*.eledsec[1-9][0-9][0-9]R
+# glossaries
+*.acn
+*.acr
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.lzo
+*.lzs
+# uncomment this for glossaries-extra (will ignore makeindex's style files!)
+# *.ist
+# gnuplottex
+*-gnuplottex-*
+# gregoriotex
+*.gaux
+*.gtex
+# htlatex
+*.4ct
+*.4tc
+*.idv
+*.lg
+*.trc
+*.xref
+# hyperref
+*.brf
+# knitr
+*-concordance.tex
+# Uncomment the next line if you use knitr and want to ignore its generated tikz files
+# *.tikz
+*-tikzDictionary
+# listings
+*.lol
+# luatexja-ruby
+*.ltjruby
+# makeidx
+*.idx
+*.ilg
+*.ind
+# minitoc
+*.maf
+*.mlf
+*.mlt
+*.mtc[0-9]*
+*.slf[0-9]*
+*.slt[0-9]*
+*.stc[0-9]*
+# minted
+_minted*
+*.pyg
+# morewrites
+*.mw
+# nomencl
+*.nlg
+*.nlo
+*.nls
+# pax
+*.pax
+# pdfpcnotes
+*.pdfpc
+# sagetex
+*.sagetex.sage
+*.sagetex.py
+*.sagetex.scmd
+# scrwfile
+*.wrt
+# sympy
+*.sout
+*.sympy
+sympy-plots-for-*.tex/
+# pdfcomment
+*.upa
+*.upb
+# pythontex
+*.pytxcode
+pythontex-files-*/
+# tcolorbox
+*.listing
+# thmtools
+*.loe
+# TikZ & PGF
+*.dpth
+*.md5
+*.auxlock
+# todonotes
+*.tdo
+# vhistory
+*.hst
+*.ver
+# easy-todo
+*.lod
+# xcolor
+*.xcp
+# xmpincl
+*.xmpi
+# xindy
+*.xdy
+# xypic precompiled matrices and outlines
+*.xyc
+*.xyd
+# endfloat
+*.ttt
+*.fff
+# Latexian
+TSWLatexianTemp*
+# }}}
+
+# Haskell {{{1
+cabal-dev
+*.hi
+*.hie
+*.chi
+*.chs.h
+*.dyn_o
+*.dyn_hi
+*.hp
+.hpc
+.hsenv
+.cabal-sandbox/
+cabal.sandbox.config
+cabal.project.local
+cabal.project.local~
+*.prof
+*.eventlog
+.stack-work/
+.ghc.environment.*
+ghci_history
+# }}}
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+; vim:fen:fdm=marker:ft=config

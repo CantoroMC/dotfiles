@@ -1,0 +1,127 @@
+#!/bin/sh
+
+# monitor_handler
+# dependencies:
+# package-manager = xrandr, arandr, bc
+# local           = setbg(feh)
+
+SCREENLAYOUT_DIR="$HOME/.local/bin/screenlayout"
+
+two_screens() {
+  to_mirror=$(printf "No\\nYes" | dmenu -p "mirror displays?")
+  # Mirror displays using:
+  # - native resolution of selected display (external)
+  # - a scaled version for the other display
+  if [ "$to_mirror" = "Yes" ]; then
+    external=$(echo "$connected_monitors" | dmenu -p "Optimize resolution for:")
+    internal=$(echo "$connected_monitors" | grep -v "$external")
+
+    # Retrive default resolutions
+    res_external=$(xrandr -q | sed -n "/^$external/,/\+/p" | \
+      tail -n 1 | awk '{print $1}')
+    res_internal=$(xrandr -q | sed -n "/^$internal/,/\+/p" | \
+      tail -n 1 | awk '{print $1}')
+
+    res_ext_x=$(echo "$res_external" | sed 's/x.*//')
+    res_ext_y=$(echo "$res_external" | sed 's/.*x//')
+    res_int_x=$(echo "$res_internal" | sed 's/x.*//')
+    res_int_y=$(echo "$res_internal" | sed 's/.*x//')
+
+    # Compute scaling factors: ext/int
+    scale_x=$(echo "$res_ext_x / $res_int_x" | bc -l)
+    scale_y=$(echo "$res_ext_y / $res_int_y" | bc -l)
+
+    # Use xrandr to apply the mirrored configuration
+    xrandr --output "$external" --auto --scale 1.0x1.0 \
+      --output "$internal" --auto --same-as "$external" \
+      --scale "$scale_x"x"$scale_y"
+  else
+
+    primary=$(echo "$connected_monitors" | dmenu -p "Select primary display:")
+    secondary=$(echo "$connected_monitors" | grep -v "$primary")
+    direction=$(printf "left-of\\nright-of\\nabove\\nbelow" | \
+      dmenu -p "What side of $primary should $secondary be on?")
+
+    # Retrive default resolutions
+    res_primary=$(xrandr -q | sed -n "/^$primary/,/\+/p" | \
+      tail -n 1 | awk '{print $1}')
+    res_secondary=$(xrandr -q | sed -n "/^$secondary/,/\+/p" | \
+      tail -n 1 | awk '{print $1}')
+
+    # Use xrandr to apply the master/slave configuration
+    xrandr --output "$primary" --mode "$res_primary" --pos 0x0 --rotate normal --output "$secondary" --mode "$res_secondary"  --rotate normal --"$direction" "$primary"
+  fi
+}
+
+three_screens() {
+  primary=$(echo "$connected_monitors" | \
+    dmenu -p "Select primary display:")
+  secondary=$(echo "$connected_monitors" | grep -v "$primary" | \
+    dmenu -p "Select secondary display:")
+  direction=$(printf "left-of\\nright-of\\nabove\\nbelow" | \
+    dmenu -p "What side of $primary should $secondary be on?")
+  tertiary=$(echo "$connected_monitors" | grep -v "$primary" | grep -v "$secondary" | \
+    dmenu -p "Select third display:")
+
+  xrandr --output "$primary" --auto --output "$secondary" --"$direction" "$primary" --auto --output "$tertiary" --"$(printf "left-of\\nright-of\\nabove\\nbelow" | grep -v "$direction")" "$primary" --auto
+}
+
+multi_monitors() {
+  case $nr_connected_monitors in
+    2)
+      two_screens
+      ;;
+    *)
+      three_screens
+      ;;
+  esac
+}
+
+single_monitor() {
+  xrandr --output "$1" --auto --scale 1.0x1.0 --pos 0x0 --rotate normal $(echo "$all_ports" | grep -v "$1" | awk '{print "--output", $1, "--off"}' | paste -sd ' ')
+}
+
+main() {
+  all_ports=$(xrandr -q | grep "connected")
+  connected_monitors=$(echo "$all_ports" | awk '/ connected/ {print $1}')
+
+  declare -i nr_connected_monitors
+  nr_connected_monitors="$(echo "$connected_monitors" | wc -l)"
+  [ $nr_connected_monitors -eq 1 ] &&
+    {
+      single_monitor "$connected_monitors"
+      setbg
+      notify-send -t 3000 -i "video-display" "Only one screen detected." "Using it in its optimal settings..."
+      exit ;
+    }
+
+  declare -i lines
+  lines=$nr_connected_monitors+3
+  chosen=$(printf "%s\\nmulti-monitor\\narandr\\nscript" "$connected_monitors" |\
+    dmenu -x 0 -y 22 -g 1 -l $lines -W 400 -p "Select display arrangement:") &&
+  case "$chosen" in
+    "arandr")
+      arandr
+      setbg
+      notify-send -t 3000 -i "video-display" "Screens configured" "xrand for monitor configuration and feh for background"
+      ;;
+    "script")
+      screenlayout=$(ls -1 $SCREENLAYOUT_DIR | dmenu -p "Use a saved layout")
+      $screenlayout
+      setbg
+      notify-send -t 3000 -i "video-display" "Screens configured" "xrand for monitor configuration and feh for background"
+      ;;
+    "multi-monitor")
+      multi_monitors
+      setbg
+      notify-send -t 3000 -i "video-display" "Screens configured" "xrand for monitor configuration and feh for background"
+      ;;
+    *)
+      single_monitor "$chosen"
+      setbg
+      notify-send -t 3000 -i "video-display" "Screens configured" "xrand for monitor configuration and feh for background"
+      ;;
+  esac
+}
+
+main "$@"

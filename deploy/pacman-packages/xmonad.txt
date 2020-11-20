@@ -1,0 +1,7 @@
+xmonad
+xmonad-contrib
+xmobar
+stalonetray
+xorg-xmessage
+xdotool
+wmctrl

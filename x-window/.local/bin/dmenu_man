@@ -1,0 +1,39 @@
+#!/bin/sh
+
+options=("search
+randomMan1
+randomMan2
+randomMan3
+randomMan4
+randomMan5
+randomMan6
+randomMan7
+randomMan8
+randomManN
+quit")
+
+choice=$(echo "${options[@]}" | dmenu -g 1 -l 11 -y 23 -W 200 -p "action: ")
+
+case "$choice" in
+  search)
+    dmenuChoice=$(man -k . | dmenu -g 1 -l 8 -y 23 -W 700 -p "open as pdf: " | awk '{print $1}')
+    [[ -z $dmenuChoice ]] || echo "${dmenuChoice}" | xargs -r man -Tpdf | zathura - ;;
+  randomMan1)
+    find /usr/share/man/man1 -type f | shuf | awk -F '/' ' {print $6}' | sed 's/.gz//g' | head -1 | xargs -r man -Tpdf | zathura - ;;
+  randomMan2)
+    find /usr/share/man/man2 -type f | shuf | awk -F '/' ' {print $6}' | sed 's/.gz//g' | head -1 | xargs -r man -Tpdf | zathura - ;;
+  randomMan3)
+    find /usr/share/man/man3 -type f | shuf | awk -F '/' ' {print $6}' | sed 's/.gz//g' | head -1 | xargs -r man -Tpdf | zathura - ;;
+  randomMan4)
+    find /usr/share/man/man4 -type f | shuf | awk -F '/' ' {print $6}' | sed 's/.gz//g' | head -1 | xargs -r man -Tpdf | zathura - ;;
+  randomMan5)
+    find /usr/share/man/man5 -type f | shuf | awk -F '/' ' {print $6}' | sed 's/.gz//g' | head -1 | xargs -r man -Tpdf | zathura - ;;
+  randomMan6)
+    find /usr/share/man/man6 -type f | shuf | awk -F '/' ' {print $6}' | sed 's/.gz//g' | head -1 | xargs -r man -Tpdf | zathura - ;;
+  randomMan7)
+    find /usr/share/man/man7 -type f | shuf | awk -F '/' ' {print $6}' | sed 's/.gz//g' | head -1 | xargs -r man -Tpdf | zathura - ;;
+  randomMan8)
+    find /usr/share/man/man8 -type f | shuf | awk -F '/' ' {print $6}' | sed 's/.gz//g' | head -1 | xargs -r man -Tpdf | zathura - ;;
+  randomManN)
+    find /usr/share/man/mann -type f | shuf | awk -F '/' ' {print $6}' | sed 's/.gz//g' | head -1 | xargs -r man -Tpdf | zathura - ;;
+esac

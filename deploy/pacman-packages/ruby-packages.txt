@@ -1,0 +1,3 @@
+ruby-docs
+ruby-rake
+ruby-rdoc

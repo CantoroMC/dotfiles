@@ -1,0 +1,87 @@
+# Color Palette from Gruvbox Vim {{{1
+TMUX_BASE7="#7c6f64"
+TMUX_BASE6="#7c6f64"
+TMUX_BASE5="#665c54"
+TMUX_BASE4="#504945"
+TMUX_BASE3="#3c3836"
+TMUX_BASE2="#32302f"
+TMUX_BASE1="#282828"
+TMUX_BASE0="#1d2021"
+
+TMUX_BLUE="#83a598"
+TMUX_GREEN="#b8bb26"
+TMUX_RED="#fb4934"
+TMUX_ORANGE="#fe8019"
+TMUX_YELLOW="#fabd2f"
+TMUX_MAGENTA="#d3869b"
+TMUX_VIOLET="#8ec07c"
+# }}}
+
+# Status Line {{{1
+set-option -g status on
+set-option -g status-keys vi
+set-option -g status-interval 0
+set-option -g status-justify left
+set-option -g status-position bottom
+set-option -g status-style bg=$TMUX_BASE0,fg=$TMUX_BASE7
+# Left Side
+set-option -g status-left-length 50
+set-option -g status-left \
+"#[fg=$TMUX_YELLOW, bg=$TMUX_BASE0, italics]  #S:#I.#P/#{window_panes} \
+#[fg=$TMUX_RED, bg=$TMUX_BASE0, nobold, noitalics, nounderscore] "
+# Right Side
+set -g status-right-length 50
+set-option -g status-right \
+"#[fg=$TMUX_BLUE, bg=$TMUX_YELLOW, nobold, nounderscore, noitalics] \
+#[fg=$TMUX_YELLOW,bg=$TMUX_BASE0, italics]#{?client_prefix, ,}\
+#[fg=$TMUX_BASE2,bg=$TMUX_RED, italics, bold]\
+ 祥#(uptime | awk '{ print $3 }' | sed 's/,//')h:m\
+ #[fg=$TMUX_VIOLET, bg=$TMUX_BASE4, nobold, noitalics, nounderscore]\
+#[fg=$GREEj, bg=$TMUX_BASE0, bold] %d-%b-%Y|%H:%M "
+# }}}
+
+# Panes {{{1
+set -g display-panes-active-colour $TMUX_RED
+set -g display-panes-colour $TMUX_YELLOW
+set -g display-panes-time 1000
+# }}}
+
+# Pane Borders {{{1
+set -g pane-active-border-style fg=$TMUX_BLUE
+set -g pane-border-style fg=$TMUX_GREEN
+# }}}
+
+# Messages {{{1
+set -g message-style fg=$TMUX_YELLOW,bg=$TMUX_BASE0,bright
+set -g message-command-style fg=$TMUX_YELLOW,bg=$TMUX_BASE0,bright
+# }}}
+
+# Clock {{{1
+set-window-option -g clock-mode-colour $TMUX_YELLOW
+set-window-option -g clock-mode-style 24
+# }}}
+
+# Window style {{{1
+# Activity and Bell {{{2
+set-window-option -g window-status-activity-style bg=$TMUX_BLUE,fg=$TMUX_BASE5
+set-window-option -g window-status-bell-style bg=$TMUX_BLUE,fg=$TMUX_BASE5
+# }}}
+# Window list {{{2
+set-window-option -g window-status-current-style bg=$TMUX_YELLOW,fg=$TMUX_BASE2
+set-window-option -g window-status-current-format \
+"#[fg=$TMUX_VIOLET, bg=$TMUX_BASE4, nobold, noitalics, nounderscore]\
+#[fg=$TMUX_YELLOW, bg=$TMUX_BASE5] 裡#I:\
+#[fg=$TMUX_YELLOW, bg=$TMUX_BASE5, bold]#W \
+#[fg=$TMUX_VIOLET, bg=$TMUX_BASE4, nobold, noitalics, nounderscore]"
+set-window-option -g window-status-style fg=$TMUX_BLUE,bg=$TMUX_BASE0
+set-window-option -g window-status-format \
+"#[fg=$TMUX_VIOLET, bg=$TMUX_BASE4, nobold, noitalics, nounderscore]\
+#[fg=$TMUX_GREEN,bg=$TMUX_BASE7] #I:\
+#[fg=$TMUX_GREEN, bg=$TMUX_BASE7]#W \
+#[fg=$TMUX_VIOLET, bg=$TMUX_BASE4, nobold, noitalics, nounderscore]"
+set-window-option -g window-status-last-style fg=$TMUX_BLUE,bg=$TMUX_BASE0,bold,italics
+set-window-option -g window-status-separator ""
+# }}}
+# }}}
+
+# vim:ft=tmux

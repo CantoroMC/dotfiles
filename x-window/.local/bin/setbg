@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# setbg
+# dependencies = feh
+
+DEF_DIR="$HOME/Pictures/wallpapers"
+
+_feh() {
+  feh --no-fehbg --bg-fill "$@"
+}
+
+main() {
+  if [ "$#" -gt 1 ]; then
+    _feh "$@"
+  elif [ "$#" -eq 1 ]; then
+    [ -f "$1" ] && _feh "$1"
+    [ -d "$1" ] && _feh --recursive --randomize "$1"
+  else
+    {
+      _feh --recursive --randomize "$DEF_DIR" >/dev/null 2>&1
+    } || {
+      _feh --recursive --randomize "$HOME/Pictures" >/dev/null 2>&1
+    }
+  fi
+}
+
+main "$@"

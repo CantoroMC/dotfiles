@@ -1,0 +1,6 @@
+baobab
+gnome-themes-extra
+gpick
+papirus-icon-theme
+thunar-media-tags-plugin
+transmission-gtk

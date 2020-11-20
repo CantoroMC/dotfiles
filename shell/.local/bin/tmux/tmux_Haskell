@@ -1,0 +1,22 @@
+#!/bin/sh
+
+start_session() {
+  tmux has-session -t 'Haskell'
+  if [ $? != 0 ]; then
+    tmux new-session -d -s 'Haskell' -n 'Vim' -c ~/Documents/programming/Haskell
+
+    tmux new-window  -d -t Haskell:2 -n 'Interpreter' -c ~/Documents/programming/Haskell
+
+    tmux new-window  -d -t Haskell:3 -n 'Helper' -c ~/Documents/programming/Haskell
+
+    tmux send-keys -t Haskell:Vim.1 'nvim' C-m
+    tmux send-keys -t Haskell:Interpreter.1 'ghci' C-m
+  fi
+  tmux attach -d -t Haskell
+}
+
+main() {
+  start_session
+}
+
+main "$@"

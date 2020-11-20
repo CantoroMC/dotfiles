@@ -1,0 +1,160 @@
+configuration {
+    // General
+    modi: "window,run,drun,combi";
+    font: "SauceCodePro Nerd Font 10";
+    show-icons: true;
+    icon-theme: "Papirus";
+    hide-scrollbar: true;
+    terminal: "xfce4-terminal";
+    click-to-exit: false;
+    tokenize: true;
+    auto-select: false;
+    case-sensitive: false;
+    cycle: true;
+    show-match: true;
+    sort: true;
+    sorting-method: "fzf";
+    matching: "fuzzy";
+    matching-negate-char: '>';
+    scroll-method: 0;
+    disable-history: true;
+    ignored-prefixes: "";
+    // cache-dir: "";
+    // max-history-size: 25;
+    m: "-4"; // monitor with the focused window
+    pid: "/run/user/1000/rofi.pid";
+    threads: 0;
+    // fake-transparency: false;
+    // fake-background: "screenshot";
+
+    // Window mode
+    window-thumbnail: false; // is too small
+    window-match-fields: "title,class,role,name,desktop";
+    window-format: "{w} {c} {t}";
+    // window-command: "wmctrl -i -R {window}";
+    display-window: "Switch, close, run a custom command = " ;
+    display-windowcd: "Switch, close, run a custom command = " ;
+    // Run mode
+    run-command: "{cmd}";
+    run-shell-command: "{terminal} -e {cmd}";
+    display-run: "Run an executable = ";
+    // run-list-command: "";
+    // Drun mode
+    drun-use-desktop-cache: false;
+    drun-reload-desktop-cache: false;
+    drun-match-fields: "name,generic,exec,categories,keywords";
+    drun-display-format: "{name} [<span weight='ultralight' size='x-small'><i>({categories})</i></span>]";
+    drun-show-actions: false;
+    drun-url-launcher: "xdg-open";
+    display-drun: "Launch application = ";
+    // drun-categories: "Games,System,Graphics,Gnome,Development,Utitlity"; // it could be use to create sub-menus
+    // Combi mode
+    combi-modi: "window,drun";
+    combi-hide-mode-prefix: true;
+    display-combi: "Rofi = ";
+    // Ssh mode
+    // ssh-client: "ssh";
+    // ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";
+    // parse-hosts: false;
+    // parse-known-hosts: true;
+    display-ssh: "Ssh into = ";
+
+    // Key bindings
+    display-keys: "Rofi key-bindings = ";
+    // Movements
+    kb-move-front: "Control+a";
+    kb-move-end: "Control+e";
+    kb-move-char-back: "Control+b,Left";
+    kb-move-char-forward: "Control+f,Right";
+    kb-move-word-back: "Alt+b,Control+Left";
+    kb-move-word-forward: "Alt+f,Control+Right";
+    kb-row-left: "Control+Page_Up";
+    kb-row-right: "Control+Page_Down";
+    kb-row-up: "Up,Control+p,ISO_Left_Tab";
+    kb-row-down: "Down,Control+n";
+    kb-row-tab: "Tab";
+    kb-row-first: "Home,KP_Home";
+    kb-row-last: "End,KP_End";
+    kb-page-prev: "Page_Up";
+    kb-page-next: "Page_Down";
+    // Editing
+    kb-remove-char-back: "BackSpace";
+    kb-remove-word-back: "Alt+BackSpace";
+    kb-remove-char-forward: "Delete,Control+d";
+    kb-remove-word-forward: "Alt+Delete,Alt+d";
+    kb-clear-line: "Control+w";
+    kb-remove-to-eol: "Control+k";
+    kb-remove-to-sol: "Control+h";
+    kb-cancel: "Escape,Control+g";
+    kb-primary-paste: "Control+V,Shift+Insert";
+    kb-secondary-paste: "Control+v,Insert";
+    // Entries
+    kb-delete-entry: "Shift+Delete";
+    kb-accept-entry: "Control+j,Return,KP_Enter";
+    kb-accept-alt: "Shift+Return";
+    kb-row-select: "Control+space";
+    // Utilities
+    kb-mode-next: "Shift+Right,Control+Tab";
+    kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab";
+    kb-screenshot: "Alt+S";
+    kb-ellipsize: "Alt+v";
+    kb-toggle-case-sensitivity: "grave,dead_grave,Ctrl+i";
+    kb-toggle-sort: "Alt+grave,Alt+i";
+    // Select
+    kb-select-1: "Super+1";
+    kb-select-2: "Super+2";
+    kb-select-3: "Super+3";
+    kb-select-4: "Super+4";
+    kb-select-5: "Super+5";
+    kb-select-6: "Super+6";
+    kb-select-7: "Super+7";
+    kb-select-8: "Super+8";
+    kb-select-9: "Super+9";
+    kb-select-10: "Super+0";
+    // Customs
+    kb-custom-1: "Alt+1";
+    kb-custom-2: "Alt+2";
+    kb-custom-3: "Alt+3";
+    kb-custom-4: "Alt+4";
+    kb-custom-5: "Alt+5";
+    kb-custom-6: "Alt+6";
+    kb-custom-7: "Alt+7";
+    kb-custom-8: "Alt+8";
+    kb-custom-9: "Alt+9";
+    kb-custom-10: "Alt+0";
+    kb-custom-11: "Alt+exclam";
+    kb-custom-12: "Alt+at";
+    kb-custom-13: "Alt+numbersign";
+    kb-custom-14: "Alt+dollar";
+    kb-custom-15: "Alt+percent";
+    kb-custom-16: "Alt+dead_circumflex";
+    kb-custom-17: "Alt+ampersand";
+    kb-custom-18: "Alt+asterisk";
+    kb-custom-19: "Alt+parenleft";
+    kb-accept-custom: "Control+Return";
+
+    // Mouse
+    ml-row-left: "ScrollLeft";
+    ml-row-right: "ScrollRight";
+    ml-row-up: "ScrollUp";
+    ml-row-down: "ScrollDown";
+    me-select-entry: "MousePrimary";
+    me-accept-entry: "MouseDPrimary";
+    me-accept-custom: "Control+MouseDPrimary";
+
+    // Theme
+    color-normal: "argb:002f343f, #d8dee8, argb:002f343f, argb:002f343f, #e7763a";
+    color-urgent: "#393939, #f3843d, #393939, #268bd2, #ffc39c";
+    color-active: "#393939, #268bd2, #393939, #268bd2, #205171";
+    color-window: "argb:cc2f343f, argb:cc2f343f, argb:cc2f343f";
+}
+
+// Note
+// Custom modes can be added using the internal script mode.
+// Each such mode has two parameters: <name>:<script>
+// (rofi -modi "window,run,ssh,Name:script.sh" -show Name)
+
+
+// For import theme or theme elements
+// Use -theme path from command line to override the current theme
+@import "~/.config/rofi/themes/flat-orange.rasi"

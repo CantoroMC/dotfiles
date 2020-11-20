@@ -1,0 +1,98 @@
+!! Xft: {{{1
+Xft.dpi:       96
+Xft.antialias: true
+Xft.hinting:   true
+Xft.rgba:      rgb
+Xft.autohint:  false
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+!! }}}
+
+!! Xcursor: {{{1
+Xcursor.theme:  capitaine-cursor-light
+Xcursor.size:   0
+!! }}}
+
+!! Xterm: {{{1
+XTerm*background:        #151a1e
+XTerm*foreground:        #EAEAEA
+XTerm*pointerColor:      #95E6CB
+XTerm*faceName:          Fixed
+XTerm*faceSize:          10
+XTerm*reverseVideo:      off
+XTerm*selectToClipboard: true
+XTerm*font:              FiraCode Nerd Font Mono-8
+!! }}}
+
+!! UXTerm: {{{1
+UXTerm*faceName: FiraCode Nerd Font Mono
+UXTerm*faceSize: 8
+!! }}}
+
+!! Color Palette: {{{1
+
+*.alpha:                          100
+!! *.font:                           monospace:size=10
+*background:                      #151a1e
+*foreground:                      #EAEAEA
+*fading:                          8
+*fadeColor:                       black
+*cursorColor:                     #95E6CB
+*pointerColorBackground:          #232b32
+*pointerColorForeground:          #465764
+
+!! Info: {{{2
+/* name   dark  light */
+/* black  0 8 */
+/* red    1 9 */
+/* green  2 10 */
+/* yellow 3 11 */
+/* blue   4 12 */
+/* purple 5 13 */
+/* cyan   6 14 */
+/* white  7 15 */
+!! }}}
+
+!! Ayu Dark {{{2
+*color0:                          #151a1e
+*color8:                          #3f4e5a
+*color1:                          #FF3333
+*color9:                          #FF7733
+*color2:                          #B8CC52
+*color10:                         #B8CC52
+*color3:                          #E7C547
+*color11:                         #E7C547
+*color4:                          #36A3D9
+*color12:                         #A37ACC
+*color5:                          #F07178
+*color13:                         #F07178
+*color6:                          #95E6CB
+*color14:                         #95E6CB
+*color7:                          #EAEAEA
+*color15:                         #FAFAFA
+!! }}}
+
+!! Gruvbox Dark: {{{
+/* *.color0: #1d2021 */
+/* *.color1: #cc241d */
+/* *.color2: #98971a */
+/* *.color3: #d79921 */
+/* *.color4: #458588 */
+/* *.color5: #b16286 */
+/* *.color6: #689d6a */
+/* *.color7: #a89984 */
+/* *.color8: #928374 */
+/* *.color9: #fb4934 */
+/* *.color10: #b8bb26 */
+/* *.color11: #fabd2f */
+/* *.color12: #83a598 */
+/* *.color13: #d3869b */
+/* *.color14: #8ec07c */
+/* *.color15: #ebdbb2 */
+/* *.color256: #1d2021 */
+/* *.color257: #ebdbb2 */
+!! }}}
+
+!! }}}
+
+!! vim:fdm=marker:ts=2:sts=2:et:sw=2:sr:tw=0:cms=!!\ %s

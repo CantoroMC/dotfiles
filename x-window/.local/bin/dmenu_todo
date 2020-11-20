@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# Write/remove a tasks
+
+todoFile="$HOME/Documents/dmenuTodos.txt"
+touch "$todoFile"
+height=$(wc -l "$todoFile" | awk '{print $1}')
+taskPrompt="Add/delete a task: "
+
+dmenuCommand=$(dmenu -W 500 -g 1 -l "$height" -p "$taskPrompt" "$@" < "$todoFile")
+while [ -n "$dmenuCommand" ]; do
+  if grep -q "^$dmenuCommand\$" "$todoFile"; then
+    grep -v "^$dmenuCommand\$" "$todoFile" > "$todoFile.$$"
+    mv "$todoFile.$$" "$todoFile"
+        height=$(( height - 1 ))
+  else
+    echo "$dmenuCommand" >> "$todoFile"
+    height=$(( height + 1 ))
+  fi
+
+  dmenuCommand=$(dmenu -b -x 1000 -W 500 -g 1 -l "$height" -p "$taskPrompt" "$@" < "$todoFile")
+done
+
+exit 0

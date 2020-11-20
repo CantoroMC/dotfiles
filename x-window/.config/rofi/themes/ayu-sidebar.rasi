@@ -1,0 +1,105 @@
+/**
+ * User: qball
+ * Copyright: Dave Davenport
+ */
+* {
+    text-color:        #36A3D9;
+    background-color:  #151a1e;
+    dark:              #151a1e;
+    black:             #151a1e;
+    lightblack:        #232b32;
+    red:               #FF3333;
+    lightred:          #FF7733;
+    green:             #B8CC52;
+    lightgreen:        #B8CC52;
+    yellow:            #E7C547;
+    lightyellow:       #E7C547;
+    blue:              #36A3D9;
+    lightblue:         #A37ACC;
+    magenta:           #F07178;
+    lightmagenta:      #F07178;
+    cyan:              #95E6CB;
+    lightcyan:         #95E6CB;
+    white:             #EAEAEA;
+    lightwhite:        #FAFAFA;
+    highlight:         bold #ffffff;
+}
+window {
+    height:     95%;
+    width:      25em;
+    location:   west;
+    anchor:     west;
+    border:     0px 2px 0px 0px;
+    background-color: @blue;
+    text-color: @yellow;
+}
+mode-switcher {
+    border: 2px 0px 0px 0px;
+    background-color: @lightblack;
+    padding: 5px;
+}
+button selected {
+    border-color: @lightgreen;
+    text-color: @lightgreen;
+}
+inputbar {
+    background-color: @black;
+    foreground-color: @blue;
+    text-color: @lightgreen;
+    padding: 4px;
+    border: 0px 0px 2px 0px;
+}
+mainbox {
+    expand: true;
+    padding: 2px;
+    border: 2px;
+    spacing: 1em;
+}
+listview {
+    border: 2px;
+    padding: 0.2em 0.5em 1em 1em;
+    dynamic: false;
+    lines: 0;
+}
+element selected  normal {
+    background-color: @blue;
+}
+element normal active {
+    text-color: @lightblue;
+}
+element normal urgent {
+    text-color: @lightred;
+}
+element alternate normal {
+}
+element alternate active {
+    text-color: @lightblue;
+}
+element alternate urgent {
+    text-color: @lightred;
+}
+element selected active {
+    background-color: @blue;
+    text-color: @white;
+}
+element selected urgent {
+    background-color: @lightred;
+    text-color: @dark;
+}
+element-icon {
+    background-color: @black;
+    size:             2.0ch;
+    text-color:       @white;
+}
+error-message {
+    expand: true;
+    background-color: red;
+    border-color: darkred;
+    border: 2px;
+    padding: 1em;
+}
+element-text {
+    background-color: @black;
+    highlight:        @blue;
+    text-color:       @green;
+}

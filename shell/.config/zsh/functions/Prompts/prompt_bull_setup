@@ -1,0 +1,88 @@
+prompt_bull_help () {
+  cat <<EOH
+This prompt is color-scheme-able.  You can invoke it thus:
+
+  prompt bull [<bull-bar-and-cwd> [<color2> [<color3>]]]
+
+where the parameters are the colors for the theme-bar and current
+working directory, user@host text, and color3 text respectively.  The
+default colors are green, white, and white.  This theme works best
+with a dark background.
+
+Recommended fonts for this theme: either UTF-8, or nexus or vga or similar.
+If you don't have any of these, the 8-bit characters will probably look
+stupid.
+EOH
+}
+
+prompt_bull_setup () {
+  local -A schars
+  autoload -Uz prompt_special_chars
+  prompt_special_chars
+
+  local color1=${1:-'green'}
+  local color2=${2:-'white'}
+  local color3=${3:-'blue'}
+
+  local distro_icon="%B%F{$color1}%{ %2G%}%f%b"
+  local dir_bar="%B%F{$color1}%K{$color1}$schars[333]$schars[262]$schars[261]$schars[260]%F{$color2}%K{$color1}%(7~|%3~/.../%3~|%~)%b%F{$color1}%k$schars[333]$schars[262]$schars[261]$schars[260]%f"
+  local start="%(?.%F{$color1}%{➜ %2G%}.%F{red}%{➜ %2G%})%f"
+  local nr_jobs="%B%F{$color2}%(1j.jobs: %j.)%f%b"
+  local return_code="%(?..%F{red}%? %{↵ %2G%})%f"
+  local hist_len="%B%F{$color1}%h%f%b"
+
+  PS1=" ${distro_icon} ${dir_bar} ${nr_jobs} ${return_code} ${hist_len} $prompt_newline ${start} "
+  PS2="%F{$color1}%K{$color1}$schars[333]$schars[262]$schars[261]$schars[260]%f%k%_>"
+
+  # Git prompt configuration thanks to omz/lib/git.zsh
+
+  # Info
+  ZSH_THEME_GIT_PROMPT_PREFIX="%F{$color2}:%B"
+  ZSH_THEME_GIT_PROMPT_SUFFIX="%f%b"
+  ZSH_THEME_GIT_PROMPT_DIRTY="%{✗ %1G%}%b%F{$color3}%})"
+  ZSH_THEME_GIT_PROMPT_CLEAN="%b%F{$color3})"
+  # Status
+  ZSH_THEME_GIT_PROMPT_ADDED="%B%F{$color2}✚ %f%b"
+  ZSH_THEME_GIT_PROMPT_MODIFIED="%B%F{$color2}⚑ %f%b"
+  ZSH_THEME_GIT_PROMPT_DELETED="%B%F{$color2}✖ %f%b"
+  ZSH_THEME_GIT_PROMPT_RENAMED="%B%F{$color2}➜ %f%b"
+  ZSH_THEME_GIT_PROMPT_UNMERGED="%B%F{$color2} %f%b"
+  ZSH_THEME_GIT_PROMPT_UNTRACKED="%B%F{$color2} %f%b"
+  # SHA
+  ZSH_THEME_GIT_PROMPT_SHA_BEFORE="%F{$color3}%{ %2G%}:(%B%F{$color1}"
+  ZSH_THEME_GIT_PROMPT_SHA_AFTER="%f%b"
+  # Remote
+  ZSH_THEME_GIT_COMMITS_AHEAD_PREFIX="%B%F{$color3}%{⇡%1G%}:"
+  ZSH_THEME_GIT_COMMITS_AHEAD_SUFFIX="%f%b"
+  ZSH_THEME_GIT_COMMITS_BEHIND_PREFIX="%B%F{$color3}%{⇣%1G%}:"
+  ZSH_THEME_GIT_COMMITS_BEHIND_SUFFIX="%f%b"
+
+  local git_branch='$(git_prompt_short_sha)$(git_prompt_info)'
+  local git_status='$(git_prompt_status)'
+  local git_commits='$(git_commits_ahead) $(git_commits_behind)'
+
+  RPS1='${MODE_INDICATOR_PROMPT}'
+  RPS1+=" ${git_commits}${git_branch}${git_status}"
+
+  prompt_opts=(cr subst percent)
+}
+
+prompt_bull_preview () {
+  local color colors
+  colors=(red yellow green blue magenta)
+
+  if (( ! $#* )); then
+    for (( i = 1; i <= $#colors; i++ )); do
+      color=$colors[$i]
+      prompt_preview_theme bull $color
+      print
+    done
+    prompt_preview_theme bull white grey blue
+  else
+    prompt_preview_theme bull "$@"
+  fi
+}
+
+prompt_bull_setup "$@"
+
+# vim:ft=zsh

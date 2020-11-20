@@ -1,0 +1,16 @@
+acpilight
+bc
+bluez
+bluez-utils
+blueberry
+lynx
+pacman-contrib
+unrar
+unzip
+xarchiver
+xautolock
+xclip
+xorg-xev
+xorg-xwininfo
+xsel
+zip

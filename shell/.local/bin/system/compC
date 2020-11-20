@@ -1,0 +1,113 @@
+#!/bin/sh
+
+# ===  File and folder  =======================================================
+# The first file passed will be used as output name
+fullDoc=$(readlink -f "$2")
+folder=$(dirname "$fullDoc")
+DocExt="${fullDoc##*/}"
+Doc="${DocExt%.*}"
+Ext="${DocExt##*.}"
+
+cd "$folder" || exit
+
+# ===  Auxiliary Functions  ===================================================
+
+extensionWarning() {
+    echo -e "\t\e[1;31mError! You cannot perform any action on file with extension ${Ext}\e[0m"
+    echo -e "\t\e[1;31mPlease select a c or cpp file\e[0m"
+}
+
+optionsHelp() {
+        echo -e "\tPass -bg for \e[1;34mbuild the c/cpp file with pedantic options and/or debuggin options\e[0m"
+        echo -e "\tPass -bo for \e[1;34mbuild the c/cpp file with optimization\e[0m"
+        echo -e "\tPass -bs for \e[1;34mbuild the c/cpp file\e[0m"
+        echo -e "\tPass -c  for \e[1;33mcompile the c/cpp file\e[0m"
+        echo -e "\tPass -l  for \e[1;97mlint the c/cpp file\e[0m"
+        echo -e "\tPass -re for \e[1;31mdelete all the executables, recursively\e[0m"
+        echo -e "\tPass -ro for \e[1;31mdelete all the output files, recursively\e[0m"
+}
+
+# ===  Flag Parsing  ==========================================================
+
+case ${1} in
+    "-bg")              # Build and debug
+        CFLAGS=(-Wall -Wextra -Wshadow -Wno-long-long -pedantic -std=c11 -fstack-protector -lm)
+        CXXFLAGS=(-std=c++17 -Wshadow -Wall -lm -g -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG)
+        ;;
+    "-bo")              # Build and optimize
+        CFLAGS=(-Wall -O3 -lm)
+        CXXFLAGS=(-std=c++17 -Wshadow -Wall -O3 -Wno-unused-result)
+        ;;
+    "-bs")              # Build
+        CFLAGS=(-Wall -lm)
+        CXXFLAGS=(-Wall)
+        ;;
+    "-c")               # Compile
+        CFLAGS=(-Wall -lm -c)
+        CXXFLAGS=(-Wall -c)
+        ;;
+    "-l")               # Linting
+        CFLAGS=(--language=c --enable=warning,style --template=gcc)
+        CXXFLAGS=(--language=c++ --enable=warning,style --template=gcc)
+        ;;
+    "-re"|"-ro")        # File deletion
+        ;;
+    *)
+        echo -e "${1} Not allowed option."
+        optionsHelp
+        ;;
+esac
+
+# ==  Action selection ========================================================
+
+case ${1} in
+    "-bg"|"-bs"|"-bo"|"-c")             # Build or compile c/cpp file
+        case "${Ext}" in
+            "c")
+                COMP="gcc"
+                FLAGS="${CFLAGS}" ;;
+            "cpp")
+                COMP="g++"
+                FLAGS="${CXXFLAGS}" ;;
+            *)
+                extensionWarning ;;
+        esac ;;
+    "-l")                               # Lint c/cpp/h files
+        COMP="cppcheck"
+        case "${Ext}" in
+            "c")
+                FLAGS="${CFLAGS}" ;;
+            "cpp")
+                FLAGS="${CXXFLAGS}" ;;
+            "h")
+                dmenuColors="-nf white -nb #222222 -sf #cece00 -sb red"
+                dmenuHighColors="-nhb #5b5b5b -nhf white -shb #434343 -shf #cece00"
+                choice=$(printf "c\\ncpp" | \
+                    dmenu -c -i -p "Select a standard" $dmenuColors $dmenuHighColors)
+                [ "$choice" == "cpp" ] && FLAGS="${CXXFLAGS}" || FLAGS="${CFLAGS}"
+                ;;
+            *)
+                extensionWarning ;;
+        esac ;;
+    *) ;;
+esac
+
+# ==  Perform Action ==========================================================
+
+case ${1} in
+    "-bg"|"-bs"|"-bo")
+        if [ "$#" -gt 2 ]; then
+            "${COMP}" "${FLAGS[@]}" -o "${folder}"/${Doc} ${@:2}
+        else
+            "${COMP}" "${FLAGS[@]}" -o "${folder}"/${Doc} ${2}
+        fi ;;
+    "-c"|"-l")
+        "${COMP}" "${FLAGS[@]}" ${@:2} ;;
+    "-re")
+        dmenuConfirm "Delete all the executables?" \
+            $(find . -type f -executable | xargs rm) ;;
+    "-ro")
+        dmenuConfirm "Delete all the output files?" \
+            $(find . -type f -name "*.o" -delete) ;;
+    *) ;;
+esac

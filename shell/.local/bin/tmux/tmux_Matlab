@@ -1,0 +1,25 @@
+#!/bin/sh
+
+main_dir=""
+
+start_session() {
+  tmux has-session -t 'Matlab'
+  if [ $? != 0 ]; then
+    tmux new-session -d -s 'Matlab' -n 'Vim' -c ~/Documents/programming/matlab/projects/2018_Cantoro/MatriHX/MatriHX_v05main_dir
+    tmux split-window -d -h -t Matlab:Vim.1 -c ~/Documents/programming/matlab/projects/2018_Cantoro/MatriHX/MatriHX_v05main_dir
+    tmux split-window -d -v -t Matlab:Vim.2 -c ~/Documents/programming/matlab/projects/2018_Cantoro/MatriHX/MatriHX_v05
+
+    tmux new-window  -d -t Matlab:2 -n 'Help' -c ~/Documents/programming/matlab
+    tmux split-window -d -h -t Matlab:Help.1
+
+    tmux send-keys -t Matlab:Vim.0 'nvim' C-m
+    tmux send-keys -t Matlab:Vim.1 'matlab -nodesktop -nosplash' C-m
+  fi
+  tmux attach -d -t Matlab
+}
+
+main() {
+  start_session
+}
+
+main "$@"

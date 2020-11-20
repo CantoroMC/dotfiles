@@ -1,0 +1,19 @@
+#!/bin/sh
+
+while getopts ":s:" opt; do
+    case $opt in
+        s ) SECTION=$OPTARG; shift; shift;;
+        \?) echo "Invalid option: -$OPTARG" >&2; exit 1;;
+        : ) echo "Option -$OPTARG requires an argument" >&2; exit 1;;
+    esac
+done
+
+manual=$(apropos -s ${SECTION:-''} ${@:-.} | \
+    grep -v -E '^.+ \(0\)' |\
+    awk '{print $2 "    " $1}' | \
+    sort | \
+    fzf  | \
+    sed -E 's/^\((.+)\)/\1/')
+
+[ -z "$manual" ] && exit 0
+man $manual

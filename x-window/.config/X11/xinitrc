@@ -1,0 +1,130 @@
+#!/bin/bash
+#
+# ~/.xinitrc
+#
+# Executed by startx (run your window manager from here)
+
+# XDG based directories {{{1
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_DIRS="/etc/xdg"
+
+# Application Partially supported by the XDG Standard
+export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
+export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
+
+export GEM_HOME="$XDG_DATA_HOME"/gem
+export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
+# Make sure to remove gem: --user-install from /etc/gemrc
+export GOPATH="$XDG_DATA_HOME/go"
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
+export LESSHISTFILE=-
+export MPLAYER_HOME="$XDG_CONFIG_HOME"/mplayer
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
+export PYLINTHOME="$XDG_CACHE_HOME"/pylint
+export QT_QPA_PLATFORMTHEME="qt5ct"
+export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+# }}}
+
+# System resources {{{1
+if whereis nvim &>/dev/null; then
+  export VISUAL="/usr/bin/nvim"
+  export EDITOR='/usr/bin/nvim'
+elif whereis vim &>/dev/null; then
+  export VISUAL="/usr/bin/vim"
+  export EDITOR='/usr/bin/vim'
+else
+  export VISUAL="/usr/bin/vi"
+  export EDITOR='/usr/bin/vi'
+fi
+
+if [ -n "$DISPLAY" ]; then
+  export BROWSER='/usr/bin/firefox'
+else
+  export BROWSER='/usr/bin/lynx'
+fi
+
+export READER='zathura'
+export PAGER='less'
+if whereis nvim &>/dev/null; then
+  export MANPAGER='nvim +Man!'
+fi
+
+export SHELL='/usr/bin/zsh'
+
+# Mpc, Mpd and NcmpCpp
+export MPC_FORMAT="[[%artist%  - ]%title% (%time%)]|[%file%]"
+export MPD_HOST=$HOME/.config/mpd/socket
+
+# Append "$1" to $PATH when not already in. (taken from /etc/profile)
+append_path () {
+    case ":$PATH:" in
+        *:"$1":*)
+            ;;
+        *)
+            PATH="${PATH:+$PATH:}$1"
+    esac
+}
+# Append our default paths
+append_path "$HOME/.local/bin"
+append_path "$HOME/.local/bin/screenlayout"
+
+# Required by i3-sensible-terminal and rofi-sensible terminal
+export TERMINAL='/usr/local/bin/st'
+# }}}
+
+# Load xprofile {{{1
+sysprofile=/etc/xprofile
+userprofile=$XDG_CONFIG_HOME/X11/xprofile
+
+[ -f $sysprofile ] && . "$sysprofile"
+[ -f "$userprofile" ] && . "$userprofile"
+# }}}
+
+# start some nice programs {{{1
+if [ -d /etc/X11/xinit/xinitrc.d ] ; then
+    for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
+        [ -x "$f" ] && . "$f"
+    done
+    unset f
+fi
+# }}}
+
+# Desktop Environment or Window Manager {{{1
+DEFAULT_SESSION=xmonad
+# DEFAULT_SESSION=dwm
+
+get_session(){
+    local init
+    case $1 in
+        awesome) init+=(awesome) ;;
+        bspwm) init+=(bspwm-session) ;;
+        budgie) init+=(budgie-desktop) ;;
+        cinnamon) init+=(cinnamon-session) ;;
+        deepin) init+=(startdde) ;;
+        dwm) init+=(dwm) ;;
+        enlightenment) init+=(enlightenment_start) ;;
+        fluxbox) init+=(startfluxbox) ;;
+        gnome) init+=(gnome-session) ;;
+        i3|i3wm) init+=(i3 --shmlog-size 0) ;;
+        jwm) init+=(jwm) ;;
+        kde) init+=(startplasma-x11) ;;
+        lxde) init+=(startlxde) ;;
+        lxqt) init+=(lxqt-session) ;;
+        mate) init+=(mate-session) ;;
+        openbox) init+=(openbox-session) ;;
+        xfce) init+=(xfce4-session) ;;
+        xmonad) init+=(xmonad) ;;
+        *) init+=($DEFAULT_SESSION) ;;
+    esac
+
+    echo "${init[*]}"
+}
+
+exec $(get_session "$1")
+# }}}
+
+# vim:fdm=marker

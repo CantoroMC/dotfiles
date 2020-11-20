@@ -1,0 +1,144 @@
+-- Xmobarcc: http://projects.haskell.org/xmobar
+
+-- black   red     green   yellow  blue    magenta cyan    white
+-- #151a1e #FF3333 #B8CC52 #E7C547 #36A3D9 #F07178 #95E6CB #EAEAEA
+-- #3f4e5a #FF7733                 #A37ACC                 #FAFAFA
+
+-- Shades of Black
+-- #465764 #384550 #313d46 #2a343c #232b32 #1c2328
+
+Config
+    { font            = "xft:Ubuntu:weight=bold:pixelsize=11:antialias=true:hinting=true"
+    , additionalFonts =
+        [ "xft:SauceCodePro Nerd Font:style=Black Italic :size=9:hinting=true"
+        , "xft:mononoki Bold Nerd Font:pixelsize=10:antialias=true:hinting=true"
+        ]
+    , bgColor     = "#151a1e"
+    , fgColor     = "#95E6CB"
+    , alpha       = 255
+    , position    = Static { xpos = 0, ypos = 0, width = 1600, height = 20 }
+    , border      = NoBorder
+    , borderColor = "#F07178"
+    , textOffset  = -1
+    , iconOffset  = -1
+    , iconRoot    = "/home/cantoro/.config/xmobar/icons/"
+    -- general behavior
+    , lowerOnStart     = True    -- send to bottom of window stack on start
+    , hideOnStart      = False   -- start with window unmapped (hidden)
+    , allDesktops      = True    -- show on all desktops
+    , overrideRedirect = True    -- set the Override Redirect flag (Xlib)
+    , pickBroadest     = False   -- choose widest display (multi-monitor)
+    , persistent       = False   -- enable/disable hiding (True = disabled)
+
+    , commands =
+        [ Run UnsafeStdinReader
+        , Run Weather "LIML"
+            [ "--t" , "<action=`weather` button=3><fn=1>\62153 </fn><fc=#36A3D9><tempC>°C</fc>  <fn=1>\58227 </fn><fc=#36A3D9><dewPointC>°C</fc>  <fn=1>\57982 </fn><fc=#36A3D9><windKmh>km/h</fc>   <fc=#B8CC52><skyConditionS> - <weather></fc></action>"
+            ] 100
+        , Run MPD
+            [ "-t", "<statei> <fc=#36A3D9><action=`wmctrl -xR ncmpcpp` button=3><artist>-<title></action></fc> <action=`mpc random` button=1><fn=1> </fn></action><fc=#B8CC52> <action=`mpc seek +1%` button=4><action=`mpc seek -1%` button=5>[<lapsed>/<length>]</action></action> <action=`mpc volume +3` button=4><action=`mpc volume -3` button=5>(<fn=1>墳 </fn><volume>%)</action></action></fc>"
+            , "-M", "30"
+            , "--"
+                , "-P", "<fc=#36A3D9><action=`mpc prev` button=1><fn=1>玲</fn></action> <action=`mpc pause` button=1><action=`mpc stop` button=3> <fn=1>  </fn></action></action><action=`mpc next` button=1><fn=1>怜</fn> </action></fc>"
+                , "-Z", "<fc=#E7C547><action=`mpc play` button=1><action=`mpc stop` button=3><fn=1> </fn></action></action></fc>"
+                , "-S", "<fc=#FF3333><action=`mpc play` button=1><fn=1> </fn></action></fc>"
+            ] 10
+        , Run Date
+            "<fc=#36A3D9> %T</fc> - <fc=#B8CC52>%a %e %b %Y</fc>" "date" 10
+        , Run BatteryN ["BAT0"]
+            [ "-t", "<fc=#EAEAEA>Int:</fc><acstatus>"
+            , "-L", "10"
+            , "-H", "80"
+            , "-l", "#FF3333"
+            , "-n", "#F07178"
+            , "-h", "#B8CC52"
+            , "-S", "True"
+            , "--"
+                , "-o", "<left> (<timeleft>)"
+                , "-O", "<fc=#E7C547>On</fc> <left>"
+                , "-i", "<fc=#B8CC52>Idle</fc> <left>"
+                , "-L", "-15"
+                , "-H", "-5"
+                , "-l", "#FF3333"
+                , "-m", "#36A3D9"
+                , "-h", "#B8CC52"
+                , "-a", "notify-send -u critical 'Battery low'"
+                , "-A", "3"
+            ] 400 "battery0"
+        , Run BatteryN ["BAT1"]
+            [ "-t", "<fc=#EAEAEA>Ext:</fc><acstatus>"
+            , "-L", "10"
+            , "-H", "80"
+            , "-l", "#FF3333"
+            , "-n", "#F07178"
+            , "-h", "#B8CC52"
+            , "-S", "True"
+            , "--" -- battery specific options
+                , "-o", "<left> (<timeleft>)"
+                , "-O", "<fc=#E7C547>On</fc> <left>"
+                , "-i", "<fc=#B8CC52>Idle</fc> <left>"
+                , "-L", "-15"
+                , "-H", "-5"
+                , "-l", "#FF3333"
+                , "-m", "#36A3D9"
+                , "-h", "#B8CC52"
+                , "-a", "notify-send -u critical 'Battery low'"
+                , "-A", "3"
+            ] 400 "battery1"
+        , Run Volume "default" "Master"
+            ["-t", "<action=`pactl set-sink-volume @DEFAULT_SINK@ -5%` button=5><action=`pactl set-sink-volume @DEFAULT_SINK@ +5%` button=4><action=`pactl set-sink-mute @DEFAULT_SINK@ toggle` button=2><action=`pavucontrol` button=3><status><volume></action></action></action></action>"
+            , "-L", "10"
+            , "-H", "80"
+            , "-l", "#36A3D9"
+            , "-n", "#F07178"
+            , "-h", "#FF3333"
+            , "-S", "True"
+            , "--"
+                , "-C", "#F07178"
+                , "-c", "#36A3D9"
+                , "-h", "<fn=1>墳 </fn>"
+                , "-m", "<fn=1>奔 </fn>"
+                , "-l", "<fn=1>奄 </fn>"
+            ] 10
+        , Run Brightness
+            [ "-t", "<action=`xbacklight -inc 5` button=4><action=`xbacklight -dec 5` button=5><action=`xbacklight -set 100` button=3><action=`xbacklight -set 0` button=2><fc=#EAEAEA><fn=1> </fn><percent></fc></action></action></action></action>"
+            , "-S", "True"
+            , "--"
+                , "-D", "intel_backlight"
+            ] 10
+        , Run Kbd
+            [ ("us", "<action=`setxkbmap it; xmodmap ~/.config/X11/xinit/.XmodmapIT` button=3><fc=#36A3D9><fn=1>\63499 </fn>US</fc></action>")
+            , ("it", "<action=`setxkbmap us; xmodmap ~/.config/X11/xinit/.Xmodmap` button=3><fc=#36A3D9><fn=1>\63499 </fn>IT</fc></action>")
+            ]
+        , Run CommandReader "/home/cantoro/.config/xmobar/scripts/pacman-update" "pacman"
+        , Run Com "/home/cantoro/.config/xmobar/scripts/padding-icon" [] "trayerpad" 10
+        , Run CoreTemp
+            [ "-t", "<fc=#EAEAEA>Temp[°C]:</fc> <core0> <core1>"
+            , "-L", "50"
+            , "-H", "85"
+            , "-l", "#F07178"
+            , "-n", "#B8CC52"
+            , "-h", "#FF3333"
+            ] 50
+        , Run MultiCpu
+            [ "-t", "<fc=#EAEAEA>CPUs</fc><total0><total1><total2><total3>"
+            , "-L", "50"
+            , "-H", "85"
+            , "-l", "#F07178"
+            , "-n", "#B8CC52"
+            , "-h", "#FF3333"
+            , "-S", "True"
+            , "-p", "2"
+            , "-d", "0"
+            , "-w", "4"
+            , "-a", "l"
+            ] 10
+        ]
+
+    -- layout
+    , sepChar =  "*"
+    , alignSep = "}{"
+    , template = "<action=`xmenu-apps` button=1><fn=1> </fn></action>*date*   *LIML*   *mpd*}*UnsafeStdinReader*{*multicpu*   *coretemp*   <action=`st sudo pacman -Syu` button=3>*pacman*</action>  *battery0* *battery1*   *bright*   *default:Master*   *kbd*   *trayerpad*"
+}
+
+-- vim:ft=haskell:nospell

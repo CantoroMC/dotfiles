@@ -1,0 +1,10 @@
+dmenu
+i3status
+i3-wm
+i3lock
+i3blocks
+nitrogen
+galculator
+file-roller
+xed
+xfce4-terminal

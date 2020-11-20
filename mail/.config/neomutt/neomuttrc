@@ -1,0 +1,145 @@
+# Identity {{{1
+set realname = "Marco Cantoro"
+set from = "marco.cantoro92@outlook.it"
+
+# Other addresses
+alternates "^cantoro\.marco@gmail\.com$"
+set reverse_name
+set reverse_realname
+# }}}
+
+# Mail Boxes: {{{1
+
+# Local Mail Box {{{2
+# You can retrieve mail locally using mbsync or getmail
+
+# set folder = "=$HOME/Mail/outlook"
+# set spoolfile = "+inbox"
+# set record = "+sent"
+# set trash = "+trash"
+# set postponed = "+drafts"
+
+# mailboxes ! +neomutt +family +work
+# }}}
+
+# Online Email {{{2
+
+set imap_user = "marco.cantoro92@outlook.it"
+# NOTE: Encrypted password generation
+# echo -n "$(read -s;echo -n "$REPLY")" | gpg --encrypt -r marco.cantoro92@outlook.it > $XDG_CONFIG_HOME/neomutt/outlook_password.gpg
+set imap_pass = "`gpg --batch -q --decrypt $XDG_CONFIG_HOME/neomutt/outlook_password.gpg`"
+
+set folder = "imaps://marco.cantoro92@outlook.it@outlook.office365.com:993"
+set spoolfile = "=INBOX"
+set postponed = "=Drafts"
+set record = "=Sent"
+set trash = "=Deleted"
+
+set smtp_url = "smtp://marco.cantoro92@outlook.it@smtp.office365.com:587"
+set smtp_pass = "`gpg --batch -q --decrypt $XDG_CONFIG_HOME/neomutt/outlook_password.gpg`"
+
+mailboxes =INBOX =Sent =Drafts =Deleted =Junk
+# }}}
+
+# }}}
+
+# Pager: {{{1
+
+ignore *
+unignore Date From To Cc Bcc Subject
+
+set pager_stop
+unset markers
+
+# }}}
+
+# Index settings: {{{1
+
+set quit = ask-yes
+set sort = reverse-date
+# set index_format="%Z %3C %{%b %d} %-20.20L %?X?A& ? %s (%?l?%4l&%4c?) "
+
+set header_cache = "$XDG_CONFIG_HOME/neomutt/cache/headers"
+
+# }}}
+
+# Message composition settings {{{1
+
+set edit_headers
+set editor = "nvim"
+set query_command = "abook --config ~/.config/abook/abookrc --datafile ~/Documents/organization/contacts/addressbook --mutt-query %s"
+
+set mime_type_query_command = "xdg-mime query filetype"
+
+# }}}
+
+# Sidebar {{{1
+
+set sidebar_visible = yes
+set sidebar_on_right
+set sidebar_width = 20
+set sidebar_divider_char = '|'
+set sidebar_short_path = no
+set sidebar_next_new_wrap = yes
+set sidebar_format = '%B%?F? [%F]?%* %?N?%N/?%?S?%S?'
+set sidebar_component_depth = 0
+set sidebar_delim_chars = '.'
+set sidebar_folder_indent
+set sidebar_indent_string = "  "
+set sidebar_sort_method = 'unsorted'
+set sidebar_non_empty_mailbox_only
+
+bind index,pager \CP sidebar-prev
+bind index,pager \CN sidebar-next
+bind index,pager \CO sidebar-open
+# bind index,pager <F3> sidebar-page-up
+# bind index,pager <F4> sidebar-page-down
+# bind index,pager \Cp sidebar-prev-new
+# bind index,pager \Cn sidebar-next-new
+bind index,pager B sidebar-toggle-visible
+
+set sort_re
+set mail_check_stats
+set mail_check = 60
+
+# }}}
+
+# Vi Key Bindings {{{1
+
+# Moving around
+bind attach,browser,index       g   noop
+bind attach,browser,index       gg  first-entry
+bind attach,browser,index       G   last-entry
+bind pager                      g   noop
+bind pager                      gg  top
+bind pager                      G   bottom
+bind pager                      k   previous-line
+bind pager                      j   next-line
+
+# Scrolling
+bind attach,browser,pager,index \CF next-page
+bind attach,browser,pager,index \CB previous-page
+bind attach,browser,pager,index \Cu half-up
+bind attach,browser,pager,index \Cd half-down
+bind browser,pager              \Ce next-line
+bind browser,pager              \Cy previous-line
+bind index                      \Ce next-line
+bind index                      \Cy previous-line
+
+bind pager,index                d   noop
+bind pager,index                dd  delete-message
+
+# Mail & Reply
+bind index                      \Cm list-reply
+
+# Threads
+bind browser,pager,index        N   search-opposite
+bind pager,index                dT  delete-thread
+bind pager,index                dt  delete-subthread
+bind pager,index                gt  next-thread
+bind pager,index                gT  previous-thread
+bind index                      za  collapse-thread
+bind index                      zA  collapse-all # Missing :folddisable/foldenable
+# }}}
+
+source $XDG_CONFIG_HOME/neomutt/colorschemes/smith_color.muttrc

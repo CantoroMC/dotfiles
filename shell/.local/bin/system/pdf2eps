@@ -1,0 +1,12 @@
+#!/bin/sh
+# Convert Porable Document Format to encapsulated PostScript
+# Used to include images in ps and dvi output of latex compilation
+
+fullDoc=$(readlink -f "$1")  # Full Path of the file
+folder=$(dirname "$fullDoc") # File directory
+DocExt="${fullDoc##*/}"
+Doc="${DocExt%.*}"
+
+pdfcrop "$fullDoc" "$folder/$Doc.pdf~"
+pdftops "$folder/$Doc.pdf~" -eps "$folder/$Doc.eps"
+rm "$folder/$Doc.pdf~"

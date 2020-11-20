@@ -1,0 +1,98 @@
+#! /bin/bash
+
+dmenuPrompt(){
+    [ "$(printf "No\\nYes" |\
+        dmenu -p "$1" )" = "Yes" ] && $2
+}
+
+####################
+## Packages Cache ##
+####################
+cleanPkgCache() {
+    cecho -w "\nCleaning the pacman package cache ... "
+    sudo pacman -Sc
+    paccache -r --u
+    paccache -r --k 2;
+}
+
+deletePkgCache() {
+    cecho -w "\nRemoving everything from the cache ... "
+    sudo pacman -Scc
+}
+
+clean_package_cache() {
+    cecho -w "\nPacman Cache size: "
+    du -sh /var/cache/pacman/pkg/
+    dmenuPrompt "Clean packages cache?" cleanPkgCache &&
+        dmenuPrompt "Remove packages cache?" deletePkgCache
+}
+
+####################
+## System Journal ##
+####################
+cleanJournal() {
+    cecho -w "\nReducing the size of the journal to 40M ... "
+    sudo journalctl --vacuum-size=40M
+}
+
+clean_journal() {
+    cecho -w "\nJournal size: "
+    du -sh /var/log/journal/
+    dmenuPrompt "Clean Journal file?" cleanJournal
+}
+
+#####################
+## Orphan Packages ##
+#####################
+orphanPackages() {
+    cecho -w "\nRemoving the Orphans ... "
+    sudo pacman -R $(sudo pacman -Qtdq)
+}
+
+clean_orphan_package() {
+    cecho -w "\nOrphan Packages: "
+    sudo pacman -Qtdq
+    dmenuPrompt "Remove the orphan packages?" orphanPackages
+}
+
+################
+## Home Cache ##
+################
+cleanHOMECache() {
+    cecho -w "\nCleaning the home package cache ... "
+    rm -rf ~/.cache/*
+}
+
+clean_home_cache() {
+    cecho -w "\nHome Cache size: "
+    du -sh ~/.cache/
+    dmenuPrompt "Clean HOME/.cache?" cleanHOMECache
+}
+
+main_help() {
+
+    cat << _EOF_
+
+    cleanPacman is a shell script that automates the cleaning
+    of arch based distros.
+
+_EOF_
+}
+
+main() {
+    # Welcome message
+    cecho -y "\nWelcome to the cleanPacman shell script!!\n"
+    case ${1} in
+        "-h" | "--help")
+            main_help;;
+        *)
+            cecho -b "\nSynchronizing the repository database and \nupdating the system's packages"
+            sudo pacman -Syu
+            clean_package_cache
+            clean_journal
+            clean_orphan_package
+            clean_home_cache;;
+    esac
+}
+
+main "$@"
