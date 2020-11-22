@@ -22,7 +22,6 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.EwmhDesktops
-import XMonad.Hooks.Place
 
 import XMonad.Util.EZConfig (additionalKeys)
 import XMonad.Util.NamedScratchpad
@@ -366,7 +365,6 @@ _keys conf@XConfig {XMonad.modMask = modm} = Map.fromList $
     , ((modm,                 xK_f), spawn _selBrowser)
     , ((modm .|. shiftMask,   xK_f), refresh)
 
-    , ((modm .|. shiftMask,   xK_c), placeFocused (withGaps (3,3,3,3) (smart (0.5,0.5))))
     , ((modm,                 xK_b), sendMessage ToggleStruts)
 
     , ((modm .|. controlMask, xK_m), namedScratchpadAction _scratchpads "ncmpcpp")
@@ -423,7 +421,7 @@ _keys conf@XConfig {XMonad.modMask = modm} = Map.fromList $
     , ((modm .|. shiftMask,   xK_Tab      ), setLayout $ XMonad.layoutHook conf)
 
     , ((modm,                 xK_space    ), sendMessage $ JumpToLayout "Monocle")
-    , ((modm .|. shiftMask,   xK_space    ), sendMessage $ JumpToLayout "Combo")
+    , ((modm .|. shiftMask,   xK_space    ), sendMessage $ JumpToLayout "Float")
 
     , ((modm .|. shiftMask,   xK_Delete   ), io exitSuccess)
     , ((modm .|. shiftMask,   xK_BackSpace), spawn "slock")
