@@ -115,7 +115,7 @@ command! RemoveAssociatedPdf
 " }}}
 
 " Browse {{{1
-command! Browse :execute '!firefox '
+command! Browse :execute '!vivaldi-stable '
       \ .fnameescape(expand('%:p')).' & disown'
 command! -nargs=1 -complete=file XdgOpen
       \ :execute '!xdg-open '.fnameescape(<q-args>)

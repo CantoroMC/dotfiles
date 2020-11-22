@@ -42,7 +42,7 @@ else
 fi
 
 if [ -n "$DISPLAY" ]; then
-  export BROWSER='/usr/bin/firefox'
+  export BROWSER='/usr/bin/vivaldi-stable'
 else
   export BROWSER='/usr/bin/lynx'
 fi

@@ -22,6 +22,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.Place
 
 import XMonad.Util.EZConfig (additionalKeys)
 import XMonad.Util.NamedScratchpad
@@ -44,6 +45,7 @@ import XMonad.Layout.ResizableTile
 import XMonad.Layout.TwoPanePersistent
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.Tabbed
+import XMonad.Layout.SimplestFloat
 
 _terminal           = "st"
 _modMask            = mod4Mask
@@ -196,8 +198,6 @@ _treeSelecAction a = XMTS.treeselectAction a
             (spawn "emacs")) []
         , Node (XMTS.TSNode "\62622 Evince"             "A simple document viewer for GNOME"
             (spawn "evince")) []
-        , Node (XMTS.TSNode "\62057 Firefox"            "Open source web browser"
-            (spawn "firefox")) []
         , Node (XMTS.TSNode "\63433 Gnome Disks"        "View, modify and configure disks and media"
             (spawn "gnome-disks")) []
         , Node (XMTS.TSNode "\62979 Gpick"              "Advanced color picker"
@@ -366,6 +366,7 @@ _keys conf@XConfig {XMonad.modMask = modm} = Map.fromList $
     , ((modm,                 xK_f), spawn _selBrowser)
     , ((modm .|. shiftMask,   xK_f), refresh)
 
+    , ((modm .|. shiftMask,   xK_c), placeFocused (withGaps (3,3,3,3) (smart (0.5,0.5))))
     , ((modm,                 xK_b), sendMessage ToggleStruts)
 
     , ((modm .|. controlMask, xK_m), namedScratchpadAction _scratchpads "ncmpcpp")
@@ -475,8 +476,7 @@ _mouseBindings XConfig {XMonad.modMask = modm} = Map.fromList
 _manageHook = composeAll $
     [ className =? _classToFloat --> doCenterFloat | _classToFloat <- _toFloat ]
     ++
-    [ (className =? "firefox" <&&> title =? "Library")       --> doCenterFloat
-    , (className =? "Display" <&&> title =? "ImageMagick: ") --> doCenterFloat
+    [ (className =? "Display" <&&> title =? "ImageMagick: ") --> doCenterFloat
 
     , title      =? "Event Tester"                           --> doFloat
     , title      =? "lstopo"                                 --> doCenterFloat
@@ -558,6 +558,8 @@ twoPane    = renamed [Replace "TwoPane"] $
 horizontal = renamed [Replace "Horizontal"] $
                 Mirror (ResizableTall 1 0.03 0.5 [])
 treeCol    = ThreeColMid 1 0.03 0.5
+floatL     = renamed [Replace "Float"]
+                simplestFloat
 
 _layouts =
     tall
@@ -566,6 +568,7 @@ _layouts =
     ||| twoPane
     ||| horizontal
     ||| treeCol
+    ||| floatL
 
 _layoutHook =
     avoidStrutsOn [U,L,R] $ smartBorders $ windowNavigation $

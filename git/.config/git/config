@@ -18,7 +18,7 @@
 
 [help]
 	autocorrect = 20
-	browser = firefox
+	browser = vivaldi-stable
 
 [alias]
 	alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /

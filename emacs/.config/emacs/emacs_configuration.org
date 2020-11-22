@@ -560,7 +560,7 @@ easy enough to define your own transformers.
                     (org-level-6 . 1.05)
                     (org-level-7 . 1.05)
                     (org-level-8 . 1.05)))
-      (set-face-attribute (car face) nil :font "JetBrainsMono Nerd Font" :weight 'regular :height (cdr face)))
+      (set-face-attribute (car face) nil :font "mononoki Nerd Font" :weight 'regular :height (cdr face)))
 
     ;; Ensure that anything that should be fixed-pitch in Org files appears that way
     (set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch)
@@ -581,7 +581,7 @@ easy enough to define your own transformers.
     (setq org-file-apps
           (quote
             ((auto-mode . emacs)
-            ("\\.x?html?\\'" . "/usr/bin/firefox %s")
+            ("\\.x?html?\\'" . "/usr/bin/vivaldi-stable %s")
             ("\\.pdf\\'" . "/usr/bin/zathura %s")))))
 #+end_src
 

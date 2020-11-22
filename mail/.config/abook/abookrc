@@ -29,7 +29,7 @@ set mutt_return_all_emails=true
 # Command used to print
 # set print_command=lpr
 # Command used to start the web browser
-set www_command=firefox
+set www_command=vivaldi-stable
 # Address style [eu|us|uk]
 set address_style=eu
 # Use ASCII characters only
