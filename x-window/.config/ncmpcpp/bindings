@@ -87,7 +87,8 @@
 ##      currently active. accepted values: browser, clock, help,
 ##      media_library, outputs, playlist, playlist_editor,
 ##      search_engine, tag_editor, visualizer, last_fm, lyrics,
-##      selected_items_adder, server_info, song_info, #      sort_playlist_dialog, tiny_tag_editor.
+##      selected_items_adder, server_info, song_info,
+##      sort_playlist_dialog, tiny_tag_editor.
 ##
 ##    - run_external_command "command" - runs given command using
 ##      system() function.
@@ -139,51 +140,6 @@
 # }}}
 
 # Key bindings: {{{1
-
-# Unbounded Keys {{{2
-def_key "@"
-  dummy
-
-def_key "ctrl-h"
-  dummy
-
-def_key "right"
-  dummy
-
-def_key "left"
-  dummy
-
-def_key "T"
-  dummy
-
-def_key "|"
-  dummy
-
-def_key "backspace"
-  dummy
-
-def_key "insert"
-  dummy
-
-def_key "ctrl-v"
-  dummy
-
-def_key "shift-up"
-  dummy
-
-def_key "shift-down"
-  dummy
-
-def_key "."
-  dummy
-
-def_key ","
-  dummy
-
-def_key "enter"
-  dummy
-
-# }}}
 
 # Movements {{{2
 def_key "j"
@@ -239,9 +195,6 @@ def_key "shift-tab"
   previous_screen
 
 def_key "l"
-  slave_screen
-
-def_key "enter"
   slave_screen
 
 def_key "h"
@@ -370,9 +323,6 @@ def_key "`"
 
 # Toggling {{{3
 
-def_key "ctrl-a"
-  toggle_add_mode
-
 def_key "ctrl-m"
   toggle_mouse
 
@@ -475,12 +425,6 @@ def_key "e"
 
 # Playlist {{{2
 
-def_key "l"
-  play_item
-
-def_key "enter"
-  play_item
-
 def_key "delete"
   delete_playlist_items
 
@@ -517,11 +461,11 @@ def_key "A"
 def_key "e"
   edit_song
 
-def_key "S"
-  save_playlist
+# def_key "S"
+#   save_playlist
 
-def_key "Z"
-  shuffle
+# def_key "Z"
+#   shuffle
 
 def_key "ctrl-s"
   sort_playlist
@@ -532,11 +476,11 @@ def_key "o"
 def_key "U"
   toggle_playing_song_centering
 
-def_key "ctrl-c"
-  set_selected_items_priority
+# def_key "ctrl-c"
+#   set_selected_items_priority
 
-def_key "ctrl-r"
-  reverse_playlist
+# def_key "ctrl-r"
+#   reverse_playlist
 
 # }}}
 
@@ -545,13 +489,10 @@ def_key "ctrl-r"
 def_key "h"
   jump_to_parent_directory
 
-def_key "k"
+def_key "l"
   enter_directory
 
 def_key "l"
-  run_action
-
-def_key "enter"
   run_action
 
 def_key "space"
@@ -579,9 +520,6 @@ def_key "h"
 def_key "l"
   next_column
 
-def_key "enter"
-  next_column
-
 def_key "ctrl-s"
   toggle_media_library_sort_mode
 
@@ -605,7 +543,7 @@ def_key "e"
 def_key "e"
   edit_library_album
 
-def_key "ctrl-y"
+def_key "enter"
   toggle_output
 
 def_key "space"
@@ -613,12 +551,6 @@ def_key "space"
 
 def_key "mouse"
   mouse_event
-
-# }}}
-
-# List of unbound actions and deactivated bindings {{{1
-
-# set_volume
 
 # }}}
 
