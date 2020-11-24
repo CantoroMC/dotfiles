@@ -323,8 +323,8 @@ def_key "`"
 
 # Toggling {{{3
 
-def_key "ctrl-m"
-  toggle_mouse
+# def_key "ctrl-m"
+#   toggle_mouse
 
 def_key "r"
   toggle_repeat
@@ -424,6 +424,9 @@ def_key "e"
 # }}}
 
 # Playlist {{{2
+
+def_key "l"
+  play_item
 
 def_key "delete"
   delete_playlist_items

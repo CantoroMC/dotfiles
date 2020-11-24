@@ -536,7 +536,6 @@ _handleEventHook = mempty
 
 _startupHook = do
     startupHook def
-    spawnOnce "xmobar ~/.config/xmobar/xmobar_bot.hs"
     setDefaultCursor xC_left_ptr
 
 -- Layouts

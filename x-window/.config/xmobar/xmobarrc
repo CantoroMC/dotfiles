@@ -21,7 +21,7 @@ Config
     , borderColor = "#F07178"
     , textOffset  = -1
     , iconOffset  = -1
-    , iconRoot    = "/home/cantoro/.config/xmobar/icons/"
+    , iconRoot    = "/home/cantoro/.config/xmobar/icons"
     -- general behavior
     , lowerOnStart     = True    -- send to bottom of window stack on start
     , hideOnStart      = False   -- start with window unmapped (hidden)
@@ -32,21 +32,35 @@ Config
 
     , commands =
         [ Run UnsafeStdinReader
-        , Run Weather "LIML"
-            [ "--t" , "<action=`weather` button=3><fn=1>\62153 </fn><fc=#36A3D9><tempC>°C</fc>  <fn=1>\58227 </fn><fc=#36A3D9><dewPointC>°C</fc>  <fn=1>\57982 </fn><fc=#36A3D9><windKmh>km/h</fc>   <fc=#B8CC52><skyConditionS> - <weather></fc></action>"
+        , Run WeatherX "LIML" 
+            [ (""                        , "n/a")
+            , ("clear"                   , "<icon=weather/weather_sunny.xpm/>")
+            , ("mostly clear"            , "<icon=weather/weather_mostly_sunny.xpm/>")
+            , ("sunny"                   , "<icon=weather/weather_sunny.xpm/>")
+            , ("mostly sunny"            , "<icon=weather/weather_mostly_sunny.xpm/>")
+            , ("partly sunny"            , "<icon=weather/weather_mostly_cloudy.xpm/>")
+            , ("cloudy"                  , "<icon=weather/weather_cloudy.xpm/>")
+            , ("mostly cloudy"           , "<icon=weather/weather_mostly_cloudy.xpm/>")
+            , ("partly cloudy"           , "<icon=weather/weather_mostly_sunny.xpm/>")
+            , ("fair"                    , "<icon=weather/weather_sunny.xpm/>")
+            , ("overcast"                , "<icon=weather/weather_cloudy.xpm/>")
+            , ("considerable cloudiness" , "<icon=weather/weather_cloudy.xpm/>")
+            , ("obscured"                , "<icon=weather/weather_obscured.xpm/>")
+            ]
+            [ "--t" , "<action=`weather` button=3> <skyConditionS> <tempC>°C <fc=#36A3D9><rh>%</fc> <fn=1>\57982 </fn><fc=#36A3D9><windKmh> km/h</fc> <weather></action>"
             ] 100
         , Run MPD
             [ "-t", "<statei> <fc=#36A3D9><action=`wmctrl -xR ncmpcpp` button=3><artist>-<title></action></fc> <action=`mpc random` button=1><fn=1> </fn></action><fc=#B8CC52> <action=`mpc seek +1%` button=4><action=`mpc seek -1%` button=5>[<lapsed>/<length>]</action></action> <action=`mpc volume +3` button=4><action=`mpc volume -3` button=5>(<fn=1>墳 </fn><volume>%)</action></action></fc>"
-            , "-M", "30"
+            , "-M", "15"
             , "--"
-                , "-P", "<fc=#36A3D9><action=`mpc prev` button=1><fn=1>玲</fn></action> <action=`mpc pause` button=1><action=`mpc stop` button=3> <fn=1>  </fn></action></action><action=`mpc next` button=1><fn=1>怜</fn> </action></fc>"
-                , "-Z", "<fc=#E7C547><action=`mpc play` button=1><action=`mpc stop` button=3><fn=1> </fn></action></action></fc>"
-                , "-S", "<fc=#FF3333><action=`mpc play` button=1><fn=1> </fn></action></fc>"
+                , "-P", "<fc=#36A3D9><action=`mpc prev` button=1><fn=1>玲</fn></action> <action=`mpc pause` button=1><action=`mpc stop` button=3> <fn=1> </fn></action></action><action=`mpc next` button=1><fn=1>怜</fn> </action></fc>"
+                , "-Z", "<action=`mpc play` button=1><action=`mpc stop` button=3><icon=music/music_playing.xpm/></action></action>"
+                , "-S", "<action=`mpc play` button=1><icon=music/music_stopped.xpm/></action>"
             ] 10
         , Run Date
             "<fc=#36A3D9> %T</fc> - <fc=#B8CC52>%a %e %b %Y</fc>" "date" 10
         , Run BatteryN ["BAT0"]
-            [ "-t", "<fc=#EAEAEA>Int:</fc><acstatus>"
+            [ "-t", "<leftipat> <acstatus>"
             , "-L", "10"
             , "-H", "80"
             , "-l", "#FF3333"
@@ -54,9 +68,12 @@ Config
             , "-h", "#B8CC52"
             , "-S", "True"
             , "--"
+                , "--on-icon-pattern", "<icon=battery/on/battery_on_%%.xpm/>"
+                , "--off-icon-pattern", "<icon=battery/off/battery_off_%%.xpm/>"
+                , "--idle-icon-pattern", "<icon=battery/idle/battery_idle_%%.xpm/>"
                 , "-o", "<left> (<timeleft>)"
-                , "-O", "<fc=#E7C547>On</fc> <left>"
-                , "-i", "<fc=#B8CC52>Idle</fc> <left>"
+                , "-O", "<left> (<timeleft>)"
+                , "-i", "<fc=#B8CC52>IDLE</fc> <left>"
                 , "-L", "-15"
                 , "-H", "-5"
                 , "-l", "#FF3333"
@@ -66,17 +83,20 @@ Config
                 , "-A", "3"
             ] 400 "battery0"
         , Run BatteryN ["BAT1"]
-            [ "-t", "<fc=#EAEAEA>Ext:</fc><acstatus>"
+            [ "-t", "<leftipat> <acstatus>"
             , "-L", "10"
             , "-H", "80"
             , "-l", "#FF3333"
             , "-n", "#F07178"
             , "-h", "#B8CC52"
             , "-S", "True"
-            , "--" -- battery specific options
+            , "--"
+                , "--on-icon-pattern", "<icon=battery/on/battery_on_%%.xpm/>"
+                , "--off-icon-pattern", "<icon=battery/off/battery_off_%%.xpm/>"
+                , "--idle-icon-pattern", "<icon=battery/idle/battery_idle_%%.xpm/>"
                 , "-o", "<left> (<timeleft>)"
-                , "-O", "<fc=#E7C547>On</fc> <left>"
-                , "-i", "<fc=#B8CC52>Idle</fc> <left>"
+                , "-O", "<left> (<timeleft>)"
+                , "-i", "<fc=#B8CC52>IDLE</fc> <left>"
                 , "-L", "-15"
                 , "-H", "-5"
                 , "-l", "#FF3333"
@@ -107,21 +127,25 @@ Config
                 , "-D", "intel_backlight"
             ] 10
         , Run Kbd
-            [ ("us", "<action=`setxkbmap it; xmodmap ~/.config/X11/xinit/.XmodmapIT` button=3><fc=#36A3D9><fn=1>\63499 </fn>US</fc></action>")
-            , ("it", "<action=`setxkbmap us; xmodmap ~/.config/X11/xinit/.Xmodmap` button=3><fc=#36A3D9><fn=1>\63499 </fn>IT</fc></action>")
+            [ ("us", "<action=`setxkbmap it; xmodmap ~/.config/X11/xinit/.XmodmapIT` button=3><fc=#36A3D9>US</fc></action>")
+            , ("it", "<action=`setxkbmap us; xmodmap ~/.config/X11/xinit/.Xmodmap` button=3><fc=#36A3D9>IT</fc></action>")
             ]
         , Run CommandReader "/home/cantoro/.config/xmobar/scripts/pacman-update" "pacman"
         , Run Com "/home/cantoro/.config/xmobar/scripts/padding-icon" [] "trayerpad" 10
-        , Run CoreTemp
-            [ "-t", "<fc=#EAEAEA>Temp[°C]:</fc> <core0> <core1>"
+        , Run MultiCoreTemp
+            [ "-t", "<maxipat> <max>°C"
             , "-L", "50"
             , "-H", "85"
             , "-l", "#F07178"
             , "-n", "#B8CC52"
             , "-h", "#FF3333"
+            , "--"
+                , "--max-icon-pattern", "<icon=temperature/temperature_%%.xpm/>"
+                , "--mintemp" , "20"
+                , "--maxtemp" , "100"
             ] 50
         , Run MultiCpu
-            [ "-t", "<fc=#EAEAEA>CPUs</fc><total0><total1><total2><total3>"
+            [ "-t", "<ipat><total0><total1><total2><total3>"
             , "-L", "50"
             , "-H", "85"
             , "-l", "#F07178"
@@ -132,13 +156,41 @@ Config
             , "-d", "0"
             , "-w", "4"
             , "-a", "l"
+            , "--"
+                , "--load-icon-pattern" , "<icon=cpu/cpu_%%.xpm/>"
+            ] 10
+        , Run Memory
+            [ "--t", "<action=`st htop` button=3><usedipat> <usedratio></action>"
+            , "-L", "40"
+            , "-H", "90"
+            , "-l", "#F07178"
+            , "-n", "#B8CC52"
+            , "-h", "#FF3333"
+            , "-p", "2"
+            , "-S", "True"
+            , "--"
+                , "--used-icon-pattern" , "<icon=ram/ram_%%.xpm/>"
+            ] 10
+        , Run DynNetwork
+            [ "-t" , "<txipat><rxipat>"
+            , "-L", "0"
+            , "-H", "5000"
+            , "-l", "#FF3333"
+            , "-n", "#95E6CB"
+            , "-h", "#B8CC52"
+            , "-m", "8"
+            , "-S", "True"
+            , "-d", "1"
+            , "--"
+                , "--rx-icon-pattern" , "<icon=network/rx/network_rx_%%.xpm/>"
+                , "--tx-icon-pattern" , "<icon=network/tx/network_tx_%%.xpm/>"
             ] 10
         ]
 
     -- layout
     , sepChar =  "*"
     , alignSep = "}{"
-    , template = "<action=`xmenu-apps` button=1><fn=1> </fn></action>*date*   *LIML*   *mpd*}*UnsafeStdinReader*{*multicpu*   *coretemp*   <action=`st sudo pacman -Syu` button=3>*pacman*</action>  *battery0* *battery1*   *bright*   *default:Master*   *kbd*   *trayerpad*"
+    , template = "<action=`xmenu-apps` button=1><fn=1> </fn></action><icon=separators/separator.xpm/> *dynnetwork*<icon=separators/separator.xpm/> *date* <icon=separators/separator.xpm/> *LIML* <icon=separators/separator.xpm/> *mpd* <icon=separators/separator.xpm/>}*UnsafeStdinReader*{<icon=separators/separator.xpm/> *memory* <icon=separators/separator.xpm/> *multicpu* <icon=separators/separator.xpm/> *multicoretemp* <icon=separators/separator.xpm/> <action=`st sudo pacman -Syu` button=3>*pacman*</action> *battery0* *battery1* <icon=separators/separator.xpm/> *bright* <icon=separators/separator.xpm/> *default:Master* <icon=separators/separator.xpm/> *kbd* <icon=separators/separator.xpm/> *trayerpad*"
 }
 
 -- vim:ft=haskell:nospell
