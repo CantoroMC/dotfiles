@@ -5,15 +5,15 @@ module XMonad.Local.Config.Workspace
 
 import XMonad
 
-data Workspace = WsBrowser
-               | WsHacking
-               | WsMedia
-               | WsSocial
+data Workspace = WsHome
+               | WsReading
                | WsWriting
-               | WsGIMP
-               | WsGaming
-               | WsControl
-               | WsOther
+               | WsBrowser
+               | WsMultimedia
+               | WsSix
+               | WsSeven
+               | WsEight
+               | WsSupport
                deriving (Eq, Ord, Read, Show, Enum, Bounded)
 
 workspaceIds :: [WorkspaceId]

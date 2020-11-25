@@ -1,4 +1,4 @@
--- :set -Wall -ilib
+:set -Wall -ilib
 :load xmonad.hs
 
 -- vim:ft=haskell
