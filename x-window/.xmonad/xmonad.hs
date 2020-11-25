@@ -359,9 +359,8 @@ _keys conf@XConfig {XMonad.modMask = modm} = Map.fromList $
 
     , ((modm,                 xK_s), incWindowSpacing 1)
     , ((modm .|. shiftMask,   xK_s), decWindowSpacing 1)
-    , ((modm .|. controlMask, xK_s), setScreenWindowSpacing 2)
+    , ((modm .|. controlMask, xK_s), setScreenWindowSpacing 0)
 
-    , ((modm .|. shiftMask,   xK_d), sendMessage $ ToggleStrut D)
     , ((modm,                 xK_f), spawn _selBrowser)
     , ((modm .|. shiftMask,   xK_f), refresh)
 
