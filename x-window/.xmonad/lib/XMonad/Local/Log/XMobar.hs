@@ -12,7 +12,7 @@ import XMonad.Hooks.DynamicLog
     ( PP (..)
     , xmobarPP
     , xmobarColor
-    , wrap
+    , shorten
     )
 import XMonad.Util.Run
     ( hPutStrLn
@@ -36,19 +36,25 @@ spawnXMobar = spawnPipe $ unwords
 
 xmXMobarPP :: Handle -> PP
 xmXMobarPP h = xmobarPP
-    { ppOutput          = hPutStrLn h
-    , ppOrder           = \ (wss:_) -> [wss]
-    , ppWsSep           = ""
-    , ppCurrent         = clickableIcon "current"
+    { ppCurrent         = clickableIcon "current"
     , ppVisible         = clickableIcon "visible"
     , ppUrgent          = clickableIcon "urgent"
     , ppHidden          = clickableIcon "hidden"
     , ppHiddenNoWindows = clickableIcon "hiddenNoWindows"
+    , ppSep             = " "
+    , ppWsSep           = ""
+    , ppTitle           = xmobarColor "#B8CC52" "#232b32" . shorten 35
+    , ppLayout          = xmobarColor "#36A3D9" "#232b32"
+    , ppOutput          = hPutStrLn h
+    , ppOrder           = \(ws:l:t) -> [l,ws] ++ t
     }
+
+-- , normalBorderColor  = XMTheme.inactiveBorderColor XMTheme.xmTheme
 
 clickableIcon :: String -> WorkspaceId -> String
 clickableIcon status wsId = let ws = read wsId :: Workspace
                                 n = show $ 1 + fromEnum ws
-                            in "<action=xdotool key super+" <> n <> ">" <>
+                            in "<action=`xdotool key 0xffeb+"       <> n <> "` button=1>" <>
+                               "<action=xdotool key 0xffeb+0xffe1+" <> n <> "` button=3>" <>
                                "<icon=workspaces/" <> status <> "/workspace_" <> n <> ".xpm/>" <>
-                               "</action>"
+                               "</action></action>"

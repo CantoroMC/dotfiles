@@ -1,7 +1,5 @@
 -- xmonad.hs
 
-import Control.Monad
-import Data.Monoid
 import qualified Data.Map as Map
 import Data.Ratio
 import Data.Tree
@@ -10,20 +8,14 @@ import System.IO
 import System.Exit
 
 import XMonad hiding ( (|||) )
-import qualified XMonad.StackSet as W
 
 import XMonad.Actions.CycleWS
 import qualified XMonad.Actions.Search as XMSearch
 import qualified XMonad.Actions.Submap as XMSubMap
 import qualified XMonad.Actions.TreeSelect as XMTS
 
-import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.ManageHelpers
-import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.EwmhDesktops
 
 import XMonad.Util.EZConfig (additionalKeys)
-import XMonad.Util.NamedScratchpad
 import XMonad.Util.Run (spawnPipe, hPutStrLn)
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Cursor
@@ -45,23 +37,6 @@ import XMonad.Layout.ThreeColumns
 import XMonad.Layout.Tabbed
 import XMonad.Layout.SimplestFloat
 
-_terminal           = "st"
-_modMask            = mod4Mask
-_normalBorderColor  = "#151a1e"
-_focusedBorderColor = "#FF3333"
-
-_baseWs :: [String]
-_baseWs = map show [1..9]
-
-clickable :: [String] -> [String]
-clickable ws =
-    [  "<action=`xdotool key 0xffeb+"        ++ show key ++ "` button=1>"
-    ++ "<action=`xdotool key 0xffeb+0xffe1+" ++ show key ++ "` button=3>"
-    ++ nr ++ "</action></action>" | (key,nr) <- zip (map ("0x003"++) ws) ws]
-
-_workspaces :: [String]
-_workspaces = clickable _baseWs
-
 _mainFont :: String
 _mainFont = "xft:SauceCodePro Nerd Font"
 
@@ -71,29 +46,8 @@ _homeUnix = "/home/cantoro/"
 _selBrowser :: String
 _selBrowser = "vivaldi-stable"
 
-_centralBigRect :: W.RationalRect
-_centralBigRect = W.RationalRect (1/6) (1/6) (2/3) (2/3)
 
-_centralMedRect :: W.RationalRect
-_centralMedRect = W.RationalRect (1/4) (1/4) (1/2) (1/2)
 
-_scratchpads :: [NamedScratchpad]
-_scratchpads =
-    [ NS "ncmpcpp" cmdNcmpCpp queryNcmpCpp hookNcmpCpp
-    , NS "yakuake" cmdYakuake queryYakuake hookYakuake
-    , NS "orgenda" cmdOrgenda queryOrgenda hookOrgenda
-    ] where
-      cmdNcmpCpp   = "st -n ncmpcpp ncmpcpp"
-      queryNcmpCpp = resource =? "ncmpcpp"
-      hookNcmpCpp  = customFloating _centralMedRect
-
-      cmdYakuake   = "st -n yakuake"
-      queryYakuake = resource =? "yakuake"
-      hookYakuake  = customFloating _centralBigRect
-
-      cmdOrgenda   = "emacs --name='orgenda' ~/Documents/organization/Notes.org"
-      queryOrgenda = resource =? "orgenda"
-      hookOrgenda  = customFloating _centralBigRect
 
 _decorationTheme = def
     { fontName            = _mainFont ++ ":pixelsize=8"
@@ -128,6 +82,8 @@ _XPromptConfig = def
     , searchPredicate     = fuzzyMatch
     , sorter              = fuzzySort
     }
+
+
 
 archwiki, reddit, wordreference :: XMSearch.SearchEngine
 archwiki      = XMSearch.searchEngine "archwiki" "https://wiki.archlinux.org/index.php?search="
@@ -333,21 +289,7 @@ _treeSelecAction a = XMTS.treeselectAction a
     , Node (XMTS.TSNode "\63237 Exit" "" (spawn "xdotool key Escape")) []
     ]
 
-windowCount :: X (Maybe String)
-windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 
-_topXmobarPP h = xmobarPP
-    { ppCurrent = xmobarColor "#B8CC52" "" . wrap "" ""
-    , ppVisible = xmobarColor "#36A3D9" "" . wrap "" ""
-    , ppHidden  = xmobarColor "#465764" "" . wrap "" ""
-    , ppUrgent  = xmobarColor "#FF3333" "" . wrap "" ""
-    , ppSep     = " "
-    , ppTitle   = xmobarColor "#B8CC52" "#232b32" . shorten 35
-    , ppLayout  = xmobarColor "#36A3D9" "#232b32"
-    , ppOutput  = hPutStrLn h
-    , ppExtras  = [windowCount]
-    , ppOrder   = \(ws:l:t:ex) -> ex ++ [l,ws,t]
-    }
 
 _keys conf@XConfig {XMonad.modMask = modm} = Map.fromList $
     [ ((modm,                 xK_q), spawn "xmonad --recompile; xmonad --restart")
@@ -469,68 +411,7 @@ _mouseBindings XConfig {XMonad.modMask = modm} = Map.fromList
                                       >> windows W.shiftMaster)
     ]
 
-_manageHook = composeAll $
-    [ className =? _classToFloat --> doCenterFloat | _classToFloat <- _toFloat ]
-    ++
-    [ (className =? "Display" <&&> title =? "ImageMagick: ") --> doCenterFloat
 
-    , title      =? "Event Tester"                           --> doFloat
-    , title      =? "lstopo"                                 --> doCenterFloat
-    , title      =? "weatherreport"                          --> doRectFloat _centralBigRect
-
-    , _role      =? "ncmpcpp"                                --> doCenterFloat
-    , _role      =? "pop-up"                                 --> doCenterFloat
-
-    , (className =? "Thunar" <&&>
-        title =? "Bulk Rename - Rename Multiple Files")      --> doCenterFloat
-    , (className =? "Thunar" <&&>
-        title =? "File Operation Progress")                  --> doCenterFloat
-    -- doShift
-    , className =? "Transmission-gtk" --> doShift      (_workspaces !! 8)
-    , className =? "mpv"              --> doShiftAndGo (_workspaces !! 4)
-    -- doIgnore
-    , resource   =? "stalonetray" --> doIgnore
-    -- , resource   =? "desktop_window" --> doIgnore
-    -- , resource   =? "kdesktop"       --> doIgnore
-    -- ScratchPads
-    , namedScratchpadManageHook _scratchpads
-    ]
-  where _toFloat = [ "Arandr"
-                    , "Avahi-discover"
-                    , "Baobab"
-                    , "Blueberry.py"
-                    , "Bssh"
-                    , "Bvnc"
-                    , "CMakeSetup"
-                    , "Exo-helper-2"
-                    , "feh"
-                    , "Gimp"
-                    , "Gnome-disks"
-                    , "Gpick"
-                    , "Hardinfo"
-                    , "imagewriter"
-                    , "Lightdm-gtk-greeter-settings"
-                    , "Lxappearance"
-                    , "MPlayer"
-                    , "Nitrogen"
-                    , "Pavucontrol"
-                    , "qv4l2"
-                    , "qvidcap"
-                    , "Sxiv"
-                    , "System-config-printer.py"
-                    , "Transmission-gtk"
-                    , "Xarchiver"
-                    , "Xboard"
-                    , "Xfce4-about"
-                    , "Xmessage"
-                    , "Yad"
-                    , "Yad-icon-browser"
-                    ]
-        doShiftAndGo = doF . liftM2 (.) W.greedyView W.shift
-        _role = stringProperty "WM_WINDOW_ROLE"
-        _name = stringProperty "WM_NAME"
-
-_handleEventHook = mempty
 
 _startupHook = do
     startupHook def
@@ -583,7 +464,6 @@ main = do
     , focusedBorderColor = _focusedBorderColor
     , keys               = _keys
     , mouseBindings      = _mouseBindings
-    , manageHook         = _manageHook <+> manageDocks
     , handleEventHook    = _handleEventHook <+> ewmhDesktopsEventHook
     , logHook            = dynamicLogWithPP $ _topXmobarPP _topXmobar
     , startupHook        = _startupHook
