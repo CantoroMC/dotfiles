@@ -7,6 +7,9 @@ import qualified XMonad.StackSet as XMSS
 import XMonad.Util.Cursor
     ( setDefaultCursor
     )
+import XMonad.Util.SpawnOnce
+    ( spawnOnce
+    )
 
 import XMonad.Local.Config.Workspace
     ( Workspace (..)
@@ -16,6 +19,7 @@ xmStartupHook :: X ()
 xmStartupHook = do
     fixSupportedAtoms
     setDefaultCursor xC_left_ptr
+    spawnOnce "xmobar \"${XDG_CONFIG_HOME}\"/xmobar/xmobar_bot.hs"
     windows . XMSS.greedyView $ show WsWriting
 
 -- | Detect urgency of some programs like kitty (not covered in 'XMonad.Hooks.EwmhDesktops.ewmh'):
