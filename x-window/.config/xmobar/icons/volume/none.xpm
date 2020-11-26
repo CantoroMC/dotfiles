@@ -2,7 +2,7 @@
 static char * none_xpm[] = {
 "17 16 2 1",
 " 	c None",
-".	c #FFFFFF",
+".	c #151a1e",
 "                 ",
 "                 ",
 "                 ",

@@ -2,8 +2,8 @@
 static char * 2_xpm[] = {
 "16 16 3 1",
 " 	c None",
-".	c #FFFFFF",
-"+	c #E6E6E6",
+".	c #151a1e",
+"+	c #b8cc52",
 "                ",
 "                ",
 "    . .  . .    ",

@@ -26,14 +26,34 @@ Config
     , commands =
         [ Run UnsafeStdinReader
         , Run Date
-            "<fc=#36A3D9> %T</fc> - <fc=#B8CC52>%a %e %b %Y</fc>" "date" 10
+            "<fc=#3f4e5a> %T</fc> - <fc=#ff3333>%a %e %b %Y</fc>" "date" 10
+        , Run Com "/home/cantoro/.config/xmobar/scripts/pacman-update" [] "pacman" 10
+        , Run Memory
+            [ "--t", "<action=`st htop` button=3><usedipat> <usedratio></action>"
+            , "-p", "2"
+            , "-S", "True"
+            , "--"
+                , "--used-icon-pattern" , "<icon=ram/ram_%%.xpm/>"
+            ] 10
+        , Run MultiCpu
+            [ "-t", "<ipat><total0><total1><total2><total3>"
+            , "-S", "True"
+            , "-p", "2"
+            , "-d", "0"
+            , "-w", "4"
+            , "-a", "l"
+            , "--"
+                , "--load-icon-pattern" , "<icon=cpu/cpu_%%.xpm/>"
+            ] 10
+        , Run MultiCoreTemp
+            [ "-t", "<maxipat> <max>°C"
+            , "--"
+                , "--max-icon-pattern", "<icon=temperature/temperature_%%.xpm/>"
+                , "--mintemp" , "20"
+                , "--maxtemp" , "100"
+            ] 50
         , Run BatteryN ["BAT0"]
             [ "-t", "<leftipat> <acstatus>"
-            , "-L", "10"
-            , "-H", "80"
-            , "-l", "#FF3333"
-            , "-n", "#F07178"
-            , "-h", "#B8CC52"
             , "-S", "True"
             , "--"
                 , "--on-icon-pattern", "<icon=battery/on/battery_on_%%.xpm/>"
@@ -41,12 +61,7 @@ Config
                 , "--idle-icon-pattern", "<icon=battery/idle/battery_idle_%%.xpm/>"
                 , "-o", "<left> (<timeleft>)"
                 , "-O", "<left> (<timeleft>)"
-                , "-i", "<fc=#B8CC52>IDLE</fc> <left>"
-                , "-L", "-15"
-                , "-H", "-5"
-                , "-l", "#FF3333"
-                , "-m", "#36A3D9"
-                , "-h", "#B8CC52"
+                , "-i", "IDLE <left>"
                 , "-a", "notify-send -u critical 'Battery low'"
                 , "-A", "3"
             ] 400 "battery0"
@@ -54,9 +69,6 @@ Config
             [ "-t", "<leftipat> <acstatus>"
             , "-L", "10"
             , "-H", "80"
-            , "-l", "#FF3333"
-            , "-n", "#F07178"
-            , "-h", "#B8CC52"
             , "-S", "True"
             , "--"
                 , "--on-icon-pattern", "<icon=battery/on/battery_on_%%.xpm/>"
@@ -64,22 +76,12 @@ Config
                 , "--idle-icon-pattern", "<icon=battery/idle/battery_idle_%%.xpm/>"
                 , "-o", "<left> (<timeleft>)"
                 , "-O", "<left> (<timeleft>)"
-                , "-i", "<fc=#B8CC52>IDLE</fc> <left>"
-                , "-L", "-15"
-                , "-H", "-5"
-                , "-l", "#FF3333"
-                , "-m", "#36A3D9"
-                , "-h", "#B8CC52"
+                , "-i", "IDLE <left>"
                 , "-a", "notify-send -u critical 'Battery low'"
                 , "-A", "3"
             ] 400 "battery1"
         , Run Volume "default" "Master"
             ["-t", "<action=`pactl set-sink-volume @DEFAULT_SINK@ -5%` button=5><action=`pactl set-sink-volume @DEFAULT_SINK@ +5%` button=4><action=`pactl set-sink-mute @DEFAULT_SINK@ toggle` button=2><action=`pavucontrol` button=3><status><volume></action></action></action></action>"
-            , "-L", "10"
-            , "-H", "80"
-            , "-l", "#36A3D9"
-            , "-n", "#F07178"
-            , "-h", "#FF3333"
             , "-S", "True"
             , "--"
                 , "-O", ""
@@ -95,61 +97,15 @@ Config
                 , "-D", "intel_backlight"
                 , "--brightness-icon-pattern", "<icon=brightness/brightness_%%.xpm/>"
             ] 10
-        , Run Com "/home/cantoro/.config/xmobar/scripts/pacman-update" [] "pacman" 10
-        , Run Com "/home/cantoro/.config/xmobar/scripts/padding-icon" [] "trayerpad" 10
-        , Run MultiCoreTemp
-            [ "-t", "<maxipat> <max>°C"
-            , "-L", "50"
-            , "-H", "85"
-            , "-l", "#F07178"
-            , "-n", "#B8CC52"
-            , "-h", "#FF3333"
-            , "--"
-                , "--max-icon-pattern", "<icon=temperature/temperature_%%.xpm/>"
-                , "--mintemp" , "20"
-                , "--maxtemp" , "100"
-            ] 50
-        , Run MultiCpu
-            [ "-t", "<ipat><total0><total1><total2><total3>"
-            , "-L", "50"
-            , "-H", "85"
-            , "-l", "#F07178"
-            , "-n", "#B8CC52"
-            , "-h", "#FF3333"
-            , "-S", "True"
-            , "-p", "2"
-            , "-d", "0"
-            , "-w", "4"
-            , "-a", "l"
-            , "--"
-                , "--load-icon-pattern" , "<icon=cpu/cpu_%%.xpm/>"
-            ] 10
-        , Run Memory
-            [ "--t", "<action=`st htop` button=3><usedipat> <usedratio></action>"
-            , "-L", "40"
-            , "-H", "90"
-            , "-l", "#F07178"
-            , "-n", "#B8CC52"
-            , "-h", "#FF3333"
-            , "-p", "2"
-            , "-S", "True"
-            , "--"
-                , "--used-icon-pattern" , "<icon=ram/ram_%%.xpm/>"
-            ] 10
         , Run DynNetwork
             [ "-t" , "<txipat><rxipat>"
-            , "-L", "0"
-            , "-H", "5000"
-            , "-l", "#FF3333"
-            , "-n", "#95E6CB"
-            , "-h", "#B8CC52"
-            , "-m", "8"
             , "-S", "True"
             , "-d", "1"
             , "--"
                 , "--rx-icon-pattern" , "<icon=network/rx/network_rx_%%.xpm/>"
                 , "--tx-icon-pattern" , "<icon=network/tx/network_tx_%%.xpm/>"
             ] 10
+        , Run Com "/home/cantoro/.config/xmobar/scripts/padding-icon" [] "trayerpad" 10
         ]
 
     -- layout
