@@ -92,13 +92,13 @@ xmKeys conf@XConfig {XMonad.modMask = modm} = Map.fromList $
     , ((modm .|. controlMask, xK_o), namedScratchpadAction xmScratchpads "orgenda")
 
     , ((modm,                 xK_p), XMSM.submap . Map.fromList $
-        [ ((0, xK_Left ), spawn "mpc prev")
-        , ((0, xK_Right), spawn "mpc next")
-        , ((0, xK_Up   ), spawn "mpc play")
-        , ((0, xK_Down ), spawn "mpc pause")
+        [ ((0, xK_h),     spawn "mpc prev")
+        , ((0, xK_l),     spawn "mpc next")
+        , ((0, xK_k),     spawn "mpc play")
+        , ((0, xK_k),     spawn "mpc pause")
         , ((0, xK_space), spawn "mpc toggle")
-        , ((0, xK_t    ), spawn "mpv_bulk_toggle")
-        , ((0, xK_q    ), spawn "mpv_bulk_quit")
+        , ((0, xK_t),     spawn "mpv_bulk_toggle")
+        , ((0, xK_q),     spawn "mpv_bulk_quit")
         ])
 
     , ((modm,                 xK_u), spawn "rofi -modi drun,run -show drun")
