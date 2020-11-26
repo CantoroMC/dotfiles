@@ -25,17 +25,8 @@ import XMonad.Prompt.FuzzyMatch
 import XMonad.Prompt.Man
 import XMonad.Prompt.Shell
 
-import XMonad.Layout.NoBorders (noBorders, smartBorders)
-import XMonad.Layout.Spacing
-import XMonad.Layout.Renamed
-import XMonad.Layout.WindowNavigation
-import XMonad.Layout.Combo
-import XMonad.Layout.LayoutCombinators
-import XMonad.Layout.ResizableTile
-import XMonad.Layout.TwoPanePersistent
-import XMonad.Layout.ThreeColumns
-import XMonad.Layout.Tabbed
-import XMonad.Layout.SimplestFloat
+
+
 
 _mainFont :: String
 _mainFont = "xft:SauceCodePro Nerd Font"
@@ -46,20 +37,6 @@ _homeUnix = "/home/cantoro/"
 _selBrowser :: String
 _selBrowser = "vivaldi-stable"
 
-
-
-
-_decorationTheme = def
-    { fontName            = _mainFont ++ ":pixelsize=8"
-    , decoHeight          = 15
-    , activeColor         = "#3f4e5a"
-    , inactiveColor       = "#151a1e"
-    , inactiveBorderColor = _normalBorderColor
-    , activeBorderColor   = _focusedBorderColor
-    , activeBorderWidth   = 2
-    , inactiveBorderWidth = 1
-    , activeTextColor     = "#B8CC52"
-    , inactiveTextColor   = "#36A3D9" }
 
 _XPromptConfig :: XPConfig
 _XPromptConfig = def
@@ -82,8 +59,6 @@ _XPromptConfig = def
     , searchPredicate     = fuzzyMatch
     , sorter              = fuzzySort
     }
-
-
 
 archwiki, reddit, wordreference :: XMSearch.SearchEngine
 archwiki      = XMSearch.searchEngine "archwiki" "https://wiki.archlinux.org/index.php?search="
@@ -290,7 +265,6 @@ _treeSelecAction a = XMTS.treeselectAction a
     ]
 
 
-
 _keys conf@XConfig {XMonad.modMask = modm} = Map.fromList $
     [ ((modm,                 xK_q), spawn "xmonad --recompile; xmonad --restart")
     , ((modm .|. shiftMask,   xK_q), kill)
@@ -410,62 +384,3 @@ _mouseBindings XConfig {XMonad.modMask = modm} = Map.fromList
     , ((modm, button3), \w -> focus w >> mouseResizeWindow w
                                       >> windows W.shiftMaster)
     ]
-
-
-
-_startupHook = do
-    startupHook def
-    setDefaultCursor xC_left_ptr
-
--- Layouts
-_applySpacing sz = spacingRaw True (Border sz sz sz sz) True (Border sz sz sz sz) True
-
-tall       = renamed [Replace "Tall"] $
-                ResizableTall 1 0.03 0.5 []
-combo      = renamed [Replace "Combo"] (
-                combineTwo (Tall 1 0.03 0.5)
-                    (tabbed shrinkText _decorationTheme)
-                    (tabbed shrinkText _decorationTheme))
-monocle    = renamed [Replace "Monocle"] $
-                noBorders $
-                tabbed shrinkText _decorationTheme
-twoPane    = renamed [Replace "TwoPane"] $
-                TwoPanePersistent Nothing 0.03 0.5
-horizontal = renamed [Replace "Horizontal"] $
-                Mirror (ResizableTall 1 0.03 0.5 [])
-treeCol    = ThreeColMid 1 0.03 0.5
-floatL     = renamed [Replace "Float"]
-                simplestFloat
-
-_layouts =
-    tall
-    ||| combo
-    ||| monocle
-    ||| twoPane
-    ||| horizontal
-    ||| treeCol
-    ||| floatL
-
-_layoutHook =
-    avoidStrutsOn [U] $ smartBorders $ windowNavigation $
-    renamed [CutWordsLeft 1] $ _applySpacing 0 _layouts
-
-main :: IO ()
-main = do
-  _topXmobar <- spawnPipe "xmobar"
-  xmonad $ docks $ ewmh def
-    { terminal           = _terminal
-    , modMask            = mod4Mask
-    , focusFollowsMouse  = False
-    , clickJustFocuses   = True
-    , workspaces         = _workspaces
-    , borderWidth        = 1
-    , normalBorderColor  = _normalBorderColor
-    , focusedBorderColor = _focusedBorderColor
-    , keys               = _keys
-    , mouseBindings      = _mouseBindings
-    , handleEventHook    = _handleEventHook <+> ewmhDesktopsEventHook
-    , logHook            = dynamicLogWithPP $ _topXmobarPP _topXmobar
-    , startupHook        = _startupHook
-    , layoutHook         = _layoutHook
-    }

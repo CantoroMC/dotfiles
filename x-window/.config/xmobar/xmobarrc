@@ -33,8 +33,7 @@ Config
     , commands =
         [ Run UnsafeStdinReader
         , Run WeatherX "LIML" 
-            [ (""                        , "n/a")
-            , ("clear"                   , "<icon=weather/weather_sunny.xpm/>")
+            [ ("clear"                   , "<icon=weather/weather_sunny.xpm/>")
             , ("mostly clear"            , "<icon=weather/weather_mostly_sunny.xpm/>")
             , ("sunny"                   , "<icon=weather/weather_sunny.xpm/>")
             , ("mostly sunny"            , "<icon=weather/weather_mostly_sunny.xpm/>")
