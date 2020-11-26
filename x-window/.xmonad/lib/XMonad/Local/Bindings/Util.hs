@@ -59,14 +59,16 @@ import qualified XMonad.Actions.TreeSelect as XMTS
     -- , moveTo
     )
 
+import qualified XMonad.Local.Config.Theme as XMTheme
+
 xmPromptConfig :: XPConfig
 xmPromptConfig = def
     { font                = "xft:SauceCodePro Nerd Font:style=BoldItalic:size=10:hinting=true"
-    , bgColor             = "#151a1e"
-    , fgColor             = "#B8CC52"
-    , bgHLight            = "#36A3D9"
-    , fgHLight            = "#151a1e"
-    , borderColor         = "#36A3D9"
+    , bgColor             = XMTheme.inactiveColor XMTheme.xmTheme
+    , fgColor             = XMTheme.activeTextColor XMTheme.xmTheme
+    , bgHLight            = XMTheme.inactiveTextColor XMTheme.xmTheme
+    , fgHLight            = XMTheme.inactiveColor XMTheme.xmTheme
+    , borderColor         = XMTheme.urgentBorderColor XMTheme.xmTheme
     , promptBorderWidth   = 0
     , position            = Top
     , alwaysHighlight     = True

@@ -43,10 +43,10 @@ xmXMobarPP h = xmobarPP
     , ppHiddenNoWindows = clickableIcon "hiddenNoWindows"
     , ppSep             = " "
     , ppWsSep           = ""
-    , ppTitle           = xmobarColor "#B8CC52" "#232b32" . shorten 35
-    , ppLayout          = xmobarColor "#36A3D9" "#232b32"
+    , ppTitle           = xmobarColor (XMTheme.activeTextColor XMTheme.xmTheme) "" . shorten 35
+    , ppLayout          = xmobarColor (XMTheme.urgentBorderColor XMTheme.xmTheme) ""
     , ppOutput          = hPutStrLn h
-    , ppOrder           = \(ws:l:t) -> [l,ws] ++ t
+    , ppOrder           = \(ws:l:t) -> [ws,l] ++ t
     }
 
 -- , normalBorderColor  = XMTheme.inactiveBorderColor XMTheme.xmTheme

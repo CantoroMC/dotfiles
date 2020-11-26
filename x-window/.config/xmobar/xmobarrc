@@ -1,20 +1,13 @@
 -- Xmobarcc: http://projects.haskell.org/xmobar
 
--- black   red     green   yellow  blue    magenta cyan    white
--- #151a1e #FF3333 #B8CC52 #E7C547 #36A3D9 #F07178 #95E6CB #EAEAEA
--- #3f4e5a #FF7733                 #A37ACC                 #FAFAFA
-
--- Shades of Black
--- #465764 #384550 #313d46 #2a343c #232b32 #1c2328
-
 Config
-    { font            = "xft:Ubuntu:weight=bold:pixelsize=11:antialias=true:hinting=true"
+    { font = "xft:Ubuntu:weight=bold:pixelsize=11:antialias=true:hinting=true"
     , additionalFonts =
         [ "xft:SauceCodePro Nerd Font:style=Black Italic :size=9:hinting=true"
         , "xft:mononoki Bold Nerd Font:pixelsize=10:antialias=true:hinting=true"
         ]
-    , bgColor     = "#151a1e"
-    , fgColor     = "#95E6CB"
+    , bgColor     = "#fafafa"
+    , fgColor     = "#151a1e"
     , alpha       = 255
     , position    = Static { xpos = 0, ypos = 0, width = 1600, height = 20 }
     , border      = NoBorder
@@ -32,30 +25,6 @@ Config
 
     , commands =
         [ Run UnsafeStdinReader
-        , Run WeatherX "LIML" 
-            [ ("clear"                   , "<icon=weather/weather_sunny.xpm/>")
-            , ("mostly clear"            , "<icon=weather/weather_mostly_sunny.xpm/>")
-            , ("sunny"                   , "<icon=weather/weather_sunny.xpm/>")
-            , ("mostly sunny"            , "<icon=weather/weather_mostly_sunny.xpm/>")
-            , ("partly sunny"            , "<icon=weather/weather_mostly_cloudy.xpm/>")
-            , ("cloudy"                  , "<icon=weather/weather_cloudy.xpm/>")
-            , ("mostly cloudy"           , "<icon=weather/weather_mostly_cloudy.xpm/>")
-            , ("partly cloudy"           , "<icon=weather/weather_mostly_sunny.xpm/>")
-            , ("fair"                    , "<icon=weather/weather_sunny.xpm/>")
-            , ("overcast"                , "<icon=weather/weather_cloudy.xpm/>")
-            , ("considerable cloudiness" , "<icon=weather/weather_cloudy.xpm/>")
-            , ("obscured"                , "<icon=weather/weather_obscured.xpm/>")
-            ]
-            [ "--t" , "<action=`weather` button=3> <skyConditionS> <tempC>°C <fc=#36A3D9><rh>%</fc> <fn=1>\57982 </fn><fc=#36A3D9><windKmh> km/h</fc> <weather></action>"
-            ] 100
-        , Run MPD
-            [ "-t", "<statei> <fc=#36A3D9><action=`wmctrl -xR ncmpcpp` button=3><artist>-<title></action></fc> <action=`mpc random` button=1><fn=1> </fn></action><fc=#B8CC52> <action=`mpc seek +1%` button=4><action=`mpc seek -1%` button=5>[<lapsed>/<length>]</action></action> <action=`mpc volume +3` button=4><action=`mpc volume -3` button=5>(<fn=1>墳 </fn><volume>%)</action></action></fc>"
-            , "-M", "15"
-            , "--"
-                , "-P", "<fc=#36A3D9><action=`mpc prev` button=1><fn=1>玲</fn></action> <action=`mpc pause` button=1><action=`mpc stop` button=3> <fn=1> </fn></action></action><action=`mpc next` button=1><fn=1>怜</fn> </action></fc>"
-                , "-Z", "<action=`mpc play` button=1><action=`mpc stop` button=3><icon=music/music_playing.xpm/></action></action>"
-                , "-S", "<action=`mpc play` button=1><icon=music/music_stopped.xpm/></action>"
-            ] 10
         , Run Date
             "<fc=#36A3D9> %T</fc> - <fc=#B8CC52>%a %e %b %Y</fc>" "date" 10
         , Run BatteryN ["BAT0"]
@@ -113,23 +82,20 @@ Config
             , "-h", "#FF3333"
             , "-S", "True"
             , "--"
-                , "-C", "#F07178"
-                , "-c", "#36A3D9"
-                , "-h", "<fn=1>墳 </fn>"
-                , "-m", "<fn=1>奔 </fn>"
-                , "-l", "<fn=1>奄 </fn>"
+                , "-O", ""
+                , "-o", "<icon=volume/mute.xpm/>"
+                , "-h", "<icon=volume/high.xpm/>"
+                , "-m", "<icon=volume/medium.xpm/>"
+                , "-l", "<icon=volume/low.xpm/>"
             ] 10
         , Run Brightness
-            [ "-t", "<action=`xbacklight -inc 5` button=4><action=`xbacklight -dec 5` button=5><action=`xbacklight -set 100` button=3><action=`xbacklight -set 0` button=2><fc=#EAEAEA><fn=1> </fn><percent></fc></action></action></action></action>"
+            [ "-t", "<action=`xbacklight -inc 5` button=4><action=`xbacklight -dec 5` button=5><action=`xbacklight -set 100` button=3><action=`xbacklight -set 0` button=2><ipat> <percent></action></action></action></action>"
             , "-S", "True"
             , "--"
                 , "-D", "intel_backlight"
+                , "--brightness-icon-pattern", "<icon=brightness/brightness_%%.xpm/>"
             ] 10
-        , Run Kbd
-            [ ("us", "<action=`setxkbmap it; xmodmap ~/.config/X11/xinit/.XmodmapIT` button=3><fc=#36A3D9>US</fc></action>")
-            , ("it", "<action=`setxkbmap us; xmodmap ~/.config/X11/xinit/.Xmodmap` button=3><fc=#36A3D9>IT</fc></action>")
-            ]
-        , Run CommandReader "/home/cantoro/.config/xmobar/scripts/pacman-update" "pacman"
+        , Run Com "/home/cantoro/.config/xmobar/scripts/pacman-update" [] "pacman" 10
         , Run Com "/home/cantoro/.config/xmobar/scripts/padding-icon" [] "trayerpad" 10
         , Run MultiCoreTemp
             [ "-t", "<maxipat> <max>°C"
@@ -189,7 +155,20 @@ Config
     -- layout
     , sepChar =  "*"
     , alignSep = "}{"
-    , template = "<action=`xmenu-apps` button=1><fn=1> </fn></action><icon=separators/separator.xpm/> *dynnetwork*<icon=separators/separator.xpm/> *date* <icon=separators/separator.xpm/> *LIML* <icon=separators/separator.xpm/> *mpd* <icon=separators/separator.xpm/>}*UnsafeStdinReader*{<icon=separators/separator.xpm/> *memory* <icon=separators/separator.xpm/> *multicpu* <icon=separators/separator.xpm/> *multicoretemp* <icon=separators/separator.xpm/> <action=`st sudo pacman -Syu` button=3>*pacman*</action> *battery0* *battery1* <icon=separators/separator.xpm/> *bright* <icon=separators/separator.xpm/> *default:Master* <icon=separators/separator.xpm/> *kbd* <icon=separators/separator.xpm/> *trayerpad*"
+    , template =
+        "<action=`xmenu-apps` button=1><fn=1> </fn></action>\
+        \*UnsafeStdinReader*}\
+        \*date*\
+        \*pacman*\
+        \{*memory* <icon=separators/separator.xpm/>\
+        \*multicpu* <icon=separators/separator.xpm/>\
+        \*multicoretemp* <icon=separators/separator.xpm/>\
+        \*battery0* *battery1* <icon=separators/separator.xpm/>\
+        \*bright* <icon=separators/separator.xpm/>\
+        \*default:Master* <icon=separators/separator.xpm/>\
+        \*dynnetwork*<icon=separators/separator.xpm/>\
+        \<action=`xmenu-shutdown` button=1><fn=1>  </fn></action>\
+        \*trayerpad*"
 }
 
 -- vim:ft=haskell:nospell

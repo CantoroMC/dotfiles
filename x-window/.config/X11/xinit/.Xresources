@@ -56,20 +56,20 @@ UXTerm*faceSize: 8
 !! Ayu Dark {{{2
 *color0:                          #151a1e
 *color8:                          #3f4e5a
-*color1:                          #FF3333
-*color9:                          #FF7733
-*color2:                          #B8CC52
-*color10:                         #B8CC52
-*color3:                          #E7C547
-*color11:                         #E7C547
-*color4:                          #36A3D9
-*color12:                         #A37ACC
-*color5:                          #F07178
-*color13:                         #F07178
-*color6:                          #95E6CB
-*color14:                         #95E6CB
-*color7:                          #EAEAEA
-*color15:                         #FAFAFA
+*color1:                          #ff3333
+*color9:                          #ff7733
+*color2:                          #b8cc52
+*color10:                         #eafe84
+*color3:                          #e7c547
+*color11:                         #fff779
+*color4:                          #36a3d9
+*color12:                         #68d5ff
+*color5:                          #f07178
+*color13:                         #ffa3aa
+*color6:                          #95e6cb
+*color14:                         #c7fffd
+*color7:                          #eaeaea
+*color15:                         #fafafa
 !! }}}
 
 !! Gruvbox Dark: {{{
