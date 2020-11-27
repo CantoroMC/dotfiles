@@ -54,7 +54,7 @@ xmXMobarPP h = xmobarPP
 clickableIcon :: String -> WorkspaceId -> String
 clickableIcon status wsId = let ws = read wsId :: Workspace
                                 n = show $ 1 + fromEnum ws
-                            in "<action=`xdotool key 0xffeb+"       <> n <> "` button=1>" <>
-                               "<action=xdotool key 0xffeb+0xffe1+" <> n <> "` button=3>" <>
+                            in "<action=`xdotool key 0xffeb+"        <> n <> "` button=1>" <>
+                               "<action=`xdotool key 0xffeb+0xffe1+" <> n <> "` button=3>" <>
                                "<icon=workspaces/" <> status <> "/workspace_" <> n <> ".xpm/>" <>
                                "</action></action>"

@@ -1,5 +1,5 @@
 #!/bin/sh
 
 nr_pacup=$(checkupdates | wc -l)
-[ $nr_pacup -gt 0 ] && echo "<action=`st sudo pacman -Syu` button=3><fn=1> </fn>$nr_pacup</action>"
+[ $nr_pacup -gt 0 ] && echo " $nr_pacup"
 [ $nr_pacup -eq 0 ] && echo ""

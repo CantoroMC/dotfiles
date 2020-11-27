@@ -27,7 +27,7 @@ Config
         [ Run UnsafeStdinReader
         , Run Date
             "<fc=#3f4e5a> %T</fc> - <fc=#ff3333>%a %e %b %Y</fc>" "date" 10
-        , Run Com "/home/cantoro/.config/xmobar/scripts/pacman-update" [] "pacman" 10
+        , Run CommandReader "/home/cantoro/.config/xmobar/scripts/pacman-update" "pacman"
         , Run Memory
             [ "--t", "<action=`st htop` button=3><usedipat> <usedratio></action>"
             , "-p", "2"
@@ -114,8 +114,8 @@ Config
     , template =
         "<action=`xmenu-apps` button=1><fn=1> </fn></action>\
         \*UnsafeStdinReader*}\
-        \*date*\
-        \*pacman*\
+        \*date* \
+        \ <action=`st sudo pacman -Syu` button=3><fn=1>*pacman*</fn></action>\
         \{*memory* <icon=separators/separator.xpm/>\
         \*multicpu* <icon=separators/separator.xpm/>\
         \*multicoretemp* <icon=separators/separator.xpm/>\
