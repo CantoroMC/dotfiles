@@ -1,6 +1,9 @@
 #!/bin/sh
 
 cat << EOF | xmenu | sh &
-Shutdown	poweroff
+Lock	slock
+Suspend	systemctl suspend
+Hibernate	systemctl hibernate
 Reboot	reboot
+Shutdown	poweroff
 EOF
