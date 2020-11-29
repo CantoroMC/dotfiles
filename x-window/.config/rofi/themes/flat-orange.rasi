@@ -22,7 +22,7 @@
 }
 
 window {
-    height:     96.5%;
+    height:     90%;
     width:      25em;
     background-color: @blackdarkest;
     anchor: west;
