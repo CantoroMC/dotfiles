@@ -1,6 +1,7 @@
 bellStyle: VisualBell
 editMode: Vi
 completionType: MenuCompletion
+completionPromptLimit: Just 50
 maxhistorysize: Just 100
 historyDuplicates: IgnoreConsecutive
 
