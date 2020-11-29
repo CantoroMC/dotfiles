@@ -53,7 +53,7 @@ main :: IO ()
 main = do
     xmproc <- spawnXMobar
     xmonad . docks . applyUrgencyHook . ewmh $ def
-        { terminal           = "alacritty"
+        { terminal           = "st"
         , modMask            = mod4Mask
         , focusFollowsMouse  = False
         , clickJustFocuses   = True

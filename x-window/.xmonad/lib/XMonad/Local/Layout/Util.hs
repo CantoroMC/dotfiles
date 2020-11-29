@@ -22,12 +22,13 @@ import XMonad.Layout.Renamed
         )
     , renamed
     )
-import XMonad.Layout.LayoutCombinators -- TODO: Look at it (and replace maybe combo)
+import XMonad.Layout.LayoutCombinators
+    ( (|||)
+    ) -- TODO: Look at it (and replace maybe combo)
 import XMonad.Layout.Combo
     ( CombineTwo
     , combineTwo
     )
-
 import XMonad.Layout.ResizableTile
     ( ResizableTall (..)
     )

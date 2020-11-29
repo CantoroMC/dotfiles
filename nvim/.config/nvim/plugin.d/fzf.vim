@@ -49,7 +49,7 @@ let g:fzf_colors = {
 " }}}
 
 " Fuzzy Finder Scripts: {{{2
-let g:fzf_command_prefix = 'Fuzzy'
+let g:fzf_command_prefix = ''
 let g:fzf_preview_window = ''
 let g:fzf_buffers_jump   = 1
 let g:fzf_tags_command   = 'ctags -R'
@@ -74,14 +74,14 @@ imap <C-G><Tab>    <Plug>(fzf-maps-i)
 xmap <Leader><Tab> <Plug>(fzf-maps-x)
 omap <Leader><Tab> <Plug>(fzf-maps-o)
 
-nnoremap <silent> <M-f>B :<C-u>FuzzyBins<CR>
-nnoremap <silent> <M-f>c :<C-u>FuzzyBibtexCite<CR>
-nnoremap <silent> <M-f>d :<C-u>FuzzyDotfiles<CR>
-nnoremap <silent> <M-f>p :<C-u>FuzzyVimPlugins<CR>
-nnoremap <silent> <M-f>s :<C-u>FuzzySkeletons<CR>
-nnoremap <silent> <M-f>v :<C-u>FuzzyVimConfig<CR>
+nnoremap <silent> <M-f>B :<C-u>Bins<CR>
+nnoremap <silent> <M-f>c :<C-u>BibtexCite<CR>
+nnoremap <silent> <M-f>d :<C-u>Dotfiles<CR>
+nnoremap <silent> <M-f>p :<C-u>VimPlugins<CR>
+nnoremap <silent> <M-f>s :<C-u>Skeletons<CR>
+nnoremap <silent> <M-f>v :<C-u>VimConfig<CR>
 
-nnoremap <silent> <M-f>  :<C-u>FuzzyHelper<CR>
+nnoremap <silent> <M-f>  :<C-u>Helper<CR>
 
 " }}}
 
@@ -108,7 +108,7 @@ function! s:Bins() abort " {{{3
   let l:base = expand('~/dotfiles/')
   let l:dirs = [
         \ 'shell/.local/bin/**',
-        \ "x-window/.local/bin/**",
+        \ 'x-window/.local/bin/**',
         \ ]
   let l:dirs_joined = join(map(l:dirs, 'l:base.v:val'),',')
   return map(
@@ -119,7 +119,7 @@ endfunction
 " }}}
 
 " Fuzzy Bins {{{3
-command! -bang -nargs=0 FuzzyBins
+command! -bang -nargs=0 Bins
       \ call fzf#run(fzf#wrap({
       \   'source' : s:Bins(),
       \   'sink'   : 'sfind',
@@ -156,7 +156,7 @@ endfunction
 " }}}
 
 " Fuzzy Vim Config {{{3
-command! -bang -nargs=0 FuzzyVimConfig
+command! -bang -nargs=0 VimConfig
       \ call fzf#run(fzf#wrap({
       \   'source' : s:VimConfig(),
       \   'sink'   : 'sfind',
@@ -187,7 +187,7 @@ endfunction
 " }}}
 
 " Fuzzy Vim Plugins: {{{3
-command! -bang -nargs=0 FuzzyVimPlugins
+command! -bang -nargs=0 VimPlugins
       \ call fzf#run(fzf#wrap({
       \   'source' : s:VimPlugins(),
       \   'sink'   : 'sfind',
@@ -201,7 +201,7 @@ command! -bang -nargs=0 FuzzyVimPlugins
 " }}}
 
 " Dotfiles: {{{2
-command! -bang FuzzyDotfiles
+command! -bang Dotfiles
       \ call fzf#vim#files('~/dotfiles',
       \ {
       \   'options': s:parse_options('Dotfiles >'),
@@ -211,7 +211,7 @@ command! -bang FuzzyDotfiles
 " }}}
 
 " Git Grep: {{{2
-command! -bang -nargs=* FuzzyGitGrep
+command! -bang -nargs=* GitGrep
       \ call fzf#vim#grep(
       \ 'git grep --line-number -- '.shellescape(<q-args>),
       \ 0,
@@ -232,7 +232,7 @@ endfunction
 " }}}
 
 " Fuzzy Bibtex Cite: {{{3
-command! -bang -nargs=0 FuzzyBibtexCite
+command! -bang -nargs=0 BibtexCite
       \ call fzf#run({
       \   'source' : 'bibtex-ls',
       \   'sink*'  : function('<SID>BibtexCiteSink'),
@@ -251,7 +251,7 @@ endfunction
 " }}}
 
 " Fuzzy Markdown Cite: {{{3
-command! -bang -nargs=0 FuzzyMarkdownCite
+command! -bang -nargs=0 MarkdownCite
       \ call fzf#run({
       \   'source' : 'bibtex-ls',
       \   'sink*'  : function('<SID>BibtexMarkdownSink'),
@@ -273,7 +273,7 @@ endfunction
 " }}}
 
 " Fuzzy Skeletons: {{{3
-command! -bang -nargs=0 FuzzySkeletons
+command! -bang -nargs=0 Skeletons
       \ call fzf#run(fzf#wrap({
       \   'source': 'ls -1 ~/dotfiles/nvim/.local/share/nvim/templates',
       \   'sink': function('<SID>read_template_into_buffer'),
@@ -301,26 +301,26 @@ let s:fzf_commands = [
       \ ]
 
 let s:fzf_commands = sort(extend(s:fzf_commands, [
-      \ '(B)  FuzzyBins',
-      \ '(c)  FuzzyBibtexCite',
-      \ '(d)  FuzzyDotfiles',
-      \ '(p)  FuzzyVimPlugins',
-      \ '(s)  FuzzySkeletons',
-      \ '(v)  FuzzyVimConfig',
+      \ '(B)  Bins',
+      \ '(c)  BibtexCite',
+      \ '(d)  Dotfiles',
+      \ '(p)  VimPlugins',
+      \ '(s)  Skeletons',
+      \ '(v)  VimConfig',
       \ ]), 'i')
 " }}}
 
-function! s:FuzzyHelper(item) abort " {{{3
+function! s:Helper(item) abort " {{{3
   let command = substitute(a:item, '(\w*)\s*', '', 'e')
    execute ':'.command
 endfunction
 " }}}
 
 " Fuzzy Helper: {{{3
-command! -bang -nargs=0 FuzzyHelper
+command! -bang -nargs=0 Helper
       \ call fzf#run(fzf#wrap({
       \   'source' : s:fzf_commands,
-      \   'sink'   : function('<SID>FuzzyHelper'),
+      \   'sink'   : function('<SID>Helper'),
       \   'options': s:parse_options('Mapping Helper >'),
       \   'down'   : '30%',
       \ },
