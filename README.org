@@ -42,6 +42,8 @@ It is wise to check with =stow -nv package= every one of them.
 
   mkdir ~/.local/share/fonts
   mkdir ~/.config/mpd
+  mkdir -p ~/.config/xmonad/cache
+  mkdir ~/.local/share/xmonad
   stow x-window
 
   mkdir ~/.config/git
