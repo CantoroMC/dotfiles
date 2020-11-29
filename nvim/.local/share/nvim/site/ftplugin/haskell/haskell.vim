@@ -7,7 +7,7 @@ source $VIMRUNTIME/ftplugin/haskell.vim
 
 setlocal nospell
 
-nnoremap <buffer> <LocalLeader>hd 0ywo<Esc>pi =<Esc>k0
+nnoremap <buffer> <LocalLeader>hd 0ywo<Esc>p0
 
 
 let b:undo_ftplugin .= '| setl spell< '
