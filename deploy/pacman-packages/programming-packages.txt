@@ -3,6 +3,7 @@ cmake
 extra-cmake-modules
 ghc
 hlint
+hoogle
 go
 go-tools
 lua

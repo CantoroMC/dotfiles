@@ -7,7 +7,7 @@ let g:amivgo_freq_cfgs = {
       \ 'xinitrc'     : 'dotfiles/x-window/.config/X11/xinitrc',
       \ 'xmobarBot'   : 'dotfiles/x-window/.config/xmobar/xmobar_bot.hs',
       \ 'xmobarTop'   : 'dotfiles/x-window/.config/xmobar/xmobarrc',
-      \ 'xmonad'      : 'dotfiles/x-window/.xmonad/xmonad.hs',
+      \ 'xmonad'      : 'dotfiles/x-window/.config/xmonad/xmonad.hs',
       \ 'xprofile'    : 'dotfiles/x-window/.config/X11/xprofile',
       \ 'wiki'        : 'dotfiles/nvim/.local/share/nvim/wiki/index.md',
       \ 'zshalias'    : 'dotfiles/shell/.config/zsh/lib/my_aliases.zsh',

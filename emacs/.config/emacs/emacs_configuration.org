@@ -191,7 +191,7 @@ This changes scrolling behavior to only scroll as far as point goes.
 
 #+begin_src emacs-lisp
   (set-face-attribute 'default nil :font "SauceCodePro Nerd Font" :height 85 :weight 'normal :width 'normal)
-  (set-face-attribute 'fixed-pitch nil :font "FiraCode Nerd Font Mono" :height 80)
+  (set-face-attribute 'fixed-pitch nil :font "FiraCode Nerd Font" :height 80)
   (set-face-attribute 'variable-pitch nil :font "SauceCodePro Nerd Font" :height 85 :weight 'semi-light :slant 'oblique)
 #+end_src
 

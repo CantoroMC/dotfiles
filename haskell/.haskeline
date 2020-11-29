@@ -1,0 +1,7 @@
+bellStyle: VisualBell
+editMode: Vi
+completionType: MenuCompletion
+maxhistorysize: Just 100
+historyDuplicates: IgnoreConsecutive
+
+-- vim:ft=haskell
