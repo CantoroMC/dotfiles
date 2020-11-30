@@ -46,6 +46,7 @@ xmXMobarPP h = xmobarPP
     , ppTitle           = xmobarColor (XMTheme.activeTextColor XMTheme.xmTheme) "" . shorten 50
     , ppLayout          = xmobarColor (XMTheme.urgentBorderColor XMTheme.xmTheme) ""
     , ppOutput          = hPutStrLn h
+    -- , ppOrder           = \(ws:l:t) -> [ws,l] ++ t
     }
 
 clickableIcon :: String -> WorkspaceId -> String
