@@ -5,7 +5,7 @@ Config
         , "xft:mononoki Bold Nerd Font:pixelsize=10:antialias=true:hinting=true"
         ]
     , bgColor         = "#151a1e"
-    , fgColor         = "#eafe84"
+    , fgColor         = "#eaeaea"
     , alpha           = 180
     , position        = Bottom
     , border          = NoBorder
@@ -53,13 +53,13 @@ Config
             , ("considerable cloudiness" , "<icon=weather/weather_cloudy.xpm/>")
             , ("obscured"                , "<icon=weather/weather_obscured.xpm/>")
             ]
-            [ "--t" , "<action=`weather` button=3> <skyConditionS> <tempC>°C <fc=#36A3D9><rh>%</fc> <fn=1>\57982 </fn><windKmh> km/h <weather></action>"
+            [ "--t" , "<action=`weather` button=3> <skyConditionS> <tempC>°C <fc=#b8cc52><rh>%</fc> <fn=1>\57982 </fn><windKmh> km/h <weather></action>"
             ] 100
         , Run MPD
-            [ "-t", "<statei> <fc=#36A3D9><action=`wmctrl -xR ncmpcpp` button=3><artist>-<title></action></fc> <action=`mpc random` button=1><fn=1>\61556 </fn></action><fc=#B8CC52> <action=`mpc seek +1%` button=4><action=`mpc seek -1%` button=5>[<lapsed>/<length>]</action></action> <action=`mpc volume +3` button=4><action=`mpc volume -3` button=5>(<fn=1>墳 </fn><volume>%)</action></action></fc>"
+            [ "-t", "<statei> <fc=#b8cc52><action=`wmctrl -xR ncmpcpp` button=3><artist>-<title></action></fc> <action=`mpc random` button=1><fn=1>\61556 </fn></action><fc=#ff3333> <action=`mpc seek +1%` button=4><action=`mpc seek -1%` button=5>[<lapsed>/<length>]</action></action> <action=`mpc volume +3` button=4><action=`mpc volume -3` button=5>(<fn=1>墳 </fn><volume>%)</action></action></fc>"
             , "-M", "15"
             , "--"
-                , "-P", "<fc=#36A3D9><action=`mpc prev` button=1><fn=1>玲</fn></action> <action=`mpc pause` button=1><action=`mpc stop` button=3> <fn=1>\61516 </fn></action></action><action=`mpc next` button=1><fn=1>怜</fn> </action></fc>"
+                , "-P", "<fc=#b8cc52><action=`mpc prev` button=1><fn=1>玲</fn></action> <action=`mpc pause` button=1><action=`mpc stop` button=3> <fn=1>\61516 </fn></action></action><action=`mpc next` button=1><fn=1>怜</fn> </action></fc>"
                 , "-Z", "<action=`mpc play` button=1><action=`mpc stop` button=3><icon=music/music_playing.xpm/></action></action>"
                 , "-S", "<action=`mpc play` button=1><icon=music/music_stopped.xpm/></action>"
             ] 10

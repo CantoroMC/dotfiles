@@ -38,6 +38,7 @@ Update packages and retrieve the latest Pacman mirrorlist
 It is wise to check with =stow -nv package= every one of them.
 #+begin_src sh
   # First download omz
+  mkdir ~/.local/bin
   stow shell
 
   mkdir ~/.local/share/fonts
