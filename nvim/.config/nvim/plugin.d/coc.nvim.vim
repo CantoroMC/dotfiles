@@ -20,6 +20,13 @@ let g:coc_global_extensions = [
 " }}}
 
 " Completion Menu And Snippets Expansion: {{{1
+
+function! s:check_back_space() abort " {{{2
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+" }}}
+
 inoremap <silent> <expr> <Tab>
       \ pumvisible() ? "\<C-n>" : <SID>check_back_space() ?
       \ "\<Tab>" : coc#refresh()

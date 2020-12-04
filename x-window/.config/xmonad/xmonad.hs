@@ -52,19 +52,20 @@ import XMonad.Local.Bindings.Mouse
 main :: IO ()
 main = do
     xmproc <- spawnXMobar
-    xmonad . docks . applyUrgencyHook . ewmh $ def
-        { terminal           = "st"
-        , modMask            = mod4Mask
-        , focusFollowsMouse  = False
-        , clickJustFocuses   = True
-        , workspaces         = xmWorkspaces
-        , borderWidth        = XMTheme.borderWidth XMTheme.xmTheme
-        , normalBorderColor  = XMTheme.inactiveBorderColor XMTheme.xmTheme
-        , focusedBorderColor = XMTheme.activeBorderColor XMTheme.xmTheme
-        , keys               = xmKeys
-        , mouseBindings      = xmMouseBindings
-        , manageHook         = xmManageHook
-        , logHook            = xmLogHook xmproc
-        , startupHook        = xmStartupHook
-        , layoutHook         = xmLayoutHook
-        }
+    let c = def { terminal           = "st"
+                , modMask            = mod4Mask
+                , focusFollowsMouse  = False
+                , clickJustFocuses   = True
+                , workspaces         = xmWorkspaces
+                , borderWidth        = XMTheme.borderWidth XMTheme.xmTheme
+                , normalBorderColor  = XMTheme.inactiveBorderColor XMTheme.xmTheme
+                , focusedBorderColor = XMTheme.activeBorderColor XMTheme.xmTheme
+                , keys               = xmKeys
+                , mouseBindings      = xmMouseBindings
+                , manageHook         = xmManageHook
+                , logHook            = xmLogHook xmproc
+                , startupHook        = xmStartupHook
+                , layoutHook         = xmLayoutHook
+                }
+        xmConf = docks . applyUrgencyHook . ewmh $ c
+    xmonad xmConf
