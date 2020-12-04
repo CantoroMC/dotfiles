@@ -36,7 +36,7 @@ Config
                 , "--used-icon-pattern" , "<icon=ram/ram_%%.xpm/>"
             ] 10
         , Run MultiCpu
-            [ "-t", "<ipat><total0><total1><total2><total3>"
+            [ "-t", "<ipat><total0><total1><total2><total3><total4><total5><total6><total7>"
             , "-S", "True"
             , "-p", "2"
             , "-d", "0"
