@@ -1,7 +1,10 @@
 {-# OPTIONS_GHC -fno-warn-missing-signatures #-}
 
 module XMonad.Local.Bindings.Util
-    ( xmPromptConfig
+    ( Direction (..)
+    , moveFloating
+    , resizeFloating
+    , xmPromptConfig
     , xmSearchEngineMap
     , xmTreeSelectAction
     , xmTreeSelectConfig
@@ -19,6 +22,12 @@ import System.Exit
     )
 
 import XMonad
+
+import XMonad.Actions.FloatKeys
+    ( keysMoveWindow
+    , keysResizeWindow
+    )
+
 import XMonad.Prompt
     ( XPConfig (..)
     , XPPosition (..)
@@ -61,6 +70,30 @@ import qualified XMonad.Actions.TreeSelect as XMTS
 
 import qualified XMonad.Local.Config.Theme as XMTheme
 
+------------------------------------------------------------------------------
+    -- User
+data Direction = FL
+               | FD
+               | FU
+               | FR
+
+moveFloating :: Direction -> Window -> X ()
+moveFloating d = keysMoveWindow (direction d)
+
+resizeFloating :: Direction -> Window -> X ()
+resizeFloating d = keysResizeWindow (direction d) (0 , 0)
+
+direction :: Direction -> D
+direction d = (dx , dy)
+  where (dx , dy) = case d of FL -> (-pixel , 0)
+                              FD -> (0 , pixel)
+                              FU -> (0 , -pixel)
+                              FR -> (pixel , 0)
+        pixel = 20
+
+------------------------------------------------------------------------------
+    -- Prompt, Search Engine and Tree Select
+-- XMonad Prompt Configuration
 xmPromptConfig :: XPConfig
 xmPromptConfig = def
     { font                = "xft:SauceCodePro Nerd Font:style=BoldItalic:size=10:hinting=true"
@@ -83,6 +116,7 @@ xmPromptConfig = def
     , sorter              = fuzzySort
     }
 
+-- SearchEngine Configuration
 archwiki, reddit, wordreference :: XMSearch.SearchEngine
 archwiki      = XMSearch.searchEngine "archwiki" "https://wiki.archlinux.org/index.php?search="
 reddit        = XMSearch.searchEngine "reddit" "https://www.reddit.com/search/?q="
@@ -106,6 +140,7 @@ xmSearchEngineMap method = Map.fromList
       , ((shiftMask, xK_w), method wordreference)
       ]
 
+-- TreeSelect Configuration
 xmBrowser :: String
 xmBrowser = "vivaldi-stable"
 
@@ -169,7 +204,7 @@ xmTreeSelectAction a = XMTS.treeselectAction a
         , Node (XMTS.TSNode "\61564 Thunar"             "Xfce File Manager"
             (spawn "thunar")) []
         , Node (XMTS.TSNode "\57953 XBoard"             "X chess board"
-            (spawn ("xboard -fcp '\"${HOME}\"/Documents/chess/engines/stockfish12_modern' -fd '\"${HOME}\"/Documents/chess/engines' -fn 'Stockfish12' -fUCI"))) []
+            (spawn "xboard -fcp '\"${HOME}\"/Documents/chess/engines/stockfish12_modern' -fd '\"${HOME}\"/Documents/chess/engines' -fn 'Stockfish12' -fUCI")) []
         , Node (XMTS.TSNode "\62600 Vivaldi"            "A Browser For Our Friends"
             (spawn "vivaldi-stable")) []
         , Node (XMTS.TSNode "\63685 WPS Presentation"   "Simplicity Creates Marvels"
@@ -255,9 +290,9 @@ xmTreeSelectAction a = XMTS.treeselectAction a
         ]
     , Node (XMTS.TSNode "\59333 DotFiles" "a list of configuration files" (return ()))
         [ Node (XMTS.TSNode "Neovim" "Neovim config file"
-            (spawn ("st nvim \"${XDG_CONFIG_HOME}\"/.config/nvim/init.vim"))) []
+            (spawn "st nvim \"${XDG_CONFIG_HOME}\"/.config/nvim/init.vim")) []
         , Node (XMTS.TSNode "XMonad" "Xmonad config file"
-            (spawn ("st nvim \"${XDG_CONFIG_HOME}\"/.xmonad/xmonad.hs"))) []
+            (spawn "st nvim \"${XDG_CONFIG_HOME}\"/.xmonad/xmonad.hs")) []
         ]
     , Node (XMTS.TSNode "Multimedia Control" "mpc and mpv" (return ()))
         [ Node (XMTS.TSNode "Mpc Prev" ""
@@ -286,8 +321,7 @@ xmTreeSelectAction a = XMTS.treeselectAction a
         , Node  (XMTS.TSNode "LogOut" "Buttlicker"
             (io exitSuccess)) []
         , Node  (XMTS.TSNode "Lock" "Unchain my heart"
-            (spawn "slock")) []
+            (spawn "i3lock -i ~/.config/xmonad/screenlocker.png -t -f -e")) []
         ]
     , Node (XMTS.TSNode "\63237 Exit" "" (spawn "xdotool key Escape")) []
     ]
-

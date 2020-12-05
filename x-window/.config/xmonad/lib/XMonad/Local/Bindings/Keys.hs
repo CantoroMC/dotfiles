@@ -61,7 +61,10 @@ import XMonad.Local.Manage.Util
     , xmBigRect
     )
 import XMonad.Local.Bindings.Util
-    ( xmPromptConfig
+    ( Direction (..)
+    , moveFloating
+    , resizeFloating
+    , xmPromptConfig
     , xmSearchEngineMap
     , xmTreeSelectAction
     , xmTreeSelectConfig
@@ -126,6 +129,15 @@ xmKeys conf@XConfig {XMonad.modMask = modm} = Map.fromList $
     , ((modm .|. controlMask .|. shiftMask, xK_j), sendMessage $ Move D)
     , ((modm .|. controlMask .|. shiftMask, xK_k), sendMessage $ Move U)
 
+    , ((modm              , xK_Left ), withFocused $ moveFloating FL)
+    , ((modm              , xK_Right), withFocused $ moveFloating FR)
+    , ((modm              , xK_Down ), withFocused $ moveFloating FD)
+    , ((modm              , xK_Up   ), withFocused $ moveFloating FU)
+    , ((modm .|. shiftMask, xK_Left ), withFocused $ resizeFloating FL)
+    , ((modm .|. shiftMask, xK_Right), withFocused $ resizeFloating FR)
+    , ((modm .|. shiftMask, xK_Down ), withFocused $ resizeFloating FD)
+    , ((modm .|. shiftMask, xK_Up   ), withFocused $ resizeFloating FU)
+
     , ((modm,                               xK_m), windows XMSS.focusMaster)
     , ((modm .|. shiftMask,                 xK_m), windows XMSS.swapMaster)
 
@@ -143,8 +155,9 @@ xmKeys conf@XConfig {XMonad.modMask = modm} = Map.fromList $
     , ((modm,                 xK_space    ), sendMessage $ JumpToLayout "Monocle")
     , ((modm .|. shiftMask,   xK_space    ), sendMessage $ JumpToLayout "Float")
 
+    , ((modm,                 xK_Delete   ), spawn "xmenu-shutdown")
     , ((modm .|. shiftMask,   xK_Delete   ), io exitSuccess)
-    , ((modm .|. shiftMask,   xK_BackSpace), spawn "slock")
+    , ((modm .|. shiftMask,   xK_BackSpace), spawn "i3lock -i ~/.config/xmonad/screenlocker.png -t -f -e")
 
     , ((modm,                 xK_Return   ), spawn "alacritty")
     , ((modm .|. shiftMask,   xK_Return   ), spawn $ XMonad.terminal conf)
@@ -166,7 +179,7 @@ xmKeys conf@XConfig {XMonad.modMask = modm} = Map.fromList $
     , ((0, XF86.xF86XK_MonBrightnessDown), spawn "xbacklight -dec 5")
     , ((0, XF86.xF86XK_Display),           spawn "monitor_handler")
     -- XF86Tools
-    -- XF86Search
+    , ((0, XF86.xF86XK_Search),            spawn "st ranger")
     -- XF86LaunchA
     -- XF86Explorer
     ]

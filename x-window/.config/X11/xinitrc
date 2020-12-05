@@ -99,8 +99,9 @@ fi
 # }}}
 
 # Desktop Environment or Window Manager {{{1
+
 DEFAULT_SESSION=xmonad
-# DEFAULT_SESSION=dwm
+# DEFAULT_SESSION=i3
 
 get_session(){
     local init

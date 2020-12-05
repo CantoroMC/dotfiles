@@ -1,7 +1,7 @@
 #!/bin/sh
 
 cat << EOF | xmenu | sh &
-Lock	slock
+Lock	i3lock -i ~/.config/xmonad/screenlocker.png -t -f -e
 Suspend	systemctl suspend
 Hibernate	systemctl hibernate
 Reboot	reboot
