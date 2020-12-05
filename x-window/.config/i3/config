@@ -1,0 +1,387 @@
+# i3 config file
+# http://i3wm.org/docs/userguide.html
+
+set $mod Mod4
+floating_modifier $mod
+
+# Reload and Restart i3
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+# Default Settings for workspaces, containers, windows {{{1
+
+# Font for window titles {{{2
+font pango:SauceCodePro Nerd Font Bold Italic 8
+# }}}
+
+# Constraining floating window size: {{{2
+  # floating_*_size <width> x <height>
+      # -1            : unconstrained
+      # 0 or undefined: default constrained size
+floating_minimum_size -1 x -1
+floating_maximum_size -1 x -1
+# }}}
+
+# Orientation for new workspaces {{{2
+# ( horizontal, vertical, auto )
+default_orientation auto
+# }}}
+
+# Layout mode for new containers {{{2
+# ( default, stacking, tabbed )
+workspace_layout default
+# }}}
+
+# Window title alignment {{{2
+# ( left, center, right )
+title_align center
+# }}}
+
+# Default border style for new windows {{{2
+# ( normal, none, pixel <px>, pixel )
+default_border pixel 3
+default_floating_border normal
+# }}}
+
+# Hiding borders adjacent to the screen edges {{{2
+# ( none, vertical, horizontal, both, smart
+hide_edge_borders smart
+# }}}
+
+ # Focus follows mouse ( yes, no ) {{{2
+focus_follows_mouse yes
+# }}}
+
+# Mouse Warping ( output, none ) {{{2
+mouse_warping output
+# }}}
+
+# Popup during fullscreen ( smart, ignore, leave_fullscreen ){{{2
+popup_during_fullscreen smart
+# }}}
+
+# Focus wrapping ( yes, no, force, workspace ) {{{2
+force_focus_wrapping yes
+# }}}
+
+# Worspace auto back and forth ( yes, no ) {{{2
+workspace_auto_back_and_forth yes
+# }}}
+
+# Force display urgency hint: {{{
+force_display_urgency_hint 500 ms
+# }}}
+
+# Focus on window activation ( smart, urgent, focus, none ) {{{2
+focus_on_window_activation smart
+# }}}
+
+# Drawing marks on window decoration ( yes, no ) {{{2
+show_marks yes
+# }}}
+
+# }}}
+
+# Containers and Workspaces: {{{1
+
+# Windows Movements: {{{2
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+# }}}
+
+# Resizing: {{{2
+
+# Resize with mouse scroll: {{{
+bindsym --whole-window --border $mod+button4 resize shrink height 5 px or 5 ppt
+bindsym --whole-window --border $mod+button5 resize grow height 5 px or 5 ppt
+bindsym --whole-window --border $mod+shift+button4 resize shrink width 5 px or 5 ppt
+bindsym --whole-window --border $mod+shift+button5 resize grow width 5 px or 5 ppt
+# }}}
+
+# resize window with bindings or mouse {{{
+set $mode_resize Resize: [Shift] + hjkl
+bindsym $mod+r mode "$mode_resize"
+mode "$mode_resize" {
+  bindsym h resize shrink width  4 px or 4 ppt
+  bindsym j resize grow   height 4 px or 4 ppt
+  bindsym k resize shrink height 4 px or 4 ppt
+  bindsym l resize grow   width  4 px or 4 ppt
+  # Shift for finer control
+  bindsym Shift+h resize shrink width  1 px or 1 ppt
+  bindsym Shift+j resize grow   height 1 px or 1 ppt
+  bindsym Shift+k resize shrink height 1 px or 1 ppt
+  bindsym Shift+l resize grow   width  1 px or 1 ppt
+  # back to normal:
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym $mod+r mode "default"
+}
+# }}}
+
+# }}}
+
+# Borders: {{{2
+set $mode_borders Borders: (n)ormal, (v)oid, (t)oggle, (s)mall, (m)edium, (b)ig
+bindsym $mod+Shift+b mode "$mode_borders"
+mode "$mode_borders" {
+  # change the borders
+  bindsym n border normal
+  bindsym v border none
+  bindsym t border toggle
+  bindsym s border pixel 1
+  bindsym m border pixel 5
+  bindsym b border pixel 7
+  # back to normal:
+  bindsym $mod+Shift+b mode "default"
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+# }}}
+
+# Layout Management: {{{2
+# Split
+bindsym $mod+v split vertical
+bindsym $mod+Shift+v split horizontal
+# focus the parent container
+bindsym $mod+a focus parent
+# focus the child container
+bindsym $mod+Shift+a focus child
+# change container layout (stacked, tabbed, split)
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+Shift+s layout toggle split
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+f fullscreen toggle global
+# toggle sticky (only for floating windows)
+bindsym $mod+y sticky toggle
+# Center the container (mainly for floating containers)
+bindsym $mod+c move position center
+# Vim-like marks
+bindsym $mod+m mark --add --toggle Master
+bindsym $mod+Shift+m mark --add --toggle Branch
+bindsym $mod+grave [con_mark="Master"] focus
+bindsym $mod+Shift+grave [con_mark="Branch"] focus
+bindsym $mod+n swap container with mark Master
+bindsym $mod+Shift+n swap container with mark Master
+# }}}
+
+# Default Workspaces {{{2
+# Generate numbered empty workspace
+bindsym $mod+o exec --no-startup-id ~/.config/i3/scripts/empty_workspace.sh
+bindsym $mod+x scratchpad show
+bindsym $mod+Shift+x move scratchpad
+# Default workspaces
+set $ws1 "1: ﳎ "
+set $ws2 "2:  "
+set $ws3 "3:  "
+set $ws4 "4:  "
+set $ws5 "5:  "
+set $ws6 "6:  "
+set $ws7 "7:  "
+# Bind Program To Workspace
+for_window [class=Xfce4-terminal] focus
+assign [class="(?i)firefox"] $ws2
+for_window [class=(?i)firefox] focus
+assign [class="Thunar"] $ws4
+for_window [class=Thunar] focus
+assign [class="mpv"] $ws5
+for_window [class=mpv] focus
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+# move focused container to the next/prev workspace
+bindsym $mod+bracketleft move workspace prev_on_output
+bindsym $mod+bracketright move workspace next_on_output
+# Focus the next/prev workspace
+bindsym $mod+Shift+braceleft workspace prev
+bindsym $mod+Shift+braceright workspace next
+# navigate outputs
+bindsym $mod+less focus output left
+bindsym $mod+greater focus output right
+# move container to the next/prev output
+bindsym $mod+Shift+less move container to output left
+bindsym $mod+Shift+greater move container to output right
+# move the whole workspace to the next/prev output
+bindsym $mod+Ctrl+less move workspace to output left
+bindsym $mod+Ctrl+greater move workspace to output right
+# }}}
+
+# }}}
+
+# Application Settings {{{1
+
+# Avoid focus on pop up windows
+no_focus [window_role="pop-up"]
+# switch to workspace with urgent window automatically
+for_window [urgent=latest] focus
+# Floating
+for_window [class="Arandr"] floating enable
+for_window [class="Baobab" instance="baobab"] floating enable
+for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
+for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
+for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
+for_window [class="Clipit" instance="clipit"] floating enable
+for_window [class="Display" instance="display" title="ImageMagick"] floating enable
+for_window [class="feh" instance="feh"] floating enable
+for_window [class="firefox" title="Library"] floating enable
+for_window [class="Gnome-disks" instance="gnome-disks"] floating enable
+for_window [class="imagewriter" instance="imagewriter"] floating enable
+for_window [class="Lightdm"] floating enable
+for_window [class="Nitrogen"] floating enable
+for_window [class="Hardinfo" instance="hardinfo"] floating enable
+for_window [class="Lxappearance" instance="lxappearance"] floating enable
+for_window [title="lstopo"] floating enable
+for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
+for_window [class="Sxiv" instance="sxiv"] floating enable
+for_window [class="System-config-printer.py" instance="system-config-printer"] floating enable
+for_window [class="qv4l2"] floating enable
+for_window [class="qvidcap"] floating enable
+for_window [class="Transmission-gtk" instance="transmission-gtk"] floating enable
+for_window [class="Xarchiver" instance="xarchiver"] floating enable
+for_window [class="Xboard"] floating enable
+for_window [instance="xed"] floating enable
+for_window [class="Xfce4-about" instance="xfce4-about"] floating enable
+for_window [class="Yad" instance="yad"] floating enable
+# }}}
+
+# App Bindings {{{1
+
+# Multimedia Keys {{{2
+# volume
+bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
+# gradular volume control
+bindsym $mod+XF86AudioRaiseVolume exec amixer -D pulse sset Master 1%+ && pkill -RTMIN+1 i3blocks
+bindsym $mod+XF86AudioLowerVolume exec amixer -D pulse sset Master 1%- && pkill -RTMIN+1 i3blocks
+# mute
+bindsym XF86AudioMute exec amixer -D pulse sset Master toggle && killall -USR1 i3blocks
+# media control
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+# Redirect sound to headphones TODO: find it
+# bindsym $mod+m exec "/usr/local/bin/switch-audio-port"
+# }}}
+
+# Screen brightness controls {{{2
+bindsym XF86MonBrightnessUp exec "xbacklight -inc 5; notify-send 'Brigthness '$(xbacklight -get)"
+bindsym XF86MonBrightnessDown exec "xbacklight -dec 5; notify-send 'Brigthness '$(xbacklight -get)"
+# }}}
+
+# Bindings to switch to double screen and allow presentation
+# bindsym $mod+F12 exec --no-startup-id nitrogen --restore
+# Examples by i3
+# everybody gets the same output
+# xrandr --output VGA1 --mode 1024x768 --same-as LVDS1
+# you can see more than your audience
+# xrandr --output VGA1 --mode 1024x768 --right-of LVDS1
+# exit i3 (logs you out of your X session)
+
+bindsym $mod+Shift+Delete exec "i3-nagbar -t warning -m 'Do you really want to exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Delete exec ~/.config/i3blocks/blocklets/shutdown_menu -p rofi -c
+# Lock the system
+bindsym $mod+BackSpace exec i3lock -i ~/.config/i3/i3-lock-screen.png -t -f
+
+# kill focused window
+bindsym $mod+Shift+q kill
+# kill x window (extreme need)
+bindsym $mod+Shift+Ctrl+x --release exec --no-startup-id xkill
+
+# start dmenu (a program launcher)
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+Shift+d exec dmenu_run
+bindsym $mod+u exec rofi -modi drun,window,combi -show combi
+
+bindsym $mod+Return exec alacritty
+bindsym $mod+Shift+Return exec i3-sensible-terminal
+bindsym $mod+w exec "/usr/bin/vivaldi-stable"
+bindsym $mod+e exec "/usr/bin/thunar"
+
+bindsym Print exec --no-startup-id "scrot ~/Pictures/Screenshots/%Y-%m-%d-%T-screenshot.png"; exec notify-send "Taken fullscreen screenshot"
+bindsym --release $mod+Print exec --no-startup-id "import ~/Pictures/Screenshots/%Y-%m-%d-%T-screenshot.png"; exec notify-send "Saved to ~/Pictures/Screenshots"
+
+# }}}
+
+# Colors: {{{
+set_from_resource $cursor            cursor     #95E6CB
+set_from_resource $background        background #151a1e
+set_from_resource $foreground        foreground #EAEAEA
+set_from_resource $background_light  color8     #232b32
+set_from_resource $foreground_light  color15    #FAFAFA
+set_from_resource $red               red        #FF3333
+set_from_resource $green             green      #B8CC52
+set_from_resource $yellow            yellow     #E7C547
+set_from_resource $blue              blue       #36A3D9
+set_from_resource $magenta           magenta    #F07178
+set_from_resource $cyan              cyan       #95E6CB
+
+# set window colors
+# <colorclass>          <border>          <background>       <text>           <indicator>
+client.focused          $background       $background       $foreground       $yellow
+client.unfocused        $background_light $background_light $foreground_light $yellow
+client.focused_inactive $background_light $background_light $foreground_light $yellow
+client.urgent           $green            $green            $foreground       $yellow
+client.placeholder      $background_light $background_light $red              $cyan
+client.background       $background
+# }}}
+
+# iBar: {{{1
+bindsym $mod+Shift+F12 bar mode toggle
+bar {
+  i3bar_command /usr/bin/i3bar
+  status_command i3blocks
+
+  font pango:DejaVu Sans Mono 8
+
+  mode dock
+  position top
+  separator_symbol "|"
+
+  strip_workspace_numbers no
+  strip_workspace_name no
+  binding_mode_indicator yes
+
+  tray_output primary
+  tray_padding 0
+
+  bindsym button3 nop
+
+  colors {
+    separator          $background_light
+    background         $background
+    statusline         $green
+
+    focused_workspace  $blue $blue $foreground
+    active_workspace   $green $green $foreground_light
+    inactive_workspace $background $background $blue
+    urgent_workspace   $background_light $red $yellow
+  }
+}
+# }}}
