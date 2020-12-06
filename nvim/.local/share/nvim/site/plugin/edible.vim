@@ -83,10 +83,10 @@ cabbrev STS StripTrailingSpaces
 
 " " TODO: It consume few sec for very long files, it may be bad
 " " TODO: VimLeave, BufWinEnter don t do for not modifiable and read only files
-" augroup edible_strip_trailing_spaces
-"   autocmd!
-"   autocmd BufWritePre * call edible#strip_trailing_spaces()
-" augroup END
+augroup edible_strip_trailing_spaces
+  autocmd!
+  autocmd BufWritePre * call edible#strip_trailing_spaces()
+augroup END
 
 " }}}
 

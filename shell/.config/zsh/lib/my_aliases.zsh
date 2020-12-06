@@ -65,7 +65,6 @@ alias cfg-xerr="$EDITOR $HOME/.xsession-errors"
 
 alias cfg-xmon="$EDITOR $XDG_CONFIG_HOME/xmonad/xmonad.hs"
 alias cfg-xmobtop="$EDITOR $XDG_CONFIG_HOME/xmobar/xmobarrc"
-alias cfg-xmobbot="$EDITOR $XDG_CONFIG_HOME/xmobar/xmobar_bot.hs"
 
 # Everything else
 alias cfg-vim="$EDITOR $XDG_CONFIG_HOME/nvim/init.vim"
@@ -77,7 +76,7 @@ alias cfg-rofi="$EDITOR $XDG_CONFIG_HOME/rofi/config.rasi"
 # Frequent folder: {{{2
 alias thesis="cd ~/Documents/programming/TeX/matriHX"
 alias curriculum="cd ~/Documents/programming/TeX/curriculum"
-alias hsDir="cd ~/Documents/programming/Haskell"
+alias doHs="cd ~/Documents/programming/Haskell"
 # }}}
 
 # }}}

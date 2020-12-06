@@ -181,7 +181,9 @@ xmKeys conf@XConfig {XMonad.modMask = modm} = Map.fromList $
     -- XF86Tools
     , ((0, XF86.xF86XK_Search),            spawn "st ranger")
     -- XF86LaunchA
-    -- XF86Explorer
+    , ((0, XF86.xF86XK_Explorer),          spawn "thunar")
+    , ((0, XF86.xF86XK_Calculator),        spawn "st ghci")
+    -- XF86HomePage
     ]
     ++
     -- Switch/MoveClient to workspace N --> mod(+Shift)-[1..9]
