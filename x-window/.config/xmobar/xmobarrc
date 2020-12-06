@@ -26,7 +26,7 @@ Config
     , commands =
         [ Run UnsafeStdinReader
         , Run MPD
-            [ "-t", "<statei> <fc=#b8cc52><action=`wmctrl -xR ncmpcpp` button=3><artist>-<title></action></fc> <action=`mpc random` button=1><fn=1>\61556 </fn></action><fc=#ff3333> <action=`mpc seek +1%` button=4><action=`mpc seek -1%` button=5>[<lapsed>/<length>]</action></action> <action=`mpc volume +3` button=4><action=`mpc volume -3` button=5>(<fn=1>墳 </fn><volume>%)</action></action></fc>"
+            [ "-t", "<statei> <fc=#b8cc52><action=`wmctrl -xR ncmpcpp` button=3><fn=2><artist>-<title></fn></action></fc> <action=`mpc random` button=1><fn=1>\61556 </fn></action><fc=#ff3333> <action=`mpc seek +1%` button=4><action=`mpc seek -1%` button=5><fn=2>[<lapsed>/<length>]</fn></action></action> <action=`mpc volume +3` button=4><action=`mpc volume -3` button=5><fn=1>墳 </fn><fn=2><volume>%</fn></action></action></fc>"
             , "-M", "12"
             , "--"
                 , "-P", "<fc=#b8cc52><action=`mpc prev` button=1><fn=1>玲</fn></action> <action=`mpc pause` button=1><action=`mpc stop` button=3> <fn=1>\61516 </fn></action></action><action=`mpc next` button=1><fn=1>怜</fn> </action></fc>"
@@ -58,19 +58,19 @@ Config
             ] 100
         , Run CommandReader "/home/cantoro/.config/xmobar/scripts/pacman-update" "pacman"
         , Run Memory
-            [ "--t", "<action=`st htop` button=3><usedipat> <usedratio></action>"
+            [ "--t", "<action=`st htop` button=3><fn=2><usedipat> <usedratio></fn></action>"
             , "-p", "2"
             , "-S", "True"
             , "--"
                 , "--used-icon-pattern" , "<icon=ram/ram_%%.xpm/>"
             ] 10
         , Run Swap
-            [ "--t", "<usedratio>"
+            [ "--t", "<fn=2>(<usedratio>)</fn>"
             , "-p", "2"
             , "-S", "True"
             ] 10
         , Run MultiCpu
-            [ "-t", "<ipat><total0><total1><total2><total3><total4><total5><total6><total7>"
+            [ "-t", "<ipat><fn=2><total0><total1><total2><total3><total4><total5><total6><total7></fn>"
             , "-S", "True"
             , "-p", "2"
             , "-d", "0"
@@ -80,19 +80,19 @@ Config
                 , "--load-icon-pattern" , "<icon=cpu/cpu_%%.xpm/>"
             ] 10
         , Run MultiCoreTemp
-            [ "-t", "<maxipat> <max>°C"
+            [ "-t", "<fn=2><maxipat> <max>°C</fn>"
             , "--"
                 , "--max-icon-pattern", "<icon=temperature/temperature_%%.xpm/>"
                 , "--mintemp" , "20"
                 , "--maxtemp" , "100"
             ] 50
         , Run Uptime
-            [ "-t", "<fn=1>羽</fn><hours> <minutes>"
+            [ "-t", "<fn=1>羽</fn><fn=2><hours> <minutes></fn>"
             , "-w", "3"
             , "-S", "True"
             ] 60
         , Run BatteryN ["BAT0"]
-            [ "-t", "<leftipat> <acstatus>"
+            [ "-t", "<fn=2><leftipat> <acstatus></fn>"
             , "-S", "True"
             , "--"
                 , "--on-icon-pattern", "<icon=battery/on/battery_on_%%.xpm/>"
@@ -104,8 +104,15 @@ Config
                 , "-a", "notify-send -u critical 'Battery low'"
                 , "-A", "3"
             ] 400 "battery0"
+        , Run Brightness
+            [ "-t", "<action=`xbacklight -inc 5` button=4><action=`xbacklight -dec 5` button=5><action=`xbacklight -set 100` button=3><action=`xbacklight -set 0` button=2><ipat> <fn=2><percent></fn></action></action></action></action>"
+            , "-S", "True"
+            , "--"
+                , "-D", "intel_backlight"
+                , "--brightness-icon-pattern", "<icon=brightness/brightness_%%.xpm/>"
+            ] 10
         , Run Volume "default" "Master"
-            ["-t", "<action=`pactl set-sink-volume @DEFAULT_SINK@ -5%` button=5><action=`pactl set-sink-volume @DEFAULT_SINK@ +5%` button=4><action=`pactl set-sink-mute @DEFAULT_SINK@ toggle` button=2><action=`pavucontrol` button=3><status><volume></action></action></action></action>"
+            ["-t", "<action=`pactl set-sink-volume @DEFAULT_SINK@ -5%` button=5><action=`pactl set-sink-volume @DEFAULT_SINK@ +5%` button=4><action=`pactl set-sink-mute @DEFAULT_SINK@ toggle` button=2><action=`pavucontrol` button=3><fn=2><status><volume></fn></action></action></action></action>"
             , "-S", "True"
             , "--"
                 , "-O", ""
@@ -113,13 +120,6 @@ Config
                 , "-h", "<icon=volume/high.xpm/>"
                 , "-m", "<icon=volume/medium.xpm/>"
                 , "-l", "<icon=volume/low.xpm/>"
-            ] 10
-        , Run Brightness
-            [ "-t", "<action=`xbacklight -inc 5` button=4><action=`xbacklight -dec 5` button=5><action=`xbacklight -set 100` button=3><action=`xbacklight -set 0` button=2><ipat> <percent></action></action></action></action>"
-            , "-S", "True"
-            , "--"
-                , "-D", "intel_backlight"
-                , "--brightness-icon-pattern", "<icon=brightness/brightness_%%.xpm/>"
             ] 10
         , Run Kbd
             [ ("us", "<action=`setxkbmap it; xmodmap ~/.config/X11/xinit/.XmodmapIT` button=3>US</action>")
@@ -143,10 +143,10 @@ Config
         \*UnsafeStdinReader* <icon=separators/separator.xpm/>\
         \*mpd* <icon=separators/separator.xpm/>\
         \*disku* *diskio*}\
-        \*LIML* <icon=separators/separator.xpm/>\
+        \*LIML* \
         \*date*\
         \ <action=`st sudo pacman -Syu` button=3><fn=1>*pacman*</fn></action>\
-        \{*memory* (*swap*) <icon=separators/separator.xpm/>\
+        \{*memory* *swap* <icon=separators/separator.xpm/>\
         \*multicpu* <icon=separators/separator.xpm/>\
         \*multicoretemp* <icon=separators/separator.xpm/>\
         \*uptime* <icon=separators/separator.xpm/>\
