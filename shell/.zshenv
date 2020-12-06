@@ -114,7 +114,7 @@ if whence fzf &>/dev/null; then
     --height=50%
     --min-height=15
     --ansi
-    --layout=default
+    --layout=reverse
     --multi --info=inline
     --color=fg:#B8CC52,bg:#151a1e,hl:#B8CC52,fg+:#95E6CB,bg+:#000000,hl+:#fff779,info:#f29718,prompt:#36A3D9,spinner:#fff779,pointer:#FF3333,border:#A37ACC,marker:#B8CC52,header:#B8CC52,preview-fg:#FFFFFF
     '

@@ -15,6 +15,6 @@ let g:colorpicker_themes = {
       \ }
 
 
-let g:colorpicker_light_time = [1, 2]
+let g:colorpicker_light_time = [1, 1]
 
 call colorpicker#pickIt()

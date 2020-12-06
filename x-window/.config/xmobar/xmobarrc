@@ -25,8 +25,37 @@ Config
 
     , commands =
         [ Run UnsafeStdinReader
+        , Run MPD
+            [ "-t", "<statei> <fc=#b8cc52><action=`wmctrl -xR ncmpcpp` button=3><artist>-<title></action></fc> <action=`mpc random` button=1><fn=1>\61556 </fn></action><fc=#ff3333> <action=`mpc seek +1%` button=4><action=`mpc seek -1%` button=5>[<lapsed>/<length>]</action></action> <action=`mpc volume +3` button=4><action=`mpc volume -3` button=5>(<fn=1>墳 </fn><volume>%)</action></action></fc>"
+            , "-M", "12"
+            , "--"
+                , "-P", "<fc=#b8cc52><action=`mpc prev` button=1><fn=1>玲</fn></action> <action=`mpc pause` button=1><action=`mpc stop` button=3> <fn=1>\61516 </fn></action></action><action=`mpc next` button=1><fn=1>怜</fn> </action></fc>"
+                , "-Z", "<action=`mpc play` button=1><action=`mpc stop` button=3><icon=music/music_playing.xpm/></action></action>"
+                , "-S", "<action=`mpc play` button=1><icon=music/music_stopped.xpm/></action>"
+            ] 10
+        , Run DiskU  [("/", "<action=`gnome-disks` button=3><fn=1>\63433 </fn><free>/<size></action>")]
+            [ "-S", "True"
+            , "-a", "l"
+            ] 20
+        , Run DiskIO [("/", "<action=`thunar` button=3>R:<read> W:<write></action>")] [] 10
         , Run Date
             "<fc=#3f4e5a> %T</fc> - <fc=#ff3333>%a %e %b %Y</fc>" "date" 10
+        , Run WeatherX "LIML"
+            [ ("clear"                   , "<icon=weather/weather_sunny.xpm/>")
+            , ("mostly clear"            , "<icon=weather/weather_mostly_sunny.xpm/>")
+            , ("sunny"                   , "<icon=weather/weather_sunny.xpm/>")
+            , ("mostly sunny"            , "<icon=weather/weather_mostly_sunny.xpm/>")
+            , ("partly sunny"            , "<icon=weather/weather_mostly_cloudy.xpm/>")
+            , ("cloudy"                  , "<icon=weather/weather_cloudy.xpm/>")
+            , ("mostly cloudy"           , "<icon=weather/weather_mostly_cloudy.xpm/>")
+            , ("partly cloudy"           , "<icon=weather/weather_mostly_sunny.xpm/>")
+            , ("fair"                    , "<icon=weather/weather_sunny.xpm/>")
+            , ("overcast"                , "<icon=weather/weather_cloudy.xpm/>")
+            , ("considerable cloudiness" , "<icon=weather/weather_cloudy.xpm/>")
+            , ("obscured"                , "<icon=weather/weather_obscured.xpm/>")
+            ]
+            [ "--t" , "<action=`weather` button=3> <skyConditionS> <tempC>°C <fc=#b8cc52><rh>%</fc> <fn=1>\57982 </fn><windKmh> km/h <weather></action>"
+            ] 100
         , Run CommandReader "/home/cantoro/.config/xmobar/scripts/pacman-update" "pacman"
         , Run Memory
             [ "--t", "<action=`st htop` button=3><usedipat> <usedratio></action>"
@@ -34,6 +63,11 @@ Config
             , "-S", "True"
             , "--"
                 , "--used-icon-pattern" , "<icon=ram/ram_%%.xpm/>"
+            ] 10
+        , Run Swap
+            [ "--t", "<usedratio>"
+            , "-p", "2"
+            , "-S", "True"
             ] 10
         , Run MultiCpu
             [ "-t", "<ipat><total0><total1><total2><total3><total4><total5><total6><total7>"
@@ -52,6 +86,11 @@ Config
                 , "--mintemp" , "20"
                 , "--maxtemp" , "100"
             ] 50
+        , Run Uptime
+            [ "-t", "<fn=1>羽</fn><hours> <minutes>"
+            , "-w", "3"
+            , "-S", "True"
+            ] 60
         , Run BatteryN ["BAT0"]
             [ "-t", "<leftipat> <acstatus>"
             , "-S", "True"
@@ -82,6 +121,10 @@ Config
                 , "-D", "intel_backlight"
                 , "--brightness-icon-pattern", "<icon=brightness/brightness_%%.xpm/>"
             ] 10
+        , Run Kbd
+            [ ("us", "<action=`setxkbmap it; xmodmap ~/.config/X11/xinit/.XmodmapIT` button=3>US</action>")
+            , ("it", "<action=`setxkbmap us; xmodmap ~/.config/X11/xinit/.Xmodmap` button=3>IT</action>")
+            ]
         , Run DynNetwork
             [ "-t" , "<txipat><rxipat>"
             , "-S", "True"
@@ -92,21 +135,26 @@ Config
             ] 10
         , Run Com "/home/cantoro/.config/xmobar/scripts/padding-icon" [] "trayerpad" 10
         ]
-
+-- 
     -- layout
     , sepChar =  "*"
     , alignSep = "}{"
     , template =
         "<action=`xmenu-apps` button=1><fn=1> </fn></action>\
-        \*UnsafeStdinReader*}\
-        \*date* \
+        \*UnsafeStdinReader* <icon=separators/separator.xpm/>\
+        \*mpd* <icon=separators/separator.xpm/>\
+        \*disku* (*diskio*)}\
+        \*LIML* <icon=separators/separator.xpm/>\
+        \*date*\
         \ <action=`st sudo pacman -Syu` button=3><fn=1>*pacman*</fn></action>\
-        \{*memory* <icon=separators/separator.xpm/>\
+        \{*memory* (*swap*) <icon=separators/separator.xpm/>\
         \*multicpu* <icon=separators/separator.xpm/>\
         \*multicoretemp* <icon=separators/separator.xpm/>\
+        \*uptime* <icon=separators/separator.xpm/>\
         \*battery0* <icon=separators/separator.xpm/>\
         \*bright* <icon=separators/separator.xpm/>\
         \*default:Master* <icon=separators/separator.xpm/>\
+        \*kbd* <icon=separators/separator.xpm/>\
         \*dynnetwork*<icon=separators/separator.xpm/>\
         \<action=`xmenu-shutdown` button=1><fn=1>  </fn></action>\
         \*trayerpad*"

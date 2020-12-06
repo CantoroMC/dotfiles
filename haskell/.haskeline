@@ -1,8 +1,17 @@
+-- configuration
 bellStyle: VisualBell
 editMode: Vi
 completionType: MenuCompletion
 completionPromptLimit: Just 50
 maxhistorysize: Just 100
 historyDuplicates: IgnoreConsecutive
+
+-- custom keybindings
+bind: { { } left
+bind: ( ( ) left
+bind: [ [ ] left
+bind: } right
+bind: ] right
+bind: ) right
 
 -- vim:ft=haskell
