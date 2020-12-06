@@ -4,10 +4,10 @@ Config
     { font = "xft:Ubuntu:weight=bold:pixelsize=11:antialias=true:hinting=true"
     , additionalFonts =
         [ "xft:SauceCodePro Nerd Font:style=Black Italic :size=9:hinting=true"
-        , "xft:mononoki Bold Nerd Font:pixelsize=10:antialias=true:hinting=true"
+        , "xft:mononoki Bold Nerd Font:pixelsize=8:antialias=true:hinting=true"
         ]
-    , bgColor     = "#fafafa"
-    , fgColor     = "#151a1e"
+    , bgColor     = "#151a1e"
+    , fgColor     = "#eaeaea"
     , alpha       = 255
     , position    = Static { xpos = 0, ypos = 0, width = 1920, height = 20 }
     , border      = NoBorder
@@ -22,7 +22,7 @@ Config
     , overrideRedirect = True    -- set the Override Redirect flag (Xlib)
     , pickBroadest     = False   -- choose widest display (multi-monitor)
     , persistent       = False   -- enable/disable hiding (True = disabled)
-
+    -- commands
     , commands =
         [ Run UnsafeStdinReader
         , Run MPD
@@ -33,13 +33,13 @@ Config
                 , "-Z", "<action=`mpc play` button=1><action=`mpc stop` button=3><icon=music/music_playing.xpm/></action></action>"
                 , "-S", "<action=`mpc play` button=1><icon=music/music_stopped.xpm/></action>"
             ] 10
-        , Run DiskU  [("/", "<action=`gnome-disks` button=3><fn=1>\63433 </fn><free>/<size></action>")]
+        , Run DiskU  [("/", "<action=`gnome-disks` button=3><fn=1> \63433 </fn><fn=2><free>/<size></fn></action>")]
             [ "-S", "True"
             , "-a", "l"
             ] 20
-        , Run DiskIO [("/", "<action=`thunar` button=3>R:<read> W:<write></action>")] [] 10
+        , Run DiskIO [("/", "<action=`thunar` button=3><fn=2>(R:<read> W:<write>)</fn></action>")] [] 10
         , Run Date
-            "<fc=#3f4e5a> %T</fc> - <fc=#ff3333>%a %e %b %Y</fc>" "date" 10
+            "<fc=#fff779> %T</fc> - <fc=#eafe84>%a %e %b %Y</fc>" "date" 10
         , Run WeatherX "LIML"
             [ ("clear"                   , "<icon=weather/weather_sunny.xpm/>")
             , ("mostly clear"            , "<icon=weather/weather_mostly_sunny.xpm/>")
@@ -135,7 +135,6 @@ Config
             ] 10
         , Run Com "/home/cantoro/.config/xmobar/scripts/padding-icon" [] "trayerpad" 10
         ]
--- 
     -- layout
     , sepChar =  "*"
     , alignSep = "}{"
@@ -143,7 +142,7 @@ Config
         "<action=`xmenu-apps` button=1><fn=1> </fn></action>\
         \*UnsafeStdinReader* <icon=separators/separator.xpm/>\
         \*mpd* <icon=separators/separator.xpm/>\
-        \*disku* (*diskio*)}\
+        \*disku* *diskio*}\
         \*LIML* <icon=separators/separator.xpm/>\
         \*date*\
         \ <action=`st sudo pacman -Syu` button=3><fn=1>*pacman*</fn></action>\

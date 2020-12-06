@@ -1,8 +1,8 @@
 /* XPM */
-static char * medium_xpm[] = {
+static char *XPM_icon[] = {
 "17 16 2 1",
-" 	c None",
-".	c #151a1e",
+"  c None",
+". c #c5c8c6",
 "                 ",
 "                 ",
 "                 ",
@@ -18,4 +18,5 @@ static char * medium_xpm[] = {
 "      .          ",
 "                 ",
 "                 ",
-"                 "};
+"                 ",
+};
