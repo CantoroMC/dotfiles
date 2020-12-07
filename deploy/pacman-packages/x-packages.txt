@@ -5,12 +5,16 @@ bluez-utils
 blueberry
 lynx
 pacman-contrib
+stalonetray
 unrar
 unzip
+wmctrl
 xarchiver
 xautolock
 xclip
+xdotool
 xorg-xev
+xorg-xmessage
 xorg-xwininfo
 xsel
 zip

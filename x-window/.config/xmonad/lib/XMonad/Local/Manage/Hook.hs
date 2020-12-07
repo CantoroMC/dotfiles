@@ -2,7 +2,7 @@ module XMonad.Local.Manage.Hook
     ( xmManageHook
     ) where
 
-import Control.Monad 
+import Control.Monad
     ( liftM2
     )
 
@@ -55,6 +55,7 @@ manageFloatings = composeAll $
     [ title =? "Event Tester"  --> doFloat
     , title =? "lstopo"        --> doCenterFloat
     , title =? "weatherreport" --> doRectFloat xmBigRect
+    , title =? "calendar"      --> doRectFloat xmBigRect
     , role  =? "ncmpcpp"       --> doCenterFloat
     , role  =? "pop-up"        --> doCenterFloat
     , (className =? "Display"         <&&> title =? "ImageMagick: ")                       --> doCenterFloat

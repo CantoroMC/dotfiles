@@ -15,7 +15,6 @@ Update packages and retrieve the latest Pacman mirrorlist
 
 * Installing packages with pacman:
 - Starting with a bare installation you can use endeavouros-packages.txt to install packages included with the i3 flavour of EndeavourOS (good starting point)
-- Replace i3 with xmonad if you prefer it
 
 #+begin_src sh
   sudo pacman -Rns - < ~/dotfiles/deploy/pacman-packages/unwanted-packages.txt
@@ -121,6 +120,25 @@ now it better to reboot in order to update the default shell to zsh
   cpan Perl::LanguageServer
 #+end_src
 
+** Haskell and XMonad
+After the installation of ghc, ghc-static and stack-static(AUR)
+#+begin_src sh
+  stack setup --system-ghc
+  stack install --system-ghc cabal-install
+
+  cabal update
+#+end_src
+=ghc-pkg list= to check if you have installed only statically linked Haskell packages.
+Now you re ready to go!
+
+*** XMonad and XMobar
+#+begin_src sh
+  cabal install xmonad
+  cabal install --lib xmonad-contrib
+  cabal install xmobar --flags="all_extensions"
+#+end_src
+
+*** Pandoc
 * System Tweaks
 ** Systemd
 *** Reflector timer

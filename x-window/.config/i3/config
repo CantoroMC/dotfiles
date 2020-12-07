@@ -317,7 +317,7 @@ bindsym $mod+Shift+Ctrl+x --release exec --no-startup-id xkill
 # start dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+Shift+d exec dmenu_run
-bindsym $mod+u exec rofi -modi drun,window,combi -show combi
+bindsym $mod+u exec "rofi -modi drun,window,combi -show combi"
 
 bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+Return exec i3-sensible-terminal

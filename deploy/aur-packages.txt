@@ -9,3 +9,4 @@ ttf-font-awesome-4
 ttf-wps-fonts
 wps-office-fonts
 wps-office
+stack-static

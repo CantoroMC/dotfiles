@@ -14,7 +14,6 @@ mpd
 mpv
 neomutt
 ncmpcpp
-pandoc
 ranger
 ripgrep
 stow

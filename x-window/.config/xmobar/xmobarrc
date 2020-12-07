@@ -39,7 +39,7 @@ Config
             ] 20
         , Run DiskIO [("/", "<action=`thunar` button=3><fn=2>(R:<read> W:<write>)</fn></action>")] [] 10
         , Run Date
-            "<fc=#fff779> %T</fc> - <fc=#eafe84>%a %e %b %Y</fc>" "date" 10
+            "<action=`st -n calendar -t calendar nvim -c CalendarH` button=3><fc=#fff779> %T</fc> - <fc=#eafe84>%a %e %b %Y</fc></action>" "date" 10
         , Run WeatherX "LIML"
             [ ("clear"                   , "<icon=weather/weather_sunny.xpm/>")
             , ("mostly clear"            , "<icon=weather/weather_mostly_sunny.xpm/>")

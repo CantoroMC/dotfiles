@@ -76,6 +76,7 @@ append_path () {
 # Append our default paths
 append_path "$HOME/.local/bin"
 append_path "$HOME/.local/bin/screenlayout"
+append_path "$HOME/.cabal/bin"
 
 # Required by i3-sensible-terminal and rofi-sensible terminal
 export TERMINAL='/usr/local/bin/st'
