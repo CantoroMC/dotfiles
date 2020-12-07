@@ -22,6 +22,12 @@ import XMonad.Actions.CycleWS
     , prevWS
     , nextWS
     )
+import XMonad.Actions.CopyWindow
+    ( copy
+    , kill1
+    , copyToAll
+    , killAllOtherCopies
+    )
 import qualified XMonad.Actions.Search as XMSearch
     ( promptSearch
     , selectSearch
@@ -83,10 +89,12 @@ xmKeys conf@XConfig {XMonad.modMask = modm} = Map.fromList $
     , ((modm .|. shiftMask,   xK_s), decWindowSpacing 1)
     , ((modm .|. controlMask, xK_s), setScreenWindowSpacing 0)
 
-    , ((modm .|. shiftMask,   xK_d), sendMessage $ ToggleStrut D)
-
     , ((modm,                 xK_f), spawn "vivaldi-stable")
     , ((modm .|. shiftMask,   xK_f), refresh)
+
+    , ((modm,                 xK_c), windows copyToAll)
+    , ((modm .|. shiftMask,   xK_c), killAllOtherCopies)
+    , ((modm .|. controlMask, xK_c), kill1)
 
     , ((modm,                 xK_b), sendMessage ToggleStruts)
 
@@ -190,6 +198,11 @@ xmKeys conf@XConfig {XMonad.modMask = modm} = Map.fromList $
     [((m .|. modm, k), windows $ f i)
         | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
         , (f, m) <- [(XMSS.greedyView, 0), (XMSS.shift, shiftMask)]]
+    ++
+    -- Copy Client to workspace N --> mod+Control-[1..9]
+    [((m .|. modm, k), windows $ f i)
+        | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
+        , (f, m) <- [(XMSS.view, 0), (XMSS.shift, shiftMask), (copy, controlMask)]]
     ++
     -- Switch/MoveClient to physical/Xinerama screens 1, 2, or 3 --> mod(+Shift)-{w,e,r}
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
