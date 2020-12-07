@@ -1,7 +1,19 @@
 -- Xmobarcc: http://projects.haskell.org/xmobar
 
-Config
-    { font = "xft:Ubuntu:weight=bold:pixelsize=11:antialias=true:hinting=true"
+import Xmobar
+
+-- Example user-defined plugin
+
+-- data HelloWorld = HelloWorld
+--     deriving (Read, Show)
+
+-- instance Exec HelloWorld where
+--     alias HelloWorld = "hw"
+--     run   HelloWorld = return "<fc=red>Hello World!!</fc>"
+
+xmobarConfig :: Config
+xmobarConfig = defaultConfig {
+    font = "xft:Ubuntu:weight=bold:pixelsize=11:antialias=true:hinting=true"
     , additionalFonts =
         [ "xft:SauceCodePro Nerd Font:style=Black Italic :size=9:hinting=true"
         , "xft:mononoki Bold Nerd Font:pixelsize=8:antialias=true:hinting=true"
@@ -25,7 +37,7 @@ Config
     -- commands
     , commands =
         [ Run UnsafeStdinReader
-        , Run MPD
+        , Run $ MPD
             [ "-t", "<statei> <fc=#b8cc52><action=`wmctrl -xR ncmpcpp` button=3><fn=2><artist>-<title></fn></action></fc> <action=`mpc random` button=1><fn=1>\61556 </fn></action><fc=#ff3333> <action=`mpc seek +1%` button=4><action=`mpc seek -1%` button=5><fn=2>[<lapsed>/<length>]</fn></action></action> <action=`mpc volume +3` button=4><action=`mpc volume -3` button=5><fn=1>墳 </fn><fn=2><volume>%</fn></action></action></fc>"
             , "-M", "12"
             , "--"
@@ -33,14 +45,14 @@ Config
                 , "-Z", "<action=`mpc play` button=1><action=`mpc stop` button=3><icon=music/music_playing.xpm/></action></action>"
                 , "-S", "<action=`mpc play` button=1><icon=music/music_stopped.xpm/></action>"
             ] 10
-        , Run DiskU  [("/", "<action=`gnome-disks` button=3><fn=1> \63433 </fn><fn=2><free>/<size></fn></action>")]
+        , Run $ DiskU  [("/", "<action=`gnome-disks` button=3><fn=1> \63433 </fn><fn=2><free>/<size></fn></action>")]
             [ "-S", "True"
             , "-a", "l"
             ] 20
-        , Run DiskIO [("/", "<action=`thunar` button=3><fn=2>(R:<read> W:<write>)</fn></action>")] [] 10
-        , Run Date
+        , Run $ DiskIO [("/", "<action=`thunar` button=3><fn=2>(R:<read> W:<write>)</fn></action>")] [] 10
+        , Run $ Date
             "<action=`st -n calendar -t calendar nvim -c CalendarH` button=3><fc=#fff779> %T</fc> - <fc=#eafe84>%a %e %b %Y</fc></action>" "date" 10
-        , Run WeatherX "LIML"
+        , Run $ WeatherX "LIML"
             [ ("clear"                   , "<icon=weather/weather_sunny.xpm/>")
             , ("mostly clear"            , "<icon=weather/weather_mostly_sunny.xpm/>")
             , ("sunny"                   , "<icon=weather/weather_sunny.xpm/>")
@@ -56,20 +68,20 @@ Config
             ]
             [ "--t" , "<action=`weather` button=3> <skyConditionS> <tempC>°C <fc=#b8cc52><rh>%</fc> <fn=1>\57982 </fn><windKmh> km/h <weather></action>"
             ] 100
-        , Run CommandReader "/home/cantoro/.config/xmobar/scripts/pacman-update" "pacman"
-        , Run Memory
+        , Run $ CommandReader "/home/cantoro/.config/xmobar/scripts/pacman-update" "pacman"
+        , Run $ Memory
             [ "--t", "<action=`st htop` button=3><fn=2><usedipat> <usedratio></fn></action>"
             , "-p", "2"
             , "-S", "True"
             , "--"
                 , "--used-icon-pattern" , "<icon=ram/ram_%%.xpm/>"
             ] 10
-        , Run Swap
+        , Run $ Swap
             [ "--t", "<fn=2>(<usedratio>)</fn>"
             , "-p", "2"
             , "-S", "True"
             ] 10
-        , Run MultiCpu
+        , Run $ MultiCpu
             [ "-t", "<ipat><fn=2><total0><total1><total2><total3><total4><total5><total6><total7></fn>"
             , "-S", "True"
             , "-p", "2"
@@ -79,19 +91,19 @@ Config
             , "--"
                 , "--load-icon-pattern" , "<icon=cpu/cpu_%%.xpm/>"
             ] 10
-        , Run MultiCoreTemp
+        , Run $ MultiCoreTemp
             [ "-t", "<fn=2><maxipat> <max>°C</fn>"
             , "--"
                 , "--max-icon-pattern", "<icon=temperature/temperature_%%.xpm/>"
                 , "--mintemp" , "20"
                 , "--maxtemp" , "100"
             ] 50
-        , Run Uptime
+        , Run $ Uptime
             [ "-t", "<fn=1>羽</fn><fn=2><hours> <minutes></fn>"
             , "-w", "3"
             , "-S", "True"
             ] 60
-        , Run BatteryN ["BAT0"]
+        , Run $ BatteryN ["BAT0"]
             [ "-t", "<fn=2><leftipat> <acstatus></fn>"
             , "-S", "True"
             , "--"
@@ -104,14 +116,14 @@ Config
                 , "-a", "notify-send -u critical 'Battery low'"
                 , "-A", "3"
             ] 400 "battery0"
-        , Run Brightness
+        , Run $ Brightness
             [ "-t", "<action=`xbacklight -inc 5` button=4><action=`xbacklight -dec 5` button=5><action=`xbacklight -set 100` button=3><action=`xbacklight -set 0` button=2><ipat> <fn=2><percent></fn></action></action></action></action>"
             , "-S", "True"
             , "--"
                 , "-D", "intel_backlight"
                 , "--brightness-icon-pattern", "<icon=brightness/brightness_%%.xpm/>"
             ] 10
-        , Run Volume "default" "Master"
+        , Run $ Volume "default" "Master"
             ["-t", "<action=`pactl set-sink-volume @DEFAULT_SINK@ -5%` button=5><action=`pactl set-sink-volume @DEFAULT_SINK@ +5%` button=4><action=`pactl set-sink-mute @DEFAULT_SINK@ toggle` button=2><action=`pavucontrol` button=3><fn=2><status><volume></fn></action></action></action></action>"
             , "-S", "True"
             , "--"
@@ -121,11 +133,11 @@ Config
                 , "-m", "<icon=volume/medium.xpm/>"
                 , "-l", "<icon=volume/low.xpm/>"
             ] 10
-        , Run Kbd
+        , Run $ Kbd
             [ ("us", "<action=`setxkbmap it; xmodmap ~/.config/X11/xinit/.XmodmapIT` button=3>US</action>")
             , ("it", "<action=`setxkbmap us; xmodmap ~/.config/X11/xinit/.Xmodmap` button=3>IT</action>")
             ]
-        , Run DynNetwork
+        , Run $ DynNetwork
             [ "-t" , "<txipat><rxipat>"
             , "-S", "True"
             , "-d", "1"
@@ -133,13 +145,14 @@ Config
                 , "--rx-icon-pattern" , "<icon=network/rx/network_rx_%%.xpm/>"
                 , "--tx-icon-pattern" , "<icon=network/tx/network_tx_%%.xpm/>"
             ] 10
-        , Run Com "/home/cantoro/.config/xmobar/scripts/padding-icon" [] "trayerpad" 10
+        , Run $ Com "/home/cantoro/.config/xmobar/scripts/padding-icon" [] "trayerpad" 10
         ]
     -- layout
     , sepChar =  "*"
     , alignSep = "}{"
+    --  
     , template =
-        "<action=`xmenu-apps` button=1><fn=1> </fn></action>\
+        "<action=`xmenu-apps` button=1><fn=1>\58911 </fn></action>\
         \*UnsafeStdinReader* <icon=separators/separator.xpm/>\
         \*mpd* <icon=separators/separator.xpm/>\
         \*disku* *diskio*}\
@@ -155,8 +168,11 @@ Config
         \*default:Master* <icon=separators/separator.xpm/>\
         \*kbd* <icon=separators/separator.xpm/>\
         \*dynnetwork*<icon=separators/separator.xpm/>\
-        \<action=`xmenu-shutdown` button=1><fn=1>  </fn></action>\
+        \<action=`xmenu-shutdown` button=1><fn=1> \61457 </fn></action>\
         \*trayerpad*"
 }
+
+main :: IO ()
+main = xmobar xmobarConfig
 
 -- vim:ft=haskell:nospell

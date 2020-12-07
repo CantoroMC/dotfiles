@@ -28,10 +28,10 @@ spawnXMobar :: MonadIO m => m Handle
 spawnXMobar = spawnPipe $ unwords
     [ executable
     , flagIconroot
-    , fileXMobarRc
-    ] where executable       = "xmobar"
+    -- , fileXMobarRc
+    ] where executable       = xMobarConfigHome <> "/xmobar"
             flagIconroot     = "--iconroot=" <> xMobarConfigHome <> "/icons"
-            fileXMobarRc     = xMobarConfigHome <> "/xmobarrc"
+            -- fileXMobarRc     = xMobarConfigHome <> "/xmobarrc"
             xMobarConfigHome = "\"${XDG_CONFIG_HOME}\"/xmobar"
 
 xmXMobarPP :: Handle -> PP

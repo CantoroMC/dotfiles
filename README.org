@@ -132,13 +132,26 @@ After the installation of ghc, ghc-static and stack-static(AUR)
 Now you re ready to go!
 
 *** XMonad and XMobar
+taffybar
 #+begin_src sh
   cabal install xmonad
+  cabal install --lib xmonad
   cabal install --lib xmonad-contrib
   cabal install xmobar --flags="all_extensions"
+  cabal install --lib xmobar --flags="all_extensions"
 #+end_src
 
 *** Pandoc
+#+begin_src sh
+  cabal install pandoc
+#+end_src
+
+*** Haskell
+ghcid, hindent
+#+begin_src sh
+  cabal install hlint
+  cabal install hoogle
+#+end_src
 * System Tweaks
 ** Systemd
 *** Reflector timer

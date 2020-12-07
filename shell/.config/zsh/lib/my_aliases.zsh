@@ -28,7 +28,6 @@ alias gitu='git add . && git commit && git push'
 # Arch
 alias sp="sudo pacman"
 # Haskell
-alias ghc-dm='ghc -dynamic --make'
 # Texmf
 alias tlmgr=$TEXMFDIST'/scripts/texlive/tlmgr.pl --usermode'
 # Vim
