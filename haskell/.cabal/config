@@ -56,7 +56,7 @@ world-file: /home/cantoro/.cabal/world
 -- executable-stripping:
 -- library-stripping:
 -- configure-option:
--- user-install: True
+user-install: False
 -- package-db:
 -- flags:
 -- extra-include-dirs:
@@ -99,7 +99,7 @@ extra-prog-path: /home/cantoro/.cabal/bin
 -- force-reinstalls: False
 -- upgrade-dependencies: False
 -- index-state:
--- root-cmd:
+root-cmd: sudo
 -- symlink-bindir:
 build-summary: /home/cantoro/.cabal/logs/build.log
 -- build-log:
