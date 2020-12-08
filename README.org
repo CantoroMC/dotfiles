@@ -127,6 +127,7 @@ After the installation of ghc, ghc-static and stack-static(AUR)
   stack install --system-ghc cabal-install
 
   cabal update
+  cabal install cabal-uninstall
 #+end_src
 =ghc-pkg list= to check if you have installed only statically linked Haskell packages.
 Now you re ready to go!
