@@ -2,7 +2,7 @@
 
 # Write/remove a tasks
 
-todoFile="$HOME/Documents/dmenuTodos.txt"
+todoFile="$HOME/Documents/organization/dmenuTodos.txt"
 touch "$todoFile"
 height=$(wc -l "$todoFile" | awk '{print $1}')
 taskPrompt="Add/delete a task: "
