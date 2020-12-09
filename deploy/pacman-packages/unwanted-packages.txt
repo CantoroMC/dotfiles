@@ -5,3 +5,6 @@ galculator
 xed
 xfce4-terminal
 xterm
+lightdm
+lightdm-gtk-greeter
+lightdm-gtk-greeter-settings

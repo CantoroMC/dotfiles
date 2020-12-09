@@ -126,4 +126,3 @@ export FZF_BIBTEX_SOURCES="$TEXMFHOME/bibtex/bib/matriHX.bib"
 # }}}
 
 # vim:fdm=marker
-
