@@ -49,7 +49,7 @@ xmobarConfig p = (baseConfig p)
         , Run diskU
         , Run diskIO
         , Run weather
-        , Run clock
+        , Run (clock p)
         , Run (memory p)
         , Run swap
         , Run (multicpu p)

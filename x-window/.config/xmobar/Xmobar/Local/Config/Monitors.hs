@@ -39,6 +39,7 @@ trayerPad = Com (xmobarConfigDir ++ "/scripts/padding-icon") [] "trayerpad" 3600
 pacman :: CommandReader
 pacman = CommandReader (xmobarConfigDir ++ "/scripts/pacman-update") "pacman"
 
+mpdMusic :: Palette -> Monitors
 mpdMusic p =
     MPDX ( withPlugArgs p
         ["--template", fn 2 "<statei> "
@@ -69,10 +70,10 @@ diskU = DiskU [("/", action "gnome-disks" 3 (fn 1 " \63433 " ++ fn 2 "<free>/<si
     , "-a", "l"
     ] 10
 
-clock :: Date
-clock =
+clock :: Palette -> Date
+clock p =
     Date (action "st -n calendar -t calendar nvim -c CalendarH" 3
-        (fc "#fff779" "%T" ++ " - " ++ fc "#eafe84" "%a%e %b %Y")) "date" 10
+        (fc (pBorder p) "%T" ++ " - " ++ fc (pBorder p) "%a%e %b %Y")) "date" 10
 
 weather :: Monitors
 weather = WeatherX "LIML"

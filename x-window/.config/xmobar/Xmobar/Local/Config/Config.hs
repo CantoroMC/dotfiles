@@ -77,16 +77,16 @@ data Palette = Palette
 
 lightPalette :: Palette -- TODO
 lightPalette = Palette
-    { pFont       = "xft:mononoki Nerd Font:style= Italic:pixelsize =9"
+    { pFont       = "xft:mononoki Nerd Font:style=Italic:pixelsize=9"
     , pForeground = "#151a1e"
     , pBackground = "#eaeaea"
     , pAlpha      = 255
-    , pBorder     = "#b8cc52"
+    , pBorder     = "#36a3d9"
     , pIconRoot   = icons "dark"
-    , pLow        = "#68d5ff"
-    , pNormal     = "#eaeaea"
+    , pLow        = "#36a3d9"
+    , pNormal     = "#151a1e"
     , pHigh       = "#ff3333"
-    , pIconColor  = "b8cc52"
+    , pIconColor  = "#b8cc52"
     }
 
 darkPalette :: Palette
@@ -100,7 +100,7 @@ darkPalette = Palette
     , pLow        = "#68d5ff"
     , pNormal     = "#eaeaea"
     , pHigh       = "#ff3333"
-    , pIconColor  = "b8cc52"
+    , pIconColor  = "#b8cc52"
     }
 
 isLight :: IO Bool
