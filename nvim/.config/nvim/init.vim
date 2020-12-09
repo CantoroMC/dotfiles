@@ -123,7 +123,7 @@ augroup filetype_indentation " {{{3
   autocmd FileType c,cpp,h,python,matlab,help,lisp,haskell,lhaskell
         \ setl tabstop=4 softtabstop=4 expandtab shiftwidth=4
   " Only Spaces Two Characters:
-  autocmd FileType vim,sh,zsh,markdown,tex,plaintex,bib,text,yaml,ruby,xml,xdefaults,tmux,cabal
+  autocmd FileType vim,sh,zsh,markdown,tex,plaintex,bib,text,yaml,ruby,xml,xdefaults,tmux,cabal,nix
         \ setl tabstop=2 softtabstop=2 expandtab shiftwidth=2
   " Only Spaces Eight Characters:
   " Tabs With Two Characters:
@@ -153,7 +153,7 @@ augroup fyletype_folding_method " {{{3
   autocmd FileType vim,tex,plaintex,text,neomuttrc,muttrc,tmux
         \ setl foldmethod=marker
   " Indentation
-  autocmd FileType make,python,bib,go,json,html,css,javascript,yaml,ruby,xml,haskell,lhaskell,cabal
+  autocmd FileType make,python,bib,go,json,html,css,javascript,yaml,ruby,xml,haskell,lhaskell,cabal,nix
         \ setl foldmethod=indent
   autocmd FileType lisp
         \ setl foldmethod=indent
@@ -619,6 +619,9 @@ Plug 'neovimhaskell/haskell-vim'
 
 " Rofi Advanced Style Information
 Plug 'CantoroMC/vim-rasi'
+
+" Nix Syntax
+Plug 'LnL7/vim-nix'
 
 " }}}
 
