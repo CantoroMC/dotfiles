@@ -61,7 +61,8 @@ picom -cC &
 # }}}
 
 # System Tray {{{2
-stalonetray -c $XDG_CONFIG_HOME/stalonetrayrc &
+[ $BACKGROUND_COLOR = 'light' ] && stalonetray -c $XDG_CONFIG_HOME/light_tray.config &
+[ $BACKGROUND_COLOR = 'dark' ] && stalonetray -c $XDG_CONFIG_HOME/dark_tray.config &
 
 # Network manager-applet
 nm-applet &
