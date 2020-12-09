@@ -25,7 +25,7 @@ export LESSHISTFILE=-
 export MPLAYER_HOME="$XDG_CONFIG_HOME"/mplayer
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export PYLINTHOME="$XDG_CACHE_HOME"/pylint
-export QT_QPA_PLATFORMTHEME="qt5ct"
+export QT_QPA_PLATFORMTHEME="gtk2"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 
 
