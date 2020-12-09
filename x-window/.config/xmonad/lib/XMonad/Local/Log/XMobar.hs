@@ -30,7 +30,7 @@ spawnXMobar = spawnPipe $ unwords
     , flagIconroot
     -- , fileXMobarRc
     ] where executable       = xMobarConfigHome <> "/xmobar"
-            flagIconroot     = "--iconroot=" <> xMobarConfigHome <> "/icons"
+            flagIconroot     = "--iconroot=" <> xMobarConfigHome <> "/icons/" <> XMTheme.xmBackGround
             -- fileXMobarRc     = xMobarConfigHome <> "/xmobarrc"
             xMobarConfigHome = "\"${XDG_CONFIG_HOME}\"/xmobar"
 

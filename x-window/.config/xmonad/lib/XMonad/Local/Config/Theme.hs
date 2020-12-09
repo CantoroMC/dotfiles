@@ -1,6 +1,7 @@
 module XMonad.Local.Config.Theme
     ( Theme (..)
     , xmTheme
+    , xmBackGround
     ) where
 
 import XMonad hiding
@@ -40,3 +41,6 @@ xmTheme = Theme
     , inactiveTextColor   = color4 xmColors
     , urgentTextColor     = color3 xmColors
     }
+
+xmBackGround :: String
+xmBackGround = "dark"

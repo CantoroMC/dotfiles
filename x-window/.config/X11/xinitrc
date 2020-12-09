@@ -64,6 +64,9 @@ export SHELL='/usr/bin/zsh'
 export MPC_FORMAT="[[%artist%  - ]%title% (%time%)]|[%file%]"
 export MPD_HOST=$HOME/.config/mpd/socket
 
+# Xmobar variable
+export BACKGROUND_COLOR = "light"
+
 # Append "$1" to $PATH when not already in. (taken from /etc/profile)
 append_path () {
     case ":$PATH:" in
@@ -101,6 +104,7 @@ fi
 
 # Desktop Environment or Window Manager {{{1
 
+# exec dbus-launch --exit-with-session xmonad
 DEFAULT_SESSION=xmonad
 # DEFAULT_SESSION=i3
 

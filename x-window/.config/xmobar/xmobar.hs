@@ -1,178 +1,92 @@
 -- Xmobarcc: http://projects.haskell.org/xmobar
 
+------------------------------------------------------------------------------
+    -- Imports
+
 import Xmobar
 
--- Example user-defined plugin
+import Xmobar.Local.Config.Config
+    ( Palette (..)
+    , palette
+    , defaultHeight
+    , baseConfig
+    , action
+    , separator
+    )
 
--- data HelloWorld = HelloWorld
---     deriving (Read, Show)
+import Xmobar.Local.Config.Monitors
+    ( trayerPad
+    , mpdMusic
+    , diskIO
+    , diskU
+    , clock
+    , weather
+    , memory
+    , swap
+    , multicpu
+    , thermal
+    , uptime
+    , battery
+    , brightness
+    , volume
+    , keyboard
+    , wifi
+    , xMenu
+    , pacman
+    )
 
--- instance Exec HelloWorld where
---     alias HelloWorld = "hw"
---     run   HelloWorld = return "<fc=red>Hello World!!</fc>"
+------------------------------------------------------------------------------
+    -- Configuration
 
-xmobarConfig :: Config
-xmobarConfig = defaultConfig {
-    font = "xft:Ubuntu:weight=bold:pixelsize=11:antialias=true:hinting=true"
-    , additionalFonts =
-        [ "xft:SauceCodePro Nerd Font:style=Black Italic :size=9:hinting=true"
-        , "xft:mononoki Bold Nerd Font:pixelsize=8:antialias=true:hinting=true"
-        ]
-    , bgColor     = "#151a1e"
-    , fgColor     = "#eaeaea"
-    , alpha       = 255
-    , position    = Static { xpos = 0, ypos = 0, width = 1920, height = 20 }
-    , border      = NoBorder
-    , borderColor = "#F07178"
-    , textOffset  = -1
-    , iconOffset  = -1
-    , iconRoot    = "/home/cantoro/.config/xmobar/icons"
-    -- general behavior
-    , lowerOnStart     = True    -- send to bottom of window stack on start
-    , hideOnStart      = False   -- start with window unmapped (hidden)
-    , allDesktops      = True    -- show on all desktops
-    , overrideRedirect = True    -- set the Override Redirect flag (Xlib)
-    , pickBroadest     = False   -- choose widest display (multi-monitor)
-    , persistent       = False   -- enable/disable hiding (True = disabled)
-    -- commands
+xmobarConfig :: Palette -> Config
+xmobarConfig p = (baseConfig p)
+    { position = TopSize C 100 defaultHeight
+    , border   = BottomB
     , commands =
         [ Run UnsafeStdinReader
-        , Run $ MPD
-            [ "-t", "<statei> <fc=#b8cc52><action=`wmctrl -xR ncmpcpp` button=3><fn=2><artist>-<title></fn></action></fc> <action=`mpc random` button=1><fn=1>\61556 </fn></action><fc=#ff3333> <action=`mpc seek +1%` button=4><action=`mpc seek -1%` button=5><fn=2>[<lapsed>/<length>]</fn></action></action> <action=`mpc volume +3` button=4><action=`mpc volume -3` button=5><fn=1>墳 </fn><fn=2><volume>%</fn></action></action></fc>"
-            , "-M", "12"
-            , "--"
-                , "-P", "<fc=#b8cc52><action=`mpc prev` button=1><fn=1>玲</fn></action> <action=`mpc pause` button=1><action=`mpc stop` button=3> <fn=1>\61516 </fn></action></action><action=`mpc next` button=1><fn=1>怜</fn> </action></fc>"
-                , "-Z", "<action=`mpc play` button=1><action=`mpc stop` button=3><icon=music/music_playing.xpm/></action></action>"
-                , "-S", "<action=`mpc play` button=1><icon=music/music_stopped.xpm/></action>"
-            ] 10
-        , Run $ DiskU  [("/", "<action=`gnome-disks` button=3><fn=1> \63433 </fn><fn=2><free>/<size></fn></action>")]
-            [ "-S", "True"
-            , "-a", "l"
-            ] 20
-        , Run $ DiskIO [("/", "<action=`thunar` button=3><fn=2>(R:<read> W:<write>)</fn></action>")] [] 10
-        , Run $ Date
-            "<action=`st -n calendar -t calendar nvim -c CalendarH` button=3><fc=#fff779> %T</fc> - <fc=#eafe84>%a %e %b %Y</fc></action>" "date" 10
-        , Run $ WeatherX "LIML"
-            [ ("clear"                   , "<icon=weather/weather_sunny.xpm/>")
-            , ("mostly clear"            , "<icon=weather/weather_mostly_sunny.xpm/>")
-            , ("sunny"                   , "<icon=weather/weather_sunny.xpm/>")
-            , ("mostly sunny"            , "<icon=weather/weather_mostly_sunny.xpm/>")
-            , ("partly sunny"            , "<icon=weather/weather_mostly_cloudy.xpm/>")
-            , ("cloudy"                  , "<icon=weather/weather_cloudy.xpm/>")
-            , ("mostly cloudy"           , "<icon=weather/weather_mostly_cloudy.xpm/>")
-            , ("partly cloudy"           , "<icon=weather/weather_mostly_sunny.xpm/>")
-            , ("fair"                    , "<icon=weather/weather_sunny.xpm/>")
-            , ("overcast"                , "<icon=weather/weather_cloudy.xpm/>")
-            , ("considerable cloudiness" , "<icon=weather/weather_cloudy.xpm/>")
-            , ("obscured"                , "<icon=weather/weather_obscured.xpm/>")
-            ]
-            [ "--t" , "<action=`weather` button=3> <skyConditionS> <tempC>°C <fc=#b8cc52><rh>%</fc> <fn=1>\57982 </fn><windKmh> km/h <weather></action>"
-            ] 100
-        , Run $ CommandReader "/home/cantoro/.config/xmobar/scripts/pacman-update" "pacman"
-        , Run $ Memory
-            [ "--t", "<action=`st htop` button=3><fn=2><usedipat> <usedratio></fn></action>"
-            , "-p", "2"
-            , "-S", "True"
-            , "--"
-                , "--used-icon-pattern" , "<icon=ram/ram_%%.xpm/>"
-            ] 10
-        , Run $ Swap
-            [ "--t", "<fn=2>(<usedratio>)</fn>"
-            , "-p", "2"
-            , "-S", "True"
-            ] 10
-        , Run $ MultiCpu
-            [ "-t", "<ipat><fn=2><total0><total1><total2><total3><total4><total5><total6><total7></fn>"
-            , "-S", "True"
-            , "-p", "2"
-            , "-d", "0"
-            , "-w", "4"
-            , "-a", "l"
-            , "--"
-                , "--load-icon-pattern" , "<icon=cpu/cpu_%%.xpm/>"
-            ] 10
-        , Run $ MultiCoreTemp
-            [ "-t", "<fn=2><maxipat> <max>°C</fn>"
-            , "--"
-                , "--max-icon-pattern", "<icon=temperature/temperature_%%.xpm/>"
-                , "--mintemp" , "20"
-                , "--maxtemp" , "100"
-            ] 50
-        , Run $ Uptime
-            [ "-t", "<fn=1>羽</fn><fn=2><hours> <minutes></fn>"
-            , "-w", "3"
-            , "-S", "True"
-            ] 60
-        , Run $ BatteryN ["BAT0"]
-            [ "-t", "<fn=2><leftipat> <acstatus></fn>"
-            , "-S", "True"
-            , "--"
-                , "--on-icon-pattern", "<icon=battery/on/battery_on_%%.xpm/>"
-                , "--off-icon-pattern", "<icon=battery/off/battery_off_%%.xpm/>"
-                , "--idle-icon-pattern", "<icon=battery/idle/battery_idle_%%.xpm/>"
-                , "-o", "<left> (<timeleft>)"
-                , "-O", "<left> (<timeleft>)"
-                , "-i", "IDLE <left>"
-                , "-a", "notify-send -u critical 'Battery low'"
-                , "-A", "3"
-            ] 400 "battery0"
-        , Run $ Brightness
-            [ "-t", "<action=`xbacklight -inc 5` button=4><action=`xbacklight -dec 5` button=5><action=`xbacklight -set 100` button=3><action=`xbacklight -set 0` button=2><ipat> <fn=2><percent></fn></action></action></action></action>"
-            , "-S", "True"
-            , "--"
-                , "-D", "intel_backlight"
-                , "--brightness-icon-pattern", "<icon=brightness/brightness_%%.xpm/>"
-            ] 10
-        , Run $ Volume "default" "Master"
-            ["-t", "<action=`pactl set-sink-volume @DEFAULT_SINK@ -5%` button=5><action=`pactl set-sink-volume @DEFAULT_SINK@ +5%` button=4><action=`pactl set-sink-mute @DEFAULT_SINK@ toggle` button=2><action=`pavucontrol` button=3><fn=2><status><volume></fn></action></action></action></action>"
-            , "-S", "True"
-            , "--"
-                , "-O", ""
-                , "-o", "<icon=volume/mute.xpm/>"
-                , "-h", "<icon=volume/high.xpm/>"
-                , "-m", "<icon=volume/medium.xpm/>"
-                , "-l", "<icon=volume/low.xpm/>"
-            ] 10
-        , Run $ Kbd
-            [ ("us", "<action=`setxkbmap it; xmodmap ~/.config/X11/xinit/.XmodmapIT` button=3>US</action>")
-            , ("it", "<action=`setxkbmap us; xmodmap ~/.config/X11/xinit/.Xmodmap` button=3>IT</action>")
-            ]
-        , Run $ DynNetwork
-            [ "-t" , "<txipat><rxipat>"
-            , "-S", "True"
-            , "-d", "1"
-            , "--"
-                , "--rx-icon-pattern" , "<icon=network/rx/network_rx_%%.xpm/>"
-                , "--tx-icon-pattern" , "<icon=network/tx/network_tx_%%.xpm/>"
-            ] 10
-        , Run $ Com "/home/cantoro/.config/xmobar/scripts/padding-icon" [] "trayerpad" 10
+        , Run trayerPad
+        , Run (mpdMusic p)
+        , Run diskU
+        , Run diskIO
+        , Run weather
+        , Run clock
+        , Run (memory p)
+        , Run swap
+        , Run (multicpu p)
+        , Run (thermal p)
+        , Run uptime
+        , Run (battery p)
+        , Run (brightness p)
+        , Run (volume p)
+        , Run keyboard
+        , Run (wifi p)
+        , Run pacman
         ]
-    -- layout
-    , sepChar =  "*"
-    , alignSep = "}{"
-    --  
-    , template =
-        "<action=`xmenu-apps` button=1><fn=1>\58911 </fn></action>\
-        \*UnsafeStdinReader* <icon=separators/separator.xpm/>\
-        \*mpd* <icon=separators/separator.xpm/>\
-        \*disku* *diskio*}\
-        \*LIML* \
-        \*date*\
-        \ <action=`st sudo pacman -Syu` button=3><fn=1>*pacman*</fn></action>\
-        \{*memory* *swap* <icon=separators/separator.xpm/>\
-        \*multicpu* <icon=separators/separator.xpm/>\
-        \*multicoretemp* <icon=separators/separator.xpm/>\
-        \*uptime* <icon=separators/separator.xpm/>\
-        \*battery0* <icon=separators/separator.xpm/>\
-        \*bright* <icon=separators/separator.xpm/>\
-        \*default:Master* <icon=separators/separator.xpm/>\
-        \*kbd* <icon=separators/separator.xpm/>\
-        \*dynnetwork*<icon=separators/separator.xpm/>\
-        \<action=`xmenu-shutdown` button=1><fn=1> \61457 </fn></action>\
-        \*trayerpad*"
-}
+    , template = " "
+        ++ xMenu "xmenu-apps" "\58911"
+        ++ "|UnsafeStdinReader|" ++ separator
+        ++ "|music| " ++ separator
+        ++ "|disku| |diskio|"
+        ++ "}"
+        ++ "|LIML| "
+        ++ "|date|"
+        ++ action "st sudo pacman -Syu" 3 " |pacman|"
+        ++ "{"
+        ++ "|memory| |swap| " ++ separator
+        ++ "|multicpu| " ++ separator
+        ++ "|multicoretemp| " ++ separator
+        ++ "|uptime| " ++ separator
+        ++ "|battery0| " ++ separator
+        ++ "|bright| " ++ separator
+        ++ "|default:Master| " ++ separator
+        ++ "|kbd| " ++ separator
+        ++ "|dynnetwork|" ++ separator
+        ++ xMenu "xmenu-shutdown" "\61457"
+        ++ "    "
+        ++ "|trayerPad|"
+    }
 
+------------------------------------------------------------------------------
+    -- Main
 main :: IO ()
-main = xmobar xmobarConfig
-
--- vim:ft=haskell:nospell
+main = palette >>= configFromArgs . xmobarConfig >>= xmobar
