@@ -174,8 +174,8 @@ selection:
 
 # cursor {{{2
 cursor:
-  style: Underline
-  vi_mode_style: Beam
+  style: Beam
+  vi_mode_style: Underline
   unfocused_hollow: true
   thickness: 0.10
 # }}}

@@ -73,7 +73,7 @@ diskU = DiskU [("/", action "gnome-disks" 3 (fn 1 " \63433 " ++ fn 2 "<free>/<si
 clock :: Palette -> Date
 clock p =
     Date (action "st -n calendar -t calendar nvim -c CalendarH" 3
-        (fc (pBorder p) "%T" ++ " - " ++ fc (pBorder p) "%a%e %b %Y")) "date" 10
+        (fc (pBorder p) "%T" ++ " - " ++ fc (pBorder p) "%a %e %b %Y")) "date" 10
 
 weather :: Monitors
 weather = WeatherX "LIML"

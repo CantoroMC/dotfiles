@@ -55,6 +55,7 @@ nmap <silent> <Leader>go <Plug>(coc-references)
 nmap          <Leader>gf <Plug>(coc-format-selected)
 xmap          <Leader>gf <Plug>(coc-format-selected)
 
+nnoremap <silent> <Leader>cA :<C-u>CocAction<CR>
 nnoremap <silent> <Leader>cD :<C-u>CocDiagnostic<CR>
 nnoremap <silent> <Leader>cR :<C-u>CocRestart<CR>
 nnoremap <silent> <Leader>cS :<C-u>CocList snippets<CR>
