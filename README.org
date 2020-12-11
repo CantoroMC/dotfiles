@@ -75,7 +75,7 @@ Install Oh my zsh
 #+begin_src sh
   [[ -d $HOME/.config/zsh ]] || mkdir $HOME/.config/zsh
   wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-  ZSH="$HOME/.config/zsh/oh-my-zsh" sh install.sh }
+  ZSH="$HOME/.config/zsh/oh-my-zsh" sh install.sh
 #+end_src
 now it better to reboot in order to update the default shell to zsh
 ** Zsh plugins
@@ -135,11 +135,11 @@ Now you re ready to go!
 *** XMonad and XMobar
 taffybar
 #+begin_src sh
-  cabal install xmonad
   cabal install --lib xmonad
+  cabal install xmonad
   cabal install --lib xmonad-contrib
-  cabal install xmobar --flags="all_extensions"
   cabal install --lib xmobar --flags="all_extensions"
+  cabal install xmobar --flags="all_extensions"
 #+end_src
 
 *** Pandoc

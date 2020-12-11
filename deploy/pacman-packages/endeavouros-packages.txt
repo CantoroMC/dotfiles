@@ -28,3 +28,6 @@ lightdm-gtk-greeter-settings
 arc-x-icons-theme
 arc-gtk-theme
 gtk-engine-murrine
+i3-wm
+i3lock
+i3blocks
