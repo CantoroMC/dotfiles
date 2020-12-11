@@ -139,7 +139,6 @@ taffybar
   cabal install xmonad
   cabal install --lib xmonad-contrib
   cabal install --lib xmobar --flags="all_extensions"
-  cabal install xmobar --flags="all_extensions"
 #+end_src
 
 *** Pandoc
