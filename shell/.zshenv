@@ -25,9 +25,10 @@ export LESS=-r
 # }}}
 
 # Password Helper
-if whence dmenu_askpass &>/dev/null; then
+if whence $HOME/.local/bin/dmenu_askpass &>/dev/null; then
   export SUDO_ASKPASS="$HOME/.local/bin/dmenu_askpass"
 fi
+
 # }}}
 
 # ZSH variables: {{{1
