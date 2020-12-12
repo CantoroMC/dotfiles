@@ -79,9 +79,6 @@ export TEXMFCONFIG="$XDG_CONFIG_HOME/texlive/texmf-config"
 
 # Ranger
 export RANGER_LOAD_DEFAULT_RC="FALSE"
-
-# Nix Package Manager
-[ -e /home/cantoro/.nix-profile/etc/profile.d/nix.sh ] && . /home/cantoro/.nix-profile/etc/profile.d/nix.sh
 # }}}
 
 # Path {{{1
