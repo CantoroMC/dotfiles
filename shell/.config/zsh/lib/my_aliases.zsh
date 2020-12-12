@@ -44,7 +44,7 @@ alias pyFind='find . -name "*.py"'
 alias pyGrep='grep -r --include="*.py"'
 # OpenFOAM
 alias injectOF="[[ -f $FOAM_INST_DIR/OpenFOAM-8/etc/bashrc ]] && . $FOAM_INST_DIR/OpenFOAM-8/etc/bashrc"
-alias paraFoam='paraFoam -builtin'
+alias paraFoam='paraFoam -builtin & disown'
 # }}}
 
 # Frequent files and directories {{{1
@@ -63,7 +63,7 @@ alias cfg-xprof="$EDITOR $XDG_CONFIG_HOME/X11/xprofile"
 alias cfg-xerr="$EDITOR $HOME/.xsession-errors"
 
 alias cfg-xmon="$EDITOR $XDG_CONFIG_HOME/xmonad/xmonad.hs"
-alias cfg-xmobtop="$EDITOR $XDG_CONFIG_HOME/xmobar/xmobarrc"
+alias cfg-xmobtop="$EDITOR $XDG_CONFIG_HOME/xmobar/xmobar.hs"
 
 # Everything else
 alias cfg-vim="$EDITOR $XDG_CONFIG_HOME/nvim/init.vim"

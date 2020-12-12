@@ -65,7 +65,7 @@ diskIO = DiskIO
     ] [] 10
 
 diskU :: Monitors
-diskU = DiskU [("/", action "gnome-disks" 3 (fn 1 " \63433 " ++ fn 2 "<free>/<size>"))]
+diskU = DiskU [("/", action "gnome-disks" 3 (fn 1 " \63433" ++ fn 2 "<free>/<size>"))]
     [ "-S", "True"
     , "-a", "l"
     ] 10
@@ -117,9 +117,9 @@ multicpu p =
     MultiCpu ( withPlugArgs p
                 [ "--template", "<ipat>" ++ fn 2 "<total0><total1><total2><total3><total4><total5><total6><total7>"
                 , "-S", "True"
-                , "-p", "2"
+                , "-p", "3"
                 , "-d", "0"
-                , "-w", "4"
+                , "-w", "5"
                 , "-a", "l"
                 ]
                 [ "--load-icon-pattern" , icon "cpu/cpu_%%.xpm"
