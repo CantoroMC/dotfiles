@@ -79,6 +79,17 @@ export TEXMFCONFIG="$XDG_CONFIG_HOME/texlive/texmf-config"
 
 # Ranger
 export RANGER_LOAD_DEFAULT_RC="FALSE"
+
+# Ruby
+export GEM_HOME="$XDG_DATA_HOME"/gem
+export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
+# Make sure to remove gem: --user-install from /etc/gemrc
+# Go
+export GOPATH="$XDG_DATA_HOME/go"
+# Python
+export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
+export PYLINTHOME="$XDG_CACHE_HOME"/pylint
 # }}}
 
 # Path {{{1
@@ -89,15 +100,15 @@ for bin_dir ($HOME/.local/bin/*/); do
   bin=$(echo "${bin_dir}" | sed 's/.$//')
   path=("${bin}" "$path[@]")
 done
+
 unset bin_dir
 
 path=(
+  "$XDG_DATA_HOME/nvim/plugged/fzf/bin"
   "$GOPATH/bin"
   "$GEM_HOME/bin"
-  "$XDG_DATA_HOME/nvim/plugged/fzf/bin"
   "$path[@]"
 )
-
 export PATH
 
 # }}}

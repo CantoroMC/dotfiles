@@ -4,4 +4,4 @@
 # Gives a dmenu prompt labeled with $1 to perform command $2.
 
 [ "$(printf "No\\nYes" |\
-    dmenu -y 3 -W 300 -p "$1")" = "Yes" ] && $2
+    dmenu -w $WINDOWID -p "$1")" = "Yes" ] && $2

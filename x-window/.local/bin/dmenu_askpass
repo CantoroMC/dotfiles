@@ -1,3 +1,3 @@
 #!/bin/sh
 
-dmenu -i -W 500 -P -p "sudo askpass: $1" <&-
+dmenu -w $WINDOWID -P -p "sudo askpass: $1" <&-

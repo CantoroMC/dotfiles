@@ -52,6 +52,7 @@ alias paraFoam='paraFoam -builtin & disown'
 # Configuration Files {{{2
 # Zsh
 alias cfg-zenv="$EDITOR $HOME/.zshenv"
+alias cfg-zlog="$EDITOR $HOME/.config/zsh/.zlogin"
 alias cfg-alias="$EDITOR $ZDOTDIR/lib/my_aliases.zsh"
 alias cfg-funcs="$EDITOR $ZDOTDIR/lib/my_functions.zsh"
 alias cfg-kbinds="$EDITOR $ZDOTDIR/lib/key-bindings.zsh"

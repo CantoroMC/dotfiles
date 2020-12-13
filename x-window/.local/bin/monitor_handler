@@ -98,7 +98,7 @@ main() {
   declare -i lines
   lines=$nr_connected_monitors+3
   chosen=$(printf "%s\\nmulti-monitor\\narandr\\nscript" "$connected_monitors" |\
-    dmenu -x 0 -y 22 -g 1 -l $lines -W 400 -p "Select display arrangement:") &&
+    dmenu -l $lines -p "Select display arrangement:") &&
   case "$chosen" in
     "arandr")
       arandr

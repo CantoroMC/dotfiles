@@ -120,16 +120,16 @@ augroup filetype_indentation " {{{3
   " TODO: add preserveindent and copyindent for tabs
   autocmd!
   " Only Spaces Four Characters:
-  autocmd FileType c,cpp,h,python,matlab,help,lisp,haskell,lhaskell
+  autocmd FileType python,matlab,help,lisp,haskell,lhaskell
         \ setl tabstop=4 softtabstop=4 expandtab shiftwidth=4
   " Only Spaces Two Characters:
   autocmd FileType vim,sh,zsh,markdown,tex,plaintex,bib,text,yaml,ruby,xml,xdefaults,tmux,cabal,nix
         \ setl tabstop=2 softtabstop=2 expandtab shiftwidth=2
-  " Only Spaces Eight Characters:
   " Tabs With Two Characters:
   autocmd FileType make,json,html,css,javascript,neomuttrc,muttrc
         \ setl tabstop=2 softtabstop=2 noexpandtab shiftwidth=2
-  autocmd FileType go
+  " Tabs With Four Characters:
+  autocmd FileType go,c,cpp,h
         \ setl tabstop=4 softtabstop=4 noexpandtab shiftwidth=4
   " C Indentation:
   autocmd FileType c,cpp,h

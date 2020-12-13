@@ -12,11 +12,11 @@ randomMan8
 randomManN
 quit")
 
-choice=$(echo "${options[@]}" | dmenu -g 1 -l 11 -y 23 -W 200 -p "action: ")
+choice=$(echo "${options[@]}" | dmenu -l 11 -p "action: ")
 
 case "$choice" in
   search)
-    dmenuChoice=$(man -k . | dmenu -g 1 -l 8 -y 23 -W 700 -p "open as pdf: " | awk '{print $1}')
+    dmenuChoice=$(man -k . | dmenu -l 8 -p "open as pdf: " | awk '{print $1}')
     [[ -z $dmenuChoice ]] || echo "${dmenuChoice}" | xargs -r man -Tpdf | zathura - ;;
   randomMan1)
     find /usr/share/man/man1 -type f | shuf | awk -F '/' ' {print $6}' | sed 's/.gz//g' | head -1 | xargs -r man -Tpdf | zathura - ;;
