@@ -1,9 +1,6 @@
 ------------------------------------------------------------------------------
     -- XMonad and XMonad-Contrib
 import XMonad
-import XMonad.Actions.UpdatePointer
-    ( updatePointer
-    )
 import XMonad.Hooks.ManageDocks
     ( docks
     )
@@ -67,7 +64,7 @@ main = do
             , keys               = xmKeys
             , mouseBindings      = xmMouseBindings
             , manageHook         = xmManageHook
-            , logHook            = xmLogHook xmproc >> updatePointer (0.5, 0.5) (0, 0)
+            , logHook            = xmLogHook xmproc
             , startupHook        = xmStartupHook
             , layoutHook         = xmLayoutHook
             }

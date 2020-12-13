@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # ~/.xinitrc
 #
@@ -18,7 +18,7 @@ export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export LESSHISTFILE=-
 export MPLAYER_HOME="$XDG_CONFIG_HOME"/mplayer
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
-export QT_QPA_PLATFORMTHEME="gtk2"
+export QT_QPA_PLATFORMTHEME="qt5ct"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 
 export XMONAD_CACHE_DIR="${XDG_CONFIG_HOME}/xmonad/cache"
@@ -96,14 +96,9 @@ fi
 
 # Desktop Environment or Window Manager {{{1
 
-# exec dbus-launch --exit-with-session xmonad
-
 DEFAULT_SESSION=xmonad
-# DEFAULT_SESSION=dwm
-# DEFAULT_SESSION=i3
-
 get_session(){
-    local init
+  local dbus_args=(--sh-syntax --exit-with-session)
     case $1 in
         awesome) init+=(awesome) ;;
         bspwm) init+=(bspwm-session) ;;
@@ -123,13 +118,13 @@ get_session(){
         openbox) init+=(openbox-session) ;;
         xfce) init+=(xfce4-session) ;;
         xmonad) init+=(xmonad) ;;
-        *) init+=($DEFAULT_SESSION) ;;
+        *) dbus_args+=($DEFAULT_SESSION) ;;
     esac
 
-    echo "${init[*]}"
+    echo "dbus-launch ${dbus_args[*]}"
 }
 
-exec $(get_session "$1")
+exec $(get_session)
 # }}}
 
 # vim:fdm=marker

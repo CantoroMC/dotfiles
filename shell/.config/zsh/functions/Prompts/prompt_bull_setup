@@ -25,7 +25,7 @@ prompt_bull_setup () {
   local color3=${3:-'blue'}
 
   local distro_icon="%B%F{$color1}%{ %2G%}%f%b"
-  local dir_bar="%B%F{$color1}%K{$color1}$schars[333]$schars[262]$schars[261]$schars[260]%F{$color2}%K{$color1}%(7~|%3~/.../%3~|%~)%b%F{$color1}%k$schars[333]$schars[262]$schars[261]$schars[260]%f"
+  local dir_bar="%B%F{$color1}%K{$color1}$schars[333]$schars[262]$schars[261]$schars[260]%F{$color2}%K{$color1}%(7~|%-3~/.../%3~|%~)%b%F{$color1}%k$schars[333]$schars[262]$schars[261]$schars[260]%f"
   local start="%(?.%F{$color1}%{➜ %2G%}.%F{red}%{➜ %2G%})%f"
   local nr_jobs="%B%F{$color2}%(1j.jobs: %j.)%f%b"
   local return_code="%(?..%F{red}%? %{↵ %2G%})%f"
