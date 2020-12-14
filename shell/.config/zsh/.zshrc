@@ -19,6 +19,8 @@ source $ZSH/oh-my-zsh.sh
 
 # User Configuration {{{1
 
+zstyle ':completion:*:descriptions' format '%U%F{cyan}%d%f%u'
+
 # Configuration files {{{2
 for config_file ($ZDOTDIR/lib/*.zsh); do
    source $config_file

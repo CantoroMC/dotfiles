@@ -121,6 +121,7 @@ bindkey -M viins    '^B'    exchange-point-and-mark
 bindkey -M viins    '^E'    expand-cmd-path
 bindkey -M viins    '^F'    accept-and-infer-next-history
 bindkey -M viins    '^K'    vi-quoted-insert
+bindkey -M viins    '^G'    menu-complete
 bindkey -M viins    '^I'    fzf-tab-complete
 bindkey -M viins    '^L'    clear-screen
 bindkey -M viins    '^N'    history-substring-search-down
