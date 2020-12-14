@@ -121,7 +121,7 @@ baseConfig :: Palette -> Config
 baseConfig p = defaultConfig
     { font             = pFont p
     , additionalFonts  =
-        [ "xft:SauceCodePro Nerd Font:style=Black Italic:size=12:hinting=true"
+        [ "xft:SauceCodePro Nerd Font:style=Black Italic:size=11:hinting=true"
         , "xft:Ubuntu:weight=bold:pixelsize=8:antialias=true:hinting=true"
         , "xft:FiraCode Nerd Font:style=Regular:pixelsize=10"
         ]

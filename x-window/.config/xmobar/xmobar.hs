@@ -33,6 +33,7 @@ import Xmobar.Local.Config.Monitors
     , wifi
     , xMenu
     , pacman
+    , aur
     )
 
 ------------------------------------------------------------------------------
@@ -50,6 +51,8 @@ xmobarConfig p = (baseConfig p)
         , Run diskIO
         , Run weather
         , Run (clock p)
+        , Run pacman
+        , Run aur
         , Run (memory p)
         , Run swap
         , Run (multicpu p)
@@ -60,7 +63,6 @@ xmobarConfig p = (baseConfig p)
         , Run (volume p)
         , Run keyboard
         , Run (wifi p)
-        , Run pacman
         ]
     , template = " "
         ++ xMenu "xmenu-apps" "\58911"
@@ -70,8 +72,8 @@ xmobarConfig p = (baseConfig p)
         ++ "}"
         ++ "|LIML| "
         ++ "|date|"
-        ++ action "st sudo pacman -Syu" 3 " |pacman|"
         ++ "{"
+        ++ action "st yay -Syu" 3 " |pacman| |aur|" ++ separator
         ++ "|memory| |swap| " ++ separator
         ++ "|multicpu| " ++ separator
         ++ "|multicoretemp| " ++ separator

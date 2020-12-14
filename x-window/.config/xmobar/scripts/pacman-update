@@ -1,5 +1,0 @@
-#!/bin/sh
-
-nr_pacup=$(checkupdates | wc -l)
-[ $nr_pacup -gt 0 ] && echo " $nr_pacup"
-[ $nr_pacup -eq 0 ] && echo ""

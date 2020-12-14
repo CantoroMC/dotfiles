@@ -17,6 +17,7 @@ module Xmobar.Local.Config.Monitors
     , wifi
     , xMenu
     , pacman
+    , aur
     ) where
 
 import Xmobar
@@ -36,8 +37,11 @@ import Xmobar.Local.Config.Config
 trayerPad :: Command
 trayerPad = Com (xmobarConfigDir ++ "/scripts/padding-icon") [] "trayerpad" 3600
 
-pacman :: CommandReader
-pacman = CommandReader (xmobarConfigDir ++ "/scripts/pacman-update") "pacman"
+pacman :: Command
+pacman = Com "/bin/sh" ["-c", xmobarConfigDir ++ "/scripts/xmPacman"] "pacman" 600
+
+aur :: Command
+aur = Com "/bin/sh" ["-c", xmobarConfigDir ++ "/scripts/xmAur"] "aur" 600
 
 mpdMusic :: Palette -> Monitors
 mpdMusic p =

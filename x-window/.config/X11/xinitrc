@@ -98,33 +98,36 @@ fi
 
 DEFAULT_SESSION=xmonad
 get_session(){
-  local dbus_args=(--sh-syntax --exit-with-session)
-    case $1 in
-        awesome) init+=(awesome) ;;
-        bspwm) init+=(bspwm-session) ;;
-        budgie) init+=(budgie-desktop) ;;
-        cinnamon) init+=(cinnamon-session) ;;
-        deepin) init+=(startdde) ;;
-        dwm) init+=(dwm) ;;
-        enlightenment) init+=(enlightenment_start) ;;
-        fluxbox) init+=(startfluxbox) ;;
-        gnome) init+=(gnome-session) ;;
-        i3|i3wm) init+=(i3 --shmlog-size 0) ;;
-        jwm) init+=(jwm) ;;
-        kde) init+=(startplasma-x11) ;;
-        lxde) init+=(startlxde) ;;
-        lxqt) init+=(lxqt-session) ;;
-        mate) init+=(mate-session) ;;
-        openbox) init+=(openbox-session) ;;
-        xfce) init+=(xfce4-session) ;;
-        xmonad) init+=(xmonad) ;;
-        *) dbus_args+=($DEFAULT_SESSION) ;;
-    esac
+  # local dbus_args=(--sh-syntax --exit-with-session)
+  # echo "dbus-launch ${dbus_args[*]}"
 
-    echo "dbus-launch ${dbus_args[*]}"
+  local init
+  case $1 in
+    awesome) init+=(awesome) ;;
+    bspwm) init+=(bspwm-session) ;;
+    budgie) init+=(budgie-desktop) ;;
+    cinnamon) init+=(cinnamon-session) ;;
+    deepin) init+=(startdde) ;;
+    dwm) init+=(dwm) ;;
+    enlightenment) init+=(enlightenment_start) ;;
+    fluxbox) init+=(startfluxbox) ;;
+    gnome) init+=(gnome-session) ;;
+    i3|i3wm) init+=(i3 --shmlog-size 0) ;;
+    jwm) init+=(jwm) ;;
+    kde) init+=(startplasma-x11) ;;
+    lxde) init+=(startlxde) ;;
+    lxqt) init+=(lxqt-session) ;;
+    mate) init+=(mate-session) ;;
+    openbox) init+=(openbox-session) ;;
+    xfce) init+=(xfce4-session) ;;
+    xmonad) init+=(xmonad) ;;
+    *) init+=($DEFAULT_SESSION) ;;
+  esac
+
+  echo "${init[*]}"
 }
 
-exec $(get_session)
+exec $(get_session "$1")
 # }}}
 
 # vim:fdm=marker
