@@ -3,8 +3,7 @@ module XMonad.Local.Bindings.Keys
     ) where
 
 import qualified Data.Map as Map
-    ( Map
-    , fromList
+    ( fromList
     )
 import qualified Graphics.X11.ExtraTypes.XF86 as XF86
 import System.Exit
@@ -66,6 +65,9 @@ import XMonad.Local.Manage.Util
     ( xmScratchpads
     , xmBigRect
     )
+import XMonad.Local.Config.Workspace
+    ( xmWorkspaces
+    )
 import XMonad.Local.Bindings.Util
     ( Direction (..)
     , moveFloating
@@ -74,137 +76,315 @@ import XMonad.Local.Bindings.Util
     , xmSearchEngineMap
     , xmTreeSelectAction
     , xmTreeSelectConfig
+    , terminalFromConf
+    , inTerminalFromConf
+    )
+import XMonad.Local.Bindings.Bind
+    ( Binder
+    , (|/-)
+    , (^>)
+    , (...)
+    , bind
+    -- , bindAlias
+    , bindZip
+    , getBindings
     )
 
-xmKeys :: XConfig Layout -> Map.Map (KeyMask, KeySym) (X ())
-xmKeys conf@XConfig {XMonad.modMask = modm} = Map.fromList $
-    [ ((modm,                 xK_q), spawn "xmonad --recompile; xmonad --restart")
-    , ((modm .|. shiftMask,   xK_q), kill)
-    , ((modm,                 xK_t), withFocused $ windows . XMSS.sink)
-    , ((modm .|. shiftMask,   xK_t), withFocused $ windows . flip XMSS.float xmBigRect)
-
-    , ((modm,                 xK_a), xmTreeSelectAction xmTreeSelectConfig)
-
-    , ((modm,                 xK_s), incWindowSpacing 1)
-    , ((modm .|. shiftMask,   xK_s), decWindowSpacing 1)
-    , ((modm .|. controlMask, xK_s), setScreenWindowSpacing 0)
-
-    , ((modm,                 xK_f), spawn "vivaldi-stable")
-    , ((modm .|. shiftMask,   xK_f), refresh)
-
-    , ((modm,                 xK_c), windows copyToAll)
-    , ((modm .|. shiftMask,   xK_c), killAllOtherCopies)
-    , ((modm .|. controlMask, xK_c), kill1)
-
-    , ((modm,                 xK_b), sendMessage ToggleStruts)
-
-    , ((modm .|. controlMask, xK_m), namedScratchpadAction xmScratchpads "ncmpcpp")
-    , ((modm .|. controlMask, xK_y), namedScratchpadAction xmScratchpads "yakuake")
-    , ((modm .|. controlMask, xK_o), namedScratchpadAction xmScratchpads "orgenda")
-
-    , ((modm,                 xK_p), XMSM.submap . Map.fromList $
-        [ ((0, xK_h),     spawn "mpc prev")
-        , ((0, xK_l),     spawn "mpc next")
-        , ((0, xK_j),     spawn "mpc play")
-        , ((0, xK_k),     spawn "mpc pause")
-        , ((0, xK_space), spawn "mpc toggle")
-        , ((0, xK_t),     spawn "mpv_bulk_toggle")
-        , ((0, xK_q),     spawn "mpv_bulk_quit")
-        ])
-
-    , ((modm,                 xK_u), spawn "rofi -modi drun,run -show drun")
-    , ((modm .|. shiftMask,   xK_u), spawn "dmenu_run_timed")
-    , ((modm .|. controlMask, xK_u), spawn "xmenu-apps")
-
-    , ((modm,                               xK_h), sendMessage Shrink)
-    , ((modm,                               xK_l), sendMessage Expand)
-    , ((modm,                               xK_j), windows XMSS.focusDown)
-    , ((modm,                               xK_k), windows XMSS.focusUp)
-    , ((modm .|. shiftMask,                 xK_h), sendMessage MirrorShrink)
-    , ((modm .|. shiftMask,                 xK_l), sendMessage MirrorExpand)
-    , ((modm .|. shiftMask,                 xK_j), windows XMSS.swapDown)
-    , ((modm .|. shiftMask,                 xK_k), windows XMSS.swapUp)
-    , ((modm .|. controlMask,               xK_h), sendMessage $ Go L)
-    , ((modm .|. controlMask,               xK_l), sendMessage $ Go R)
-    , ((modm .|. controlMask,               xK_j), sendMessage $ Go D)
-    , ((modm .|. controlMask,               xK_k), sendMessage $ Go U)
-    , ((modm .|. mod1Mask,                  xK_h), sendMessage $ Swap L)
-    , ((modm .|. mod1Mask,                  xK_l), sendMessage $ Swap R)
-    , ((modm .|. mod1Mask,                  xK_j), sendMessage $ Swap D)
-    , ((modm .|. mod1Mask,                  xK_k), sendMessage $ Swap U)
-    , ((modm .|. controlMask .|. shiftMask, xK_h), sendMessage $ Move L)
-    , ((modm .|. controlMask .|. shiftMask, xK_l), sendMessage $ Move R)
-    , ((modm .|. controlMask .|. shiftMask, xK_j), sendMessage $ Move D)
-    , ((modm .|. controlMask .|. shiftMask, xK_k), sendMessage $ Move U)
-
-    , ((modm              , xK_Left ), withFocused $ moveFloating FL)
-    , ((modm              , xK_Right), withFocused $ moveFloating FR)
-    , ((modm              , xK_Down ), withFocused $ moveFloating FD)
-    , ((modm              , xK_Up   ), withFocused $ moveFloating FU)
-    , ((modm .|. shiftMask, xK_Left ), withFocused $ resizeFloating FL)
-    , ((modm .|. shiftMask, xK_Right), withFocused $ resizeFloating FR)
-    , ((modm .|. shiftMask, xK_Down ), withFocused $ resizeFloating FD)
-    , ((modm .|. shiftMask, xK_Up   ), withFocused $ resizeFloating FU)
-
-    , ((modm,                               xK_m), windows XMSS.focusMaster)
-    , ((modm .|. shiftMask,                 xK_m), windows XMSS.swapMaster)
-
-    , ((modm,                 xK_comma    ), sendMessage (IncMasterN 1))
-    , ((modm,                 xK_period   ), sendMessage (IncMasterN (-1)))
-
-    , ((modm,                 xK_bracketleft),  prevWS)
-    , ((modm,                 xK_bracketright), nextWS)
-    , ((modm .|. shiftMask,   xK_bracketleft),  shiftToPrev >> prevWS)
-    , ((modm .|. shiftMask,   xK_bracketright), shiftToNext >> nextWS)
-
-    , ((modm,                 xK_Tab      ), sendMessage NextLayout)
-    , ((modm .|. shiftMask,   xK_Tab      ), setLayout $ XMonad.layoutHook conf)
-
-    , ((modm,                 xK_space    ), sendMessage $ JumpToLayout "Monocle")
-    , ((modm .|. shiftMask,   xK_space    ), sendMessage $ JumpToLayout "Float")
-
-    , ((modm,                 xK_Delete   ), spawn "xmenu-shutdown")
-    , ((modm .|. shiftMask,   xK_Delete   ), io exitSuccess)
-    , ((modm .|. shiftMask,   xK_BackSpace), spawn "i3lock -i ~/.config/xmonad/screenlocker.png -t -f -e")
-
-    , ((modm,                 xK_Return   ), spawn "alacritty")
-    , ((modm .|. shiftMask,   xK_Return   ), spawn $ XMonad.terminal conf)
-
-    , ((0,                    xK_Print    ), spawn "scrot ~/Pictures/Screenshots/%Y-%m-%d-%T-screenshoot.png; notify-send -i photo 'Taken fullscreen screenshot'")
-    , ((0    .|. shiftMask,   xK_Print    ), spawn "import ~/Pictures/Screenshots/$(date +%Y-%m-%d-%T)screenshoot.png; notify-send -i photo 'Saved to ~/Pictures/Screenshots'")
-
-    , ((modm,               xK_F1 ), manPrompt   xmPromptConfig)
-    , ((modm,               xK_F5 ), shellPrompt xmPromptConfig)
-    , ((modm,               xK_F2 ), XMSM.submap $ xmSearchEngineMap $ XMSearch.promptSearch xmPromptConfig)
-    , ((modm .|. shiftMask, xK_F2 ), XMSM.submap $ xmSearchEngineMap XMSearch.selectSearch)
-
-
-    , ((0, XF86.xF86XK_AudioMute),         spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
-    , ((0, XF86.xF86XK_AudioLowerVolume),  spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%")
-    , ((0, XF86.xF86XK_AudioRaiseVolume),  spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%")
-
-    , ((0, XF86.xF86XK_MonBrightnessUp),   spawn "xbacklight -inc 5")
-    , ((0, XF86.xF86XK_MonBrightnessDown), spawn "xbacklight -dec 5")
-    , ((0, XF86.xF86XK_Display),           spawn "monitor_handler")
-    -- XF86Tools
-    , ((0, XF86.xF86XK_Search),            spawn "st ranger")
-    -- XF86LaunchA
-    , ((0, XF86.xF86XK_Explorer),          spawn "thunar")
-    , ((0, XF86.xF86XK_Calculator),        spawn "st ghci")
-    -- XF86HomePage
-    ]
-    ++
-    -- Switch/MoveClient to workspace N --> mod(+Shift)-[1..9]
-    [((m .|. modm, k), windows $ f i)
-        | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
-        , (f, m) <- [(XMSS.greedyView, 0), (XMSS.shift, shiftMask)]]
-    ++
-    -- Copy Client to workspace N --> mod+Control-[1..9]
-    [((m .|. modm, k), windows $ f i)
-        | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
-        , (f, m) <- [(XMSS.view, 0), (XMSS.shift, shiftMask), (copy, controlMask)]]
-    ++
-    -- Switch/MoveClient to physical/Xinerama screens 1, 2, or 3 --> mod(+Shift)-{w,e,r}
-    [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
-        , (f, m) <- [(XMSS.view, 0), (XMSS.shift, shiftMask)]]
+xmKeys :: KeyMask -> Binder ()
+xmKeys mask = do
+    --------------------------------------------------------------------------
+    -- Left side characters
+    bind $ mask ... xK_q
+      |/- "recompile and restart xmonad"
+        ^> spawn "xmonad --recompile; xmonad --restart"
+    bind $ mask .|. shiftMask ... xK_q
+      |/- "kill focused window"
+        ^> kill
+    bind $ mask ... xK_w
+      |/- "switch to physical/Xinerama screen 0"
+        ^> screenWorkspace 0 >>= flip whenJust (windows . XMSS.view)
+    bind $ mask ... xK_e
+      |/- "switch to physical/Xinerama screen 1"
+        ^> screenWorkspace 1 >>= flip whenJust (windows . XMSS.view)
+    bind $ mask ... xK_r
+      |/- "switch to physical/Xinerama screen 2"
+        ^> screenWorkspace 2 >>= flip whenJust (windows . XMSS.view)
+    bind $ mask .|. shiftMask ... xK_w
+      |/- "move focused window to physical/Xinerama screen 0"
+        ^> screenWorkspace 0 >>= flip whenJust (windows . XMSS.shift)
+    bind $ mask .|. shiftMask ... xK_e
+      |/- "move focused window to physical/Xinerama screen 1"
+        ^> screenWorkspace 1 >>= flip whenJust (windows . XMSS.shift)
+    bind $ mask .|. shiftMask ... xK_r
+      |/- "move focused window to physical/Xinerama screen 0"
+        ^> screenWorkspace 2 >>= flip whenJust (windows . XMSS.shift)
+    bind $ mask ... xK_t
+      |/- "move focused floating window back into layout"
+        ^> withFocused $ windows . XMSS.sink
+    bind $ mask .|. shiftMask ... xK_t
+      |/- "float and center the focused window"
+        ^> withFocused $ windows . flip XMSS.float xmBigRect
+    bind $ mask ... xK_a
+      |/- "spawn xmonad tree selection menu"
+        ^> xmTreeSelectAction xmTreeSelectConfig
+    bind $ mask ... xK_s
+      |/- "increase gap spacing"
+        ^> incWindowSpacing 1
+    bind $ mask .|. shiftMask ... xK_s
+      |/- "decrease gap spacing"
+        ^> decWindowSpacing 1
+    bind $ mask .|. controlMask ... xK_s
+      |/- "remove gaps"
+        ^> setScreenWindowSpacing 0
+    bind $ mask ... xK_f
+      |/- "spawn internet browser"
+        ^> spawn "vivaldi-stable"
+    bind $ mask .|. shiftMask ... xK_f
+      |/- "refresh the current workspace accordingly to StackSet"
+        ^> refresh
+    bind $ mask ... xK_c
+      |/- "copy focused window to all workspaces"
+        ^> windows copyToAll
+    bind $ mask .|. shiftMask ... xK_c
+      |/- "kill all the copy of the focused window"
+        ^> killAllOtherCopies
+    bind $ mask .|. controlMask ... xK_c
+      |/- "remove focused window from this workspace"
+        ^> kill1
+    bind $ mask ... xK_b
+      |/- "toggle covering of docks, status bars ..."
+        ^> sendMessage ToggleStruts
+    --------------------------------------------------------------------------
+    -- Right side characters
+    bind $ mask .|. controlMask .|. shiftMask ... xK_y
+      |/- "spawn terminal scratchpad"
+        ^> namedScratchpadAction xmScratchpads "yakuake"
+    bind $ mask ... xK_u
+      |/- "spawn rofi"
+        ^> spawn "rofi -modi drun,run -show drun"
+    bind $ mask .|. shiftMask ... xK_u
+      |/- "spawn dmenu"
+        ^> spawn "dmenu_run_timed"
+    bind $ mask .|. controlMask ... xK_u
+      |/- "spawn xmenu-apps"
+        ^> spawn "xmenu-apps"
+    bind $ mask .|. controlMask .|. shiftMask ... xK_o
+      |/- "spawn emacs org-agenda scratchpad"
+        ^> namedScratchpadAction xmScratchpads "orgenda"
+    bind $ mask ... xK_p
+      |/- "submap for mpc and mpv players"
+        ^> XMSM.submap . Map.fromList $
+            [ ((0, xK_h),     spawn "mpc prev")
+            , ((0, xK_l),     spawn "mpc next")
+            , ((0, xK_j),     spawn "mpc play")
+            , ((0, xK_k),     spawn "mpc pause")
+            , ((0, xK_space), spawn "mpc toggle")
+            , ((0, xK_t),     spawn "mpv_bulk_toggle")
+            , ((0, xK_q),     spawn "mpv_bulk_quit")
+            ]
+    bind $ mask ... xK_k
+      |/- "focus previous window"
+        ^> windows XMSS.focusUp
+    bind $ mask ... xK_j
+      |/- "focus next window"
+        ^> windows XMSS.focusDown
+    bind $ mask .|. shiftMask ... xK_k
+      |/- "swap focused window with previous"
+        ^> windows XMSS.swapDown
+    bind $ mask .|. shiftMask ... xK_j
+      |/- "swap focused window with next"
+        ^> windows XMSS.swapUp
+    bind $ mask ... xK_h
+      |/- "shrink master pane"
+        ^> sendMessage Shrink
+    bind $ mask ... xK_l
+      |/- "expand master pane"
+        ^> sendMessage Expand
+    bind $ mask .|. shiftMask ... xK_h
+      |/- "shrink focused slave window"
+        ^> sendMessage MirrorShrink
+    bind $ mask .|. shiftMask ... xK_l
+      |/- "expand focused slave window"
+        ^> sendMessage MirrorExpand
+    bind $ mask .|. controlMask ... xK_k
+      |/- "focus the window to the north"
+        ^> sendMessage $ Go U
+    bind $ mask .|. controlMask ... xK_j
+      |/- "focuse the window to the south"
+        ^> sendMessage $ Go D
+    bind $ mask .|. controlMask ... xK_k
+      |/- "focus the window to the west"
+        ^> sendMessage $ Go L
+    bind $ mask .|. controlMask ... xK_l
+      |/- "focus the window to the east"
+        ^> sendMessage $ Go R
+    bind $ mask .|. controlMask .|. shiftMask ... xK_k
+      |/- "move focused window to the north"
+        ^> sendMessage $ Move U
+    bind $ mask .|. controlMask .|. shiftMask ... xK_j
+      |/- "move focused window to the south"
+        ^> sendMessage $ Move D
+    bind $ mask .|. controlMask .|. shiftMask ... xK_h
+      |/- "move focused window to the west"
+        ^> sendMessage $ Move L
+    bind $ mask .|. controlMask .|. shiftMask ... xK_l
+      |/- "move focused window to the east"
+        ^> sendMessage $ Move R
+    bind $ mask ... xK_m
+      |/- "focus the master window"
+        ^> windows XMSS.focusMaster
+    bind $ mask .|. shiftMask ... xK_m
+      |/- "swap focused window with master"
+        ^> windows XMSS.swapMaster
+    bind $ mask .|. controlMask .|. shiftMask ... xK_m
+      |/- "spawn nmcpcpp scratchpad"
+        ^> namedScratchpadAction xmScratchpads "ncmpcpp"
+    --------------------------------------------------------------------------
+    -- Extra Keys
+    bind $ mask ... xK_comma
+      |/- "increment number of windows in master pane"
+        ^> sendMessage $ IncMasterN 1
+    bind $ mask ... xK_period
+      |/- "decrement number of windows in master pane"
+        ^> sendMessage $ IncMasterN (-1)
+    bind $ mask ... xK_bracketleft
+      |/- "go to previous workspace"
+        ^> prevWS
+    bind $ mask ... xK_bracketright
+      |/- "go to next workspace"
+        ^> nextWS
+    bind $ mask .|. shiftMask ... xK_bracketleft
+      |/- "move focused window to previous workspace"
+        ^> shiftToPrev >> prevWS
+    bind $ mask .|. shiftMask ... xK_bracketright
+      |/- "move focused window to next workspace"
+        ^> shiftToNext >> nextWS
+    bind $ mask ... xK_Tab
+      |/- "select the next layout"
+        ^> sendMessage NextLayout
+    bind $ mask .|. shiftMask ... xK_Tab
+      |/- "reset layout on current workspaces"
+        ^> setLayout =<< asks (layoutHook . config)
+    bind $ mask ... xK_space
+      |/- "select the monocle layout"
+        ^> sendMessage $ JumpToLayout "Monocle"
+    bind $ mask .|. shiftMask ... xK_space
+      |/- "select the floating layout"
+        ^> sendMessage $ JumpToLayout "Float"
+    bind $ mask ... xK_Return
+      |/- "spawn default terminal"
+        ^> spawn =<< terminalFromConf
+    bind $ mask .|. shiftMask ... xK_Return
+      |/- "spawn secondary terminal"
+        ^> spawn "alacritty"
+    bind $ mask .|. shiftMask ... xK_BackSpace
+      |/- "Lock the screen"
+        ^> spawn "i3lock -i ~/.config/xmonad/screenlocker.png -t -f -e"
+    bind $ mask ... xK_Delete
+      |/- "spawn shutdown menu"
+        ^> spawn "xmenu-shutdown"
+    bind $ mask .|. shiftMask ... xK_Delete
+      |/- "logout from XMonad"
+        ^> io exitSuccess
+    bind $ mask ... xK_Print
+      |/- "take fullscreen screenshot"
+        ^> spawn "scrot ~/Pictures/Screenshots/%Y-%m-%d-%T-screenshoot.png; notify-send -i photo 'Taken fullscreen screenshot'"
+    bind $ mask .|. shiftMask ... xK_Print
+      |/- "select a rectangular region to take a screenshot"
+        ^> spawn "import ~/Pictures/Screenshots/$(date +%Y-%m-%d-%T)screenshoot.png; notify-send -i photo 'Saved to ~/Pictures/Screenshots'"
+    -- Arrows
+    bind $ mask ... xK_Up
+      |/- "move floating window up"
+        ^> withFocused $ moveFloating FU
+    bind $ mask ... xK_Down
+      |/- "move floating window down"
+        ^> withFocused $ moveFloating FD
+    bind $ mask ... xK_Left
+      |/- "move floating window left"
+        ^> withFocused $ moveFloating FL
+    bind $ mask ... xK_Right
+      |/- "move floating window right"
+        ^> withFocused $ moveFloating FR
+    bind $ mask .|. shiftMask ... xK_Up
+      |/- "shrink floating window vertically"
+        ^> withFocused $ resizeFloating FU
+    bind $ mask .|. shiftMask ... xK_Down
+      |/- "expand floating window vertically"
+        ^> withFocused $ resizeFloating FD
+    bind $ mask .|. shiftMask ... xK_Left
+      |/- "shrink floating window horizontally"
+        ^> withFocused $ resizeFloating FL
+    bind $ mask .|. shiftMask ... xK_Right
+      |/- "expand floating window horizontally"
+        ^> withFocused $ resizeFloating FR
+    bind $ mask .|. controlMask .|. shiftMask ... xK_Up
+      |/- "swap focused window with north"
+        ^> sendMessage $ Swap U
+    bind $ mask .|. controlMask .|. shiftMask ... xK_Down
+      |/- "swap focused window with south"
+        ^> sendMessage $ Swap D
+    bind $ mask .|. controlMask .|. shiftMask ... xK_Left
+      |/- "swap focused window with west"
+        ^> sendMessage $ Swap L
+    bind $ mask .|.controlMask .|. shiftMask ... xK_Right
+      |/- "swap focused window with east"
+        ^> sendMessage $ Swap R
+    -- Numbers
+    bindZip ((mask ...) <$> [ xK_1 .. xK_9 ])
+            (("go to workspace " <>) . pure <$> [ '1' .. '9' ])
+            (windows . XMSS.greedyView <$> xmWorkspaces)
+    bindZip ((mask .|. shiftMask ...) <$> [ xK_1 .. xK_9 ])
+            (("move focused window to workspace " <>) . pure <$> [ '1' .. '9' ])
+            (windows . XMSS.shift <$> xmWorkspaces)
+    bindZip ((mask .|. controlMask .|. shiftMask ...) <$> [ xK_1 .. xK_9 ])
+            (("copy focused window to workspace " <>) . pure <$> [ '1' .. '9' ])
+            (windows . copy <$> xmWorkspaces)
+    -- Fun Keys and XF86 Keys
+    bind $ mask ... xK_F1
+      |/- "binding documentation"
+        ^> do doc <- getBindings
+              term <- terminalFromConf
+              spawn $ term <> " -n keysheet -t keysheet sh -c \"echo '" <> doc <> "' | less\""
+    bind $ mask .|. shiftMask ... xK_F1
+      |/- "spawn XMonad manual prompt"
+        ^> manPrompt xmPromptConfig
+    bind $ mask ... xK_F2
+      |/- "spawn XMonad search engine prompt"
+        ^> XMSM.submap $ xmSearchEngineMap $ XMSearch.promptSearch xmPromptConfig
+    bind $ mask .|. shiftMask ... xK_F2
+      |/- "select a search engine to look for the selected text"
+        ^> XMSM.submap $ xmSearchEngineMap XMSearch.selectSearch
+    bind $ mask ... xK_F5
+      |/- "spawn XMonad shell prompt"
+        ^> shellPrompt xmPromptConfig
+    bind $ noModMask ... XF86.xF86XK_AudioMute
+      |/- "toggle mute/unmute audio"
+        ^> spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+    bind $ noModMask ... XF86.xF86XK_AudioLowerVolume
+      |/- "decrease volume"
+        ^> spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+    bind $ noModMask ... XF86.xF86XK_AudioRaiseVolume
+      |/- "increase volume"
+        ^> spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%"
+    -- XF86.xF86XK_AudioMicMute
+    bind $ noModMask ... XF86.xF86XK_MonBrightnessDown
+      |/- "decrease screen brightness"
+        ^> spawn "xbacklight -dec 5"
+    bind $ noModMask ... XF86.xF86XK_MonBrightnessUp
+      |/- "increase screen brightness"
+        ^> spawn "xbacklight -inc 5"
+    bind $ noModMask ... XF86.xF86XK_Display
+      |/- "configure monitor setup"
+        ^> spawn "monitor_handler"
+    -- XF86.xF86XK_Tools
+    bind $ noModMask ... XF86.xF86XK_Search
+      |/- "spawn ranger"
+        ^> spawn =<< inTerminalFromConf "ranger"
+    -- XF86.xF86XK_LaunchA
+    bind $ noModMask ... XF86.xF86XK_Explorer
+      |/- "spawn file explorer"
+        ^> spawn "thunar"
+    bind $ noModMask ... XF86.xF86XK_Calculator
+      |/- "spawn calculator"
+        ^> spawn =<< inTerminalFromConf "ghci"
+    -- XF86.xF86XK_HomePage

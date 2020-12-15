@@ -55,6 +55,7 @@ manageFloatings = composeAll $
     [ title =? "Event Tester"  --> doFloat
     , title =? "lstopo"        --> doCenterFloat
     , title =? "weatherreport" --> doRectFloat xmBigRect
+    , title =? "keysheet"      --> doRectFloat xmBigRect
     , title =? "calendar"      --> doRectFloat xmBigRect
     , role  =? "ncmpcpp"       --> doCenterFloat
     , role  =? "pop-up"        --> doCenterFloat

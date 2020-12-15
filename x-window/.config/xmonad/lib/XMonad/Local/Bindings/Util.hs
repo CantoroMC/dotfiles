@@ -1,3 +1,4 @@
+{-# LANGUAGE FlexibleContexts #-}
 {-# OPTIONS_GHC -fno-warn-missing-signatures #-}
 
 module XMonad.Local.Bindings.Util
@@ -8,6 +9,8 @@ module XMonad.Local.Bindings.Util
     , xmSearchEngineMap
     , xmTreeSelectAction
     , xmTreeSelectConfig
+    , terminalFromConf
+    , inTerminalFromConf
     ) where
 
 import qualified Data.Map as Map
@@ -91,6 +94,12 @@ direction d = (dx , dy)
                               FR -> (pixel , 0)
         pixel = 20
 
+terminalFromConf :: (MonadIO m, MonadReader XConf m) => m String
+terminalFromConf = reader $ terminal . config
+
+inTerminalFromConf :: (MonadIO m, MonadReader XConf m) => String -> m String
+inTerminalFromConf prog = do terminalEmulator <- terminalFromConf
+                             return $ terminalEmulator <> " -t " <> prog <> " " <> prog
 ------------------------------------------------------------------------------
     -- Prompt, Search Engine and Tree Select
 -- XMonad Prompt Configuration

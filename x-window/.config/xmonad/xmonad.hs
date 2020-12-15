@@ -39,6 +39,11 @@ import XMonad.Local.Layout.Hook
     ( xmLayoutHook
     )
 
+import XMonad.Local.Bindings.Bind
+    ( mapBindings
+    , storeBindings
+    )
+
 import XMonad.Local.Bindings.Keys
     ( xmKeys
     )
@@ -52,7 +57,8 @@ import XMonad.Local.Bindings.Mouse
 main :: IO ()
 main = do
     xmproc <- spawnXMobar
-    let c = def
+    let (applicableKeys, explainableBindings) = mapBindings $ xmKeys . modMask
+        c = def
             { terminal           = "st"
             , modMask            = mod4Mask
             , focusFollowsMouse  = False
@@ -61,12 +67,12 @@ main = do
             , borderWidth        = XMTheme.borderWidth XMTheme.xmTheme
             , normalBorderColor  = XMTheme.inactiveBorderColor XMTheme.xmTheme
             , focusedBorderColor = XMTheme.activeBorderColor XMTheme.xmTheme
-            , keys               = xmKeys
+            , keys               = applicableKeys
             , mouseBindings      = xmMouseBindings
             , manageHook         = xmManageHook
             , logHook            = xmLogHook xmproc
             , startupHook        = xmStartupHook
             , layoutHook         = xmLayoutHook
             }
-        xmConf = docks . applyUrgencyHook . ewmh $ c
+        xmConf = storeBindings explainableBindings . docks . applyUrgencyHook . ewmh $ c
     xmonad xmConf

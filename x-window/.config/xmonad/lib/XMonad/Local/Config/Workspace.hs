@@ -6,15 +6,15 @@ module XMonad.Local.Config.Workspace
 import XMonad
 
 data Workspace =
-    WsHome
-    | WsReading
-    | WsWriting
-    | WsBrowser
-    | WsMultimedia
-    | WsSix
-    | WsSeven
-    | WsEight
-    | WsSupport
+    Alpha
+    | Beta
+    | Gamma
+    | Delta
+    | Epsilon
+    | Zeta
+    | Eta
+    | Theta
+    | Iota
     deriving (Eq, Ord, Read, Show, Enum, Bounded)
 
 xmWorkspaces :: [WorkspaceId]
