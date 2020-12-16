@@ -383,7 +383,7 @@ xmKeys mask = do
     -- XF86.xF86XK_LaunchA
     bind $ noModMask ... XF86.xF86XK_Explorer
       |/- "spawn file explorer"
-        ^> spawn "thunar"
+        ^> spawn "nautilus"
     bind $ noModMask ... XF86.xF86XK_Calculator
       |/- "spawn calculator"
         ^> spawn =<< inTerminalFromConf "ghci"

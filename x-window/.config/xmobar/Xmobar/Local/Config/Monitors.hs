@@ -65,7 +65,7 @@ mpdMusic p =
 
 diskIO :: Monitors
 diskIO = DiskIO
-    [ ("/", action "thunar" 3 (fn 2 "(R:<read> W:<write>)") )
+    [ ("/", action "nautilus" 3 (fn 2 "(R:<read> W:<write>)") )
     ] [] 10
 
 diskU :: Monitors

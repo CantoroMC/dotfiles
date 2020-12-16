@@ -59,10 +59,8 @@ manageFloatings = composeAll $
     , title =? "calendar"      --> doRectFloat xmBigRect
     , role  =? "ncmpcpp"       --> doCenterFloat
     , role  =? "pop-up"        --> doCenterFloat
-    , (className =? "Display"         <&&> title =? "ImageMagick: ")                       --> doCenterFloat
-    , (className =? "Thunar"          <&&> title =? "Bulk Rename - Rename Multiple Files") --> doCenterFloat
-    , (className =? "Thunar"          <&&> title =? "File Operation Progress")             --> doCenterFloat
-    , (className =? "Xfce4-terminal"  <&&> title =? "Terminal Preferences")                --> doCenterFloat
+    , (className =? "Display"         <&&> title =? "ImageMagick: ")        --> doCenterFloat
+    , (className =? "Xfce4-terminal"  <&&> title =? "Terminal Preferences") --> doCenterFloat
     ] where appsToFloat = [ "Arandr"
                           , "Avahi-discover"
                           , "Baobab"

@@ -210,8 +210,8 @@ xmTreeSelectAction a = XMTS.treeselectAction a
             (spawn "imagewriter")) []
         , Node (XMTS.TSNode "\61465 Transmission"       "Bittorrent client"
             (spawn "transmission-gtk")) []
-        , Node (XMTS.TSNode "\61564 Thunar"             "Xfce File Manager"
-            (spawn "thunar")) []
+        , Node (XMTS.TSNode "\61564 Nautilus"            "Gnome File Manager"
+            (spawn "nautilus")) []
         , Node (XMTS.TSNode "\57953 XBoard"             "X chess board"
             (spawn "xboard -fcp '\"${HOME}\"/Documents/chess/engines/stockfish12_modern' -fd '\"${HOME}\"/Documents/chess/engines' -fn 'Stockfish12' -fUCI")) []
         , Node (XMTS.TSNode "\62600 Vivaldi"            "A Browser For Our Friends"
