@@ -42,7 +42,8 @@ import Xmobar.Local.Config.Monitors
 xmobarConfig :: Palette -> Config
 xmobarConfig p = (baseConfig p)
     { position = TopSize C 100 defaultHeight
-    , border   = BottomB
+    -- , border   = BottomB
+    , border   = NoBorder
     , commands =
         [ Run UnsafeStdinReader
         , Run trayerPad

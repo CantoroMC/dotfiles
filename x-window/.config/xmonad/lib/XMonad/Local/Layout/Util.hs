@@ -95,6 +95,23 @@ combo = renamed [Replace "Combo"]
         (tabbed shrinkText xmDecorationTheme)
     )
 
+comboGrid :: ModifiedLayout Rename
+    (CombineTwo (Tall ())
+        (CombineTwo (Mirror Tall ())
+            (ModifiedLayout (Decoration TabbedDecoration DefaultShrinker) Simplest)
+            (ModifiedLayout (Decoration TabbedDecoration DefaultShrinker) Simplest))
+        (CombineTwo (Mirror Tall ())
+            (ModifiedLayout (Decoration TabbedDecoration DefaultShrinker) Simplest)
+            (ModifiedLayout (Decoration TabbedDecoration DefaultShrinker) Simplest))) Window
+comboGrid = renamed [Replace "Grid"]
+    (combineTwo (Tall 1 0.03 0.5)
+        (combineTwo (Mirror $ Tall 1 0.03 0.5)
+            (tabbed shrinkText xmDecorationTheme)
+            (tabbed shrinkText xmDecorationTheme))
+        (combineTwo (Mirror $ Tall 1 0.03 0.5)
+            (tabbed shrinkText xmDecorationTheme)
+            (tabbed shrinkText xmDecorationTheme)))
+
 twoPane :: ModifiedLayout Rename TwoPanePersistent Window
 twoPane = renamed [Replace "TwoPane"] $ TwoPanePersistent Nothing 0.03 0.5
 
@@ -110,6 +127,7 @@ floatL = renamed [Replace "Float"] simplestFloat
 xmLayouts =
     tall
     ||| combo
+    ||| comboGrid
     ||| monocle
     ||| twoPane
     ||| horizontal
