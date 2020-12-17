@@ -67,7 +67,7 @@ xmobarConfig p = (baseConfig p)
         ]
     , template = " "
         ++ xMenu "xmenu-apps" "\58911"
-        ++ "|UnsafeStdinReader|" ++ separator
+        ++ "|UnsafeStdinReader| " ++ separator
         ++ "|music| " ++ separator
         ++ "|disku| |diskio|"
         ++ "}"

@@ -3,5 +3,4 @@ gnome-themes-extra
 gpick
 papirus-icon-theme
 transmission-gtk
-exo
 nautilus

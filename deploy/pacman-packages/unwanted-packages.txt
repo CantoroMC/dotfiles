@@ -11,3 +11,4 @@ lightdm-gtk-greeter-settings
 thunar
 thunar-archive-plugin
 thunar-volman
+tumbler

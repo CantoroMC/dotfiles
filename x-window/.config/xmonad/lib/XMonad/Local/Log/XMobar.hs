@@ -43,10 +43,10 @@ xmXMobarPP h = xmobarPP
     , ppHiddenNoWindows = clickableIcon "hiddenNoWindows"
     , ppSep             = " "
     , ppWsSep           = ""
-    , ppTitle           = xmobarColor (XMTheme.activeTextColor XMTheme.xmTheme) "" . shorten 30
+    , ppTitle           = xmobarColor (XMTheme.activeTextColor XMTheme.xmTheme) "" . shorten 40
     , ppLayout          = xmobarColor (XMTheme.urgentBorderColor XMTheme.xmTheme) ""
     , ppOutput          = hPutStrLn h
-    -- , ppOrder           = \(ws:l:t) -> [ws,l] ++ t
+    , ppOrder           = \(ws:l:t) -> [ws] ++ ["<fn=1>" ++ l ++ "</fn>"] ++ t
     }
 
 clickableIcon :: String -> WorkspaceId -> String

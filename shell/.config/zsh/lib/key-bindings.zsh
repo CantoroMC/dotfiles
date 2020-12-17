@@ -438,7 +438,7 @@ vim-mode-initial-keymap () {
     if [[ -n $indicator || $set > 0 ]]; then
       if (( ! $set )); then
         if [[ $indicator = DEFAULT ]]; then
-          MODE_INDICATOR_VIINS='%F{8}INSERT%f'
+          MODE_INDICATOR_VIINS='%F{7}INSERT%f'
           MODE_INDICATOR_VICMD='%F{2}NORMAL%f'
           MODE_INDICATOR_REPLACE='%F{1}REPLACE%f'
           MODE_INDICATOR_SEARCH='%F{5}SEARCH%f'

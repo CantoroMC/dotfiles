@@ -43,11 +43,11 @@ prompt_bull_setup () {
   ZSH_THEME_GIT_PROMPT_CLEAN="%b%F{$color3})"
   # Status
   ZSH_THEME_GIT_PROMPT_ADDED="%B%F{$color2}✚ %f%b"
-  ZSH_THEME_GIT_PROMPT_MODIFIED="%B%F{$color2}⚑ %f%b"
+  ZSH_THEME_GIT_PROMPT_MODIFIED="%B%F{$color2} %f%b"
   ZSH_THEME_GIT_PROMPT_DELETED="%B%F{$color2}✖ %f%b"
-  ZSH_THEME_GIT_PROMPT_RENAMED="%B%F{$color2}➜ %f%b"
+  ZSH_THEME_GIT_PROMPT_RENAMED="%B%F{$color2} %f%b"
   ZSH_THEME_GIT_PROMPT_UNMERGED="%B%F{$color2} %f%b"
-  ZSH_THEME_GIT_PROMPT_UNTRACKED="%B%F{$color2} %f%b"
+  ZSH_THEME_GIT_PROMPT_UNTRACKED="%B%F{$color2}ﳶ %f%b"
   # SHA
   ZSH_THEME_GIT_PROMPT_SHA_BEFORE="%F{$color3}%{ %2G%}:(%B%F{$color1}"
   ZSH_THEME_GIT_PROMPT_SHA_AFTER="%f%b"
