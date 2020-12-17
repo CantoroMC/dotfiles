@@ -47,7 +47,6 @@ import XMonad.Layout.ThreeColumns
         (ThreeColMid
         )
     )
-
 import XMonad.Layout.Tabbed
     ( TabbedDecoration (..)
     , tabbed

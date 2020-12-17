@@ -136,6 +136,9 @@ xmKeys mask = do
     bind $ mask .|. controlMask ... xK_s
       |/- "remove gaps"
         ^> setScreenWindowSpacing 0
+    bind $ mask ... xK_d
+      |/- "spawn file explorer"
+        ^> spawn "nautilus"
     bind $ mask ... xK_f
       |/- "spawn internet browser"
         ^> spawn "vivaldi-stable"
