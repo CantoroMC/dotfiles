@@ -45,6 +45,8 @@ alias pyGrep='grep -r --include="*.py"'
 # OpenFOAM
 alias injectOF="[[ -f $FOAM_INST_DIR/OpenFOAM-8/etc/bashrc ]] && . $FOAM_INST_DIR/OpenFOAM-8/etc/bashrc"
 alias paraFoam='paraFoam -builtin & disown'
+# Haskell Compiler
+alias hcompile='ghc --make -outputdir ./out'
 # }}}
 
 # Frequent files and directories {{{1

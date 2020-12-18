@@ -72,40 +72,60 @@ draw_bold_text_with_bright_colors: false
 
 # colors {{{2
 colors:
-
-  # # One Half Light {{{3
+  # # Ayu {{{3
   # primary:
-  #   background: '0xfafafa'
-  #   foreground: '0x383a42'
+  #   background: '#0f1419'
+  #   foreground: '#ffffff'
+
+  # cursor:
+  #   cursor: '#B8CC52'
+  #   text: '#ffffff'
+
+  # vi_mode_cursor:
+  #   text: CellBackground
+  #   cursor: CellForeground
+
+  # selection:
+  #   background: '#253340'
+  #   text: '#e6e1cf'
+
+  # search:
+  #   matches:
+  #     foreground: '#151a1e'
+  #     background: '#E7C547'
+
+  #   bar:
+  #     background: '#151a1e'
+  #     foreground: '#B8CC52'
 
   # normal:
-  #   black: '0x383a42'
-  #   red: '0xe45649'
-  #   green: '0x50a14f'
-  #   yellow: '0xc18401'
-  #   blue: '0x0184bc'
-  #   magenta: '0xa626a4'
-  #   cyan: '0x0997b3'
-  #   white: '0xfafafa'
+  #   black: '#000000'
+  #   red: '#ff3333'
+  #   green: '#b8cc52'
+  #   yellow: '#e7c547'
+  #   blue: '#36a3d9'
+  #   magenta: '#f07178'
+  #   cyan: '#95e6cb'
+  #   white: '#ffffff'
 
   # bright:
-  #   black: '0x383a42'
-  #   red: '0xe45649'
-  #   green: '0x50a14f'
-  #   yellow: '0xc18401'
-  #   blue: '0x0184bc'
-  #   magenta: '0xa626a4'
-  #   cyan: '0x0997b3'
-  #   white: '0xfafafa'
-  #   # }}}
+  #   black: '#323232'
+  #   red: '#ff6565'
+  #   green: '#eafe84'
+  #   yellow: '#fff779'
+  #   blue: '#68d5ff'
+  #   cyan: '#c7fffd'
+  #   magenta: '#ffa3aa'
+  #   white: '#ffffff'
+  # # }}}
 
-  # Ayu {{{3
+  # EndeavourOS {{{3
   primary:
-    background: '#0f1419'
-    foreground: '#ffffff'
+    background: '#08052B'
+    foreground: '#e3e3ea'
 
   cursor:
-    cursor: '#B8CC52'
+    cursor: '#ff7f7f'
     text: '#ffffff'
 
   vi_mode_cursor:
@@ -113,8 +133,8 @@ colors:
     cursor: CellForeground
 
   selection:
-    background: '#253340'
-    text: '#e6e1cf'
+    background: '#f7baff'
+    text: '#7f3fbf'
 
   search:
     matches:
@@ -126,24 +146,24 @@ colors:
       foreground: '#B8CC52'
 
   normal:
-    black: '#000000'
-    red: '#ff3333'
-    green: '#b8cc52'
-    yellow: '#e7c547'
-    blue: '#36a3d9'
-    magenta: '#f07178'
-    cyan: '#95e6cb'
-    white: '#ffffff'
+    black: '#08052b'
+    red: '#ff7f7f'
+    green: '#47b35d'
+    yellow: '#cc3980'
+    blue: '#7fbaff'
+    magenta: '#7f3fbf'
+    cyan: '#7f7fff'
+    white: '#cdccdb'
 
   bright:
-    black: '#323232'
-    red: '#ff6565'
-    green: '#eafe84'
-    yellow: '#fff779'
-    blue: '#68d5ff'
-    cyan: '#c7fffd'
-    magenta: '#ffa3aa'
-    white: '#ffffff'
+    black: '#7fbaff'
+    red: '#ff7f7f'
+    green: '#9999cc'
+    yellow: '#ff7f7f'
+    blue: '#7f7fff'
+    cyan: '#7f3fbf'
+    magenta: '#7f7fff'
+    white: '#e3e3ea'
   # }}}
 
   indexed_colors: []

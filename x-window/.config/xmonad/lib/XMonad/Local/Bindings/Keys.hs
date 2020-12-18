@@ -137,6 +137,9 @@ xmKeys mask = do
       |/- "remove gaps"
         ^> setScreenWindowSpacing 0
     bind $ mask ... xK_d
+      |/- "spawn emacs"
+        ^> spawn "emacs"
+    bind $ mask .|. shiftMask ... xK_d
       |/- "spawn file explorer"
         ^> spawn "nautilus"
     bind $ mask ... xK_f
@@ -215,7 +218,7 @@ xmKeys mask = do
     bind $ mask .|. controlMask ... xK_j
       |/- "focuse the window to the south"
         ^> sendMessage $ Go D
-    bind $ mask .|. controlMask ... xK_k
+    bind $ mask .|. controlMask ... xK_h
       |/- "focus the window to the west"
         ^> sendMessage $ Go L
     bind $ mask .|. controlMask ... xK_l

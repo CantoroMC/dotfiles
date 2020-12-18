@@ -46,6 +46,7 @@
 	"solargraph.references": true,
 	"solargraph.definitions": true,
 	"solargraph.symbols": true,
+	"codeLens.enable": true,
 	"languageserver": {
 		"haskell": {
 			"command": "haskell-language-server-wrapper",

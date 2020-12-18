@@ -43,6 +43,22 @@ let g:coc_snippet_next = '<c-j>'
 " }}}
 
 " Mappings: {{{1
+" Remap <C-f> and <C-b> for scroll float windows/popups.
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent> <nowait> <expr> <C-f> 
+        \ coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent> <nowait> <expr> <C-b>
+        \ coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent> <nowait> <expr> <C-f>
+        \ coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<CR>" : "\<Right>"
+  inoremap <silent> <nowait> <expr> <C-b>
+        \ coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<CR>" : "\<Left>"
+  vnoremap <silent> <nowait> <expr> <C-f>
+        \ coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent> <nowait> <expr> <C-b>
+        \ coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+endif
+
 " Diagnostic Navigation
 nmap <leader>qf  <Plug>(coc-fix-current)
 nmap [g          <Plug>(coc-diagnostic-prev)
@@ -57,10 +73,13 @@ xmap          <Leader>gf <Plug>(coc-format-selected)
 
 nnoremap <silent> <Leader>cA :<C-u>CocAction<CR>
 nnoremap <silent> <Leader>cD :<C-u>CocDiagnostic<CR>
-nnoremap <silent> <Leader>cR :<C-u>CocRestart<CR>
-nnoremap <silent> <Leader>cS :<C-u>CocList snippets<CR>
+nnoremap <silent> <leader>cH :CocHover<CR>
 nnoremap <silent> <Leader>cO :<C-u>CocList outline<CR>
-nnoremap <silent> <leader>cH :call CocActionAsync('doHover')<CR>
+nnoremap <silent> <Leader>cR :<C-u>CocRestart<CR>
+nnoremap <silent> <Leader>cS :<C-u>CocList -I symbols<CR>
+
+command! -nargs=0 CocHover          :call CocActionAsync('doHover')
+command! -nargs=0 CocFormat         :call CocAction('format')
 
 command! CocPickHigh call CocAction('colorPresentation')
 augroup coc_highlight

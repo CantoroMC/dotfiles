@@ -2,6 +2,7 @@ abook
 alacritty
 bat
 biber
+cmus
 ctags
 diff-so-fancy
 easytag
@@ -15,6 +16,7 @@ mpv
 neomutt
 ncmpcpp
 ranger
+redshift
 ripgrep
 stow
 sxiv

@@ -188,11 +188,10 @@ This changes scrolling behavior to only scroll as far as point goes.
 #+end_src
 
 ** Font Settings
-
 #+begin_src emacs-lisp
-  (set-face-attribute 'default nil :font "SauceCodePro Nerd Font" :height 85 :weight 'normal :width 'normal)
-  (set-face-attribute 'fixed-pitch nil :font "FiraCode Nerd Font" :height 80)
-  (set-face-attribute 'variable-pitch nil :font "SauceCodePro Nerd Font" :height 85 :weight 'semi-light :slant 'oblique)
+  (set-face-attribute 'default nil :font "FiraCode Nerd Font" :height 85 :weight 'normal :width 'normal)
+  (set-face-attribute 'fixed-pitch nil :font "SauceCodePro Nerd Font" :height 80)
+  (set-face-attribute 'variable-pitch nil :font "FiraCode Nerd Font" :height 85 :weight 'semi-light :slant 'oblique)
 #+end_src
 
 ** Save previous cursor position
@@ -231,11 +230,9 @@ This changes scrolling behavior to only scroll as far as point goes.
 #+end_src
 
 ** Highlight the current line
-
 #+begin_src emacs-lisp
   (global-hl-line-mode t)
 #+end_src
-
 
 ** Theme settings
 
@@ -274,6 +271,12 @@ Choose themes and apply one
 #+begin_src emacs-lisp
   (use-package rainbow-delimiters
     :hook (prog-mode . rainbow-delimiters-mode))
+#+end_src
+
+** Separated Custom File
+#+begin_src emacs-lisp
+  (setq custom-file "~/.config/emacs/emacs_custom.el")
+  (load custom-file)
 #+end_src
 
 * Sensible Defaults
@@ -684,7 +687,6 @@ Include the =minted= package in all of my LaTeX exports.
 #+end_src
 
 * Haskell
-
 #+begin_src emacs-lisp
   (use-package haskell-mode)
   (require 'ob-haskell)
