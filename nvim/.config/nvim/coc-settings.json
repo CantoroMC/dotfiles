@@ -8,6 +8,7 @@
 	"suggest.maxPreviewWidth": 80,
 	"suggest.floatEnable": true,
 	"suggest.detailField": "preview",
+	"suggest.echodocSupport": true,
 	"suggest.completionItemKindLabels": {
 		"keyword": "\uf1de",
 		"variable": "\ue79b",
@@ -37,6 +38,20 @@
 	},
 	"latex.forwardSearch.executable": "zathura",
 	"latex.forwardSearch.args": ["%p"],
+	"coc.source.bibtex.filetypes": [
+		"tex",
+		"plaintex",
+		"latex",
+		"pandoc",
+		"markdown"
+	],
+	"coc.source.bibtex.triggerPatterns": ["\\\\cite\\{"],
+	"coc.source.bibtex.triggerCharacters": [],
+	"list.source.bibtex.files": ["~/.local/share/texmf/bibtex/bib/matriHX.bib"],
+	"list.source.bibtex.citation" : {
+		"before": "\\cite{",
+		"after": "}"
+	},
 	"solargraph.trace.server": "messages",
 	"solargraph.promptDownload": true,
 	"solargraph.hover": true,

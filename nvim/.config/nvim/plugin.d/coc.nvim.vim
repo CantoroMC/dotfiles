@@ -8,6 +8,7 @@ let g:coc_global_extensions = [
       \ 'coc-snippets',
       \ 'coc-solargraph',
       \ 'coc-texlab',
+      \ 'coc-bibtex',
       \ 'coc-vimlsp',
       \ 'coc-sh',
       \ 'coc-python',
