@@ -24,4 +24,4 @@ autocmd FileType ruby
 
 autocmd FileType tex let b:dispatch = 'latex -interaction=nonstopmode %'
 autocmd FileType vim let b:dispatch = 'vint %'
-autocmd FileType haskell let b:dispatch = 'ghc --make %'
+autocmd FileType haskell let b:dispatch = 'ghc --make -outputdir'.expand('%:p:h').'/out %'

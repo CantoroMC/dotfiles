@@ -83,6 +83,10 @@ setbg &
 
 # }}}
 
+# Redshift: {{{2
+redshift -l 45.48:9.19 -t 6500:3500 -m randr &
+# }}}
+
 # }}}
 
 # vim:ft=sh:fdm=marker
