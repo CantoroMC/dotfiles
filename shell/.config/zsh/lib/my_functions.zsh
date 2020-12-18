@@ -44,6 +44,7 @@ extractor() {
   fi
 }
 
+# open and disown it
 open() {
   xdg-open $1 & disown
 }
@@ -56,6 +57,7 @@ pyclean() {
   find ${PYCLEAN_DIR} -depth -type d -name ".pytest_cache" -exec rm -r "{}" +
 }
 
+# ranger navigation
 rcd() {
   # Allow to change directory using ranger
   ranger --choosedir=$XDG_CACHE_HOME/ranger_dir
@@ -65,6 +67,13 @@ rcd() {
 
 append() {
   pcregrep -qM "$1" "$2" || echo "$1" >> "$2"
+}
+
+fast-git(){
+  git add -A
+  [ "$#" -eq 1 ] && git commit -m "$1"
+  [ "$#" -eq 0 ] && git commit
+  git push
 }
 
 # Encryption
