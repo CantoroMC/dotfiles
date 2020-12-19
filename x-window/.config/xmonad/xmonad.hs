@@ -1,5 +1,3 @@
-------------------------------------------------------------------------------
-    -- XMonad and XMonad-Contrib
 import XMonad
 import XMonad.Hooks.ManageDocks
     ( docks
@@ -8,8 +6,7 @@ import XMonad.Hooks.EwmhDesktops
     ( ewmh
     )
 
-------------------------------------------------------------------------------
-    -- Local Configuration
+
 
 import qualified XMonad.Local.Config.Theme as XMTheme
 import XMonad.Local.Config.Workspace
@@ -51,8 +48,7 @@ import XMonad.Local.Bindings.Mouse
     ( xmMouseBindings
     )
 
-------------------------------------------------------------------------------
-    -- XMonad Main
+
 
 main :: IO ()
 main = do

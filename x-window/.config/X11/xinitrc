@@ -57,7 +57,7 @@ export MPC_FORMAT="[[%artist%  - ]%title% (%time%)]|[%file%]"
 export MPD_HOST=$HOME/.config/mpd/socket
 
 # Xmobar variable
-export BACKGROUND_COLOR="light"
+export BACKGROUND_COLOR="dark"
 
 # Append "$1" to $PATH when not already in. (taken from /etc/profile)
 append_path () {

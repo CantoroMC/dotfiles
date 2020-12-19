@@ -21,6 +21,11 @@ import Control.Arrow
     ( (&&&)
     )
 import Control.Monad.Writer
+    ( execWriter
+    , MonadWriter(tell)
+    , Writer
+    , WriterT(WriterT)
+    )
 
 import XMonad
 import qualified XMonad.Util.ExtensibleState as XMES

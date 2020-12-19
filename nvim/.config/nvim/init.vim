@@ -704,6 +704,7 @@ augroup END
 augroup keywordprg_filetype " {{{2
   autocmd!
   autocmd FileType ruby setl keywordprg=ri\ --format=markdown
+  autocmd FileType haskell setl keywordprg=hoogle\ -q\ --info
 augroup END
 " }}}
 

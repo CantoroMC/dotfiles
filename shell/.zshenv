@@ -118,6 +118,7 @@ export PATH
 if whence fzf &>/dev/null; then
   export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
   export FZF_CTRL_T_COMMAND='rg --hidden -l ""'
+  export FZF_ALT_C_OPTS='--preview "tree -a -C {} | head -200"'
   export FZF_DEFAULT_OPTS='
     --height=50%
     --min-height=15
