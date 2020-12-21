@@ -9,7 +9,6 @@ easytag
 emacs
 evince
 github-cli
-gnome-disk-utility
 mpc
 mpd
 mpv

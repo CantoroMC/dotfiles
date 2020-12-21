@@ -5,123 +5,105 @@
 #+OPTIONS: toc:2 num:3
 #+PROPERTY: header-args:sh :tangle ./deploy.sh
 
-* Update pacman
-Update packages and retrieve the latest Pacman mirrorlist
-#+begin_src sh
-  sudo pacman -Syu
-  yay -Su
-  reflector --protocol http,https --fastest 5 --latest 100 --age 24 --country Italy,France,German,Spain,Switzerland --save /etc/pacman.d/mirrorlist
-#+end_src
+* Package-Management
+** Update packages and retrieve the latest Pacman mirrorlist
+   #+begin_src sh
+     sudo pacman -Syu
+     yay -Su
+     reflector --protocol http,https --fastest 5 --latest 100 --age 24 --country Italy,France,German,Spain,Switzerland --save /etc/pacman.d/mirrorlist
+   #+end_src
 
-* Installing packages with pacman:
-- Starting with a bare installation you can use endeavouros-packages.txt to install packages included with the i3 flavour of EndeavourOS (good starting point)
+** Installing packages with pacman:
+   #+begin_src sh
+     sudo pacman -S --needed - < ~/dotfiles/deploy/pacman-packages/bull-packages.txt
+     sudo pacman -S --needed - < ~/dotfiles/deploy/pacman-packages/gtk-packages.txt
+     sudo pacman -S --needed - < ~/dotfiles/deploy/pacman-packages/x-packages.txt
+     sudo pacman -S --needed - < ~/dotfiles/deploy/pacman-packages/programming-packages.txt
+     sudo pacman -S --noconfirm --needed --asdeps - < ~/dotfiles/deploy/pacman-packages/dependent-packages.txt
+   #+end_src
 
-#+begin_src sh
-  sudo pacman -Rns - < ~/dotfiles/deploy/pacman-packages/unwanted-packages.txt
-  sudo pacman -S --needed - < ~/dotfiles/deploy/pacman-packages/x-packages.txt
-  sudo pacman -S --needed - < ~/dotfiles/deploy/pacman-packages/gtk-packages.txt
-  sudo pacman -S --needed - < ~/dotfiles/deploy/pacman-packages/bull-packages.txt
-  sudo pacman -S --needed - < ~/dotfiles/deploy/pacman-packages/python-packages.txt
-  sudo pacman -S --needed - < ~/dotfiles/deploy/pacman-packages/ruby-packages.txt
-  sudo pacman -S --needed - < ~/dotfiles/deploy/pacman-packages/programming-packages.txt
-  sudo pacman -S --noconfirm --needed --asdeps - < ~/dotfiles/deploy/pacman-packages/dependent-packages.txt
-#+end_src
+** Installing AUR packages with yay
+   #+begin_src sh
+     yay -S --noansweredit --needed - < ~/dotfiles/deploy/aur-packages.txt
+   #+end_src
 
-* Installing AUR packages with yay
-
-#+begin_src sh
-  yay -S --noansweredit - < ~/dotfiles/deploy/aur-packages.txt
-#+end_src
-
-* Deploy the dotfiles/packages with stow
-It is wise to check with =stow -nv package= every one of them.
-#+begin_src sh
-  # First download omz
-  mkdir ~/.local/bin
-  stow shell
-
-  mkdir ~/.local/share/fonts
-  mkdir ~/.config/mpd
-  mkdir -p ~/.config/xmonad/cache
-  mkdir ~/.local/share/xmonad
-  stow x-window
-
-  mkdir ~/.config/git
-  stow git
-
-  mkdir ~/.config/emacs
-  stow emacs
-
-  mkdir ~/.config/nvim
-  stow nvim
-
-  stow texlive
-  stow zathura
-  stow radiotray
-
-  mkdir ~/.config/neomutt
-  stow mail
-#+end_src
-
-* Other packages
 ** My programs
-Clone the repository and install the programs you want
-#+begin_src sh
-  git clone https://github.com/CantoroMC/unix-programs
-#+end_src
-
-** Oh My Zsh
-Install Oh my zsh
-#+begin_src sh
-  [[ -d $HOME/.config/zsh ]] || mkdir $HOME/.config/zsh
-  wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-  ZSH="$HOME/.config/zsh/oh-my-zsh" sh install.sh
-#+end_src
-now it better to reboot in order to update the default shell to zsh
-** Zsh plugins
-#+begin_src sh
-  [ -e ~/.config/zsh/oh-my-zsh/custom/plugins/zsh-history-substring-search ] || \
-    git clone https://github.com/zsh-users/zsh-history-substring-search \
-    ~/.config/zsh/oh-my-zsh/custom/plugins/zsh-history-substring-search
-  [ -e ~/.config/zsh/oh-my-zsh/custom/plugins/zsh-autosuggestions ] || \
-    git clone https://github.com/zsh-users/zsh-autosuggestions \
-    ~/.config/zsh/oh-my-zsh/custom/plugins/zsh-autosuggestions
-  [ -e ~/dotfiles/zsh/plugins/fzf-tab ] || \
-  git clone https://github.com/Aloxaf/fzf-tab \
-    ~/.config/zsh/oh-my-zsh/custom/plugins/fzf-tab
-#+end_src
+   #+begin_src sh
+     git clone https://github.com/CantoroMC/unix-programs
+   #+end_src
 
 ** Youtube-dl
-#+begin_src sh
-  sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
-  sudo chmod a+rx /usr/local/bin/youtube-dl
-#+end_src
-** Neovim Language servers and utilities
-*** Bibtex-ls
-#+begin_src sh
-  go get github.com/msprev/fzf-bibtex/cmd/bibtex-ls
-  go install github.com/msprev/fzf-bibtex/cmd/bibtex-ls
-  go install github.com/msprev/fzf-bibtex/cmd/bibtex-markdown
-  go install github.com/msprev/fzf-bibtex/cmd/bibtex-cite
-#+end_src
+   #+begin_src sh
+     sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+     sudo chmod a+rx /usr/local/bin/youtube-dl
+   #+end_src
 
-*** Neovim Healts
-#+begin_src sh
-  pip install neovim-remote
-  gem install neovim
-  npm install -g neovim
-  cpan Neovim::Ext
-#+end_src
+* First deployment step
+  It is wise to check with =stow -nv package= every one of them.
+  #+begin_src sh
+    mkdir ~/.config/git
+    stow git
 
-*** Language Servers
-#+begin_src sh
-  pip install pylint
-  gem install solargraph
-  cpan Perl::LanguageServer
-#+end_src
+    mkdir ~/.config/emacs
+    stow emacs
+
+    mkdir ~/.config/nvim
+    stow nvim
+
+    stow texlive
+    stow zathura
+
+    mkdir ~/.config/mpd
+    stow music
+
+    mkdir ~/.config/neomutt
+    stow mail
+  #+end_src
+
+* Shell and X-WindowManager
+** Oh My Zsh
+   Install Oh my zsh
+   #+begin_src sh
+     [[ -d $HOME/.config/zsh ]] || mkdir $HOME/.config/zsh
+     wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+     ZSH="$HOME/.config/zsh/oh-my-zsh" sh install.sh
+   #+end_src
+
+** Zsh plugins
+   #+begin_src sh
+     [ -e ~/.config/zsh/oh-my-zsh/custom/plugins/zsh-history-substring-search ] || \
+       git clone https://github.com/zsh-users/zsh-history-substring-search \
+       ~/.config/zsh/oh-my-zsh/custom/plugins/zsh-history-substring-search
+     [ -e ~/.config/zsh/oh-my-zsh/custom/plugins/zsh-autosuggestions ] || \
+       git clone https://github.com/zsh-users/zsh-autosuggestions \
+       ~/.config/zsh/oh-my-zsh/custom/plugins/zsh-autosuggestions
+     [ -e ~/dotfiles/zsh/plugins/fzf-tab ] || \
+       git clone https://github.com/Aloxaf/fzf-tab \
+       ~/.config/zsh/oh-my-zsh/custom/plugins/fzf-tab
+   #+end_src
+
+** Second Deployment Step
+   #+begin_src sh
+     mkdir ~/.local/bin
+     stow shell
+
+     mkdir ~/.local/share/fonts
+     mkdir -p ~/.config/xmonad/cache
+     mkdir ~/.local/share/xmonad
+     stow x-window
+   #+end_src
+   Then reboot
 
 ** Haskell and XMonad
-After the installation of ghc, ghc-static and stack-static(AUR)
+*** Deploy the haskell dotfiles
+#+begin_src sh
+  mkdir ~/.stack
+  mkdir ~/.cabal
+  mkdir ~/.ghc
+  stow haskell
+#+end_src
+
+*** Setup stack and install cabal-install
 #+begin_src sh
   stack setup --system-ghc
   stack install --system-ghc cabal-install
@@ -146,11 +128,40 @@ Now you re ready to go!
 #+end_src
 
 *** Haskell
-hlsp, (hindent)*  currently unmantained
+hlsp
 #+begin_src sh
   cabal install hlint
   cabal install hoogle
+  cabal install brittany
 #+end_src
+
+** Reboot with xmonad and remove unwanted packages
+sudo pacman -Rns - < ~/dotfiles/deploy/pacman-packages/unwanted-packages.txt
+
+* Neovim Language servers and utilities
+** Bibtex-ls
+#+begin_src sh
+  go get github.com/msprev/fzf-bibtex/cmd/bibtex-ls
+  go install github.com/msprev/fzf-bibtex/cmd/bibtex-ls
+  go install github.com/msprev/fzf-bibtex/cmd/bibtex-markdown
+  go install github.com/msprev/fzf-bibtex/cmd/bibtex-cite
+#+end_src
+
+** Neovim Healts
+#+begin_src sh
+  pip install neovim-remote
+  gem install neovim
+  npm install -g neovim
+  cpan Neovim::Ext
+#+end_src
+
+** Language Servers
+#+begin_src sh
+  pip install pylint
+  gem install solargraph
+  cpan Perl::LanguageServer
+#+end_src
+
 * System Tweaks
 ** Systemd
 *** Reflector timer
@@ -166,7 +177,6 @@ hlsp, (hindent)*  currently unmantained
 #+end_src
 
 ** Audio device and Mpd
-
 Check audio-device and drivers and create modprobe
 #+begin_src sh
   lspci -knn|grep -iA2 audio
@@ -193,12 +203,14 @@ Modify to suit your needs (ex. Color, ILoveCandy)
   sudo touch /usr/share/libalpm/hooks/paccache.hook
   cat ~/dotfiles/deploy/hooks/paccacheHook.txt | sudo tee -a /usr/share/libalpm/hooks/paccache.hook
 #+end_src
+
 ** Modify /etc/*.config to respect XDG-base-directory specifications
 **** Gem
 Remove =gem: --user-install= from =/etc/gemrc=
 **** Xboard
 Modify =saveSettingsFile= and =settingsFile= to =~/.config/xboardrc=
 in =/etc/xboard.conf=
+
 * Note
 ** OpenFOAM: download from github and compile it
 ( requires AUR scotch-git and base cgal )

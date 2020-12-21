@@ -8,13 +8,13 @@ pacman-contrib
 stalonetray
 unrar
 unzip
+zip
 wmctrl
 xarchiver
 xautolock
-xclip
 xdotool
 xorg-xev
 xorg-xmessage
 xorg-xwininfo
+xclip
 xsel
-zip

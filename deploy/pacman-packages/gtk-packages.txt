@@ -1,6 +1,8 @@
 baobab
+gnome-disk-utility
 gnome-themes-extra
 gpick
 papirus-icon-theme
 transmission-gtk
 nautilus
+nautilus-sendto

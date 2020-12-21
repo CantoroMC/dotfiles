@@ -1,3 +1,5 @@
+rsync
+boost
 clang
 cmake
 extra-cmake-modules
@@ -5,5 +7,14 @@ go
 go-tools
 lua
 npm
-rsync
-boost
+ipython
+jupyter-notebook
+python-matplotlib
+python-pip
+python-pygame
+python-ueberzug
+ruby-docs
+ruby-rake
+ruby-rdoc
+ghc
+ghc-static

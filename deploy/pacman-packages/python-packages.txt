@@ -1,6 +1,0 @@
-ipython
-jupyter-notebook
-python-matplotlib
-python-pip
-python-pygame
-python-ueberzug
