@@ -136,7 +136,9 @@ hlsp
 #+end_src
 
 ** Reboot with xmonad and remove unwanted packages
-sudo pacman -Rns - < ~/dotfiles/deploy/pacman-packages/unwanted-packages.txt
+#+begin_src sh
+  sudo pacman -Rns - < ~/dotfiles/deploy/pacman-packages/unwanted-packages.txt
+#+end_src
 
 * Neovim Language servers and utilities
 ** Bibtex-ls
