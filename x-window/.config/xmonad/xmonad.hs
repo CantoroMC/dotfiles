@@ -1,74 +1,51 @@
-import XMonad
-import XMonad.Hooks.ManageDocks
-    ( docks
-    )
-import XMonad.Hooks.EwmhDesktops
-    ( ewmh
-    )
+import           XMonad
+import           XMonad.Hooks.EwmhDesktops      ( ewmh )
+import           XMonad.Hooks.ManageDocks       ( docks )
 
 
 
-import qualified XMonad.Local.Config.Theme as XMTheme
-import XMonad.Local.Config.Workspace
-    ( xmWorkspaces
-    )
+import qualified XMonad.Local.Config.Theme     as XMTheme
+import           XMonad.Local.Config.Workspace  ( xmWorkspaces )
 
-import XMonad.Local.Log.Hook
-    ( xmLogHook
-    )
-import XMonad.Local.Log.XMobar
-    ( spawnXMobar
-    )
+import           XMonad.Local.Log.Hook          ( xmLogHook )
+import           XMonad.Local.Log.XMobar        ( spawnXMobar )
 
-import XMonad.Local.Manage.Hook
-    ( xmManageHook
-    )
+import           XMonad.Local.Manage.Hook       ( xmManageHook )
 
-import XMonad.Local.Startup.Hook
-    ( xmStartupHook
-    )
+import           XMonad.Local.Startup.Hook      ( xmStartupHook )
 
-import XMonad.Local.Urgency.Hook
-    ( applyUrgencyHook
-    )
+import           XMonad.Local.Urgency.Hook      ( applyUrgencyHook )
 
-import XMonad.Local.Layout.Hook
-    ( xmLayoutHook
-    )
+import           XMonad.Local.Layout.Hook       ( xmLayoutHook )
 
-import XMonad.Local.Bindings.Bind
-    ( mapBindings
-    , storeBindings
-    )
+import           XMonad.Local.Bindings.Bind     ( mapBindings
+                                                , storeBindings
+                                                )
 
-import XMonad.Local.Bindings.Keys
-    ( xmKeys
-    )
-import XMonad.Local.Bindings.Mouse
-    ( xmMouseBindings
-    )
+import           XMonad.Local.Bindings.Keys     ( xmKeys )
+import           XMonad.Local.Bindings.Mouse    ( xmMouseBindings )
 
 
 
 main :: IO ()
 main = do
-    xmproc <- spawnXMobar
-    let (applicableKeys, explainableBindings) = mapBindings $ xmKeys . modMask
-        c = def
-            { terminal           = "st"
-            , modMask            = mod4Mask
-            , focusFollowsMouse  = False
-            , clickJustFocuses   = True
-            , workspaces         = xmWorkspaces
-            , borderWidth        = XMTheme.borderWidth XMTheme.xmTheme
-            , normalBorderColor  = XMTheme.inactiveBorderColor XMTheme.xmTheme
-            , focusedBorderColor = XMTheme.activeBorderColor XMTheme.xmTheme
-            , keys               = applicableKeys
-            , mouseBindings      = xmMouseBindings
-            , manageHook         = xmManageHook
-            , logHook            = xmLogHook xmproc
-            , startupHook        = xmStartupHook
-            , layoutHook         = xmLayoutHook
-            }
-        xmConf = storeBindings explainableBindings . docks . applyUrgencyHook . ewmh $ c
-    xmonad xmConf
+  xmproc <- spawnXMobar
+  let (applicableKeys, explainableBindings) = mapBindings $ xmKeys . modMask
+      c = def { terminal           = "st"
+              , modMask            = mod4Mask
+              , focusFollowsMouse  = False
+              , clickJustFocuses   = True
+              , workspaces         = xmWorkspaces
+              , borderWidth        = XMTheme.borderWidth XMTheme.xmTheme
+              , normalBorderColor  = XMTheme.inactiveBorderColor XMTheme.xmTheme
+              , focusedBorderColor = XMTheme.activeBorderColor XMTheme.xmTheme
+              , keys               = applicableKeys
+              , mouseBindings      = xmMouseBindings
+              , manageHook         = xmManageHook
+              , logHook            = xmLogHook xmproc
+              , startupHook        = xmStartupHook
+              , layoutHook         = xmLayoutHook
+              }
+      xmConf =
+        storeBindings explainableBindings . docks . applyUrgencyHook . ewmh $ c
+  xmonad xmConf

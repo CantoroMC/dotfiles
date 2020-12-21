@@ -133,7 +133,6 @@ After the installation of ghc, ghc-static and stack-static(AUR)
 Now you re ready to go!
 
 *** XMonad and XMobar
-taffybar
 #+begin_src sh
   cabal install --lib xmonad
   cabal install xmonad
@@ -147,7 +146,7 @@ taffybar
 #+end_src
 
 *** Haskell
-ghcid, hindent
+hlsp, (hindent)*  currently unmantained
 #+begin_src sh
   cabal install hlint
   cabal install hoogle
