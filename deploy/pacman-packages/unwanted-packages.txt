@@ -12,3 +12,4 @@ thunar
 thunar-archive-plugin
 thunar-volman
 tumbler
+firefox
