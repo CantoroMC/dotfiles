@@ -37,7 +37,7 @@ xset r rate 400 30 &
 # }}}
 
 # Screen Auto locker {{{2
-xautolock -detectsleep -time 15 -notifier "notify-send -u critical -t 2000 -- 'Locking Screen...'" -notify 50 -corners +000 -cornerdelay 2 -cornerredelay 2 -cornersize 2 -locker 'i3lock -i ~/.config/xmonad/screenlocker.png -t -f -e' &
+# xautolock -detectsleep -time 15 -notifier "notify-send -u critical -t 2000 -- 'Locking Screen...'" -notify 50 -corners +000 -cornerdelay 2 -cornerredelay 2 -cornersize 2 -locker 'i3lock -i ~/.config/xmonad/screenlocker.png -t -f -e' &
 # }}}
 
 # }}}
@@ -78,13 +78,11 @@ qlipper &
 # Xrandr wrapper to setup the native monitor even when on a dock station
 Thinkpad &
 
+# Redshift
+redshift -l 45.48:9.19 -t 6500:3500 -m randr &
+
 # Feh wrapper to pick a random wallpaper from ~/Pictures/wallpapers
 setbg &
-
-# }}}
-
-# Redshift: {{{2
-redshift -l 45.48:9.19 -t 6500:3500 -m randr &
 # }}}
 
 # }}}

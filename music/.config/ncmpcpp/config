@@ -14,11 +14,8 @@ mpd_crossfade_time = 4
 # }}}
 
 # music visualizer {{{1
-visualizer_fifo_path = /tmp/mpd.fifo
 visualizer_output_name = "Visualizer feed"
 visualizer_in_stereo = "yes"
-# Keep in mind that sane values start with >=10.
-visualizer_sync_interval = "30"
 # Available values: spectrum, wave, wave_filled, ellipse.
 visualizer_type = "spectrum"
 # Defines visualizer's look (string has to be exactly 2 characters long:
@@ -227,7 +224,6 @@ header_text_scrolling = yes
 cyclic_scrolling = yes
 lines_scrolled = 1
 
-lyrics_fetchers = lyricwiki, azlyrics, genius, sing365, lyricsmania, metrolyrics, justsomelyrics, jahlyrics, plyrics, tekstowo, internet
 follow_now_playing_lyrics = yes
 fetch_lyrics_for_current_song_in_background = no
 store_lyrics_in_song_dir = no

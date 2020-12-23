@@ -1,17 +1,52 @@
 # XDG based directories {{{1
-export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
-export XDG_CACHE_HOME="${XDG_CACHE_HOME:-${HOME}/.cache}"
-export XDG_DATA_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}"
-export XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS:-/etc/xdg}"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_DIRS="/etc/xdg"
+
+# Application Partially supported by the XDG Standard {{{2
+export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
+export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
+
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+export LESSHISTFILE=-
+export MPLAYER_HOME="$XDG_CONFIG_HOME"/mplayer
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
+export QT_QPA_PLATFORMTHEME="qt5ct"
+export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+
+export XMONAD_CACHE_DIR="${XDG_CONFIG_HOME}/xmonad/cache"
+export XMONAD_CONFIG_DIR="${XDG_CONFIG_HOME}/xmonad"
+export XMONAD_DATA_DIR="${XDG_DATA_HOME}/xmonad"
 # }}}
 
-# User Variables {{{1
-export DOTFILES="$HOME"/dotfiles
+# }}}
 
-export ADDRESSES="$HOME/Documents/organization/contacts/addressbook"
-export ARCHFLAGS="-arch x86_64"
-export EMAIL='marco.cantoro92@outlook.it'
-export NAME='Marco Cantoro'
+# System resources {{{1
+if whereis nvim &>/dev/null; then
+  export VISUAL="/usr/bin/nvim"
+  export EDITOR='/usr/bin/nvim'
+elif whereis vim &>/dev/null; then
+  export VISUAL="/usr/bin/vim"
+  export EDITOR='/usr/bin/vim'
+else
+  export VISUAL="/usr/bin/vi"
+  export EDITOR='/usr/bin/vi'
+fi
+
+if [ -n "$DISPLAY" ]; then
+  export BROWSER='/usr/bin/vivaldi-stable'
+else
+  export BROWSER='/usr/bin/lynx'
+fi
+
+if whence $HOME/.local/bin/dmenu_askpass &>/dev/null; then
+  export SUDO_ASKPASS="$HOME/.local/bin/dmenu_askpass"
+fi
+
+if whereis nvim &>/dev/null; then
+  export MANPAGER='nvim +Man!'
+fi
 
 # Color man pages: {{{2
 export LESS_TERMCAP_mb=$'\E[01;32m'
@@ -24,19 +59,18 @@ export LESS_TERMCAP_us=$'\E[01;36m'
 export LESS=-r
 # }}}
 
-# Password Helper
-if whence $HOME/.local/bin/dmenu_askpass &>/dev/null; then
-  export SUDO_ASKPASS="$HOME/.local/bin/dmenu_askpass"
-fi
-
+export ARCHFLAGS="-arch x86_64"
+export EMAIL='marco.cantoro92@outlook.it'
+export NAME='Marco Cantoro'
+export PAGER='less'
+export READER='zathura'
+export SHELL='/usr/bin/zsh'
 # }}}
 
 # ZSH variables: {{{1
 
 export ZDOTDIR="$HOME/.config/zsh"
 export HISTFILE=$XDG_CACHE_HOME/zsh_history
-
-# Oh My Zsh Variable
 export ZSH="$XDG_CONFIG_HOME/zsh/oh-my-zsh"
 
 # ZLS_COLORS and LS_COLORS: {{{2
@@ -65,6 +99,22 @@ export ZLS_COLORS LS_COLORS
 
 # Language/Programs Specifics {{{1
 
+export ADDRESSES="$HOME/Documents/organization/contacts/addressbook"
+export DOTFILES="$HOME"/dotfiles
+
+# Required by i3-sensible-terminal and rofi-sensible terminal
+export TERMINAL='/usr/local/bin/st'
+
+# Xmobar variable
+export BACKGROUND_COLOR="dark"
+
+# Mpc, Mpd and NcmpCpp
+export MPC_FORMAT="[[%artist%  - ]%title% (%time%)]|[%file%]"
+export MPD_HOST=$HOME/.config/mpd/socket
+
+# Ranger
+export RANGER_LOAD_DEFAULT_RC="FALSE"
+
 # OpenFOAM
 export FOAM_INST_DIR='/usr/local/OpenFOAM'
 
@@ -77,44 +127,38 @@ export TEXMFHOME="$XDG_DATA_HOME/texmf"
 export TEXMFVAR="$XDG_CONFIG_HOME/texlive/texmf-var"
 export TEXMFCONFIG="$XDG_CONFIG_HOME/texlive/texmf-config"
 
-# Ranger
-export RANGER_LOAD_DEFAULT_RC="FALSE"
-
 # Ruby
 export GEM_HOME="$XDG_DATA_HOME"/gem
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
-# Make sure to remove gem: --user-install from /etc/gemrc
 # Go
 export GOPATH="$XDG_DATA_HOME/go"
 # Python
 export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
 export PYLINTHOME="$XDG_CACHE_HOME"/pylint
+
 # }}}
 
 # Path {{{1
-
 typeset -U PATH path
-
 for bin_dir ($HOME/.local/bin/*/); do
   bin=$(echo "${bin_dir}" | sed 's/.$//')
   path=("${bin}" "$path[@]")
 done
-
 unset bin_dir
 
 path=(
+  "$HOME/.local/bin"
+  "$HOME/.cabal/bin"
   "$XDG_DATA_HOME/nvim/plugged/fzf/bin"
   "$GOPATH/bin"
   "$GEM_HOME/bin"
   "$path[@]"
 )
 export PATH
-
 # }}}
 
 # Fuzzy Finder {{{1
-
 if whence fzf &>/dev/null; then
   export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
   export FZF_CTRL_T_COMMAND='rg --hidden -l ""'
@@ -132,7 +176,6 @@ fi
 # Bibtex
 # FZF_BIBTEX_SOURCES: path to bibtex file; multiple items separated by a ':'
 export FZF_BIBTEX_SOURCES="$TEXMFHOME/bibtex/bib/matriHX.bib"
-
 # }}}
 
 # vim:fdm=marker
