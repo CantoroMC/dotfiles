@@ -299,9 +299,9 @@ xmTreeSelectAction a = XMTS.treeselectAction a
         ]
     , Node (XMTS.TSNode "\59333 DotFiles" "a list of configuration files" (return ()))
         [ Node (XMTS.TSNode "Neovim" "Neovim config file"
-            (spawn "st nvim \"${XDG_CONFIG_HOME}\"/.config/nvim/init.vim")) []
+            (spawn "st nvim \"${XDG_CONFIG_HOME}\"/nvim/init.vim")) []
         , Node (XMTS.TSNode "XMonad" "Xmonad config file"
-            (spawn "st nvim \"${XDG_CONFIG_HOME}\"/.xmonad/xmonad.hs")) []
+            (spawn "st nvim \"${XDG_CONFIG_HOME}\"/xmonad/xmonad.hs")) []
         ]
     , Node (XMTS.TSNode "Multimedia Control" "mpc and mpv" (return ()))
         [ Node (XMTS.TSNode "Mpc Prev" ""
