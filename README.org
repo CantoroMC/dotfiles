@@ -128,7 +128,7 @@ Now you re ready to go!
 #+end_src
 
 *** Haskell
-hlsp
+(hoogle and hlsp (10.8.3 not yet supported))
 #+begin_src sh
   cabal install hlint
   cabal install hoogle

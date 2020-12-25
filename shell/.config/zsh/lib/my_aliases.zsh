@@ -26,6 +26,7 @@ alias mutt='neomutt'
 # Git
 alias gitu='git add . && git commit && git push'
 # Arch
+alias pp='pacman'
 alias sp="sudo pacman"
 # Haskell
 # Texmf
