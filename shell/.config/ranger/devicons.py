@@ -207,7 +207,7 @@ file_node_exact_matches = {
     'react.jsx'                        : ' ',
     'user-dirs.dirs'                   : ' ',
 }
-
+#  
 def devicon(file):
-  if file.is_directory: return dir_node_exact_matches.get(file.relative_path, ' ')
-  return file_node_exact_matches.get(file.relative_path, file_node_extensions.get(file.extension, ' '))
+  if file.is_directory: return dir_node_exact_matches.get(file.relative_path, ' ')
+  return file_node_exact_matches.get(file.relative_path, file_node_extensions.get(file.extension, ' '))
