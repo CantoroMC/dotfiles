@@ -167,7 +167,7 @@ xmKeys mask = do
         ^> namedScratchpadAction xmScratchpads "yakuake"
     bind $ mask ... xK_u
       |/- "spawn rofi"
-        ^> spawn "rofi -modi drun,run -show drun"
+        ^> spawn "rofi -modi drun,run,combi -show combi"
     bind $ mask .|. shiftMask ... xK_u
       |/- "spawn dmenu"
         ^> spawn "dmenu_run_timed"
@@ -282,7 +282,7 @@ xmKeys mask = do
         ^> spawn =<< terminalFromConf
     bind $ mask .|. shiftMask ... xK_Return
       |/- "spawn secondary terminal"
-        ^> spawn "alacritty"
+        ^> spawn "kitty"
     bind $ mask .|. shiftMask ... xK_BackSpace
       |/- "Lock the screen"
         ^> spawn "i3lock -i ~/.config/xmonad/screenlocker.png -t -f -e"
