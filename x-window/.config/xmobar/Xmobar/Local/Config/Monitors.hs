@@ -48,11 +48,11 @@ mpdMusic p =
     MPDX ( withPlugArgs p
         ["--template", fn 2 "<statei> "
             ++ action "wmctrl -xR ncmpcpp" 3 (fn 2 "<artist>-<title>")
-            ++ action "mpc random" 1 " \61556 "
+            ++ action "mpc random" 1 (fn 3 " \61556 ")
             ++ action "mpc seek +1%" 4 (action "mpc seek -1%" 5
                 (fc "#ff3333" (fn 2 "[<lapsed>/<length>]")))
             ++ action "mpc volume +3" 4 (action "mpc volume -3" 5
-                (fc "#68d5ff" (" 墳 " ++ fn 2 "<volume>%")))
+                (fc "#68d5ff" (fn 3 " 墳 " ++ fn 2 "<volume>%")))
         , "-M", "12"
         ]
         [ "-P", action "mpc prev" 1 (fn 3 " 玲")

@@ -37,9 +37,6 @@ source "$HOME/.local/share/nvim/plugged/fzf/shell/key-bindings.zsh"
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=200'
 
-# Completion for kitty
-kitty + complete setup zsh | source /dev/stdin
-
 user_plugs=(
   timer
 )
@@ -55,6 +52,9 @@ done
 # Theme {{{2
 autoload -Uz promptinit; promptinit; prompt bull
 # }}}
+
+# Completion for kitty
+kitty + complete setup zsh | source /dev/stdin
 
 # }}}
 

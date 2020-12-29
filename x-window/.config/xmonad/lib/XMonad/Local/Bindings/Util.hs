@@ -105,7 +105,7 @@ inTerminalFromConf prog = do terminalEmulator <- terminalFromConf
 -- XMonad Prompt Configuration
 xmPromptConfig :: XPConfig
 xmPromptConfig = def
-    { font                = "xft:SauceCodePro Nerd Font:style=BoldItalic:size=10:hinting=true"
+    { font                = "xft:Operator Mono Lig:style=BoldItalic:size=10:hinting=true"
     , bgColor             = XMTheme.inactiveColor XMTheme.xmTheme
     , fgColor             = XMTheme.activeTextColor XMTheme.xmTheme
     , bgHLight            = XMTheme.inactiveTextColor XMTheme.xmTheme

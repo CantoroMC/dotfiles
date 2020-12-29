@@ -65,7 +65,7 @@ import qualified XMonad.Local.Config.Theme as XMTheme
 
 xmDecorationTheme :: Theme
 xmDecorationTheme = def
-    { fontName            = "xft:SauceCodePro Nerd Font:pixelsize=8"
+    { fontName            = "xft:Operator Mono Lig:pixelsize=11"
     , decoHeight          = 15
     , activeColor         = XMTheme.activeColor XMTheme.xmTheme
     , inactiveColor       = XMTheme.inactiveColor XMTheme.xmTheme
