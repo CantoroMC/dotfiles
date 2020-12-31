@@ -28,7 +28,6 @@ Additional packages used to configure package with =use-package=.
 This package provides functionality for automatically updating your Emacs
 packages periodically.
 Look the [[https://github.com/rranelli/auto-package-update.el][auto-package-update repository]] for detailed information on the package.
-
 #+begin_src emacs-lisp
   (use-package auto-package-update
     :init
@@ -61,7 +60,6 @@ Look the [[https://github.com/emacs-evil/evil][evil repository]] for detailed in
 
 *** [[https://github.com/emacsorphanage/key-chord][=key-chord=]]
 Useful to define mappings formed by two key presses.
-
 #+begin_src emacs-lisp
   (use-package key-chord
     :init
@@ -72,7 +70,6 @@ Useful to define mappings formed by two key presses.
 
 *** =undo-tree= for vi undo-redo style and for changes visualization
 Look the [[https://github.com/apchamberlain/undo-tree.el][undo-tree repository]] for detailed information.
-
 #+begin_src emacs-lisp
   (use-package undo-tree
     :diminish undo-tree-mode
@@ -81,7 +78,6 @@ Look the [[https://github.com/apchamberlain/undo-tree.el][undo-tree repository]]
 #+end_src
 
 *** =goto-chg= evil package to implement =goto-last-change= and =goto-last-change-reverse=
-
 #+begin_src emacs-lisp
   (use-package goto-chg
     :config
@@ -90,7 +86,6 @@ Look the [[https://github.com/apchamberlain/undo-tree.el][undo-tree repository]]
 #+end_src
 
 *** =evil=
-
 #+begin_src emacs-lisp
   (use-package evil
     :init
@@ -114,9 +109,7 @@ Look the [[https://github.com/apchamberlain/undo-tree.el][undo-tree repository]]
 #+end_src
 
 ** =evil-collection= provides evil-friendly bindings for many modes.
-
 Look the [[https://github.com/emacs-evil/evil-collection][evil-collection repo]] for detailed information.
-
 #+begin_src emacs-lisp
   (use-package evil-collection
     :after evil
@@ -132,7 +125,6 @@ Additional text operators for vim (mainly tpope plugins ported to emacs)
 
 *** =evil-surround=
 Look the [[https://github.com/emacs-evil/evil-surround][evil-surround repository]] for detailed information.
-
 #+begin_src emacs-lisp
   (use-package evil-surround
     :after evil
@@ -142,7 +134,6 @@ Look the [[https://github.com/emacs-evil/evil-surround][evil-surround repository
 
 *** =evil-commentary=
 Look the [[https://github.com/linktohack/evil-commentary][evil-commentary repository]] for detailed information.
-
 #+begin_src emacs-lisp
   (use-package evil-commentary
     :diminish evil-commentary-mode
@@ -154,8 +145,7 @@ Look the [[https://github.com/linktohack/evil-commentary][evil-commentary reposi
 * UI Preferences
 
 ** Tweak window look
-   Clean up unecessary items that stole useful space.
-
+Clean up unecessary items that stole useful space.
 #+begin_src emacs-lisp
   (tool-bar-mode 0)
   ;; (menu-bar-mode nil)
@@ -165,57 +155,48 @@ Look the [[https://github.com/linktohack/evil-commentary][evil-commentary reposi
 ** Buffer tweaks
 
 *** Pretty simbols, mainly lambdas
-
 Similar to vim concealing
-
 #+begin_src emacs-lisp
   (global-prettify-symbols-mode t)
 #+end_src
 
 *** Remove cursor blinking
 I find it annoying.
-
 #+Begin_src emacs-lisp
  (blink-cursor-mode 0)
 #+end_src
 
 ** Scroll conservatively
-
 This changes scrolling behavior to only scroll as far as point goes.
-
 #+begin_src emacs-lisp
   (setq scroll-conservatively 100)
 #+end_src
 
 ** Font Settings
 #+begin_src emacs-lisp
-  (set-face-attribute 'default nil :font "FiraCode Nerd Font" :height 85 :weight 'normal :width 'normal)
-  (set-face-attribute 'fixed-pitch nil :font "SauceCodePro Nerd Font" :height 80)
-  (set-face-attribute 'variable-pitch nil :font "FiraCode Nerd Font" :height 85 :weight 'semi-light :slant 'oblique)
+  (set-face-attribute 'default nil :font "Operator Mono Lig" :height 95 :weight 'normal :width 'normal)
+  (set-face-attribute 'fixed-pitch nil :font "SauceCodePro Nerd Font" :height 90)
+  (set-face-attribute 'variable-pitch nil :font "Operator Mono Lig" :height 95 :weight 'semi-light :slant 'oblique)
 #+end_src
 
 ** Save previous cursor position
-
 #+begin_src emacs-lisp
   (save-place-mode t)
 #+end_src
 
 ** Modeline additions
-
 #+begin_src emacs-lisp
   (column-number-mode t)
   (size-indication-mode t)
 #+end_src
 
 ** Visually indicate empty lines and trailing whitespace
-
 #+begin_src emacs-lisp
   (toggle-indicate-empty-lines t)
   (setq-default show-trailing-whitespace t)
 #+end_src
 
 ** Relative numbers
-
 #+begin_src emacs-lisp
   (global-display-line-numbers-mode t)
   (setq display-line-numbers-type 'relative)
@@ -224,7 +205,7 @@ This changes scrolling behavior to only scroll as far as point goes.
 
   ;; Disable line numbers for some modes
   (dolist (mode '(term-mode-hook
-	    Shell-mode-hook
+	    shell-mode-hook
 	    eshell-mode-hook))
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
 #+end_src
@@ -235,36 +216,39 @@ This changes scrolling behavior to only scroll as far as point goes.
 #+end_src
 
 ** Theme settings
-
 Choose themes and apply one
-
 #+begin_src emacs-lisp
-  ;; (use-package jbeans-theme
-  ;;   :config
-  ;;   (load-theme 'jbeans t))
- (load-theme 'leuven)
+  ;; (load-theme 'leuven t)
+
+  (use-package ayu-theme
+    ;; :config
+    ;; (load-theme 'ayu t)
+    )
+
+  (use-package leuven-theme
+    :config
+    (load-theme 'leuven-dark t))
 #+end_src
 
 ** Modeline
-
 #+begin_src emacs-lisp
-  ;; (use-package doom-modeline
-  ;;   :config
-  ;;   (setq doom-modeline-height 10)
-  ;;   (setq doom-modeline-buffer-file-name-style 'truncate-all)
-  ;;   (setq doom-modeline-icon (display-graphic-p))
-  ;;   (setq doom-modeline-major-mode-icon t)
-  ;;   (setq doom-modeline-major-mode-color-icon t)
-  ;;   (setq doom-modeline-buffer-state-icon t)
-  ;;   (setq doom-modeline-buffer-modification-icon t)
-  ;;   (setq doom-modeline-unicode-fallback t)
-  ;;   (setq doom-modeline-minor-modes t)
-  ;;   (setq doom-modeline-enable-word-count t)
-  ;;   (setq doom-modeline-buffer-encoding nil)
-  ;;   (setq doom-modeline-indent-info t)
-  ;;   (setq doom-modeline-modal-icon t)
-  ;;   (setq doom-modeline-env-version t)
-  ;;   (doom-modeline-mode 1))
+  (use-package doom-modeline
+    :config
+    (setq doom-modeline-height 10)
+    (setq doom-modeline-buffer-file-name-style 'truncate-all)
+    (setq doom-modeline-icon (display-graphic-p))
+    (setq doom-modeline-major-mode-icon t)
+    (setq doom-modeline-major-mode-color-icon t)
+    (setq doom-modeline-buffer-state-icon t)
+    (setq doom-modeline-buffer-modification-icon t)
+    (setq doom-modeline-unicode-fallback t)
+    (setq doom-modeline-minor-modes t)
+    (setq doom-modeline-enable-word-count t)
+    (setq doom-modeline-buffer-encoding nil)
+    (setq doom-modeline-indent-info t)
+    (setq doom-modeline-modal-icon t)
+    (setq doom-modeline-env-version t)
+    (doom-modeline-mode 1))
 #+end_src
 
 ** Rainbow delimiter
@@ -284,43 +268,36 @@ Choose themes and apply one
 ** Increase garbage collection treshold
 Allow 20MB of memory instead of the default 0.76MB. This means that GC runs less often,
 which speed up some operations.
-
 #+begin_src emacs-lisp
   (setq gc-cons-threshold 20000000)
 #+end_src
 
 ** Remove trailing white-spaces upon saving
-
 #+begin_src emacs-lisp
   (add-hook 'before-save-hook 'delete-trailing-whitespace)
 #+end_src
 
 ** Treat CamelCaseWords as separate words in every programming mode
-
 #+begin_src emacs-lisp
   (add-hook 'prog-mode-hook 'subword-mode)
 #+end_src
 
 ** Always follow symlinks when opening files
-
 #+begin_src emacs-lisp
   (setq vc-follow-symlinks t)
 #+end_src
 
 ** Make executable file that starts with #!(shebang) upon saving
-
 #+begin_src emacs-lisp
   (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 #+end_src
 
 ** Avoid two spaces after periods.
-
 #+begin_src emacs-lisp
   (setq sentence-end-double-space nil)
 #+end_src
 
 ** Prompt for creation of parent directories on save
-
 #+begin_src emacs-lisp
   (add-hook 'before-save-hook
 	    (lambda ()
@@ -332,44 +309,41 @@ which speed up some operations.
 #+end_src
 
 ** Change highlighted area
-
 Apply changes to highlighted area, it works similar to replace mode for a visual selection
 but in emacs:
-- =transient-mark-mode= (enabled by default)
-- =delete-selection-mode= (disabled bye default)
 
+- =transient-mark-mode= (enabled by default)
 #+begin_src emacs-lisp
   (transient-mark-mode t)
+#+end_src
+
+- =delete-selection-mode= (disabled by default)
+#+begin_src emacs-lisp
   (delete-selection-mode t)
 #+end_src
 
 ** =require-final-newline=
-
 #+begin_src emacs-lisp
   (setq require-final-newline t)
 #+end_src
 
 ** Shorten confirmation
-
 #+begin_src emacs-lisp
   (fset 'yes-or-no-p 'y-or-n-p)
 #+end_src
 
 ** Always use syntax highlighting if possible
-
 #+begin_src emacs-lisp
   (global-font-lock-mode t)
 #+end_src
 
 ** Quiet start-up
-
 #+begin_src emacs-lisp
   (setq inhibit-startup-message t)
   (setq initial-scratch-message nil)
 #+end_src
 
 ** =ls= options
-
 | Option           | Meaning              |
 |------------------+----------------------|
 | -l               | long listing         |
@@ -382,47 +356,40 @@ but in emacs:
 #+end_src
 
 ** Refresh buffer when the file is changed
-
 #+begin_src emacs-lisp
   (global-auto-revert-mode t)
 #+end_src
 
 ** Visible bell instead of ringing
-
 #+begin_src emacs-lisp
   (setq visible-bell t)
 #+end_src
 
 ** MatchPairs
-
 #+begin_src emacs-lisp
   (show-paren-mode t)
   ;; (setq show-paren-delay 0.01)
 #+end_src
 
 ** Line length and lenght column
-
 #+begin_src emacs-lisp
   (setq-default fill-column 80)
   (global-display-fill-column-indicator-mode t)
 #+end_src
 
 ** Backup files
-
 #+begin_src emacs-lisp
   (setq backup-directory-alist '(("" . "~/.cache/emacs/backup")))
 #+end_src
 
 ** Better Escape
-
 #+begin_src emacs-lisp
   (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 #+end_src
-** Quickly visit Emacs configuration
 
+** Quickly visit Emacs configuration
 I futz around with my dotfiles a lot. This binds =C-c e= to quickly open my
 Emacs configuration file.
-
 #+begin_src emacs-lisp
   (defun mct/visit-emacs-config ()
     (interactive)
@@ -430,10 +397,11 @@ Emacs configuration file.
 
   (global-set-key (kbd "C-c e") 'mct/visit-emacs-config)
 #+end_src
+
 * Utilities Packages
+
 ** Company
 [[https://company-mode.github.io][=company=]] is a text completion framework for Emacs.
-
 #+begin_src emacs-lisp
   (use-package company
     :diminish company-mode
@@ -446,10 +414,24 @@ Emacs configuration file.
 
 ** Command Log Mode
 [[https://github.com/lewang/command-log-mode][=command-log-mode=]] show event history and command history of some or all buffers.
-
 #+begin_src emacs-lisp
   (use-package command-log-mode
     :diminish command-log)
+#+end_src
+
+** Helpful
+Look [[https://github.com/Wilfred/helpful][here ]]for the repository
+#+begin_src emacs-lisp
+  (use-package helpful
+    :custom
+    (counsel-describe-function-function #'helpful-callable)
+    (counsel-describe-variable-function #'helpful-variable)
+    :bind
+    ([remap describe-function] . counsel-describe-function)
+    ([remap describe-variable] . counsel-describe-variable)
+    ([remap describe-command] . helpful-command)
+    ([remap describe-key] . helpful-key)
+    ("C-c C-d" . #'helpful-at-point))
 #+end_src
 
 ** Ivy, Swiper and Counsel
@@ -458,7 +440,6 @@ Look [[https://github.com/abo-abo/swiper][here]] for the repository
 *** Ivy and Swiper
 =ivy= a generic completion mechanism for Emacs and =swiper= an Ivy enhanced
 alternative to isearch
-
 #+begin_src emacs-lisp
   (use-package ivy
     :diminish ivy-mode
@@ -502,7 +483,6 @@ alternative to isearch
 
 *** Counsel
 =counsel= a collection of Ivy-enhanced versions of common Emacs commands.
-
 #+begin_src emacs-lisp
   (use-package counsel
     :bind (("M-x" . counsel-M-x)
@@ -521,12 +501,14 @@ alternative to isearch
     ("C-c J" . counsel-file-jump)
     ("C-c L" . counsel-git-log)
     ("C-c m" . counsel-linux-app)
-    ("C-c O" . counsel-outline)))
+    ("C-c O" . counsel-outline))
+    :config
+    (setq counsel-ag-base-command "ag --hidden --vimgrep %s")
+    (setq counsel-rg-base-command "rg -M 240 --with-filename --no-heading --line-number --color never --hidden %s"))
 #+end_src
 
 *** Icon support for ivy
 [[https://github.com/seagle0128/all-the-icons-ivy-rich][=all-the-icons-ivy-rich= provides icons display for ivy]]
-
 #+begin_src emacs-lisp
   (use-package all-the-icons-ivy-rich
     :init
@@ -538,15 +520,84 @@ alternative to isearch
 The package current comes with support for ivy-switch-buffer, counsel-M-x,
 counsel-describe-function and counsel-describe-variable, but it should be
 easy enough to define your own transformers.
-
 #+begin_src emacs-lisp
   (use-package ivy-rich
     :after (ivy counsel)
     :init
     (ivy-rich-mode 1))
 #+end_src
-* Org
 
+** TODO Projectile
+Look [[https://github.com/bbatsov/projectile][here]] for the repository
+#+begin_src emacs-lisp
+  (use-package projectile
+    :diminish projectile-mode
+    :init
+    (when (file-directory-p "~/Documents/programming/projects")
+      (setq projectile-project-search-path '("~/Documents/programming/projects")))
+    (setq projectile-switch-project-action #'projectile-dired)
+    :custom ((projectile-completion-system 'ivy))
+    :bind-keymap
+    ("C-c p" . projectile-command-map)
+    :config
+    (projectile-mode))
+#+end_src
+
+*** Counsel-Projectile
+Look [[https://github.com/ericdanan/counsel-projectile][here]] for the repository
+#+begin_src emacs-lisp
+  (use-package counsel-projectile
+    :config (counsel-projectile-mode))
+#+end_src
+
+** MaGit
+Look [[https://github.com/maio/magit][here]] for the package repository or [[https://magit.vc][here]] for the site
+#+begin_src emacs-lisp
+  (use-package magit)
+#+end_src
+
+** Which-Key
+Look [[https://github.com/justbur/emacs-which-key][here]] for the repository
+#+begin_src emacs-lisp
+  (use-package which-key
+    :diminish which-key-mode
+    :init (which-key-mode)
+    :config
+    (setq which-key-idle-delay 0.9)
+    (setq which-key-sort-order 'which-key-prefix-then-key-order)
+    (setq which-key-use-C-h-commands t))
+#+end_src
+
+** TODO Hydra
+Look [[https://github.com/abo-abo/hydra][here]] for the repository
+#+begin_src emacs-lisp
+  (use-package hydra)
+
+  (defhydra hydra-text-scale (:timeout 4)
+    "scale text"
+    ("j" text-scale-increase "in")
+    ("k" text-scale-decrease "out")
+    ("a" text-scale-adjust "adjust")
+    ("f" nil "finished" :exit t))
+#+end_src
+
+** TODO General
+Look [[https://github.com/noctuid/general.el][here]] for the repository
+For now is only for remember, could be useful or deleted
+#+begin_src emacs-lisp
+  (use-package general
+    :config
+    (general-create-definer mct/leader-keys
+      :keymaps '(normal insert visual emacs)
+      :prefix "SPC"
+      :global-prefix "C-SPC")
+    (mct/leader-keys
+      "t"  '(:ignore t :which-key "toggles")
+      "tt" '(counsel-load-theme :which-key "choose theme")
+      "ts" '(hydra-text-scale/body :which-key "scale text")))
+#+end_src
+
+* Org
 #+begin_src emacs-lisp
   (defun mct/org-font-setup ()
     ;; Replace list hyphen with dot
@@ -563,7 +614,7 @@ easy enough to define your own transformers.
                     (org-level-6 . 1.05)
                     (org-level-7 . 1.05)
                     (org-level-8 . 1.05)))
-      (set-face-attribute (car face) nil :font "mononoki Nerd Font" :weight 'regular :height (cdr face)))
+      (set-face-attribute (car face) nil :font "Operator Mono Lig" :weight 'regular :height (cdr face)))
 
     ;; Ensure that anything that should be fixed-pitch in Org files appears that way
     (set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch)
@@ -653,12 +704,10 @@ easy enough to define your own transformers.
 #+end_src
 
 ** Exporting to PDF
-
 I want to produce PDFs with syntax highlighting in the code. The best way to do
 that seems to be with the =minted= package, but that package shells out to
 =pygments= to do the actual work. =pdflatex= usually disallows shell commands;
 this enables that.
-
 #+begin_src emacs-lisp
   (setq org-latex-pdf-process
         '("xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
@@ -667,13 +716,12 @@ this enables that.
 #+end_src
 
 Include the =minted= package in all of my LaTeX exports.
-
 #+begin_src emacs-lisp
   (add-to-list 'org-latex-packages-alist '("" "minted"))
   (setq org-latex-listings 'minted)
 #+end_src
-* Markdown
 
+* Markdown
 #+begin_src emacs-lisp
   (use-package markdown-mode
     :commands gfm-mode
