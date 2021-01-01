@@ -216,14 +216,6 @@ xmTreeSelectAction a = XMTS.treeselectAction a
             (spawn "xboard -fcp '\"${HOME}\"/Documents/chess/engines/stockfish12_modern' -fd '\"${HOME}\"/Documents/chess/engines' -fn 'Stockfish12' -fUCI")) []
         , Node (XMTS.TSNode "\62600 Vivaldi"            "A Browser For Our Friends"
             (spawn "vivaldi-stable")) []
-        , Node (XMTS.TSNode "\63685 WPS Presentation"   "Simplicity Creates Marvels"
-            (spawn "wpp")) []
-        , Node (XMTS.TSNode "\63685 WPS Pdf"            "Simplicity Creates Marvels"
-            (spawn "wpspdf")) []
-        , Node (XMTS.TSNode "\63685 WPS Spreadsheets"   "Simplicity Creates Marvels"
-            (spawn "et")) []
-        , Node (XMTS.TSNode "\63685 WPS Writer"         "Simplicity Creates Marvels"
-            (spawn "wps")) []
         ]
     , Node (XMTS.TSNode "Shell Scripts" "Useful or commont scripts" (return ()))
         [ Node (XMTS.TSNode "Manual Printing" "dmenu and man together"
@@ -302,6 +294,22 @@ xmTreeSelectAction a = XMTS.treeselectAction a
             (spawn "st nvim \"${XDG_CONFIG_HOME}\"/nvim/init.vim")) []
         , Node (XMTS.TSNode "XMonad" "Xmonad config file"
             (spawn "st nvim \"${XDG_CONFIG_HOME}\"/xmonad/xmonad.hs")) []
+        , Node (XMTS.TSNode "XMobar" "Xmobar config file"
+            (spawn "st nvim \"${XDG_CONFIG_HOME}\"/xmobar/xmobar.hs")) []
+        , Node (XMTS.TSNode "Xprofile" "Startup applications and settings"
+            (spawn "st nvim \"${XDG_CONFIG_HOME}\"/X11/xprofile")) []
+        , Node (XMTS.TSNode ".zlogin" "Zshell login script"
+            (spawn "st nvim \"${XDG_CONFIG_HOME}\"/.config/zsh/.zlogin")) []
+        , Node (XMTS.TSNode "Shell Environment" "Environmental variables and path"
+            (spawn "st nvim \"${XDG_CONFIG_HOME}\"/.zshenv")) []
+        , Node (XMTS.TSNode "Zsh Configuration" "ZShell configuration (uses OMZ)"
+            (spawn "st nvim \"${XDG_CONFIG_HOME}\"/zsh/.zshrc")) []
+        , Node (XMTS.TSNode "Shell Alias" "My Shell aliases plugged into zsh"
+            (spawn "st nvim \"${XDG_CONFIG_HOME}\"/zsh/lib/my_aliases.zsh")) []
+        , Node (XMTS.TSNode "Shell Functions" "My Shell functions plugged into zsh"
+            (spawn "st nvim \"${XDG_CONFIG_HOME}\"/zsh/lib/my_functions.zsh")) []
+        , Node (XMTS.TSNode "ZShell Keybindings" "Zsh Vi keybindins and zle"
+            (spawn "st nvim \"${XDG_CONFIG_HOME}\"/zsh/lib/key-bindings.zsh")) []
         ]
     , Node (XMTS.TSNode "Multimedia Control" "mpc and mpv" (return ()))
         [ Node (XMTS.TSNode "Mpc Prev" ""

@@ -2,6 +2,9 @@
 	name = Marco Cantoro
 	email = marco.cantoro92@outlook.it
 
+[github]
+	user = CantoroMC
+
 [core]
 	editor = nvim
 	pager = diff-so-fancy | less --tabs=4 -RFX
