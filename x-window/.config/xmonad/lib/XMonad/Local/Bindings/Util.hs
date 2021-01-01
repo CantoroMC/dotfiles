@@ -219,9 +219,9 @@ xmTreeSelectAction a = XMTS.treeselectAction a
         ]
     , Node (XMTS.TSNode "Shell Scripts" "Useful or commont scripts" (return ()))
         [ Node (XMTS.TSNode "Manual Printing" "dmenu and man together"
-            (spawn "demu_man")) []
+            (spawn "dmenu_man")) []
         , Node (XMTS.TSNode "Dmenu Todo" "fast todo list"
-            (spawn "demu_todo")) []
+            (spawn "dmenu_todo")) []
         , Node (XMTS.TSNode "Book search" "Browse all my pdf"
             (spawn "book-search")) []
         , Node (XMTS.TSNode "Web search" "Web searching through rofi"
