@@ -156,9 +156,17 @@ if whence fzf &>/dev/null; then
     --min-height=15
     --ansi
     --layout=reverse
-    --multi --info=inline
-    --color=fg:#B8CC52,bg:#151a1e,hl:#B8CC52,fg+:#95E6CB,bg+:#000000,hl+:#fff779,info:#f29718,prompt:#36A3D9,spinner:#fff779,pointer:#FF3333,border:#A37ACC,marker:#B8CC52,header:#B8CC52,preview-fg:#FFFFFF
+    --multi
+    --info=inline
     '
+  # Ayu Dark
+  export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+   --color=fg:-1,bg:-1,hl:#68d5ff
+   --color=fg+:#36a3d9,bg+:#3f4e5a,hl+:#eafe84
+   --color=info:#68d5ff,prompt:#36a3d9,pointer:#c7fffd
+   --color=marker:#ff3333,spinner:#ff3333,header:#eafe84
+   --color=preview-fg:-1,preview-bg:-1
+  '
 fi
 
 # Bibtex
