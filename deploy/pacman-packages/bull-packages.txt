@@ -2,6 +2,7 @@ abook
 alacritty
 bat
 biber
+calibre
 cmus
 ctags
 diff-so-fancy
