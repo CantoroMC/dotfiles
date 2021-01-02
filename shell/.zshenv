@@ -98,26 +98,16 @@ export ZLS_COLORS LS_COLORS
 # }}}
 
 # Language/Programs Specifics {{{1
-
 export ADDRESSES="$HOME/Documents/organization/contacts/addressbook"
-export DOTFILES="$HOME"/dotfiles
-
-# Required by i3-sensible-terminal and rofi-sensible terminal
-export TERMINAL='/usr/local/bin/st'
-
-# Xmobar variable
 export BACKGROUND_COLOR="dark"
-
-# Mpc, Mpd and NcmpCpp
+export DOTFILES="$HOME"/dotfiles
 export MPC_FORMAT="[[%artist%  - ]%title% (%time%)]|[%file%]"
 export MPD_HOST=$HOME/.config/mpd/socket
-
-# Ranger
 export RANGER_LOAD_DEFAULT_RC="FALSE"
+export TERMINAL='/usr/local/bin/st'
 
 # OpenFOAM
 export FOAM_INST_DIR='/usr/local/OpenFOAM'
-
 # TexMf Trees and Kpathsea
 export TEXMFDIST="/usr/share/texmf-dist"
 export TEXMFLOCAL="/usr/share/texmf"
@@ -126,7 +116,6 @@ export TEXMFSYSCONFIG="/etc/texmf/"
 export TEXMFHOME="$XDG_DATA_HOME/texmf"
 export TEXMFVAR="$XDG_CONFIG_HOME/texlive/texmf-var"
 export TEXMFCONFIG="$XDG_CONFIG_HOME/texlive/texmf-config"
-
 # Ruby
 export GEM_HOME="$XDG_DATA_HOME"/gem
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
@@ -136,7 +125,6 @@ export GOPATH="$XDG_DATA_HOME/go"
 export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
 export PYLINTHOME="$XDG_CACHE_HOME"/pylint
-
 # }}}
 
 # Path {{{1
