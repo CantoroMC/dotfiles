@@ -1,0 +1,3 @@
+https://archive.archlinux.org/packages/g/ghc/ghc-8.10.2-1-x86_64.pkg.tar.zst
+https://archive.archlinux.org/packages/g/ghc/ghc-libs-8.10.2-1-x86_64.pkg.tar.zst
+https://archive.archlinux.org/packages/g/ghc/ghc-static-8.10.2-1-x86_64.pkg.tar.zst

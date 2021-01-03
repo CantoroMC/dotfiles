@@ -1,0 +1,12 @@
+* Programs and Utilities for X
+
+** Suckless Programs
+- dmenu: suckless dmenu
+- st: suckless simple terminal
+
+** XMenu
+- xmenu: a menu utility for X
+- xdg-xmenu: shell script for xmenu
+
+** Other Utilities
+- grub theme

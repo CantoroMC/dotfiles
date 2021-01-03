@@ -16,5 +16,3 @@ python-ueberzug
 ruby-docs
 ruby-rake
 ruby-rdoc
-ghc
-ghc-static
