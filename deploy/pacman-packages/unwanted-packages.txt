@@ -1,5 +1,7 @@
 dmenu
 i3status
+i3blocks
+i3-gaps
 nitrogen
 galculator
 xed

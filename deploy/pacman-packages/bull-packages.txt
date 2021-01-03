@@ -1,5 +1,4 @@
 abook
-alacritty
 bat
 biber
 calibre
@@ -10,6 +9,7 @@ easytag
 emacs
 evince
 github-cli
+kitty
 mpc
 mpd
 mpv
