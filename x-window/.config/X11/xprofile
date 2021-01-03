@@ -6,6 +6,8 @@ userresources=$XDG_CONFIG_HOME/X11/xinit/.Xresources
 
 [ -f $sysresources ] && xrdb -merge "$sysresources"
 [ -f "$userresources" ] && xrdb -merge "$userresources"
+[ $BACKGROUND_COLOR = 'light' ] && xrdb -merge ~/.config/X11/xinit/.XresourcesLightPalette
+[ $BACKGROUND_COLOR = 'dark' ] && xrdb -merge ~/.config/X11/xinit/.XresourcesDarkPalette
 # }}}
 
 # Xmodmap {{{2
@@ -71,7 +73,7 @@ nm-applet &
 blueberry-tray &
 
 # System Clipboard
-qlipper &
+parcellite &
 # }}}
 
 # Screen configuration and wallpaper {{{2

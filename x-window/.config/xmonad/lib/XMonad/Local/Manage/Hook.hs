@@ -80,6 +80,7 @@ manageFloatings = composeAll $
                           , "MPlayer"
                           , "Nitrogen"
                           , "ParaView"
+                          , "Parcellite"
                           , "Pavucontrol"
                           , "qv4l2"
                           , "qvidcap"

@@ -1,0 +1,25 @@
+*background:                      #151a1e
+*foreground:                      #eaeaea
+*cursorColor:                     #95E6CB
+*pointerColorBackground:          #232b32
+*pointerColorForeground:          #465764
+*fadeColor:                       black
+
+*color0:                          #151a1e
+*color8:                          #3f4e5a
+*color1:                          #ff3333
+*color9:                          #ff7733
+*color2:                          #b8cc52
+*color10:                         #eafe84
+*color3:                          #e7c547
+*color11:                         #fff779
+*color4:                          #36a3d9
+*color12:                         #68d5ff
+*color5:                          #f07178
+*color13:                         #ffa3aa
+*color6:                          #95e6cb
+*color14:                         #c7fffd
+*color7:                          #eaeaea
+*color15:                         #fafafa
+
+!! vim:ft=xdefaults:fdm=marker:ts=2:sts=2:et:sw=2:sr:tw=0:cms=!!\ %s

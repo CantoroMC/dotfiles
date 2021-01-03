@@ -35,7 +35,7 @@ unset config_file
   source "$HOME/.local/share/nvim/plugged/fzf/shell/completion.zsh" 2>/dev/null
 source "$HOME/.local/share/nvim/plugged/fzf/shell/key-bindings.zsh"
 
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=200'
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=12'
 
 user_plugs=(
   timer
