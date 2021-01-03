@@ -41,6 +41,7 @@
 	lolD = log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'
 	lolS = log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --stat
 	ld = "!sh -c \"git log --since '${1:-1} days ago' --oneline --author $(git config user.email)\" -"
+	st = status
 	sts = status -sb
 	stl = ls-files -m -o --exclude-standard
 	fg = ls-files | grep
