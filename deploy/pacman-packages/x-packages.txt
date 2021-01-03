@@ -17,6 +17,7 @@ xautolock
 xdotool
 xorg-xev
 xorg-xmessage
+xorg-xsetroot
 xorg-xwininfo
 xclip
 xsel
