@@ -1,4 +1,5 @@
 #!/bin/sh
+dbus-launch --auto-syntax
 
 # Load xprofile {{{1
 sysprofile=/etc/xprofile
@@ -23,7 +24,6 @@ DEFAULT_SESSION=xmonad
 get_session(){
   # local dbus_args=(--sh-syntax --exit-with-session)
   # echo "dbus-launch ${dbus_args[*]}"
-
   local init
   case $1 in
     awesome) init+=(awesome) ;;

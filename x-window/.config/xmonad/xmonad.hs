@@ -2,7 +2,8 @@ import           XMonad
 import           XMonad.Hooks.EwmhDesktops      ( ewmh )
 import           XMonad.Hooks.ManageDocks       ( docks )
 
-
+-- import           System.Taffybar.Support.PagerHints
+                                                -- ( pagerHints )
 
 import qualified XMonad.Local.Config.Theme     as XMTheme
 import           XMonad.Local.Config.Workspace  ( xmWorkspaces )
@@ -25,8 +26,6 @@ import           XMonad.Local.Bindings.Bind     ( mapBindings
 import           XMonad.Local.Bindings.Keys     ( xmKeys )
 import           XMonad.Local.Bindings.Mouse    ( xmMouseBindings )
 
-
-
 main :: IO ()
 main = do
   xmproc <- spawnXMobar
@@ -47,5 +46,10 @@ main = do
               , layoutHook         = xmLayoutHook
               }
       xmConf =
-        storeBindings explainableBindings . docks . applyUrgencyHook . ewmh $ c
+        storeBindings explainableBindings
+          . docks
+          . applyUrgencyHook
+          . ewmh
+          $ c
+          -- $ pagerHints c
   xmonad xmConf
