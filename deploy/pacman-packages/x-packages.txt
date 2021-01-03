@@ -3,12 +3,14 @@ bc
 bluez
 bluez-utils
 blueberry
+pulsemixer
 lynx
 pacman-contrib
 stalonetray
 unrar
 unzip
 zip
+i3lock
 wmctrl
 xarchiver
 xautolock
