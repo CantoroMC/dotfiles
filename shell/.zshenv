@@ -34,12 +34,6 @@ else
   export EDITOR='/usr/bin/vi'
 fi
 
-if [ -n "$DISPLAY" ]; then
-  export BROWSER='/usr/bin/vivaldi-stable'
-else
-  export BROWSER='/usr/bin/lynx'
-fi
-
 if whence $HOME/.local/bin/dmenu_askpass &>/dev/null; then
   export SUDO_ASKPASS="$HOME/.local/bin/dmenu_askpass"
 fi
@@ -60,6 +54,7 @@ export LESS=-r
 # }}}
 
 export ARCHFLAGS="-arch x86_64"
+export BROWSER='/usr/bin/vivaldi-stable'
 export EMAIL='marco.cantoro92@outlook.it'
 export NAME='Marco Cantoro'
 export PAGER='less'
