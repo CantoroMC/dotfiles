@@ -6,8 +6,8 @@ userresources=$XDG_CONFIG_HOME/X11/xinit/.Xresources
 
 [ -f $sysresources ] && xrdb -merge "$sysresources"
 [ -f "$userresources" ] && xrdb -merge "$userresources"
-[ $BACKGROUND_COLOR = 'light' ] && xrdb -merge ~/.config/X11/xinit/.XresourcesLightPalette
-[ $BACKGROUND_COLOR = 'dark' ] && xrdb -merge ~/.config/X11/xinit/.XresourcesDarkPalette
+[ $BACKGROUND_COLOR = 'light' ] && xrdb -merge ~/.config/X11/xinit/.Xresources_light
+[ $BACKGROUND_COLOR = 'dark' ] && xrdb -merge ~/.config/X11/xinit/.Xresources_dark
 # }}}
 
 # Xmodmap {{{2
@@ -45,6 +45,13 @@ xset r rate 400 30 &
 # }}}
 
 # Start Programs {{{1
+
+# Start a session bus instance of dbus-daemon.
+if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
+    ## if not found, launch a new one
+    eval `dbus-launch --auto-syntax`
+    echo "D-Bus per-session daemon address is: $DBUS_SESSION_BUS_ADDRESS"
+fi
 
 # Get Auth Work With Polkit-gnome
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &

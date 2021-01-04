@@ -1,29 +1,26 @@
 #!/bin/sh
-dbus-launch --auto-syntax
 
-# Load xprofile {{{1
+DEFAULT_SESSION=xmonad
+
+
+# Load xprofile
 sysprofile=/etc/xprofile
-userprofile=$XDG_CONFIG_HOME/X11/xprofile
+[ "$#" -eq 0 ] && userprofile=$XDG_CONFIG_HOME/X11/xprofile_$DEFAULT_SESSION
+[ "$#" -eq 1 ] && userprofile=$XDG_CONFIG_HOME/X11/xprofile_$1
 
 [ -f $sysprofile ] && . "$sysprofile"
 [ -f "$userprofile" ] && . "$userprofile"
-# }}}
 
-# start some nice programs {{{1
+# start some nice programs
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
     for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
         [ -x "$f" ] && . "$f"
     done
     unset f
 fi
-# }}}
 
-# Desktop Environment or Window Manager {{{1
-
-DEFAULT_SESSION=xmonad
+# Desktop Environment or Window Manager
 get_session(){
-  # local dbus_args=(--sh-syntax --exit-with-session)
-  # echo "dbus-launch ${dbus_args[*]}"
   local init
   case $1 in
     awesome) init+=(awesome) ;;
@@ -51,6 +48,3 @@ get_session(){
 }
 
 exec $(get_session "$1")
-# }}}
-
-# vim:fdm=marker
