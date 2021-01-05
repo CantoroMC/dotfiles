@@ -46,3 +46,31 @@ Configuration
 -------------
 The configuration of dwm is done by creating a custom config.h
 and (re)compiling the source code.
+
+Applied patches
+---------------
+- focusmaster
+- movestack
+- smfactor
+- pertag
+- shiftview and shifttag
+- moveresize (move float)
+- center (initial position for floating windows)
+- save_floats
+- fakefullscreen
+- noborder
+- focusonclick
+
+- resetlayout
+- cyclelayouts
+- bottomstack
+- threecolumns
+- tatami
+- tab
+- fullgap
+- deck with gaps
+
+- systray
+- statusbutton
+- layoutmenu
+- clientindicators

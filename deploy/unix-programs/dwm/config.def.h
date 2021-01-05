@@ -1,5 +1,5 @@
 // Appearance
-static const unsigned int borderpx       = 1;            /* border pixel of windows */
+static const unsigned int borderpx       = 2;            /* border pixel of windows */
 static const unsigned int snap           = 24;           /* snap pixel */
 static const Gap default_gap             = {.isgap = 1, .realgap = 0, .gappx = 0};
 static const int showbar                 = 1;            /* 0 means no bar */
@@ -18,7 +18,8 @@ enum showtab_modes { showtab_never, showtab_auto, showtab_nmodes, showtab_always
 static const int showtab                 = showtab_auto; /* Default tab bar show mode */
 static const Bool toptab                 = True;        /* False means bottom tab bar */
 static const char *fonts[]               = {
-	"Operator Mono Book:size=12.0"
+	"Operator Mono Lig Book:size=10.0",
+	"FiraCode Nerd Font Book:size=10.0",
 };
 static const char norm_bg[]              = "#151a1e";
 static const char norm_border[]          = "#151a1e";
