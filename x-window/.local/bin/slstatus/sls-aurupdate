@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# AUR
+nr_pacup=$(yay -Qu | wc -l)
+
+[ "$nr_pacup" -eq 0 ] && echo " "
+[ "$nr_pacup" -gt 0 ] && echo " $nr_pacup"
+
+exit 0

@@ -63,8 +63,8 @@ alias cfg-zsh="$EDITOR $ZDOTDIR/.zshrc"
 # X
 alias cfg-xinit="$EDITOR $XDG_CONFIG_HOME/X11/xinitrc"
 alias cfg-xres="$EDITOR $XDG_CONFIG_HOME/X11/xinit/.Xresources"
-alias cfg-xprof="$EDITOR $XDG_CONFIG_HOME/X11/xprofile"
-alias cfg-xerr="$EDITOR $HOME/.xsession-errors"
+alias cfg-xprof-dwm="$EDITOR $XDG_CONFIG_HOME/X11/xprofile_dwm"
+alias cfg-xprof-xmonad="$EDITOR $XDG_CONFIG_HOME/X11/xprofile_xmonad"
 
 alias cfg-xmon="$EDITOR $XDG_CONFIG_HOME/xmonad/xmonad.hs"
 alias cfg-xmobtop="$EDITOR $XDG_CONFIG_HOME/xmobar/xmobar.hs"
