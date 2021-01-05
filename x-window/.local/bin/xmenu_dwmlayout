@@ -1,0 +1,11 @@
+#!/bin/sh
+
+cat <<EOF | xmenu
+[]= Tiled	0
+[D] Deck	1
+TTT Bottom Stack	2
+>>= Floating	3
+|+| Tatami	4
+||| Three Columns	5
+[M] Monocle	6
+EOF

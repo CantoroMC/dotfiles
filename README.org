@@ -181,14 +181,20 @@ Now you re ready to go!
   sudo systemctl start bluetooth.service
 #+end_src
 
-** Audio device and Mpd
+** Audio device
 Check audio-device and drivers and create modprobe
 #+begin_src sh
   lspci -knn|grep -iA2 audio
   sudo touch /etc/modprobe.d/default.conf
   echo "options snd_hda_intel index=1" | sudo tee -a /etc/modprobe.d/default.conf
 #+end_src
-Reboot and check the audio with =speaker-test -c2=
+check the audio with =speaker-test -c2= after reboot
+
+In order to load /dev/mixer for slstatus
+#+begin_src sh
+  sudo touch /etc/modules-load.d/modules.conf
+  echo "snd_pcm_oss" | sudo tee -a /etc/modules-load.d/modules.conf
+#+end_src
 
 ** Swappiness
 Reduce the swappiness for better to improve system responsiveness

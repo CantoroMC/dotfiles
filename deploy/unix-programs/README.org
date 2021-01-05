@@ -3,6 +3,7 @@
 ** Suckless Programs
 - dmenu: suckless dmenu
 - st: suckless simple terminal
+- dwm: "dynamic" window manager
 
 ** XMenu
 - xmenu: a menu utility for X

@@ -70,6 +70,7 @@ picom -cC &
 # }}}
 
 # System Tray {{{2
+slstatus 2>&1 >/dev/null &
 # Network manager-applet
 nm-applet &
 
