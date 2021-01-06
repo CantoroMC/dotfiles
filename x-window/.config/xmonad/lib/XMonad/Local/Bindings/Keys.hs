@@ -125,6 +125,9 @@ xmKeys mask = do
       |/- "float and center the focused window"
         ^> withFocused $ windows . flip XMSS.float xmBigRect
     bind $ mask ... xK_a
+      |/- "spawn default terminal"
+        ^> spawn =<< terminalFromConf
+    bind $ mask .|. shiftMask ... xK_a
       |/- "spawn xmonad tree selection menu"
         ^> xmTreeSelectAction xmTreeSelectConfig
     bind $ mask ... xK_s
