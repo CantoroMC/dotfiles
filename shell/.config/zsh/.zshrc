@@ -50,7 +50,7 @@ done
 # }}}
 
 # Theme {{{2
-autoload -Uz promptinit; promptinit; prompt bull
+autoload -Uz promptinit; promptinit; prompt bull blue white green
 # }}}
 
 # Completion for kitty
