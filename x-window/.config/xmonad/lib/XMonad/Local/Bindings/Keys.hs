@@ -169,11 +169,11 @@ xmKeys mask = do
       |/- "spawn terminal scratchpad"
         ^> namedScratchpadAction xmScratchpads "yakuake"
     bind $ mask ... xK_u
+      |/- "spawn dmenu"
+        ^> spawn "dmenu_run"
+    bind $ mask .|. shiftMask... xK_u
       |/- "spawn rofi"
         ^> spawn "rofi -modi drun,run,combi -show combi"
-    bind $ mask .|. shiftMask ... xK_u
-      |/- "spawn dmenu"
-        ^> spawn "dmenu_run_timed"
     bind $ mask .|. controlMask ... xK_u
       |/- "spawn xmenu-apps"
         ^> spawn "xmenu-apps"
