@@ -5,6 +5,5 @@ latex-enumitem
 ttf-font-awesome-4
 imagewriter
 polyglot-winboard-git
-qlipper
 radiotray-ng
 onlyoffice-bin
