@@ -3,6 +3,7 @@ bc
 bluez
 bluez-utils
 blueberry
+man-db
 pulsemixer
 lynx
 pacman-contrib
@@ -15,6 +16,7 @@ wmctrl
 xarchiver
 xautolock
 xdotool
+xorg-mkfontscale
 xorg-xev
 xorg-xmessage
 xorg-xsetroot

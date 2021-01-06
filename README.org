@@ -10,8 +10,7 @@
 ** Update packages and retrieve the latest Pacman mirrorlist
    #+begin_src sh
      sudo pacman -Syu
-     yay -Su
-     reflector --protocol http,https --fastest 5 --latest 100 --age 24 --country Italy,France,German,Spain,Switzerland --save /etc/pacman.d/mirrorlist
+     sudo reflector --protocol http,https --fastest 5 --latest 100 --age 24 --country Italy,France,German,Spain,Switzerland --save /etc/pacman.d/mirrorlist
    #+end_src
 
 ** Installing packages with pacman:

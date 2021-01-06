@@ -13,6 +13,7 @@ kitty
 mpc
 mpd
 mpv
+neofetch
 neomutt
 ncmpcpp
 ranger
