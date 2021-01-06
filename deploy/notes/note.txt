@@ -1,2 +1,2 @@
 usermod -aG
-wheel,audio,video,sys,log,floppy,network,scanner,power,lp,optical,storage,users,rfkill cantoro
+wheel,audio,video,sys,log,floppy,network,scanner,power,adm,lp,optical,storage,users,rfkill cantoro
