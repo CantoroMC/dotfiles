@@ -149,7 +149,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask|ControlMask, XK_s,            setgaps,        {.i = GAP_TOGGLE} },
 	// Emacs and Nautilus
 	{ MODKEY,                       XK_d,            spawn,          SHCMD("emacs") },
-	{ MODKEY|ShiftMask,             XK_f,            spawn,          SHCMD("nautilus") },
+	{ MODKEY|ShiftMask,             XK_d,            spawn,          SHCMD("nautilus") },
 
 	{ MODKEY,                       XK_f,            spawn,          {.v = browsercmd } },
 	{ MODKEY,                       XK_b,            togglebar,      {0} },
