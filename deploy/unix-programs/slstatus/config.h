@@ -50,9 +50,6 @@ static const char unknown_str[] = "n/a";
 
 static const struct arg args[] = {
 	/* function          format        argument */
-	{ run_command,       "%s",         "sls-pacupdate" },
-	{ run_command,       "%s",         "sls-aurupdate" },
-	{ separator,         " | ",        NULL },
 	{ netspeed_rx,       " %sﯲ ",     "wlan0" },
 	{ netspeed_tx,       "%sﯴ B/s",    "wlan0" },
 	{ separator,         " | ",        NULL },
@@ -71,9 +68,9 @@ static const struct arg args[] = {
 	{ separator,         " | ",        NULL },
 	{ run_command,       "%s",         "sls-volume" },
 	{ separator,         " | ",        NULL },
-	{ battery_state,     " %s",       "BAT0" },
-	{ battery_perc,      "%s%%",       "BAT0" },
-	{ battery_remaining, "%s",         "BAT0" },
+	{ battery_perc,      " %s%%",     "BAT0" },
+	{ battery_state,     " (%s",       "BAT0" },
+	{ battery_remaining, "%s)",        "BAT0" },
 	{ separator,         " | ",        NULL },
 	{ datetime,          "%s",         "%T %a%e %b" },
 };

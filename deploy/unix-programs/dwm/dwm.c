@@ -2172,7 +2172,7 @@ setsmfact(const Arg *arg) {
 	if(!arg || !selmon->lt[selmon->sellt]->arrange)
 		return;
 	sf = arg->sf < 1.0 ? arg->sf + selmon->smfact : arg->sf - 1.0;
-	if(sf < 0 || sf > 0.9)
+	if (sf < 0 || sf > 0.9)
 		return;
 	selmon->smfact = sf;
 	arrange(selmon);
@@ -2660,11 +2660,11 @@ tile(Monitor *m)
 				my += HEIGHT(c) + m->gap->gappx;
 		} else {
 			smh = m->mh * m->smfact;
-			if(!(nexttiled(c->next)))
+			if (!(nexttiled(c->next)))
 				h = (m->wh - ty) / (n - i) - m->gap->gappx;
 			else
 				h = (m->wh - smh - ty) / (n - i) - m->gap->gappx;
-			if(h < minwsz) {
+			if (h < minwsz) {
 				c->isfloating = True;
 				XRaiseWindow(dpy, c->win);
 				resize(c, m->mx + (m->mw / 2 - WIDTH(c) / 2) + m->gap->gappx, m->my + (m->mh / 2 - HEIGHT(c) / 2), m->ww - mw - (2*c->bw) - 2*m->gap->gappx, h - (2*c->bw), False);
