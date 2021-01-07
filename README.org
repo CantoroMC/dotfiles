@@ -232,7 +232,7 @@ Now you re ready to go!
 * Note
 
 ** OpenFOAM: download from github and compile it
-( requires AUR scotch-git and base cgal )
+( requires AUR scotch-git and base cgal and paraview )
 
 ** Matlab
 can be installed by donwloading it and run the installer with administrator privileges

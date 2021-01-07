@@ -107,25 +107,25 @@ unsigned int tabspaces = 2;
 
 // Terminal colors
 static const char *palettes[][256] = {
-	{   // Suckless default
+	{   // Simple Dark
 		/* 8 normal colors */
-		[0]  = "black",    /* black   */
-		[1]  = "red3",     /* red     */
-		[2]  = "green3",   /* green   */
-		[3]  = "yellow3",  /* yellow  */
-		[4]  = "blue2",    /* blue    */
-		[5]  = "magenta3", /* magenta */
-		[6]  = "cyan3",    /* cyan    */
-		[7]  = "gray90",   /* white   */
-		/* 8 bright colors */
-		[8]  = "gray50",   /* black   */
-		[9]  = "red",      /* red     */
-		[10] = "green",    /* green   */
-		[11] = "yellow",   /* yellow  */
-		[12] = "#5c5cff",  /* blue    */
-		[13] = "magenta",  /* magenta */
-		[14] = "cyan",     /* cyan    */
-		[15] = "white",    /* white   */
+		[0]  = "#223", /* black   */
+		[1]  = "#900", /* red     */
+		[2]  = "#080", /* green   */
+		[3]  = "#fe7", /* yellow  */
+		[4]  = "#35e", /* blue    */
+		[5]  = "#fc5", /* magenta */
+		[6]  = "#18e", /* cyan    */
+		[7]  = "#aaa", /* white   */
+		/* 8 bright colors  */
+		[8]  = "#666", /* black   */
+		[9]  = "#f25", /* red     */
+		[10] = "#0b0", /* green   */
+		[11] = "#ff6", /* yellow  */
+		[12] = "#46f", /* blue    */
+		[13] = "#d6a", /* magenta */
+		[14] = "#6bf", /* cyan    */
+		[15] = "#ddd", /* white   */
 
 		[255] = 0,
 	},
@@ -148,6 +148,28 @@ static const char *palettes[][256] = {
 		[13] = "#ffa3aa", /* magenta */
 		[14] = "#7ff1cb", /* cyan    */
 		[15] = "#323232", /* white   */
+
+		[255] = 0,
+	},
+	{   // Suckless default
+		/* 8 normal colors */
+		[0]  = "black",    /* black   */
+		[1]  = "red3",     /* red     */
+		[2]  = "green3",   /* green   */
+		[3]  = "yellow3",  /* yellow  */
+		[4]  = "blue2",    /* blue    */
+		[5]  = "magenta3", /* magenta */
+		[6]  = "cyan3",    /* cyan    */
+		[7]  = "gray90",   /* white   */
+		/* 8 bright colors */
+		[8]  = "gray50",   /* black   */
+		[9]  = "red",      /* red     */
+		[10] = "green",    /* green   */
+		[11] = "yellow",   /* yellow  */
+		[12] = "#5c5cff",  /* blue    */
+		[13] = "magenta",  /* magenta */
+		[14] = "cyan",     /* cyan    */
+		[15] = "white",    /* white   */
 
 		[255] = 0,
 	},
@@ -192,28 +214,6 @@ static const char *palettes[][256] = {
 		[13] = "#ffa3aa", /* magenta */
 		[14] = "#c7fffd", /* cyan    */
 		[15] = "#fafafa", /* white   */
-
-		[255] = 0,
-	},
-	{   // Simple Dark
-		/* 8 normal colors */
-		[0]  = "#223", /* black   */
-		[1]  = "#900", /* red     */
-		[2]  = "#080", /* green   */
-		[3]  = "#fe7", /* yellow  */
-		[4]  = "#35e", /* blue    */
-		[5]  = "#fc5", /* magenta */
-		[6]  = "#18e", /* cyan    */
-		[7]  = "#aaa", /* white   */
-		/* 8 bright colors  */
-		[8]  = "#666", /* black   */
-		[9]  = "#f25", /* red     */
-		[10] = "#0b0", /* green   */
-		[11] = "#ff6", /* yellow  */
-		[12] = "#46f", /* blue    */
-		[13] = "#d6a", /* magenta */
-		[14] = "#6bf", /* cyan    */
-		[15] = "#ddd", /* white   */
 
 		[255] = 0,
 	},
@@ -295,7 +295,7 @@ static unsigned int defaultcs = 15;
 static unsigned int defaultrcs = 3;
 
 // background opacity
-float alpha = 0.88;
+float alpha = 1.00;
 
 
 /*

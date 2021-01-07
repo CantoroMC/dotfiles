@@ -11,6 +11,7 @@ endif
 let g:airline_symbols.branch = ''
 let g:airline_symbols.linenr = '⭡'
 let g:airline_symbols.dirty  = ' '
+let g:airline_symbols.maxlinenr = ''
 
 let g:airline#parts#ffenc#skip_expected_string = 'utf-8[unix]'
 
