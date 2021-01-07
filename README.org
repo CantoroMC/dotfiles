@@ -19,7 +19,6 @@
      sudo pacman -S --needed - < ~/dotfiles/deploy/pacman-packages/gtk-packages.txt
      sudo pacman -S --needed - < ~/dotfiles/deploy/pacman-packages/x-packages.txt
      sudo pacman -S --needed - < ~/dotfiles/deploy/pacman-packages/programming-packages.txt
-     sudo pacman -U - < ~/dotfiles/deploy/pacman-packages/ghcAla.txt
      sudo pacman -S --noconfirm --needed --asdeps - < ~/dotfiles/deploy/pacman-packages/dependent-packages.txt
    #+end_src
    Also, programs in =./deploy/unix-programs= can be installed.

@@ -1,0 +1,128 @@
+* ArchLinux Installation in a NutShell
+
+** Phase I: Installation
+*** disk partitioning
+Partition the disk with =cfdisk=
+
+*** Connect to the internet
+#+begin_src shell
+  iwctl
+  station wlan0 connect ...
+#+end_src
+
+*** Update the system clock
+#+begin_src shell
+  timedatectl set-ntp true
+  timedatectl status
+#+end_src
+
+*** Format the partitions
+#+begin_src shell
+  mkfs.ext4 /dev/<root>
+  mkswap /dev/<swap>
+#+end_src
+
+*** Mount the filesystem
+#+begin_src shell
+  mount /dev/<root> /mnt
+#+end_src
+
+and enable the swap volume
+#+begin_src shell
+  swapon /dev/<swap>
+#+end_src
+
+*** Install essential packages
+#+begin_src shell
+  pacstrap /mnt base base-devel linux linux-firmware vi nano git zsh
+#+end_src
+
+** Phase II: Configuring the system
+
+*** Fstab
+#+begin_src shell
+  genfstab -U /mnt >> /mnt/etc/fstab
+#+end_src
+
+*** Chroot in the installed arch linux
+#+begin_src shell
+  arch-chroot /mnt
+#+end_src
+
+*** Timezone
+Set the time zone and run hwclock to generate /etc/adjtime
+#+begin_src shell
+  ln -sf /usr/share/zoneinfo/Europe/Rome /etc/localtime
+  hwclock --systohc
+#+end_src
+
+*** Localization
+Edit /etc/locale.gen and uncommented needed locales
+(en_US.UTF-8 UTF-8 and it_IT.UTF-8 UTF-8). And the generate locales by
+#+begin_src shell
+  locale-gen
+#+end_src
+
+Create =/etc/locale.conf= and =/etc/vconsole.conf=
+
+*** Network configuration
+
+**** Hostname
+Create the hostname file =/etc/hostname= containing the host name.
+Add matching entries to =/etc/hosts=
+#+begin_src config
+  127.0.0.1    localhost
+  ::1          localhost
+  127.0.0.1    HOSTNAME.localdomain    HOSTNAME
+#+end_src
+
+**** Install remaing packages
+They contain also network management softwares, grub ...
+Look at =./packages/*=
+
+*** Root password with =passwd=
+
+*** Boot loader
+Install a boot loader (grub)
+#+begin_src shell
+  grub-install --target=1386-pc /dev/<device>
+  grub-mkconfig -o /boot/grub/grub.cfg
+#+end_src
+
+*** Exit and Reboot
+
+** Phase III: Installing X and Deploy dotfiles for dwm and XMonad
+
+*** Network
+**** Activate network services
+#+begin_src shell
+  systemctl enable systemd-networkd
+  systemctl start systemd-networkd
+  systemctl enable systemd-resolved
+  systemctl start systemd-resolved
+  systemctl enable NetworkManager
+  systemctl start NetworkManager
+#+end_src
+
+**** Wifi
+#+begin_src shell
+  nmtui
+#+end_src
+
+*** Add user and add it to important groups
+#+begin_src shell
+  useradd -m -G wheel,audio,video,sys,log,floppy,network,scanner,power,adm,lp,optical,storage,users,rfkill -s /bin/zsh USERNAME
+  passwd USERNAME
+#+end_src
+
+Edit /etc/sudoers with =EDITOR=vi visudo= and uncomment wheel.. to allow
+user of the weel group to execute sudo.
+
+*** Log in with the create user
+*** Install yay for help
+Clone the package and =makepkg -si=
+#+begin_src shell
+  git clone https://aur.archlinux.org/yay-git.git
+#+end_src
+
+*** Install packages and deploy dotfiles
