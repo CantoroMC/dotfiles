@@ -73,7 +73,7 @@ Add matching entries to =/etc/hosts=
 #+begin_src config
   127.0.0.1    localhost
   ::1          localhost
-  127.0.0.1    HOSTNAME.localdomain    HOSTNAME
+  127.0.1.1    HOSTNAME.localdomain    HOSTNAME
 #+end_src
 
 **** Install remaing packages
@@ -93,6 +93,16 @@ Install a boot loader (grub)
 
 ** Phase III: Installing X and Deploy dotfiles for dwm and XMonad
 
+*** Add user and add it to important groups
+#+begin_src shell
+  useradd -m -G wheel,audio,video,sys,log,floppy,network,scanner,power,adm,lp,optical,storage,users,rfkill -s /bin/zsh USERNAME
+  passwd USERNAME
+#+end_src
+
+Edit /etc/sudoers with =EDITOR=vi visudo= and uncomment wheel.. to allow
+user of the weel group to execute sudo.
+
+*** Log in with the create user
 *** Network
 **** Activate network services
 #+begin_src shell
@@ -109,16 +119,6 @@ Install a boot loader (grub)
   nmtui
 #+end_src
 
-*** Add user and add it to important groups
-#+begin_src shell
-  useradd -m -G wheel,audio,video,sys,log,floppy,network,scanner,power,adm,lp,optical,storage,users,rfkill -s /bin/zsh USERNAME
-  passwd USERNAME
-#+end_src
-
-Edit /etc/sudoers with =EDITOR=vi visudo= and uncomment wheel.. to allow
-user of the weel group to execute sudo.
-
-*** Log in with the create user
 *** Install yay for help
 Clone the package and =makepkg -si=
 #+begin_src shell
