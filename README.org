@@ -97,73 +97,6 @@
   sudo pacman -Rns - < ~/dotfiles/deploy/pacman-packages/unwanted-packages.txt
 #+end_src
 
-** Haskell and XMonad
-
-*** Deploy the haskell dotfiles
-#+begin_src sh
-  mkdir ~/.stack
-  mkdir ~/.cabal
-  mkdir ~/.ghc
-  stow haskell
-#+end_src
-
-*** Setup stack and install cabal-install
-#+begin_src sh
-  stack setup --system-ghc
-  stack install --system-ghc cabal-install
-
-  cabal update
-  cabal install cabal-uninstall
-#+end_src
-=ghc-pkg list= to check if you have installed only statically linked Haskell packages.
-Now you re ready to go!
-
-*** XMonad and XMobar
-#+begin_src sh
-  cabal install --lib xmonad
-  cabal install xmonad
-  cabal install --lib xmonad-contrib
-  cabal install --lib xmobar --flags="all_extensions"
-#+end_src
-
-*** Pandoc
-#+begin_src sh
-  cabal install pandoc
-#+end_src
-
-*** Haskell
-(hoogle and hlsp (10.8.3 not yet supported))
-#+begin_src sh
-  cabal install hlint
-  cabal install hoogle
-  cabal install brittany
-#+end_src
-
-* Neovim Language servers and utilities
-
-** Bibtex-ls
-#+begin_src sh
-  go get github.com/msprev/fzf-bibtex/cmd/bibtex-ls
-  go install github.com/msprev/fzf-bibtex/cmd/bibtex-ls
-  go install github.com/msprev/fzf-bibtex/cmd/bibtex-markdown
-  go install github.com/msprev/fzf-bibtex/cmd/bibtex-cite
-#+end_src
-
-** Neovim Healts
-#+begin_src sh
-  pip install neovim-remote
-  gem install neovim
-  npm install -g neovim
-  cpan Neovim::Ext
-#+end_src
-
-** Language Servers
-#+begin_src sh
-  pip install pylint
-  gem install solargraph
-  cpan Perl::LanguageServer
-#+end_src
-
 * System Tweaks
 
 ** Systemd
@@ -221,6 +154,82 @@ Remove =gem: --user-install= from =/etc/gemrc=
 *** Xboard
 Modify =saveSettingsFile= and =settingsFile= to =~/.config/xboardrc=
 in =/etc/xboard.conf=
+
+* Utilities of programming languages
+
+** Haskell and XMonad
+
+*** Deploy the haskell dotfiles
+#+begin_src sh
+  mkdir ~/.stack
+  mkdir ~/.cabal
+  mkdir ~/.ghc
+  stow haskell
+#+end_src
+
+*** Setup stack and install cabal-install
+#+begin_src sh
+  stack setup --system-ghc
+  stack install --system-ghc cabal-install
+
+  cabal update
+  cabal install cabal-uninstall
+#+end_src
+=ghc-pkg list= to check if you have installed only statically linked Haskell packages.
+Now you re ready to go!
+
+*** XMonad and XMobar
+#+begin_src sh
+  cabal install --lib xmonad
+  cabal install xmonad
+  cabal install --lib xmonad-contrib
+  cabal install --lib xmobar --flags="all_extensions"
+#+end_src
+
+*** Pandoc
+#+begin_src sh
+  cabal install pandoc
+#+end_src
+
+*** Utilitites
+(hoogle and hlsp (10.8.3 not yet supported))
+#+begin_src sh
+  cabal install hlint
+  cabal install hoogle
+  # cabal install utf8-string-1.0.1.1 ListLike-4.7.3 hoogle # (may fix the current issue)
+  cabal install brittany
+#+end_src
+
+** Go
+
+*** Bibtex-ls
+#+begin_src sh
+  go get github.com/msprev/fzf-bibtex/cmd/bibtex-ls
+  go install github.com/msprev/fzf-bibtex/cmd/bibtex-ls
+  go install github.com/msprev/fzf-bibtex/cmd/bibtex-markdown
+  go install github.com/msprev/fzf-bibtex/cmd/bibtex-cite
+#+end_src
+
+** Python
+#+begin_src shell
+  pip install neovim-remote pylint
+#+end_src
+
+** Ruby
+#+begin_src sh
+  gem install neovim solargraph colorls
+#+end_src
+
+** Node
+#+begin_src shell
+  npm install -g neovim
+#+end_src
+
+** Perl
+#+begin_src sh
+  cpan Perl::LanguageServer
+  # cpan Neovim::Ext # not working
+#+end_src
 
 * Note
 
