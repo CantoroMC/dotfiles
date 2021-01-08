@@ -572,7 +572,8 @@ Plug 'tomasr/molokai'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
-" Plug 'preservim/nerdtree'
+Plug 'preservim/nerdtree'
+Plug 'mcchrish/nnn.vim'
 Plug 'RRethy/vim-illuminate'
 Plug 'Yggdroot/indentLine', { 'on': 'IndentLinesToggle' }
 
@@ -624,8 +625,6 @@ Plug 'CantoroMC/vim-rasi'
 Plug 'LnL7/vim-nix'
 
 " }}}
-
-Plug 'mcchrish/nnn.vim'
 
 " Automatically Install Missing Plugins On Startup: {{{2
 if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
