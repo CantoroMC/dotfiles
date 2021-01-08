@@ -26,6 +26,7 @@ import XMonad.Util.NamedScratchpad
 import XMonad.Local.Manage.Util
     ( xmScratchpads
     , xmBigRect
+    , xmMedRect
     )
 import XMonad.Local.Config.Workspace
     ( xmWorkspaces
@@ -57,6 +58,7 @@ manageFloatings = composeAll $
     , title =? "weatherreport" --> doRectFloat xmBigRect
     , title =? "keysheet"      --> doRectFloat xmBigRect
     , title =? "calendar"      --> doRectFloat xmBigRect
+    , title =? "volume"        --> doRectFloat xmMedRect
     , role  =? "ncmpcpp"       --> doCenterFloat
     , role  =? "pop-up"        --> doCenterFloat
     , (className =? "Display" <&&> title =? "ImageMagick: ") --> doCenterFloat

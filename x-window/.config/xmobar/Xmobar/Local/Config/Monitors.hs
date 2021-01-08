@@ -184,10 +184,12 @@ volume :: Palette -> Monitors
 volume p =
     Volume "default" "Master"
         ( withPlugArgs p
-            ["--template", action "pactl set-sink-volume @DEFAULT_SINK@ -5%" 5
+            ["--template", 
+                 action "pactl set-sink-volume @DEFAULT_SINK@ -5%" 5
                 (action "pactl set-sink-volume @DEFAULT_SINK@ +5%" 4
                 (action "pactl set-sink-mute @DEFAULT_SINK@ toggle" 2
-                (action "pavucontrol" 3 (fn 2 "<status><volume>"))))
+                (action "st -n volume -t volume pulsemixer" 1
+                (action "pavucontrol" 3 (fn 2 "<status><volume>")))))
             , "-S", "True"
             ]
             [ "-O", ""
