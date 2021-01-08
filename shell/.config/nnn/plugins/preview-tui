@@ -149,7 +149,7 @@ preview_file () {
     if [ -d "$1" ]; then
         cd "$1" || return
         if exists tree; then
-            fifo_pager tree -C -L 3 -F
+            fifo_pager tree -L 3 -F
         elif exists exa; then
             fifo_pager exa -G --colour=always 2>/dev/null
         else
@@ -159,7 +159,7 @@ preview_file () {
         if [ "${mimetype%%/*}" = "image" ] || [ "${mimetype%%/*}" = "video" ]; then
             if [ "${mimetype%%/*}" = "video" ] && [ "$USE_VIDEOTHUMB" -ne 0 ] && exists ffmpegthumbnailer; then
                 videothumb="/tmp/videothumb.$$.png"
-                ffmpegthumbnailer -s 512 -i "$1" -o "$videothumb" >/dev/null 2>&1
+                ffmpegthumbnailer -s 0 -i "$1" -o "$videothumb" >/dev/null 2>&1
                 set "$videothumb"
                 trap 'rm "$videothumb"' EXIT
             fi

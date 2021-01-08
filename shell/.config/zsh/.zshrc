@@ -58,19 +58,4 @@ kitty + complete setup zsh | source /dev/stdin
 
 # }}}
 
-# Environmental Variables
-export NNN_OPTS="dHUe"
-# export NNN_OPENER=nuke
-export NNN_BMS='D:~/dotfiles;h:~/Documents/programming/Haskell;x:~/dotfiles/x-window/.config/xmonad'
-export NNN_PLUG='i:imgview;p:preview-tui'
-# export USE_VIDEOTHUMB='1'
-# fzopen;fzcd;vividthumb;dragd
-export NNN_COLORS='7342'
-export NNN_FCOLORS='c1e2e631c16033f7c6d6abc4'
-export NNN_ARCHIVE="\\.(7z|bz2|gz|tar|tgz|zip)$"
-export NNN_FIFO='/tmp/nnn.fifo'
-
-# Alias
-alias ln='nnn'
-
 # vim:fdm=marker

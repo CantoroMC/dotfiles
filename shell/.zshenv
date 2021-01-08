@@ -100,6 +100,15 @@ export MPC_FORMAT="[[%artist%  - ]%title% (%time%)]|[%file%]"
 export MPD_HOST=$HOME/.config/mpd/socket
 export RANGER_LOAD_DEFAULT_RC="FALSE"
 export TERMINAL='/usr/local/bin/st'
+# Nnn
+export NNN_OPTS="dHUe"
+export NNN_BMS='D:~/dotfiles;h:~/Documents/programming/Haskell;x:~/dotfiles/x-window/.config/xmonad'
+export NNN_PLUG='a:mp3conv;b:oldbigfile;c:fzcd;i:imgview;m:mimelist;o:fzopen;p:preview-tui'
+export USE_VIDEOTHUMB='1'
+export NNN_COLORS='7342'
+export NNN_FCOLORS='c1e2e631c16033f7c6d6abc4'
+export NNN_ARCHIVE="\\.(7z|bz2|gz|tar|tgz|zip)$"
+export NNN_FIFO='/tmp/nnn.fifo'
 
 # OpenFOAM
 export FOAM_INST_DIR='/usr/local/OpenFOAM'
