@@ -8,4 +8,4 @@ application/octet-stream=emacs.desktop;
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
 inode/directory=exo-file-manager.desktop;
 x-scheme-handler/trash=exo-file-manager.desktop;
-
+image/jpeg=sxiv.desktop;

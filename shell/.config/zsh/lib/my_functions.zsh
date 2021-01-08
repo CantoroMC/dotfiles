@@ -57,12 +57,31 @@ pyclean() {
   find ${PYCLEAN_DIR} -depth -type d -name ".pytest_cache" -exec rm -r "{}" +
 }
 
-# ranger navigation
+# cli filemanager navigation
+# ranger
 rcd() {
   # Allow to change directory using ranger
   ranger --choosedir=$XDG_CACHE_HOME/ranger_dir
   dir=$(cat $XDG_CACHE_HOME/ranger_dir)
   [ -n "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+}
+
+# nnn
+rcn () {
+    # Block nesting of nnn in subshells
+    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
+        echo "nnn is already running"
+        return
+    fi
+
+    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+    nnn "$@"
+
+    if [ -f "$NNN_TMPFILE" ]; then
+            . "$NNN_TMPFILE"
+            rm -f "$NNN_TMPFILE" > /dev/null
+    fi
 }
 
 append() {

@@ -144,6 +144,8 @@ bindkey -M viins -s '^X^H' 'fzf-man\n'
 bindkey -M vicmd -s '^X^H' 'fzf-man\n'
 bindkey -M viins -s '^X^F' 'rcd\n'
 bindkey -M vicmd -s '^X^F' 'rcd\n'
+bindkey -M viins -s '^X^N' 'rcn\n'
+bindkey -M vicmd -s '^X^N' 'rcn\n'
 # }}}
 
 # Alt-Key {{{2
