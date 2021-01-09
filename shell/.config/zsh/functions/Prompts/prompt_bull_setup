@@ -61,7 +61,7 @@ prompt_bull_setup () {
   local git_status='$(git_prompt_status)'
   local git_commits='$(git_commits_ahead) $(git_commits_behind)'
 
-  RPS1='${MODE_INDICATOR_PROMPT}'
+  RPS1='[%*] ${MODE_INDICATOR_PROMPT}'
   RPS1+=" ${git_commits}${git_branch}${git_status}"
 
   prompt_opts=(cr subst percent)

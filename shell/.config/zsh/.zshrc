@@ -1,4 +1,10 @@
-fpath=($ZDOTDIR/functions/** $fpath)
+# fpath=($ZDOTDIR/functions/** $fpath)
+fpath=(
+  $ZDOTDIR/functions/Completion
+  $ZDOTDIR/functions/Misc
+  $ZDOTDIR/functions/Prompts
+  $fpath
+)
 
 # Oh My Zsh Configuration {{{1
 
@@ -9,7 +15,6 @@ ENABLE_CORRECTION="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Plugins
 plugins=(
-  github
   zsh-autosuggestions
   zsh-history-substring-search
   fzf-tab

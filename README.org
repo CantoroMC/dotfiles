@@ -84,9 +84,11 @@
      mkdir ~/.local/bin
      stow shell
 
+     mkdir -p ~/.local/share/nautilus/scripts
      mkdir ~/.local/share/fonts
-     mkdir -p ~/.config/xmonad/cache
      mkdir ~/.local/share/xmonad
+     mkdir ~/.config/nautilus
+     mkdir -p ~/.config/xmonad/cache
      stow x-window
    #+end_src
    Then reboot

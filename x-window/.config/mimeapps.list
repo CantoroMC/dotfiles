@@ -1,11 +1,17 @@
 [Default Applications]
-text/plain=emacs.desktop
 application/octet-stream=emacs.desktop;
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
+image/jpeg=sxiv.desktop;
+image/png=sxiv.desktop;
+text/plain=emacs.desktop
+video/mp4=mpv.desktop;
 
 [Added Associations]
 application/octet-stream=emacs.desktop;
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
+image/jpeg=sxiv.desktop;
+image/png=sxiv.desktop;
 inode/directory=exo-file-manager.desktop;
 x-scheme-handler/trash=exo-file-manager.desktop;
-image/jpeg=sxiv.desktop;
+text/plain=emacs.desktop;
+video/mp4=mpv.desktop;
