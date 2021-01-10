@@ -295,7 +295,7 @@ static unsigned int defaultcs = 15;
 static unsigned int defaultrcs = 3;
 
 // background opacity
-float alpha = 1.00;
+float alpha = 0.90;
 
 
 /*
