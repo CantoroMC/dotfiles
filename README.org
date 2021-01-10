@@ -82,6 +82,8 @@
      mkdir ~/.local/share/fonts
      mkdir ~/.local/share/xmonad
      mkdir ~/.config/nautilus
+     mkdir ~/.config/gtk-2.0
+     mkdir ~/.config/gtk-3.0
      mkdir -p ~/.config/xmonad/cache
      stow x-window
    #+end_src
