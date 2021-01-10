@@ -60,15 +60,17 @@
 
 ** Zsh plugins
    #+begin_src sh
-     [ -e ~/.config/zsh/oh-my-zsh/custom/plugins/zsh-history-substring-search ] || \
+     mkdir -p ~/.config/zsh/plugins
+
+     [ -e ~/.config/zsh/plugins/zsh-history-substring-search ] || \
        git clone https://github.com/zsh-users/zsh-history-substring-search \
-       ~/.config/zsh/oh-my-zsh/custom/plugins/zsh-history-substring-search
-     [ -e ~/.config/zsh/oh-my-zsh/custom/plugins/zsh-autosuggestions ] || \
+       ~/.config/zsh/plugins/zsh-history-substring-search
+     [ -e ~/.config/zsh/plugins/zsh-autosuggestions ] || \
        git clone https://github.com/zsh-users/zsh-autosuggestions \
-       ~/.config/zsh/oh-my-zsh/custom/plugins/zsh-autosuggestions
+       ~/.config/zsh/plugins/zsh-autosuggestions
      [ -e ~/dotfiles/zsh/plugins/fzf-tab ] || \
        git clone https://github.com/Aloxaf/fzf-tab \
-       ~/.config/zsh/oh-my-zsh/custom/plugins/fzf-tab
+       ~/.config/zsh/plugins/fzf-tab
    #+end_src
 
 ** Second Deployment Step
