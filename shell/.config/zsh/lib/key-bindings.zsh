@@ -140,8 +140,8 @@ bindkey -M viins    '^B^M' _cdParentKey
 bindkey -M vicmd    '^B^M' _cdParentKey
 bindkey -M viins    '^X^L' _ranger_cmd
 bindkey -M vicmd    '^X^L' _ranger_cmd
-bindkey -M viins -s '^X^H' 'fzf-man\n'
-bindkey -M vicmd -s '^X^H' 'fzf-man\n'
+bindkey -M viins -s '^X^M' 'fzf-man\n'
+bindkey -M vicmd -s '^X^M' 'fzf-man\n'
 bindkey -M viins -s '^X^F' 'rcd\n'
 bindkey -M vicmd -s '^X^F' 'rcd\n'
 bindkey -M viins -s '^X^N' 'rcn\n'

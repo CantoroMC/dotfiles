@@ -45,7 +45,6 @@ let g:startify_lists = [
 
 let g:startify_bookmarks = [
       \ '~/dotfiles/nvim/.config/nvim/init.vim',
-      \ '~/dotfiles/nvim/.local/share/nvim/wiki/index.md',
       \ '~/Documents/programming/TeX/matriHX/matriHX.tex',
       \]
 

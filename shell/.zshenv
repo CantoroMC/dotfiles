@@ -96,7 +96,7 @@ export ZLS_COLORS LS_COLORS
 
 # Language/Programs Specifics {{{1
 export ADDRESSES="$HOME/Documents/organization/contacts/addressbook"
-export BACKGROUND_COLOR="light"
+export BACKGROUND_COLOR="dark"
 export DOTFILES="$HOME"/dotfiles
 export MPC_FORMAT="[[%artist%  - ]%title% (%time%)]|[%file%]"
 export MPD_HOST=$HOME/.config/mpd/socket
@@ -108,7 +108,6 @@ export NNN_BMS='D:~/dotfiles;h:~/Documents/programming/Haskell;x:~/dotfiles/x-wi
 export NNN_PLUG='a:mp3conv;b:oldbigfile;c:fzcd;i:imgview;m:mimelist;o:fzopen;p:preview-tui'
 export USE_VIDEOTHUMB='1'
 export NNN_COLORS='7342'
-export NNN_FCOLORS='c1e2e631c16033f7c6d6abc4'
 export NNN_ARCHIVE="\\.(7z|bz2|gz|tar|tgz|zip)$"
 export NNN_FIFO='/tmp/nnn.fifo'
 
@@ -158,8 +157,8 @@ if whence fzf &>/dev/null; then
   export FZF_CTRL_T_COMMAND='rg --hidden -l ""'
   export FZF_ALT_C_OPTS='--preview "tree -a -C {} | head -200"'
   export FZF_DEFAULT_OPTS='
-    --height=50%
-    --min-height=15
+    --height=60%
+    --min-height=20
     --ansi
     --layout=reverse
     --multi

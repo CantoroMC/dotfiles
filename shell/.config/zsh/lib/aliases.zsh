@@ -16,10 +16,6 @@ alias -g ....='../../..'
 # List directory contents
 alias ls='ls --color=auto'
 alias diff='diff --color=auto'
-alias lsa='ls -lah'
-alias l='ls -lah'
-alias ll='ls -lh'
-alias la='ls -lAh'
 
 # Timestamp format
 case ${HIST_STAMPS-} in
@@ -44,7 +40,7 @@ alias ffd="find . -print | grep -i"
 alias L="colorls -1Al --sd"
 alias Lg="colorls -1A --git-status --sd"
 alias Lt="colorls -A --tree=2 --sd"
-alias l="ls -A --sort='extension' --group-directories-first -1"
+alias l="ls -Ah --sort='extension' --group-directories-first -1"
 alias lsc="ls -lA --sort='extension' --group-directories-first --time-style=long-iso"
 alias lse="ls -lAh"
 alias lr="ranger"
@@ -93,8 +89,8 @@ alias hcompile='ghc --make -outputdir ./out'
 # Zsh
 alias cfg-zenv="$EDITOR $HOME/.zshenv"
 alias cfg-zlog="$EDITOR $HOME/.config/zsh/.zlogin"
-alias cfg-alias="$EDITOR $ZDOTDIR/lib/my_aliases.zsh"
-alias cfg-funcs="$EDITOR $ZDOTDIR/lib/my_functions.zsh"
+alias cfg-alias="$EDITOR $ZDOTDIR/lib/aliases.zsh"
+alias cfg-funcs="$EDITOR $ZDOTDIR/lib/functions.zsh"
 alias cfg-kbinds="$EDITOR $ZDOTDIR/lib/key-bindings.zsh"
 alias cfg-zsh="$EDITOR $ZDOTDIR/.zshrc"
 # X

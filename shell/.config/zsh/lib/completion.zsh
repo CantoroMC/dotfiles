@@ -20,9 +20,11 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' special-dirs true   # Complete . and .. special directories
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*:descriptions' format '%U%F{cyan}%d%f%u'
+zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
 zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
+
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'tree -a -C -L 2 -F $realpath'
 
 
 # disable named-directories autocompletion

@@ -8,7 +8,6 @@ let g:amivgo_freq_cfgs = {
       \ 'xmobar'      : 'dotfiles/x-window/.config/xmobar/xmobar.hs',
       \ 'xmonad'      : 'dotfiles/x-window/.config/xmonad/xmonad.hs',
       \ 'xprofile'    : 'dotfiles/x-window/.config/X11/xprofile',
-      \ 'wiki'        : 'dotfiles/nvim/.local/share/nvim/wiki/index.md',
       \ 'zshalias'    : 'dotfiles/shell/.config/zsh/lib/my_aliases.zsh',
       \ 'zshbindings' : 'dotfiles/shell/.config/zsh/lib/key-bindings.zsh',
       \ 'zshenv'      : 'dotfiles/shell/.zshenv',
@@ -18,6 +17,3 @@ let g:amivgo_freq_cfgs = {
 
 command! NvimRc :FreqCfgs nvim
 nnoremap <silent> <Leader>ev :<C-U>FreqCfgs  nvim<CR>
-
-command! Wiki   :FreqCfgs! wiki
-nnoremap <silent> <Leader>vw :<C-U>FreqCfgs! wiki<CR>
