@@ -1,28 +1,32 @@
-* ArchLinux Installation in a NutShell
+#+TITLE: ArchLinux installation in a NutShell
+#+AUTHOR: Marco Cantoro
+#+EMAIL: marco.cantoro92@outlook.it
+#+STARTUP: overview
+#+OPTIONS: toc:2 num:3
 
-** Phase I: Installation
-*** disk partitioning
+* Phase I: Installation
+** disk partitioning
 Partition the disk with =cfdisk=
 
-*** Connect to the internet
+** Connect to the internet
 #+begin_src shell
   iwctl
   station wlan0 connect ...
 #+end_src
 
-*** Update the system clock
+** Update the system clock
 #+begin_src shell
   timedatectl set-ntp true
   timedatectl status
 #+end_src
 
-*** Format the partitions
+** Format the partitions
 #+begin_src shell
   mkfs.ext4 /dev/<root>
   mkswap /dev/<swap>
 #+end_src
 
-*** Mount the filesystem
+** Mount the filesystem
 #+begin_src shell
   mount /dev/<root> /mnt
 #+end_src
@@ -32,31 +36,31 @@ and enable the swap volume
   swapon /dev/<swap>
 #+end_src
 
-*** Install essential packages
+** Install essential packages
 #+begin_src shell
   pacstrap /mnt base base-devel linux linux-firmware vi nano git zsh
 #+end_src
 
-** Phase II: Configuring the system
+* Phase II: Configuring the system
 
-*** Fstab
+** Fstab
 #+begin_src shell
   genfstab -U /mnt >> /mnt/etc/fstab
 #+end_src
 
-*** Chroot in the installed arch linux
+** Chroot in the installed arch linux
 #+begin_src shell
   arch-chroot /mnt
 #+end_src
 
-*** Timezone
+** Timezone
 Set the time zone and run hwclock to generate /etc/adjtime
 #+begin_src shell
   ln -sf /usr/share/zoneinfo/Europe/Rome /etc/localtime
   hwclock --systohc
 #+end_src
 
-*** Localization
+** Localization
 Edit /etc/locale.gen and uncommented needed locales
 (en_US.UTF-8 UTF-8 and it_IT.UTF-8 UTF-8). And the generate locales by
 #+begin_src shell
@@ -65,9 +69,9 @@ Edit /etc/locale.gen and uncommented needed locales
 
 Create =/etc/locale.conf= and =/etc/vconsole.conf=
 
-*** Network configuration
+** Network configuration
 
-**** Hostname
+*** Hostname
 Create the hostname file =/etc/hostname= containing the host name.
 Add matching entries to =/etc/hosts=
 #+begin_src config
@@ -76,24 +80,24 @@ Add matching entries to =/etc/hosts=
   127.0.1.1    HOSTNAME.localdomain    HOSTNAME
 #+end_src
 
-**** Install remaing packages
+*** Install remaing packages
 They contain also network management softwares, grub ...
 Look at =./packages/*=
 
-*** Root password with =passwd=
+** Root password with =passwd=
 
-*** Boot loader
+** Boot loader
 Install a boot loader (grub)
 #+begin_src shell
-  grub-install --target=1386-pc /dev/<device>
+  grub-install --target=i386-pc /dev/<device>
   grub-mkconfig -o /boot/grub/grub.cfg
 #+end_src
 
-*** Exit and Reboot
+** Exit and Reboot
 
-** Phase III: Installing X and Deploy dotfiles for dwm and XMonad
+* Phase III: Installing X and Deploy dotfiles for dwm and XMonad
 
-*** Add user and add it to important groups
+** Add user and add it to important groups
 #+begin_src shell
   useradd -m -G wheel,audio,video,sys,log,floppy,network,scanner,power,adm,lp,optical,storage,users,rfkill -s /bin/zsh USERNAME
   passwd USERNAME
@@ -102,9 +106,9 @@ Install a boot loader (grub)
 Edit /etc/sudoers with =EDITOR=vi visudo= and uncomment wheel.. to allow
 user of the weel group to execute sudo.
 
-*** Log in with the create user
-*** Network
-**** Activate network services
+** Log in with the create user
+** Network
+*** Activate network services
 #+begin_src shell
   systemctl enable systemd-networkd
   systemctl start systemd-networkd
@@ -114,15 +118,16 @@ user of the weel group to execute sudo.
   systemctl start NetworkManager
 #+end_src
 
-**** Wifi
+*** Wifi
 #+begin_src shell
   nmtui
 #+end_src
 
-*** Install yay for help
+** Install yay for help
 Clone the package and =makepkg -si=
 #+begin_src shell
   git clone https://aur.archlinux.org/yay-git.git
 #+end_src
 
-*** Install packages and deploy dotfiles
+** Install packages and deploy dotfiles
+Look[[file:~/dotfiles/README.org::*Package-Management][ here]]
