@@ -1,18 +1,54 @@
+# Corrections
+alias cp='nocorrect cp'
+alias ebuild='nocorrect ebuild'
+alias gist='nocorrect gist'
+alias heroku='nocorrect heroku'
+alias man='nocorrect man'
+alias mkdir='nocorrect mkdir'
+alias mv='nocorrect mv'
+alias sudo='nocorrect sudo'
+
+
+# Directory Stack
+alias -g ...='../..'
+alias -g ....='../../..'
+
+# List directory contents
+alias ls='ls --color=auto'
+alias diff='diff --color=auto'
+alias lsa='ls -lah'
+alias l='ls -lah'
+alias ll='ls -lh'
+alias la='ls -lAh'
+
+# Timestamp format
+case ${HIST_STAMPS-} in
+  "mm/dd/yyyy") alias history='fhistory -f' ;;
+  "dd.mm.yyyy") alias history='fhistory -E' ;;
+  "yyyy-mm-dd") alias history='fhistory -i' ;;
+  "") alias history='fhistory' ;;
+  *) alias history="fhistory -t '$HIST_STAMPS'" ;;
+esac
+
+
 # System {{{1
 alias aliasList="alias | sed 's/=.*//'"
 alias funList="declare -f | grep '^[a-z].* ()' | sed 's/{$//'"
 alias pathList='echo -e ${PATH//:/\\n}'
 # Directories
 alias cp="cp -i"
+alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}'
+alias egrep='egrep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}'
+alias fgrep='fgrep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}'
 alias ffd="find . -print | grep -i"
 alias L="colorls -1Al --sd"
 alias Lg="colorls -1A --git-status --sd"
 alias Lt="colorls -A --tree=2 --sd"
+alias l="ls -A --sort='extension' --group-directories-first -1"
+alias lsc="ls -lA --sort='extension' --group-directories-first --time-style=long-iso"
+alias lse="ls -lAh"
 alias lr="ranger"
 alias ln="nnn"
-alias lse="ls -lA --sort='extension' --group-directories-first --time-style=long-iso"
-alias lsc="ls -A --sort='extension' --group-directories-first -1"
-alias lss="dirs -v | head -10"
 alias t="tree --dirsfirst --si -p -a -L 2 --noreport"
 alias td="tree --dirsfirst --si -p -a -L 4 --noreport"
 alias ts="tree -p --si --dirsfirst -L 2"

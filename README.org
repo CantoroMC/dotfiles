@@ -58,14 +58,6 @@
 
 * Shell and X-WindowManager
 
-** Oh My Zsh
-   Install Oh my zsh
-   #+begin_src sh
-     [[ -d $HOME/.config/zsh ]] || mkdir $HOME/.config/zsh
-     wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-     ZSH="$HOME/.config/zsh/oh-my-zsh" sh install.sh
-   #+end_src
-
 ** Zsh plugins
    #+begin_src sh
      [ -e ~/.config/zsh/oh-my-zsh/custom/plugins/zsh-history-substring-search ] || \

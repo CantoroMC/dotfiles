@@ -1,5 +1,4 @@
 [Default Applications]
-application/octet-stream=emacs.desktop;
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
 image/jpeg=sxiv.desktop;
 image/png=sxiv.desktop;

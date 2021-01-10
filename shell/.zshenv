@@ -65,11 +65,14 @@ export SHELL='/usr/bin/zsh'
 # ZSH variables: {{{1
 
 export ZDOTDIR="$HOME/.config/zsh"
-export HISTFILE=$XDG_CACHE_HOME/zsh_history
-export ZSH="$XDG_CONFIG_HOME/zsh/oh-my-zsh"
+
+# History file configuration
+export HISTFILE="$XDG_CACHE_HOME/zsh_history"
+export HISTSIZE=50000
+export SAVEHIST=10000
+export HIST_STAMPS="dd.mm.yyyy"
 
 # ZLS_COLORS and LS_COLORS: {{{2
-
 # ZLS_COLORS: {{{3
 ZLS_COLORS='no=00:fi=00:rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32'
 # Archives or compressed files (bright red)
@@ -87,7 +90,6 @@ ZLS_COLORS=${ZLS_COLORS}':*.c=01;39:*.cpp=01;39:*.py=01;39:*.md=00;34:*.vim=01;3
 
 LS_COLORS=${ZLS_COLORS}
 export ZLS_COLORS LS_COLORS
-
 # }}}
 
 # }}}

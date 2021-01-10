@@ -151,9 +151,7 @@ bindkey -M vicmd -s '^X^N' 'rcn\n'
 # Alt-Key {{{2
 # bindkey -M viins    '\ec'  fzf-cd-widget
 bindkey -M viins    '\ea'  beginning-of-line
-bindkey -M viins    '\eb'  backward-word
 bindkey -M viins    '\ee'  end-of-line
-bindkey -M viins    '\ef'  forward-word
 # }}}
 
 # Enable surround text-object {{{2
@@ -311,7 +309,7 @@ add-zsh-hook precmd vim-mode-precmd
 local w; for w in "$@"; do add-zle-hook-widget $w vim-mode-$w; done
 } isearch-exit isearch-update line-pre-redraw line-init
 
-typeset -g vim_mode_keymap_state
+typeset -g vim_mode_keymap_state=
 
 vim-mode-handle-event () {
   local hook="$1"
