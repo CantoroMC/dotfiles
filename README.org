@@ -49,7 +49,7 @@
     stow texlive
     stow zathura
 
-    mkdir ~/.config/mpd
+    mkdir -p ~/.config/mpd/playlists
     stow music
 
     mkdir ~/.config/neomutt
