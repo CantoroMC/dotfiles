@@ -1,4 +1,3 @@
-neovim-nightly-bin
 stack-static
 bibtool
 latex-enumitem
