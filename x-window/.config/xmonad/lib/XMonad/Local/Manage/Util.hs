@@ -14,12 +14,12 @@ import XMonad.Util.NamedScratchpad
 
 xmScratchpads :: [NamedScratchpad]
 xmScratchpads =
-    [ NS "ncmpcpp" cmdNcmcpp queryNcmcpp hookNcmcpp
+    [ NS "cmus" cmdCmus queryCmus hookCmus
     , NS "yakuake" cmdYakuake queryYakuake hookYakuake
     , NS "orgenda" cmdOrgenda queryOrgenda hookOrgenda
-    ] where cmdNcmcpp   = "st -n ncmpcpp ncmpcpp"
-            queryNcmcpp = resource =? "ncmpcpp"
-            hookNcmcpp  = customFloating xmMedRect
+    ] where cmdCmus   = "st -n cmus cmus"
+            queryCmus = resource =? "cmus"
+            hookCmus  = customFloating xmMedRect
 
             cmdYakuake   = "st -n yakuake"
             queryYakuake = resource =? "yakuake"

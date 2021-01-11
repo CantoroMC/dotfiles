@@ -246,8 +246,8 @@ xmKeys mask = do
       |/- "swap focused window with master"
         ^> windows XMSS.swapMaster
     bind $ mask .|. controlMask .|. shiftMask ... xK_m
-      |/- "spawn nmcpcpp scratchpad"
-        ^> namedScratchpadAction xmScratchpads "ncmpcpp"
+      |/- "spawn cmus scratchpad"
+        ^> namedScratchpadAction xmScratchpads "cmus"
     --------------------------------------------------------------------------
     -- Extra Keys
     bind $ mask ... xK_comma

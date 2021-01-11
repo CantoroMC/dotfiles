@@ -59,7 +59,7 @@ manageFloatings = composeAll $
     , title =? "keysheet"      --> doRectFloat xmBigRect
     , title =? "calendar"      --> doRectFloat xmBigRect
     , title =? "volume"        --> doRectFloat xmMedRect
-    , role  =? "ncmpcpp"       --> doCenterFloat
+    , role  =? "cmus"          --> doCenterFloat
     , role  =? "pop-up"        --> doCenterFloat
     , (className =? "Display" <&&> title =? "ImageMagick: ") --> doCenterFloat
     ] where appsToFloat = [ "Arandr"
