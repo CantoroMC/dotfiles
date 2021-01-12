@@ -46,13 +46,13 @@ aur = Com "/bin/sh" ["-c", xmobarConfigDir ++ "/scripts/xmAur"] "aur" 600
 mpdMusic :: Palette -> Monitors
 mpdMusic p =
     MPDX ( withPlugArgs p
-        ["--template", fn 2 "<statei> "
-            ++ action "wmctrl -xR ncmpcpp" 3 (fn 2 "<artist>-<title>")
+        ["--template", "<statei> "
+            ++ action "wmctrl -xR ncmpcpp" 3 "<artist>-<title>"
             ++ action "mpc random" 1 (fn 3 " \61556 ")
             ++ action "mpc seek +1%" 4 (action "mpc seek -1%" 5
-                (fc "#ff3333" (fn 2 "[<lapsed>/<length>]")))
+                (fc "#ff3333" "[<lapsed>/<length>]"))
             ++ action "mpc volume +3" 4 (action "mpc volume -3" 5
-                (fc "#68d5ff" (fn 3 " 墳 " ++ fn 2 "<volume>%")))
+                (fc "#68d5ff" (fn 3 " 墳 " ++ "<volume>%")))
         , "-M", "12"
         ]
         [ "-P", action "mpc prev" 1 (fn 3 " 玲")
@@ -65,11 +65,11 @@ mpdMusic p =
 
 diskIO :: Monitors
 diskIO = DiskIO
-    [ ("/", action "nautilus" 3 (fn 2 "(R:<read> W:<write>)") )
+    [ ("/", action "nautilus" 3 "(R:<read> W:<write>)" )
     ] [] 10
 
 diskU :: Monitors
-diskU = DiskU [("/", action "gnome-disks" 3 (fn 1 " \63433" ++ fn 2 "<free>/<size>"))]
+diskU = DiskU [("/", action "gnome-disks" 3 (fc "#b8cc52" "Disk: " ++ "<free>/<size>"))]
     [ "-S", "True"
     , "-a", "l"
     ] 10
@@ -143,7 +143,7 @@ thermal p =
 
 uptime :: Monitors
 uptime = Uptime
-    [ "-t", fn 1 "羽" ++ fn 2 "<hours> <minutes>"
+    [ "-t", fc "#b8cc52" "Up:" ++ "<hours> <minutes>"
     , "-w", "3"
     , "-S", "True"
     ] 60

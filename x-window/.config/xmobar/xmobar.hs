@@ -59,9 +59,9 @@ xmobarConfig p = (baseConfig p)
   , template = " "
                ++ xMenu "xmenu-apps" "\58911"
                ++ "|UnsafeStdinReader| "
-               ++ separator
+               ++ " "
                ++ "|music| "
-               ++ separator
+               ++ " "
                ++ "|disku| |diskio|"
                ++ "}"
                ++ "|LIML| "
@@ -69,24 +69,24 @@ xmobarConfig p = (baseConfig p)
                ++ "{"
                ++ action "st yay -Syu" 3 " |pacman| |aur|"
                ++ separator
-               ++ "|memory| |swap| "
-               ++ separator
-               ++ "|multicpu| "
-               ++ separator
-               ++ "|multicoretemp| "
-               ++ separator
+               ++ "|memory| |swap|"
+               ++ " "
+               ++ "|multicpu|"
+               ++ " "
+               ++ "|multicoretemp|"
+               ++ " "
                ++ "|uptime| "
                ++ separator
-               ++ "|battery0| "
-               ++ separator
-               ++ "|bright| "
-               ++ separator
-               ++ "|default:Master| "
-               ++ separator
-               ++ "|kbd| "
-               ++ separator
+               ++ "|battery0|"
+               ++ " "
+               ++ "|bright|"
+               ++ " "
+               ++ "|default:Master|"
+               ++ " "
+               ++ "|kbd|"
+               ++ " "
                ++ "|dynnetwork|"
-               ++ separator
+               ++ " "
                ++ xMenu "xmenu-shutdown" "\61457"
                ++ "    "
                ++ "|trayerPad|"
