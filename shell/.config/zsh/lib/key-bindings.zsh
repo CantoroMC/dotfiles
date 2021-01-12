@@ -113,6 +113,14 @@ zle -N _tmux_cmd
 [[ -n "${key[PageDown]}"       ]] && bindkey -M viins "${key[PageDown]}"       down-line-or-beginning-search
 [[ -n "${key[Shift-Tab]}"      ]] && bindkey -M viins "${key[Shift-Tab]}"      reverse-menu-complete
 
+# Additional binding for Delete
+bindkey -M viins "^[[3~" delete-char
+bindkey -M vicmd "^[[3~" delete-char
+bindkey -M viins "^[[P" delete-char
+bindkey -M vicmd "^[[P" delete-char
+bindkey -M viins "^[3;5~" delete-char
+bindkey -M vicmd "^[3;5~" delete-char
+
 # }}}
 
 # Ctrl+Key {{{2
