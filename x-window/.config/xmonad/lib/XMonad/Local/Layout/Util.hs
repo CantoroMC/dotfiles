@@ -78,17 +78,17 @@ xmDecorationTheme = def
     }
 
 tall :: ModifiedLayout Rename ResizableTall Window
-tall = renamed [Replace "Tall"] $ ResizableTall 1 0.03 0.5 []
+tall = renamed [Replace "[T]"] $ ResizableTall 1 0.03 0.5 []
 
 monocle :: ModifiedLayout Rename
     (ModifiedLayout (Decoration TabbedDecoration DefaultShrinker) Simplest) Window
-monocle = renamed [Replace "Monocle"] $ tabbed shrinkText xmDecorationTheme
+monocle = renamed [Replace "[M]"] $ tabbed shrinkText xmDecorationTheme
 
 combo :: ModifiedLayout Rename
     (CombineTwo (Tall ())
         (ModifiedLayout (Decoration TabbedDecoration DefaultShrinker) Simplest)
         (ModifiedLayout (Decoration TabbedDecoration DefaultShrinker) Simplest)) Window
-combo = renamed [Replace "Combo"]
+combo = renamed [Replace "[C]"]
     (combineTwo (Tall 1 0.03 0.5)
         (tabbed shrinkText xmDecorationTheme)
         (tabbed shrinkText xmDecorationTheme)
@@ -102,7 +102,7 @@ comboGrid :: ModifiedLayout Rename
         (CombineTwo (Mirror Tall ())
             (ModifiedLayout (Decoration TabbedDecoration DefaultShrinker) Simplest)
             (ModifiedLayout (Decoration TabbedDecoration DefaultShrinker) Simplest))) Window
-comboGrid = renamed [Replace "Grid"]
+comboGrid = renamed [Replace "[*]"]
     (combineTwo (Tall 1 0.03 0.5)
         (combineTwo (Mirror $ Tall 1 0.03 0.5)
             (tabbed shrinkText xmDecorationTheme)
@@ -112,16 +112,16 @@ comboGrid = renamed [Replace "Grid"]
             (tabbed shrinkText xmDecorationTheme)))
 
 twoPane :: ModifiedLayout Rename TwoPanePersistent Window
-twoPane = renamed [Replace "TwoPane"] $ TwoPanePersistent Nothing 0.03 0.5
+twoPane = renamed [Replace "[||]"] $ TwoPanePersistent Nothing 0.03 0.5
 
 horizontal :: ModifiedLayout Rename (Mirror ResizableTall) Window
-horizontal = renamed [Replace "Horizontal"] $ Mirror (ResizableTall 1 0.03 0.5 [])
+horizontal = renamed [Replace "[TT]"] $ Mirror (ResizableTall 1 0.03 0.5 [])
 
-threeCol :: ThreeCol Window
-threeCol = ThreeColMid 1 0.03 0.5
+threeCol :: ModifiedLayout Rename ThreeCol Window
+threeCol = renamed [Replace "[|||]"] $ ThreeColMid 1 0.03 0.5
 
 floatL :: ModifiedLayout Rename (ModifiedLayout WindowArranger SimplestFloat) Window
-floatL = renamed [Replace "Float"] simplestFloat
+floatL = renamed [Replace "[>>=]"] simplestFloat
 
 xmLayouts =
     tall
