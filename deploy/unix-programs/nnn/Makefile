@@ -11,20 +11,34 @@ CP ?= cp
 
 CFLAGS_OPTIMIZATION ?= -O3
 
-O_DEBUG := 0  # debug binary
-O_NORL := 0  # no readline support
-O_PCRE := 0  # link with PCRE library
-O_NOLOC := 0  # no locale support
-O_NOMOUSE := 1  # no mouse support
-O_NOBATCH := 0  # no built-in batch renamer
-O_NOFIFO := 0  # no FIFO previewer support
-O_CTX8 := 0  # enable 8 contexts
-O_ICONS := 0  # support icons-in-terminal
-O_NERD := 1  # support icons-nerdfont
-O_QSORT := 1  # use Alexey Tourbin's QSORT implementation
-O_BENCH := 0  # benchmark mode (stops at first user input)
-O_NOSSN := 1  # enable session support
-O_NOUG := 0  # disable user, group name in status bar
+# debug binary
+O_DEBUG:=0
+# no readline support
+O_NORL:=0
+# link with PCRE library
+O_PCRE:=0
+# no locale support
+O_NOLOC:=0
+# no mouse support
+O_NOMOUSE:=1
+# no built-in batch renamer
+O_NOBATCH:=0
+# no FIFO previewer support
+O_NOFIFO:=0
+# enable 8 contexts
+O_CTX8:=0
+# support icons-in-terminal
+O_ICONS:=0
+# support icons-nerdfont
+O_NERD:=1
+# use Alexey Tourbin's QSORT implementation
+O_QSORT:=1
+# benchmark mode (stops at first user input)
+O_BENCH:=0
+# enable session support
+O_NOSSN:=1
+# disable user, group name in status bar
+O_NOUG:=0
 
 # convert targets to flags for backwards compatibility
 ifneq ($(filter debug,$(MAKECMDGOALS)),)
