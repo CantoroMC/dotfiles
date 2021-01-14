@@ -1,75 +1,152 @@
+# History Statistics
 function zsh_stats() {
   fc -l 1 \
     | awk '{ CMD[$2]++; count++; } END { for (a in CMD) print CMD[a] " " CMD[a]*100/count "% " a }' \
     | grep -v "./" | sort -nr | head -n20 | column -c3 -s " " -t | nl
 }
+# History wrapper around fc
+function fhistory {
+  local clear list
+  zparseopts -E c=clear l=list
 
-function take() {
-  mkdir -p $@ && cd ${@:$#}
+  if [[ -n "$clear" ]]; then
+    # if -c provided, clobber the history file
+    echo -n >| "$HISTFILE"
+    fc -p "$HISTFILE"
+    echo >&2 History file deleted.
+  elif [[ -n "$list" ]]; then
+    # if -l provided, run as if calling `fc' directly
+    builtin fc "$@"
+  else
+    # unless a number is provided, show all history events (starting from 1)
+    [[ ${@[-1]-} = *[0-9]* ]] && builtin fc -l "$@" || builtin fc -l "$@" 1
+  fi
 }
 
-#
+
 # Get the value of an alias.
-#
-# Arguments:
-#    1. alias - The alias to get its value from
-# STDOUT:
-#    The value of alias $1 (if it has one).
-# Return value:
-#    0 if the alias was found,
-#    1 if it does not exist
-#
 function alias_value() {
     (( $+aliases[$1] )) && echo $aliases[$1]
 }
-
-#
-# Try to get the value of an alias,
-# otherwise return the input.
-#
-# Arguments:
-#    1. alias - The alias to get its value from
-# STDOUT:
-#    The value of alias $1, or $1 if there is no alias $1.
-# Return value:
-#    Always 0
-#
-function try_alias_value() {
+# Try to get the value of an alias, otherwise return the input.
+function which_alias() {
     alias_value "$1" || echo "$1"
 }
 
-#
+# Append "$1" to "$2"
+append() {
+  pcregrep -qM "$1" "$2" || echo "$1" >> "$2"
+}
+
 # Set variable "$1" to default value "$2" if "$1" is not yet defined.
-#
-# Arguments:
 #    1. name - The variable to set
 #    2. val  - The default value
 # Return value:
 #    0 if the variable exists, 3 if it was set
-#
-function default() {
+function set_default() {
     (( $+parameters[$1] )) && return 0
     typeset -g "$1"="$2"   && return 3
 }
 
-#
 # Set environment variable "$1" to default value "$2" if "$1" is not yet defined.
-#
 # Arguments:
 #    1. name - The env variable to set
 #    2. val  - The default value
 # Return value:
 #    0 if the env variable exists, 3 if it was set
-#
 function env_default() {
     [[ ${parameters[$1]} = *-export* ]] && return 0
     export "$1=$2" && return 3
 }
 
 
-# Required for $langinfo
-zmodload zsh/langinfo
+# Directory Stack
+function d() {
+  if [[ -n $1 ]]; then
+    dirs "$@"
+  else
+    dirs -v | head -10
+  fi
+}
+compdef _dirs d
 
+# ranger
+rcd() {
+  # Allow to change directory using ranger
+  ranger --choosedir=$XDG_CACHE_HOME/ranger_dir
+  dir=$(cat $XDG_CACHE_HOME/ranger_dir)
+  [ -n "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+}
+
+# nnn
+rcn() {
+    # Block nesting of nnn in subshells
+    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
+        echo "nnn is already running"
+        return
+    fi
+
+    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+    nnn "$@"
+
+    if [ -f "$NNN_TMPFILE" ]; then
+            . "$NNN_TMPFILE"
+            rm -f "$NNN_TMPFILE" > /dev/null
+    fi
+}
+
+# open and disown it
+open() {
+  xdg-open $1 & disown
+}
+
+# Rename all the files in a folder with numbered sequence
+bulk_rename() { # Usage: functionName Folder Name
+  [ "${#}" -eq 1 ] && 
+    {
+      local name="${1}"
+      ls -v | cat -n | while read n f; do mv -n "$f" "${name}$n.${f##*.}"; done;
+    }
+}
+
+
+# A script to make using 256 colors in zsh less painful.
+# P.C. Shyamshankar <sykora@lucentbeing.com>
+typeset -AH FX FG BG
+
+FX=(
+  reset     "%{[00m%}"
+  bold      "%{[01m%}" no-bold      "%{[22m%}"
+  italic    "%{[03m%}" no-italic    "%{[23m%}"
+  underline "%{[04m%}" no-underline "%{[24m%}"
+  blink     "%{[05m%}" no-blink     "%{[25m%}"
+  reverse   "%{[07m%}" no-reverse   "%{[27m%}"
+)
+
+for color in {000..255}; do
+  FG[$color]="%{[38;5;${color}m%}"
+  BG[$color]="%{[48;5;${color}m%}"
+done
+
+# Show all 256 colors with color number
+function spectrum_ls() {
+  local ZSH_SPECTRUM_TEXT=${ZSH_SPECTRUM_TEXT:-Supercalifragilisticexpialidocious}
+  for code in {000..255}; do
+    print -P -- "$code: $FG[$code]$ZSH_SPECTRUM_TEXT%{$reset_color%}"
+  done
+}
+
+# Show all 256 colors where the background is set to specific color
+function spectrum_bls() {
+  local ZSH_SPECTRUM_TEXT=${ZSH_SPECTRUM_TEXT:-Arma virumque cano Troiae qui primus ab oris}
+  for code in {000..255}; do
+    print -P -- "$code: $BG[$code]$ZSH_SPECTRUM_TEXT%{$reset_color%}"
+  done
+}
+
+
+zmodload zsh/langinfo  # Required for $langinfo
 # URL-encode a string
 #
 # Encodes a string using RFC 2396 URL-encoding (%-escaped).
@@ -87,14 +164,12 @@ zmodload zsh/langinfo
 # Returns nonzero if encoding failed.
 #
 # Usage:
-#  omz_urlencode [-r] [-m] [-P] <string>
+#  urlencode [-r] [-m] [-P] <string>
 #
 #    -r causes reserved characters (;/?:@&=+$,) to be escaped
-#
 #    -m causes "mark" characters (_.!~*''()-) to be escaped
-#
 #    -P causes spaces to be encoded as '%20' instead of '+'
-function omz_urlencode() {
+function urlencode() {
   emulate -L zsh
   local -a opts
   zparseopts -D -E -a opts r m P
@@ -164,8 +239,8 @@ function omz_urlencode() {
 # Returns nonzero if encoding failed.
 #
 # Usage:
-#   omz_urldecode <urlstring>  - prints decoded string followed by a newline
-function omz_urldecode {
+#   urldecode <urlstring>  - prints decoded string followed by a newline
+function urldecode() {
   emulate -L zsh
   local encoded_url=$1
 
@@ -198,9 +273,20 @@ function omz_urldecode {
   echo -E "$decoded"
 }
 
-# A script to make using 256 colors in zsh less painful.
-# P.C. Shyamshankar <sykora@lucentbeing.com>
+# Dotfiles Encryption
+en-dot() {
+  cd ~/dotfiles
+  tar czf private.tar.gz private
+  gpg -er marco.cantoro92@outlook.it private.tar.gz
+  rm private.tar.gz
+}
 
+de-dot() {
+  cd ~/dotfiles
+  gpg -do private.tar.gz private.tar.gz.gpg
+  tar xvf private.tar.gz
+  rm private.tar.gz
+}
 
 # System clipboard integration
 function detect-clipboard() {
@@ -241,75 +327,7 @@ function detect-clipboard() {
     return 1
   fi
 }
-
 detect-clipboard || true
-
-# Directory Stack
-function d () {
-  if [[ -n $1 ]]; then
-    dirs "$@"
-  else
-    dirs -v | head -10
-  fi
-}
-compdef _dirs d
-
-# History wrapper around fc
-function fhistory {
-  local clear list
-  zparseopts -E c=clear l=list
-
-  if [[ -n "$clear" ]]; then
-    # if -c provided, clobber the history file
-    echo -n >| "$HISTFILE"
-    fc -p "$HISTFILE"
-    echo >&2 History file deleted.
-  elif [[ -n "$list" ]]; then
-    # if -l provided, run as if calling `fc' directly
-    builtin fc "$@"
-  else
-    # unless a number is provided, show all history events (starting from 1)
-    [[ ${@[-1]-} = *[0-9]* ]] && builtin fc -l "$@" || builtin fc -l "$@" 1
-  fi
-}
-
-
-
-typeset -AH FX FG BG
-
-FX=(
-  reset     "%{[00m%}"
-  bold      "%{[01m%}" no-bold      "%{[22m%}"
-  italic    "%{[03m%}" no-italic    "%{[23m%}"
-  underline "%{[04m%}" no-underline "%{[24m%}"
-  blink     "%{[05m%}" no-blink     "%{[25m%}"
-  reverse   "%{[07m%}" no-reverse   "%{[27m%}"
-)
-
-for color in {000..255}; do
-  FG[$color]="%{[38;5;${color}m%}"
-  BG[$color]="%{[48;5;${color}m%}"
-done
-
-# Show all 256 colors with color number
-function spectrum_ls() {
-  local ZSH_SPECTRUM_TEXT=${ZSH_SPECTRUM_TEXT:-Supercalifragilisticexpialidocious}
-  for code in {000..255}; do
-    print -P -- "$code: $FG[$code]$ZSH_SPECTRUM_TEXT%{$reset_color%}"
-  done
-}
-
-# Show all 256 colors where the background is set to specific color
-function spectrum_bls() {
-  local ZSH_SPECTRUM_TEXT=${ZSH_SPECTRUM_TEXT:-Arma virumque cano Troiae qui primus ab oris}
-  for code in {000..255}; do
-    print -P -- "$code: $BG[$code]$ZSH_SPECTRUM_TEXT%{$reset_color%}"
-  done
-}
-
-
-
-
 
 
 command_not_found_handler() {
@@ -358,9 +376,11 @@ extractor() {
   fi
 }
 
-# open and disown it
-open() {
-  xdg-open $1 & disown
+fast-git(){
+  git add -A
+  [ "$#" -eq 1 ] && git commit -m "$1"
+  [ "$#" -eq 0 ] && git commit
+  git push
 }
 
 pyclean() {
@@ -369,58 +389,6 @@ pyclean() {
   find ${PYCLEAN_DIR} -type d -name "__pycache__" -delete
   find ${PYCLEAN_DIR} -depth -type d -name ".mypy_cache" -exec rm -r "{}" +
   find ${PYCLEAN_DIR} -depth -type d -name ".pytest_cache" -exec rm -r "{}" +
-}
-
-# cli filemanager navigation
-# ranger
-rcd() {
-  # Allow to change directory using ranger
-  ranger --choosedir=$XDG_CACHE_HOME/ranger_dir
-  dir=$(cat $XDG_CACHE_HOME/ranger_dir)
-  [ -n "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
-}
-
-# nnn
-rcn () {
-    # Block nesting of nnn in subshells
-    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
-        echo "nnn is already running"
-        return
-    fi
-
-    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-
-    nnn "$@"
-
-    if [ -f "$NNN_TMPFILE" ]; then
-            . "$NNN_TMPFILE"
-            rm -f "$NNN_TMPFILE" > /dev/null
-    fi
-}
-
-append() {
-  pcregrep -qM "$1" "$2" || echo "$1" >> "$2"
-}
-
-fast-git(){
-  git add -A
-  [ "$#" -eq 1 ] && git commit -m "$1"
-  [ "$#" -eq 0 ] && git commit
-  git push
-}
-
-# Encryption
-en-dot() {
-  cd ~/dotfiles
-  tar czf private.tar.gz private
-  gpg -er marco.cantoro92@outlook.it private.tar.gz
-  rm private.tar.gz
-}
-de-dot() {
-  cd ~/dotfiles
-  gpg -do private.tar.gz private.tar.gz.gpg
-  tar xvf private.tar.gz
-  rm private.tar.gz
 }
 
 # Weather
@@ -438,15 +406,7 @@ moon() {
   curl -s "wttr.in/moon?F"
 }
 
-# Rename all the files in a folder with numbered sequence
-bulk_rename() { # Usage: functionName Folder Name
-  [ "${#}" -eq 1 ] && 
-    {
-      local name="${1}"
-      ls -v | cat -n | while read n f; do mv -n "$f" "${name}$n.${f##*.}"; done;
-    }
-}
-
+# Videos collage
 imageFromVideo() {
   VID_NAME=${2%.*}
   case ${1} in

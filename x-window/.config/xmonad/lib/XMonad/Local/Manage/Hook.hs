@@ -43,8 +43,9 @@ manageScratchpads = namedScratchpadManageHook xmScratchpads
 manageOthers :: ManageHook
 manageOthers = composeAll
     [ -- doShift
-      className =? "Transmission-gtk" --> doShift      (xmWorkspaces !! 8)
-    , className =? "mpv"              --> doShiftAndGo (xmWorkspaces !! 4)
+      className =? "Transmission-gtk"             --> doShift      (xmWorkspaces !! 8)
+    , className =? "mpv"                          --> doShiftAndGo (xmWorkspaces !! 4)
+    , className =? "MATLAB R2019b - academic use" --> doShiftAndGo (xmWorkspaces !! 1)
       -- doIgnore
     , resource  =? "stalonetray"      --> doIgnore
     ] where doShiftAndGo = doF . liftM2 (.) XMSS.greedyView XMSS.shift
@@ -61,7 +62,9 @@ manageFloatings = composeAll $
     , title =? "volume"        --> doRectFloat xmMedRect
     , role  =? "cmus"          --> doCenterFloat
     , role  =? "pop-up"        --> doCenterFloat
-    , (className =? "Display" <&&> title =? "ImageMagick: ") --> doCenterFloat
+    , (className =? "Display"                      <&&> title =? "ImageMagick: ") --> doCenterFloat
+    , (className =? "MATLAB R2019b - academic use" <&&> title =? "Help")          --> doRectFloat xmBigRect
+    , (className =? "MATLAB R2019b - academic use" <&&> title =? "Preferences")   --> doRectFloat xmBigRect
     ] where appsToFloat = [ "Arandr"
                           , "Avahi-discover"
                           , "Baobab"

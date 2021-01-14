@@ -250,9 +250,20 @@ libselinux libsepol are requested and can be installed from the AUR
   yay -S --noansweredit libselinux libsepol
 #+end_src
 
-also =/usr/local/MATLAB/R2019b/cefclient/sys/os/glnxa64/libglib=
+also =/usr/local/MATLAB/R2019b/cefclient/sys/os/glnxa64/=
+- libgio
+- liglib
+- libgmodule
+- libgobject
+- libgthread
+
 causes problem to the documentation rendering....
 #+begin_src sh
   sudo mkdir /usr/local/MATLAB/R2019b/cefclient/sys/os/glnxa64/Exclude
   sudo mv /usr/local/MATLAB/R2019b/cefclient/sys/os/glnxa64/libglib* -t/usr/local/MATLAB/R2019b/cefclient/sys/os/glnxa64/Exclude
+#+end_src
+
+*** Add Symlink for Mlint
+#+begin_src shell
+  sudo ln -sv /usr/local/MATLAB/R2019b/bin/glnxa64/mlint /usr/local/bin/mlint
 #+end_src
