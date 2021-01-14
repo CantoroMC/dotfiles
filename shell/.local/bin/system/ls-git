@@ -1,9 +1,0 @@
-#!/bin/sh
-# Recursivly list all git(1) repositories incl. their sizes under the
-# given directory in parallel
-
-find "${1:-.}" -type d -name .git -print |
-	sed -e s,/.git$,, |
-	xargs -r \
-		du -sh |
-	sort -k2

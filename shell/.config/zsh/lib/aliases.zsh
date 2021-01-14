@@ -114,6 +114,7 @@ alias cfg-rofi="$EDITOR $XDG_CONFIG_HOME/rofi/config.rasi"
 alias thesis="cd ~/Documents/programming/TeX/matriHX"
 alias curriculum="cd ~/Documents/programming/TeX/curriculum"
 alias doHs="cd ~/Documents/programming/Haskell"
+alias doMat="cd ~/Documents/programming/MATLAB"
 # }}}
 
 # }}}
