@@ -108,10 +108,8 @@ function lsg_help() {
 function lsg() {
   if [ $# -lt 1 ]; then
     lsg_help
-    exit 1
   elif [ "$1" = -h ] || [ "$1" = --help ]; then
     lsg_help
-    exit 0
   else
     keyword=$(printf "%s\n" "${@/ /.*}")
     ls -hlA --color=yes \
