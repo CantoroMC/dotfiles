@@ -6,10 +6,10 @@ This prompt is color-scheme-able.  You can invoke it thus:
 
 where the parameters are the colors for the theme-bar and current
 working directory, user@host text, and color3 text respectively.  The
-default colors are green, white, and white.  This theme works best
+default colors are green, white, and blue.  This theme works best
 with a dark background.
 
-Recommended fonts for this theme: either UTF-8, or nexus or vga or similar.
+Recommended fonts for this theme: NerdFont.
 If you don't have any of these, the 8-bit characters will probably look
 stupid.
 EOH

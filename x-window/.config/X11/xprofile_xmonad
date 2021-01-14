@@ -31,6 +31,7 @@ xset s 480 dpms 600 1200 1200 &
 # Mouse Acceleration: {{{2
 # slowing down ThinkPad track-point (acceleration and threshold [px/10ms] )
 xset m 1/2 0 &
+xinput set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" -0.5
 # }}}
 
 # Keyboard Auto repetition {{{2

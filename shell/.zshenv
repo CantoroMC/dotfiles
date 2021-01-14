@@ -103,7 +103,7 @@ export MPD_HOST=$HOME/.config/mpd/socket
 export RANGER_LOAD_DEFAULT_RC="FALSE"
 export TERMINAL='/usr/local/bin/st'
 # Nnn
-export NNN_OPTS="HUe"
+export NNN_OPTS="HUde"
 export NNN_BMS='D:~/dotfiles;h:~/Documents/programming/Haskell;m:/mnt;x:~/dotfiles/x-window/.config/xmonad'
 export NNN_PLUG='a:mp3conv;b:oldbigfile;c:fzcd;i:imgview;m:mimelist;o:fzopen;p:preview-tui'
 export USE_VIDEOTHUMB='1'
