@@ -76,16 +76,17 @@
 ** Second Deployment Step
    #+begin_src sh
      mkdir ~/.local/bin
-     stow shell
-
      mkdir -p ~/.local/share/nautilus/scripts
      mkdir ~/.local/share/fonts
      mkdir ~/.local/share/xmonad
+     mkdir ~/.local/share/surf
      mkdir ~/.config/nautilus
      mkdir ~/.config/gtk-2.0
      mkdir ~/.config/gtk-3.0
+     mkdir ~/.config/surf
      mkdir -p ~/.config/xmonad/cache
-     stow x-window
+
+     stow shell x-window
    #+end_src
    Then reboot
 
