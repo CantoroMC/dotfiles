@@ -1,22 +1,22 @@
-/* See LICENSE file for copyright and license details. */
+// Appearance
+static char *fonts[] = {
+	"Operator Mono Lig Book:pixelsize=13:antialias=true:autohint=true",
+	"FiraCode Nerd Font:pixelsize=13:antialias=true:autohint=true",
+	"JetBrainsMono Nerd Font:pixelsize=13:antialias=true:autohint=true",
+	"SauceCodePro Nerd Font:pixelsize=13:antialias=true:autohint=true"
+};
+static int fonts_current = 0;
+static int borderpx = 1;
 
 /*
- * appearance
- *
- * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
- */
-static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
-static int borderpx = 2;
-
-/*
- * What program is execed by st depends of these precedence rules:
+ * Which program is executed by st depends of these precedence rules:
  * 1: program passed with -e
  * 2: scroll and/or utmp
  * 3: SHELL environment variable
  * 4: value of shell in /etc/passwd
  * 5: value of shell in config.h
  */
-static char *shell = "/bin/sh";
+static char *shell = "/bin/zsh";
 char *utmp = NULL;
 /* scroll program: to enable use a string like "scroll" */
 char *scroll = NULL;
@@ -68,6 +68,18 @@ static unsigned int blinktimeout = 800;
 static unsigned int cursorthickness = 2;
 
 /*
+ * 1: render most of the lines/blocks characters without using the font for
+ *    perfect alignment between cells (U2500 - U259F except dashes/diagonals).
+ *    Bold affects lines thickness if boxdraw_bold is not 0. Italic is ignored.
+ * 0: disable (render all U25XX glyphs normally from the font).
+ */
+const int boxdraw = 1;
+const int boxdraw_bold = 1;
+
+/* braille (U28XX):  1: render as adjacent "pixels",  0: use font */
+const int boxdraw_braille = 1;
+
+/*
  * bell volume. It must be a value between -100 and 100. Use 0 for disabling
  * it
  */
@@ -91,46 +103,200 @@ char *termname = "st-256color";
  *
  *	stty tabs
  */
-unsigned int tabspaces = 8;
+unsigned int tabspaces = 2;
 
-/* Terminal colors (16 first used in escape sequence) */
-static const char *colorname[] = {
-	/* 8 normal colors */
-	"black",
-	"red3",
-	"green3",
-	"yellow3",
-	"blue2",
-	"magenta3",
-	"cyan3",
-	"gray90",
+// Terminal colors
+static const char *palettes[][256] = {
+	{   // Ayu
+		/* 8 normal colors */
+		[0]  = "#151a1e", /* black   */
+		[1]  = "#ff3333", /* red     */
+		[2]  = "#b8cc52", /* green   */
+		[3]  = "#e7c547", /* yellow  */
+		[4]  = "#36a3d9", /* blue    */
+		[5]  = "#f07178", /* magenta */
+		[6]  = "#95e6cb", /* cyan    */
+		[7]  = "#eaeaea", /* white   */
+		/* 8 bright colors */
+		[8]  = "#323232", /* black   */
+		[9]  = "#ff6565", /* red     */
+		[10] = "#eafe84", /* green   */
+		[11] = "#fff779", /* yellow  */
+		[12] = "#68d5ff", /* blue    */
+		[13] = "#ffa3aa", /* magenta */
+		[14] = "#c7fffd", /* cyan    */
+		[15] = "#fafafa", /* white   */
 
-	/* 8 bright colors */
-	"gray50",
-	"red",
-	"green",
-	"yellow",
-	"#5c5cff",
-	"magenta",
-	"cyan",
-	"white",
+		[255] = 0,
+	},
+	{   // Ayu Light
+		/* 8 normal colors */
+		[0]  = "#fafafa", /* black   */
+		[1]  = "#ff3333", /* red     */
+		[2]  = "#86b300", /* green   */
+		[3]  = "#f29718", /* yellow  */
+		[4]  = "#41a6d9", /* blue    */
+		[5]  = "#f07178", /* magenta */
+		[6]  = "#4dbf99", /* cyan    */
+		[7]  = "#5c6773", /* white   */
+		/* 8 bright colors */
+		[8]  = "#ffffff", /* black   */
+		[9]  = "#ff6565", /* red     */
+		[10] = "#b8e532", /* green   */
+		[11] = "#ffc94a", /* yellow  */
+		[12] = "#73d8ff", /* blue    */
+		[13] = "#ffa3aa", /* magenta */
+		[14] = "#7ff1cb", /* cyan    */
+		[15] = "#323232", /* white   */
 
-	[255] = 0,
+		[255] = 0,
+	},
+	{   // Suckless default
+		/* 8 normal colors */
+		[0]  = "black",    /* black   */
+		[1]  = "red3",     /* red     */
+		[2]  = "green3",   /* green   */
+		[3]  = "yellow3",  /* yellow  */
+		[4]  = "blue2",    /* blue    */
+		[5]  = "magenta3", /* magenta */
+		[6]  = "cyan3",    /* cyan    */
+		[7]  = "gray90",   /* white   */
+		/* 8 bright colors */
+		[8]  = "gray50",   /* black   */
+		[9]  = "red",      /* red     */
+		[10] = "green",    /* green   */
+		[11] = "yellow",   /* yellow  */
+		[12] = "#5c5cff",  /* blue    */
+		[13] = "magenta",  /* magenta */
+		[14] = "cyan",     /* cyan    */
+		[15] = "white",    /* white   */
 
-	/* more colors can be added after 255 to use with DefaultXX */
-	"#cccccc",
-	"#555555",
+		[255] = 0,
+	},
+	{   // Gruvbox
+		/* 8 normal colors */
+		[0]  = "#1d2021", /* black   */
+		[1]  = "#cc241d", /* red     */
+		[2]  = "#98971a", /* green   */
+		[3]  = "#d79921", /* yellow  */
+		[4]  = "#458588", /* blue    */
+		[5]  = "#b16286", /* magenta */
+		[6]  = "#689d6a", /* cyan    */
+		[7]  = "#a89984", /* white   */
+		/* 8 bright colors */
+		[8]  = "#928374", /* black   */
+		[9]  = "#fb4934", /* red     */
+		[10] = "#b8bb26", /* green   */
+		[11] = "#fabd2f", /* yellow  */
+		[12] = "#83a598", /* blue    */
+		[13] = "#d3869b", /* magenta */
+		[14] = "#8ec07c", /* cyan    */
+		[15] = "#ebdbb2", /* white   */
+
+		[255] = 0,
+	},
+	{   // Simple Dark
+		/* 8 normal colors */
+		[0]  = "#223", /* black   */
+		[1]  = "#900", /* red     */
+		[2]  = "#080", /* green   */
+		[3]  = "#fe7", /* yellow  */
+		[4]  = "#35e", /* blue    */
+		[5]  = "#fc5", /* magenta */
+		[6]  = "#18e", /* cyan    */
+		[7]  = "#aaa", /* white   */
+		/* 8 bright colors  */
+		[8]  = "#666", /* black   */
+		[9]  = "#f25", /* red     */
+		[10] = "#0b0", /* green   */
+		[11] = "#ff6", /* yellow  */
+		[12] = "#46f", /* blue    */
+		[13] = "#d6a", /* magenta */
+		[14] = "#6bf", /* cyan    */
+		[15] = "#ddd", /* white   */
+
+		[255] = 0,
+	},
+    {   // Simple Light
+		/* 8 normal colors */
+		[0]  = "#eaeaea", /* black   */
+		[1]  = "#b7141f", /* red     */
+		[2]  = "#457b24", /* green   */
+		[3]  = "#fc7b08", /* yellow  */
+		[4]  = "#134eb2", /* blue    */
+		[5]  = "#560088", /* magenta */
+		[6]  = "#0e717c", /* cyan    */
+		[7]  = "#777777", /* white   */
+    	/* 8 bright colors */
+		[8]  = "#424242", /* black   */
+		[9]  = "#e83b3f", /* red     */
+		[10] = "#7aba3a", /* green   */
+		[11] = "#fd8e09", /* yellow  */
+		[12] = "#54a4f3", /* blue    */
+		[13] = "#aa4dbc", /* magenta */
+		[14] = "#26bbd1", /* cyan    */
+		[15] = "#aaaaaa", /* white   */
+
+		[255] = 0,
+	},
+	{   // Wombat
+		/* 8 normal colors */
+		[0]  = "#171717", /* black   */
+		[1]  = "#ff615a", /* red     */
+		[2]  = "#b1e969", /* green   */
+		[3]  = "#ebd99c", /* yellow  */
+		[4]  = "#5da9f6", /* blue    */
+		[5]  = "#e86aff", /* magenta */
+		[6]  = "#82fff7", /* cyan    */
+		[7]  = "#eaeaea", /* white   */
+		/* 8 bright colors */
+		[8]  = "#313131", /* black   */
+		[9]  = "#f58c80", /* red     */
+		[10] = "#ddf88f", /* green   */
+		[11] = "#eee5b2", /* yellow  */
+		[12] = "#a5c7ff", /* blue    */
+		[13] = "#ddaaff", /* magenta */
+		[14] = "#b7fff9", /* cyan    */
+		[15] = "#dedacf", /* white   */
+
+		[255] = 0,
+	},
+	{   // EndeavourOS
+		/* 8 normal colors */
+		[0]  = "#08052b", /* black   */
+		[1]  = "#ff7f7f", /* red     */
+		[2]  = "#47b35d", /* green   */
+		[3]  = "#cc3980", /* yellow  */
+		[4]  = "#7fbaff", /* blue    */
+		[5]  = "#7f3fbf", /* magenta */
+		[6]  = "#7f7fff", /* cyan    */
+		[7]  = "#cdccdb", /* white   */
+		/* 8 bright colors */
+		[8]  = "#7fbaff", /* black   */
+		[9]  = "#ff7f7f", /* red     */
+		[10] = "#9999cc", /* green   */
+		[11] = "#ff7f7f", /* yellow  */
+		[12] = "#7f7fff", /* blue    */
+		[13] = "#7f3fbf", /* magenta */
+		[14] = "#7f7fff", /* cyan    */
+		[15] = "#e3e3ea", /* white   */
+
+		[255] = 0,
+	},
 };
 
+static const char **colorname;
 
-/*
- * Default colors (colorname index)
- * foreground, background, cursor, reverse cursor
- */
-unsigned int defaultfg = 7;
+// Default colors (colorname index)
+//         foreground, background, cursor, reverse cursor
+unsigned int defaultfg = 15;
 unsigned int defaultbg = 0;
-static unsigned int defaultcs = 256;
-static unsigned int defaultrcs = 257;
+static unsigned int defaultcs = 15;
+static unsigned int defaultrcs = 3;
+
+// background opacity
+float alpha = 0.90;
+
 
 /*
  * Default shape of cursor
@@ -139,7 +305,7 @@ static unsigned int defaultrcs = 257;
  * 6: Bar ("|")
  * 7: Snowman ("☃")
  */
-static unsigned int cursorshape = 2;
+static unsigned int cursorshape = 4;
 
 /*
  * Default columns and rows numbers
@@ -174,6 +340,8 @@ static uint forcemousemod = ShiftMask;
  */
 static MouseShortcut mshortcuts[] = {
 	/* mask                 button   function        argument       release */
+	{ XK_ANY_MOD,           Button4, kscrollup,      {.i = 1},      0, /* !alt */ -1 },
+	{ XK_ANY_MOD,           Button5, kscrolldown,    {.i = 1},      0, /* !alt */ -1 },
 	{ XK_ANY_MOD,           Button2, selpaste,       {.i = 0},      1 },
 	{ ShiftMask,            Button4, ttysend,        {.s = "\033[5;2~"} },
 	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
@@ -185,20 +353,45 @@ static MouseShortcut mshortcuts[] = {
 #define MODKEY Mod1Mask
 #define TERMMOD (ControlMask|ShiftMask)
 
+static char *openurlcmd[] = { "/bin/sh", "-c", "st-urlhandler -o", "externalpipe", NULL };
+static char *copyurlcmd[] = { "/bin/sh", "-c", "st-urlhandler -c", "externalpipe", NULL };
+static char *copyoutput[] = { "/bin/sh", "-c", "st-copyout", "externalpipe", NULL };
+
 static Shortcut shortcuts[] = {
 	/* mask                 keysym          function        argument */
-	{ XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0} },
-	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
-	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
-	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
-	{ TERMMOD,              XK_Prior,       zoom,           {.f = +1} },
-	{ TERMMOD,              XK_Next,        zoom,           {.f = -1} },
-	{ TERMMOD,              XK_Home,        zoomreset,      {.f =  0} },
-	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0} },
-	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
-	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
-	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
-	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
+	{ XK_ANY_MOD,           XK_Break,       sendbreak,       {.i =  0} },
+	{ ControlMask,          XK_Print,       toggleprinter,   {.i =  0} },
+	{ ShiftMask,            XK_Print,       printscreen,     {.i =  0} },
+	{ XK_ANY_MOD,           XK_Print,       printsel,        {.i =  0} },
+	{ TERMMOD,              XK_Prior,       zoom,            {.f = +1} },
+	{ TERMMOD,              XK_Next,        zoom,            {.f = -1} },
+	{ TERMMOD,              XK_Home,        zoomreset,       {.f =  0} },
+	{ TERMMOD,              XK_C,           clipcopy,        {.i =  0} },
+	{ TERMMOD,              XK_F,           cyclefonts,      {}        },
+	{ TERMMOD,              XK_L,           copyurl,         {.i =  0} },
+	{ TERMMOD,              XK_U,           iso14755,        {.i =  0} },
+	{ TERMMOD,              XK_V,           clippaste,       {.i =  0} },
+	{ TERMMOD,              XK_Y,           selpaste,        {.i =  0} },
+	{ ShiftMask,            XK_Insert,      selpaste,        {.i =  0} },
+	{ TERMMOD,              XK_Num_Lock,    numlock,         {.i =  0} },
+	{ TERMMOD,              XK_Return,      newterm,         {.i =  0} },
+	{ TERMMOD,              XK_space,       keyboard_select, {.i =  0} },
+	{ MODKEY,               XK_o,           externalpipe,    {.v = openurlcmd } },
+	{ MODKEY,               XK_l,           externalpipe,    {.v = copyurlcmd } },
+	{ MODKEY,               XK_y,           externalpipe,    {.v = copyoutput } },
+	// scroll-back
+	{ ShiftMask,            XK_Page_Up,     kscrollup,       {.i = -1} },
+	{ ShiftMask,            XK_Page_Down,   kscrolldown,     {.i = -1} },
+	// Color Palette switcher
+	{ TERMMOD,              XK_F1,          setpalette,      {.i =  0} },
+	{ TERMMOD,              XK_F2,          setpalette,      {.i =  1} },
+	{ TERMMOD,              XK_F3,          setpalette,      {.i =  2} },
+	{ TERMMOD,              XK_F4,          setpalette,      {.i =  3} },
+	{ TERMMOD,              XK_F5,          setpalette,      {.i =  4} },
+	{ TERMMOD,              XK_F6,          setpalette,      {.i =  5} },
+	{ TERMMOD,              XK_F7,          setpalette,      {.i =  6} },
+	{ TERMMOD,              XK_F8,          setpalette,      {.i =  7} },
+	{ TERMMOD,              XK_F9,          setpalette,      {.i =  8} },
 };
 
 /*

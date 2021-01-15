@@ -22,7 +22,7 @@ alias l="ls -Ah --sort='extension' --group-directories-first -1"
 alias ll="ls -lAh --sort='extension' --group-directories-first --time-style=long-iso"
 
 alias lr="ranger"
-alias ln="nnn"
+alias lc="nnn"
 
 alias t="tree --dirsfirst --si -p -a -L 2 --noreport"
 alias td="tree --dirsfirst --si -p -a -L 4 --noreport"
