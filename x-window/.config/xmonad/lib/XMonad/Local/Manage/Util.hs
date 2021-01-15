@@ -14,7 +14,7 @@ import XMonad.Util.NamedScratchpad
 
 xmScratchpads :: [NamedScratchpad]
 xmScratchpads =
-    [ NS "cmus" cmdCmus queryCmus hookCmus
+    [ NS "cmus"    cmdCmus    queryCmus    hookCmus
     , NS "yakuake" cmdYakuake queryYakuake hookYakuake
     , NS "orgenda" cmdOrgenda queryOrgenda hookOrgenda
     ] where cmdCmus   = "st -n cmus cmus"

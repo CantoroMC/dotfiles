@@ -2,9 +2,6 @@ import           XMonad
 import           XMonad.Hooks.EwmhDesktops      ( ewmh )
 import           XMonad.Hooks.ManageDocks       ( docks )
 
--- import           System.Taffybar.Support.PagerHints
-                                                -- ( pagerHints )
-
 import qualified XMonad.Local.Config.Theme     as XMTheme
 import           XMonad.Local.Config.Workspace  ( xmWorkspaces )
 
@@ -51,5 +48,4 @@ main = do
           . applyUrgencyHook
           . ewmh
           $ c
-          -- $ pagerHints c
   xmonad xmConf

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+main() {
+  local many=$(ls -A | wc -l)
+  echo $(($(($RANDOM%many))+1))
+}
+
+main "$@"

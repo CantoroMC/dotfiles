@@ -4,11 +4,11 @@ start_session() {
   tmux has-session -t 'DropDown' &> /dev/null
   if [ $? != 0 ]; then
     tmux new-session -d -s 'DropDown' -n 'Free' -c '$HOME'
-    tmux new-window  -d -t DropDown:2 -n 'NcmpCpp' -c '$HOME'
+    tmux new-window  -d -t DropDown:2 -n 'Cmus' -c '$HOME'
     tmux new-window  -d -t DropDown:3 -n 'Communication' -c '$HOME'
     tmux new-window  -d -t DropDown:4 -n 'Navigation' -c '$HOME'
 
-    tmux send-keys -t DropDown:NcmpCpp 'ncmpcpp' C-m
+    tmux send-keys -t DropDown:Cmus 'cmus' C-m
   fi
   tmux attach -d -t DropDown
 }

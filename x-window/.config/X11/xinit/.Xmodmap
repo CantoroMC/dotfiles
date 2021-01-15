@@ -1,4 +1,6 @@
+! Only changes are Lock = Esc and Alt_R = WinKey
 clear Lock
+remove mod1 = Super_L
 
 keycode   8 =
 keycode   9 = Escape NoSymbol Escape NoSymbol Escape
@@ -100,7 +102,7 @@ keycode 104 = KP_Enter NoSymbol KP_Enter NoSymbol KP_Enter
 keycode 105 = Control_R NoSymbol Control_R NoSymbol Control_R
 keycode 106 = KP_Divide KP_Divide KP_Divide KP_Divide KP_Divide KP_Divide XF86Ungrab
 keycode 107 = Print Sys_Req Print Sys_Req Print Sys_Req
-keycode 108 = Alt_R Meta_R Alt_R Meta_R Alt_R Meta_R
+keycode 108 = Super_L NoSymbol Super_L NoSymbol Super_L
 keycode 109 = Linefeed NoSymbol Linefeed NoSymbol Linefeed
 keycode 110 = Home NoSymbol Home NoSymbol Home
 keycode 111 = Up NoSymbol Up NoSymbol Up

@@ -24,12 +24,10 @@ spawnXMobar :: MonadIO m => m Handle
 spawnXMobar = spawnPipe $ unwords
   [ executable
   , flagIconroot
-    -- , fileXMobarRc
   ] where
   executable = xMobarConfigHome <> "/xmobar"
   flagIconroot =
     "--iconroot=" <> xMobarConfigHome <> "/icons/" <> XMTheme.xmBackGround
-  -- fileXMobarRc     = xMobarConfigHome <> "/xmobarrc"
   xMobarConfigHome = "\"${XDG_CONFIG_HOME}\"/xmobar"
 
 xmXMobarPP :: Handle -> PP
@@ -43,7 +41,7 @@ xmXMobarPP h = xmobarPP
   , ppWsSep           = ""
   , ppTitle           = xmobarColor (XMTheme.activeTextColor XMTheme.xmTheme) ""
                           . shorten 40
-  , ppLayout = xmobarColor (XMTheme.urgentBorderColor XMTheme.xmTheme) ""
+  , ppLayout          = xmobarColor (XMTheme.urgentBorderColor XMTheme.xmTheme) ""
   , ppOutput          = hPutStrLn h
   , ppExtras          = [windowCount]
   , ppOrder           = \(ws : l : t : ex) -> [ws] ++ ["<fn=1>" ++ l ++ "</fn>"] ++ ex ++ [t]
