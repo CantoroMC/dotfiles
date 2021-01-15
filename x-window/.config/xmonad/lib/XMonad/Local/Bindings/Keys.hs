@@ -149,8 +149,8 @@ xmKeys mask = do
       |/- "spawn internet browser"
         ^> spawn "vivaldi-stable"
     bind $ mask .|. shiftMask ... xK_f
-      |/- "refresh the current workspace accordingly to StackSet"
-        ^> refresh
+      |/- "tabbed surf"
+        ^> spawn "surf-open"
     bind $ mask ... xK_c
       |/- "copy focused window to all workspaces"
         ^> windows copyToAll

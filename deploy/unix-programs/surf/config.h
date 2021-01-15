@@ -166,47 +166,46 @@ static SearchEngine searchengines[] = {
 static Key keys[] = {
 	/* modifier              keyval          function    arg */
 	// Dmenu Bindings
-	{ 0,                     GDK_KEY_g,      spawn,      SETPROP("_SURF_URI", "_SURF_GO", PROMPT_GO) },
-	{ 0,                     GDK_KEY_m,      spawn,      BM_ADD("_SURF_URI") },
-	{ 0,                     GDK_KEY_slash,  spawn,      SETPROP("_SURF_FIND", "_SURF_FIND", PROMPT_FIND) },
+	{ MODKEY,                GDK_KEY_g,      spawn,      SETPROP("_SURF_URI", "_SURF_GO", PROMPT_GO) },
+	{ MODKEY,                GDK_KEY_m,      spawn,      BM_ADD("_SURF_URI") },
+	{ MODKEY,                GDK_KEY_slash,  spawn,      SETPROP("_SURF_FIND", "_SURF_FIND", PROMPT_FIND) },
 
 	/* download-console */
 	{ MODKEY,                GDK_KEY_d,      spawndls,   { 0 } },
 
-	// Stop and Reload and Insert mode
-	{ 0,                     GDK_KEY_c,      stop,       { 0 } },
-	{ 0,                     GDK_KEY_Escape, insert,     { .i = 0 } },
-	{ 0,                     GDK_KEY_i,      insert,     { .i = 1 } },
-	{ MODKEY,                GDK_KEY_r,      reload,     { .i = 1 } },
-	{ 0,                     GDK_KEY_r,      reload,     { .i = 0 } },
+	// Stop and Reload
+	{ 0,                     GDK_KEY_Escape, stop,       { .i = 0 } },
+	{ MODKEY,                GDK_KEY_c,      stop,       { 0 } },
+	{ MODKEY|GDK_SHIFT_MASK, GDK_KEY_r,      reload,     { .i = 1 } },
+	{ MODKEY,                GDK_KEY_r,      reload,     { .i = 0 } },
 
 	// History Navigation
-	{ 0,                     GDK_KEY_i,      navigate,   { .i = +1 } },
-	{ 0,                     GDK_KEY_o,      navigate,   { .i = -1 } },
+	{ MODKEY,                GDK_KEY_i,      navigate,   { .i = +1 } },
+	{ MODKEY,                GDK_KEY_o,      navigate,   { .i = -1 } },
 
 	/* vertical and horizontal scrolling, in viewport percentage */
-	{ 0,                     GDK_KEY_l,      scrollh,    { .i = +10 } },
-	{ 0,                     GDK_KEY_h,      scrollh,    { .i = -10 } },
-	{ 0,                     GDK_KEY_d,      scrollv,    { .i = +10 } },
-	{ 0,                     GDK_KEY_u,      scrollv,    { .i = -10 } },
-	{ 0,                     GDK_KEY_f,      scrollv,    { .i = +50 } },
-	{ 0,                     GDK_KEY_b,      scrollv,    { .i = -50 } },
-	{ 0,                     GDK_KEY_j,      scrollv,    { .i = +1 } },
-	{ 0,                     GDK_KEY_k,      scrollv,    { .i = -1 } },
+	{ MODKEY,                GDK_KEY_l,      scrollh,    { .i = +10 } },
+	{ MODKEY,                GDK_KEY_h,      scrollh,    { .i = -10 } },
+	{ MODKEY,                GDK_KEY_d,      scrollv,    { .i = +10 } },
+	{ MODKEY,                GDK_KEY_u,      scrollv,    { .i = -10 } },
+	{ MODKEY,                GDK_KEY_f,      scrollv,    { .i = +50 } },
+	{ MODKEY,                GDK_KEY_b,      scrollv,    { .i = -50 } },
+	{ MODKEY,                GDK_KEY_j,      scrollv,    { .i = +1 } },
+	{ MODKEY,                GDK_KEY_k,      scrollv,    { .i = -1 } },
 
 	// Zooms
-	{ 0|GDK_SHIFT_MASK,      GDK_KEY_j,      zoom,       { .i = -1 } },
-	{ 0|GDK_SHIFT_MASK,      GDK_KEY_k,      zoom,       { .i = +1 } },
-	{ 0|GDK_SHIFT_MASK,      GDK_KEY_q,      zoom,       { .i = 0  } },
-	{ 0,                     GDK_KEY_minus,  zoom,       { .i = -1 } },
-	{ 0,                     GDK_KEY_plus,   zoom,       { .i = +1 } },
+	{ MODKEY|GDK_SHIFT_MASK, GDK_KEY_j,      zoom,       { .i = -1 } },
+	{ MODKEY|GDK_SHIFT_MASK, GDK_KEY_k,      zoom,       { .i = +1 } },
+	{ MODKEY|GDK_SHIFT_MASK, GDK_KEY_q,      zoom,       { .i = 0  } },
+	{ MODKEY,                GDK_KEY_minus,  zoom,       { .i = -1 } },
+	{ MODKEY,                GDK_KEY_plus,   zoom,       { .i = +1 } },
 
 	// Clipboard
-	{ 0,                     GDK_KEY_p,      clipboard,  { .i = 1 } },
-	{ 0,                     GDK_KEY_y,      clipboard,  { .i = 0 } },
+	{ MODKEY,                GDK_KEY_p,      clipboard,  { .i = 1 } },
+	{ MODKEY,                GDK_KEY_y,      clipboard,  { .i = 0 } },
 
-	{ 0,                     GDK_KEY_n,      find,       { .i = +1 } },
-	{ 0|GDK_SHIFT_MASK,      GDK_KEY_n,      find,       { .i = -1 } },
+	{ MODKEY,                GDK_KEY_n,      find,       { .i = +1 } },
+	{ MODKEY|GDK_SHIFT_MASK, GDK_KEY_n,      find,       { .i = -1 } },
 
 	{ MODKEY,                GDK_KEY_p,      print,      { 0 } },
 	{ MODKEY,                GDK_KEY_t,      showcert,   { 0 } },
