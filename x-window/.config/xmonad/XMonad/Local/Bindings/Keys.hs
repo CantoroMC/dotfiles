@@ -51,7 +51,7 @@ import XMonad.Layout.ResizableTile
 import XMonad.Util.NamedScratchpad
     ( namedScratchpadAction
     )
-import /Monad.Util.Types
+import XMonad.Util.Types
     ( Direction2D (..)
     )
 import XMonad.Prompt.Shell
