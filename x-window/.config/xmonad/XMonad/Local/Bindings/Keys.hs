@@ -74,8 +74,6 @@ import XMonad.Local.Bindings.Util
     , resizeFloating
     , xmPromptConfig
     , xmSearchEngineMap
-    , xmTreeSelectAction
-    , xmTreeSelectConfig
     , terminalFromConf
     , inTerminalFromConf
     )
@@ -127,9 +125,6 @@ xmKeys mask = do
     bind $ mask ... xK_a
       |/- "spawn default terminal"
         ^> spawn =<< terminalFromConf
-    bind $ mask .|. shiftMask ... xK_a
-      |/- "spawn xmonad tree selection menu"
-        ^> xmTreeSelectAction xmTreeSelectConfig
     bind $ mask ... xK_s
       |/- "increase gap spacing"
         ^> incWindowSpacing 1
