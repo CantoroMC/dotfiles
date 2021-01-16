@@ -1,5 +1,5 @@
 ------------------------------------------------------------------------------
-name:          xmonad-config
+name:          thinkMonad
 version:       0.15
 synopsis:      XMonad Testing Repository
 homepage:      http://xmonad.org
@@ -18,8 +18,8 @@ description:
   My personal xmonad
 
 ------------------------------------------------------------------------------
-executable xmonad-config
-  main-is: xmonad.hs
+executable thinkMonad
+  main-is: thinkMonad.hs
   ghc-options: -Wall -Werror -fno-warn-missing-signatures
   build-depends: base
                , containers

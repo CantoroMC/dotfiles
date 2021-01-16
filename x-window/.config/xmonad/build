@@ -2,7 +2,7 @@
 
 # The directory holding your source code and Cabal file:
 SRC_DIR=~/.config/xmonad/
-EXE_NAME=xmonad-config
+EXE_NAME=thinkMonad
 output_file=$1; shift
 
 cd $SRC_DIR

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DEFAULT_SESSION=xmonad-config
+DEFAULT_SESSION=thinkMonad
 
 # Load xprofile
 sysprofile=/etc/xprofile
