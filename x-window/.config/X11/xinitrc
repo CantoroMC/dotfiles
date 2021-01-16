@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DEFAULT_SESSION=xmonad
+DEFAULT_SESSION=xmonad-config
 
 # Load xprofile
 sysprofile=/etc/xprofile

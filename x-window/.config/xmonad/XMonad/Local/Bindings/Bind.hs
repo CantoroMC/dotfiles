@@ -125,7 +125,7 @@ infixr 0 ^>
 
 (...) :: ButtonMask -> KeySym -> KeyCombination
 (...) m k = KeyCombination { modifier = m
-                           , key = k 
+                           , key = k
                            }
 infix 4 ...
 
