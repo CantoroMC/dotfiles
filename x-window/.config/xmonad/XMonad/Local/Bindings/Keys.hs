@@ -51,7 +51,7 @@ import XMonad.Layout.ResizableTile
 import XMonad.Util.NamedScratchpad
     ( namedScratchpadAction
     )
-import XMonad.Util.Types
+import /Monad.Util.Types
     ( Direction2D (..)
     )
 import XMonad.Prompt.Shell
@@ -96,7 +96,7 @@ xmKeys mask = do
     -- Left side characters
     bind $ mask ... xK_q
       |/- "recompile and restart xmonad"
-        ^> spawn "xmonad --recompile; xmonad --restart"
+        ^> spawn "xmonad-config --recompile; xmonad-config --restart"
     bind $ mask .|. shiftMask ... xK_q
       |/- "kill focused window"
         ^> kill
