@@ -2,15 +2,15 @@
 
 # Get the volume via pulsemixer
 
-[ $(pulsemixer --get-mute) = 1 ] && echo ﱝ && exit
+[ $(pulsemixer --get-mute) = 1 ] && echo "ﱝ" && exit
 
 vol="$(pulsemixer --get-volume | awk '{ print ($1+$2)/2 }')"
 if [ "$vol" -gt "70" ]; then
 	icon="墳 "
 elif [ "$vol" -lt "30" ]; then
-	icon="奔 "
-else
 	icon="奄 "
+else
+	icon="奔 "
 fi
 
 echo "$icon$vol%"
