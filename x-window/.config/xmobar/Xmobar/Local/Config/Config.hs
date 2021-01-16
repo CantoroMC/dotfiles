@@ -77,7 +77,7 @@ data Palette = Palette
 
 lightPalette :: Palette -- TODO
 lightPalette = Palette
-    { pFont       = "xft:Operator Mono Lig:style=Italic:pixelsize=10"
+    { pFont       = "xft:Operator Mono Lig:style=Italic:pixelsize=9"
     , pForeground = "#151a1e"
     , pBackground = "#eaeaea"
     , pAlpha      = 255
@@ -91,7 +91,7 @@ lightPalette = Palette
 
 darkPalette :: Palette
 darkPalette = Palette
-    { pFont       = "xft:Operator Mono Lig:style= Italic:pixelsize=10"
+    { pFont       = "xft:Operator Mono Lig:style= Italic:pixelsize=9"
     , pForeground = "#eaeaea"
     , pBackground = "#151a1e"
     , pAlpha      = 255
@@ -121,9 +121,9 @@ baseConfig :: Palette -> Config
 baseConfig p = defaultConfig
     { font             = pFont p
     , additionalFonts  =
-        [ "xft:SauceCodePro Nerd Font:style=Black Italic:size=11:hinting=true"
-        , "xft:Ubuntu:weight=bold:pixelsize=8:antialias=true:hinting=true"
-        , "xft:FiraCode Nerd Font:style=Regular:pixelsize=10"
+        [ "xft:SauceCodePro Nerd Font:style=Black Italic:size=10:hinting=true"
+        , "xft:Ubuntu:weight=bold:pixelsize=7:antialias=true:hinting=true"
+        , "xft:FiraCode Nerd Font:style=Regular:pixelsize=9"
         ]
     , bgColor          = pBackground p
     , fgColor          = pForeground p

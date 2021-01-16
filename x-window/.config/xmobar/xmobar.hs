@@ -7,15 +7,12 @@ import Xmobar.Local.Config.Config   ( Palette(..)
                                     , baseConfig
                                     , defaultHeight
                                     , palette
-                                    , separator
                                     )
 
 import Xmobar.Local.Config.Monitors ( aur
                                     , battery
                                     , brightness
                                     , clock
-                                    , diskIO
-                                    , diskU
                                     , keyboard
                                     , memory
                                     , mpdMusic
@@ -39,8 +36,6 @@ xmobarConfig p = (baseConfig p)
   , commands = [ Run UnsafeStdinReader
                , Run trayerPad
                , Run (mpdMusic p)
-               , Run diskU
-               , Run diskIO
                , Run weather
                , Run (clock p)
                , Run pacman
@@ -61,14 +56,12 @@ xmobarConfig p = (baseConfig p)
                ++ "|UnsafeStdinReader| "
                ++ " "
                ++ "|music| "
-               ++ " "
-               ++ "|disku| |diskio|"
                ++ "}"
                ++ "|LIML| "
                ++ "|date|"
                ++ "{"
                ++ action "st yay -Syu" 3 " |pacman| |aur|"
-               ++ separator
+               ++ " "
                ++ "|memory| |swap|"
                ++ " "
                ++ "|multicpu|"
@@ -76,7 +69,7 @@ xmobarConfig p = (baseConfig p)
                ++ "|multicoretemp|"
                ++ " "
                ++ "|uptime| "
-               ++ separator
+               ++ " "
                ++ "|battery0|"
                ++ " "
                ++ "|bright|"
@@ -88,7 +81,7 @@ xmobarConfig p = (baseConfig p)
                ++ "|dynnetwork|"
                ++ " "
                ++ xMenu "xmenu-shutdown" "\61457"
-               ++ "    "
+               ++ "      "
                ++ "|trayerPad|"
   }
 
