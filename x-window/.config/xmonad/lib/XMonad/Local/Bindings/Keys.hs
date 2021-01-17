@@ -266,7 +266,7 @@ xmKeys mask = do
         ^> sendMessage $ JumpToLayout "Monocle"
     bind $ mask .|. shiftMask ... xK_space
       |/- "select the floating layout"
-        ^> sendMessage $ JumpToLayout ">>="
+        ^> sendMessage $ JumpToLayout "Float >>="
     bind $ mask ... xK_Return
       |/- "spawn default terminal"
         ^> spawn =<< terminalFromConf

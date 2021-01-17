@@ -77,7 +77,7 @@ combo
   :: ModifiedLayout
        Rename
        ( CombineTwo
-           (Tall ())
+           (ResizableTall ())
            ( ModifiedLayout
                (Decoration TabbedDecoration DefaultShrinker)
                Simplest
@@ -90,7 +90,7 @@ combo
        Window
 combo = renamed
   [Replace "Combo"]
-  (combineTwo (Tall 1 0.03 0.5)
+  (combineTwo (ResizableTall 1 0.03 0.5 [])
               (tabbed shrinkText xmDecorationTheme)
               (tabbed shrinkText xmDecorationTheme)
   )
@@ -139,17 +139,17 @@ comboGrid = renamed
   )
 
 twoPane :: ModifiedLayout Rename TwoPanePersistent Window
-twoPane = renamed [Replace "M**"] $ TwoPanePersistent Nothing 0.03 0.5
+twoPane = renamed [Replace "TwoPane"] $ TwoPanePersistent Nothing 0.03 0.5
 
 horizontal :: ModifiedLayout Rename (Mirror ResizableTall) Window
-horizontal = renamed [Replace "TTT"] $ Mirror (ResizableTall 1 0.03 0.5 [])
+horizontal = renamed [Replace "MirrorTall"] $ Mirror (ResizableTall 1 0.03 0.5 [])
 
 threeCol :: ModifiedLayout Rename ThreeCol Window
-threeCol = renamed [Replace "||M||"] $ ThreeColMid 1 0.03 0.5
+threeCol = renamed [Replace "ThreeColumns"] $ ThreeColMid 1 0.03 0.5
 
 floatL
   :: ModifiedLayout Rename (ModifiedLayout WindowArranger SimplestFloat) Window
-floatL = renamed [Replace ">>="] simplestFloat
+floatL = renamed [Replace "Float >>="] simplestFloat
 
 -------------------------------------------------------------------------------
     -- Per Workspace Combinations
