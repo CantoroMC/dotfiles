@@ -54,12 +54,6 @@ import XMonad.Util.NamedScratchpad
 import XMonad.Util.Types
     ( Direction2D (..)
     )
-import XMonad.Prompt.Shell
-    ( shellPrompt
-    )
-import XMonad.Prompt.Man
-    ( manPrompt
-    )
 
 import XMonad.Local.Manage.Util
     ( xmScratchpads
@@ -72,8 +66,6 @@ import XMonad.Local.Bindings.Util
     ( Direction (..)
     , moveFloating
     , resizeFloating
-    , xmPromptConfig
-    , xmSearchEngineMap
     , terminalFromConf
     , inTerminalFromConf
     )
@@ -94,7 +86,7 @@ xmKeys mask = do
     -- Left side characters
     bind $ mask ... xK_q
       |/- "recompile and restart xmonad"
-        ^> spawn "xmonad-config --recompile; xmonad-config --restart"
+        ^> spawn "xmonad --recompile; xmonad --restart"
     bind $ mask .|. shiftMask ... xK_q
       |/- "kill focused window"
         ^> kill
@@ -349,18 +341,6 @@ xmKeys mask = do
         ^> do doc <- getBindings
               term <- terminalFromConf
               spawn $ term <> " -n keysheet -t keysheet sh -c \"echo '" <> doc <> "' | less\""
-    bind $ mask .|. shiftMask ... xK_F1
-      |/- "spawn XMonad manual prompt"
-        ^> manPrompt xmPromptConfig
-    bind $ mask ... xK_F2
-      |/- "spawn XMonad search engine prompt"
-        ^> XMSM.submap $ xmSearchEngineMap $ XMSearch.promptSearch xmPromptConfig
-    bind $ mask .|. shiftMask ... xK_F2
-      |/- "select a search engine to look for the selected text"
-        ^> XMSM.submap $ xmSearchEngineMap XMSearch.selectSearch
-    bind $ mask ... xK_F5
-      |/- "spawn XMonad shell prompt"
-        ^> shellPrompt xmPromptConfig
     bind $ noModMask ... XF86.xF86XK_AudioMute
       |/- "toggle mute/unmute audio"
         ^> spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle"
