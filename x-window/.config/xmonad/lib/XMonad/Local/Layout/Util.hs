@@ -9,39 +9,39 @@ module XMonad.Local.Layout.Util
 
 import           XMonad                  hiding ( (|||) )
 
-import           XMonad.Layout.Combo            ( CombineTwo
-                                                , combineTwo
-                                                )
-import           XMonad.Layout.Decoration       ( Decoration
-                                                , DefaultShrinker
-                                                , Theme(..)
-                                                )
-import           XMonad.Layout.LayoutCombinators
-                                                ( (|||) ) -- TODO: Look at it (and replace maybe combo)
-import           XMonad.Layout.LayoutModifier   ( ModifiedLayout )
-import           XMonad.Layout.Renamed          ( Rename(CutWordsLeft, Replace)
-                                                , renamed
-                                                )
-import           XMonad.Layout.ResizableTile    ( ResizableTall(..) )
-import           XMonad.Layout.Simplest         ( Simplest(..) )
-import           XMonad.Layout.SimplestFloat    ( SimplestFloat
-                                                , simplestFloat
-                                                )
-import           XMonad.Layout.Spacing          ( Border(..)
-                                                , Spacing(..)
-                                                , spacingRaw
-                                                )
-import           XMonad.Layout.Tabbed           ( TabbedDecoration(..)
-                                                , shrinkText
-                                                , tabbed
-                                                )
-import           XMonad.Layout.ThreeColumns     ( ThreeCol(ThreeColMid) )
-import           XMonad.Layout.TwoPanePersistent
-import           XMonad.Layout.WindowArranger   ( WindowArranger )
-import           XMonad.Layout.PerWorkspace     ( onWorkspace )
+import           XMonad.Layout.Combo             ( CombineTwo
+                                                 , combineTwo
+                                                 )
+import           XMonad.Layout.Decoration        ( Decoration
+                                                 , DefaultShrinker
+                                                 , Theme(..)
+                                                 )
+import           XMonad.Layout.LayoutCombinators 
+                                                 ( (|||) )
+import           XMonad.Layout.LayoutModifier    ( ModifiedLayout )
+import           XMonad.Layout.Renamed           ( Rename(CutWordsLeft, Replace)
+                                                 , renamed
+                                                 )
+import           XMonad.Layout.ResizableTile     ( ResizableTall(..) )
+import           XMonad.Layout.Simplest          ( Simplest(..) )
+import           XMonad.Layout.SimplestFloat     ( SimplestFloat
+                                                 , simplestFloat
+                                                 )
+import           XMonad.Layout.Spacing           ( Border(..)
+                                                 , Spacing(..)
+                                                 , spacingRaw
+                                                 )
+import           XMonad.Layout.Tabbed            ( TabbedDecoration(..)
+                                                 , shrinkText
+                                                 , tabbed
+                                                 )
+import           XMonad.Layout.ThreeColumns      ( ThreeCol(ThreeColMid) )
+import           XMonad.Layout.TwoPanePersistent ( TwoPanePersistent(TwoPanePersistent) )
+import           XMonad.Layout.WindowArranger    ( WindowArranger )
+import           XMonad.Layout.PerWorkspace      ( onWorkspace )
 
-import qualified XMonad.Local.Config.Theme     as XMTheme
-import           XMonad.Local.Config.Workspace  ( xmWorkspaces )
+import qualified XMonad.Local.Config.Theme      as XMTheme
+import           XMonad.Local.Config.Workspace   ( xmWorkspaces )
 
 -------------------------------------------------------------------------------
     -- Decorations Theme

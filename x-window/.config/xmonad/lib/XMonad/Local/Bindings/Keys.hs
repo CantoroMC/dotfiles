@@ -27,10 +27,6 @@ import XMonad.Actions.CopyWindow
     , copyToAll
     , killAllOtherCopies
     )
-import qualified XMonad.Actions.Search as XMSearch
-    ( promptSearch
-    , selectSearch
-    )
 import XMonad.Hooks.ManageDocks
     ( ToggleStruts (..)
     )

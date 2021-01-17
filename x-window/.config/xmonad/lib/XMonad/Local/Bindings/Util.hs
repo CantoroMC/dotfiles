@@ -9,19 +9,12 @@ module XMonad.Local.Bindings.Util
     , inTerminalFromConf
     ) where
 
-import qualified Data.Map as Map
-    ( Map
-    , fromList
-    )
-
 import XMonad
 
 import XMonad.Actions.FloatKeys
     ( keysMoveWindow
     , keysResizeWindow
     )
-
-import qualified XMonad.Local.Config.Theme as XMTheme
 
 ------------------------------------------------------------------------------
     -- User
