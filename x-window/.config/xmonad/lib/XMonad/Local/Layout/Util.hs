@@ -137,7 +137,7 @@ tatami = Tatami 1 0.03 0.5
 straight = tall   ||| tatami  ||| combo ||| monocle ||| horizontal ||| threeCol ||| floatL
 alpha    = floatL ||| monocle
 beta     = tall   ||| monocle ||| combo
-delta    = tatami ||| tall    ||| combo
+gamma    = tatami ||| tall    ||| combo
 eta      = combo  ||| tall
 theta    = tall   ||| horizontal
 iota     = floatL
@@ -148,6 +148,7 @@ iota     = floatL
 xmLayouts =
     onWorkspace (head xmWorkspaces) alpha
         $ onWorkspace (xmWorkspaces !! 1) beta
+        $ onWorkspace (xmWorkspaces !! 2) gamma
         $ onWorkspace (xmWorkspaces !! 6) eta
         $ onWorkspace (xmWorkspaces !! 7) theta
         $ onWorkspace (xmWorkspaces !! 8) iota straight
