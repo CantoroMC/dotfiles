@@ -51,19 +51,20 @@ tatami f r nm n
     | nslave <= 0 || nm == 0 = splitVertically n r
     | otherwise              = splitVertically nm r1
                                 ++ mat nns (head rms)
-                                ++ concatMap matOfFive (tail rms)
+                                ++ concatMap matOfSix (tail rms)
   where
     (r1, r2) = splitHorizontallyBy f r
     nslave   = n - nm
-    nmat     = div (nslave - 1) 5 + 1
+    nmat     = div (nslave - 1) 6 + 1
     rms      = splitVertically nmat r2
-    nns      = nslave - ((nmat - 1) * 5)
+    nns      = nslave - ((nmat - 1) * 6)
 
 mat :: Int -> Rectangle -> [Rectangle]
 mat nns r
     | nns == 3  = matOfThree r
     | nns == 4  = matOfFour r
     | nns == 5  = matOfFive r
+    | nns == 6  = matOfSix r
     | otherwise = splitVertically nns r
 
 matOfThree :: Rectangle -> [Rectangle]
@@ -135,3 +136,35 @@ matOfFive (Rectangle sx sy sw sh) =
     smallw = div sw 3
     deltaX = 2 * smallw
     deltaY = 2 * smallh
+
+matOfSix :: Rectangle -> [Rectangle]
+matOfSix (Rectangle sx sy sw sh) =
+    [ Rectangle sx
+                sy
+                deltaX
+                smallh
+    , Rectangle (sx + fromIntegral deltaX)
+                sy
+                deltaX
+                smallh
+    , Rectangle sx
+                (sy + fromIntegral smallh)
+                smallw
+                deltaY
+    , Rectangle (sx + fromIntegral smallw)
+                (sy + fromIntegral smallh)
+                deltaX
+                smallh
+    , Rectangle (sx + fromIntegral smallw)
+                (sy + fromIntegral deltaY)
+                deltaX
+                smallh
+    , Rectangle (sx + fromIntegral (deltaX+smallw))
+                (sy + fromIntegral smallh)
+                smallw
+                deltaY
+    ] where
+    smallh = div sh 3
+    smallw = div sw 4
+    deltaY = 2 * smallh
+    deltaX = 2 * smallw

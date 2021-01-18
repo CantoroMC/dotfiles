@@ -81,6 +81,18 @@ endfunction
 
 " }}}
 
+" Commands: {{{1
+command! -buffer Dbstep SlimuxShellRun dbstep
+command! -buffer DbstepIn SlimuxShellRun dbstep in
+command! -buffer Dbcont SlimuxShellRun dbcont
+command! -buffer DbstepOut SlimuxShellRun dbstep out
+command! -buffer Dbquit SlimuxShellRun dbquit
+command! -buffer Dbstatus SlimuxShellRun dbstatus
+command! -buffer -nargs=1 -complete=file DbclearAll SlimuxShellRun dbclear all in <args>
+command! -buffer -nargs=1 Dbstop :execute 'SlimuxShellRun dbstop in '.expand('%').' at '. <args>
+command! -buffer DbstopHere :execute 'SlimuxShellRun dbstop in '.expand('%').' at '. line('.')
+" }}}
+
 " Options Restoring: {{{1
 let b:undo_ftplugin = 'setlocal suffixesadd< suffixes< '
       \ . ' | setlocal comments< commentstring< '

@@ -66,6 +66,9 @@ xmDecorationTheme = def
 tall :: ModifiedLayout Rename ResizableTall Window
 tall = renamed [Replace "Tall"] $ ResizableTall 1 0.03 0.5 []
 
+betaTall :: ModifiedLayout Rename ResizableTall Window
+betaTall = renamed [Replace "Tall"] $ ResizableTall 1 0.03 0.8 []
+
 monocle
     :: ModifiedLayout
            Rename
@@ -130,11 +133,11 @@ tatami = Tatami 1 0.03 0.5
     -- Per Workspace Combinations
 
 alpha    = monocle    ||| floatL
-beta     = tall       ||| monocle ||| combo
+beta     = betaTall   ||| monocle ||| floatL
 gamma    = tatami     ||| tall    ||| combo
 eta      = combo      ||| tall
 theta    = horizontal ||| tall
-iota     = floatL
+iota     = tatami     ||| floatL
 others   = tall       ||| tatami  ||| combo ||| monocle ||| horizontal ||| threeCol ||| floatL
 
 -------------------------------------------------------------------------------
