@@ -37,11 +37,6 @@ import           XMonad.Layout.Tabbed           ( TabbedDecoration(..)
                                                 , tabbed
                                                 )
 import           XMonad.Layout.ThreeColumns     ( ThreeCol(ThreeColMid) )
-import           XMonad.Layout.TwoPanePersistent
-                                                ( TwoPanePersistent
-                                                    ( TwoPanePersistent
-                                                    )
-                                                )
 import           XMonad.Layout.WindowArranger   ( WindowArranger )
 
 import qualified XMonad.Local.Config.Theme     as XMTheme
@@ -134,13 +129,13 @@ tatami = Tatami 1 0.03 0.5
 -------------------------------------------------------------------------------
     -- Per Workspace Combinations
 
-straight = tall    ||| tatami  ||| combo ||| monocle ||| horizontal ||| threeCol ||| floatL
-alpha    = monocle ||| floatL
-beta     = tall    ||| monocle ||| combo
-gamma    = tatami  ||| tall    ||| combo
-eta      = combo   ||| tall
-theta    = tall    ||| horizontal
+alpha    = monocle    ||| floatL
+beta     = tall       ||| monocle ||| combo
+gamma    = tatami     ||| tall    ||| combo
+eta      = combo      ||| tall
+theta    = horizontal ||| tall
 iota     = floatL
+others   = tall       ||| tatami  ||| combo ||| monocle ||| horizontal ||| threeCol ||| floatL
 
 -------------------------------------------------------------------------------
     -- Layout Hook
@@ -151,7 +146,7 @@ xmLayouts =
         $ onWorkspace (xmWorkspaces !! 2) gamma
         $ onWorkspace (xmWorkspaces !! 6) eta
         $ onWorkspace (xmWorkspaces !! 7) theta
-        $ onWorkspace (xmWorkspaces !! 8) iota straight
+        $ onWorkspace (xmWorkspaces !! 8) iota others
 
 applySpacing
     :: Integer

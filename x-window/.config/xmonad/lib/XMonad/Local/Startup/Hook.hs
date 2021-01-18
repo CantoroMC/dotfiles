@@ -16,7 +16,7 @@ xmStartupHook :: X ()
 xmStartupHook = do
     fixSupportedAtoms
     setDefaultCursor xC_left_ptr
-    windows . XMSS.greedyView $ show Alpha
+    windows . XMSS.greedyView $ show Gamma
 
 -- | Detect urgency of some programs like kitty (not covered in 'XMonad.Hooks.EwmhDesktops.ewmh'):
 -- https://github.com/kovidgoyal/kitty/issues/1016#issuecomment-480472827

@@ -54,6 +54,10 @@ import XMonad.Util.Types
 import XMonad.Local.Manage.Util
     ( xmScratchpads
     , xmBigRect
+    , xmUpLeftRect
+    , xmUpRightRect
+    , xmDownLeftRect
+    , xmDownRightRect
     )
 import XMonad.Local.Config.Workspace
     ( xmWorkspaces
@@ -309,6 +313,18 @@ xmKeys mask = do
     bind $ mask .|. shiftMask ... xK_Right
       |/- "expand floating window horizontally"
         ^> withFocused $ resizeFloating FR
+    bind $ mask .|. controlMask ... xK_Left
+      |/- "float and move to the down-left corner the focused window"
+        ^> withFocused $ windows . flip XMSS.float xmDownLeftRect
+    bind $ mask .|. controlMask ... xK_Down
+      |/- "float and move to the down-right corner the focused window"
+        ^> withFocused $ windows . flip XMSS.float xmDownRightRect
+    bind $ mask .|. controlMask ... xK_Right
+      |/- "float and move to the up-right corner the focused window"
+        ^> withFocused $ windows . flip XMSS.float xmUpRightRect
+    bind $ mask .|. controlMask ... xK_Up
+      |/- "float and move to the up-left corner the focused window"
+        ^> withFocused $ windows . flip XMSS.float xmUpLeftRect
     bind $ mask .|. controlMask .|. shiftMask ... xK_Up
       |/- "swap focused window with north"
         ^> sendMessage $ Swap U
