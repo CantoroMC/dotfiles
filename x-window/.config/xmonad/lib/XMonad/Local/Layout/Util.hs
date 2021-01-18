@@ -134,12 +134,12 @@ tatami = Tatami 1 0.03 0.5
 -------------------------------------------------------------------------------
     -- Per Workspace Combinations
 
-straight = tall   ||| tatami  ||| combo ||| monocle ||| horizontal ||| threeCol ||| floatL
-alpha    = floatL ||| monocle
-beta     = tall   ||| monocle ||| combo
-gamma    = tatami ||| tall    ||| combo
-eta      = combo  ||| tall
-theta    = tall   ||| horizontal
+straight = tall    ||| tatami  ||| combo ||| monocle ||| horizontal ||| threeCol ||| floatL
+alpha    = monocle ||| floatL
+beta     = tall    ||| monocle ||| combo
+gamma    = tatami  ||| tall    ||| combo
+eta      = combo   ||| tall
+theta    = tall    ||| horizontal
 iota     = floatL
 
 -------------------------------------------------------------------------------
