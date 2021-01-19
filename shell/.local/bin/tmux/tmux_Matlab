@@ -10,7 +10,7 @@ start_session() {
 
     tmux new-window  -d -t Matlab:2 -n 'Help' -c ~/Documents/programming/MATLAB
 
-    tmux send-keys -t Matlab:Vim.2 'matlab -nodesktop -nosplash' C-m
+    tmux send-keys -t Matlab:Vim.2 'matlab -nodesktop -nosplash -nojvm' C-m
   fi
   tmux attach -d -t Matlab
 }

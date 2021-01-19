@@ -17,7 +17,6 @@ module Xmobar.Local.Config.Monitors
     , wifi
     , xMenu
     , pacman
-    , aur
     ) where
 
 import Xmobar
@@ -39,9 +38,6 @@ trayerPad = Com (xmobarConfigDir ++ "/scripts/padding-icon") [] "trayerpad" 3600
 
 pacman :: Command
 pacman = Com "/bin/sh" ["-c", xmobarConfigDir ++ "/scripts/xmPacman"] "pacman" 600
-
-aur :: Command
-aur = Com "/bin/sh" ["-c", xmobarConfigDir ++ "/scripts/xmAur"] "aur" 600
 
 mpdMusic :: Palette -> Monitors
 mpdMusic p =
@@ -143,7 +139,7 @@ thermal p =
 
 uptime :: Monitors
 uptime = Uptime
-    [ "-t", fc "#b8cc52" "Up:" ++ "<hours> <minutes>"
+    [ "-t", fc "#b8cc52" "Up:" ++ "<hours><minutes>"
     , "-w", "3"
     , "-S", "True"
     ] 60

@@ -22,8 +22,8 @@ Partition the disk with =cfdisk=
 
 ** Format the partitions
 #+begin_src shell
-  mkfs.ext4 /dev/<root>
-  mkswap /dev/<swap>
+  mkfs.ext4 -L rootName /dev/<root>
+  mkswap -L swap /dev/<swap>
 #+end_src
 
 ** Mount the filesystem

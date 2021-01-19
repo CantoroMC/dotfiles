@@ -80,7 +80,7 @@ alias paraFoam='paraFoam -builtin & disown'
 # Haskell Compiler
 alias hcompile='ghc --make -outputdir ./out'
 # Matlab
-alias mat='matlab -nodesktop -nosplash'
+alias mat='matlab -nodesktop -nosplash -nojvm'
 
 # }}}
 

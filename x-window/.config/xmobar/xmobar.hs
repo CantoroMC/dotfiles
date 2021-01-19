@@ -9,11 +9,9 @@ import Xmobar.Local.Config.Config   ( Palette(..)
                                     , palette
                                     )
 
-import Xmobar.Local.Config.Monitors ( aur
-                                    , battery
+import Xmobar.Local.Config.Monitors ( battery
                                     , brightness
                                     , clock
-                                    , keyboard
                                     , memory
                                     , mpdMusic
                                     , multicpu
@@ -39,7 +37,6 @@ xmobarConfig p = (baseConfig p)
                , Run weather
                , Run (clock p)
                , Run pacman
-               , Run aur
                , Run (memory p)
                , Run swap
                , Run (multicpu p)
@@ -48,7 +45,6 @@ xmobarConfig p = (baseConfig p)
                , Run (battery p)
                , Run (brightness p)
                , Run (volume p)
-               , Run keyboard
                , Run (wifi p)
                ]
   , template = " "
@@ -60,7 +56,7 @@ xmobarConfig p = (baseConfig p)
                ++ "|LIML| "
                ++ "|date|"
                ++ "{"
-               ++ action "st yay -Syu" 3 " |pacman| |aur|"
+               ++ action "st yay -Syu" 3 " |pacman|"
                ++ " "
                ++ "|memory| |swap|"
                ++ " "
@@ -76,12 +72,10 @@ xmobarConfig p = (baseConfig p)
                ++ " "
                ++ "|default:Master|"
                ++ " "
-               ++ "|kbd|"
-               ++ " "
                ++ "|dynnetwork|"
                ++ " "
                ++ xMenu "xmenu-shutdown" "\61457"
-               ++ "      "
+               ++ "     "
                ++ "|trayerPad|"
   }
 
