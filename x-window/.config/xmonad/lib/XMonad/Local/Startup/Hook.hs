@@ -4,9 +4,6 @@ module XMonad.Local.Startup.Hook
 
 import XMonad
 import qualified XMonad.StackSet as XMSS
-import XMonad.Util.Cursor
-    ( setDefaultCursor
-    )
 
 import XMonad.Local.Config.Workspace
     ( Workspace (..)
@@ -30,3 +27,13 @@ fixSupportedAtoms = withDisplay $ \dpy -> do
         , "_NET_WM_STATE_DEMANDS_ATTENTION"
         ]
     io $ changeProperty32 dpy r a c propModeAppend (fmap fromIntegral supp)
+
+setDefaultCursor :: Glyph -> X ()
+setDefaultCursor glyph = do
+    dpy <- asks display
+    rootw <- asks theRoot
+    liftIO $ do
+        curs <- createFontCursor dpy glyph
+        defineCursor dpy rootw curs
+        flush dpy
+        freeCursor dpy curs

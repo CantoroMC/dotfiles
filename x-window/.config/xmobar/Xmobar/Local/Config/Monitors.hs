@@ -119,7 +119,8 @@ multicpu p =
                 , "-S", "True"
                 , "-p", "3"
                 , "-d", "0"
-                , "-w", "5"
+                , "-m", "4"
+                , "-w", "6"
                 , "-a", "l"
                 ]
                 [ "--load-icon-pattern" , icon "cpu/cpu_%%.xpm"
