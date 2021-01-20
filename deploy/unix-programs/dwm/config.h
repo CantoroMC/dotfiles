@@ -1,10 +1,10 @@
 // Appearance
-static const unsigned int borderpx       = 2;            /* border pixel of windows */
+static const unsigned int borderpx       = 3;            /* border pixel of windows */
 static const unsigned int snap           = 24;           /* snap pixel */
 static const Gap default_gap             = {.isgap = 1, .realgap = 0, .gappx = 0};
 static const int showbar                 = 1;            /* 0 means no bar */
 static const int topbar                  = 1;            /* 0 means bottom bar */
-static const char buttonbar[]            = "<Menu>";
+static const char buttonbar[]            = "Menu";
 static const unsigned int systraypinning = 1;            /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayspacing = 2;            /* systray spacing */
 // 1: if pinning fails, display systray on the first monitor,
@@ -25,7 +25,7 @@ static const char norm_bg[]              = "#151a1e";
 static const char norm_border[]          = "#151a1e";
 static const char norm_fg[]              = "#b8cc52";
 static const char self_fg[]              = "#eaeaea";
-static const char self_bg[]              = "#3f4e5a";
+static const char self_bg[]              = "#151a1e";
 static const char self_border[]          = "#b8cc52";
 static const char *colors[][3]           = {
 	[SchemeNorm] = { norm_fg, norm_bg, norm_border },
@@ -41,47 +41,50 @@ static const char *tags[] = { "α", "β", "γ", "δ", "ε", "ζ", "η", "θ", "�
 // Layout is referred using the layouts array index.
 static int def_layouts[1 + LENGTH(tags)]  = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 static const Rule rules[] = {
-	/* class                    instance     title             tags mask  iscentered isfloating  monitor */
-	{ "Arandr",                       NULL,       NULL,               0,       1,          1,          -1 },
-	{ "Avahi-discover",               NULL,       NULL,               0,       1,          1,          -1 },
-	{ "Baobab",                       NULL,       NULL,               0,       1,          1,          -1 },
-	{ "Blueberry.py",                 NULL,       NULL,               0,       1,          1,          -1 },
-	{ "Bssh",                         NULL,       NULL,               0,       1,          1,          -1 },
-	{ "Bvnc",                         NULL,       NULL,               0,       1,          1,          -1 },
-	{ "CMakeSetup",                   NULL,       NULL,               0,       1,          1,          -1 },
-	{ "Exo-helper-2",                 NULL,       NULL,               0,       1,          1,          -1 },
-	{ "feh",                          NULL,       NULL,               0,       1,          1,          -1 },
-	{ "Gimp",                         NULL,       NULL,               0,       1,          1,          -1 },
-	{ "Gnome-disks",                  NULL,       NULL,               0,       1,          1,          -1 },
-	{ "Gpick",                        NULL,       NULL,               0,       1,          1,          -1 },
-	{ "Hardinfo",                     NULL,       NULL,               0,       1,          1,          -1 },
-	{ "imagewriter",                  NULL,       NULL,               0,       1,          1,          -1 },
-	{ "Lxappearance",                 NULL,       NULL,               0,       1,          1,          -1 },
-	{ "MPlayer",                      NULL,       NULL,               0,       1,          1,          -1 },
-	{ "Nitrogen",                     NULL,       NULL,               0,       1,          1,          -1 },
-	{ "ParaView",                     NULL,       NULL,               0,       1,          1,          -1 },
-	{ "Parcellite",                   NULL,       NULL,               0,       1,          1,          -1 },
-	{ "Pavucontrol",                  NULL,       NULL,               0,       1,          1,          -1 },
-	{ "qv4l2",                        NULL,       NULL,               0,       1,          1,          -1 },
-	{ "qvidcap",                      NULL,       NULL,               0,       1,          1,          -1 },
-	{ "System-config-printer.py",     NULL,       NULL,               0,       1,          1,          -1 },
-	{ "Sxiv",                         NULL,       NULL,               0,       1,          1,          -1 },
-	{ "Xarchiver",                    NULL,       NULL,               0,       1,          1,          -1 },
-	{ "Xboard",                       NULL,       NULL,               0,       1,          1,          -1 },
-	{ "Xfce4-about",                  NULL,       NULL,               0,       1,          1,          -1 },
-	{ "Xmessage",                     NULL,       NULL,               0,       1,          1,          -1 },
-	{ "Yad",                          NULL,       NULL,               0,       1,          1,          -1 },
-	{ "Yad-icon-browser",             NULL,       NULL,               0,       1,          1,          -1 },
-	{ NULL,                           NULL,       "Event Tester",     0,       1,          1,          -1 },
-	{ NULL,                           NULL,       "lstopo",           0,       1,          1,          -1 },
-	{ NULL,                           NULL,       "weatherreport",    0,       1,          1,          -1 },
-	{ NULL,                           "pop-up",   NULL,               0,       1,          1,          -1 },
-	{ "Display",                      NULL,       "ImageMagick: ",    0,       1,          1,          -1 },
-	{ "MATLAB R2019b - academic use", NULL,       "Help",             0,       1,          1,          -1 },
-	{ "Transmission-gtk",             NULL,       NULL,               1 << 8,  1,          1,          -1 },
-	{ "mpv",                          NULL,       NULL,               1 << 4,  0,          0,          -1 },
-	{ NULL,                           NULL,       "MATLAB",           1 << 1,  0,          0,          -1 },
-	/* class                    instance     title             tags mask  iscentered isfloating  monitor */
+	/* class                          instance     title             tags mask  iscentered isfloating  monitor  scratch key */
+	{ "Arandr",                       NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "Avahi-discover",               NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "Baobab",                       NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "Blueberry.py",                 NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "Bssh",                         NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "Bvnc",                         NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "CMakeSetup",                   NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "Exo-helper-2",                 NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "feh",                          NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "Gimp",                         NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "Gnome-disks",                  NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "Gpick",                        NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "Hardinfo",                     NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "imagewriter",                  NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "Lxappearance",                 NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "MPlayer",                      NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "Nitrogen",                     NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "ParaView",                     NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "Parcellite",                   NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "Pavucontrol",                  NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "qv4l2",                        NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "qvidcap",                      NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "System-config-printer.py",     NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "Sxiv",                         NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "Xarchiver",                    NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "Xboard",                       NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "Xfce4-about",                  NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "Xmessage",                     NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "Yad",                          NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ "Yad-icon-browser",             NULL,       NULL,               0,       1,          1,          -1,      0 },
+	{ NULL,                           NULL,       "Event Tester",     0,       1,          1,          -1,      0 },
+	{ NULL,                           NULL,       "lstopo",           0,       1,          1,          -1,      0 },
+	{ NULL,                           NULL,       "weatherreport",    0,       1,          1,          -1,      0 },
+	{ NULL,                           "pop-up",   NULL,               0,       1,          1,          -1,      0 },
+	{ "Display",                      NULL,       "ImageMagick: ",    0,       1,          1,          -1,      0 },
+	{ "MATLAB R2019b - academic use", NULL,       "Help",             0,       1,          1,          -1,      0 },
+	{ "Transmission-gtk",             NULL,       NULL,               1 << 8,  1,          1,          -1,      0 },
+	{ "mpv",                          NULL,       NULL,               1 << 4,  0,          0,          -1,      0 },
+	{ NULL,                           NULL,       "MATLAB",           1 << 1,  0,          0,          -1,      0 },
+	{ NULL,                           NULL,       "yakuake",          0,       1,          1,          -1,      'y' },
+	{ NULL,                           NULL,       "cmus",             0,       1,          1,          -1,      'm' },
+	{ NULL,                           NULL,       "orgenda",          0,       1,          1,          -1,      'o' },
+	/* class                          instance     title             tags mask  iscentered isfloating  monitor  scratch key */
 };
 
 
@@ -117,6 +120,7 @@ static const char *roficmd[]      = { "rofi", "-modi", "drun,run,combi", "-show"
 static const char *xmenucmd[]     = { "xmenu-apps", NULL};
 static const char *xmenuexitcmd[] = { "xmenu-shutdown", NULL};
 
+
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
@@ -127,6 +131,11 @@ static const char *xmenuexitcmd[] = { "xmenu-shutdown", NULL};
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 #define TERMINAL "st"
+
+/*First arg only serves to match against key in rules*/
+static const char *yakuakecmd[] = {"y", TERMINAL, "-t", "yakuake", NULL};
+static const char *cmuscmd[] = {"m", TERMINAL, "-t", "cmus", "-e", "cmus", NULL};
+static const char *orgendacmd[] = {"o", "emacs", "--name=orgenda", "~/Documents/organization/Notes.org", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -146,6 +155,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_t,            togglefloating, {0} },
 	{ MODKEY|ShiftMask,             XK_t,            tabmode,        {-1} },
 	// Gaps or Spacing
+	{ MODKEY,                       XK_a,            spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_s,            setgaps,        {.i = +3 } },
 	{ MODKEY|ShiftMask,             XK_s,            setgaps,        {.i = -3 } },
 	{ MODKEY|ControlMask,           XK_s,            setgaps,        {.i = GAP_RESET } },
@@ -155,6 +165,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_d,            spawn,          SHCMD("nautilus") },
 
 	{ MODKEY,                       XK_f,            spawn,          {.v = browsercmd } },
+	{ MODKEY|ShiftMask,             XK_f,            spawn,          SHCMD("surf-open") },
 	{ MODKEY,                       XK_b,            togglebar,      {0} },
 
 	/*                              Right Side                                           */
@@ -182,6 +193,11 @@ static Key keys[] = {
 	{ MODKEY,                       XK_u,            spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_u,            spawn,          {.v = roficmd } },
 	{ MODKEY|ControlMask,           XK_u,            spawn,          {.v = xmenucmd } },
+
+	// Scratchpads
+	{ MODKEY|ShiftMask|ControlMask, XK_y,            togglescratch,  {.v = yakuakecmd } },
+	{ MODKEY|ShiftMask|ControlMask, XK_m,            togglescratch,  {.v = cmuscmd } },
+	{ MODKEY|ShiftMask|ControlMask, XK_o,            togglescratch,  {.v = orgendacmd } },
 
 	/*                              Surrounding Keys                                     */
 

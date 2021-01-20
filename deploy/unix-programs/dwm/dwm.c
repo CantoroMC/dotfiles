@@ -115,6 +115,7 @@ struct Client {
 	int bw, oldbw;
 	unsigned int tags;
 	int isfixed, iscentered, isfloating, isurgent, neverfocus, oldstate, isfullscreen;
+	char scratchkey;
 	Client *next;
 	Client *snext;
 	Monitor *mon;
@@ -180,6 +181,7 @@ typedef struct {
 	int iscentered;
 	int isfloating;
 	int monitor;
+	const char scratchkey;
 } Rule;
 
 typedef struct Systray   Systray;
@@ -194,6 +196,7 @@ static int applysizehints(Client *c, int *x, int *y, int *w, int *h, int interac
 static void arrange(Monitor *m);
 static void arrangemon(Monitor *m);
 static void attach(Client *c);
+static void attachabove(Client *c);
 static void attachstack(Client *c);
 static void bstack(Monitor *m);
 static void buttonpress(XEvent *e);
@@ -272,6 +275,7 @@ static void shiftview(const Arg *arg);
 static void showhide(Client *c);
 static void sigchld(int unused);
 static void spawn(const Arg *arg);
+static void spawnscratch(const Arg *arg);
 static Monitor *systraytomon(Monitor *m);
 static void tabmode(const Arg *arg);
 static void tag(const Arg *arg);
@@ -281,6 +285,7 @@ static void tcl(Monitor * m);
 static void tile(Monitor *);
 static void togglebar(const Arg *arg);
 static void togglefloating(const Arg *arg);
+static void togglescratch(const Arg *arg);
 static void toggletag(const Arg *arg);
 static void toggleview(const Arg *arg);
 static void unfocus(Client *c, int setfocus);
@@ -373,6 +378,7 @@ applyrules(Client *c)
 	c->iscentered = 0;
 	c->isfloating = 0;
 	c->tags = 0;
+	c->scratchkey = 0;
 	XGetClassHint(dpy, c->win, &ch);
 	class    = ch.res_class ? ch.res_class : broken;
 	instance = ch.res_name  ? ch.res_name  : broken;
@@ -386,6 +392,7 @@ applyrules(Client *c)
 			c->iscentered = r->iscentered;
 			c->isfloating = r->isfloating;
 			c->tags |= r->tags;
+			c->scratchkey = r->scratchkey;
 			for (m = mons; m && m->num != r->monitor; m = m->next);
 			if (m)
 				c->mon = m;
@@ -395,6 +402,7 @@ applyrules(Client *c)
 		XFree(ch.res_class);
 	if (ch.res_name)
 		XFree(ch.res_name);
+
 	c->tags = c->tags & TAGMASK ? c->tags & TAGMASK : c->mon->tagset[c->mon->seltags];
 }
 
@@ -496,6 +504,20 @@ attach(Client *c)
 }
 
 void
+attachabove(Client *c)
+{
+	if (c->mon->sel == NULL || c->mon->sel == c->mon->clients || c->mon->sel->isfloating) {
+		attach(c);
+		return;
+	}
+
+	Client *at;
+	for (at = c->mon->clients; at->next != c->mon->sel; at = at->next);
+	c->next = at->next;
+	at->next = c;
+}
+
+void
 attachstack(Client *c)
 {
 	c->snext = c->mon->stack;
@@ -546,7 +568,7 @@ buttonpress(XEvent *e)
 	click = ClkRootWin;
 	/* focus monitor if necessary */
 	if ((m = wintomon(ev->window)) && m != selmon
-	    && (focusonwheel || (ev->button != Button4 && ev->button != Button5))) {
+		&& (focusonwheel || (ev->button != Button4 && ev->button != Button5))) {
 		unfocus(selmon->sel, 1);
 		selmon = m;
 		focus(NULL);
@@ -577,9 +599,9 @@ buttonpress(XEvent *e)
 		  if(!ISVISIBLE(c)) continue;
 		  x += selmon->tab_widths[i];
 		  if (ev->x > x)
-		    ++i;
+			++i;
 		  else
-		    break;
+			break;
 		  if(i >= m->ntabs) break;
 		}
 		if(c) {
@@ -587,10 +609,10 @@ buttonpress(XEvent *e)
 		  arg.ui = i;
 		}
 	} else if((c = wintoclient(ev->window))) {
- 		if (focusonwheel || (ev->button != Button4 && ev->button != Button5))
- 			focus(c);
- 		XAllowEvents(dpy, ReplayPointer, CurrentTime);
- 		click = ClkClientWin;
+		if (focusonwheel || (ev->button != Button4 && ev->button != Button5))
+			focus(c);
+		XAllowEvents(dpy, ReplayPointer, CurrentTime);
+		click = ClkClientWin;
 	}
 	for (i = 0; i < LENGTH(buttons); i++)
 		if (click == buttons[i].click && buttons[i].func && buttons[i].button == ev->button
@@ -765,7 +787,7 @@ configurenotify(XEvent *e)
 			//refreshing display of status bar. The tab bar is handled by the arrange()
 			//method, which is called below
 			for (m = mons; m; m = m->next) {
- 				XMoveResizeWindow(dpy, m->barwin, m->wx, m->by, m->ww, bh);
+				XMoveResizeWindow(dpy, m->barwin, m->wx, m->by, m->ww, bh);
 				resizebarwin(m);
 			}
 			focus(NULL);
@@ -1073,11 +1095,11 @@ drawtab(Monitor *m) {
 	//view_info: indicate the tag which is displayed in the view
 	for(i = 0; i < LENGTH(tags); ++i){
 	  if((selmon->tagset[selmon->seltags] >> i) & 1) {
-	    if(itag >=0){ //more than one tag selected
-	      itag = -1;
-	      break;
-	    }
-	    itag = i;
+		if(itag >=0){ //more than one tag selected
+		  itag = -1;
+		  break;
+		}
+		itag = i;
 	  }
 	}
 	if(0 <= itag  && itag < LENGTH(tags)){
@@ -1104,9 +1126,9 @@ drawtab(Monitor *m) {
 	  qsort(sorted_label_widths, m->ntabs, sizeof(int), cmpint);
 	  tot_width = view_info_w;
 	  for(i = 0; i < m->ntabs; ++i){
-	    if(tot_width + (m->ntabs - i) * sorted_label_widths[i] > m->ww)
-	      break;
-	    tot_width += sorted_label_widths[i];
+		if(tot_width + (m->ntabs - i) * sorted_label_widths[i] > m->ww)
+		  break;
+		tot_width += sorted_label_widths[i];
 	  }
 	  maxsize = (m->ww - tot_width) / (m->ntabs - i);
 	} else{
@@ -1515,7 +1537,7 @@ manage(Window w, XWindowAttributes *wa)
 		c->isfloating = c->oldstate = trans != None || c->isfixed;
 	if (c->isfloating)
 		XRaiseWindow(dpy, c->win);
-	attach(c);
+	attachabove(c);
 	attachstack(c);
 	XChangeProperty(dpy, root, netatom[NetClientList], XA_WINDOW, 32, PropModeAppend,
 		(unsigned char *) &(c->win), 1);
@@ -2036,7 +2058,7 @@ sendmon(Client *c, Monitor *m)
 	detachstack(c);
 	c->mon = m;
 	c->tags = m->tagset[m->seltags]; /* assign tags of target monitor */
-	attach(c);
+	attachabove(c);
 	attachstack(c);
 	focus(NULL);
 	arrange(NULL);
@@ -2377,6 +2399,19 @@ spawn(const Arg *arg)
 	}
 }
 
+void spawnscratch(const Arg *arg)
+{
+	if (fork() == 0) {
+		if (dpy)
+			close(ConnectionNumber(dpy));
+		setsid();
+		execvp(((char **)arg->v)[1], ((char **)arg->v)+1);
+		fprintf(stderr, "dwm: execvp %s", ((char **)arg->v)[1]);
+		perror(" failed");
+		exit(EXIT_SUCCESS);
+	}
+}
+
 void
 tabmode(const Arg *arg)
 {
@@ -2405,7 +2440,7 @@ tagmon(const Arg *arg)
 	sendmon(selmon->sel, dirtomon(arg->i));
 }
 
-void 
+void
 tatami(Monitor *m)
 {
 	unsigned int i, n, nx, ny, nw, nh,
@@ -2413,142 +2448,138 @@ tatami(Monitor *m)
 				 tnx, tny, tnw, tnh;
 	Client *c;
 
-	for(n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), ++n);
-	if(n == 0)
+	for (n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), ++n);
+	if (n == 0)
 		return;
-	
+
 	nx = m->wx;
 	ny = 0;
 	nw = m->ww;
 	nh = m->wh;
-	
+
 	c = nexttiled(m->clients);
-	
-	if(n != 1)  nw = m->ww * m->mfact;
-				ny = m->wy;
-				
+
+	if (n != 1)
+		nw = m->ww * m->mfact;
+	ny = m->wy;
+
 	resize(c, nx, ny, nw - 2 * c->bw, nh - 2 * c->bw, False);
-	
+
 	c = nexttiled(c->next);
-	
+
 	nx += nw;
 	nw = m->ww - nw;
-	
-	if(n>1)
-	{
-	
-	tc = n-1;
-	mats = tc/5;
-	
-	nh/=(mats + (tc % 5 > 0));
-	
-	for(i = 0; c && (i < (tc % 5)); c = nexttiled(c->next))
-	{
-		tnw=nw;
-		tnx=nx;
-		tnh=nh;
-		tny=ny;
-		switch(tc - (mats*5))
-				{
-					case 1://fill
-						break;
-					case 2://up and down
-						if((i % 5) == 0) //up
-						tnh/=2;
-						else if((i % 5) == 1) //down
-						{
-							tnh/=2;
-							tny += nh/2;
-						}
-						break;
-					case 3://bottom, up-left and up-right
-						if((i % 5) == 0) //up-left
-						{
-						tnw = nw/2;
-						tnh = (2*nh)/3;
-						}
-						else if((i % 5) == 1)//up-right
-						{
-							tnx += nw/2;
-							tnw = nw/2;
-							tnh = (2*nh)/3;
-						}
-						else if((i % 5) == 2)//bottom
-						{
-							tnh = nh/3;
-							tny += (2*nh)/3;	
-						}
-						break;
-					case 4://bottom, left, right and top
-						if((i % 5) == 0) //top
-						{
-							tnh = (nh)/4;
-						}
-						else if((i % 5) == 1)//left
-						{
-							tnw = nw/2;
-							tny += nh/4;
-							tnh = (nh)/2;
-						}
-						else if((i % 5) == 2)//right
-						{
-							tnx += nw/2;
-							tnw = nw/2;
-							tny += nh/4;
-							tnh = (nh)/2;
-						}
-						else if((i % 5) == 3)//bottom
-						{
-							tny += (3*nh)/4;
-							tnh = (nh)/4;
-						}
-						break;
-				}
-		++i;
-		resize(c, tnx, tny, tnw - 2 * c->bw, tnh - 2 * c->bw, False);
-	}
-	
-	++mats;
-	
-	for(i = 0; c && (mats>0); c = nexttiled(c->next)) {
 
-			if((i%5)==0)
-			{
-			--mats;
-			if(((tc % 5) > 0)||(i>=5))
-			ny+=nh;
-			}
-			
+	if (n>1)
+	{
+		tc   = n-1;
+		mats = tc/5;
+		nh  /= (mats + (tc % 5 > 0));
+
+		for(i = 0; c && (i < (tc % 5)); c = nexttiled(c->next))
+		{
 			tnw=nw;
 			tnx=nx;
 			tnh=nh;
 			tny=ny;
-			
+			switch (tc - (mats*5))
+			{
+				case 1:                                //fill
+					break;
+				case 2:                                //up and down
+					if ((i % 5) == 0)                       //up
+						tnh /=2;
+					else if((i % 5) == 1)                   //down
+					{
+						tnh /= 2;
+						tny += nh/2;
+					}
+					break;
+				case 3:                                //bottom, up-left and up-right
+					if((i % 5) == 0)                        //up-left
+					{
+						tnw = nw/2;
+						tnh = (2*nh)/3;
+					}
+					else if ((i % 5) == 1)                  //up-right
+					{
+						tnx += nw/2;
+						tnw = nw/2;
+						tnh = (2*nh)/3;
+					}
+					else if((i % 5) == 2)                   //bottom
+					{
+						tnh = nh/3;
+						tny += (2*nh)/3;
+					}
+					break;
+				case 4:                                //bottom, left, right and top
+					if((i % 5) == 0)                        //top
+					{
+						tnh = (nh)/4;
+					}
+					else if((i % 5) == 1)                   //left
+					{
+						tnw = nw/2;
+						tny += nh/4;
+						tnh = (nh)/2;
+					}
+					else if((i % 5) == 2)                   //right
+					{
+						tnx += nw/2;
+						tnw = nw/2;
+						tny += nh/4;
+						tnh = (nh)/2;
+					}
+					else if((i % 5) == 3)                   //bottom
+					{
+						tny += (3*nh)/4;
+						tnh = (nh)/4;
+					}
+					break;
+			}
+			++i;
+			resize(c, tnx, tny, tnw - 2 * c->bw, tnh - 2 * c->bw, False);
+		}
+		++mats;
+
+		for (i = 0; c && (mats>0); c = nexttiled(c->next))
+		{
+			if ( (i%5) == 0 )
+			{
+				--mats;
+				if ( ((tc % 5) > 0) || (i>=5) )
+					ny+=nh;
+			}
+			tnw = nw;
+			tnx = nx;
+			tnh = nh;
+			tny = ny;
 
 			switch(i % 5)
 			{
-				case 0: //top-left-vert
+				case 0:                                //top-left-vert
 					tnw = (nw)/3;
 					tnh = (nh*2)/3;
 					break;
-				case 1: //top-right-hor
+				case 1:                                //top-right-hor
 					tnx += (nw)/3;
 					tnw = (nw*2)/3;
 					tnh = (nh)/3;
 					break;
-				case 2: //center
+				case 2:                                //center
 					tnx += (nw)/3;
 					tnw = (nw)/3;
 					tny += (nh)/3;
 					tnh = (nh)/3;
 					break;
-				case 3: //bottom-right-vert
+				case 3:                                //bottom-right-vert
 					tnx += (nw*2)/3;
 					tnw = (nw)/3;
 					tny += (nh)/3;
 					tnh = (nh*2)/3;
 					break;
-				case 4: //(oldest) bottom-left-hor
+				case 4:                                //(oldest) bottom-left-hor
 					tnw = (2*nw)/3;
 					tny += (2*nh)/3;
 					tnh = (nh)/3;
@@ -2556,9 +2587,8 @@ tatami(Monitor *m)
 				default:
 					break;
 			}
-			
 			++i;
-		resize(c, tnx, tny, tnw - 2 * c->bw, tnh - 2 * c->bw, False);
+			resize(c, tnx, tny, tnw - 2 * c->bw, tnh - 2 * c->bw, False);
 		}
 	}
 }
@@ -2571,7 +2601,7 @@ tcl(Monitor * m)
 	Client * c;
 
 	for (n = 0, c = nexttiled(m->clients); c;
-	        c = nexttiled(c->next), n++);
+			c = nexttiled(c->next), n++);
 
 	if (n == 0)
 		return;
@@ -2582,11 +2612,11 @@ tcl(Monitor * m)
 	sw = (m->ww - mw) / 2;
 	bdw = (2 * c->bw);
 	resize(c,
-	       n < 3 ? m->wx : m->wx + sw,
-	       m->wy,
-	       n == 1 ? m->ww - bdw : mw - bdw,
-	       m->wh - bdw,
-	       False);
+		   n < 3 ? m->wx : m->wx + sw,
+		   m->wy,
+		   n == 1 ? m->ww - bdw : mw - bdw,
+		   m->wh - bdw,
+		   False);
 
 	if (--n == 0)
 		return;
@@ -2606,11 +2636,11 @@ tcl(Monitor * m)
 		for (i = 0; c && i < n / 2; c = nexttiled(c->next), i++)
 		{
 			resize(c,
-			       x,
-			       y,
-			       w - bdw,
-			       (i + 1 == n / 2) ? m->wy + m->wh - y - bdw : h - bdw,
-			       False);
+				   x,
+				   y,
+				   w - bdw,
+				   (i + 1 == n / 2) ? m->wy + m->wh - y - bdw : h - bdw,
+				   False);
 
 			if (h != m->wh)
 				y = c->y + HEIGHT(c);
@@ -2627,11 +2657,11 @@ tcl(Monitor * m)
 	for (i = 0; c; c = nexttiled(c->next), i++)
 	{
 		resize(c,
-		       x,
-		       y,
-		       (i + 1 == (n + 1) / 2) ? w - bdw : w - bdw,
-		       (i + 1 == (n + 1) / 2) ? m->wy + m->wh - y - bdw : h - bdw,
-		       False);
+			   x,
+			   y,
+			   (i + 1 == (n + 1) / 2) ? w - bdw : w - bdw,
+			   (i + 1 == (n + 1) / 2) ? m->wy + m->wh - y - bdw : h - bdw,
+			   False);
 
 		if (h != m->wh)
 			y = c->y + HEIGHT(c);
@@ -2708,7 +2738,7 @@ togglefloating(const Arg *arg)
 	if (selmon->sel->isfloating)
 		/* restore last known float dimensions */
 		resize(selmon->sel, selmon->sel->sfx, selmon->sel->sfy,
-		       selmon->sel->sfw, selmon->sel->sfh, False);
+			   selmon->sel->sfw, selmon->sel->sfh, False);
 	else {
 		/* save last known float dimensions */
 		selmon->sel->sfx = selmon->sel->x;
@@ -2717,6 +2747,28 @@ togglefloating(const Arg *arg)
 		selmon->sel->sfh = selmon->sel->h;
 	}
 	arrange(selmon);
+}
+
+void
+togglescratch(const Arg *arg)
+{
+	Client *c;
+	unsigned int found = 0;
+
+	for (c = selmon->clients; c && !(found = c->scratchkey == ((char**)arg->v)[0][0]); c = c->next);
+	if (found) {
+		c->tags = ISVISIBLE(c) ? 0 : selmon->tagset[selmon->seltags];
+		focus(NULL);
+		arrange(selmon);
+
+		if (ISVISIBLE(c)) {
+			focus(c);
+			restack(selmon);
+		}
+
+	} else{
+		spawnscratch(arg);
+	}
 }
 
 void
@@ -2866,7 +2918,7 @@ updatebarpos(Monitor *m)
 {
 	Client *c;
 	int nvis = 0;
-	
+
 	m->wy = m->my;
 	m->wh = m->mh;
 	if (m->showbar) {
@@ -2957,7 +3009,7 @@ updategeom(void)
 					m->clients = c->next;
 					detachstack(c);
 					c->mon = mons;
-					attach(c);
+					attachabove(c);
 					attachstack(c);
 				}
 				if (m == selmon)
