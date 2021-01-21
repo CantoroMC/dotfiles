@@ -50,6 +50,7 @@
     stow zathura
 
     mkdir -p ~/.config/mpd/playlists
+    mkdir ~/.config/radiotray-ng
     stow music
 
     mkdir ~/.config/neomutt

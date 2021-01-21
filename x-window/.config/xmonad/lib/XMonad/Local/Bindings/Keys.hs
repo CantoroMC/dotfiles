@@ -275,7 +275,7 @@ xmKeys mask = do
         ^> spawn "kitty"
     bind $ mask .|. shiftMask ... xK_BackSpace
       |/- "Lock the screen"
-        ^> spawn "i3lock -i ~/.config/xmonad/screenlocker.png -t -f -e"
+        ^> spawn "slock"
     bind $ mask ... xK_Delete
       |/- "spawn shutdown menu"
         ^> spawn "xmenu-shutdown"

@@ -219,7 +219,7 @@ static Key keys[] = {
 
 	{ MODKEY,                       XK_Return,       spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_Return,       spawn,          SHCMD("kitty") },
-	{ MODKEY|ShiftMask,             XK_BackSpace,    spawn,          SHCMD("i3lock -i ~/.config/xmonad/screenlocker.png -t -f -e") },
+	{ MODKEY|ShiftMask,             XK_BackSpace,    spawn,          SHCMD("slock") },
 	{ MODKEY,                       XK_Delete,       spawn,          {.v = xmenuexitcmd } },
 	{ MODKEY|ShiftMask,             XK_Delete,       quit,           {0} },
 

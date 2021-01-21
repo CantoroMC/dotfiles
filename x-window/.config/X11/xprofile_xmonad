@@ -40,7 +40,7 @@ xset r rate 400 30 &
 # }}}
 
 # Screen Auto locker {{{2
-# xautolock -detectsleep -time 15 -notifier "notify-send -u critical -t 2000 -- 'Locking Screen...'" -notify 50 -corners +000 -cornerdelay 2 -cornerredelay 2 -cornersize 2 -locker 'i3lock -i ~/.config/xmonad/screenlocker.png -t -f -e' &
+xautolock -detectsleep -time 18 -notifier "notify-send -u critical -t 2000 -- 'Locking Screen...'" -notify 50 -locker 'slock' &
 # }}}
 
 # }}}
