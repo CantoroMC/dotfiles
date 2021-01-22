@@ -123,16 +123,6 @@ function open() {
   xdg-open $1 & disown
 }
 
-# Rename all the files in a folder with numbered sequence
-function bulk_rename() { # Usage: functionName Folder Name
-  [ "${#}" -eq 1 ] && 
-    {
-      local name="${1}"
-      ls -v | cat -n | while read n f; do mv -n "$f" "${name}$n.${f##*.}"; done;
-    }
-}
-
-
 # A script to make using 256 colors in zsh less painful.
 # P.C. Shyamshankar <sykora@lucentbeing.com>
 typeset -AH FX FG BG
@@ -413,14 +403,6 @@ function ls-git() {
     sort -k2
 }
 
-function pyclean() {
-  PYCLEAN_DIR=${*:-'.'}
-  find ${PYCLEAN_DIR} -type f -name "*.py[co]" -delete
-  find ${PYCLEAN_DIR} -type d -name "__pycache__" -delete
-  find ${PYCLEAN_DIR} -depth -type d -name ".mypy_cache" -exec rm -r "{}" +
-  find ${PYCLEAN_DIR} -depth -type d -name ".pytest_cache" -exec rm -r "{}" +
-}
-
 # Weather
 function meteo() {
   local LOCALE=$(echo ${LANG:-en} | cut -c1-2)
@@ -438,19 +420,19 @@ function moon() {
 
 # Videos collage
 function imageFromVideo() {
-  VID_NAME=${2%.*}
+  VID_NAME=${3%.*}
   case ${1} in
     "-s" | "--single")
-      ffmpegthumbnailer -i "${2}" -o "./${VID_NAME}.jpg" -s 0 -q 10 -t ${3};;
+      ffmpegthumbnailer -i "${3}" -o "./${VID_NAME}.jpg" -s 0 -q 10 -t ${3};;
     "-m" | "--mutliple")
-      for ii in $(seq 0 ${3} 100); do
-        ffmpegthumbnailer -i "${2}" -o "./${VID_NAME}$ii.png" -s 0 -q 10 -t "${ii}"
+      for ii in $(seq 0 ${2} 100); do
+        ffmpegthumbnailer -i "${3}" -o "./${VID_NAME}$ii.png" -s 0 -q 10 -t "${ii}"
       done
       ;;
     *)
-      echo -e "\e[1;34mimageFromVideo -s Video Time\e[0m for taking a picture of Video at the time"
+      echo -e "\e[1;34mimageFromVideo -s Time Video\e[0m for taking a picture of Video at the time"
       echo -e "       specified as absolute time hh:mm:ss or as percentage."
-      echo -e "\e[1;34mimageFromVideo -m Video Snaps\e[0m for taking pictures of Video at regular"
+      echo -e "\e[1;34mimageFromVideo -m Snaps Video\e[0m for taking pictures of Video at regular"
       echo -e "       intervals every Snaps percentage."
       ;;
   esac

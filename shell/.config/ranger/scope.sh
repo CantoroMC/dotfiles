@@ -98,6 +98,7 @@ case "$mimetype" in
             pygmentize_format=terminal
             highlight_format=ansi
         fi
+        try safepipe bat --paging=never --decorations=always --color=always "$path" && { dump | trim; exit 5; }
         try safepipe highlight --out-format=${highlight_format} "$path" && { dump | trim; exit 5; }
         try safepipe pygmentize -f ${pygmentize_format} "$path" && { dump | trim; exit 5; }
         exit 2;;

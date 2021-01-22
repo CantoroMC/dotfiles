@@ -3,7 +3,7 @@ bellStyle: VisualBell
 editMode: Vi
 completionType: MenuCompletion
 completionPromptLimit: Just 50
-maxhistorysize: Just 100
+maxhistorysize: Just 1000
 historyDuplicates: IgnoreConsecutive
 
 -- custom keybindings

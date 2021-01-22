@@ -1,3 +1,5 @@
+{-# LANGUAGE FlexibleContexts #-}
+
 module XMonad.Local.Manage.Hook
     ( xmManageHook
     ) where
@@ -5,6 +7,9 @@ module XMonad.Local.Manage.Hook
 import Control.Monad
     ( liftM2
     )
+
+import Data.Maybe ( isNothing )
+import Text.Regex ( matchRegex, mkRegex )
 
 import XMonad
 import qualified XMonad.StackSet as XMSS
@@ -63,8 +68,9 @@ manageFloatings = composeAll $
     , role  =? "cmus"          --> doCenterFloat
     , role  =? "pop-up"        --> doCenterFloat
     , (className =? "Display"                      <&&> title =? "ImageMagick: ") --> doCenterFloat
-    , (className =? "MATLAB R2019b - academic use" <&&> title =? "Help")          --> doRectFloat xmBigRect
-    , (className =? "MATLAB R2019b - academic use" <&&> title =? "Preferences")   --> doRectFloat xmBigRect
+    -- , (className =? "MATLAB R2019b - academic use" <&&> title =? "Help")          --> doRectFloat xmBigRect
+    -- , (className =? "MATLAB R2019b - academic use" <&&> title =? "Preferences")   --> doRectFloat xmBigRect
+    , (className =? "MATLAB R2019b - academic use" <&&> title *!? "^MATLAB") --> doRectFloat xmBigRect
     ] where appsToFloat = [ "Arandr"
                           , "Avahi-discover"
                           , "Baobab"
@@ -103,3 +109,9 @@ role = stringProperty "WM_WINDOW_ROLE"
 
 -- name :: Query String
 -- name = stringProperty "WM_NAME"
+
+(*!=) :: String -> String -> Bool
+q *!= x = isNothing $ matchRegex (mkRegex x) q
+
+(*!?) :: Functor f => f String -> String -> f Bool
+q *!? x = fmap (*!= x) q
