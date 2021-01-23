@@ -54,8 +54,8 @@ xmDecorationTheme = def
     , inactiveColor       = XMTheme.inactiveColor XMTheme.xmTheme
     , inactiveBorderColor = XMTheme.inactiveBorderColor XMTheme.xmTheme
     , activeBorderColor   = XMTheme.activeBorderColor XMTheme.xmTheme
-    , activeBorderWidth   = XMTheme.borderWidth XMTheme.xmTheme
-    , inactiveBorderWidth = XMTheme.borderWidth XMTheme.xmTheme
+    , activeBorderWidth   = 1
+    , inactiveBorderWidth = 1
     , activeTextColor     = XMTheme.activeTextColor XMTheme.xmTheme
     , inactiveTextColor   = XMTheme.inactiveTextColor XMTheme.xmTheme
     }

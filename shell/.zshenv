@@ -85,7 +85,7 @@ ZLS_COLORS=${ZLS_COLORS}':*.pdf=00;32:*.ps=00;32:*.txt=00;32:*.patch=00;32:*.dif
 # Audio formats (cyan)
 ZLS_COLORS=${ZLS_COLORS}':*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36'
 # Additional coloring
-ZLS_COLORS=${ZLS_COLORS}':*.c=01;39:*.cpp=01;39:*.py=01;39:*.md=00;34:*.vim=01;31:*.tex=01;33:*.bib=01;33:*.sty=01;33:*.cls=01;33:';
+ZLS_COLORS=${ZLS_COLORS}':*.c=01;39:*.cpp=01;39:*.hs=01;39:*.py=01;39:*.md=00;34:*.vim=01;31:*.tex=01;33:*.bib=01;33:*.sty=01;33:*.cls=01;33:';
 # }}}
 
 LS_COLORS=${ZLS_COLORS}
@@ -96,7 +96,7 @@ export ZLS_COLORS LS_COLORS
 
 # Language/Programs Specifics {{{1
 export ADDRESSES="$HOME/Documents/organization/contacts/addressbook"
-export BACKGROUND_COLOR="dark"
+export BACKGROUND_COLOR="light"
 export BAT_THEME="zenburn"
 export DOTFILES="$HOME"/dotfiles
 export MPC_FORMAT="[[%artist%  - ]%title% (%time%)]|[%file%]"

@@ -56,7 +56,7 @@ set clipboard+=unnamed
 set confirm
 set cpoptions+=$
 set diffopt+=vertical,context:2,iwhite
-set mouse=
+set mouse=a
 set nolazyredraw
 set termguicolors
 set timeout
