@@ -24,7 +24,7 @@ import Xmobar
     -- Basic Variables
 
 xmobarConfigDir :: String
-xmobarConfigDir = "\"${XDG_CONFIG_HOME}\"/xmobar"
+xmobarConfigDir = "\"${DOTFILES}\"/deploy/third-party/XMonad/xmobarbarian"
 
 icons :: String -> String
 icons bg = xmobarConfigDir ++ "/icons/" ++ bg
