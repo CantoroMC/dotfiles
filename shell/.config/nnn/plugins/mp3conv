@@ -10,32 +10,32 @@
 outdir=_mp3files
 
 handle_multimedia() {
-    mime="${1}"
-    file="${2}"
+  mime="${1}"
+  file="${2}"
 
-    case "${mime}" in
-        audio/* | video/*)
-            ffmpeg -i "${file}" -vn -codec:a libmp3lame -q:a 2 "${outdir}/${file%.*}.mp3"
-            ;;
-        *)
-            ;;
-    esac
+  case "${mime}" in
+    audio/* | video/*)
+      ffmpeg -i "${file}" -vn -codec:a libmp3lame -q:a 2 "${outdir}/${file%.*}.mp3"
+      ;;
+    *)
+      ;;
+  esac
 }
 
 printf "Process 'a'll in directory or 'c'urrent? "
 read -r resp
 
 if [ "$resp" = "a" ]; then
-    if ! [ -e "${outdir}" ]; then
-        mkdir "${outdir}"
-    fi
+  if ! [ -e "${outdir}" ]; then
+    mkdir "${outdir}"
+  fi
 
-    for f in *; do
-        if [ -f "${f}" ]; then
-            mimestr="$( file --dereference --brief --mime-type -- "${f}" )"
-            handle_multimedia "${mimestr}" "${f}"
-        fi
-    done
+  for f in *; do
+    if [ -f "${f}" ]; then
+      mimestr="$( file --dereference --brief --mime-type -- "${f}" )"
+      handle_multimedia "${mimestr}" "${f}"
+    fi
+  done
 elif [ "$resp" = "c" ] && [ -f "$1" ]; then
-    ffmpeg -i "${1}" -vn -codec:a libmp3lame -q:a 2 "${1%.*}.mp3"
+  ffmpeg -i "${1}" -vn -codec:a libmp3lame -q:a 2 "${1%.*}.mp3"
 fi

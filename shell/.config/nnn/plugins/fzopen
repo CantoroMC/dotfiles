@@ -10,30 +10,29 @@
 # Author: Arun Prakash Jana
 
 if which fzf >/dev/null 2>&1; then
-    cmd="$FZF_DEFAULT_COMMAND"
-    if which fd >/dev/null 2>&1; then
-        [ -z "$cmd" ] && cmd="fd -t f 2>/dev/null"
-    else
-        [ -z "$cmd" ] && cmd="find . -type f 2>/dev/null"
-    fi
-    entry="$(eval "$cmd" | fzf --delimiter / --nth=-1 --tiebreak=begin --info=hidden)"
-    # To show only the file name
-    # entry=$(find . -type f 2>/dev/null | fzf --delimiter / --with-nth=-1 --tiebreak=begin --info=hidden)
-
-  elif which sk >/dev/null 2>&1; then
-    entry=$(find . -type f 2>/dev/null | sk)
+  cmd="$FZF_DEFAULT_COMMAND"
+  if which fd >/dev/null 2>&1; then
+    [ -z "$cmd" ] && cmd="fd -t f 2>/dev/null"
   else
-    exit 1
+    [ -z "$cmd" ] && cmd="find . -type f 2>/dev/null"
+  fi
+  entry="$(eval "$cmd" | fzf --delimiter / --nth=-1 --tiebreak=begin --info=hidden)"
+  # To show only the file name
+  # entry=$(find . -type f 2>/dev/null | fzf --delimiter / --with-nth=-1 --tiebreak=begin --info=hidden)
+elif which sk >/dev/null 2>&1; then
+  entry=$(find . -type f 2>/dev/null | sk)
+else
+  exit 1
 fi
 
 case "$(file -biL "$entry")" in
-    *text*)
-      "${VISUAL:-$EDITOR}" "$entry" ;;
-    *)
-      if uname | grep -q "Darwin"; then
-        open "$entry" >/dev/null 2>&1
-      else
-        xdg-open "$entry" >/dev/null 2>&1
-      fi
-      ;;
+  *text*)
+    "${VISUAL:-$EDITOR}" "$entry" ;;
+  *)
+    if uname | grep -q "Darwin"; then
+      open "$entry" >/dev/null 2>&1
+    else
+      xdg-open "$entry" >/dev/null 2>&1
+    fi
+    ;;
 esac
