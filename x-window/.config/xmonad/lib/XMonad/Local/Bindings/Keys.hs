@@ -374,8 +374,8 @@ xmKeys mask = do
         ^> spawn "monitor_handler"
     -- XF86.xF86XK_Tools
     bind $ noModMask ... XF86.xF86XK_Search
-      |/- "spawn ranger"
-        ^> spawn =<< inTerminalFromConf "ranger"
+      |/- "spawn nnn"
+        ^> spawn =<< inTerminalFromConf "nnn"
     -- XF86.xF86XK_LaunchA
     bind $ noModMask ... XF86.xF86XK_Explorer
       |/- "spawn file explorer"

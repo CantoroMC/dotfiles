@@ -328,7 +328,7 @@ typedef struct {
 	uint_t runctx     : 2;  /* The context in which plugin is to be run */
 	uint_t selmode    : 1;  /* Set when selecting files */
 	uint_t oldcolor   : 1;  /* Use older colorscheme */
-	uint_t stayonsel	: 1;  /* Disable auto-proceed on select */
+	uint_t stayonsel  : 1;  /* Disable auto-proceed on select */
 	uint_t dirctx     : 1;  /* Show dirs in context color */
 	uint_t uidgid     : 1;  /* Show owner and group info */
 	uint_t reserved   : 10; /* Adjust when adding/removing a field */
@@ -384,7 +384,7 @@ static settings cfg = {
 	2, /* timetype (T_MOD) */
 	0, /* cliopener */
 	0, /* waitedit */
-	1, /* rollover */
+	0, /* rollover */
 };
 
 static context g_ctx[CTX_MAX] __attribute__ ((aligned));
