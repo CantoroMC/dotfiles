@@ -1,0 +1,3 @@
+[submodule "deploy/unix-programs/dwm"]
+	path = deploy/unix-programs/dwm
+	url = https://github.com/CantoroMC/dwm
