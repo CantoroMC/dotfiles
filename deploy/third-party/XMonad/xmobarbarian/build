@@ -1,0 +1,7 @@
+#!/bin/sh
+
+EXE_NAME=xmobarb
+
+cabal new-build
+
+find dist-newstyle -type f -executable -name $EXE_NAME -exec mv -u '{}' ./$EXE_NAME ';'

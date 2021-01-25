@@ -19,6 +19,15 @@
 	template = ~/.config/git/commitMessage.txt
 	status = true
 
+[diff]
+	submodule = log
+
+[status]
+	submodulesummary = 1
+
+[pull]
+	rebase = false
+
 [help]
 	autocorrect = 20
 	browser = vivaldi-stable
@@ -56,6 +65,9 @@
 	pom = push origin "$(git_current_branch)"
 	puom = pull origin "$(git_current_branch)"
 	pf = push --force
+    # Submodules
+	spush = push --recurse-submodules=on-demand
+	supdate = submodule update --remote --merge
     # FigureOut
 	cr = clone --recursive
 	g = grep --break --heading --line-number

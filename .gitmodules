@@ -1,3 +1,12 @@
 [submodule "deploy/third-party/suckless/dwm"]
 	path = deploy/third-party/suckless/dwm
 	url = https://github.com/CantoroMC/dwm
+[submodule "deploy/third-party/XMonad/xmobar"]
+	path = deploy/third-party/XMonad/xmobar
+	url = https://github.com/jaor/xmobar
+[submodule "deploy/third-party/Xmenu/xmenu"]
+	path = deploy/third-party/Xmenu/xmenu
+	url = https://github.com/CantoroMC/xmenu
+[submodule "deploy/third-party/Xmenu/xdg-xmenu"]
+	path = deploy/third-party/Xmenu/xdg-xmenu
+	url = https://github.com/CantoroMC/xdg-xmenu

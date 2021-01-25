@@ -15,6 +15,7 @@ alias pathList='echo -e ${PATH//:/\\n}'
 # Directory Stack
 alias -g ...='../..'
 alias -g ....='../../..'
+alias git-root='cd $(git rev-parse --show-cdup)'
 
 # List directory contents
 alias ls='ls --color=auto'
