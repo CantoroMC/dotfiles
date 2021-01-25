@@ -7,12 +7,6 @@
 
 * Package-Management
 
-** Update packages and retrieve the latest Pacman mirrorlist
-   #+begin_src sh
-     sudo pacman -Syu
-     sudo reflector --protocol http,https --fastest 5 --latest 100 --age 24 --country Italy,France,German,Spain,Switzerland --save /etc/pacman.d/mirrorlist
-   #+end_src
-
 ** Installing packages with pacman:
    #+begin_src sh
      sudo pacman -S --needed - < ~/dotfiles/deploy/arch-repo/pacman-packages/bull-packages.txt
@@ -50,59 +44,45 @@ Programs in this directory are:
      sudo chmod a+rx /usr/local/bin/youtube-dl
    #+end_src
 
-* First deployment step
+* Stowing
   It is wise to check with =stow -nv package= every one of them.
   #+begin_src sh
+    # git, nvim and emacs
     mkdir ~/.config/git
     mkdir ~/.config/emacs
     mkdir ~/.config/nvim
+    # music and mail
     mkdir -p ~/.config/mpd/playlists
     mkdir ~/.config/radiotray-ng
     mkdir ~/.config/neomutt
+    # shell
+    mkdir -p ~/.config/zsh/plugins
+    mkdir ~/.local/bin
+    # X
+    mkdir ~/.local/share/fonts
+    mkdir ~/.config/nautilus
+    mkdir -p ~/.local/share/nautilus/scripts
+    mkdir ~/.config/gtk-2.0
+    mkdir ~/.config/gtk-3.0
+    mkdir ~/.config/surf
+    mkdir ~/.local/share/surf
+    mkdir ~/.local/share/xmonad
+    mkdir -p ~/.config/xmonad/cache
+    # Haskell
+    mkdir ~/.stack
+    mkdir ~/.cabal
+    mkdir ~/.ghc
 
-    stow git emacs nvim texlive zathura music mail
+    #Stowing
+    stow git emacs nvim texlive music mail shell haskell x-window
   #+end_src
 
-* Shell and X-WindowManager
-
-** Zsh plugins
-   #+begin_src sh
-     mkdir -p ~/.config/zsh/plugins
-
-     [ -e ~/.config/zsh/plugins/zsh-history-substring-search ] || \
-       git clone https://github.com/zsh-users/zsh-history-substring-search \
-       ~/.config/zsh/plugins/zsh-history-substring-search
-     [ -e ~/.config/zsh/plugins/zsh-autosuggestions ] || \
-       git clone https://github.com/zsh-users/zsh-autosuggestions \
-       ~/.config/zsh/plugins/zsh-autosuggestions
-     [ -e ~/dotfiles/zsh/plugins/fzf-tab ] || \
-       git clone https://github.com/Aloxaf/fzf-tab \
-       ~/.config/zsh/plugins/fzf-tab
-   #+end_src
-
-** Second Deployment Step
-   #+begin_src sh
-     mkdir ~/.local/bin
-     mkdir -p ~/.local/share/nautilus/scripts
-     mkdir ~/.local/share/fonts
-     mkdir ~/.local/share/xmonad
-     mkdir ~/.local/share/surf
-     mkdir ~/.config/nautilus
-     mkdir ~/.config/gtk-2.0
-     mkdir ~/.config/gtk-3.0
-     mkdir ~/.config/surf
-     mkdir -p ~/.config/xmonad/cache
-
-     stow shell x-window
-   #+end_src
-   Then reboot
-
-** Remove unwanted packages and Login with dwm
-#+begin_src sh
-  sudo pacman -Rns - < ~/dotfiles/deploy/pacman-packages/unwanted-packages.txt
-#+end_src
-
 * System Tweaks
+
+** Retrieve the latest Pacman mirrorlist
+   #+begin_src sh
+     sudo reflector --protocol http,https --fastest 5 --latest 100 --age 24 --country Italy,France,German,Spain,Switzerland --save /etc/pacman.d/mirrorlist
+   #+end_src
 
 ** Systemd
 
@@ -145,9 +125,9 @@ Reduce the swappiness for better to improve system responsiveness
 =/etc/pacman.conf=
 Modify to suit your needs (ex. Color, ILoveCandy)
 
-** Hooks
+*** Hooks
 
-*** =paccache=
+**** =paccache=
 #+begin_src sh
   sudo touch /usr/share/libalpm/hooks/paccache.hook
   cat ~/dotfiles/deploy/hooks/paccacheHook.txt | sudo tee -a /usr/share/libalpm/hooks/paccache.hook
@@ -166,9 +146,6 @@ in =/etc/xboard.conf=
 
 *** Deploy the haskell dotfiles
 #+begin_src sh
-  mkdir ~/.stack
-  mkdir ~/.cabal
-  mkdir ~/.ghc
   stow haskell
 #+end_src
 
