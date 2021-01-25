@@ -51,6 +51,7 @@ Programs in this directory are:
    #+end_src
 
 * First deployment step
+
   It is wise to check with =stow -nv package= every one of them.
   #+begin_src sh
     mkdir ~/.config/git
