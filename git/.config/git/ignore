@@ -252,6 +252,7 @@ cabal.project.local~
 .stack-work/
 .ghc.environment.*
 ghci_history
+dist-*
 # }}}
 
 __pycache__/
