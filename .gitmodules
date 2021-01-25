@@ -1,3 +1,0 @@
-[submodule "deploy/third-party/suckless/dwm"]
-	path = deploy/third-party/suckless/dwm
-	url = https://github.com/CantoroMC/dwm
