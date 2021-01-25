@@ -7,7 +7,7 @@ let NERDTreeQuitOnOpen      = 1
 let NERDTreeWinSize         = 28
 let NERDTreeStatusLine      = 'airline-nerdtree'
 let NERDTreeIgnore          = [
-      \ '.hi$', '.o$', '__pycache__','.aux$'
+      \ '\.hi$', '\.o$', '__pycache__','\.aux$'
       \ ]
 
 nnoremap <silent> <F2> :NERDTreeToggle<CR>
