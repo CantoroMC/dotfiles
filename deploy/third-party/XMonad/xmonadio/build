@@ -1,0 +1,12 @@
+#!/bin/sh
+
+SRC_DIR=~/Downloads/xmonadio/
+EXE_NAME=xmonad-config
+output_file=$1; shift
+
+cd $SRC_DIR
+
+cabal new-build
+
+find dist-newstyle -type f -executable -name $EXE_NAME \
+  -exec mv -u '{}' $output_file ';'
