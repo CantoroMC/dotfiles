@@ -14,10 +14,6 @@ export MPLAYER_HOME="$XDG_CONFIG_HOME"/mplayer
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
-
-export XMONAD_CACHE_DIR="${XDG_CONFIG_HOME}/xmonad/cache"
-export XMONAD_CONFIG_DIR="${XDG_CONFIG_HOME}/xmonad"
-export XMONAD_DATA_DIR="${XDG_DATA_HOME}/xmonad"
 # }}}
 
 # }}}
@@ -133,6 +129,11 @@ export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
 export PYLINTHOME="$XDG_CACHE_HOME"/pylint
 # Matlab (Java) doesn't work well with WM
 export _JAVA_AWT_WM_NONREPARENTING=1
+
+# XMonad
+export XMONAD_CONFIG_DIR="${DOTFILES}/deploy/third-party/XMonad/xmonadio"
+export XMONAD_DATA_DIR="${XMONAD_CONFIG_DIR}"
+export XMONAD_CACHE_DIR="${XMONAD_DATA_DIR}/cache"
 # }}}
 
 # Path {{{1

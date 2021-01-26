@@ -1,7 +1,7 @@
 #!/bin/sh
 
-SRC_DIR=~/Downloads/xmonadio/
-EXE_NAME=xmonad-config
+SRC_DIR=$XMONAD_CONFIG_DIR
+EXE_NAME=xmonad-x86_64-linux
 output_file=$1; shift
 
 cd $SRC_DIR

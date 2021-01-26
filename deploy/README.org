@@ -59,6 +59,7 @@ Programs in this directory are:
     mkdir -p ~/.config/zsh/plugins
     mkdir ~/.local/bin
     # X
+    mkdir -p ~/.local/share/xorg
     mkdir ~/.local/share/fonts
     mkdir ~/.config/nautilus
     mkdir -p ~/.local/share/nautilus/scripts
@@ -66,8 +67,6 @@ Programs in this directory are:
     mkdir ~/.config/gtk-3.0
     mkdir ~/.config/surf
     mkdir ~/.local/share/surf
-    mkdir ~/.local/share/xmonad
-    mkdir -p ~/.config/xmonad/cache
     # Haskell
     mkdir ~/.stack
     mkdir ~/.cabal
@@ -144,11 +143,6 @@ in =/etc/xboard.conf=
 
 ** Haskell and XMonad
 
-*** Deploy the haskell dotfiles
-#+begin_src sh
-  stow haskell
-#+end_src
-
 *** Setup stack and install cabal-install
 #+begin_src sh
   stack setup --system-ghc
@@ -161,11 +155,9 @@ in =/etc/xboard.conf=
 Now you re ready to go!
 
 *** XMonad and XMobar
+After the first compilation of the two cabal projects.
 #+begin_src sh
-  cabal install --lib xmonad
-  cabal install xmonad
-  cabal install --lib xmonad-contrib
-  cabal install --lib xmobar --flags="all_extensions"
+ln -sv $XMONAD_CONFIG_DIR/xmonad-x86-64-linux ~/.local/bin
 #+end_src
 
 *** Pandoc

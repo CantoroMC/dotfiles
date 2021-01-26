@@ -86,7 +86,7 @@ xmKeys mask = do
     -- Left side characters
     bind $ mask ... xK_q
       |/- "recompile and restart xmonad"
-        ^> spawn "xmonad --recompile; xmonad --restart"
+        ^> spawn "xmonad-x86_64-linux --recompile; xmonad-x86_64-linux --restart"
     bind $ mask .|. shiftMask ... xK_q
       |/- "kill focused window"
         ^> kill
