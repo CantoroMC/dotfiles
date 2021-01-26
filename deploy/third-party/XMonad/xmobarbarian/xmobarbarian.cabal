@@ -15,7 +15,7 @@ description:        My personal xmonad configuration
 category:           System
 tested-with:        GHC == 8.10.2, GHC == 8.10.3
 data-files:         icons/**/*.xpm, src/*
-extra-source-files: README.org, build
+extra-source-files: README.org, build, src/.ghci
 
 
 library
