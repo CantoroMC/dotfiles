@@ -99,3 +99,6 @@ ThinkPad
 px
 systemctl
 isn
+keybindings
+ZDOTDIR
+zsh

@@ -14,18 +14,12 @@ function! colorpicker#pickIt(...) abort " {{{1
   let light_time = get(g:, 'colorpicker_light_time', [7, 14])
 
   " Parse Background Color: {{{2
-  let bgs = get(g:, 'colorpicker_bgs', ['dark', 'light'])
+  let bgs = ['dark', 'light']
   if a:0 >= 1 && a:0 <= 2
     let l:bg = a:1
   elseif a:0 == 0
-    if len(bgs) == 2
-      let l:bg = bgs[
-            \ (strftime('%H') >= light_time[0] &&
-            \ strftime('%H') < light_time[1]) ?
-            \  1 : 0]
-    elseif len(bgs) == 1
-      let l:bg = bgs[0]
-    endif
+    let l:bg = bgs[(strftime('%H') >= light_time[0] && strftime('%H') < light_time[1])
+          \ ?  1 : 0]
   else
     return
   endif
@@ -37,12 +31,13 @@ function! colorpicker#pickIt(...) abort " {{{1
   if a:0 == 2
     let l:scheme = a:2
   elseif a:0 <= 1
-    let l:scheme = keys(l:pairs)[s:Randn(len(keys(l:pairs)))]
+    let l:fpairs = filter(copy(l:pairs), 'v:val[1] > 0')
+    let l:scheme = keys(l:fpairs)[s:Randn(len(keys(l:fpairs)))]
   endif
   " }}}
 
   " Function Execution: {{{2
-  execute 'let g:airline_theme = '.string(l:pairs[l:scheme])
+  execute 'let g:airline_theme = '.string(l:pairs[l:scheme][0])
   execute 'set background='.l:bg
   execute 'colorscheme '.l:scheme
   " }}}

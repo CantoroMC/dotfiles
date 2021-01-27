@@ -1,5 +1,4 @@
 # zsh configuration file
-# Many of the thing are stolen from OhMyZsh and adapted to my taste.
 
 function is_plugin() {
   local base_dir=$1
@@ -85,7 +84,7 @@ for plugin ($plugins); do
   fi
 done
 
-# Load fzf completion and keybindings from the vim script
+# Load fzf completion and key bindings from the vim plugin
 for plugin ($XDG_DATA_HOME/nvim/plugged/fzf/shell/*.zsh); do
   source $plugin
 done

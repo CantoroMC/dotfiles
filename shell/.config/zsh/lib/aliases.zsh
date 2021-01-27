@@ -97,18 +97,13 @@ alias cfg-kbinds="$EDITOR $ZDOTDIR/lib/key-bindings.zsh"
 alias cfg-zsh="$EDITOR $ZDOTDIR/.zshrc"
 # X
 alias cfg-xinit="$EDITOR $XDG_CONFIG_HOME/X11/xinitrc"
-alias cfg-xres="$EDITOR $XDG_CONFIG_HOME/X11/xinit/.Xresources"
 alias cfg-xprof-dwm="$EDITOR $XDG_CONFIG_HOME/X11/xprofile_dwm"
-alias cfg-xprof-xmonad="$EDITOR $XDG_CONFIG_HOME/X11/xprofile_xmonad"
-
-alias cfg-xmon="$EDITOR $XDG_CONFIG_HOME/xmonad/xmonad.hs"
-alias cfg-xmob="$EDITOR $XDG_CONFIG_HOME/xmobar/xmobar.hs"
+alias cfg-xprof-xmonad="$EDITOR $XDG_CONFIG_HOME/X11/xprofile_xmonad-x86_64-linux"
 
 # Everything else
 alias cfg-vim="$EDITOR $XDG_CONFIG_HOME/nvim/init.vim"
 alias cfg-git="$EDITOR $XDG_CONFIG_HOME/git/config"
 alias cfg-tmux="$EDITOR $XDG_CONFIG_HOME/tmux/tmux.conf"
-alias cfg-rofi="$EDITOR $XDG_CONFIG_HOME/rofi/config.rasi"
 # }}}
 
 # Frequent folder: {{{2

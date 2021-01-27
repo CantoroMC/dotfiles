@@ -69,12 +69,12 @@ _exit-cmd () {
 }
 zle -N _exit-cmd
 
-_ranger_cmd () {
-  BUFFER="ranger"
+_nnn_cmd () {
+  BUFFER="nnn"
   zle end-of-line
   zle accept-line
 }
-zle -N _ranger_cmd
+zle -N _nnn_cmd
 
 _tmux_cmd () {
   BUFFER="tmux"
@@ -82,6 +82,13 @@ _tmux_cmd () {
   zle accept-line
 }
 zle -N _tmux_cmd
+
+_nvim_cmd () {
+  BUFFER="nvim"
+  zle end-of-line
+  zle accept-line
+}
+zle -N _nvim_cmd
 # }}}
 
 # }}}
@@ -146,8 +153,10 @@ bindkey -M viins    '^B^N' _cdUndoDir
 bindkey -M vicmd    '^B^N' _cdUndoDir
 bindkey -M viins    '^B^M' _cdParentKey
 bindkey -M vicmd    '^B^M' _cdParentKey
-bindkey -M viins    '^X^L' _ranger_cmd
-bindkey -M vicmd    '^X^L' _ranger_cmd
+bindkey -M viins    '^X^L' _nnn_cmd
+bindkey -M vicmd    '^X^L' _nnn_cmd
+bindkey -M viins    '^X^E' _nvim_cmd
+bindkey -M vicmd    '^X^E' _nvim_cmd
 bindkey -M viins -s '^X^M' 'fzf-man\n'
 bindkey -M vicmd -s '^X^M' 'fzf-man\n'
 bindkey -M viins -s '^X^F' 'rcd\n'

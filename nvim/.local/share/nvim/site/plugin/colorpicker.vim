@@ -19,12 +19,12 @@ let g:loaded_colorpicker = 1
 let g:colorpicker_themes = get(
       \ g:, 'colorpicker_themes',
       \   { 'dark': {
-      \       'ayu'    : 'ayu_dark',
-      \       'gruvbox': 'base16_gruvbox_dark_hard',
+      \       'ayu'    : [ 'ayu_dark', 1 ],
+      \       'gruvbox': [ 'base16_gruvbox_dark_hard', 1 ],
       \     },
       \     'light': {
-      \       'ayu'    : 'ayu_light',
-      \       'gruvbox': 'gruvbox',
+      \       'ayu'    : [ 'ayu_light', 1 ],
+      \       'gruvbox': [ 'gruvbox', 1 ],
       \     },
       \   }
       \ )
