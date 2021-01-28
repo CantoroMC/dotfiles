@@ -17,6 +17,7 @@ module Monitors
     , wifi
     , xMenu
     , pacman
+    , xmSound
     ) where
 
 import Xmobar
@@ -33,12 +34,20 @@ import Config
     , xmobarConfigDir
     )
 
+
+-------------------------------------------------------------------------------
+    -- Commands
 trayerPad :: Command
 trayerPad = Com (xmobarConfigDir ++ "/scripts/padding-icon") [] "trayerpad" 3600
 
 pacman :: Command
 pacman = Com "/bin/sh" ["-c", xmobarConfigDir ++ "/scripts/xmPacman"] "pacman" 600
 
+xmSound :: Command
+xmSound = Com "/bin/sh" ["-c", xmobarConfigDir ++ "/scripts/xmVolume"] "xmVolume" 10
+
+-------------------------------------------------------------------------------
+    -- Monitors
 mpdMusic :: Palette -> Monitors
 mpdMusic p =
     MPDX ( withPlugArgs p
@@ -69,11 +78,6 @@ diskU = DiskU [("/", action "gnome-disks" 3 (fc "#b8cc52" "Disk: " ++ "<free>/<s
     [ "-S", "True"
     , "-a", "l"
     ] 10
-
-clock :: Palette -> Date
-clock p =
-    Date (action "st -n calendar -t calendar nvim -c CalendarH" 3
-        (fc (pBorder p) "%T" ++ " - " ++ fc (pBorder p) "%a %e %b %Y")) "date" 10
 
 weather :: Monitors
 weather = WeatherX "LIML"
@@ -197,12 +201,6 @@ volume p =
             ]
         ) 10
 
-keyboard :: Kbd
-keyboard = Kbd
-    [ ("us", action "setxkbmap it; xmodmap ~/.config/X11/xinit/.XmodmapIT" 3 (fn 2 "US"))
-    , ("it", action "setxkbmap us; xmodmap ~/.config/X11/xinit/.Xmodmap" 3 (fn 2 "IT"))
-    ]
-
 wifi :: Palette -> Monitors
 wifi p =
     DynNetwork
@@ -215,6 +213,20 @@ wifi p =
             , "--tx-icon-pattern" , icon "network/tx/network_tx_%%.xpm"
             ]
         ) 10
+
+
+-------------------------------------------------------------------------------
+    -- Others
+clock :: Palette -> Date
+clock p =
+    Date (action "st -n calendar -t calendar nvim -c CalendarH" 3
+        (fc (pBorder p) "%T" ++ " - " ++ fc (pBorder p) "%a %e %b %Y")) "date" 10
+
+keyboard :: Kbd
+keyboard = Kbd
+    [ ("us", action "setxkbmap it; xmodmap ~/.config/X11/xinit/.XmodmapIT" 3 (fn 2 "US"))
+    , ("it", action "setxkbmap us; xmodmap ~/.config/X11/xinit/.Xmodmap" 3 (fn 2 "IT"))
+    ]
 
 xMenu :: String -> String -> String
 xMenu com ic = action com 1 (fn 1 (ic ++ " "))

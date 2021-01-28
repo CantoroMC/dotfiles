@@ -24,6 +24,7 @@ import Monitors ( battery
                 , weather
                 , wifi
                 , xMenu
+                , xmSound
                 )
 
 xmobarConfig :: Palette -> Config
@@ -37,6 +38,7 @@ xmobarConfig p = (baseConfig p)
                , Run weather
                , Run (clock p)
                , Run pacman
+               , Run xmSound
                , Run (memory p)
                , Run swap
                , Run (multicpu p)
@@ -70,7 +72,11 @@ xmobarConfig p = (baseConfig p)
                ++ " "
                ++ "|bright|"
                ++ " "
-               ++ "|default:Master|"
+               ++ action "pactl set-sink-volume @DEFAULT_SINK@ -5%" 5
+               (action "pactl set-sink-volume @DEFAULT_SINK@ +5%" 4
+               (action "pactl set-sink-mute @DEFAULT_SINK@ toggle" 2
+               (action "st -n volume -t volume pulsemixer" 1
+               (action "pavucontrol" 3 "|xmVolume|"))))
                ++ " "
                ++ "|dynnetwork|"
                ++ " "
