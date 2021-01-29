@@ -1,0 +1,88 @@
+# Auxiliary
+fzf-git::down() {
+  fzf --height 50% "$@" --border
+}
+
+fzf-git::isGitRepo() {
+  git rev-parse HEAD > /dev/null 2>&1
+}
+
+fzf-git::joinLines() {
+  local item
+  while read item; do
+    echo -n "${(q)item}"
+  done
+}
+
+# Widgets
+fzf-git::branches() {
+  fzf-git::isGitRepo || return
+  git branch -a --color=always | grep -v '/HEAD\s' | sort |
+    fzf-git::down --ansi --multi --tac --preview-window right:70% \
+    --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(auto)%cd %h%d %s" $(sed s/^..// <<< {} | cut -d" " -f1) | head -'$LINES |
+    sed 's/^..//' | cut -d' ' -f1 |
+    sed 's#^remotes/##'
+}
+
+fzf-git::files() {
+  fzf-git::isGitRepo || return
+  git -c color.status=always status --short |
+    fzf-git::down -m --ansi --nth 2..,.. \
+    --preview '(git diff --color=always -- {-1} | sed 1,4d; cat {-1}) | head -500' |
+    cut -c4- | sed 's/.* -> //'
+}
+
+fzf-git::hashes() {
+  fzf-git::isGitRepo || return
+  git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
+    fzf-git::down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
+    --header 'Press CTRL-S to toggle sort' \
+    --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always | head -'$LINES |
+    grep -o "[a-f0-9]\{7,\}"
+}
+
+fzf-git::remotes() {
+  fzf-git::isGitRepo || return
+  git remote -v | awk '{print $1 "\t" $2}' | uniq |
+    fzf-git::down --tac \
+    --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" {1} | head -200' |
+    cut -d$'\t' -f1
+}
+
+fzf-git::tags() {
+  fzf-git::isGitRepo || return
+  git tag --sort -version:refname |
+    fzf-git::down --multi --preview-window right:70% \
+    --preview 'git show --color=always {} | head -'$LINES
+}
+
+# Main
+case $WIDGET in
+  *-branches)
+    local result=$(fzf-git::branches | fzf-git::joinLines)
+    zle reset-prompt
+    LBUFFER+=$result
+    ;;
+  *-files)
+    local result=$(fzf-git::files | fzf-git::joinLines)
+    zle reset-prompt
+    LBUFFER+=$result
+    ;;
+  *-hashes)
+    local result=$(fzf-git::hashes | fzf-git::joinLines)
+    zle reset-prompt
+    LBUFFER+=$result
+    ;;
+  *-remotes)
+    local result=$(fzf-git::remotes | fzf-git::joinLines)
+    zle reset-prompt
+    LBUFFER+=$result
+    ;;
+  *-tags)
+    local result=$(fzf-git::tags | fzf-git::joinLines)
+    zle reset-prompt
+    LBUFFER+=$result
+    ;;
+esac
+
+# vim:ft=zsh:fdm=indent
