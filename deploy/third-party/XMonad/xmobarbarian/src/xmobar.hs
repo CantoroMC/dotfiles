@@ -44,7 +44,7 @@ xmobarConfig p = (baseConfig p)
                , Run (multicpu p)
                , Run (thermal p)
                , Run uptime
-               , Run (battery p)
+               , Run (battery p "BAT0" "battery0")
                , Run (brightness p)
                , Run (volume p)
                , Run (wifi p)

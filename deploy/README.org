@@ -23,7 +23,7 @@
 
 ** Installing Third Party Packages
 
-*** =third-party= Executables
+*** Third-party Executables
 Programs in this directory are:
 - a grub-theme
 - nnn file manager
@@ -37,6 +37,7 @@ Programs in this directory are:
   - surf
   - tabbed
 - xmobarbarian: cabal project for xmobar configuration
+- xmonad: cabal project for xmonad configuration
 
 *** Youtube-dl
    #+begin_src sh

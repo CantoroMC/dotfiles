@@ -149,9 +149,9 @@ uptime = Uptime
     , "-S", "True"
     ] 60
 
-battery :: Palette -> Monitors
-battery p =
-    BatteryN ["BAT0"]
+battery :: Palette -> String -> Alias -> Monitors
+battery p a =
+    BatteryN [a]
         ( withPlugArgs p
             [ "-t", "<fn=2><leftipat> <acstatus></fn>"
             , "-S", "True"
@@ -165,7 +165,7 @@ battery p =
             , "-a", "notify-send -u critical 'Battery low'"
             , "-A", "3"
             ]
-        ) 400 "battery0"
+        ) 400
 
 brightness :: Palette -> Monitors
 brightness p =

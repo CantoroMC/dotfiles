@@ -263,7 +263,7 @@ xmKeys mask = do
         ^> setLayout =<< asks (layoutHook . config)
     bind $ mask ... xK_space
       |/- "select the monocle layout"
-        ^> sendMessage $ JumpToLayout "Monocle"
+        ^> sendMessage $ JumpToLayout "Tall"
     bind $ mask .|. shiftMask ... xK_space
       |/- "select the floating layout"
         ^> sendMessage $ JumpToLayout "Float >>="
