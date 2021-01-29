@@ -24,7 +24,7 @@ Clone the package and =makepkg -si=
 
 ** Installing AUR packages with yay
    #+begin_src sh
-     yay -S --noansweredit --needed - < ~/dotfiles/deploy/aur-packages.txt
+     yay -S --noansweredit --needed - < ~/dotfiles/deploy/arch-repo/aur-packages.txt
    #+end_src
 
 ** Installing Third Party Packages
@@ -136,7 +136,7 @@ Modify to suit your needs (ex. Color, ILoveCandy)
 **** =paccache=
 #+begin_src sh
   sudo touch /usr/share/libalpm/hooks/paccache.hook
-  cat ~/dotfiles/deploy/hooks/paccacheHook.txt | sudo tee -a /usr/share/libalpm/hooks/paccache.hook
+  cat ~/dotfiles/deploy/arch-repo/hooks/paccacheHook.txt | sudo tee -a /usr/share/libalpm/hooks/paccache.hook
 #+end_src
 
 ** Modify /etc/*.config to respect XDG-base-directory specifications
