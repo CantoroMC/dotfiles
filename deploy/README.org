@@ -16,6 +16,12 @@
      sudo pacman -S --noconfirm --needed --asdeps - < ~/dotfiles/deploy/arch-repo/pacman-packages/dependent-packages.txt
    #+end_src
 
+** Install yay for help
+Clone the package and =makepkg -si=
+#+begin_src shell
+  git clone https://aur.archlinux.org/yay-git.git
+#+end_src
+
 ** Installing AUR packages with yay
    #+begin_src sh
      yay -S --noansweredit --needed - < ~/dotfiles/deploy/aur-packages.txt

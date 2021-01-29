@@ -123,11 +123,5 @@ user of the weel group to execute sudo.
   nmtui
 #+end_src
 
-** Install yay for help
-Clone the package and =makepkg -si=
-#+begin_src shell
-  git clone https://aur.archlinux.org/yay-git.git
-#+end_src
-
 ** Install packages and deploy dotfiles
-Look[[file:~/dotfiles/README.org::*Package-Management][ here]]
+Look[[file:~/dotfiles/deploy/README.org::*Package-Management][ here]]
