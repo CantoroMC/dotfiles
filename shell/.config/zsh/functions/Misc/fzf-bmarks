@@ -1,0 +1,17 @@
+bookmarkfile="${XDG_DATA_HOME}/fzf-bookmarks"
+
+fzf-bmarks::strip() {
+  cat $1 | sed 's/#.*//g' | sed '/^\s*$/d'
+}
+
+fzf-bmarks::print() {
+  local s=$(fzf-bmarks::strip $bookmarkfile | fzf)
+  [[ -n $s ]] && print "$s"
+}
+
+[[ "x$BUFFER" != "x" ]] && BUFFER="$BUFFER "
+BUFFER+="cd $(fzf-bmarks::print)"
+CURSOR=$#BUFFER
+zle redisplay
+
+# vim:ft=zsh

@@ -1,0 +1,14 @@
+# Bookmarks to be fed to fzf and zle
+# Shell comments and empty lines will be stripped
+~/Music/database
+~/Downloads
+~/Desktop
+~/Documents/programming/Haskell
+~/Documents/programming/MATLAB
+~/Documents/programming/TeX
+~/Documents/programming/TeX/beamers
+~/dotfiles/deploy/third-party
+~/dotfiles/shell/.config/zsh
+~/.local/share
+~/.local/bin
+~/.config

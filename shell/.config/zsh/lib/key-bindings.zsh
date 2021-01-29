@@ -39,6 +39,19 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 # }}}
 
+# Fzf widgets {{{2
+autoload fzf-git fzf-bindkey fzf-kill fzf-bmarks
+
+zle -N fzf-git-branches fzf-git
+zle -N fzf-git-files fzf-git
+zle -N fzf-git-hashes fzf-git
+zle -N fzf-git-remotes fzf-git
+zle -N fzf-git-tags fzf-git
+zle -N fzf-bindkey
+zle -N fzf-kill
+zle -N fzf-bmarks
+# }}}
+
 # Most used commands -> Widgets: {{{2
 _exit-cmd () {
   zle clear-screen
@@ -125,20 +138,25 @@ bindkey -M viins      '^V'    edit-command-line
 bindkey -M vicmd      '^V'    edit-command-line
 bindkey -M viins      '^Y'    copy-prev-shell-word
 bindkey -M viins      ' '     magic-space
-bindkey -M viins      '^B^N' _cdUndoDir
-bindkey -M vicmd      '^B^N' _cdUndoDir
-bindkey -M viins      '^B^M' _cdParentKey
-bindkey -M vicmd      '^B^M' _cdParentKey
-bindkey -M viins      '^X^L' _nnn_cmd
-bindkey -M vicmd      '^X^L' _nnn_cmd
+
+bindkey -M viins      '^G^B' fzf-git-branches
+bindkey -M viins      '^G^F' fzf-git-files
+bindkey -M viins      '^G^H' fzf-git-hashes
+bindkey -M viins      '^G^R' fzf-git-remotes
+bindkey -M viins      '^G^T' fzf-git-tags
+bindkey -M viins      '^X^B' fzf-bmarks
 bindkey -M viins      '^X^E' _nvim_cmd
 bindkey -M vicmd      '^X^E' _nvim_cmd
-bindkey -M viins -s   '^X^M' 'fzf-man\n'
-bindkey -M vicmd -s   '^X^M' 'fzf-man\n'
 bindkey -M viins -s   '^X^F' 'rcd\n'
 bindkey -M vicmd -s   '^X^F' 'rcd\n'
+bindkey -M viins      '^X^K' fzf-bindkey
+bindkey -M viins      '^X^L' _nnn_cmd
+bindkey -M vicmd      '^X^L' _nnn_cmd
+bindkey -M viins -s   '^X^M' 'fzf-man\n'
+bindkey -M vicmd -s   '^X^M' 'fzf-man\n'
 bindkey -M viins -s   '^X^N' 'rcn\n'
 bindkey -M vicmd -s   '^X^N' 'rcn\n'
+bindkey -M viins      '^X^P' fzf-kill
 # }}}
 
 # Alt-Key: Emacs Like {{{2
@@ -185,26 +203,6 @@ bindkey -a ys add-surround
 bindkey -M visual S add-surround
 # }}}
 
-# }}}
-
-# Fzf integration {{{2
-autoload fzf-git fzf-bindkey fzf-kill
-
-zle -N  fzf-git-branches fzf-git
-zle -N  fzf-git-files fzf-git
-zle -N  fzf-git-hashes fzf-git
-zle -N  fzf-git-remotes fzf-git
-zle -N  fzf-git-tags fzf-git
-zle -N fzf-bindkey
-zle -N fzf-kill
-
-bindkey -M viins '^G^B' fzf-git-branches
-bindkey -M viins '^G^F' fzf-git-files
-bindkey -M viins '^G^H' fzf-git-hashes
-bindkey -M viins '^G^R' fzf-git-remotes
-bindkey -M viins '^G^T' fzf-git-tags
-bindkey -M viins '^X^B' fzf-bindkey
-bindkey -M viins '^X^K' fzf-kill
 # }}}
 
 # }}}
