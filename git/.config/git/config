@@ -28,6 +28,9 @@
 [pull]
 	rebase = false
 
+[init]
+	defaultBranch = main
+
 [help]
 	autocorrect = 20
 	browser = vivaldi-stable
