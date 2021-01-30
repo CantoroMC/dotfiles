@@ -1,0 +1,50 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamercolorthemeMilan}[2020/11/12 Milan color theme]
+
+\mode<presentation>
+
+% Color definitions (xcolor is automatically loaded by the beamer class) {{{1
+\definecolor{blackMilan}{HTML}{151a1e}       % #151a1e
+\definecolor{brightBlackMilan}{HTML}{1c2328} % #1c2328
+\definecolor{redMilan}{HTML}{cc241d}         % #cc241d
+\definecolor{greenMilan}{HTML}{98971a}       % #98971a
+\definecolor{brightGreenMilan}{HTML}{b8cc52} % #b8cc52
+\definecolor{yellowMilan}{HTML}{e7c547}      % #e7c547
+\definecolor{blueMilan}{HTML}{458588}        % #458588
+\definecolor{brightBlueMilan}{HTML}{36a3d9}  % #36a3d9
+\definecolor{cyanMilan}{HTML}{95e6cb}        % #95e6cb
+\definecolor{brightCyanMilan}{HTML}{c7fffd}  % #c7fffd
+\definecolor{whiteMilan}{HTML}{fbf1c7}       % #fbf1c7
+\definecolor{brightWhiteMilan}{HTML}{ebdbb2} % #ebdbb2
+% }}}
+
+% Beamer Colors {{{1
+
+% Palettes {{{2
+\setbeamercolor*{palette primary}{bg=blackMilan,fg=brightGreenMilan}
+\setbeamercolor*{palette secondary}{bg=brightBlackMilan,fg=brightBlueMilan}
+\setbeamercolor*{palette tertiary}{bg=blackMilan,fg=brightBlueMilan}
+\setbeamercolor*{palette quaternary}{bg=brightBlackMilan,fg=cyanMilan}
+% }}}
+
+\setbeamercolor{alerted text}{fg=redMilan,bg=whiteMilan}
+\setbeamercolor{example text}{fg=greenMilan,bg=whiteMilan}
+
+\setbeamercolor{block title}{fg=brightBlueMilan,bg=brightBlueMilan!30}
+\setbeamercolor{block body}{fg=blackMilan,bg=brightBlueMilan!10}
+
+\setbeamercolor{block title example}{fg=greenMilan, bg=greenMilan!30}
+\setbeamercolor{block body example}{fg=blackMilan, bg=greenMilan!10}
+
+\setbeamercolor{block title alerted}{fg=redMilan, bg=redMilan!30}
+\setbeamercolor{block body alerted}{fg=blackMilan, bg=redMilan!10}
+
+\setbeamercolor{itemize item}{fg=brightBlueMilan}
+\setbeamercolor{itemize subitem}{fg=brightBlueMilan!80}
+
+\setbeamercolor{section in toc}{fg=brightBlueMilan}
+\setbeamercolor{subsection in toc}{fg=black}
+
+% }}}
+
+\mode<all>

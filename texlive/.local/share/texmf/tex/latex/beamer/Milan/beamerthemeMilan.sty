@@ -1,0 +1,50 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemeMilan}[2020/11/12 Milan beamer theme]
+
+\DeclareOptionBeamer{shadow}{\PassOptionsToPackage{shadow=#1}{beamerinnerthemeMilan}}
+\DeclareOptionBeamer{subsection}{\PassOptionsToPackage{subsection=#1}{beamerouterthemesmoothbars}}
+\ProcessOptionsBeamer%
+
+
+% TODO
+% Table of content at the beginning of each subsection
+% \AtBeginSection[]
+% {
+%   \begin{frame}<beamer>{Section Outline}
+%     \tableofcontents[currentsection,currentsubsection]
+%   \end{frame}
+% }
+
+\mode<presentation>
+
+\useoutertheme{smoothbars}
+\usecolortheme{Milan}
+\useinnertheme{Milan}
+\usefonttheme[onlylarge]{structurebold}
+
+  % More Inner Theme {{{
+
+
+  % ??
+  % \setbeamertemplate{items}[ball]
+  % \setbeamertemplate{sections/subsections in toc}[ball]
+
+  % % Appearance of numbers in table of contents
+  % \setbeamertemplate{section in toc}[sections numbered]
+  % % Covered items are transparent and not hidden
+  % \setbeamercovered{transparent}
+  % % No navigation symbols
+  % \beamertemplatenavigationsymbolsempty{}
+% }}}
+
+  % More Fonts {{{
+  % \setbeamerfont*{title}{size=\LARGE,shape=\bfseries,family=\sffamily}
+
+  % % It requires Xe/Lua Latex compilation
+  % \usepackage{fontspec}
+  % \setmainfont{DejaVu}
+  % }}}
+
+% \setbeamerfont{block title}{size={}} ??
+
+\mode<all>
