@@ -11,12 +11,13 @@ getforecast() {
 }
 
 main() {
-  # Test if weather report is updated the day. If not download a new one.
-  [ "$(stat -c %y "$weatherreport" 2>/dev/null | cut -d' ' -f1)" = "$(date '+%Y-%m-%d')" ] || \
+  # Test if weather report has been updated the last hour. If not download a new one.
+  [ "$(stat -c %y "$weatherreport" 2>/dev/null | \
+    cut -d' ' -f1 | cut -d'.' -f1 | cut -d':' -f1)" = "$(date '+%H')" ] || \
     getforecast
 
   # Show the weather report in a pager
-  setsid -f st -n weatherreport -t weatherreport -f "SauceCodePro Nerd Font:size=7" less -Srf $weatherreport
+  setsid -f st -n weatherreport -t weatherreport -f "Operator Mono Lig:size=7" less -Srf $weatherreport
 }
 
 main "$@"
