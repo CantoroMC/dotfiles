@@ -577,7 +577,7 @@ Plug 'mcchrish/nnn.vim'
 Plug 'RRethy/vim-illuminate'
 Plug 'Yggdroot/indentLine', { 'on': 'IndentLinesToggle' }
 
-Plug 'mhinz/vim-startify'
+" Plug 'mhinz/vim-startify'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 

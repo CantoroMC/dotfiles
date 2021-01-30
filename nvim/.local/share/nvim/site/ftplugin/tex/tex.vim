@@ -98,6 +98,11 @@ if !hasmapto('<Plug>TexReadPdf') || !maparg('<F20>','n')
 endif
 " }}}
 
+" More Commands And Mappings: {{{2
+command! -buffer TexCloseEnvironment :normal Yp0fbcwend<Esc>ko
+nnoremap <silent> <buffer> <LocalLeader>ce :TexCloseEnvironment<CR>
+" }}}
+
 " }}}
 
 " Options Restoring: {{{1

@@ -9,8 +9,7 @@ fzf-bmarks::print() {
   [[ -n $s ]] && print "$s"
 }
 
-[[ "x$BUFFER" != "x" ]] && BUFFER="$BUFFER "
-BUFFER+="cd $(fzf-bmarks::print)"
+BUFFER="cd $(fzf-bmarks::print)"
 CURSOR=$#BUFFER
 zle redisplay
 

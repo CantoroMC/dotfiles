@@ -40,7 +40,7 @@ zle -N edit-command-line
 # }}}
 
 # Fzf widgets {{{2
-autoload fzf-git fzf-bindkey fzf-kill fzf-bmarks
+autoload fzf-git fzf-bindkey fzf-kill fzf-bmarks fzf-configs
 
 zle -N fzf-git-branches fzf-git
 zle -N fzf-git-files fzf-git
@@ -50,6 +50,7 @@ zle -N fzf-git-tags fzf-git
 zle -N fzf-bindkey
 zle -N fzf-kill
 zle -N fzf-bmarks
+zle -N fzf-configs
 # }}}
 
 # Most used commands -> Widgets: {{{2
@@ -144,19 +145,15 @@ bindkey -M viins      '^G^F' fzf-git-files
 bindkey -M viins      '^G^H' fzf-git-hashes
 bindkey -M viins      '^G^R' fzf-git-remotes
 bindkey -M viins      '^G^T' fzf-git-tags
-bindkey -M viins      '^X^B' fzf-bmarks
-bindkey -M viins      '^X^E' _nvim_cmd
-bindkey -M vicmd      '^X^E' _nvim_cmd
-bindkey -M viins -s   '^X^F' 'rcd\n'
-bindkey -M vicmd -s   '^X^F' 'rcd\n'
+bindkey -M viins -s   '^X^F' 'rcn\n'
 bindkey -M viins      '^X^K' fzf-bindkey
 bindkey -M viins      '^X^L' _nnn_cmd
-bindkey -M vicmd      '^X^L' _nnn_cmd
 bindkey -M viins -s   '^X^M' 'fzf-man\n'
-bindkey -M vicmd -s   '^X^M' 'fzf-man\n'
-bindkey -M viins -s   '^X^N' 'rcn\n'
-bindkey -M vicmd -s   '^X^N' 'rcn\n'
+bindkey -M viins      '^X^N' _nvim_cmd
 bindkey -M viins      '^X^P' fzf-kill
+bindkey -M viins      '^X^S' fzf-bmarks
+bindkey -M viins -s   '^X^R' 'rcd\n'
+bindkey -M viins      '^X^Z' fzf-configs
 # }}}
 
 # Alt-Key: Emacs Like {{{2

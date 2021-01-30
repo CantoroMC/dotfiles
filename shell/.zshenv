@@ -101,7 +101,7 @@ export RANGER_LOAD_DEFAULT_RC="FALSE"
 export TERMINAL='/usr/local/bin/st'
 # Nnn
 export NNN_OPTS="HUde"
-export NNN_BMS='D:~/dotfiles;h:~/Documents/programming/Haskell;m:/mnt;x:~/dotfiles/x-window/.config/xmonad'
+export NNN_BMS='b:~/.local/bin;c:~/.config;d:~/dotfiles;h:~/Documents/programming/Haskell;M:~/Music/database;m:/mnt;s:~/.config/zsh'
 export NNN_PLUG='a:mp3conv;b:oldbigfile;c:fzcd;i:imgview;m:mimelist;o:fzopen;p:preview-tui'
 export USE_VIDEOTHUMB='1'
 export NNN_COLORS='7342'

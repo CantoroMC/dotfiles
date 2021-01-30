@@ -49,40 +49,41 @@ xmobarConfig p = (baseConfig p)
                , Run (volume p)
                , Run (wifi p)
                ]
-  , template = " "
-               ++ xMenu "xmenu-apps" "\58911"
-               ++ "|UnsafeStdinReader| "
-               ++ " "
-               ++ "|music| "
-               ++ "}"
-               ++ "|LIML| "
-               ++ "|date|"
-               ++ "{"
-               ++ action "st yay -Syu" 3 " |pacman|"
-               ++ " "
-               ++ "|memory| |swap|"
-               ++ " "
-               ++ "|multicpu|"
-               ++ " "
-               ++ "|multicoretemp|"
-               ++ " "
-               ++ "|uptime| "
-               ++ " "
-               ++ "|battery0|"
-               ++ " "
-               ++ "|bright|"
-               ++ " "
-               ++ action "pactl set-sink-volume @DEFAULT_SINK@ -5%" 5
-               (action "pactl set-sink-volume @DEFAULT_SINK@ +5%" 4
-               (action "pactl set-sink-mute @DEFAULT_SINK@ toggle" 2
-               (action "st -n volume -t volume pulsemixer" 1
-               (action "pavucontrol" 3 "|xmVolume|"))))
-               ++ " "
-               ++ "|dynnetwork|"
-               ++ " "
-               ++ xMenu "xmenu-shutdown" "\61457"
-               ++ "     "
-               ++ "|trayerPad|"
+  , template =
+        " "
+        ++ xMenu "xmenu-apps" "\58911"
+        ++ "|UnsafeStdinReader| "
+        ++ " "
+        ++ "|music| "
+        ++ "}"
+        ++ "|LIML| "
+        ++ "|date|"
+        ++ "{"
+        ++ action "st yay -Syu" 3 " |pacman|"
+        ++ " "
+        ++ "|memory| |swap|"
+        ++ " "
+        ++ "|multicpu|"
+        ++ " "
+        ++ "|multicoretemp|"
+        ++ " "
+        ++ "|uptime| "
+        ++ " "
+        ++ "|battery0|"
+        ++ " "
+        ++ "|bright|"
+        ++ " "
+        ++ action "pactl set-sink-volume @DEFAULT_SINK@ -5%" 5
+        (action "pactl set-sink-volume @DEFAULT_SINK@ +5%" 4
+        (action "pactl set-sink-mute @DEFAULT_SINK@ toggle" 2
+        (action "st -n volume -t volume pulsemixer" 1
+        (action "pavucontrol" 3 "|xmVolume|"))))
+        ++ " "
+        ++ "|dynnetwork|"
+        ++ " "
+        ++ xMenu "xmenu-shutdown" "\61457"
+        ++ " "
+        ++ "   |trayerPad|"
   }
 
 main :: IO ()

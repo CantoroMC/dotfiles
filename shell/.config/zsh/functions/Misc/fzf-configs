@@ -1,0 +1,16 @@
+configfile="${XDG_DATA_HOME}/fzf-configs"
+
+fzf-configs::strip() {
+  cat $1 | sed 's/#.*//g' | sed '/^\s*$/d'
+}
+
+fzf-configs::print() {
+  local s=$(fzf-configs::strip $configfile | fzf)
+  [[ -n $s ]] && print "$s"
+}
+
+BUFFER="$EDITOR $(fzf-configs::print)"
+CURSOR=$#BUFFER
+zle redisplay
+
+# vim:ft=zsh

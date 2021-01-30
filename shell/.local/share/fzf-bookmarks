@@ -7,8 +7,11 @@
 ~/Documents/programming/MATLAB
 ~/Documents/programming/TeX
 ~/Documents/programming/TeX/beamers
+~/Documents/programming/TeX/matriHX
+~/Documents/programming/TeX/curriculum
 ~/dotfiles/deploy/third-party
 ~/dotfiles/shell/.config/zsh
+~/.local/share/nvim
 ~/.local/share
 ~/.local/bin
 ~/.config

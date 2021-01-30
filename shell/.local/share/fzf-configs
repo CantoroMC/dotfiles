@@ -1,0 +1,15 @@
+# Zshell
+$HOME/.zshenv
+$HOME/.config/zsh/.zlogin
+$ZDOTDIR/lib/aliases.zsh
+$ZDOTDIR/lib/functions.zsh
+$ZDOTDIR/lib/key-bindings.zsh
+$ZDOTDIR/.zshrc
+# X
+$XDG_CONFIG_HOME/X11/xinitrc
+$XDG_CONFIG_HOME/X11/xprofile_dwm
+$XDG_CONFIG_HOME/X11/xprofile_xmonad-x86_64-linux
+# Everything else
+$XDG_CONFIG_HOME/nvim/init.vim
+$XDG_CONFIG_HOME/git/config
+$XDG_CONFIG_HOME/tmux/tmux.conf

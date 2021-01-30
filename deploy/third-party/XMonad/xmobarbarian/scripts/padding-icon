@@ -11,25 +11,25 @@
 
 # Function to create a transparent Wx1 px XPM icon
 create_xpm_icon () {
-timestamp=$(date)
-pixels=$(for i in `seq $1`; do echo -n "."; done)
+  timestamp=$(date)
+  pixels=$(for i in `seq $1`; do echo -n "."; done)
 
-cat << EOF > "$2"
-/* XPM *
-static char * trayer_pad_xpm[] = {
-/* This XPM icon is used for padding in xmobar to */
-/* leave room for trayer-srg. It is dynamically   */
-/* updated by by trayer-pad-icon.sh which is run  */
-/* by xmobar.                                     */
-/* Created: ${timestamp} */
-/* <w/cols>  <h/rows>  <colors>  <chars per pixel> */
-"$1 1 1 1",
-/* Colors (none: transparent) */
-". c none",
-/* Pixels */
-"$pixels"
-};
-EOF
+  cat << EOF > "$2"
+  /* XPM *
+  static char * trayer_pad_xpm[] = {
+  /* This XPM icon is used for padding in xmobar to */
+  /* leave room for trayer-srg. It is dynamically   */
+  /* updated by by trayer-pad-icon.sh which is run  */
+  /* by xmobar.                                     */
+  /* Created: ${timestamp} */
+  /* <w/cols>  <h/rows>  <colors>  <chars per pixel> */
+  "$1 1 1 1",
+  /* Colors (none: transparent) */
+  ". c none",
+  /* Pixels */
+  "$pixels"
+  };
+  EOF
 }
 
 # Width of the trayer window
