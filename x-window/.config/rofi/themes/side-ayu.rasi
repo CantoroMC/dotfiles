@@ -6,27 +6,26 @@
 
 /* global settings and color variables */
 * {
-    maincolor:        #ed8712;
-    highlight:        bold #ed8712;
-    urgentcolor:      #e53714;
+    maincolor:        #b8cc52;
+    highlight:        bold #b8cc52;
+    urgentcolor:      #ff3333;
 
-    fgwhite:          #cfcfcf;
-    blackdarkest:     #1d1d1d;
-    blackwidget:      #262626;
-    blackentry:       #292929;
-    blackselect:      #303030;
-    darkgray:         #848484;
-    scrollbarcolor:   #505050;
-    font: "SauceCodePro Nerd Font 9";
+    fgwhite:          #eaeaea;
+    blackdarkest:     #151a1e;
+    blackwidget:      #151a1e;
+    blackentry:       #151a1e;
+    blackselect:      #3f4e5a;
+    darkgray:         #95e6cb;
+    font: "Operator Mono Lig 9";
     background-color: @blackdarkest;
 }
 
 window {
-    height:     90%;
-    width:      25em;
+    height:     60%;
+    width:      60em;
     background-color: @blackdarkest;
-    anchor: west;
-    location: west;
+    anchor: center;
+    location: center;
     y-offset: +10px;
 }
 
@@ -49,6 +48,7 @@ textbox {
 listview {
    fixed-height: false;
    dynamic: true;
+   columns: 4;
    scrollbar: false;
    spacing: 0px;
    padding: 1px 0px 0px 0px;
@@ -106,7 +106,7 @@ element alternate.active {
     text-color:       @maincolor;
 }
 element-icon {
-    size:             2.0ch;
+    size:             4.0ch;
 }
 scrollbar {
    background-color: @blackwidget;

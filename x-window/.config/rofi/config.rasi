@@ -43,7 +43,8 @@ configuration {
     drun-use-desktop-cache: false;
     drun-reload-desktop-cache: false;
     drun-match-fields: "name,generic,exec,categories,keywords";
-    drun-display-format: "{name} [<span weight='ultralight' size='x-small'><i>({categories})</i></span>]";
+    // drun-display-format: "{name} [<span weight='ultralight' size='x-small'><i>({categories})</i></span>]";
+    drun-display-format: "{name}";
     drun-show-actions: false;
     drun-url-launcher: "xdg-open";
     display-drun: "Launch application = ";
@@ -157,4 +158,4 @@ configuration {
 
 // For import theme or theme elements
 // Use -theme path from command line to override the current theme
-@import "~/.config/rofi/themes/flat-orange.rasi"
+@import "~/.config/rofi/themes/side-ayu.rasi"

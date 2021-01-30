@@ -1,7 +1,9 @@
 -- configuration
 bellStyle: VisualBell
 editMode: Vi
-completionType: MenuCompletion
+-- ListCompletion or MenuCompletion
+completionType: ListCompletion
+completionPaging: True
 completionPromptLimit: Just 50
 maxhistorysize: Just 1000
 historyDuplicates: IgnoreConsecutive
@@ -10,8 +12,19 @@ historyDuplicates: IgnoreConsecutive
 bind: { { } left
 bind: ( ( ) left
 bind: [ [ ] left
-bind: } right
-bind: ] right
-bind: ) right
+
+-- To find keyseq ghc -e getLine (key and Enter)
+keyseq: "\ESCOP" F1
+keyseq: "\ESCOQ" F2
+keyseq: "\ESC[15~" F5
+keyseq: "\ESC[24~" F12
+
+bind: F1 killline : i n f o
+bind: F2 killline : d o c
+bind: F5 killline : r e l o a d return
+bind: F12 killline : q u i t return
+bind: meta-a home
+bind: meta-e end
+bind: ctrl-l killline : ! c l e a r return
 
 -- vim:ft=haskell
