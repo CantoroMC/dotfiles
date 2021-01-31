@@ -38,8 +38,8 @@ EOD
 
 fpath=(
   $ZDOTDIR/functions/Completion
-  $ZDOTDIR/functions/Misc
   $ZDOTDIR/functions/Prompts
+  $ZDOTDIR/functions/Zle
   $fpath
 )
 

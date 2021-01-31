@@ -6,10 +6,10 @@ fzf-configs::strip() {
 
 fzf-configs::print() {
   local s=$(fzf-configs::strip $configfile | fzf)
-  [[ -n $s ]] && print "$s"
+  [[ -n $s ]] && print "$EDITOR $s"
 }
 
-BUFFER="$EDITOR $(fzf-configs::print)"
+BUFFER="$(fzf-configs::print)"
 CURSOR=$#BUFFER
 zle redisplay
 

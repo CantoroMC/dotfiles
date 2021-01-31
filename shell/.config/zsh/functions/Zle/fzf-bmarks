@@ -6,10 +6,10 @@ fzf-bmarks::strip() {
 
 fzf-bmarks::print() {
   local s=$(fzf-bmarks::strip $bookmarkfile | fzf)
-  [[ -n $s ]] && print "$s"
+  [[ -n $s ]] && print "cd $s"
 }
 
-BUFFER="cd $(fzf-bmarks::print)"
+BUFFER="$(fzf-bmarks::print)"
 CURSOR=$#BUFFER
 zle redisplay
 
