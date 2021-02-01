@@ -138,15 +138,6 @@ xmKeys mask = do
     bind $ mask .|. shiftMask ... xK_f
       |/- "tabbed surf"
         ^> spawn "surf-open"
-    bind $ mask ... xK_c
-      |/- "copy focused window to all workspaces"
-        ^> windows copyToAll
-    bind $ mask .|. shiftMask ... xK_c
-      |/- "kill all the copy of the focused window"
-        ^> killAllOtherCopies
-    bind $ mask .|. controlMask ... xK_c
-      |/- "remove focused window from this workspace"
-        ^> kill1
     bind $ mask ... xK_b
       |/- "toggle covering of docks, status bars ..."
         ^> sendMessage ToggleStruts
@@ -347,6 +338,15 @@ xmKeys mask = do
     bindZip ((mask .|. controlMask .|. shiftMask ...) <$> [ xK_1 .. xK_9 ])
             (("copy focused window to workspace " <>) . pure <$> [ '1' .. '9' ])
             (windows . copy <$> xmWorkspaces)
+    bind $ mask ... xK_0
+      |/- "copy focused window to all workspaces"
+        ^> windows copyToAll
+    bind $ mask .|. shiftMask ... xK_0
+      |/- "kill all the copy of the focused window"
+        ^> killAllOtherCopies
+    bind $ mask .|. controlMask ... xK_0
+      |/- "remove focused window from this workspace"
+        ^> kill1
     -- Fun Keys and XF86 Keys
     bind $ mask ... xK_F1
       |/- "binding documentation"
