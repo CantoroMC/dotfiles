@@ -6,6 +6,7 @@
 	"coc.source.word.shortcut": "D",
 	"coc.source.word.priority": 1,
 	"suggest.maxPreviewWidth": 80,
+	"suggest.enablePreview": true,
 	"suggest.floatEnable": true,
 	"suggest.detailField": "preview",
 	"suggest.echodocSupport": true,
