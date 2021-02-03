@@ -75,6 +75,7 @@ buttonMaskToString m = maybe "" (<> "-") $ Map.lookup m modMap
     , (mod4Mask .|. shiftMask                , "Win-S")
     , (mod4Mask .|. controlMask              , "Win-C")
     , (mod4Mask .|. controlMask .|. shiftMask, "Win-C-S")
+    , (mod4Mask .|. mod1Mask                 , "Win-Alt")
     , (mod5Mask                              , "M5")
     , (mod5Mask .|. shiftMask                , "M5-S")
     , (mod5Mask .|. controlMask              , "M5-C")

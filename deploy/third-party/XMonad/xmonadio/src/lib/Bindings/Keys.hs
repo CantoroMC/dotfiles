@@ -217,6 +217,18 @@ xmKeys mask = do
     bind $ mask .|. controlMask .|. shiftMask ... xK_l
       |/- "move focused window to the east"
         ^> sendMessage $ Move R
+    bind $ mask .|. mod1Mask ... xK_k
+      |/- "swap focused window with north"
+        ^> sendMessage $ Swap U
+    bind $ mask .|. mod1Mask ... xK_j
+      |/- "swap focused window with south"
+        ^> sendMessage $ Swap D
+    bind $ mask .|. mod1Mask ... xK_h
+      |/- "swap focused window with west"
+        ^> sendMessage $ Swap L
+    bind $ mask .|. mod1Mask ... xK_l
+      |/- "swap focused window with east"
+        ^> sendMessage $ Swap R
     bind $ mask ... xK_m
       |/- "focus the master window"
         ^> windows XMSS.focusMaster
@@ -316,18 +328,6 @@ xmKeys mask = do
     bind $ mask .|. controlMask ... xK_Up
       |/- "float and move to the up-left corner the focused window"
         ^> withFocused $ windows . flip XMSS.float xmUpLeftRect
-    bind $ mask .|. controlMask .|. shiftMask ... xK_Up
-      |/- "swap focused window with north"
-        ^> sendMessage $ Swap U
-    bind $ mask .|. controlMask .|. shiftMask ... xK_Down
-      |/- "swap focused window with south"
-        ^> sendMessage $ Swap D
-    bind $ mask .|. controlMask .|. shiftMask ... xK_Left
-      |/- "swap focused window with west"
-        ^> sendMessage $ Swap L
-    bind $ mask .|.controlMask .|. shiftMask ... xK_Right
-      |/- "swap focused window with east"
-        ^> sendMessage $ Swap R
     -- Numbers
     bindZip ((mask ...) <$> [ xK_1 .. xK_9 ])
             (("go to workspace " <>) . pure <$> [ '1' .. '9' ])
