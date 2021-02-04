@@ -84,8 +84,8 @@ for plugin ($plugins); do
   fi
 done
 
-# Load fzf completion and key bindings from the vim plugin
-for plugin ($XDG_DATA_HOME/nvim/plugged/fzf/shell/*.zsh); do
+# Load fzf completion and key bindings
+for plugin (/usr/share/fzf/*.zsh); do
   source $plugin
 done
 unset plugin plugins

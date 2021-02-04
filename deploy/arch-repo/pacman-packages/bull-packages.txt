@@ -8,6 +8,7 @@ diff-so-fancy
 easytag
 emacs
 evince
+fzf
 github-cli
 kitty
 mpc

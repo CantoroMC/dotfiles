@@ -147,7 +147,6 @@ unset bin_dir
 path=(
   "$HOME/.local/bin"
   "$HOME/.cabal/bin"
-  "$XDG_DATA_HOME/nvim/plugged/fzf/bin"
   "$GOPATH/bin"
   "$GEM_HOME/bin"
   "$path[@]"
