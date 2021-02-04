@@ -99,7 +99,7 @@ set wildoptions=pum
 set laststatus=2
 set noruler
 set noshowmode
-set showtabline=2
+set showtabline=1
 
 " }}}
 
@@ -573,9 +573,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/nerdtree'
-Plug 'mcchrish/nnn.vim'
-Plug 'RRethy/vim-illuminate'
-Plug 'Yggdroot/indentLine', { 'on': 'IndentLinesToggle' }
+Plug 'RRethy/vim-illuminate', { 'on': 'IlluminationToggle' }
+Plug 'Yggdroot/indentLine'
 
 " Plug 'mhinz/vim-startify'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
