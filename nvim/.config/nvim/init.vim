@@ -123,7 +123,7 @@ augroup filetype_indentation " {{{3
   autocmd FileType python,matlab,help,lisp,haskell,lhaskell
         \ setl tabstop=4 softtabstop=4 expandtab shiftwidth=4
   " Only Spaces Two Characters:
-  autocmd FileType vim,sh,zsh,markdown,tex,plaintex,bib,text,yaml,ruby,xml,xdefaults,tmux,cabal,nix
+  autocmd FileType vim,sh,zsh,markdown,tex,plaintex,bib,text,yaml,ruby,xml,xdefaults,tmux,cabal,nix,lua
         \ setl tabstop=2 softtabstop=2 expandtab shiftwidth=2
   " Tabs With Two Characters:
   autocmd FileType make,json,html,css,javascript,neomuttrc,muttrc
@@ -153,7 +153,7 @@ augroup fyletype_folding_method " {{{3
   autocmd FileType vim,tex,plaintex,text,neomuttrc,muttrc,tmux
         \ setl foldmethod=marker
   " Indentation
-  autocmd FileType make,python,bib,go,json,html,css,javascript,yaml,ruby,xml,haskell,lhaskell,cabal,nix
+  autocmd FileType make,python,bib,go,json,html,css,javascript,yaml,ruby,xml,haskell,lhaskell,cabal,nix,lua
         \ setl foldmethod=indent
   autocmd FileType lisp
         \ setl foldmethod=indent
