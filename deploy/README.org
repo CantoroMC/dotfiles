@@ -251,3 +251,23 @@ causes problem to the documentation rendering....
 #+begin_src shell
   sudo ln -sv /usr/local/MATLAB/R2019b/bin/glnxa64/mlint /usr/local/bin/mlint
 #+end_src
+
+* NeoVim Nightly
+NeoVim v5.0 will be soon released
+
+** Build prerequisites
+Additional(not already installed) packages required to build neovim from source
+#+begin_src shell
+  sudo pacman -S --needed ninja tree-sitter
+#+end_src
+
+** TODO Aboid "bundled" dependencies
+#+begin_src
+  sudo pacman -S --needed luajit luarocks lua-lpeg lua-mpack gperf unibilium libmspack libtermkey libvterm jemalloc
+#+end_src
+
+** Building
+#+begin_src shell
+  make CMAKE_BUILD_TYPE=RelWithDebInfo USE_BUNDLED=OFF
+  sudo make install
+#+end_src
