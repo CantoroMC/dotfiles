@@ -10,8 +10,19 @@ return require('packer').startup(
   function()
     use { 'wbthomason/packer.nvim', opt = true }
 
-    -- Section: His Holiness {{{1
+    -- Utilities: {{{2
+    use {
+      'neoclide/coc.nvim',
+      branch = 'release'
+    }
 
+    -- }}}
+
+    -- Section: Gui {{{1
+    use 'CantoroMC/ayu-vim'
+    -- }}}
+
+    -- Section: His Holiness {{{1
     use 'tpope/vim-abolish'
     use 'tpope/vim-commentary'
     use 'tpope/vim-endwise'
@@ -26,7 +37,7 @@ return require('packer').startup(
       cmd = { 'Make', 'Start', 'Dispatch', 'Focus', 'FocusDispatch' }
     }
     -- }}}
+
   end 
 )
 
--- TODO: retrieve a list of all plugins installed and require their config
