@@ -71,7 +71,7 @@ compinit -i -C
 
 # Source the zsh library and plugins
 
-# # Load all of the config files in ZDOTDIR/lib that end in .zsh
+# Load all of the config files in ZDOTDIR/lib that end in .zsh
 for config_file ($ZDOTDIR/lib/*.zsh); do
   source $config_file
 done

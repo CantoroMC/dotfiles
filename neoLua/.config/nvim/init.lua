@@ -19,6 +19,8 @@ vim.wo.number = true
 
 -- }}}
 
+require('plugins')
+
 -- Mappings: {{{1
 
 -- Cheat Table: {{{2
