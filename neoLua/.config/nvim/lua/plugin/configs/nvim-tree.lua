@@ -65,6 +65,6 @@ Set_var {
   -- NOTE: Also a lot of highlighting groups are defined and can be customized
   -- as you like.
 
-Map( 'n', '<F2>', ':<C-U>NvimTreeToggle<CR>', { noremap = true, silent = true } )
-Map( 'n', '<F14>', ':<C-U>NvimTreeFindFile<CR>', { noremap = true, silent = true } )
+Map( 'n', '<F2>',   ':<C-U>NvimTreeToggle<CR>',   { noremap = true, silent = true } )
+Map( 'n', '<F14>',  ':<C-U>NvimTreeFindFile<CR>', { noremap = true, silent = true } )
 Map( 'n', '<S-F2>', ':<C-U>NvimTreeFindFile<CR>', { noremap = true, silent = true } )

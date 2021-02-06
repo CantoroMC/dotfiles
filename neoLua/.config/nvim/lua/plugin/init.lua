@@ -38,12 +38,12 @@ return require('packer').startup(
     use 'tpope/vim-surround'
     use 'tpope/vim-repeat'
     use 'tpope/vim-rhubarb'
+    use 'CantoroMC/vim-unimpaired'
     use {
       'tpope/vim-dispatch',
       opt = true,
       cmd = { 'Make', 'Start', 'Dispatch', 'Focus', 'FocusDispatch' },
     }
     -- }}}
-
   end
 )
