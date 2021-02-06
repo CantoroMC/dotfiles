@@ -47,8 +47,8 @@ Set_var {
                                             }
                                    },
   -- devicons
-  nvim_tree_icons                = { 'g', { default = '',
-                                            symlink = '',
+  nvim_tree_icons                = { 'g', { default = ' ',
+                                            symlink = ' ',
                                             git = { unstaged  = "✗",
                                                     staged    = "✓",
                                                     unmerged  = "",

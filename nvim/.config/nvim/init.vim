@@ -545,7 +545,7 @@ endif
 let g:plug_window = 'vertical belowright new'
 call plug#begin(stdpath('data').'/plugged')
 
-" Utilities: {{{2
+" Section: Utilities {{{2
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'esamattis/slimux', {

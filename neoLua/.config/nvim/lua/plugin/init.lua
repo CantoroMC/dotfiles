@@ -11,25 +11,40 @@ return require('packer').startup(
   function(use)
     use { 'wbthomason/packer.nvim', opt = true }
 
-    -- Utilities: {{{2
+    -- Section: UTILITIES {{{1
     use {
       'neoclide/coc.nvim',
       branch = 'release'
     }
-
-    -- }}}
-
-    -- Section: Gui {{{1
-    use 'CantoroMC/ayu-vim'
     use {
-      'kyazdani42/nvim-tree.lua',
-      requires = {
-        'kyazdani42/nvim-web-devicons',
-      },
+      'junegunn/fzf',
+      requires = { 'junegunn/fzf.vim' },
     }
     -- }}}
 
-    -- Section: His Holiness {{{1
+    -- Section: GUIFICATION {{{1
+
+    -- Colorschemes
+    use 'CantoroMC/ayu-vim'
+    use 'NLKNguyen/papercolor-theme'
+
+    use 'Yggdroot/indentLine'
+    use {
+      'CantoroMC/nvim-tree.lua',
+      requires = { 'kyazdani42/nvim-web-devicons' },
+    }
+
+    -- }}}
+
+    -- Section: TEXT MANIPULATION {{{1
+    use {
+      'godlygeek/tabular',
+      opt = true,
+      cmd = { 'Tabularize' },
+    }
+    -- }}}
+
+    -- Section: HIS HOLINESS {{{1
     use 'tpope/vim-abolish'
     use 'tpope/vim-commentary'
     use 'tpope/vim-endwise'
@@ -45,5 +60,12 @@ return require('packer').startup(
       cmd = { 'Make', 'Start', 'Dispatch', 'Focus', 'FocusDispatch' },
     }
     -- }}}
+
+    -- Section: FILETYPE PLUGINS {{{1
+
+    -- }}}
+
   end
 )
+
+-- vim:fdm=marker

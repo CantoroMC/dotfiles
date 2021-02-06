@@ -9,7 +9,7 @@ local appendWithComma = function(opt, app)
   end
 end
 
-if Fn.has('vim_starting') == 1 then -- Encoding
+if Fn.has 'vim_starting' == 1 then -- Encoding
   Set_var { encoding = { 'g', 'utf-8'} }
   Set_opt {
     fileencodings = { 'o', 'ucs-bom,utf-8,default,latin1' },
