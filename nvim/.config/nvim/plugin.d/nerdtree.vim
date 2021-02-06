@@ -10,4 +10,4 @@ let NERDTreeIgnore          = [
       \ '\.hi$', '\.o$', '__pycache__','\.aux$'
       \ ]
 
-nnoremap <silent> <F2> :NERDTreeToggle<CR>
+nnoremap <silent> <F2> :<C-U>NERDTreeToggle<CR>
