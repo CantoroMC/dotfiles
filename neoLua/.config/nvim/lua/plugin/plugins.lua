@@ -33,7 +33,7 @@ local function init()
       --       row = top
       --     }
 
-      --     local buf = vim.api.nvim_create_buf(false, true)
+      --     local buf = vim.api.nvim_create_buf(false, false)
       --     local win = vim.api.nvim_open_win(buf, true, opts)
 
       --     function restore_cursor()
@@ -84,7 +84,9 @@ local function init()
     requires = { 'kyazdani42/nvim-web-devicons' },
   }
 
-  use  'mbbill/undotree'
+  use { 'mbbill/undotree',
+    cmd = 'UndotreeToggle'
+  }
   -- }}}
 
   -- Section: TEXT MANIPULATION {{{1

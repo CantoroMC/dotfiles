@@ -182,16 +182,16 @@ Set_opt { -- Pop Up Menu
   pumheight = { 'o', 20 },
 }
 
+vim.cmd('set undofile')
+vim.cmd('set swapfile')
 Set_opt { -- Safety
   backup      = { 'o', false },
-  swapfile    = { 'b', true },
   updatetime  = { 'o', 1000 },
   writebackup = { 'o', true },
 }
 
 Set_opt { -- History
   undodir        = { 'o', os.getenv('XDG_DATA_HOME')..'/nvim/undo' },
-  undofile       = { 'b', true },
   history        = { 'o', 200 },
   sessionoptions = { 'o', 'blank,buffers,curdir,folds,tabpages,winsize' },
   viewdir        = { 'o', os.getenv('XDG_DATA_HOME')..'/nvim/view' },
