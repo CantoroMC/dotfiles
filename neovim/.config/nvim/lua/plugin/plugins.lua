@@ -1,7 +1,29 @@
--- Automatically Install Packer if required {{{1
-local packerDir = vim.fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
-if vim.fn.isdirectory(packerDir) ~= 1 then
-  vim.cmd('!git clone https://github.com/wbthomason/packer.nvim ' .. packerDir )
+-- Install Packer {{{1
+local directory = string.format(
+	'%s/site/pack/packer/opt',
+	vim.fn.stdpath('data')
+)
+local image = string.format(
+	'%s/packer.nvim',
+	directory
+)
+print(image)
+local isPacker = vim.fn.isdirectory(image)
+if isPacker == 0 then
+	if vim.fn.input('Download Packer? (y for yes) ') ~= 'y' then
+		return
+	end
+
+	local repo = 'https://github.com/wbthomason/packer.nvim'
+	local command = string.format(
+		'!git clone %s %s',
+		repo, image
+	)
+	vim.cmd(command)
+
+	print("Downloaded packer.nvim...")
+	print("You need to restart before installing plugins.")
+	return
 end
 -- }}}
 
@@ -60,14 +82,16 @@ local function init()
   }
 
   -- Section: UTILITIES {{{1
-  -- use {
-  --   'neoclide/coc.nvim',
+  -- use { 'neoclide/coc.nvim',
   --   branch = 'release'
   -- }
-  use {
-    'junegunn/fzf',
+  use { 'junegunn/fzf',
     requires = { 'junegunn/fzf.vim' },
   }
+  use { 'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+  }
+
   -- }}}
 
   -- Section: GUIFICATION {{{1
@@ -79,7 +103,7 @@ local function init()
   use 'srcery-colors/srcery-vim'
 
   use 'Yggdroot/indentLine'
-  use { 'kyazdani42/nvim-tree.lua',
+  use { 'CantoroMC/nvim-tree.lua',
     as = 'nvim-tree',
     requires = { 'kyazdani42/nvim-web-devicons' },
   }

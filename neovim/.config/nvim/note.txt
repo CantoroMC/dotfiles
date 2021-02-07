@@ -1,0 +1,4 @@
+nvim-treesitter/nvim-treesitter ('TSUpdate')
+nvim-treesitter/playground
+
+require'nvim-treesitter.configs'.setup { highlight = { enable = true } }

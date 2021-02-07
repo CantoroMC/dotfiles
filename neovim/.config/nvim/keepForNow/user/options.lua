@@ -233,8 +233,6 @@ Set_var { -- Disable Unwanted Plugins
 }
 
 -- Add Optional Packages
-vim.cmd 'packadd! justify'    -- Text Justification
-vim.cmd 'packadd! cfilter'    -- Quickfix list filtering
 -- vim.cmd 'packadd! termdebug'  -- Terminal debugger
 -- vim.cmd 'packadd! vimball'    -- Make life easier with plugins
 
