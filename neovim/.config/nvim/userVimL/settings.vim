@@ -184,7 +184,7 @@ set switchbuf=useopen,usetab
 set nolangremap
 set spelllang=en,it
 set spellfile=$XDG_CONFIG_HOME/nvim/spell/dictionary.utf-8.add
-set spell
+set nospell
 
 " }}}
 

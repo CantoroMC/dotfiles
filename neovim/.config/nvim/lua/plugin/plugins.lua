@@ -78,7 +78,7 @@ local function init()
 
   -- Let Packer Manage Itself
   use { 'wbthomason/packer.nvim',
-    opt = true 
+    opt = true
   }
 
   -- Section: UTILITIES {{{1
@@ -102,10 +102,15 @@ local function init()
   use 'morhetz/gruvbox'
   use 'srcery-colors/srcery-vim'
 
-  use 'Yggdroot/indentLine'
   use { 'CantoroMC/nvim-tree.lua',
     as = 'nvim-tree',
     requires = { 'kyazdani42/nvim-web-devicons' },
+  }
+
+  use 'Yggdroot/indentLine'
+  use 'junegunn/rainbow_parentheses.vim'
+  use { 'norcalli/nvim-colorizer.lua',
+    as = 'nvim-colorizer'
   }
 
   use { 'mbbill/undotree',
