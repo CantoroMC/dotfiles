@@ -92,10 +92,11 @@ Set_map { -- Tabs
   { 'n', '<C-W>Q',     ':<C-U>tabclose<CR>', {noremap = true, silent = true} },
   { 'n', '<C-N>',      'gt',                 {noremap = true, silent = true} },
   { 'n', '<C-P>',      'gT',                 {noremap = true, silent = true} },
-  { 'n', 'gtf',         [[:<C-U>execute 'tabnew'.expand('<cfile>:p')<CR>]],
-                                             {noremap = true, silent = true} }, -- Tab version of gf
+  { 'n', 'gtf',        '<C-W>gf',            {noremap = true, silent = true} }, -- Tab version of gf
+  { 'n', 'gtF',        '<C-W>gF',            {noremap = true, silent = true} }, -- Tab version of gF
   { 'n', '<C-]><C-T>', '<C-W><C-]><C-W>T',   {noremap = true} },                -- Tab version `<C-]>`.
 }
 
 -- Set_map { -- Some Editing Tricks
 -- }
+

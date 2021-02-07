@@ -1,4 +1,4 @@
--- General Settings
+-- GENERAL SETTINGS
 
 -- TODO: find a better alternative
 local appendWithComma = function(opt, app)
@@ -9,7 +9,7 @@ local appendWithComma = function(opt, app)
   end
 end
 
-if Fn.has 'vim_starting' == 1 then -- Encoding
+if vim.fn.has 'vim_starting' == 1 then -- Encoding
   Set_var { encoding = { 'g', 'utf-8'} }
   Set_opt {
     fileencodings = { 'o', 'ucs-bom,utf-8,default,latin1' },
@@ -23,7 +23,7 @@ Set_opt { -- Text
   colorcolumn  = { 'w', appendWithComma(vim.wo.colorcolumn, '80') },
   conceallevel = { 'w', 2 },
   emoji        = { 'o', true },
-  fillchars    = { 'o', appendWithComma(vim.o.fillchars, 'fold:-') },
+  fillchars    = { 'o', appendWithComma(vim.o.fillchars, 'fold:-,eob:~') },
   iskeyword    = { 'b', appendWithComma(vim.bo.iskeyword, '-') },
   list         = { 'w', true },
   listchars    = { 'o', 'tab:>-,trail:·,nbsp:+,eol:¬,precedes:←,extends:→' },
@@ -92,8 +92,8 @@ Set_opt { -- Command Line
 
 Set_opt { -- Status And Tab Lines
   laststatus  = { 'o', 2 },
-  ruler       = { 'o', false },
-  showmode    = { 'o', false },
+  ruler       = { 'o', true },
+  showmode    = { 'o', true },
   showtabline = { 'o', 1 },
 }
 
@@ -109,34 +109,28 @@ Set_opt { -- Indentation
   smartindent = { 'b', true },
 }
 
-local function ftAuCmd (ftT, optT)
-  local ftS = table.concat(ftT, ',')
-  local optS = table.concat(optT, ' ')
 
-  return 'autocmd FileType ' .. ftS .. ' setl ' .. optS
-end
-
-Cmd('augroup filetype_indentation')
+vim.cmd('augroup filetype_indentation')
   -- TODO: add preserveindent and copyindent for tabs
-  Cmd('autocmd!')
-    Cmd(ftAuCmd( -- Only Spaces Four Characters
+  vim.cmd('autocmd!')
+    vim.cmd(FtAuCmd( -- Only Spaces Four Characters
       { 'python', 'matlab', 'help', 'lisp', 'haskell', 'lhaskell' },
       { 'tabstop=4', 'softtabstop=4', 'expandtab', 'shiftwidth=4' }))
-    Cmd(ftAuCmd( -- Only Spaces Two Characters
+    vim.cmd(FtAuCmd( -- Only Spaces Two Characters
       { 'vim', 'sh', 'zsh', 'markdown', 'tex', 'plaintex', 'bib', 'text', 'yaml',
         'ruby', 'xml', 'xdefaults', 'tmux', 'cabal', 'nix', 'lua' },
       { 'tabstop=2', 'softtabstop=2', 'expandtab', 'shiftwidth=2' }))
-    Cmd(ftAuCmd( -- Tabs With Two Characters:
+    vim.cmd(FtAuCmd( -- Tabs With Two Characters:
       { 'make', 'json', 'html', 'css', 'javascript', 'neomuttrc', 'muttrc' },
       { 'tabstop=2', 'softtabstop=2', 'noexpandtab', 'shiftwidth=2' }))
-    Cmd(ftAuCmd( -- Tabs With Four Characters:
+    vim.cmd(FtAuCmd( -- Tabs With Four Characters:
       { 'go', 'c', 'cpp', 'h' },
       { 'tabstop=4', 'softtabstop=4', 'noexpandtab', 'shiftwidth=4' }))
     -- C Indentation:
-    Cmd(ftAuCmd(
+    vim.cmd(FtAuCmd(
       { 'c', 'cpp', 'h' },
       { 'cindent' }))
-Cmd('augroup END')
+vim.cmd('augroup END')
 
 Set_opt { -- Folding
   foldenable     = { 'w', true },
@@ -146,19 +140,19 @@ Set_opt { -- Folding
   foldnestmax    = { 'w', 10 },
 }
 
-Cmd('augroup fyletype_folding_method')
-  Cmd('autocmd!')
-  Cmd(ftAuCmd( -- Markers
+vim.cmd('augroup fyletype_folding_method')
+  vim.cmd('autocmd!')
+  vim.cmd(FtAuCmd( -- Markers
     { 'vim', 'tex', 'plaintex', 'text', 'neomuttrc', 'muttrc', 'tmux' },
     { 'foldmethod=marker' }))
-  Cmd(ftAuCmd( -- Indent
+  vim.cmd(FtAuCmd( -- Indent
     { 'make', 'python', 'bib', 'go', 'json', 'html', 'css', 'javascript', 'yaml',
      'ruby', 'xml', 'haskell', 'lhaskell', 'cabal', 'nix', 'lua', 'lisp' },
     { 'foldmethod=indent' }))
-  Cmd(ftAuCmd( -- Syntax
+  vim.cmd(FtAuCmd( -- Syntax
     { 'c', 'cpp', 'git', 'gitcommit', 'zsh', 'sh' },
     { 'foldmethod=syntax' }))
-Cmd('augroup END')
+vim.cmd('augroup END')
 
 Set_opt { -- Files And Buffers
   autoread  = { 'o', true },
@@ -191,7 +185,7 @@ Set_opt { -- Pop Up Menu
 Set_opt { -- Safety
   backup      = { 'o', false },
   swapfile    = { 'b', true },
-  updatetime  = { 'o', 4000 },
+  updatetime  = { 'o', 1000 },
   writebackup = { 'o', true },
 }
 
@@ -223,4 +217,72 @@ Set_opt { -- Searching
   regexpengine = { 'o', 0 },
   smartcase    = { 'o', true },
   tagcase      = { 'o', 'followscs' },
+}
+
+
+-- DISTRIBUTION PLUGINS AND SCRIPTS OPTIONS
+
+Set_var { -- Disable Unwanted Plugins
+  loaded_2html_plugin      = { 'g', 1 },
+  loaded_gzip              = { 'g', 1 },
+  loaded_tar               = { 'g', 1 },
+  loaded_tarPlugin         = { 'g', 1 },
+  loaded_zip               = { 'g', 1 },
+  loaded_zipPlugin         = { 'g', 1 },
+  loaded_tutor_mode_plugin = { 'g', 1 },
+}
+
+-- Add Optional Packages
+vim.cmd 'packadd! justify'    -- Text Justification
+vim.cmd 'packadd! cfilter'    -- Quickfix list filtering
+-- vim.cmd 'packadd! termdebug'  -- Terminal debugger
+-- vim.cmd 'packadd! vimball'    -- Make life easier with plugins
+
+Set_var { -- Scripts Variables
+  -- Matchit
+  match_ignorecase = { 'b', 1 },
+
+  -- FILETYPES
+  -- Lisp
+  lisp_rainbow     = { 'g', 1 }, -- parenthesis highlighting for lisp
+  lisp_instring    = { 'g', 1 }, -- strings (...) highlighted as string lisp
+  lispsyntax_clisp = { 'g', 1 }, -- clisp syntax
+
+  -- Markdown
+  markdown_fenced_languages = { 'g', -- Highlighting of chunks of language code
+    { 'bash=sh',
+      'c',
+      'cpp',
+      'help',
+      'html',
+      'matlab',
+      'python',
+      'tex',
+      'vim',
+    }
+  },
+
+  -- Python
+  python_highlight_all = { 'g', 1 }, -- Allow all possible highlightings ( defined as local in theory )
+
+  -- Tex
+  --[[ Conceal Options
+    | a |   accents/ligatures        |
+    | b |   bold and italic          |
+    | d |   delimiters               |
+    | m |   math symbols             |
+    | g |   Greek                    |
+    | s |   superscripts/subscripts  |
+  --]]
+  tex_conceal = { 'g', 'abdmgs' }, -- Conceal Options
+  tex_flavor  = { 'g', 'latex' },  -- Default TeX Flavor
+
+  -- Vim
+  vimsyn_embed   = { 'g', 'lPr' }, -- Embedded script highlighting supported
+                                   -- (Lua,Py,Ruby) or 0 for disabling
+  vimsyn_folding = { 'g', 'afP' }, -- folding for syntax (augroup, fold fun, Python)
+
+  -- Zsh
+  sh_fold_enabled = { 'g', 7 }, -- fold for function,heredoc and if/do/for with fdm=syntax
+  zsh_fold_enable = { 'g', 1 }, -- allow for syntax based foldings
 }

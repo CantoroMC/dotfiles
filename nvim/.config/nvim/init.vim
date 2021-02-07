@@ -263,6 +263,7 @@ let g:loaded_tutor_mode_plugin = 1
 packadd! justify
 packadd! cfilter
 " packadd! termdebug
+" packadd! vimball
 
 " }}}
 
