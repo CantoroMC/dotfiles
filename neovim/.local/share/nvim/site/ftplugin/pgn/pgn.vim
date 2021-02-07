@@ -1,31 +1,22 @@
-" Vim filetype plugin {{{1
+" ftplugin/pgn/pgn.vim
 " Language:     Portlable Game Notation
 " Author:       Marco Cantoro <marco.cantoro92@outlook.it>
 " Filenames:    *.pgn
-" }}}
 
-" Filetype Guards: {{{1
+" Section: Filetype guards
 
 if exists('b:did_ftplugin')
   finish
 endif
 
-" }}}
 
-" Local Options: {{{1
+" Section: Local Options
 
 setlocal nospell
-setlocal foldmethod=expr
-setlocal foldexpr=PgnFold()
-setlocal foldtext=PgnFoldText()
 
-" }}}
+" Foldings: {{{1
 
-" Functions: {{{1
-
-" Folding: {{{2
-
-function! PgnFold() abort " {{{3
+function! PgnFold() abort " {{{2
   let line = getline(v:lnum)
   if line =~? '\v^\s*$'
     return '0'
@@ -34,7 +25,7 @@ function! PgnFold() abort " {{{3
 endfunction
 " }}}
 
-function! PgnFoldText() abort " {{{3
+function! PgnFoldText() abort " {{{2
   if matchstr(getline(v:foldstart), '\v^\[') ==# '['
     let whiteTag = matchstr(getline(v:foldstart, v:foldend), 'White')
     let blackTag = matchstr(getline(v:foldstart, v:foldend), 'Black')
@@ -53,12 +44,13 @@ function! PgnFoldText() abort " {{{3
 endfunction
 " }}}
 
-" }}}
+setlocal foldmethod=expr
+setlocal foldexpr=PgnFold()
+setlocal foldtext=PgnFoldText()
 
 " }}}
 
-" Restoring Options: {{{1
+
+" Section: Restoring Options
 
 let b:undo_ftplugin = 'setlocal nospell< foldmethod< foldexpr< foldtext< '
-
-" }}}

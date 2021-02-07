@@ -124,5 +124,3 @@ hi def link matlabTab                 Error
 let b:current_syntax = "matlab"
 
 " }}}
-
-" vim:fen:fdm=marker:fdl=0:ts=2:sts=2:et:sw=2:sr

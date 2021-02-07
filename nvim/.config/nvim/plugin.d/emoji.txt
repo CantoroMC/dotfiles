@@ -1,0 +1,5 @@
+
+" Emoji: {{{1
+setl completefunc=emoji#complete
+" }}}
+TO put in an autogroup for filetype Markdown

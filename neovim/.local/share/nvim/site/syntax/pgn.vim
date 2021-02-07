@@ -53,5 +53,3 @@ hi link pgnSymbol           Special
 " Syntax Closure: {{{1
 let b:current_syntax = "pgn"
 " }}}
-
-" vim:fen:fdm=marker:fdl=0:ts=2:sts=2:et:sw=2:sr

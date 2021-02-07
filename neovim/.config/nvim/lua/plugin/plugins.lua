@@ -1,29 +1,29 @@
 -- Install Packer {{{1
 local directory = string.format(
-	'%s/site/pack/packer/opt',
-	vim.fn.stdpath('data')
+  '%s/site/pack/packer/opt',
+  vim.fn.stdpath('data')
 )
 local image = string.format(
-	'%s/packer.nvim',
-	directory
+  '%s/packer.nvim',
+  directory
 )
-print(image)
+
 local isPacker = vim.fn.isdirectory(image)
 if isPacker == 0 then
-	if vim.fn.input('Download Packer? (y for yes) ') ~= 'y' then
-		return
-	end
+  if vim.fn.input('Download Packer? (y for yes) ') ~= 'y' then
+    return
+  end
 
-	local repo = 'https://github.com/wbthomason/packer.nvim'
-	local command = string.format(
-		'!git clone %s %s',
-		repo, image
-	)
-	vim.cmd(command)
+  local repo = 'https://github.com/wbthomason/packer.nvim'
+  local command = string.format(
+    '!git clone %s %s',
+    repo, image
+  )
+  vim.cmd(command)
 
-	print("Downloaded packer.nvim...")
-	print("You need to restart before installing plugins.")
-	return
+  print("Downloaded packer.nvim...")
+  print("You need to restart before installing plugins.")
+  return
 end
 -- }}}
 
@@ -33,41 +33,44 @@ local function init()
   if packer == nil then
     packer = require('packer')
     packer.init({
-      disable_commands = true,
+      disable_commands = true
       -- TODO Float Window {{{1
-      -- display = {
-      --   open_fn = function(name)
-      --     local last_win = vim.api.nvim_get_current_win()
-      --     local last_pos = vim.api.nvim_win_get_cursor(last_win)
-      --     local columns = vim.o.columns
-      --     local lines = vim.o.lines
-      --     local width = math.ceil(columns * 0.8)
-      --     local height = math.ceil(lines * 0.8 - 4)
-      --     local left = math.ceil((columns - width) * 0.5)
-      --     local top = math.ceil((lines - height) * 0.5 - 1)
+      --[[
+      display = {
+        open_fn = function(name)
+          local last_win = vim.api.nvim_get_current_win()
+          local last_pos = vim.api.nvim_win_get_cursor(last_win)
+          local columns = vim.o.columns
+          local lines = vim.o.lines
+          local width = math.ceil(columns * 0.8)
+          local height = math.ceil(lines * 0.8 - 4)
+          local left = math.ceil((columns - width) * 0.5)
+          local top = math.ceil((lines - height) * 0.5 - 1)
 
-      --     local opts = {
-      --       relative = 'editor',
-      --       style = 'minimal',
-      --       width = width,
-      --       height = height,
-      --       col = left,
-      --       row = top
-      --     }
+          local opts = {
+            relative = 'editor',
+            style = 'minimal',
+            width = width,
+            height = height,
+            col = left,
+            row = top
+          }
 
-      --     local buf = vim.api.nvim_create_buf(false, false)
-      --     local win = vim.api.nvim_open_win(buf, true, opts)
+          local buf = vim.api.nvim_create_buf(false, false)
+          local win = vim.api.nvim_open_win(buf, true, opts)
 
-      --     function restore_cursor()
-      --       vim.api.nvim_set_current_win(last_win)
-      --       vim.api.nvim_win_set_cursor(last_win, last_pos)
-      --     end
+          function restore_cursor()
+            vim.api.nvim_set_current_win(last_win)
+            vim.api.nvim_win_set_cursor(last_win, last_pos)
+          end
 
-      --     vim.cmd('autocmd! BufWipeout <buffer> lua restore_cursor()')
+          vim.cmd('autocmd! BufWipeout <buffer> lua restore_cursor()')
 
-      --     return win, buf
-      --   end
-      -- }
+          return win, buf
+        end
+      }
+      --]]
+
       -- }}}
     })
   end
@@ -131,6 +134,7 @@ local function init()
   use 'tpope/vim-endwise'
   use 'tpope/vim-eunuch'
   use 'tpope/vim-fugitive'
+  use 'tpope/vim-scriptease'
   use 'tpope/vim-surround'
   use 'tpope/vim-repeat'
   use 'tpope/vim-rhubarb'

@@ -22,7 +22,7 @@ local find_configured = function()
     vim.fn.stdpath('config')
   )
   local vim_dir = string.format(
-    '%s/plugins/',
+    '%s/plugin.d/',
     vim.fn.stdpath('config')
   )
 

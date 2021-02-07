@@ -1,13 +1,14 @@
-" Filetype Guards: {{{1
+" Section: Filetype Guards
+
 if exists('b:did_ftplugin')
   finish
 endif
 source $VIMRUNTIME/ftplugin/help.vim
-" }}}
 
-" Folding: {{{1
 
-function! HelpFold() abort " {{{2
+" Section: Folding
+
+function! HelpFold() abort " {{{1
   let line = getline(v:lnum)
 
   if line =~? '\v^\s*$'
@@ -26,7 +27,7 @@ function! HelpFold() abort " {{{2
 endfunction
 " }}}
 
-function! HelpFoldText() abort " {{{2
+function! HelpFoldText() abort " {{{1
     let title = getline(v:foldstart + 1)
     let foldsize = printf('%4S',v:foldend - v:foldstart + 1)
     let linecount = '+'.v:folddashes.' '.foldsize.' lines: '
@@ -38,8 +39,7 @@ setlocal foldexpr=HelpFold()
 setlocal foldtext=HelpFoldText()
 setlocal foldmethod=expr
 
-" }}}
 
-" Options Restoring: {{{1
+" Section: Options Restoring
+
 let b:undo_ftplugin .= '| setl fdm< fde< fdt< '
-" }}}

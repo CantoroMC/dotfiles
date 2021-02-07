@@ -4,6 +4,6 @@ let g:rainbow#pairs = [ ['(', ')'], ['[', ']'], ['{', '}'] ]
 augroup rainbow_lisp
   autocmd!
   autocmd FileType 
-        \ vim,tex,zsh,sh,bash,c,cpp,haskell,lua,lhaskell,lisp,clojure,scheme
+        \ vim,tex,bib,zsh,sh,bash,c,cpp,haskell,lhaskell,lua,ruby,go,config,conf,lisp,clojure,scheme,matlab,
         \ RainbowParentheses
 augroup END
