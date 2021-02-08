@@ -161,6 +161,8 @@ local function init()
 
   use 'neovimhaskell/haskell-vim'       -- Haskell
 
+  use 'euclidianace/betterlua.vim'      -- Lua
+
   use { 'iamcco/markdown-preview.nvim', -- Markdown
     run = ':call mkdp#util#install()',
   }
