@@ -1,4 +1,5 @@
 " Section: Extensions:
+
 let g:coc_global_extensions = [
       \ 'coc-marketplace',
       \ 'coc-word',
@@ -20,7 +21,7 @@ let g:coc_global_extensions = [
       \ ]
 
 
-" Section: Completion Menu And Snippets Expansion: {{{1
+" Section: Completion Menu And Snippets Expansion:
 
 function! s:check_back_space() abort " {{{2
   let col = col('.') - 1
@@ -43,7 +44,7 @@ let g:coc_snippet_prev = '<c-k>'
 let g:coc_snippet_next = '<c-j>'
 
 
-" Section: Mappings: {{{1
+" Section: Mappings:
 
 " Remap <C-f> and <C-b> for scroll float windows/popups.
 if has('nvim-0.4.0') || has('patch-8.2.0750')

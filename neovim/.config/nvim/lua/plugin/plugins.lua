@@ -30,6 +30,7 @@ end
 local packer = nil
 
 local function init()
+
   if packer == nil then
     packer = require('packer')
     packer.init({
@@ -87,8 +88,12 @@ local function init()
 
   -- Section: UTILITIES {{{1
 
-  use { 'neoclide/coc.nvim',  -- TODO Change
-    branch = 'release',
+  -- use { 'neoclide/coc.nvim',  -- TODO Change
+  --   branch = 'release',
+  -- }
+
+  use { 'neovim/nvim-lspconfig',
+    requires = { 'nvim-lua/completion-nvim' },
   }
 
   use { 'junegunn/fzf',

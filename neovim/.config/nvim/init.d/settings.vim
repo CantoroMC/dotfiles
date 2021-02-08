@@ -191,7 +191,7 @@ set nospell
 " Insert Mode Completion: {{{1
 
 set complete+=i,kspell
-set completeopt=menuone,preview,noinsert,noselect
+set completeopt=menuone,noinsert,noselect
 set dictionary+="spell"
 set omnifunc=syntaxcomplete#Complete
 set showfulltag

@@ -80,11 +80,14 @@ local excrete = function()
   )
 end
 
-local ingest = function()
+local slam = function()
   local lua_configs, vim_configs = find_configured()
   return {
-    vim.fn.fnamemodify(vim_configs, ':t:r'),
-    lua_configs 
+    vim.tbl_map(
+      function(c) return vim.fn.fnamemodify(c, ':t:r') end,
+      vim_configs
+    ),
+    lua_configs
   }
 end
 
@@ -92,5 +95,5 @@ return {
   limbs = limbs,
   digest = digest,
   excrete = excrete,
-  ingest = ingest
+  slam = slam
 }

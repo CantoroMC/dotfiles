@@ -6,3 +6,4 @@ imagewriter
 polyglot-winboard-git
 radiotray-ng
 onlyoffice-bin
+lua-language-server-git

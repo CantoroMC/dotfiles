@@ -19,3 +19,4 @@ ruby-rdoc
 ghc
 ghc-libs
 ghc-static
+texlab
