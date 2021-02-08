@@ -96,6 +96,11 @@ local function init()
   }
   use { 'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
+    requires = {
+      'nvim-treesitter/nvim-treesitter-refactor',
+      'nvim-treesitter/nvim-treesitter-textobjects',
+      'nvim-treesitter/playground',
+    },
   }
 
   -- }}}

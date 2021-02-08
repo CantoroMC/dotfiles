@@ -150,7 +150,7 @@ set foldlevelstart=0
 set foldmarker={{{,}}}
 set foldnestmax=10
 
-augroup fyletype_folding_method " {{{2
+augroup filetype_folding_method " {{{2
   autocmd!
   " Marker
   autocmd FileType
@@ -158,11 +158,11 @@ augroup fyletype_folding_method " {{{2
         \ setl foldmethod=marker
   " Indentation
   autocmd FileType
-        \ make,python,bib,go,json,html,css,javascript,yaml,ruby,xml,haskell,lhaskell,cabal,nix,lua,lisp
+        \ make,python,bib,go,json,html,css,javascript,yaml,ruby,xml,haskell,lhaskell,cabal,nix,lua,lisp,zsh
         \ setl foldmethod=indent
   " Syntax
   autocmd FileType
-        \ c,cpp,git,gitcommit,zsh,sh
+        \ c,cpp,git,gitcommit,sh
         \ setl foldmethod=syntax
 augroup END
 " }}}
@@ -380,7 +380,7 @@ let g:vimsyn_folding = 'afP'
 
 " Shell And Zsh: {{{3
 let g:sh_fold_enabled= 7
-let g:zsh_fold_enable = 1
+" let g:zsh_fold_enable = 1
 " }}}
 
 " }}}

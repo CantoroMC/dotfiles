@@ -26,11 +26,11 @@ function fhistory {
 
 # Get the value of an alias.
 function alias_value() {
-    (( $+aliases[$1] )) && echo $aliases[$1]
+  (( $+aliases[$1] )) && echo $aliases[$1]
 }
 # Try to get the value of an alias, otherwise return the input.
 function which_alias() {
-    alias_value "$1" || echo "$1"
+  alias_value "$1" || echo "$1"
 }
 
 # Append "$1" to "$2"
@@ -44,8 +44,8 @@ function append() {
 # Return value:
 #    0 if the variable exists, 3 if it was set
 function set_default() {
-    (( $+parameters[$1] )) && return 0
-    typeset -g "$1"="$2"   && return 3
+  (( $+parameters[$1] )) && return 0
+  typeset -g "$1"="$2"   && return 3
 }
 
 # Set environment variable "$1" to default value "$2" if "$1" is not yet defined.
@@ -55,8 +55,8 @@ function set_default() {
 # Return value:
 #    0 if the env variable exists, 3 if it was set
 function env_default() {
-    [[ ${parameters[$1]} = *-export* ]] && return 0
-    export "$1=$2" && return 3
+  [[ ${parameters[$1]} = *-export* ]] && return 0
+  export "$1=$2" && return 3
 }
 
 
@@ -80,20 +80,20 @@ function rcd() {
 
 # nnn
 function rcn() {
-    # Block nesting of nnn in subshells
-    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
-        echo "nnn is already running"
-        return
-    fi
+  # Block nesting of nnn in subshells
+  if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
+    echo "nnn is already running"
+    return
+  fi
 
-    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+  export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
 
-    nnn "$@"
+  nnn "$@"
 
-    if [ -f "$NNN_TMPFILE" ]; then
-            . "$NNN_TMPFILE"
-            rm -f "$NNN_TMPFILE" > /dev/null
-    fi
+  if [ -f "$NNN_TMPFILE" ]; then
+    . "$NNN_TMPFILE"
+    rm -f "$NNN_TMPFILE" > /dev/null
+  fi
 }
 
 function lsg_help() {

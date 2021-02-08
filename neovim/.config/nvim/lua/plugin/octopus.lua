@@ -42,7 +42,8 @@ local find_configured = function()
     if vim.fn.filereadable(lua_config) == 1 then
       lua_configs[iL] = vim.fn.fnamemodify(lua_config,':t:r')
       iL = iL + 1
-    elseif vim.fn.filereadable(vim_config) == 1 then
+    end
+    if vim.fn.filereadable(vim_config) == 1 then
       vim_configs[iV] = vim_config
       iV = iV + 1
     end

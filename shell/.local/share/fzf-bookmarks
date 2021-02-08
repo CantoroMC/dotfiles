@@ -5,6 +5,7 @@
 ~/Desktop
 ~/Documents
 ~/Documents/programming/Haskell
+~/Documents/programming/Lua
 ~/Documents/programming/MATLAB
 ~/Documents/programming/TeX
 ~/Documents/programming/TeX/beamers
@@ -13,11 +14,12 @@
 ~/Pictures
 ~/dotfiles
 ~/dotfiles/deploy/third-party
-~/dotfiles/nvim/.config/nvim/
-~/dotfiles/nvim/.local/share/nvim/
-~/dotfiles/shell/.config/zsh
 ~/.config
+~/.config/zsh
 ~/.config/nvim
 ~/.local/bin
 ~/.local/share
 ~/.local/share/nvim
+
+~/dotfiles/neovim/.config/nvim
+~/dotfiles/neovim/.local/share/nvim
