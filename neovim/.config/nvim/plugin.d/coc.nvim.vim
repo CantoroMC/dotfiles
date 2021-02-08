@@ -1,8 +1,7 @@
-" Extensions: {{{1
+" Section: Extensions:
 let g:coc_global_extensions = [
       \ 'coc-marketplace',
       \ 'coc-word',
-      \ 'coc-highlight',
       \ 'coc-syntax',
       \ 'coc-omni',
       \ 'coc-snippets',
@@ -19,9 +18,9 @@ let g:coc_global_extensions = [
       \ 'coc-tsserver',
       \ 'coc-lua',
       \ ]
-" }}}
 
-" Completion Menu And Snippets Expansion: {{{1
+
+" Section: Completion Menu And Snippets Expansion: {{{1
 
 function! s:check_back_space() abort " {{{2
   let col = col('.') - 1
@@ -42,9 +41,10 @@ imap <CR> <Plug>CustomCocCR
 
 let g:coc_snippet_prev = '<c-k>'
 let g:coc_snippet_next = '<c-j>'
-" }}}
 
-" Mappings: {{{1
+
+" Section: Mappings: {{{1
+
 " Remap <C-f> and <C-b> for scroll float windows/popups.
 if has('nvim-0.4.0') || has('patch-8.2.0750')
   nnoremap <silent> <nowait> <expr> <C-f> 
@@ -73,6 +73,10 @@ nmap <silent> <Leader>go <Plug>(coc-references)
 nmap          <Leader>gf <Plug>(coc-format-selected)
 xmap          <Leader>gf <Plug>(coc-format-selected)
 
+" Helper
+command! -nargs=0 CocHover  :call CocActionAsync('doHover')
+command! -nargs=0 CocFormat :call CocAction('format')
+
 nnoremap <silent> <Leader>cA :<C-u>CocAction<CR>
 nnoremap <silent> <Leader>cD :<C-u>CocDiagnostic<CR>
 nnoremap <silent> <leader>cH :CocHover<CR>
@@ -80,11 +84,4 @@ nnoremap <silent> <Leader>cO :<C-u>CocList outline<CR>
 nnoremap <silent> <Leader>cR :<C-u>CocRestart<CR>
 nnoremap <silent> <Leader>cS :<C-u>CocList -I symbols<CR>
 
-command! -nargs=0 CocHover          :call CocActionAsync('doHover')
-command! -nargs=0 CocFormat         :call CocAction('format')
-
-command! CocPickHigh call CocAction('colorPresentation')
-augroup coc_highlight
-  autocmd CursorHold * silent call CocActionAsync('highlight')
-augroup END
-" }}}
+" vim:fdm=indent

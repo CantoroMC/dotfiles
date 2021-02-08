@@ -1,17 +1,5 @@
 " Section: Mappings
 
-" Markdown View And Build : {{{1
-
-nnoremap <buffer> <F9>   :<C-U>MarkdownPreview<CR>
-nnoremap <buffer> <S-F9> :<C-U>MarkdownPreviewStop<CR>
-nnoremap <buffer> <F21>  :<C-U>MarkdownPreviewStop<CR>
-nnoremap <silent> <F8>   :<C-U>PandocToPdf<CR>
-nnoremap <silent> <S-F8> :<C-U>RemovePdf<CR>
-nnoremap <silent> <F20>  :<C-U>RemovePdf<CR>
-nnoremap <silent> <F7>   :<C-U>ViewPdf<CR>
-
-" }}}
-
 " Markdown Headers: {{{1
 
 function! s:MarkdownHeader(level) abort "{{{2
@@ -62,14 +50,6 @@ xnoremap <silent><buffer> [[ :<C-U>exe "normal! gv"<Bar>call search('\%(^#\{1,5\
 xnoremap <silent><buffer> ]] :<C-U>exe "normal! gv"<Bar>call search('\%(^#\{1,5\}\s\+\S\\|^\S.*\n^[=-]\+$\)', "sW")<CR>
 
 " }}}
-
-
-" Section: Commands
-
-command! PandocToPdf
-      \ :execute '!pandoc --pdf-engine=xelatex -o '
-      \ .fnameescape(expand('%:p:r')).'.pdf '
-      \ .fnameescape(expand('%:p'))
 
 
 " Section: Foldings

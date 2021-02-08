@@ -1,12 +1,14 @@
 -- NeoLua Init File
 
+-- GLOBAL LUA VARIABLES
 -- require('globals')
 PP = function(v)
   print(vim.inspect(v))
   return v
 end
 
--- SECTION: SETTINGS AND MAPPINGS
+
+-- SETTINGS AND MAPPINGS
 local vimL_user_directory = string.format(
   '%s/init.d/',
   vim.fn.stdpath('config')
@@ -15,10 +17,12 @@ local vimL_user_directory = string.format(
 vim.cmd('source ' .. vimL_user_directory .. 'settings.vim')
 vim.cmd('source ' .. vimL_user_directory .. 'keymap.vim')
 
+vim.cmd('colorscheme ayu')
 
-require('plugin.octopus')
+-- PLUGINS SETTINGS
+require'plugin.octopus'.digest()
 
-vim.cmd('colorscheme jellybeans')
--- vim.g.ayu_dark_flavor = 'dark'
+
+-- CLOSURE
 
 vim.o.secure = true

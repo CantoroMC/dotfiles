@@ -84,10 +84,13 @@ local function init()
     opt = true
   }
 
+
   -- Section: UTILITIES {{{1
-  -- use { 'neoclide/coc.nvim',
-  --   branch = 'release'
-  -- }
+
+  use { 'neoclide/coc.nvim',  -- TODO Change
+    branch = 'release',
+  }
+
   use { 'junegunn/fzf',
     requires = { 'junegunn/fzf.vim' },
   }
@@ -97,38 +100,34 @@ local function init()
 
   -- }}}
 
+
   -- Section: GUIFICATION {{{1
 
-  -- Colorschemes
-  use 'CantoroMC/ayu-vim'
-  use 'NLKNguyen/papercolor-theme'
+  use 'CantoroMC/ayu-vim'               -- Colorschemes
+  use 'sjl/badwolf'
   use 'morhetz/gruvbox'
+  use 'NLKNguyen/papercolor-theme'
   use 'srcery-colors/srcery-vim'
 
-  use { 'CantoroMC/nvim-tree.lua',
+  use { 'CantoroMC/nvim-tree.lua',      -- File Explorer
     as = 'nvim-tree',
     requires = { 'kyazdani42/nvim-web-devicons' },
   }
 
-  use 'Yggdroot/indentLine'
-  use 'junegunn/rainbow_parentheses.vim'
-  use { 'norcalli/nvim-colorizer.lua',
+  use 'Yggdroot/indentLine'             -- Show indent line and leading spaces
+  use { 'norcalli/nvim-colorizer.lua',  -- Show RGB,HTML... Colors
     as = 'nvim-colorizer'
   }
 
   use { 'mbbill/undotree',
     cmd = 'UndotreeToggle'
   }
+
   -- }}}
 
-  -- Section: TEXT MANIPULATION {{{1
-  use { 'godlygeek/tabular',
-    opt = true,
-    cmd = { 'Tabularize' },
-  }
-  -- }}}
 
   -- Section: HIS HOLINESS {{{1
+
   use 'tpope/vim-abolish'
   use 'tpope/vim-commentary'
   use 'tpope/vim-endwise'
@@ -144,15 +143,33 @@ local function init()
     opt = true,
     cmd = { 'Make', 'Start', 'Dispatch', 'Focus', 'FocusDispatch' },
   }
+
   -- }}}
 
-  -- Section: FILETYPE PLUGINS {{{1
-  use { 'iamcco/markdown-preview.nvim',
-        ft  = 'markdown',
-        run = ':call mkdp#util#install()',
-        cmd = 'MarkdownPreview'
-      }
+
+  -- Section: TEXT MANIPULATION {{{1
+
+  use { 'godlygeek/tabular',
+    opt = true,
+    cmd = { 'Tabularize' },
+  }
+
   -- }}}
+
+
+  -- Section: FILETYPE PLUGINS {{{1
+
+  use 'neovimhaskell/haskell-vim'       -- Haskell
+
+  use { 'iamcco/markdown-preview.nvim', -- Markdown
+    run = ':call mkdp#util#install()',
+  }
+
+
+  use 'CantoroMC/vim-rasi'              -- Rofi Advanced Style Information
+
+  -- }}}
+
 end
 
 local plugins = setmetatable({}, {

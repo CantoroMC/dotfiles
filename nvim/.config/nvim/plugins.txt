@@ -1,0 +1,34 @@
+" Utilities: {{{2
+
+Plug 'esamattis/slimux', {
+      \ 'on' : ['SlimuxREPLConfigure', 'SlimuxShellConfigure'] }
+Plug 'CantoroMC/vim-bolt'
+Plug 'neomake/neomake'
+
+" }}}
+
+" Section: Gui {{{2
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ryanoasis/vim-devicons'
+" Plug 'mhinz/vim-startify'
+
+Plug 'RRethy/vim-illuminate', { 'on': 'IlluminationToggle' }
+Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+
+" }}}
+
+
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+
+
+" Section: Filetype {{{2
+
+Plug 'junegunn/vim-emoji', { 'for': ['markdown'] }
+" Tex
+Plug 'xuhdev/vim-latex-live-preview', { 'for': ['tex'] }
+" Nix Syntax
+Plug 'LnL7/vim-nix'
+
+" }}}

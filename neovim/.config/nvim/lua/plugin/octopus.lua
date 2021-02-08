@@ -1,4 +1,4 @@
-local packed = function()
+local limbs = function()
   local directory = string.format(
     '%s/site/pack/packer',
     vim.fn.stdpath('data')
@@ -29,7 +29,7 @@ local find_configured = function()
   local lua_configs,vim_configs = {}, {}
   local iL,iV = 1,1
 
-  for _, plugged  in ipairs(packed()) do
+  for _, plugged  in ipairs(limbs()) do
     local lua_config = string.format(
       '%s%s.lua',
       lua_dir,plugged
@@ -50,14 +50,46 @@ local find_configured = function()
   return lua_configs, vim_configs
 end
 
-local lua_configs, vim_configs = find_configured()
+local digest = function()
+  local lua_configs, vim_configs = find_configured()
 
-for i = 1, #lua_configs, 1 do
-  require(string.format(
-    'plugin.config.%s',
-    lua_configs[i])
+  for i = 1, #lua_configs, 1 do
+    require(string.format(
+      'plugin.config.%s',
+      lua_configs[i])
+    )
+  end
+
+  for i = 1, #vim_configs, 1 do
+    vim.cmd('source ' .. vim_configs[i])
+  end
+end
+
+local excrete = function()
+  local lua_configs, vim_configs = find_configured()
+  print(
+    "Vim:\n" ..
+    table.concat(
+      vim.tbl_map(
+        function(c) return vim.fn.fnamemodify(c, ':t:r') end,
+        vim_configs
+        ) , "\n") ..
+    "\nLua:\n" ..
+    table.concat(lua_configs, "\n")
   )
 end
-for i = 1, #vim_configs, 1 do
-  vim.cmd('source ' .. vim_configs[i])
+
+local ingest = function()
+  local lua_configs, vim_configs = find_configured()
+  return {
+    vim.fn.fnamemodify(vim_configs, ':t:r'),
+    lua_configs 
+  }
 end
+
+return {
+  limbs = limbs,
+  digest = digest,
+  excrete = excrete,
+  ingest = ingest
+}

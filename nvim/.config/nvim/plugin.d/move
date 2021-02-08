@@ -1,0 +1,3 @@
+#!/bin/sh
+
+mv "$1" ~/dotfiles/neovim/.config/nvim/plugin.d/

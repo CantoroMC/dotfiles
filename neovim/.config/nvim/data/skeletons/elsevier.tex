@@ -1,0 +1,187 @@
+%% Elsevier Article Class
+\documentclass[final,5p,times,12pt,sort&compress,longtitle]{elsarticle}
+
+% TODO: To adjust and/or take a look {{{1
+\usepackage[english]{babel}
+\usepackage{blindtext}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{linalg}
+% }}}
+
+% Packages {{{1
+
+% Additional Packages {{{2
+\usepackage{amsmath,amsthm,amssymb,mathrsfs,IEEEtrantools}
+\usepackage{caption,subfig}
+%% For including figures, graphicx.sty has been loaded in
+%% elsarticle.cls. If you prefer to use the old commands
+%% please give \usepackage{epsfig}
+\usepackage{enumitem}
+% }}}
+
+% Packages For Revision {{{2
+% The lineno packages adds line numbers.
+% Start line numbering with \begin{linenumbers}, end it with \end{linenumbers}.
+% Or switch it on for the whole article with \linenumbers.
+% \usepackage{lineno}
+% }}}
+
+% }}}
+
+% Options {{{1
+%\setcounter{secnumdepth}{-1} % to Avoid section counting
+% }}}
+
+% Elsevier bibliography styles {{{1
+
+% Elsevier LaTeX Style {{{2
+\bibliographystyle{$HOME/dotfiles/TeX/classes/elsarticle-num}        % numbered scheme
+%\bibliographystyle{$HOME/dotfiles/TeX/classes/elsarticle-harv}      % author year scheme
+%\bibliographystyle{$HOME/dotfiles/TeX/classes/elsarticle-num-names} % numbered with natbib.sty
+% }}}
+
+% Others {{{2
+% Numbered
+%\bibliographystyle{model1-num-names}
+% Numbered without titles
+%\bibliographystyle{model1a-num-names}
+% Harvard
+%\bibliographystyle{model2-names.bst}
+%\biboptions{authoryear}
+% Vancouver numbered
+%\usepackage{numcompress}
+%\bibliographystyle{model3-num-names}
+% Vancouver name/year
+%\usepackage{numcompress}
+%\bibliographystyle{model4-names}
+%\biboptions{authoryear}
+% APA style
+%\bibliographystyle{model5-names}
+%\biboptions{authoryear}
+% AMA style
+%\usepackage{numcompress}
+%\bibliographystyle{model6-num-names}
+% }}}
+
+%\biboptions{authoryear}
+
+% How to Do It {{{2
+% \citet[e.g.][Ch. 2]{<label>}
+% ==> e.g Jones et al.,1996,Ch. 2 [21] Parenthetical citation
+% \citep{<label>} ==> [21]              Textual citation
+% }}}
+
+% }}}
+
+% Document {{{1
+\journal{JournalName}
+
+\begin{document}
+
+% Front Matter {{{2
+\begin{frontmatter}
+
+  % Title and Footnotes {{{3
+  % Legend  {{{4
+  % \title{Title\tnoteref{<label(s)>}}
+  % \tnoteref{<label(s)>}
+  % \tnotetext[<label>]{<title note text>}
+  % }}}
+  \title{Title\tnoteref{t1,t2}}
+  \tnotetext[t1]{Title Note1}
+  \tnotetext[t2]{Very long long title note}
+  % }}}
+
+  % Authors And Addresses {{{3
+  %% Legend {{{4
+  % \author{Name\corref{<cor(s)>}\fnref{<label(s)>}}
+  % \ead{email address} or \ead[url]{home page}
+  % \address{Address\fnref{<label(s)>}}
+  %% Optional labels to link authors explicitly to addresses:
+  % \author[label1,label2]{}
+  % \address[label1]{}
+  % \address[label2]{}
+  %% Corresponding author footnote
+  % \corref{<label(s)>}
+  % \cortext[<label>]{<corresponding author note text>}
+  %% Authors and Addresses footnote
+  % \fnref{<label(s)>}
+  % \fntext[<label>]{<author footnote text>}
+  % }}}
+  \author{Marco Cantoro\corref{cor1}%
+  \fnref{fn1}}
+  \ead{marco.cantoro@mail.polimi.it}
+  \address{Personal Home, V. P. Sottocorno 52, 20129 MI Milan,
+  Italy}
+  \cortext[cor1]{Politecnico di Milano Student}
+  \fntext[fn1]{See \url{http://www.polimi.it}}
+  % }}}
+
+  % Abstract {{{3
+  \begin{abstract}
+    Abstract
+  \end{abstract}
+  % }}}
+
+  % Keywords {{{3
+  \begin{keyword}
+    %% Legend  {{{4
+    % keyword \sep keyword
+    % Revision:
+    %   PACS codes here, in the form: \PACS code \sep code
+    %   MSC codes here, in the form: \MSC code \sep code
+    %     or \MSC[2008] code \sep code (2000 is the default)
+    % }}}
+  \end{keyword}
+  % }}}
+
+\end{frontmatter}
+% }}}
+
+% Main Matter {{{2
+% \linenumbers
+%  Particular Functions {{{3
+% newtheorem :
+% formats a theorem in LATEX’s default style with italicized font, bold font for theorem
+% heading and theorem number at the right hand side of the theorem heading
+% \newtheorem{thm}{Theorem}
+% \newtheorem{lem}[thm]{Lemma}
+
+% newdefinition : font shape is roman instead of italic
+% \newdefinition{rmk}{Remark}
+
+% newproof : proof environments with upright font shape
+% \newproof{pf}{Proof}
+% \newproof{pot}{Proof of Theorem \ref{thm2}}
+
+% enumerate: additional optimal input
+% \begin{enumerate}[optStringPrefix opt]
+% opt = 1. , a') , (i)
+% }}}
+
+% tableofcontents
+%HERE%
+\section[shortTitle]{Prima Sezione}
+\label{ISec}
+\subsection[shortTitle]{Prima SottoSezione}
+\blindmathpaper
+\subsubsection[shortTitle]{Prima Sotto-SottoSezione}
+\paragraph[shortTitle]{Primo Paragrafo}
+\subparagraph[shortTitle]{Primo SottoParagrafo}
+
+% }}}
+
+% Appendices {{{2
+% \appendix
+% \section{}
+% \label{}
+% }}}
+
+% Bibliography {{{2
+% \bibliography{<your bibdatabase>}
+
+\end{document}
+% }}}
+
+\endinput
