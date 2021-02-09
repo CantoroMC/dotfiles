@@ -1,0 +1,14 @@
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+# /dev/sdb1
+UUID=6c32e52c-77e2-4a28-b526-2b862c032c2c	/         	ext4      	rw,relatime	0 1
+
+# /dev/sdb2
+UUID=002a83b0-39a5-45fc-94ed-c9fa43a57ecd	none      	swap      	defaults  	0 0
+
+# CD-Rom External Disk
+UUID=f7366504-b5ff-47af-8c6a-65a50937c5cc	/mnt/LinuxExt4	ext4      	rw,relatime,nosuid,nodev,noauto,x-systemd.automount,x-systemd.mount-timeout=30,_netdev,nofail,x-systemd.device-timeout=1ms,x-gvfs-show	0 2
+
+UUID=7760E730573CDF0F                    	/mnt/Store	ntfs      	rw,relatime,nosuid,nodev,noauto,x-systemd.automount,x-systemd.mount-timeout=30,_netdev,nofail,x-systemd.device-timeout=1ms,x-gvfs-show	0 2

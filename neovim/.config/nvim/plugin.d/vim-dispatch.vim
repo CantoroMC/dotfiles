@@ -1,3 +1,5 @@
+let g:dispatch_no_maps = 1
+
 autocmd BufReadPost *
       \ if getline(1) =~# '^#!' |
       \   let b:dispatch =
@@ -22,6 +24,6 @@ autocmd FileType ruby
       \   let b:dispatch = 'ruby -wc %' |
       \ endif
 
-autocmd FileType tex let b:dispatch = 'latex -interaction=nonstopmode %'
+autocmd FileType tex let b:dispatch = 'latex --output-directory=%:p:h -synctex=1 -interaction=nonstopmode %'
 autocmd FileType vim let b:dispatch = 'vint %'
 autocmd FileType haskell let b:dispatch = 'ghc --make %'

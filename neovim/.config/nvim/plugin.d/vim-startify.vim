@@ -77,6 +77,7 @@ let g:startify_bookmarks = [
 let g:startify_commands = [
     \ ['Git', ':Git'],
     \ {'s': ['Load Last Session', ':SLoad!'] },
+    \ {'p': ['Vim Startup Time', ':StartupTime']},
     \ ]
 " }}}
 
@@ -89,6 +90,6 @@ let g:startify_enable_special      = 1
 let g:startify_update_oldfiles     = 1
 let g:startify_fortune_use_unicode = 0
 let g:startify_custom_header       =
-      \ startify#center(startify#fortune#cowsay('', '═','║','╔','╗','╝','╚'))
+      \ startify#fortune#cowsay('', '═','║','╔','╗','╝','╚')
 let g:startify_relative_path = 1
 let g:startify_use_env = 1

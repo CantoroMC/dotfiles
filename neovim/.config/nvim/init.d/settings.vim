@@ -184,6 +184,7 @@ set switchbuf=useopen,usetab
 set nolangremap
 set spelllang=en,it
 set spellfile=$XDG_CONFIG_HOME/nvim/spell/dictionary.utf-8.add
+set spelloptions=camel
 set spell
 
 " }}}
@@ -283,7 +284,8 @@ syntax enable
 augroup user_formatoptions
   autocmd!
   autocmd FileType * setl formatoptions-=o
-  autocmd FileType * setl formatoptions+=nBt
+  autocmd FileType * setl formatoptions+=nB
+  " t: is useful sometimes and annoying in others
 augroup END
 " }}}
 
@@ -393,4 +395,3 @@ let g:sh_fold_enabled= 7
 " }}}
 
 " }}}
-

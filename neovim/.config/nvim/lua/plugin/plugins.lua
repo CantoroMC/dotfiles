@@ -87,14 +87,9 @@ local function init()
 
   -- Section: UTILITIES {{{1
 
-  -- use { 'neoclide/coc.nvim',  -- TODO Change
-  --   branch = 'release',
-  -- }
+  use 'neovim/nvim-lspconfig'                      -- Language Server Protocol
 
-  use 'neovim/nvim-lspconfig'
-
-  -- Completion
-  use 'nvim-lua/completion-nvim'
+  use 'nvim-lua/completion-nvim'                   -- Completion
   use { 'steelsojka/completion-buffers',
     requires = { 'nvim-lua/completion-nvim' },
   }
@@ -105,8 +100,7 @@ local function init()
     requires = { {'nvim-lua/completion-nvim'}, {'nvim-treesitter/nvim-treesitter'} },
   }
 
-  -- Searching
-  use 'junegunn/fzf'
+  use 'junegunn/fzf'                               -- Commands wrapped around fzf
   use { 'junegunn/fzf.vim',
     requires = { 'junegunn/fzf' },
   }
@@ -146,12 +140,12 @@ local function init()
     as = 'nvim-colorizer'
   }
 
-  use { 'mbbill/undotree',
+  use { 'mbbill/undotree',              -- Vim undo shown ad a Tree
     cmd = 'UndotreeToggle'
   }
 
- use { 'mhinz/vim-startify',
-    requires = 'ryanoasis/vim-devicons',
+ use { 'mhinz/vim-startify',             -- Start page and session management
+    requires = 'ryanoasis/vim-devicons', -- Maybe this can be removed
   }
 
   -- }}}
@@ -159,21 +153,20 @@ local function init()
 
   -- Section: HIS HOLINESS {{{1
 
-  use 'tpope/vim-abolish'
-  use 'tpope/vim-commentary'
-  use 'tpope/vim-endwise'
-  use 'tpope/vim-eunuch'
-  use 'tpope/vim-fugitive'
-  use 'tpope/vim-scriptease'
-  use 'tpope/vim-surround'
-  use 'tpope/vim-repeat'
-  use 'tpope/vim-rhubarb'
-  use 'CantoroMC/vim-unimpaired'
-  use {
-    'tpope/vim-dispatch',
+  use 'tpope/vim-abolish'        -- Language friendly searches, substitutions and abbreviations
+  use 'tpope/vim-commentary'     -- Comment stuff out
+  use { 'tpope/vim-dispatch',    -- Asynchronous build and test dispatcher
     opt = true,
     cmd = { 'Make', 'Start', 'Dispatch', 'Focus', 'FocusDispatch' },
   }
+  use 'tpope/vim-endwise'        -- wisely add `end`
+  use 'tpope/vim-eunuch'         -- Vim sugar for the unix shell commands that need it the most
+  use 'tpope/vim-fugitive'       -- Git wrapper
+  use 'tpope/vim-scriptease'     -- A Vim plugin for vim plugins
+  use 'tpope/vim-surround'       -- quotizing/parenthesizing (and more) made simple
+  use 'tpope/vim-repeat'         -- enable repeating supported plugin maps with `.`
+  use 'tpope/vim-rhubarb'        -- GitHub extension for fugitive.vim
+  use 'CantoroMC/vim-unimpaired' -- Pairs of handy bracket mappings
 
   -- }}}
 
@@ -202,6 +195,28 @@ local function init()
   use 'CantoroMC/vim-rasi'              -- Rofi Advanced Style Information
 
   -- }}}
+
+
+-- VIM DEVELOPMENT {{{1
+
+use 'dstein64/vim-startuptime'
+
+-- }}}
+
+
+-- TODO: {{{1
+
+  use '~/Desktop/NeoLuaGit/nvim-hardline'
+
+  -- REPLs
+  use { 'hkupty/iron.nvim',  -- On nvim terminal in lua
+    as = 'iron'
+  }
+  use { 'CantoroMC/slimux',  -- On tmux
+    cmd = { 'SlimuxREPLConfigure', 'SlimuxShellConfigure', 'SlimuxGlobalConfigure' },
+  }
+
+-- }}}
 
 end
 

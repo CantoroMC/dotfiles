@@ -22,6 +22,8 @@ vim.cmd('colorscheme ayu')
 -- PLUGINS SETTINGS
 require'plugin.octopus'.digest()
 
+require'hardline'.setup {
+}
 
 -- CLOSURE
 
