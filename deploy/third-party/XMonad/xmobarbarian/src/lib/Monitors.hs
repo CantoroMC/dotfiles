@@ -219,7 +219,7 @@ wifi p =
     -- Others
 clock :: Palette -> Date
 clock p =
-    Date (action "st -n calendar -t calendar nvim -c CalendarH" 3
+    Date (action "emacs -e calendar --name 'orgenda'" 3
         (fc (pBorder p) "%T" ++ " - " ++ fc (pBorder p) "%a %e %b %Y")) "date" 10
 
 keyboard :: Kbd

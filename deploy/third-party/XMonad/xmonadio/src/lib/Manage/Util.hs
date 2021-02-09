@@ -1,6 +1,5 @@
 module Manage.Util
-    ( xmScratchpads
-    , xmBigRect
+    ( xmBigRect
     , xmMedRect
     , xmUpLeftRect
     , xmUpRightRect
@@ -8,31 +7,8 @@ module Manage.Util
     , xmDownRightRect
     ) where
 
-import XMonad
-import qualified XMonad.StackSet as XMSS
-
-import XMonad.Util.NamedScratchpad
-    ( NamedScratchpad (..)
-    , customFloating
-    )
-
-xmScratchpads :: [NamedScratchpad]
-xmScratchpads =
-    [ NS "cmus"    cmdCmus    queryCmus    hookCmus
-    , NS "yakuake" cmdYakuake queryYakuake hookYakuake
-    , NS "orgenda" cmdOrgenda queryOrgenda hookOrgenda
-    ] where cmdCmus   = "st -n cmus cmus"
-            queryCmus = resource =? "cmus"
-            hookCmus  = customFloating xmMedRect
-
-            cmdYakuake   = "st -n yakuake"
-            queryYakuake = resource =? "yakuake"
-            hookYakuake  = customFloating xmBigRect
-
-            cmdOrgenda   = "emacs --name='orgenda' ~/Documents/organization/Notes.org"
-            queryOrgenda = resource =? "orgenda"
-            hookOrgenda  = customFloating xmBigRect
-
+import           XMonad
+import qualified XMonad.StackSet               as XMSS
 
 xmBigRect :: XMSS.RationalRect
 xmBigRect = XMSS.RationalRect 0.166 0.166 0.666 0.666

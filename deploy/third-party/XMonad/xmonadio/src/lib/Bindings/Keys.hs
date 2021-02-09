@@ -44,16 +44,12 @@ import XMonad.Layout.WindowNavigation
 import XMonad.Layout.ResizableTile
     ( MirrorResize (..)
     )
-import XMonad.Util.NamedScratchpad
-    ( namedScratchpadAction
-    )
 import XMonad.Util.Types
     ( Direction2D (..)
     )
 
 import Manage.Util
-    ( xmScratchpads
-    , xmBigRect
+    ( xmBigRect
     , xmUpLeftRect
     , xmUpRightRect
     , xmDownLeftRect
@@ -143,9 +139,6 @@ xmKeys mask = do
         ^> sendMessage ToggleStruts
     --------------------------------------------------------------------------
     -- Right side characters
-    bind $ mask .|. controlMask .|. shiftMask ... xK_y
-      |/- "spawn terminal scratchpad"
-        ^> namedScratchpadAction xmScratchpads "yakuake"
     bind $ mask ... xK_u
       |/- "spawn dmenu"
         ^> spawn "dmenu_run"
@@ -155,9 +148,6 @@ xmKeys mask = do
     bind $ mask .|. controlMask ... xK_u
       |/- "spawn xmenu-apps"
         ^> spawn "xmenu-apps"
-    bind $ mask .|. controlMask .|. shiftMask ... xK_o
-      |/- "spawn emacs org-agenda scratchpad"
-        ^> namedScratchpadAction xmScratchpads "orgenda"
     bind $ mask ... xK_p
       |/- "submap for mpc and mpv players"
         ^> XMSM.submap . Map.fromList $
@@ -236,9 +226,6 @@ xmKeys mask = do
     bind $ mask .|. shiftMask ... xK_m
       |/- "swap focused window with master"
         ^> windows XMSS.swapMaster
-    bind $ mask .|. controlMask .|. shiftMask ... xK_m
-      |/- "spawn cmus scratchpad"
-        ^> namedScratchpadAction xmScratchpads "cmus"
     --------------------------------------------------------------------------
     -- Extra Keys
     bind $ mask ... xK_comma
