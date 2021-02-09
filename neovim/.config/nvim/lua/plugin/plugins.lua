@@ -77,7 +77,7 @@ local function init()
   end
 
   local use = packer.use
-  local use_rocks = packer.use_rocks
+  -- local use_rocks = packer.use_rocks
   packer.reset()
 
   -- Let Packer Manage Itself
@@ -92,20 +92,32 @@ local function init()
   --   branch = 'release',
   -- }
 
-  use { 'neovim/nvim-lspconfig',
+  use 'neovim/nvim-lspconfig'
+
+  -- Completion
+  use 'nvim-lua/completion-nvim'
+  use { 'steelsojka/completion-buffers',
     requires = { 'nvim-lua/completion-nvim' },
   }
 
-  use { 'junegunn/fzf',
-    requires = { 'junegunn/fzf.vim' },
+  -- Searching
+  use 'junegunn/fzf'
+  use { 'junegunn/fzf.vim',
+    requires = { 'junegunn/fzf' },
   }
+
+  -- Tree Sitter: Syntax, Indentation, TextObject, Foldings.... SYNTAX AWARE.
   use { 'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
-    requires = {
-      'nvim-treesitter/nvim-treesitter-refactor',
-      'nvim-treesitter/nvim-treesitter-textobjects',
-      'nvim-treesitter/playground',
-    },
+  }
+  use { 'nvim-treesitter/nvim-treesitter-refactor',
+    requires = 'nvim-treesitter/nvim-treesitter',
+  }
+  use { 'nvim-treesitter/nvim-treesitter-textobjects',
+    requires = 'nvim-treesitter/nvim-treesitter',
+  }
+  use { 'nvim-treesitter/playground',
+    requires = 'nvim-treesitter/nvim-treesitter',
   }
 
   -- }}}

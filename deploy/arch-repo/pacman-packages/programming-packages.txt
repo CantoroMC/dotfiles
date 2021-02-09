@@ -5,6 +5,7 @@ cmake
 extra-cmake-modules
 go
 go-tools
+gopls
 lua
 npm
 ipython
@@ -13,6 +14,11 @@ python-matplotlib
 python-pip
 python-pygame
 python-ueberzug
+python-language-server
+python-pycodestyle
+python-rope
+python-pyflakes
+python-pylint
 ruby-docs
 ruby-rake
 ruby-rdoc
@@ -20,3 +26,4 @@ ghc
 ghc-libs
 ghc-static
 texlab
+bash-language-server

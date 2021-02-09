@@ -18,9 +18,6 @@ let g:fzf_action = {
 
 " Layout: {{{1
 
-" let g:fzf_layout = { 'down': '~30%' }
-
-" For Floating Windows: {{{2
 let g:fzf_layout = { 'window': {
       \ 'width':      0.9,
       \ 'height':     0.9 ,
@@ -28,7 +25,8 @@ let g:fzf_layout = { 'window': {
       \ 'yoffset':    0.5 ,
       \ 'border':    'sharp'
       \ }}
-" }}}
+
+" let g:fzf_layout = { 'down': '~30%' }
 
 " }}}
 
@@ -41,7 +39,7 @@ let g:fzf_colors = {
       \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
       \ 'hl+':     ['fg', 'Statement'],
       \ 'info':    ['fg', 'PreProc'],
-      \ 'border':  ['fg', 'Ignore'],
+      \ 'border':  ['fg', 'Type'],
       \ 'prompt':  ['fg', 'Conditional'],
       \ 'pointer': ['fg', 'Exception'],
       \ 'marker':  ['fg', 'Keyword'],

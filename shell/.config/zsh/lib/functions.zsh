@@ -23,7 +23,6 @@ function fhistory {
   fi
 }
 
-
 # Get the value of an alias.
 function alias_value() {
   (( $+aliases[$1] )) && echo $aliases[$1]

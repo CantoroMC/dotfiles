@@ -192,7 +192,7 @@ ln -sv $XMONAD_CONFIG_DIR/xmonad-x86-64-linux ~/.local/bin
 
 ** Python
 #+begin_src shell
-  pip install neovim-remote pylint
+  pip install neovim-remote
 #+end_src
 
 ** Ruby
@@ -203,6 +203,7 @@ ln -sv $XMONAD_CONFIG_DIR/xmonad-x86-64-linux ~/.local/bin
 ** Node
 #+begin_src shell
   npm install -g neovim
+  npm install -g vim-language-server
 #+end_src
 
 ** Perl

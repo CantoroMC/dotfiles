@@ -49,8 +49,8 @@ require'nvim-treesitter.configs'.setup {
       enable = true,
       keymaps = {
         goto_definition = 'gnd',
-        list_definitions = 'gnD',
-        list_definitions_toc = "gnT",
+        list_definitions = '<LocalLeader>ld',
+        list_definitions_toc = "<LocalLeader>lt",
         goto_next_usage = "<M-]>",
         goto_previous_usage = "<M-[>",
       },
@@ -121,8 +121,8 @@ require'nvim-treesitter.configs'.setup {
     lsp_interop = {
       enable = true,
       peek_definition_code = {
-        ["df"] = "@function.outer",
-        ["dF"] = "@class.outer",
+        ["<Leader>pf"] = "@function.outer",
+        ["<Leader>pF"] = "@class.outer",
       },
     },
   },

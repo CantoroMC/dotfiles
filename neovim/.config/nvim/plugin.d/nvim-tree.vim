@@ -1,6 +1,6 @@
 " Section: Features
 
-let g:nvim_tree_width = 26
+let g:nvim_tree_width = 22
 let g:nvim_tree_ignore =
       \ [ '.git',
       \   'node_modules',
@@ -12,7 +12,7 @@ let g:nvim_tree_ignore =
 
 let g:nvim_tree_auto_open          = 0
 let g:nvim_tree_auto_close         = 0
-let g:nvim_tree_quit_on_open       = 1
+let g:nvim_tree_quit_on_open       = 0
 let g:nvim_tree_tab_open           = 0
 let g:nvim_tree_follow             = 0
 let g:nvim_tree_indent_markers     = 0

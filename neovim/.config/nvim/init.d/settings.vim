@@ -247,7 +247,7 @@ set tagcase=followscs
 filetype plugin indent on
 syntax enable
 
-" Section: ftplugin settings
+" Section: ftplugin settings and more autocommands
 
 " Format Options: {{{1
 "
@@ -300,6 +300,13 @@ augroup keywordprg_filetype " {{{1
   autocmd FileType haskell setl keywordprg=hoogle\ -q\ --info
 augroup END
 " }}}
+
+augroup highlight_on_yank
+  autocmd!
+  autocmd TextYankPost * 
+        \ lua vim.highlight.on_yank({higroup="IncSearch", on_visual = false})
+augroup END
+
 
 " Section: Distribution Plugins And Scripts Options
 

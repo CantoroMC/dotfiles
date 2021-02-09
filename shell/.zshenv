@@ -147,6 +147,7 @@ unset bin_dir
 path=(
   "$HOME/.local/bin"
   "$HOME/.cabal/bin"
+  "$HOME/.local/share/npm/bin"
   "$GOPATH/bin"
   "$GEM_HOME/bin"
   "$path[@]"

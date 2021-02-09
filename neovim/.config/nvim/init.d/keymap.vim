@@ -9,19 +9,20 @@ let maplocalleader = ' '
 
 " Cheat Table: {{{1
 
-"---------------------------------------------------------------------------"
-" Commands \ Modes | Normal | Insert | Command | Visual | Select | Operator |
-"------------------|--------|--------|---------|--------|--------|----------|
-" map  / noremap   |    @   |   -    |    -    |   @    |   @    |    @     |
-" nmap / nnoremap  |    @   |   -    |    -    |   -    |   -    |    -     |
-" vmap / vnoremap  |    -   |   -    |    -    |   @    |   @    |    -     |
-" xmap / xnoremap  |    -   |   -    |    -    |   @    |   -    |    -     |
-" smap / snoremap  |    -   |   -    |    -    |   -    |   @    |    -     |
-" omap / onoremap  |    -   |   -    |    -    |   -    |   -    |    @     |
-" map! / noremap!  |    -   |   @    |    @    |   -    |   -    |    -     |
-" imap / inoremap  |    -   |   @    |    -    |   -    |   -    |    -     |
-" cmap / cnoremap  |    -   |   -    |    @    |   -    |   -    |    -     |
-"---------------------------------------------------------------------------"
+" Commands \ Modes | Api |Normal|Insert|Command|Visual|Select|Operator|Lang-Arg|Terminal|
+"=======================================================================================
+" map  / noremap   | ''  |   @  |  -   |   -   |  @   |  @   |   @    |   -    |   -    |
+" nmap / nnoremap  | 'n' |   @  |  -   |   -   |  -   |  -   |   -    |   -    |   -    |
+" vmap / vnoremap  | 'v' |   -  |  -   |   -   |  @   |  @   |   -    |   -    |   -    |
+" xmap / xnoremap  | 'x' |   -  |  -   |   -   |  @   |  -   |   -    |   -    |   -    |
+" smap / snoremap  | 's' |   -  |  -   |   -   |  -   |  @   |   -    |   -    |   -    |
+" omap / onoremap  | 'o' |   -  |  -   |   -   |  -   |  -   |   @    |   -    |   -    |
+" map! / noremap!  | '!' |   -  |  @   |   @   |  -   |  -   |   -    |   -    |   -    |
+" imap / inoremap  | 'i' |   -  |  @   |   -   |  -   |  -   |   -    |   -    |   -    |
+" lmap / lnoremap  | 'l' |   -  |  @   |   @   |  -   |  -   |   -    |   @    |   -    |
+" cmap / cnoremap  | 'c' |   -  |  -   |   @   |  -   |  -   |   -    |   -    |   -    |
+" tmap / tnoremap  | 't' |   -  |  -   |   @   |  -   |  -   |   -    |   -    |   @    |
+"---------------------------------------------------------------------------------------
 
 " }}}
 

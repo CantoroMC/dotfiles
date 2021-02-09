@@ -29,4 +29,61 @@ let g:completion_chain_complete_list = {
       \  ]
       \ }
 
+" -- completion.nvim
+" vim.g.completion_confirm_key = ""
+" vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
+" vim.g.completion_enable_snippet = 'snippets.nvim'
+
+" -- Decide on length
+" vim.g.completion_trigger_keyword_length = 2
+
+
+" vim.g.completion_chain_complete_list = {
+"   default = {
+"     { complete_items = { 'lsp' } },
+"     { complete_items = { 'buffers' } },
+"     { mode = { '<c-p>' } },
+"     { mode = { '<c-n>' } }
+"   },
+"
+"" Configure the completion chains
+" let g:completion_chain_complete_list = {
+" 			\'default' : {
+" 			\	'default' : [
+" 			\		{'complete_items' : ['lsp', 'snippet']},
+" 			\		{'mode' : 'file'}
+" 			\	],
+" 			\	'comment' : [],
+" 			\	'string' : []
+" 			\	},
+" 			\'vim' : [
+" 			\	{'complete_items': ['snippet']},
+" 			\	{'mode' : 'cmd'}
+" 			\	],
+" 			\'c' : [
+" 			\	{'complete_items': ['ts']}
+" 			\	],
+" 			\'python' : [
+" 			\	{'complete_items': ['ts']}
+" 			\	],
+" 			\'lua' : [
+" 			\	{'complete_items': ['ts']}
+" 			\	],
+" 			\} }
+
 let g:completion_matching_strategy_list = [ 'exact', 'substring', 'fuzzy' ]
+
+
+" Section: Completion-Buffers
+
+let g:completion_word_separator  = '[^a-zA-Z0-9\-_]'
+let g:completion_word_min_length = 1
+let g:completion_word_ignored_ft = []
+
+
+" Section: Enable Completion for all buffers
+
+augroup nvim_completion_aug
+  autocmd!
+  autocmd FileType * lua require'completion'.on_attach()
+augroup END
