@@ -102,7 +102,7 @@ set showtabline=1
 
 " Windows: {{{1
 
-set noequalalways
+set equalalways
 set splitbelow
 set splitright
 
@@ -184,7 +184,7 @@ set switchbuf=useopen,usetab
 set nolangremap
 set spelllang=en,it
 set spellfile=$XDG_CONFIG_HOME/nvim/spell/dictionary.utf-8.add
-set nospell
+set spell
 
 " }}}
 
@@ -303,7 +303,7 @@ augroup END
 
 augroup highlight_on_yank
   autocmd!
-  autocmd TextYankPost * 
+  autocmd TextYankPost *
         \ lua vim.highlight.on_yank({higroup="IncSearch", on_visual = false})
 augroup END
 
@@ -380,7 +380,7 @@ let g:tex_flavor = 'latex'
 
 " Vim: {{{3
 " Embedded script highlighting supported ((Lua,Py,Ruby) or 0 for disabling)
-let g:vimsyn_embed = 'lPr' 
+let g:vimsyn_embed = 'lPr'
 " folding for syntax (augroup, fold fun, Python)
 let g:vimsyn_folding = 'afP'
 " }}}

@@ -85,7 +85,6 @@ local function init()
     opt = true
   }
 
-
   -- Section: UTILITIES {{{1
 
   -- use { 'neoclide/coc.nvim',  -- TODO Change
@@ -98,6 +97,12 @@ local function init()
   use 'nvim-lua/completion-nvim'
   use { 'steelsojka/completion-buffers',
     requires = { 'nvim-lua/completion-nvim' },
+  }
+  use { 'albertoCaroM/completion-tmux',
+    requires = { 'nvim-lua/completion-nvim' },
+  }
+  use { 'nvim-treesitter/completion-treesitter',
+    requires = { {'nvim-lua/completion-nvim'}, {'nvim-treesitter/nvim-treesitter'} },
   }
 
   -- Searching
@@ -143,6 +148,10 @@ local function init()
 
   use { 'mbbill/undotree',
     cmd = 'UndotreeToggle'
+  }
+
+ use { 'mhinz/vim-startify',
+    requires = 'ryanoasis/vim-devicons',
   }
 
   -- }}}

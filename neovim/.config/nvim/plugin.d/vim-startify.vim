@@ -3,13 +3,34 @@ function! StartifyEntryFormat() abort " {{{1
 endfunction
 " }}}
 
-function! s:gitModified() abort " {{{1
+
+
+" Session:
+let g:startify_session_dir         = stdpath('data').'/sessions'
+let g:startify_session_autoload    = 1
+let g:startify_session_before_save = [
+      \ 'echomsg "Cleaning up before saving.."',
+      \ 'silent! NvimTreeClose'
+      \ ]
+let g:startify_session_persistence    = 1
+let g:startify_session_delete_buffers = 0
+let g:startify_session_savevars       = [
+      \ 'g:startify_session_savevars',
+      \ 'g:startify_session_savecmds',
+      \ ]
+let g:startify_session_number         = 10
+let g:startify_session_sort           = 1
+
+" Intro:
+" Entries: {{{1
+
+function! s:gitModified() abort " {{{2
   let files = systemlist('git ls-files -m 2>/dev/null')
   return map(files, "{'line': v:val, 'path': v:val}")
 endfunction
 " }}}
 
-function! s:gitUntracked() abort " {{{1
+function! s:gitUntracked() abort " {{{2
   let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
   return map(files, "{'line': v:val, 'path': v:val}")
 endfunction
@@ -41,19 +62,33 @@ let g:startify_lists = [
       \   'type': function('s:gitUntracked'),
       \   'header': ['     git untracked']
       \ },
+      \ {
+      \   'type': 'commands',
+      \   'header': ['     Commands']},
       \ ]
-
+" }}}
+" Book Marks: {{{1
 let g:startify_bookmarks = [
-      \ '~/dotfiles/nvim/.config/nvim/init.vim',
+      \ '~/.config/nvim/init.lua',
       \ '~/Documents/programming/TeX/matriHX/matriHX.tex',
       \]
+" }}}
+" Commands: {{{1
+let g:startify_commands = [
+    \ ['Git', ':Git'],
+    \ {'s': ['Load Last Session', ':SLoad!'] },
+    \ ]
+" }}}
 
-let g:startify_session_dir         = '~/.cache/nvim/sessions'
 let g:startify_disable_at_vimenter = 0
 let g:startify_files_number        = 10
-let g:startify_update_oldfiles     = 1
 let g:startify_change_to_dir       = 0
-let g:startify_change_to_vcs_root  = 1
+let g:startify_change_to_vcs_root  = 0
+let g:startify_padding_left        = 3
+let g:startify_enable_special      = 1
+let g:startify_update_oldfiles     = 1
 let g:startify_fortune_use_unicode = 0
 let g:startify_custom_header       =
-      \ 'startify#center(startify#fortune#cowsay())'
+      \ startify#center(startify#fortune#cowsay('', '═','║','╔','╗','╝','╚'))
+let g:startify_relative_path = 1
+let g:startify_use_env = 1
