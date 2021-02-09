@@ -1,5 +1,6 @@
 " textobj-comment - Text objects for comments
 
+
 function! s:Select(inside, whitespace) abort " {{{1
   " The Select() function contains the main algorithm for finding comments.
   " First we look for a full-line comment with simple leader or with paired
@@ -45,13 +46,14 @@ function! s:Select(inside, whitespace) abort " {{{1
 endfunction
 " }}}
 
-" Comment leaders {{{1
+
+" Section: Comment leaders
 
 " Comment delimiters are called "leaders" in the help. We extract them from
 " the current 'comments' setting into two types, simple and paired comment
 " leaders. The 'commentstring' setting is used as fallback and verification.
 
-function! s:GetLeaders() abort " {{{2
+function! s:GetLeaders() abort " {{{1
   let leaders = map(split(&comments, '\\\@<!,'), 's:partition(v:val, ":")')
   if empty(leaders) && &commentstring =~# '.%s'
     let cmsleader = s:partition(&commentstring, '%s')
@@ -65,12 +67,12 @@ function! s:GetLeaders() abort " {{{2
 endfunction
 " }}}
 
-function! s:GetSimpleLeaders(leaders) abort " {{{2
+function! s:GetSimpleLeaders(leaders) abort " {{{1
   return map(filter(copy(a:leaders), 'v:val[0]=~#"^[bnO]*$"'), 'v:val[1]')
 endfunction
 " }}}
 
-function! s:GetPairedLeaders(leaders) abort " {{{2
+function! s:GetPairedLeaders(leaders) abort " {{{1
   let seleaders = filter(copy(a:leaders), 'v:val[0]=~#"[se]"')
   let pairedleaders = []
   " Only use valid pairs, favour those verifiable through 'commentstring'
@@ -89,17 +91,15 @@ function! s:GetPairedLeaders(leaders) abort " {{{2
 endfunction
 " }}}
 
-" }}}
 
-" Comment search {{{1
+" Section: Comment search
 
 " The comment search functions all return a list [leader, start, end], where
 " leader is the comment character or pair of characters, and start and end are
 " the byte positions of the opening and closing leaders (for simple leaders
 " the end is on the last byte position in the line). Empty when no match.
 
-" s:FindSimpleLineComment() {{{2
-function! s:FindSimpleLineComment(pos, simple_leaders, upwards) abort
+function! s:FindSimpleLineComment(pos, simple_leaders, upwards) abort " {{{1
   let cursor_line = a:pos[0]
 
   if a:upwards && !empty(a:simple_leaders)
@@ -143,8 +143,7 @@ function! s:FindSimpleLineComment(pos, simple_leaders, upwards) abort
 endfunction
 " }}}
 
-" s:FindPairedLineComment() {{{2
-function! s:FindPairedLineComment(pos, paired_leaders, upwards) abort
+function! s:FindPairedLineComment(pos, paired_leaders, upwards) abort " {{{1
   let found = []
   for pair in a:paired_leaders
     let pairpos = s:FindNearestPair(a:pos, pair, a:upwards)
@@ -163,8 +162,7 @@ function! s:FindPairedLineComment(pos, paired_leaders, upwards) abort
 endfunction
 " }}}
 
-" s:FindNearestPair() {{{2
-function! s:FindNearestPair(pos, pair, upwards) abort
+function! s:FindNearestPair(pos, pair, upwards) abort " {{{1
   let [open, close] = a:pair
   let start = []
   let end   = []
@@ -267,8 +265,7 @@ function! s:FindNearestPair(pos, pair, upwards) abort
 endfunction
 " }}}
 
-" s:FindInlineComment() {{{2
-function! s:FindInlineComment(pos, simple_leaders, paired_leaders) abort
+function! s:FindInlineComment(pos, simple_leaders, paired_leaders) abort " {{{1
   " Since we are working with searchpos() to search for inline comments, it is
   " important to always restore the cursor position
   let save_pos = getpos('.')
@@ -350,16 +347,14 @@ endfunction
 
 " }}}
 
-" }}}
 
-" Selection adjustment {{{1
+" Section: Selection adjustment
 
 " These functions adjust the ends of the selection and return the list
 " required by textobj-user, or 0 on failure. Adjustment is generally
 " multibyte-safe. Multibyte space characters are not handled properly.
 
-" s:AdjustLineEnds() {{{2
-function! s:AdjustLineEnds(comment, whitespace, inside) abort
+function! s:AdjustLineEnds(comment, whitespace, inside) abort " {{{1
   if a:inside
     return s:AdjustInsideEnds(a:comment)
   endif
@@ -393,8 +388,7 @@ function! s:AdjustLineEnds(comment, whitespace, inside) abort
 endfunction
 " }}}
 
-" s:AdjustInlineEnds() {{{2
-function! s:AdjustInlineEnds(comment, whitespace, inside) abort
+function! s:AdjustInlineEnds(comment, whitespace, inside) abort " {{{1
   if a:inside
     return s:AdjustInsideEnds(a:comment)
   endif
@@ -448,8 +442,7 @@ function! s:AdjustInlineEnds(comment, whitespace, inside) abort
 endfunction
 " }}}
 
-" s:AdjustInsideEnds() {{{2
-function! s:AdjustInsideEnds(comment) abort
+function! s:AdjustInsideEnds(comment) abort " {{{1
   let [leader, start, end] = a:comment
 
   if type(leader) == type([])
@@ -506,29 +499,32 @@ function! s:AdjustInsideEnds(comment) abort
 endfunction
 " }}}
 
-" }}}
 
-" Utilities {{{1
+" Section: Utilities
 
-function! s:partition(str, delim) abort
+function! s:partition(str, delim) abort " {{{1
   let idx = stridx(a:str, a:delim)
   return idx < 0 ? [a:str, ''] : [strpart(a:str,0,idx), strpart(a:str,idx+strlen(a:delim))]
 endfunction
+" }}}
 
-function! s:nextcol(lnum, col) abort
+function! s:nextcol(lnum, col) abort " {{{1
   let col = match(strpart(getline(a:lnum > 0 ? a:lnum : line('.')), a:col-1), '.\zs.')
   return col < 0 ? -1 : col + a:col
 endfunction
+" }}}
 
-function! s:escape(str) abort
+function! s:escape(str) abort " {{{1
   return escape(a:str, '\')
 endfunction
+" }}}
 
-function! s:isblank(lnum) abort
+function! s:isblank(lnum) abort " {{{1
   return getline(a:lnum) =~? '^\s*$'
 endfunction
+" }}}
 
-function! s:compare(pos1, pos2) abort
+function! s:compare(pos1, pos2) abort " {{{1
   if a:pos1[0] < a:pos2[0]
     return -1
   elseif a:pos1[0] > a:pos2[0]
@@ -540,10 +536,10 @@ function! s:compare(pos1, pos2) abort
   endif
   return 0
 endfunction
-
 " }}}
 
-" Public interface {{{1
+
+" Section: Public interface
 
 function! textobj#comment#select_a() abort
   return s:Select(0, 0)
@@ -556,5 +552,3 @@ endfunction
 function! textobj#comment#select_big_a() abort
   return s:Select(0, 1)
 endfunction
-
-" }}}

@@ -1,19 +1,18 @@
-" textobj-markdown - Text objects for markdown {{{1
+" textobj-markdown - Text objects for markdown
 " File:          textobj-markdown.vim
 " Author:        coachshea
 " Maintainer:    CantoroMC
 " Description:   Text objects user for markdown
 " Last Modified: settembre 07, 2020
-" }}}
 
-" Plugin Guards: {{{1
+" Section: Plugin Guards
 if exists('g:loaded_textobj_markdown')
   finish
 endif
 let g:loaded_textobj_markdown = 1
-" }}}
 
-" Text Object Wrapping: {{{1
+
+" Section: Text Object Wrapping
 call textobj#user#plugin('markdown', {
       \ 'chunk': {
       \   'select-a-function': 'textobj#markdown#chunks#af',
@@ -58,4 +57,3 @@ call textobj#user#plugin('markdown', {
       \   'region-type'      : 'V',
       \ },
       \ })
-" }}}

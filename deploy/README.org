@@ -80,7 +80,7 @@ Programs in this directory are:
     mkdir ~/.ghc
 
     #Stowing
-    stow git emacs nvim texlive music mail shell haskell x-window
+    stow git emacs neovim texlive music mail shell haskell x-window
   #+end_src
 
 * System Tweaks

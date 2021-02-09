@@ -1,13 +1,13 @@
 " textobj-latex - Text objects for LaTeX code
 
-" Plugin Guard: {{{1
+" Section: Plugin Guards
 if exists('g:loaded_textobj_latex')
   finish
 endif
 let g:loaded_textobj_latex = 1
-" }}}
 
-" Text Object Wrapping: {{{1
+
+" Section: Text Object Wrapping
 call textobj#user#plugin('latex', {
       \ 'environment'  : {
       \   'pattern'    : ['\\begin{[^}]\+}.*\n\s*', '\n^\s*\\end{[^}]\+}.*$'],
@@ -51,4 +51,3 @@ call textobj#user#plugin('latex', {
       \   'select-i'   : '<buffer>ilr',
       \ },
       \ })
-" }}}

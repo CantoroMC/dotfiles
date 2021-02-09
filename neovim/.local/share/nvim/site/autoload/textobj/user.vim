@@ -1,10 +1,9 @@
-" Textobj User Vim Wrapper: {{{1
+" Textobj User Vim Wrapper
 " File:           savings.vim
 " Author:         Kana Natsuno <http://whileimautomaton.net/>
 " Maintainer:     Marco Cantoro <https://github.com/CantoroMC>
 " Description:    Create your own text objects
 " Last Modified:  settembre 07, 2020
-" }}}
 
 function! textobj#user#plugin(plugin_name, obj_specs)  abort "{{{1
   if a:plugin_name =~# '\L'
@@ -29,11 +28,11 @@ endfunction
 
 " }}}
 
-" Plugin Dictionary: {{{1
+" Section: Plugin Dictionary
 
 let s:plugin = {}
 
-function! s:plugin.new(plugin_name, obj_specs) abort " {{{2
+function! s:plugin.new(plugin_name, obj_specs) abort " {{{1
   let _ = extend({'name': a:plugin_name, 'obj_specs': a:obj_specs},
   \              s:plugin, 'keep')
   call _.normalize()
@@ -41,12 +40,12 @@ function! s:plugin.new(plugin_name, obj_specs) abort " {{{2
 endfunction
 " }}}
 
-function! s:plugin.normalize() abort " {{{2
+function! s:plugin.normalize() abort " {{{1
   call s:normalize(self.obj_specs)
 endfunction
 " }}}
 
-function! s:plugin.define_default_key_mappings(banged_p) abort "{{{2
+function! s:plugin.define_default_key_mappings(banged_p) abort "{{{1
   for [obj_name, specs] in items(self.obj_specs)
     for [spec_name, spec_info] in items(specs)
       let rhs = s:interface_mapping_name(self.name, obj_name, spec_name)
@@ -72,7 +71,7 @@ function! s:plugin.define_default_key_mappings(banged_p) abort "{{{2
 endfunction
 " }}}
 
-function! s:plugin.define_interface_key_mappings() abort "{{{2
+function! s:plugin.define_interface_key_mappings() abort "{{{1
   let RHS_FORMAT =
         \ '<SID>(save-cursor-pos)'
         \ .':<C-u>call g:__textobj_'.self.name
@@ -105,19 +104,19 @@ function! s:plugin.define_interface_key_mappings() abort "{{{2
 endfunction
 " }}}
 
-function! s:plugin.interface_mapping_name(obj_name, spec_name) abort "{{{2
+function! s:plugin.interface_mapping_name(obj_name, spec_name) abort "{{{1
   return s:interface_mapping_name(self.name, a:obj_name, a:spec_name)
 endfunction
 " }}}
 
-function! s:plugin.do_by_function(spec_name, obj_name, previous_mode) abort " {{{2
+function! s:plugin.do_by_function(spec_name, obj_name, previous_mode) abort " {{{1
   let specs = self.obj_specs[a:obj_name]
   call {s:FUNCTION_IMPL_TABLE[a:spec_name]}(
         \ specs[a:spec_name . '-function'], a:spec_name, a:previous_mode )
 endfunction
 " }}}
 
-function! s:plugin.do_by_pattern(spec_name, obj_name, previous_mode) abort " {{{2
+function! s:plugin.do_by_pattern(spec_name, obj_name, previous_mode) abort " {{{1
   let specs = self.obj_specs[a:obj_name]
   let flags = s:PATTERN_FLAGS_TABLE[a:spec_name]
         \ .(a:spec_name =~# '^select' ? specs['region-type'] : '')
@@ -127,15 +126,16 @@ function! s:plugin.do_by_pattern(spec_name, obj_name, previous_mode) abort " {{{
 endfunction
 " }}}
 
-" Normalize: {{{2
 
-function! s:normalize(obj_specs) abort " {{{3
+" Section: Normalize
+
+function! s:normalize(obj_specs) abort " {{{1
   call s:normalize_property_names(a:obj_specs)
   call s:normalize_property_values(a:obj_specs)
 endfunction
 " }}}
 
-function! s:normalize_property_names(obj_specs) abort " {{{3
+function! s:normalize_property_names(obj_specs) abort " {{{1
   for spec in values(a:obj_specs)
     for old_prop_name in keys(spec)
       if old_prop_name =~? '^\*.*\*$'
@@ -148,7 +148,7 @@ function! s:normalize_property_names(obj_specs) abort " {{{3
 endfunction
 " }}}
 
-function! s:normalize_property_values(obj_specs) abort " {{{3
+function! s:normalize_property_values(obj_specs) abort " {{{1
   for [obj_name, specs] in items(a:obj_specs)
     for [spec_name, spec_info] in items(specs)
       if s:is_ui_property_name(spec_name)
@@ -184,10 +184,9 @@ function! s:normalize_property_values(obj_specs) abort " {{{3
     endfor
   endfor
 endfunction
-
 " }}}
 
-function! s:snr_prefix(sfile) abort " {{{3
+function! s:snr_prefix(sfile) abort " {{{1
   " :redir captures also 'verbose' messages.  Its result must be filtered.
   redir => result
   silent scriptnames
@@ -204,16 +203,15 @@ function! s:snr_prefix(sfile) abort " {{{3
 endfunction
 " }}}
 
-function! s:normalize_path(unnormalized_path) abort " {{{3
+function! s:normalize_path(unnormalized_path) abort " {{{1
   return substitute(fnamemodify(a:unnormalized_path, ':p'), '\\', '/', 'g')
 endfunction
 " }}}
 
-" }}}
 
-" Mappings: {{{2
+" Section: Mappings
 
-" Script Variables: {{{3
+" Script Variables: {{{1
 let s:ui_property_names = [
       \ 'move-N',
       \ 'move-P',
@@ -239,7 +237,7 @@ let s:non_ui_property_names = [
       \ ]
 " }}}
 
-function! s:interface_mapping_name(plugin_name, obj_name, spec_name) abort "{{{3
+function! s:interface_mapping_name(plugin_name, obj_name, spec_name) abort "{{{1
   let _ = printf('<Plug>(textobj-%s-%s-%s)',
         \ a:plugin_name, a:obj_name,
         \ substitute(a:spec_name, '^\(move\|select\)', '', ''))
@@ -249,17 +247,17 @@ function! s:interface_mapping_name(plugin_name, obj_name, spec_name) abort "{{{3
 endfunction
 " }}}
 
-function! s:is_ui_property_name(name) abort " {{{3
+function! s:is_ui_property_name(name) abort " {{{1
   return 0 <= index(s:ui_property_names, a:name)
 endfunction
 " }}}
 
-function! s:is_non_ui_property_name(name) abort " {{{3
+function! s:is_non_ui_property_name(name) abort " {{{1
   return 0 <= index(s:non_ui_property_names, a:name)
 endfunction
 " }}}
 
-function! s:proper_visual_mode(lhs) abort " {{{3
+function! s:proper_visual_mode(lhs) abort " {{{1
   " Return the mode prefix of proper "visual" mode for a:lhs key sequence.
   " a:lhs should not be defined in Select mode if a:lhs starts with
   " a printable character.  Otherwise a:lhs may be defined in Select mode.
@@ -279,7 +277,7 @@ function! s:proper_visual_mode(lhs) abort " {{{3
 endfunction
 " }}}
 
-function! s:define_failsafe_key_mappings(plugin_name, obj_specs) abort " {{{3
+function! s:define_failsafe_key_mappings(plugin_name, obj_specs) abort " {{{1
   for [obj_name, specs] in items(a:obj_specs)
     for [spec_name, spec_info] in items(specs)
       if !s:is_non_ui_property_name(spec_name)
@@ -297,20 +295,21 @@ function! s:define_failsafe_key_mappings(plugin_name, obj_specs) abort " {{{3
 endfunction
 " }}}
 
-function! s:fail(interface_key_mapping_lhs) abort " {{{3
+function! s:fail(interface_key_mapping_lhs) abort " {{{1
   throw printf('Text object %s is not defined', a:interface_key_mapping_lhs)
 endfunction
 " }}}
 
-" Maps Wrapper: {{{3
 
-function! s:map(forced_p, lhs, rhs) abort " {{{4
+" Section: Maps Wrapper
+
+function! s:map(forced_p, lhs, rhs) abort " {{{1
   let v = s:proper_visual_mode(a:lhs)
   call s:_map(['nmap', v.'map', 'omap'], a:forced_p, a:lhs, a:rhs)
 endfunction
 " }}}
 
-function! s:_map(map_commands, forced_p, lhs, rhs) abort " {{{4
+function! s:_map(map_commands, forced_p, lhs, rhs) abort " {{{1
   for _ in a:map_commands
     execute 'silent!' (_) (a:forced_p ? '' : '<unique>') a:lhs
           \ substitute(a:rhs, '<mode>', _[0], 'g')
@@ -318,38 +317,35 @@ function! s:_map(map_commands, forced_p, lhs, rhs) abort " {{{4
 endfunction
 " }}}
 
-function! s:objmap(forced_p, lhs, rhs) abort " {{{4
+function! s:objmap(forced_p, lhs, rhs) abort " {{{1
   let v = s:proper_visual_mode(a:lhs)
   call s:_map([v.'map', 'omap'], a:forced_p, a:lhs, a:rhs)
 endfunction
 " }}}
 
-function! s:noremap(forced_p, lhs, rhs) abort " {{{4
+function! s:noremap(forced_p, lhs, rhs) abort " {{{1
   let v = s:proper_visual_mode(a:lhs)
   call s:_map(['nnoremap', v.'noremap', 'onoremap'], a:forced_p, a:lhs, a:rhs)
 endfunction
 " }}}
 
-function! s:objnoremap(forced_p, lhs, rhs) abort " {{{4
+function! s:objnoremap(forced_p, lhs, rhs) abort " {{{1
   let v = s:proper_visual_mode(a:lhs)
   call s:_map([v.'noremap', 'onoremap'], a:forced_p, a:lhs, a:rhs)
 endfunction
 " }}}
 
-" }}}
-
 noremap <expr> <SID>(save-cursor-pos) <SID>save_cursor_pos()
-function! s:save_cursor_pos() abort " {{{3
+function! s:save_cursor_pos() abort " {{{1
   let s:last_cursor_gpos = getpos('.')
   return ''
 endfunction
 " }}}
 
-" }}}
 
-" Function Wrappers: {{{2
+" Section: Function Wrappers
 
-" Script Variables: {{{3
+" Script Variables: {{{1
 let s:FUNCTION_IMPL_TABLE = {
       \ 'move-n': 's:move_function_wrapper',
       \ 'move-N': 's:move_function_wrapper',
@@ -361,7 +357,7 @@ let s:FUNCTION_IMPL_TABLE = {
       \ }
 " }}}
 
-function! s:select_function_wrapper(function_name, spec_name, previous_mode) abort " {{{3
+function! s:select_function_wrapper(function_name, spec_name, previous_mode) abort " {{{1
   let ORIG_POS = s:gpos_to_spos(getpos('.'))
 
   let _ = function(a:function_name)()
@@ -377,7 +373,7 @@ function! s:select_function_wrapper(function_name, spec_name, previous_mode) abo
 endfunction
 " }}}
 
-function! s:move_function_wrapper(function_name, spec_name, previous_mode) abort " {{{3
+function! s:move_function_wrapper(function_name, spec_name, previous_mode) abort " {{{1
   " ":" in Visual mode moves the cursor to '< before executing Ex command
   " (= the context where this function is called).  For example:
   "
@@ -408,11 +404,10 @@ function! s:move_function_wrapper(function_name, spec_name, previous_mode) abort
 endfunction
 " }}}
 
-" }}}
 
-" Pattern Wrappers: {{{2
+" Section: Pattern Wrappers:
 
-" Script Variables: {{{3
+" Script Variables: {{{1
 let s:PATTERN_IMPL_TABLE = {
       \ 'move-n': 's:move_wrapper',
       \ 'move-N': 's:move_wrapper',
@@ -433,7 +428,7 @@ let s:PATTERN_FLAGS_TABLE = {
       \ }
 " }}}
 
-function! s:user_move(pattern, flags, previous_mode) abort " {{{3
+function! s:user_move(pattern, flags, previous_mode) abort " {{{1
   let i = v:count1
   call s:prepare_movement(a:previous_mode)
   while 0 < i
@@ -444,7 +439,7 @@ function! s:user_move(pattern, flags, previous_mode) abort " {{{3
 endfunction
 " }}}
 
-function! s:user_select(pattern, flags, previous_mode) abort " {{{3
+function! s:user_select(pattern, flags, previous_mode) abort " {{{1
   " FIXME: growing the current selection like iw/aw, is/as, and others.
   " FIXME: countable.
   let ORIG_POS = s:gpos_to_spos(getpos('.'))
@@ -467,7 +462,7 @@ function! s:user_select(pattern, flags, previous_mode) abort " {{{3
 endfunction
 " }}}
 
-function! s:user_select_pair(pattern1, pattern2, flags, previous_mode) abort " {{{3
+function! s:user_select_pair(pattern1, pattern2, flags, previous_mode) abort " {{{1
 " BUGS: With o_CTRL-V, this function may not work properly.
 
   let ORIG_POS = s:gpos_to_spos(getpos('.'))
@@ -517,20 +512,20 @@ function! s:user_select_pair(pattern1, pattern2, flags, previous_mode) abort " {
 endfunction
 " }}}
 
-function! s:move_wrapper(patterns, flags, previous_mode) abort " {{{3
+function! s:move_wrapper(patterns, flags, previous_mode) abort " {{{1
   " \x16 = CTRL-V
   call s:user_move(
         \ a:patterns, substitute(a:flags, '[vV\x16]', '', 'g'), a:previous_mode)
 endfunction
 " }}}
 
-function! s:select_pair_wrapper(patterns, flags, previous_mode) abort " {{{3
+function! s:select_pair_wrapper(patterns, flags, previous_mode) abort " {{{1
   call s:user_select_pair(
         \ a:patterns[0], a:patterns[1], a:flags, a:previous_mode)
 endfunction
 " }}}
 
-function! s:choose_better_pos(flags, ORIG_POS, pfh, pft, pbh, pbt) abort " {{{3
+function! s:choose_better_pos(flags, ORIG_POS, pfh, pft, pbh, pbt) abort " {{{1
   " search() family with 'c' flag may not be matched to a pattern which
   " matches to multiple lines.  To choose appropriate range, we have to check
   " another range [X] whether it contains the cursor or not.
@@ -559,56 +554,54 @@ function! s:choose_better_pos(flags, ORIG_POS, pfh, pft, pbh, pbt) abort " {{{3
 endfunction
 " }}}
 
-" }}}
 
-" Positions: {{{2
+" Section: Positions
 " Terms
 "   gpos  [bufnum, lnum, col, off] - a value returned by getpos()
 "   pos   [lnum, col]              - a value returned by searchpos()
 
-function! s:gpos_to_spos(gpos) abort " {{{3
+function! s:gpos_to_spos(gpos) abort " {{{1
   return a:gpos[1:2]
 endfunction
 " }}}
 
-function! s:pos_le(pos1, pos2)  abort " {{{3
+function! s:pos_le(pos1, pos2)  abort " {{{1
   return ((a:pos1[0] < a:pos2[0])
         \ || (a:pos1[0] == a:pos2[0] && a:pos1[1] <= a:pos2[1]))
 endfunction
 " }}}
 
-function! s:pos_headp(pos) abort " {{{3
+function! s:pos_headp(pos) abort " {{{1
   return a:pos[1] <= 1
 endfunction
 " }}}
 
-function! s:pos_lastp(pos) abort " {{{3
+function! s:pos_lastp(pos) abort " {{{1
   return a:pos[1] == len(getline(a:pos[0]))
 endfunction
 " }}}
 
-" }}}
 
-" Ranges: {{{2
+" Section: Ranges
 
-function! s:range_validp(range_head, range_tail) abort " {{{3
+function! s:range_validp(range_head, range_tail) abort " {{{1
   let NULL_POS = [0, 0]
   return (a:range_head != NULL_POS) && (a:range_tail != NULL_POS)
 endfunction
 " }}}
 
-function! s:range_containsp(range_head, range_tail, target_pos) abort " {{{3
+function! s:range_containsp(range_head, range_tail, target_pos) abort " {{{1
   return (s:pos_le(a:range_head, a:target_pos)
         \ && s:pos_le(a:target_pos, a:range_tail))
 endfunction
 " }}}
 
-function! s:range_in_linep(range_head, range_tail, target_pos) abort " {{{3
+function! s:range_in_linep(range_head, range_tail, target_pos) abort " {{{1
   return a:range_head[0] == a:target_pos[0] || a:range_tail[0] == a:target_pos[0]
 endfunction
 " }}}
 
-function! s:range_no_text_without_edgesp(range_head, range_tail) abort " {{{3
+function! s:range_no_text_without_edgesp(range_head, range_tail) abort " {{{1
   let [hl, hc] = a:range_head
   let [tl, tc] = a:range_tail
   return ((hl == tl && hc - tc == -1)
@@ -617,7 +610,7 @@ function! s:range_no_text_without_edgesp(range_head, range_tail) abort " {{{3
 endfunction
 " }}}
 
-function! s:range_select(range_head, range_tail, fallback_wise) abort " {{{3
+function! s:range_select(range_head, range_tail, fallback_wise) abort " {{{1
   execute 'normal!' s:wise(a:fallback_wise)
   call cursor(a:range_head)
   normal! o
@@ -628,17 +621,16 @@ function! s:range_select(range_head, range_tail, fallback_wise) abort " {{{3
 endfunction
 " }}}
 
-function! s:wise(default) abort " {{{3
+function! s:wise(default) abort " {{{1
   return (exists('v:motion_force') && v:motion_force !=? ''
         \ ? v:motion_force : a:default)
 endfunction
 " }}}
 
-" }}}
 
-" Auxiliaries: {{{2
+" Section: Auxiliaries
 
-function! s:cancel_selection(previous_mode, orig_pos) abort " {{{3
+function! s:cancel_selection(previous_mode, orig_pos) abort " {{{1
   if a:previous_mode ==# 'v'
     normal! gv
   else  " if a:previous_mode ==# 'o'
@@ -647,19 +639,15 @@ function! s:cancel_selection(previous_mode, orig_pos) abort " {{{3
 endfunction
 " }}}
 
-function! s:prepare_movement(previous_mode) abort " {{{3
+function! s:prepare_movement(previous_mode) abort " {{{1
   if a:previous_mode ==# 'v'
     normal! gv
   endif
 endfunction
 " }}}
 
-function! s:choose_wise(flags) abort " {{{3
+function! s:choose_wise(flags) abort " {{{1
   return a:flags =~# 'v' ? 'v' :
         \ a:flags =~# 'V' ? 'V' : a:flags =~# "\<C-v>" ? "\<C-v>" : 'v'
 endfunction
-" }}}
-
-" }}}
-
 " }}}

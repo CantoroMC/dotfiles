@@ -1,13 +1,13 @@
 " textobj-comment - Text objects for comments
 
-" Plugin Guards: {{{1
+" Section: Plugin Guards
 if exists('g:loaded_textobj_comment')
   finish
 endif
 let g:loaded_textobj_comment = 1
-" }}}
 
-" Text Object Wrapping: {{{1
+
+" Section: Text Object Wrapping
 call textobj#user#plugin('comment', {
      \ '-': {
      \  'select-a-function': 'textobj#comment#select_a',
@@ -20,4 +20,3 @@ call textobj#user#plugin('comment', {
      \  'select-a': 'aC',
      \  }
      \ })
-" }}}
