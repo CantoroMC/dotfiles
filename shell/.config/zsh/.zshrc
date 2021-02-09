@@ -49,6 +49,10 @@ plugins=(
   zsh-autosuggestions
   zsh-history-substring-search
 )
+# Plugin configuration
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'tree -a -C -L 2 -F $realpath'
+zstyle ':fzf-tab:*' switch-group '[' ']'
+zstyle ':fzf-tab:complete:cd:*' popup-pad 20 0
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=165'
 ZSH_AUTOSUGGEST_USE_ASYNC='true'
 
