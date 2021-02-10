@@ -87,37 +87,60 @@ local function init()
 
   -- Section: UTILITIES {{{1
 
-  use 'neovim/nvim-lspconfig'                      -- Language Server Protocol
+  use { 'neoclide/coc.nvim',
+    branch = 'release'
+  }
+  use { 'rafcamlet/coc-nvim-lua',
+    require = { 'neoclide/coc.nvim',
+        branch = 'release'}
+  }
+  use { 'wellle/tmux-complete.vim',
+    require = { 'neoclide/coc.nvim',
+        branch = 'release'}
+  }
 
-  use 'nvim-lua/completion-nvim'                   -- Completion
-  use { 'steelsojka/completion-buffers',
-    requires = { 'nvim-lua/completion-nvim' },
-  }
-  use { 'albertoCaroM/completion-tmux',
-    requires = { 'nvim-lua/completion-nvim' },
-  }
-  use { 'nvim-treesitter/completion-treesitter',
-    requires = { {'nvim-lua/completion-nvim'}, {'nvim-treesitter/nvim-treesitter'} },
-  }
+  -- GraveYard {{{
+  -- use 'neovim/nvim-lspconfig'                      -- Language Server Protocol
+
+  -- use 'nvim-lua/completion-nvim'                   -- Completion
+  -- use { 'steelsojka/completion-buffers',
+  --   requires = { 'nvim-lua/completion-nvim' },
+  -- }
+  -- use { 'albertoCaroM/completion-tmux',
+  --   requires = { 'nvim-lua/completion-nvim' },
+  -- }
+  -- use { 'nvim-treesitter/completion-treesitter',
+  --   requires = { {'nvim-lua/completion-nvim'}, {'nvim-treesitter/nvim-treesitter'} },
+  -- }
+  -- -- Tree Sitter: Syntax, Indentation, TextObject, Foldings.... SYNTAX AWARE.
+  -- use { 'nvim-treesitter/nvim-treesitter',
+  --   run = ':TSUpdate',
+  -- }
+  -- use { 'nvim-treesitter/nvim-treesitter-refactor',
+  --   requires = 'nvim-treesitter/nvim-treesitter',
+  -- }
+  -- use { 'nvim-treesitter/nvim-treesitter-textobjects',
+  --   requires = 'nvim-treesitter/nvim-treesitter',
+  -- }
+  -- use { 'nvim-treesitter/playground',
+  --   requires = 'nvim-treesitter/nvim-treesitter',
+  -- }
+  -- }}}
 
   use 'junegunn/fzf'                               -- Commands wrapped around fzf
   use { 'junegunn/fzf.vim',
     requires = { 'junegunn/fzf' },
   }
 
-  -- Tree Sitter: Syntax, Indentation, TextObject, Foldings.... SYNTAX AWARE.
-  use { 'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
+  --[=[ This seems cool and not so intrusive
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = {
+      {'nvim-lua/popup.nvim'},
+      {'nvim-lua/plenary.nvim'}
+    }
   }
-  use { 'nvim-treesitter/nvim-treesitter-refactor',
-    requires = 'nvim-treesitter/nvim-treesitter',
-  }
-  use { 'nvim-treesitter/nvim-treesitter-textobjects',
-    requires = 'nvim-treesitter/nvim-treesitter',
-  }
-  use { 'nvim-treesitter/playground',
-    requires = 'nvim-treesitter/nvim-treesitter',
-  }
+  --]=]
 
   -- }}}
 

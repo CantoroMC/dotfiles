@@ -7,7 +7,6 @@ PP = function(v)
   return v
 end
 
-
 -- SETTINGS AND MAPPINGS
 local vimL_user_directory = string.format(
   '%s/init.d/',

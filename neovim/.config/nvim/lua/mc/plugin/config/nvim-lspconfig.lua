@@ -53,7 +53,7 @@ local custom_lsp_attach = function(client)
       vim.api.nvim_exec([[
         augroup lsp_format_on_save
           autocmd!
-          autocmd! BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()
+          autocmd! BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync(nil,1000)
         augroup END
         ]], false)
     end
@@ -62,7 +62,6 @@ local custom_lsp_attach = function(client)
     lsp_remap('n', vim.g.maplocalleader..'gw', 'vim.lsp.buf.range_formatting()')
   end
 end
-
 
 -- C,CPP
 lspconfig.clangd.setup({
@@ -126,7 +125,7 @@ lspconfig.sumneko_lua.setup {
 lspconfig.hls.setup{
   cmd = { 'haskell-language-server-wrapper', '--lsp' },
   filetypes = { "haskell", "lhaskell" },
-  root_dir = lspconfig.util.root_pattern("*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml", vim.fn.getcwd() ),
+  root_dir = lspconfig.util.root_pattern("*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml", "" ),
   settings = {
     haskell = {
       formattingProvider = 'brittany'

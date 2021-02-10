@@ -18,7 +18,7 @@ end
 
 local find_configured = function()
   local lua_dir = string.format(
-    '%s/lua/plugin/mc/config/',
+    '%s/lua/mc/plugin/config/',
     vim.fn.stdpath('config')
   )
   local vim_dir = string.format(
@@ -56,7 +56,7 @@ local digest = function()
 
   for i = 1, #lua_configs, 1 do
     require(string.format(
-      'plugin.mc.config.%s',
+      'mc.plugin.config.%s',
       lua_configs[i])
     )
   end

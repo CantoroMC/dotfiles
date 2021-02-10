@@ -7,7 +7,6 @@ module Manage.Util
     , xmDownRightRect
     ) where
 
-import           XMonad
 import qualified XMonad.StackSet               as XMSS
 
 xmBigRect :: XMSS.RationalRect

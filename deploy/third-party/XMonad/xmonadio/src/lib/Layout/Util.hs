@@ -16,12 +16,20 @@ import           XMonad.Layout.Decoration       ( Decoration
                                                 , DefaultShrinker
                                                 , Theme(..)
                                                 )
+
+import           XMonad.Layout.IfMax            ( IfMax(..) )
+
 import           XMonad.Layout.LayoutCombinators
                                                 ( (|||) )
 import           XMonad.Layout.LayoutModifier   ( ModifiedLayout )
 import           XMonad.Layout.PerWorkspace     ( onWorkspace )
 import           XMonad.Layout.Renamed          ( Rename(CutWordsLeft, Replace)
                                                 , renamed
+                                                )
+import           XMonad.Layout.ResizableThreeColumns
+                                                ( ResizableThreeCol
+                                                    ( ResizableThreeColMid
+                                                    )
                                                 )
 import           XMonad.Layout.ResizableTile    ( ResizableTall(..) )
 import           XMonad.Layout.Simplest         ( Simplest(..) )
@@ -36,7 +44,7 @@ import           XMonad.Layout.Tabbed           ( TabbedDecoration(..)
                                                 , shrinkText
                                                 , tabbed
                                                 )
-import           XMonad.Layout.ThreeColumns     ( ThreeCol(ThreeColMid) )
+
 import           XMonad.Layout.WindowArranger   ( WindowArranger )
 
 import qualified Config.Theme                  as XMTheme
@@ -63,8 +71,8 @@ xmDecorationTheme = def
 -------------------------------------------------------------------------------
     -- Layouts
 
-tall :: ModifiedLayout Rename ResizableTall Window
-tall = renamed [Replace "Tall"] $ ResizableTall 1 0.03 0.5 []
+tall = renamed [Replace "Tall"]
+    $ IfMax 3 (ResizableTall 1 0.03 0.5 []) (ResizableTall 2 0.03 0.4 [])
 
 monocle
     :: ModifiedLayout
@@ -113,8 +121,9 @@ horizontal :: ModifiedLayout Rename (Mirror ResizableTall) Window
 horizontal =
     renamed [Replace "MirrorTall"] $ Mirror (ResizableTall 1 0.03 0.5 [])
 
-threeCol :: ModifiedLayout Rename ThreeCol Window
-threeCol = renamed [Replace "ThreeColumns"] $ ThreeColMid 1 0.03 0.5
+threeCol :: ModifiedLayout Rename ResizableThreeCol Window
+threeCol =
+    renamed [Replace "ThreeColumns"] $ ResizableThreeColMid 1 0.03 0.5 []
 
 floatL
     :: ModifiedLayout
@@ -127,14 +136,19 @@ tatami :: Tatami Window
 tatami = Tatami 1 0.03 0.5
 
 -------------------------------------------------------------------------------
+    -- IfMax
+
+metamorphic =
+    renamed [Replace "Metamorphic"] $ IfMax 3 tall (IfMax 5 tatami threeCol)
+
+matacombico = renamed [Replace "Fisher"] $ IfMax 4 tall combo
+
+-------------------------------------------------------------------------------
     -- Per Workspace Combinations
 
-alpha = monocle ||| floatL
-beta = tall ||| monocle ||| floatL
-gamma = tall ||| tatami ||| combo ||| monocle
-eta = tall ||| combo
-theta = horizontal ||| tall
-iota = tall ||| tatami ||| floatL
+alpha = floatL ||| tall
+beta = matacombico ||| monocle ||| floatL
+gamma = metamorphic ||| combo ||| monocle ||| floatL
 others =
     tall ||| tatami ||| combo ||| monocle ||| horizontal ||| threeCol ||| floatL
 
@@ -144,10 +158,7 @@ others =
 xmLayouts =
     onWorkspace (head xmWorkspaces) alpha
         $ onWorkspace (xmWorkspaces !! 1) beta
-        $ onWorkspace (xmWorkspaces !! 2) gamma
-        $ onWorkspace (xmWorkspaces !! 6) eta
-        $ onWorkspace (xmWorkspaces !! 7) theta
-        $ onWorkspace (xmWorkspaces !! 8) iota others
+        $ onWorkspace (xmWorkspaces !! 2) gamma others
 
 applySpacing
     :: Integer
