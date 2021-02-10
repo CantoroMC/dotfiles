@@ -4,6 +4,7 @@ xf86-input-libinput
 xf86-video-fbdev
 xf86-video-intel
 xf86-video-vesa
+xf86-video-nouveau
 xorg-xinit
 xorg-server
 xorg-xkill
@@ -77,7 +78,6 @@ yad
 reflector
 pcurses
 vi
-nano
 
 alsa-utils
 alsa-firmware
