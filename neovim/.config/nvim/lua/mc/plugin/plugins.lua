@@ -176,6 +176,7 @@ local function init()
 
   -- Section: HIS HOLINESS {{{1
 
+  use 'tpope/vim-apathy'         -- `path`, `suffixesadd`, `include`, `includeexpr` and `define`
   use 'tpope/vim-abolish'        -- Language friendly searches, substitutions and abbreviations
   use 'tpope/vim-commentary'     -- Comment stuff out
   use { 'tpope/vim-dispatch',    -- Asynchronous build and test dispatcher

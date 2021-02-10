@@ -1,7 +1,6 @@
 -- NeoLua Init File
 
 -- GLOBAL LUA VARIABLES
--- require('globals')
 PP = function(v)
   print(vim.inspect(v))
   return v
