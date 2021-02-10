@@ -20,7 +20,7 @@ vim.cmd('source ' .. vimL_user_directory .. 'keymap.vim')
 vim.cmd('colorscheme ayu')
 
 -- PLUGINS SETTINGS
-require'plugin.octopus'.digest()
+require'mc.plugin.octopus'.digest()
 
 require'hardline'.setup {
 }
