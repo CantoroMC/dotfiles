@@ -154,11 +154,11 @@ augroup filetype_folding_method " {{{2
   autocmd!
   " Marker
   autocmd FileType
-        \ vim,tex,plaintex,text,neomuttrc,muttrc,tmux
+        \ tex,plaintex,text,neomuttrc,muttrc,tmux
         \ setl foldmethod=marker
   " Indentation
   autocmd FileType
-        \ make,python,bib,go,json,html,css,javascript,yaml,ruby,xml,haskell,lhaskell,cabal,nix,lua,lisp,zsh
+        \ make,python,bib,go,json,html,css,javascript,yaml,ruby,xml,haskell,lhaskell,cabal,nix,lua,lisp,zsh,vim
         \ setl foldmethod=indent
   " Syntax
   autocmd FileType

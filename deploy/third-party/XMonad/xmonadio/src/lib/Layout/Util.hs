@@ -147,8 +147,8 @@ matacombico = renamed [Replace "Fisher"] $ IfMax 4 tall combo
     -- Per Workspace Combinations
 
 alpha = floatL ||| tall
-beta = matacombico ||| monocle ||| floatL
-gamma = metamorphic ||| combo ||| monocle ||| floatL
+beta = matacombico ||| tall ||| monocle ||| floatL
+gamma = metamorphic ||| tall ||| combo ||| monocle ||| floatL
 others =
     tall ||| tatami ||| combo ||| monocle ||| horizontal ||| threeCol ||| floatL
 

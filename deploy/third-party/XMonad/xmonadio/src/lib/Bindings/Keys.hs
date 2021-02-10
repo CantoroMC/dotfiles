@@ -263,7 +263,7 @@ xmKeys mask = do
         ^> spawn =<< terminalFromConf
     bind $ mask .|. shiftMask ... xK_Return
       |/- "spawn secondary terminal"
-        ^> spawn "kitty"
+        ^> spawn "tabbed -r 2 st -w ''"
     bind $ mask .|. shiftMask ... xK_BackSpace
       |/- "Lock the screen"
         ^> spawn "slock"
