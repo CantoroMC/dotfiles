@@ -63,6 +63,27 @@ local custom_lsp_attach = function(client)
   end
 end
 
+-- C,CPP
+lspconfig.clangd.setup({
+  cmd = {
+    "clangd",
+    "--background-index",
+    "--suggest-missing-includes",
+    "--clang-tidy",
+    "--header-insertion=iwyu",
+  },
+  filetypes = { "c", "cpp", "objc", "objcpp" },
+  on_attach = custom_lsp_attach,
+})
+
+-- GO
+lspconfig.gopls.setup{
+  cmd = { "gopls" },
+  filetypes = { "go", "gomod" },
+  root_dir = lspconfig.util.root_pattern("go.mod", ".git", vim.fn.getcwd() ),
+  on_attach = custom_lsp_attach,
+}
+
 -- LUA
 lspconfig.sumneko_lua.setup {
   cmd = { 'lua-language-server' };
@@ -97,5 +118,125 @@ lspconfig.sumneko_lua.setup {
       },
     },
   },
+  on_attach = custom_lsp_attach,
+}
+
+		"lua": {
+			"command": "lua-language-server",
+			"filetypes": [ "lua" ],
+			"settings": {
+				"Lua": {
+					"runtime": {
+						"version": "LuaJIT"
+					},
+					"hint": {
+						"enable": true,
+						"setType": true
+					},
+					"diagnostics": {
+						"globals": [ "vim", "define", "it" ],
+						"disable": [ "lowercase-global" ]
+					}
+				}
+			}
+		},
+
+-- HASKELL
+lspconfig.hls.setup{
+  cmd = { 'haskell-language-server-wrapper', '--lsp' },
+  filetypes = { "haskell", "lhaskell" },
+  root_dir = lspconfig.util.root_pattern("*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml", "" ),
+  settings = {
+    haskell = {
+      formattingProvider = 'brittany'
+    },
+  },
+  on_attach = custom_lsp_attach,
+}
+
+-- PERL
+lspconfig.perlls.setup{
+  on_attach = custom_lsp_attach,
+}
+
+-- PYTHON
+lspconfig.pyls.setup{
+  cmd = { 'pyls' },
+  filetypes = { 'python' },
+  on_attach = custom_lsp_attach,
+}
+
+-- RUBY
+lspconfig.solargraph.setup{
+  cmd = { "solargraph", "stdio" },
+  filetypes = { "ruby" },
+  root_dir = lspconfig.util.root_pattern("Gemfile", ".git", vim.fn.getcwd() ),
+  settings = {
+    solargraph = {
+      checkGemVersion = true,
+      completion = true,
+      definitions = true,
+      diagnostics = true,
+      folding = true,
+      formatting = true,
+      hover = true,
+      references = true,
+      rename = true,
+      symbols = true,
+    }
+  },
+  on_attach = custom_lsp_attach,
+}
+
+-- SHELL
+lspconfig.bashls.setup{
+  cmd = { "bash-language-server", "start" },
+  cmd_env = {
+    GLOB_PATTERN = "*@(.sh|.inc|.bash|.command)"
+  },
+  filetypes = { "sh", "bash", "zsh" },
+  on_attach = custom_lsp_attach,
+}
+
+-- TEX
+lspconfig.texlab.setup{
+  cmd = { 'texlab' },
+  filetypes = { 'tex', 'bib', 'plaintex' },
+  settings = {
+    bibtex = {
+      formatting = {
+        lineLenght = 120,
+        formatter = 'texlab',
+      },
+    },
+    latex = {
+      build = {
+        args = {
+          "-pdf",
+          "-shell-escape",
+          "-interaction=nonstopmode",
+          "-synctex=1",
+          "-file-line-error",
+          "%f"
+        },
+        executable = "latexmk",
+        onSave = false,
+      },
+      forwardSearch = {
+        args = { '%p' },
+        onSave = false,
+        executable = 'zathura',
+      },
+      lint = {
+        onChange = true,
+        onSave = true,
+      }
+    },
+  },
+  on_attach = custom_lsp_attach,
+}
+
+-- VIM
+lspconfig.vimls.setup{
   on_attach = custom_lsp_attach,
 }

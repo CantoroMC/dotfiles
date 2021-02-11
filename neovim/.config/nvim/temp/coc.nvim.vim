@@ -32,12 +32,12 @@ inoremap <expr> <S-Tab>
 
 inoremap <silent> <expr> <Plug>CustomCocCR
       \ pumvisible() ?
-      \ coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+      \   coc#_select_confirm() :
+      \ "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>\<C-r>=EndwiseDiscretionary()\<CR>"
 imap <CR> <Plug>CustomCocCR
 
 let g:coc_snippet_prev = '<c-k>'
 let g:coc_snippet_next = '<c-j>'
-
 
 " Section: Mappings
 
@@ -57,17 +57,38 @@ if has('nvim-0.4.0') || has('patch-8.2.0750')
         \ coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 endif
 
-" Diagnostic Navigation
-nmap <leader>qf  <Plug>(coc-fix-current)
-nmap [g          <Plug>(coc-diagnostic-prev)
-nmap ]g          <Plug>(coc-diagnostic-next)
-" code goto navigation and formatting.
-nmap <silent> <Leader>gd <Plug>(coc-definition)
-nmap <silent> <Leader>gy <Plug>(coc-type-definition)
-nmap <silent> <Leader>gi <Plug>(coc-implementation)
-nmap <silent> <Leader>go <Plug>(coc-references)
-nmap          <Leader>gf <Plug>(coc-format-selected)
-xmap          <Leader>gf <Plug>(coc-format-selected)
+augroup coc_map_ft
+  autocmd!
+  " Diagnostic Navigation
+  autocmd FileType
+        \ vim,sh,perl,c,cpp,go,json,typescript,ruby,haskell,lhaskell,tex,bib,plaintex,context,python
+        \ nmap <leader>qf  <Plug>(coc-fix-current)
+  autocmd FileType
+        \ vim,sh,perl,c,cpp,go,json,typescript,ruby,haskell,lhaskell,tex,bib,plaintex,context,python
+        \ nmap [g          <Plug>(coc-diagnostic-prev)
+  autocmd FileType
+        \ vim,sh,perl,c,cpp,go,json,typescript,ruby,haskell,lhaskell,tex,bib,plaintex,context,python
+        \ nmap ]g          <Plug>(coc-diagnostic-next)
+  " code goto navigation and formatting.
+  autocmd FileType
+        \ vim,sh,perl,c,cpp,go,json,typescript,ruby,haskell,lhaskell,tex,bib,plaintex,context,python
+        \ nmap <silent> <Leader>gd <Plug>(coc-definition)
+  autocmd FileType
+        \ vim,sh,perl,c,cpp,go,json,typescript,ruby,haskell,lhaskell,tex,bib,plaintex,context,python
+        \ nmap <silent> <Leader>gy <Plug>(coc-type-definition)
+  autocmd FileType
+        \ vim,sh,perl,c,cpp,go,json,typescript,ruby,haskell,lhaskell,tex,bib,plaintex,context,python
+        \ nmap <silent> <Leader>gi <Plug>(coc-implementation)
+  autocmd FileType
+        \ vim,sh,perl,c,cpp,go,json,typescript,ruby,haskell,lhaskell,tex,bib,plaintex,context,python
+        \ nmap <silent> <Leader>go <Plug>(coc-references)
+  autocmd FileType
+        \ vim,sh,perl,c,cpp,go,json,typescript,ruby,haskell,lhaskell,tex,bib,plaintex,context,python
+        \ nmap          <Leader>gf <Plug>(coc-format-selected)
+  autocmd FileType
+        \ vim,sh,perl,c,cpp,go,json,typescript,ruby,haskell,lhaskell,tex,bib,plaintex,context,python
+        \ xmap          <Leader>gf <Plug>(coc-format-selected)
+augroup END
 
 nnoremap <silent> <Leader>cA :<C-u>CocAction<CR>
 nnoremap <silent> <Leader>cD :<C-u>CocDiagnostic<CR>
@@ -78,3 +99,4 @@ nnoremap <silent> <Leader>cS :<C-u>CocList -I symbols<CR>
 
 command! -nargs=0 CocHover          :call CocActionAsync('doHover')
 command! -nargs=0 CocFormat         :call CocAction('format')
+

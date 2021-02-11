@@ -87,20 +87,21 @@ local function init()
 
   -- Section: UTILITIES {{{1
 
-  use { 'neoclide/coc.nvim',
-    branch = 'release'
-  }
-  use { 'rafcamlet/coc-nvim-lua',
-    require = { 'neoclide/coc.nvim',
-        branch = 'release'}
-  }
-  use { 'wellle/tmux-complete.vim',
-    require = { 'neoclide/coc.nvim',
-        branch = 'release'}
-  }
+  -- use { 'neoclide/coc.nvim',
+  --   branch = 'release'
+  -- }
+  -- use { 'rafcamlet/coc-nvim-lua',
+  --   require = { 'neoclide/coc.nvim',
+  --       branch = 'release'}
+  -- }
+  -- use { 'wellle/tmux-complete.vim',
+  --   require = { 'neoclide/coc.nvim',
+  --       branch = 'release'}
+  -- }
+
+  use 'neovim/nvim-lspconfig'                      -- Language Server Protocol
 
   -- GraveYard {{{
-  -- use 'neovim/nvim-lspconfig'                      -- Language Server Protocol
 
   -- use 'nvim-lua/completion-nvim'                   -- Completion
   -- use { 'steelsojka/completion-buffers',
@@ -231,7 +232,8 @@ use 'dstein64/vim-startuptime'
 -- TODO: {{{1
 
   use '~/Desktop/NeoLuaGit/nvim-hardline'
-  use '~/Desktop/PluginsBullici/vim-bolt'
+  use '~/Desktop/PluginsBullici/nuake'
+  use '~/Desktop/NeoLuaGit/nvim-toggleterm.lua'
 
   -- REPLs
   use { 'hkupty/iron.nvim',  -- On nvim terminal in lua
