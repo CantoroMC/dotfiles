@@ -9,3 +9,7 @@ Colorschemes
 tmux
 lua
 REPLs
+autoload
+plugins
+plugin
+config

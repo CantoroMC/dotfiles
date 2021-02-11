@@ -26,6 +26,7 @@ let maplocalleader = ' '
 
 " }}}
 
+
 " Section: Reimplemented Keys
 
 " Normal Visual Select Operator Modes: {{{1
@@ -92,6 +93,7 @@ cnoremap <C-R><C-L> <C-R>=substitute(getline('.'), '^\s*', '', '')<CR>
 
 " }}}
 
+
 " Section: Window And Tabs
 
 " Windows: {{{1
@@ -127,6 +129,7 @@ nnoremap <silent> gtF        <C-W>gF
 nnoremap <C-]><C-T> <C-W><C-]><C-W>T
 
 " }}}
+
 
 " Section: Editing
 
@@ -227,3 +230,5 @@ xnoremap <silent> <Leader>y
 " }}}
 
 " }}}
+
+" vim:fdm=marker

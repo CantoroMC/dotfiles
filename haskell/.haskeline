@@ -25,6 +25,5 @@ bind: F5 killline : r e l o a d return
 bind: F12 killline : q u i t return
 bind: meta-a home
 bind: meta-e end
-bind: ctrl-l killline : ! c l e a r return
 
 -- vim:ft=haskell

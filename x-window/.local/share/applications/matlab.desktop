@@ -1,10 +1,10 @@
 [Desktop Entry]
-Version=R2019b
+Version=R2020b
 Type=Application
 Terminal=false
 MimeType=text/x-matlab
-Exec=/usr/local/MATLAB/R2019b/bin/matlab -desktop -sd ~/Documents/programming/MATLAB
-Name=MATLAB R2019b
+Exec=/usr/local/MATLAB/R2020b/bin/matlab -desktop -sd ~/Documents/programming/MATLAB
+Name=MATLAB R2020b
 Icon=matlab
 Categories=Development;Math;Science
 Comment=Scientific computing environment

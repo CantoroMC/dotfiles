@@ -52,7 +52,7 @@ Programs in this directory are:
    #+end_src
 
 * Stowing
-  It is wise to check with =stow -nv package= every one of them.
+It is wise to check with =stow -nv package= every one of them.
   #+begin_src sh
     # git, nvim and emacs
     mkdir ~/.config/git

@@ -248,6 +248,7 @@ set tagcase=followscs
 filetype plugin indent on
 syntax enable
 
+
 " Section: ftplugin settings and more autocommands
 
 " Format Options: {{{1
@@ -284,6 +285,7 @@ syntax enable
 augroup user_formatoptions
   autocmd!
   autocmd FileType * setl formatoptions-=o
+  autocmd FileType * setl formatoptions-=t
   autocmd FileType * setl formatoptions+=nB
   " t: is useful sometimes and annoying in others
 augroup END
@@ -303,11 +305,12 @@ augroup keywordprg_filetype " {{{1
 augroup END
 " }}}
 
-augroup highlight_on_yank
+augroup highlight_on_yank " {{{1
   autocmd!
   autocmd TextYankPost *
         \ lua vim.highlight.on_yank({higroup="IncSearch", on_visual = false})
 augroup END
+" }}}
 
 
 " Section: Distribution Plugins And Scripts Options
@@ -395,3 +398,5 @@ let g:sh_fold_enabled= 7
 " }}}
 
 " }}}
+
+" vim:fdm=marker
