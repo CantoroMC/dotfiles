@@ -1,11 +1,10 @@
 -- NeoLua Init File
 
--- GLOBAL LUA VARIABLES 
+-- GLOBAL LUA VARIABLES
 PP = function(v)
   print(vim.inspect(v))
   return v
 end
-
 
 -- SETTINGS AND MAPPINGS
 local vimL_user_directory = string.format(
@@ -15,12 +14,10 @@ local vimL_user_directory = string.format(
 vim.cmd('source ' .. vim.fn.stdpath('config') .. '/settings.vim')
 vim.cmd('source ' .. vim.fn.stdpath('config') .. '/keymap.vim')
 
+
 -- PLUGINS SETTINGS
 require'mc.plugin.octolua'.digest()
-vim.cmd('colorscheme ayu') 
-
-
-
+vim.cmd('colorscheme ayu')
 
 -- Temp
 require'hardline'.setup {

@@ -87,17 +87,17 @@ local function init()
 
   -- Section: UTILITIES {{{1
 
-  -- use { 'neoclide/coc.nvim',
-  --   branch = 'release'
-  -- }
-  -- use { 'rafcamlet/coc-nvim-lua',
-  --   require = { 'neoclide/coc.nvim',
-  --       branch = 'release'}
-  -- }
-  -- use { 'wellle/tmux-complete.vim',
-  --   require = { 'neoclide/coc.nvim',
-  --       branch = 'release'}
-  -- }
+  use { 'neoclide/coc.nvim',
+    branch = 'release'
+  }
+  use { 'rafcamlet/coc-nvim-lua',
+    require = { 'neoclide/coc.nvim',
+        branch = 'release'}
+  }
+  use { 'wellle/tmux-complete.vim',
+    require = { 'neoclide/coc.nvim',
+        branch = 'release'}
+  }
 
   use 'neovim/nvim-lspconfig'                      -- Language Server Protocol
 

@@ -111,6 +111,25 @@
 				}
 			}
 		},
+		"lua": {
+			"command": "lua-language-server",
+			"filetypes": [ "lua" ],
+			"settings": {
+				"Lua": {
+					"runtime": {
+						"version": "LuaJIT"
+					},
+					"hint": {
+						"enable": true,
+						"setType": true
+					},
+					"diagnostics": {
+						"globals": [ "vim", "define", "it" ],
+						"disable": [ "lowercase-global" ]
+					}
+				}
+			}
+		},
 		"python": {
 			"command": "pyls",
 			"filetypes": ["python"],
