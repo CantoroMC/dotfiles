@@ -249,7 +249,7 @@ command! -bang -nargs=0 VimData
 function! s:VimConfigs() abort " {{{2
   let l:base = expand('~/.config/nvim/')
   let l:dirs = [
-        \ 'plugin.d',
+        \ 'after/**',
         \ 'init.d',
         \ 'lua/**',
         \ ]
@@ -356,3 +356,5 @@ command! -bang -nargs=0 MarkdownCite
 " }}}
 
 " }}}
+
+" vim:fdm=marker
