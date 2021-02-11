@@ -20,8 +20,8 @@ vim.cmd('colorscheme ayu')
 -- PLUGINS SETTINGS
 require'mc.plugin.octopus'.digest()
 
-require'hardline'.setup {
-}
+-- require'hardline'.setup {
+-- }
 
 -- CLOSURE
 

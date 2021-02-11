@@ -230,7 +230,7 @@ use 'dstein64/vim-startuptime'
 
 -- TODO: {{{1
 
-  use '~/Desktop/NeoLuaGit/nvim-hardline'
+  -- use '~/Desktop/NeoLuaGit/nvim-hardline'
 
   -- REPLs
   use { 'hkupty/iron.nvim',  -- On nvim terminal in lua

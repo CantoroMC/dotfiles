@@ -2,7 +2,7 @@ stack-static
 bibtool
 latex-enumitem
 ttf-font-awesome-4
-imagewriter
+imagewriter-git
 polyglot-winboard-git
 radiotray-ng
 onlyoffice-bin

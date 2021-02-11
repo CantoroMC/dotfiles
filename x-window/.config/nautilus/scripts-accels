@@ -1,3 +1,0 @@
-(gtk_accel_path
-"<Actions>\/ExtensionsMenuGroup\/NautilusOpenTerminal::open_terminal"
-"")/(gtk_accel_path "<Actions>\/ExtensionsMenuGroup\/openTerminalHere::open_terminal" "F12")

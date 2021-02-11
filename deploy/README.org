@@ -58,6 +58,7 @@ Programs in this directory are:
     mkdir ~/.config/git
     mkdir ~/.config/emacs
     mkdir ~/.config/nvim
+    mkdir -p ~/.local/share/nvim/site/pack
     # music and mail
     mkdir -p ~/.config/mpd/playlists
     mkdir ~/.config/radiotray-ng
@@ -260,9 +261,10 @@ NeoVim v5.0 will be soon released
 Additional(not already installed) packages required to build neovim from source
 #+begin_src shell
   sudo pacman -S --needed ninja tree-sitter
+  sudo pacman -S --needed libtermkey libuv msgpack-c unibilium libvterm luajit libluv # neovim 4 dependencies
 #+end_src
 
-** TODO Aboid "bundled" dependencies
+** TODO Avoid "bundled" dependencies
 #+begin_src
   sudo pacman -S --needed luajit luarocks lua-lpeg lua-mpack gperf unibilium libmspack libtermkey libvterm jemalloc
 #+end_src
