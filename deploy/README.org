@@ -165,7 +165,7 @@ Now you re ready to go!
 *** XMonad and XMobar
 After the first compilation of the two cabal projects.
 #+begin_src sh
-ln -sv $XMONAD_CONFIG_DIR/xmonad-x86-64-linux ~/.local/bin
+ln -sv $XMONAD_CONFIG_DIR/xmonad-x86_64-linux ~/.local/bin
 #+end_src
 
 *** Pandoc
@@ -259,6 +259,7 @@ NeoVim v5.0 will be soon released
 
 ** Build prerequisites
 Additional(not already installed) packages required to build neovim from source
+# aur depends on: libtermkey msgpack-c libvterm libtree-sitter.so
 #+begin_src shell
   sudo pacman -S --needed ninja tree-sitter
   sudo pacman -S --needed libtermkey libuv msgpack-c unibilium libvterm luajit libluv # neovim 4 dependencies

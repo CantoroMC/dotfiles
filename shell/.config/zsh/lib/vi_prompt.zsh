@@ -153,12 +153,12 @@ vim-mode-set-up-indicators () {
   if [[ -n $indicator || $set > 0 ]]; then
     if (( ! $set )); then
       if [[ $indicator = DEFAULT ]]; then
-        MODE_INDICATOR_VIINS='%F{7}INSERT%f'
-        MODE_INDICATOR_VICMD='%F{2}NORMAL%f'
-        MODE_INDICATOR_REPLACE='%F{1}REPLACE%f'
-        MODE_INDICATOR_SEARCH='%F{5}SEARCH%f'
-        MODE_INDICATOR_VISUAL='%F{4}VISUAL%f'
-        MODE_INDICATOR_VLINE='%F{4}V-LINE%f'
+        MODE_INDICATOR_VIINS='%F{7}[I]%f'
+        MODE_INDICATOR_VICMD='%F{2}[N]%f'
+        MODE_INDICATOR_REPLACE='%F{1}[R]%f'
+        MODE_INDICATOR_SEARCH='%F{5}[S]%f'
+        MODE_INDICATOR_VISUAL='%F{4}[V]%f'
+        MODE_INDICATOR_VLINE='%F{4}[V-L]%f'
       else
         MODE_INDICATOR_VICMD=$indicator
       fi

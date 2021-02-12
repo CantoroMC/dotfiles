@@ -1,4 +1,5 @@
 stack-static
+cabal-static
 bibtool
 latex-enumitem
 ttf-font-awesome-4
@@ -6,4 +7,5 @@ imagewriter-git
 polyglot-winboard-git
 radiotray-ng
 onlyoffice-bin
+neovim-nightly-git
 lua-language-server-git

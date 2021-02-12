@@ -16,10 +16,10 @@ vim.cmd('source ' .. vim.fn.stdpath('config') .. '/keymap.vim')
 
 
 -- PLUGINS SETTINGS
-require'mc.plugin.octolua'.digest()
-vim.cmd('colorscheme ayu')
+-- require'mc.plugin.octolua'.digest()
+vim.cmd('colorscheme murphy')
 
--- Temp
+--[==[ Temp
 require'hardline'.setup {
 }
 
@@ -31,6 +31,7 @@ require"toggleterm".setup {
   persist_size = true,
   direction = 'horizontal',
 }
+-]==]
 
 -- CLOSURE
 vim.o.secure = true

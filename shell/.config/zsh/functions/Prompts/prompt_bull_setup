@@ -32,7 +32,7 @@ prompt_bull_setup () {
   local time="%B%F{$color1}%*%f%b"
   local hist_len="%B%F{$color1}%h%f%b"
 
-  PS1=" ${distro_icon} ${dir_bar} ${nr_jobs} ${return_code} ${time} - ${hist_len} $prompt_newline ${start} "
+  PS1=" ${distro_icon} ${dir_bar} ${nr_jobs} ${return_code} ${time} - ${hist_len} $prompt_newline ${MODE_INDICATOR_PROMPT} ${start} "
   PS2="%F{$color1}%K{$color1}$schars[333]$schars[262]$schars[261]$schars[260]%f%k%_>"
 
   # Git prompt configuration thanks to omz/lib/git.zsh
@@ -43,12 +43,12 @@ prompt_bull_setup () {
   ZSH_THEME_GIT_PROMPT_DIRTY="%{✗ %1G%}%b%F{$color3}%})"
   ZSH_THEME_GIT_PROMPT_CLEAN="%{✓ %1G%}%b%F{$color3})"
   # Status
-  ZSH_THEME_GIT_PROMPT_ADDED="%B%F{$color2}%{✚ %2G%}%f%b"
-  ZSH_THEME_GIT_PROMPT_MODIFIED="%B%F{$color2}%{ %2G%}%f%b"
-  ZSH_THEME_GIT_PROMPT_DELETED="%B%F{$color2}%{✖ %2G%}%f%b"
-  ZSH_THEME_GIT_PROMPT_RENAMED="%B%F{$color2}%{➜ %2G%}%f%b"
-  ZSH_THEME_GIT_PROMPT_UNMERGED="%B%F{$color2}%{ %2G%}%f%b"
-  ZSH_THEME_GIT_PROMPT_UNTRACKED="%B%F{$color2}%{★ %2G%}%f%b"
+  ZSH_THEME_GIT_PROMPT_ADDED="%B%F{$color2}%{✚   %4G%}%f%b"
+  ZSH_THEME_GIT_PROMPT_MODIFIED="%B%F{$color2}%{   %4G%}%f%b"
+  ZSH_THEME_GIT_PROMPT_DELETED="%B%F{$color1}%{✖   %4G%}%f%b"
+  ZSH_THEME_GIT_PROMPT_RENAMED="%B%F{$color2}%{➜   %4G%}%f%b"
+  ZSH_THEME_GIT_PROMPT_UNMERGED="%B%F{$color1}%{   %4G%}%f%b"
+  ZSH_THEME_GIT_PROMPT_UNTRACKED="%B%F{$color1}%{★   %4G%}%f%b"
   # SHA
   ZSH_THEME_GIT_PROMPT_SHA_BEFORE="%F{$color3}%{ %2G%}:(%B%F{$color1}"
   ZSH_THEME_GIT_PROMPT_SHA_AFTER="%f%b"
@@ -62,8 +62,7 @@ prompt_bull_setup () {
   local git_status='$(git_prompt_status)'
   local git_commits='$(git_commits_ahead) $(git_commits_behind)'
 
-  RPS1='${MODE_INDICATOR_PROMPT}'
-  RPS1+=" ${git_commits}${git_branch}${git_status}"
+  RPS1="${git_commits}${git_branch}${git_status}"
 
   prompt_opts=(cr subst percent)
 }

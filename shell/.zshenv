@@ -20,8 +20,8 @@ export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 
 # System resources {{{1
 if whereis nvim &>/dev/null; then
-  export VISUAL="/usr/local/bin/nvim"
-  export EDITOR='/usr/local/bin/nvim'
+  export VISUAL="/usr/bin/nvim"
+  export EDITOR='/usr/bin/nvim'
 elif whereis vim &>/dev/null; then
   export VISUAL="/usr/bin/vim"
   export EDITOR='/usr/bin/vim'

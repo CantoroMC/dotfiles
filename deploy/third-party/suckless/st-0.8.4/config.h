@@ -1,8 +1,8 @@
 // Appearance
 static char *fonts[] = {
-	"SauceCodePro Nerd Font:pixelsize=13:antialias=true:autohint=true"
 	"Operator Mono Lig Book:pixelsize=13:antialias=true:autohint=true",
 	"FiraCode Nerd Font:pixelsize=13:antialias=true:autohint=true",
+	"SauceCodePro Nerd Font:pixelsize=13:antialias=true:autohint=true"
 	"JetBrainsMono Nerd Font:pixelsize=13:antialias=true:autohint=true",
 };
 static int fonts_current = 0;
