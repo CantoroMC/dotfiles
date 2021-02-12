@@ -1,7 +1,6 @@
 #!/bin/sh
 
-#DEFAULT_SESSION=xmonad-x86_64-linux
-DEFAULT_SESSION=dwm
+DEFAULT_SESSION=xmonad-x86_64-linux
 
 # Load xprofile
 sysprofile=/etc/xprofile

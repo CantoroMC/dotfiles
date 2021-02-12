@@ -57,7 +57,7 @@ manageFloatings =
            , (className =? "Display" <&&> title =? "ImageMagick: ")
                --> doCenterFloat
            , (    className
-             =?   "MATLAB R2019b - academic use"
+             =?   "MATLAB R2020b - academic use"
              <&&> title
              *!?  "^MATLAB"
              )

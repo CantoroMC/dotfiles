@@ -1,25 +1,29 @@
 # Bookmarks to be fed to fzf and zle
 # Shell comments and empty lines will be stripped
 ~/Music/database
+
 ~/Downloads
 ~/Desktop
 ~/Documents
+~/Pictures
+
 ~/Documents/programming/Haskell
 ~/Documents/programming/Lua
 ~/Documents/programming/MATLAB
+
 ~/Documents/programming/TeX
 ~/Documents/programming/TeX/beamers
 ~/Documents/programming/TeX/matriHX
 ~/Documents/programming/TeX/curriculum
-~/Pictures
+
 ~/dotfiles
 ~/dotfiles/deploy/third-party
 ~/.config
 ~/.config/zsh
-~/.config/nvim
 ~/.local/bin
 ~/.local/share
-~/.local/share/nvim
 
+~/.local/share/nvim
+~/.config/nvim
 ~/dotfiles/neovim/.config/nvim
 ~/dotfiles/neovim/.local/share/nvim

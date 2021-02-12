@@ -9,13 +9,13 @@ set-option -g status-style bg=#151a1e,fg=#465764
 set-option -g status-left-length 50
 set-option -g status-left \
 "#[fg=#b8cc52, bg=#1c2328, italics, bold]  #S:#I.#P/#{window_panes} \
-#[fg=#1c2328, bg=#b8cc52, nobold, noitalics, nounderscore] "
+#[fg=#b8cc52, bg=#1c2328, nobold, noitalics, nounderscore] "
 # Right Side
 set -g status-right-length 50
 set-option -g status-right \
 "#[fg=#e7c547, bg=#151a1e, nobold, nounderscore, noitalics] \
-#[fg=#e7c547,bg=#151a1e, italics]#{?client_prefix, ... ,}\
-#[fg=#232b32,bg=#b8cc52, italics, bold]\
+#[fg=#151a1e,bg=#e7c547, italics]#{?client_prefix, ... ,}\
+#[fg=#b8cc52,bg=#232b32, italics, bold]\
  祥#(uptime | awk '{ print $3 }' | sed 's/,//')h:m\
  #[fg=#b8cc52, bg=#232b32, nobold, noitalics, nounderscore]\
 #[fg=#1c2328, bg=#b8cc52, bold] %d-%b-%Y|%H:%M "

@@ -65,6 +65,7 @@ It is wise to check with =stow -nv package= every one of them.
     mkdir ~/.config/neomutt
     # shell
     mkdir -p ~/.config/zsh/plugins
+    mkdir ~/.config/nnn
     mkdir ~/.local/bin
     # X
     mkdir -p ~/.local/share/xorg
@@ -227,8 +228,8 @@ The temp directory may run out of space so you can
 #+end_src
 and when the installation process is finished
 #+begin_src sh
-    sudo umount /tmp
-    rm -rf $HOME/matlabdl
+  sudo umount /tmp
+  rm -rf $HOME/matlabdl
 #+end_src
 
 libselinux libsepol are requested and can be installed from the AUR
@@ -258,12 +259,15 @@ causes problem to the documentation rendering....
 NeoVim v5.0 will be soon released
 
 ** Build prerequisites
-Additional(not already installed) packages required to build neovim from source
-# aur depends on: libtermkey msgpack-c libvterm libtree-sitter.so
+Additional (not already installed) packages required to build neovim from source
 #+begin_src shell
   sudo pacman -S --needed ninja tree-sitter
-  sudo pacman -S --needed libtermkey libuv msgpack-c unibilium libvterm luajit libluv # neovim 4 dependencies
 #+end_src
+
+*** Aur Package does that
+Make Deps: git cmake ninja lua51-mpack lua51-lpeg gperf
+Depends On: libtermkey msgpack-c libluv libvterm libtree-sitter.so(tree-sitter)
+(unibilium, luajit, libuv)?
 
 ** TODO Avoid "bundled" dependencies
 #+begin_src
@@ -273,5 +277,5 @@ Additional(not already installed) packages required to build neovim from source
 ** Building
 #+begin_src shell
   make CMAKE_BUILD_TYPE=RelWithDebInfo USE_BUNDLED=OFF
-  sudo make install
+  sudo make CMAKE_INSTALL_PREFIX=/usr install
 #+end_src
