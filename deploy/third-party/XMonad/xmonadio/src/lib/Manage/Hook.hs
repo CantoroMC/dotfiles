@@ -54,14 +54,8 @@ manageFloatings =
            , title =? "orgenda" --> doRectFloat xmBigRect
            , title =? "volume" --> doRectFloat xmMedRect
            , role =? "pop-up" --> doCenterFloat
-           , (className =? "Display" <&&> title =? "ImageMagick: ")
-               --> doCenterFloat
-           , (    className
-             =?   "MATLAB R2020b - academic use"
-             <&&> title
-             *!?  "^MATLAB"
-             )
-               --> doRectFloat xmBigRect
+           , (className =? "Display" <&&> title =? "ImageMagick: ") --> doCenterFloat
+           , (className =? "MATLAB R2020b - academic use" <&&> title *!?  "^MATLAB") --> doFloat
            ]  where
     appsToFloat =
         [ "Arandr"
