@@ -30,7 +30,7 @@ data Theme = Theme
 
 xmTheme :: Theme
 xmTheme = Theme
-    { borderWidth         = 3
+    { borderWidth         = 1
     , activeColor         = color8 xmColors
     , inactiveColor       = color0 xmColors
     , urgentColor         = color1 xmColors

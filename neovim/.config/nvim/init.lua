@@ -16,17 +16,15 @@ vim.cmd('source ' .. vim.fn.stdpath('config') .. '/keymap.vim')
 
 -- PLUGINS SETTINGS
 require'mc.plugin.octolua'.digest()
-vim.cmd('colorscheme gruvbox')
+vim.cmd('colorscheme ayu')
 
---[==[ Temp
 require'hardline'.setup {
 }
--]==]
 
 require"toggleterm".setup {
   size = 20,
   open_mapping = [[<c-\>]],
-  shade_filetypes = {},
+  shade_filetypes = {'none','lua'},
   shade_terminals = true,
   persist_size = true,
   direction = 'horizontal',

@@ -25,3 +25,7 @@ guibg
 gui
 Statusline
 statusline
+highlightings
+Cantoro
+bufnr
+autocommands

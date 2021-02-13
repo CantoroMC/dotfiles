@@ -121,14 +121,14 @@
 						"version": "LuaJIT"
 					},
 					"hint": {
-						"enable": true,
-						"setType": true
+						"enable": false,
+						"setType": false
 					},
 					"compleiton": {
 						"keywordSnippet": "Both"
 					},
 					"diagnostics": {
-						"enable": true,
+						"enable": false,
 						"globals": [ "vim", "define", "it", "describe", "before_each", "after_each" ],
 						"disable": [ "lowercase-global" ]
 					},

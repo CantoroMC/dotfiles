@@ -98,9 +98,10 @@ local function init()
       branch = 'release'}
   }
 
+  use 'neovim/nvim-lspconfig'
+
   -- GraveYard {{{
   --[=====[
-  use 'neovim/nvim-lspconfig'
 
   use 'nvim-lua/completion-nvim'                   -- Completion
   use { 'steelsojka/completion-buffers',
@@ -197,9 +198,9 @@ local function init()
   -- }}}
 
   -- TODO: {{{3
-  -- use '~/Desktop/NeoLuaGit/nvim-hardline'
+  use '~/Desktop/NeoLuaGit/StatusLine/nvim-hardline'
   -- use '~/Desktop/PluginsBullici/nuake'
-  use '~/Desktop/uglyduck.nvim'
+  use 'akinsho/nvim-toggleterm.lua'
   -- REPLs
   --use { 'hkupty/iron.nvim',  -- On nvim terminal in lua
   --  as = 'iron'

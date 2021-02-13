@@ -93,6 +93,19 @@ cnoremap <C-R><C-L> <C-R>=substitute(getline('.'), '^\s*', '', '')<CR>
 
 " }}}
 
+" Terminal Mode: {{{1
+
+" Simulate i_CTRL-R in terminal mode
+tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
+
+" Window navigation even in terminal mode
+tnoremap <C-W>h <C-\><C-N><C-w>h
+tnoremap <C-W>j <C-\><C-N><C-w>j
+tnoremap <C-W>k <C-\><C-N><C-w>k
+tnoremap <C-W>l <C-\><C-N><C-w>l
+
+" }}}
+
 
 " Section: Window And Tabs
 
