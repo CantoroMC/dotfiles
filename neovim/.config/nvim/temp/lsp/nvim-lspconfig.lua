@@ -63,6 +63,7 @@ local custom_lsp_attach = function(client)
   end
 end
 
+--[===[
 -- C,CPP
 lspconfig.clangd.setup({
   cmd = {
@@ -75,7 +76,6 @@ lspconfig.clangd.setup({
   filetypes = { "c", "cpp", "objc", "objcpp" },
   on_attach = custom_lsp_attach,
 })
-
 -- GO
 lspconfig.gopls.setup{
   cmd = { "gopls" },
@@ -83,64 +83,6 @@ lspconfig.gopls.setup{
   root_dir = lspconfig.util.root_pattern("go.mod", ".git", vim.fn.getcwd() ),
   on_attach = custom_lsp_attach,
 }
-
--- LUA
-lspconfig.sumneko_lua.setup {
-  cmd = { 'lua-language-server' };
-  filetypes = { 'lua' },
-
-  settings = {
-    Lua = {
-      runtime = {
-        version = 'LuaJIT',
-        path = vim.split(package.path, ';'),
-      },
-
-      completion = {
-        keywordSnippet = { "Both" },
-      },
-
-      hint = {
-        enable = true,
-        setType = true,
-      },
-
-      diagnostics = {
-        globals = {'vim', 'define', 'it'},
-        disable = { "lowercase-global" },
-      },
-
-      workspace = {
-        library = {
-          [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-          [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-        },
-      },
-    },
-  },
-  on_attach = custom_lsp_attach,
-}
-
-		"lua": {
-			"command": "lua-language-server",
-			"filetypes": [ "lua" ],
-			"settings": {
-				"Lua": {
-					"runtime": {
-						"version": "LuaJIT"
-					},
-					"hint": {
-						"enable": true,
-						"setType": true
-					},
-					"diagnostics": {
-						"globals": [ "vim", "define", "it" ],
-						"disable": [ "lowercase-global" ]
-					}
-				}
-			}
-		},
-
 -- HASKELL
 lspconfig.hls.setup{
   cmd = { 'haskell-language-server-wrapper', '--lsp' },
@@ -153,19 +95,16 @@ lspconfig.hls.setup{
   },
   on_attach = custom_lsp_attach,
 }
-
 -- PERL
 lspconfig.perlls.setup{
   on_attach = custom_lsp_attach,
 }
-
 -- PYTHON
 lspconfig.pyls.setup{
   cmd = { 'pyls' },
   filetypes = { 'python' },
   on_attach = custom_lsp_attach,
 }
-
 -- RUBY
 lspconfig.solargraph.setup{
   cmd = { "solargraph", "stdio" },
@@ -187,7 +126,6 @@ lspconfig.solargraph.setup{
   },
   on_attach = custom_lsp_attach,
 }
-
 -- SHELL
 lspconfig.bashls.setup{
   cmd = { "bash-language-server", "start" },
@@ -197,46 +135,46 @@ lspconfig.bashls.setup{
   filetypes = { "sh", "bash", "zsh" },
   on_attach = custom_lsp_attach,
 }
-
--- TEX
-lspconfig.texlab.setup{
-  cmd = { 'texlab' },
-  filetypes = { 'tex', 'bib', 'plaintex' },
-  settings = {
-    bibtex = {
-      formatting = {
-        lineLenght = 120,
-        formatter = 'texlab',
-      },
-    },
-    latex = {
-      build = {
-        args = {
-          "-pdf",
-          "-shell-escape",
-          "-interaction=nonstopmode",
-          "-synctex=1",
-          "-file-line-error",
-          "%f"
-        },
-        executable = "latexmk",
-        onSave = false,
-      },
-      forwardSearch = {
-        args = { '%p' },
-        onSave = false,
-        executable = 'zathura',
-      },
-      lint = {
-        onChange = true,
-        onSave = true,
-      }
-    },
-  },
-  on_attach = custom_lsp_attach,
-}
-
 -- VIM
 lspconfig.vimls.setup{
+  on_attach = custom_lsp_attach,
+}
+--]===]
+
+-- LUA
+lspconfig.sumneko_lua.setup {
+  cmd = { 'lua-language-server' };
+  filetypes = { 'lua', '-E', '/usr/share/lua-language-server/main.lua' },
+
+  settings = {
+    Lua = {
+      runtime = {
+        version = 'LuaJIT',
+        path = vim.split(package.path, ';'),
+      },
+
+      completion = {
+        keywordSnippet = { "Both" },
+      },
+
+      hint = {
+        enable = true,
+        setType = true,
+      },
+
+      diagnostics = {
+        enable = true,
+        globals = {'vim', 'define', 'it'},
+        disable = { "lowercase-global" },
+      },
+
+      workspace = {
+        library = {
+          [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+          [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+        },
+      },
+    },
+  },
   on_attach = custom_lsp_attach,
 }

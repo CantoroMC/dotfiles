@@ -14,14 +14,14 @@ local vimL_user_directory = string.format(
 vim.cmd('source ' .. vim.fn.stdpath('config') .. '/settings.vim')
 vim.cmd('source ' .. vim.fn.stdpath('config') .. '/keymap.vim')
 
-
 -- PLUGINS SETTINGS
--- require'mc.plugin.octolua'.digest()
-vim.cmd('colorscheme murphy')
+require'mc.plugin.octolua'.digest()
+vim.cmd('colorscheme gruvbox')
 
 --[==[ Temp
 require'hardline'.setup {
 }
+-]==]
 
 require"toggleterm".setup {
   size = 20,
@@ -31,7 +31,6 @@ require"toggleterm".setup {
   persist_size = true,
   direction = 'horizontal',
 }
--]==]
 
 -- CLOSURE
 vim.o.secure = true

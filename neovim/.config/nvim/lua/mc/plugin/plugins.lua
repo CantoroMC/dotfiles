@@ -1,4 +1,4 @@
--- Install Packer {{{1
+-- DOWNLOAD PACKER {{{1
 local directory = string.format(
   '%s/site/pack/packer/opt',
   vim.fn.stdpath('data')
@@ -7,7 +7,6 @@ local image = string.format(
   '%s/packer.nvim',
   directory
 )
-
 local isPacker = vim.fn.isdirectory(image)
 if isPacker == 0 then
   if vim.fn.input('Download Packer? (y for yes) ') ~= 'y' then
@@ -27,15 +26,15 @@ if isPacker == 0 then
 end
 -- }}}
 
+-- PACKER MAIN {{{1
 local packer = nil
-
 local function init()
-
+  -- INIT {{{2
   if packer == nil then
     packer = require('packer')
     packer.init({
       disable_commands = true
-      -- TODO Float Window {{{1
+      -- TODO Float Window {{{3
       --[[
       display = {
         open_fn = function(name)
@@ -79,104 +78,86 @@ local function init()
   local use = packer.use
   -- local use_rocks = packer.use_rocks
   packer.reset()
+  -- }}}
 
+  -- PACKAGES {{{2
   -- Let Packer Manage Itself
   use { 'wbthomason/packer.nvim',
     opt = true
   }
-
-  -- Section: UTILITIES {{{1
-
+  -- UTILITIES {{{3
   use { 'neoclide/coc.nvim',
     branch = 'release'
   }
   use { 'rafcamlet/coc-nvim-lua',
     require = { 'neoclide/coc.nvim',
-        branch = 'release'}
+      branch = 'release'}
   }
   use { 'wellle/tmux-complete.vim',
     require = { 'neoclide/coc.nvim',
-        branch = 'release'}
+      branch = 'release'}
   }
 
-  use 'neovim/nvim-lspconfig'                      -- Language Server Protocol
-
   -- GraveYard {{{
+  --[=====[
+  use 'neovim/nvim-lspconfig'
 
-  -- use 'nvim-lua/completion-nvim'                   -- Completion
-  -- use { 'steelsojka/completion-buffers',
-  --   requires = { 'nvim-lua/completion-nvim' },
-  -- }
-  -- use { 'albertoCaroM/completion-tmux',
-  --   requires = { 'nvim-lua/completion-nvim' },
-  -- }
-  -- use { 'nvim-treesitter/completion-treesitter',
-  --   requires = { {'nvim-lua/completion-nvim'}, {'nvim-treesitter/nvim-treesitter'} },
-  -- }
-  -- -- Tree Sitter: Syntax, Indentation, TextObject, Foldings.... SYNTAX AWARE.
-  -- use { 'nvim-treesitter/nvim-treesitter',
-  --   run = ':TSUpdate',
-  -- }
-  -- use { 'nvim-treesitter/nvim-treesitter-refactor',
-  --   requires = 'nvim-treesitter/nvim-treesitter',
-  -- }
-  -- use { 'nvim-treesitter/nvim-treesitter-textobjects',
-  --   requires = 'nvim-treesitter/nvim-treesitter',
-  -- }
-  -- use { 'nvim-treesitter/playground',
-  --   requires = 'nvim-treesitter/nvim-treesitter',
-  -- }
+  use 'nvim-lua/completion-nvim'                   -- Completion
+  use { 'steelsojka/completion-buffers',
+    requires = { 'nvim-lua/completion-nvim' },
+  }
+  use { 'albertoCaroM/completion-tmux',
+    requires = { 'nvim-lua/completion-nvim' },
+  }
+  use { 'nvim-treesitter/completion-treesitter',
+    requires = { {'nvim-lua/completion-nvim'}, {'nvim-treesitter/nvim-treesitter'} },
+  }
+
+  -- Tree Sitter: Syntax, Indentation, TextObject, Foldings.... SYNTAX AWARE.
+  use { 'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+  }
+  use { 'nvim-treesitter/nvim-treesitter-refactor',
+    requires = 'nvim-treesitter/nvim-treesitter',
+  }
+  use { 'nvim-treesitter/nvim-treesitter-textobjects',
+    requires = 'nvim-treesitter/nvim-treesitter',
+  }
+  use { 'nvim-treesitter/playground',
+    requires = 'nvim-treesitter/nvim-treesitter',
+  }
+  --]=====]
   -- }}}
 
-  use 'junegunn/fzf'                               -- Commands wrapped around fzf
+  use 'junegunn/fzf'
   use { 'junegunn/fzf.vim',
     requires = { 'junegunn/fzf' },
   }
-
-  --[=[ This seems cool and not so intrusive
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = {
-      {'nvim-lua/popup.nvim'},
-      {'nvim-lua/plenary.nvim'}
-    }
+  use { 'CantoroMC/slimux',  -- On tmux
+    opt = true,
+    cmd = { 'SlimuxREPLConfigure', 'SlimuxShellConfigure', 'SlimuxGlobalConfigure' },
   }
-  --]=]
-
   -- }}}
-
-
-  -- Section: GUIFICATION {{{1
-
-  use 'CantoroMC/ayu-vim'               -- Colorschemes
+  -- GUI UTILITIES {{{3
+  -- Colorschemes {{{4
+  use 'CantoroMC/ayu-vim'
   use 'sjl/badwolf'
   use 'morhetz/gruvbox'
   use 'NLKNguyen/papercolor-theme'
   use 'srcery-colors/srcery-vim'
-
-  use { 'CantoroMC/nvim-tree.lua',      -- File Explorer
+  -- }}}
+  use { 'CantoroMC/nvim-tree.lua',
     as = 'nvim-tree',
-    requires = { 'kyazdani42/nvim-web-devicons' },
   }
-
-  use 'Yggdroot/indentLine'             -- Show indent line and leading spaces
-  use { 'norcalli/nvim-colorizer.lua',  -- Show RGB,HTML... Colors
+  use 'Yggdroot/indentLine'              -- Show indent line and leading spaces
+  use { 'norcalli/nvim-colorizer.lua',   -- Show RGB,HTML... Colors
     as = 'nvim-colorizer'
   }
-
-  use { 'mbbill/undotree',              -- Vim undo shown ad a Tree
-    cmd = 'UndotreeToggle'
-  }
-
- use { 'mhinz/vim-startify',             -- Start page and session management
+  use { 'mhinz/vim-startify',            -- Start page and session management
     requires = 'ryanoasis/vim-devicons', -- Maybe this can be removed
   }
-
   -- }}}
-
-
-  -- Section: HIS HOLINESS {{{1
-
+  -- HIS HOLINESS {{{3
   use 'tpope/vim-apathy'         -- `path`, `suffixesadd`, `include`, `includeexpr` and `define`
   use 'tpope/vim-abolish'        -- Language friendly searches, substitutions and abbreviations
   use 'tpope/vim-commentary'     -- Comment stuff out
@@ -192,60 +173,42 @@ local function init()
   use 'tpope/vim-repeat'         -- enable repeating supported plugin maps with `.`
   use 'tpope/vim-rhubarb'        -- GitHub extension for fugitive.vim
   use 'CantoroMC/vim-unimpaired' -- Pairs of handy bracket mappings
-
   -- }}}
-
-
-  -- Section: TEXT MANIPULATION {{{1
-
+  -- TEXT MANIPULATION {{{3
   use { 'godlygeek/tabular',
     opt = true,
     cmd = { 'Tabularize' },
   }
-
+  use { 'mbbill/undotree',
+    opt = true,
+    cmd = 'UndotreeToggle'
+  }
   -- }}}
-
-
-  -- Section: FILETYPE PLUGINS {{{1
-
+  -- FILETYPE PLUGINS {{{3
   use 'neovimhaskell/haskell-vim'       -- Haskell
-
   use 'euclidianace/betterlua.vim'      -- Lua
-
   use { 'iamcco/markdown-preview.nvim', -- Markdown
     run = ':call mkdp#util#install()',
   }
-
-
   use 'CantoroMC/vim-rasi'              -- Rofi Advanced Style Information
-
+  -- }}}
+  -- VIM DEVELOPMENT {{{3
+  use 'dstein64/vim-startuptime'
   -- }}}
 
-
--- VIM DEVELOPMENT {{{1
-
-use 'dstein64/vim-startuptime'
-
--- }}}
-
-
--- TODO: {{{1
-
-  use '~/Desktop/NeoLuaGit/nvim-hardline'
-  use '~/Desktop/PluginsBullici/nuake'
-  use '~/Desktop/NeoLuaGit/nvim-toggleterm.lua'
-
+  -- TODO: {{{3
+  -- use '~/Desktop/NeoLuaGit/nvim-hardline'
+  -- use '~/Desktop/PluginsBullici/nuake'
+  use '~/Desktop/uglyduck.nvim'
   -- REPLs
-  use { 'hkupty/iron.nvim',  -- On nvim terminal in lua
-    as = 'iron'
-  }
-  use { 'CantoroMC/slimux',  -- On tmux
-    cmd = { 'SlimuxREPLConfigure', 'SlimuxShellConfigure', 'SlimuxGlobalConfigure' },
-  }
-
--- }}}
+  --use { 'hkupty/iron.nvim',  -- On nvim terminal in lua
+  --  as = 'iron'
+  --}
+  -- }}}
+  -- }}}
 
 end
+-- }}}
 
 local plugins = setmetatable({}, {
   __index = function(_, key)
@@ -256,4 +219,4 @@ local plugins = setmetatable({}, {
 
 return plugins
 
--- vim:fdm=marker
+-- vim:fdm=marker:nospell

@@ -13,3 +13,15 @@ autoload
 plugins
 plugin
 config
+colorscheme
+badwolf
+autocmd
+augroup
+filetype
+CTRL
+programmatically
+bg
+guibg
+gui
+Statusline
+statusline

@@ -52,7 +52,6 @@
 	"coc.source.email.firstMatch": true,
 	"coc.source.email.shortcut": "EMAIL",
 
-	// Language Servers
 	"solargraph.trace.server": "messages",
 	"solargraph.promptDownload": true,
 	"solargraph.hover": true,
@@ -112,8 +111,10 @@
 			}
 		},
 		"lua": {
-			"command": "lua-language-server",
+			"command": "/usr/bin/lua-language-server",
+			"args": ["-E", "/usr/share/lua-language-server/main.lua"],
 			"filetypes": [ "lua" ],
+			"rootPatterns": [".git"],
 			"settings": {
 				"Lua": {
 					"runtime": {
@@ -123,9 +124,19 @@
 						"enable": true,
 						"setType": true
 					},
+					"compleiton": {
+						"keywordSnippet": "Both"
+					},
 					"diagnostics": {
-						"globals": [ "vim", "define", "it" ],
+						"enable": true,
+						"globals": [ "vim", "define", "it", "describe", "before_each", "after_each" ],
 						"disable": [ "lowercase-global" ]
+					},
+					"workspace": {
+						"library": {
+							"/usr/share/nvim/runtime/lua": true,
+							"/usr/share/nvim/runtime/lua/vim/lsp": true
+						}
 					}
 				}
 			}

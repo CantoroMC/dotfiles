@@ -17,7 +17,7 @@ let g:netrw_altv         = 1  " open splits to the right
 let g:netrw_banner       = 0  " disable annoying banner
 let g:netrw_browse_split = 4  " open in prior window
 let g:netrw_liststyle    = 3  " tree view
-let g:netrw_winsize      = 15 " window size
+let g:netrw_winsize      = 8  " window size
 let g:netrw_list_hide    =
       \ '.git,node_modules,.*\.hi$,.*\.o$,.*\.aux$,.*\.swp$,__pycache__'
 " netrw_gitignore#Hide() .
@@ -46,6 +46,5 @@ endfunction
 nnoremap <silent> <Plug>Exprw :<C-u> call ToggleNetrw()<CR>
 
 if !hasmapto('<Plug>Exprw')
-  nmap <unique> <S-F12> <Plug>Exprw
-  nmap <unique> <F24>   <Plug>Exprw
+  nmap <unique> <F12> <Plug>Exprw
 endif
