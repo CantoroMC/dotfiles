@@ -62,6 +62,8 @@
 	"solargraph.definitions": true,
 	"solargraph.symbols": true,
 
+	"vimlsp.diagnostic.enable": false,
+
 	"languageserver": {
 		"haskell": {
 			"command": "haskell-language-server-wrapper",
@@ -198,12 +200,5 @@
 				}
 			}
 		}
-	},
-
-	"explorer.mouseMode": "none",
-	"explorer.toggle": true,
-	"explorer.focus": true,
-	"explorer.position": "floating",
-	"explorer.width": 20,
-	"explorer.icon.enableNerdfont": true
+	}
 }

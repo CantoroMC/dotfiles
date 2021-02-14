@@ -10,7 +10,7 @@ local shadings = require'mc.plugin.groundhogs.shadings'
 
 local groundhogs_ft = 'GroundHog'
 local plugin_settings = {
-  size            = 12,
+  size            = 18,
   remember_size   = true,
   direction       = 'horizontal',
   shade_terminals = true,
@@ -309,6 +309,7 @@ function M.free(num)
 end
 
 
+
 function M.exec(cmd, num, size)
   vim.validate {
     cmd  = { cmd,  'string' },
@@ -326,7 +327,6 @@ function M.exec(cmd, num, size)
   fn.chansend(groundhog.job_id, cmd .. "\n")
   vim.cmd('wincmd p')
 end
-
 
 --- Toggle the terminal groundhogs
   -- If a num, except 1, is provided we operate the specific terminal buffer.

@@ -135,10 +135,6 @@ lspconfig.bashls.setup{
   filetypes = { "sh", "bash", "zsh" },
   on_attach = custom_lsp_attach,
 }
--- VIM
-lspconfig.vimls.setup{
-  on_attach = custom_lsp_attach,
-}
 --]===]
 
 -- LUA
@@ -176,5 +172,10 @@ lspconfig.sumneko_lua.setup {
       },
     },
   },
+  on_attach = custom_lsp_attach,
+}
+
+-- VIM
+lspconfig.vimls.setup{
   on_attach = custom_lsp_attach,
 }

@@ -147,9 +147,10 @@ local function init()
   use 'NLKNguyen/papercolor-theme'
   use 'srcery-colors/srcery-vim'
   -- }}}
-  -- use { 'CantoroMC/nvim-tree.lua',
-  --   as = 'nvim-tree',
-  -- }
+  use { 'CantoroMC/nvim-tree.lua',
+    as = 'nvim-tree',
+    requires = 'kyazdani42/nvim-web-devicons'
+  }
   use 'Yggdroot/indentLine'              -- Show indent line and leading spaces
   use { 'norcalli/nvim-colorizer.lua',   -- Show RGB,HTML... Colors
     as = 'nvim-colorizer'
