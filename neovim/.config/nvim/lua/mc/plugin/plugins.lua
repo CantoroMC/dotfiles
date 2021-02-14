@@ -147,9 +147,9 @@ local function init()
   use 'NLKNguyen/papercolor-theme'
   use 'srcery-colors/srcery-vim'
   -- }}}
-  use { 'CantoroMC/nvim-tree.lua',
-    as = 'nvim-tree',
-  }
+  -- use { 'CantoroMC/nvim-tree.lua',
+  --   as = 'nvim-tree',
+  -- }
   use 'Yggdroot/indentLine'              -- Show indent line and leading spaces
   use { 'norcalli/nvim-colorizer.lua',   -- Show RGB,HTML... Colors
     as = 'nvim-colorizer'
@@ -199,13 +199,12 @@ local function init()
 
   -- TODO: {{{3
   use '~/Desktop/NeoLuaGit/StatusLine/nvim-hardline'
-  -- use '~/Desktop/PluginsBullici/nuake'
-  use 'akinsho/nvim-toggleterm.lua'
   -- REPLs
   --use { 'hkupty/iron.nvim',  -- On nvim terminal in lua
   --  as = 'iron'
   --}
   -- }}}
+
   -- }}}
 
 end

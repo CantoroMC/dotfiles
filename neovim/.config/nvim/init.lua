@@ -16,18 +16,18 @@ vim.cmd('source ' .. vim.fn.stdpath('config') .. '/keymap.vim')
 
 -- PLUGINS SETTINGS
 require'mc.plugin.octolua'.digest()
-vim.cmd('colorscheme ayu')
 
+-- ColorScheme, Buffer and Tab Lines
 require'hardline'.setup {
 }
 
-require"toggleterm".setup {
-  size = 20,
-  open_mapping = [[<c-\>]],
-  shade_filetypes = {'none','lua'},
-  shade_terminals = true,
-  persist_size = true,
-  direction = 'horizontal',
+require'mc.plugin.colorpicker'.setup {
+  active = true,
+  light_time = {7,11},
+  themes = {
+    [ "dark" ]  = { 'ayu', 'badwolf', 'gruvbox', 'jellybeans', 'PaperColor', 'srcery' },
+    [ "light" ] = { 'mayansmoke', 'PaperColor' }
+  }
 }
 
 -- CLOSURE

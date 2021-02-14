@@ -249,8 +249,8 @@ command! -bang -nargs=0 VimData
 function! s:VimConfigs() abort " {{{2
   let l:base = expand('~/.config/nvim/')
   let l:dirs = [
+        \ '',
         \ 'after/**',
-        \ 'init.d',
         \ 'lua/**',
         \ ]
   let l:dirs_joined = join(map(l:dirs, 'l:base.v:val'),',')

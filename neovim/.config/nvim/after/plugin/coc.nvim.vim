@@ -1,6 +1,7 @@
 " Section: Extensions
 let g:coc_global_extensions = [
       \ 'coc-marketplace',
+      \ 'coc-explorer',
       \ 'coc-word',
       \ 'coc-syntax',
       \ 'coc-omni',
@@ -62,32 +63,32 @@ augroup coc_map_ft
   " Diagnostic Navigation
   autocmd FileType
         \ vim,sh,perl,c,cpp,go,json,typescript,ruby,haskell,lhaskell,tex,bib,plaintex,context,python
-        \ nmap <leader>qf  <Plug>(coc-fix-current)
+        \ nmap <buffer> <leader>qf  <Plug>(coc-fix-current)
   autocmd FileType
         \ vim,sh,perl,c,cpp,go,json,typescript,ruby,haskell,lhaskell,tex,bib,plaintex,context,python
-        \ nmap [g          <Plug>(coc-diagnostic-prev)
+        \ nmap <buffer> [g          <Plug>(coc-diagnostic-prev)
   autocmd FileType
         \ vim,sh,perl,c,cpp,go,json,typescript,ruby,haskell,lhaskell,tex,bib,plaintex,context,python
-        \ nmap ]g          <Plug>(coc-diagnostic-next)
+        \ nmap <buffer> ]g          <Plug>(coc-diagnostic-next)
   " code goto navigation and formatting.
   autocmd FileType
         \ vim,sh,perl,c,cpp,go,json,typescript,ruby,haskell,lhaskell,tex,bib,plaintex,context,python
-        \ nmap <silent> <Leader>gd <Plug>(coc-definition)
+        \ nmap <buffer> <silent> <Leader>gd <Plug>(coc-definition)
   autocmd FileType
         \ vim,sh,perl,c,cpp,go,json,typescript,ruby,haskell,lhaskell,tex,bib,plaintex,context,python
-        \ nmap <silent> <Leader>gy <Plug>(coc-type-definition)
+        \ nmap <buffer> <silent> <Leader>gy <Plug>(coc-type-definition)
   autocmd FileType
         \ vim,sh,perl,c,cpp,go,json,typescript,ruby,haskell,lhaskell,tex,bib,plaintex,context,python
-        \ nmap <silent> <Leader>gi <Plug>(coc-implementation)
+        \ nmap <buffer> <silent> <Leader>gi <Plug>(coc-implementation)
   autocmd FileType
         \ vim,sh,perl,c,cpp,go,json,typescript,ruby,haskell,lhaskell,tex,bib,plaintex,context,python
-        \ nmap <silent> <Leader>go <Plug>(coc-references)
+        \ nmap <buffer> <silent> <Leader>go <Plug>(coc-references)
   autocmd FileType
         \ vim,sh,perl,c,cpp,go,json,typescript,ruby,haskell,lhaskell,tex,bib,plaintex,context,python
-        \ nmap          <Leader>gf <Plug>(coc-format-selected)
+        \ nmap <buffer> <Leader>gf <Plug>(coc-format-selected)
   autocmd FileType
         \ vim,sh,perl,c,cpp,go,json,typescript,ruby,haskell,lhaskell,tex,bib,plaintex,context,python
-        \ xmap          <Leader>gf <Plug>(coc-format-selected)
+        \ xmap <buffer> <Leader>gf <Plug>(coc-format-selected)
 augroup END
 
 nnoremap <silent> <Leader>cA :<C-u>CocAction<CR>
@@ -100,3 +101,61 @@ nnoremap <silent> <Leader>cS :<C-u>CocList -I symbols<CR>
 command! -nargs=0 CocHover          :call CocActionAsync('doHover')
 command! -nargs=0 CocFormat         :call CocAction('format')
 
+
+
+" Coc Explorer:
+
+nnoremap <silent> <F2> :CocCommand explorer<CR>
+nmap <Leader>er :call CocAction('runCommand', 'explorer.doAction', 'closest', ['reveal:0'], [['relative', 0, 'file']])<CR>
+
+let g:coc_explorer_global_presets = {
+\   '.vim': {
+\     'root-uri': '~/.local/share/nvim',
+\   },
+\   'cocConfig': {
+\      'root-uri': '~/.config/coc',
+\   },
+\   'tab': {
+\     'position': 'tab',
+\     'quit-on-open': v:true,
+\   },
+\   'floating': {
+\     'position': 'floating',
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'floatingTop': {
+\     'position': 'floating',
+\     'floating-position': 'center-top',
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'floatingLeftside': {
+\     'position': 'floating',
+\     'floating-position': 'left-center',
+\     'floating-width': 50,
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'floatingRightside': {
+\     'position': 'floating',
+\     'floating-position': 'right-center',
+\     'floating-width': 50,
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'simplify': {
+\     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
+\   },
+\   'buffer': {
+\     'sources': [{'name': 'buffer', 'expand': v:true}]
+\   },
+\ }
+
+" open-action-strategy: select, vsplit, split, tab, previousBuffer,
+" previousWindow sourceWindow
+
+" Use preset argument to open it
+nmap <space>ed :CocCommand explorer --preset .vim<CR>
+nmap <space>ef :CocCommand explorer --preset floating<CR>
+nmap <space>ec :CocCommand explorer --preset cocConfig<CR>
+nmap <space>eb :CocCommand explorer --preset buffer<CR>
+
+" List all presets
+nmap <space>el :CocList explPresets
