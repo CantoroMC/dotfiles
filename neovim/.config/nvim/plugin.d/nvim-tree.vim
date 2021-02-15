@@ -17,6 +17,8 @@ let g:nvim_tree_tab_open           = 0
 let g:nvim_tree_follow             = 0
 let g:nvim_tree_indent_markers     = 0
 let g:nvim_tree_width_allow_resize = 0
+let g:nvim_tree_disable_netrw      = 0
+let g:nvim_tree_hijack_netrw       = 1
 
 " Section: Appearance
 
@@ -42,7 +44,7 @@ let g:nvim_tree_icons = {
 
 " Section: Nvim-Tree Keymap
 
-let g:nvim_tree_bindings = { 
+let g:nvim_tree_bindings = {
       \   'edit'            : [ '<CR>', 'i' ],
       \   'edit_vsplit'     : '<C-v>',
       \   'edit_split'      : '<C-b>',

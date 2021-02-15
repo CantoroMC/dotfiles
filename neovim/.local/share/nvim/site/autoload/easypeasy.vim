@@ -70,7 +70,7 @@ function! easypeasy#auto_mkdir(dir, force) abort
             \ printf('"%s" does not exist. Create? [y/N]', a:dir),
             \ '',
             \ )
-      if !( result ==? 'y' or result ==? 'yes' )
+      if !( result ==? 'y' || result ==? 'yes' )
         echohl WarningMsg
         echo 'Canceled'
         return

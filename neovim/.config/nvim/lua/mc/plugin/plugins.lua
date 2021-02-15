@@ -138,6 +138,9 @@ local function init()
     opt = true,
     cmd = { 'SlimuxREPLConfigure', 'SlimuxShellConfigure', 'SlimuxGlobalConfigure' },
   }
+  use { 'preservim/tagbar',
+    cmd = { 'TagbarToggle' }
+  }
   -- }}}
   -- GUI UTILITIES {{{3
   -- Colorschemes {{{4
@@ -147,7 +150,7 @@ local function init()
   use 'NLKNguyen/papercolor-theme'
   use 'srcery-colors/srcery-vim'
   -- }}}
-  use { 'CantoroMC/nvim-tree.lua',
+  use { 'kyazdani42/nvim-tree.lua',
     as = 'nvim-tree',
     requires = 'kyazdani42/nvim-web-devicons'
   }

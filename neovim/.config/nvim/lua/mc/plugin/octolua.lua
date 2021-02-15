@@ -24,21 +24,33 @@ local limbs = function()
     '%s/lua/mc/plugin/config/',
     vim.fn.stdpath('config')
   )
+  local vim_dir = string.format(
+    '%s/plugin.d/',
+    vim.fn.stdpath('config')
+  )
 
-  local lua_configs = {}
-  local iL = 1
+  local lua_configs, vim_configs = {}, {}
+  local iL, iV = 1, 1
 
   for _, plugged  in ipairs(head()) do
     local lua_config = string.format(
       '%s%s.lua',
-      lua_dir,plugged
+      lua_dir, plugged
+    )
+    local vim_config = string.format(
+      '%s%s.vim',
+      vim_dir, plugged
     )
     if vim.fn.filereadable(lua_config) == 1 then
       lua_configs[iL] = vim.fn.fnamemodify(lua_config,':t:r')
       iL = iL + 1
     end
+    if vim.fn.filereadable(vim_config) == 1 then
+      vim_configs[iV] = vim.fn.fnamemodify(vim_config,':t:r')
+      iV = iV + 1
+    end
   end
-  return lua_configs
+  return lua_configs, vim_configs
 end
 
 -- Require the configuration
@@ -50,15 +62,24 @@ local digest = function()
       lua_configs[i])
     )
   end
+  for i = 1, #vim_configs, 1 do
+    vim.cmd(
+      'source ' ..
+      vim.fn.stdpath('config') .. '/plugin.d/' .. vim_configs[i] .. '.vim'
+    )
+  end
 end
 
 -- Print the list of lua 's plugin configuration
 local excrete = function()
-  local lua_configs = limbs()
+  local lua_configs,vim_configs = limbs()
   print(
     "Lua Required:\n" ..
     "=============\n" ..
-    table.concat(lua_configs, "\n")
+    table.concat(lua_configs, "\n") ..
+    "\n\nVim Required:\n" ..
+    "=============\n" ..
+    table.concat(vim_configs, "\n")
   )
 end
 

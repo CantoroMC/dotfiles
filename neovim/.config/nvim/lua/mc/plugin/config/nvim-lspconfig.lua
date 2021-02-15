@@ -175,6 +175,44 @@ lspconfig.sumneko_lua.setup {
   on_attach = custom_lsp_attach,
 }
 
+-- TEX
+lspconfig.texlab.setup{
+  cmd = { 'texlab' },
+  filetypes = { 'tex', 'bib', 'plaintex' },
+  settings = {
+    bibtex = {
+      formatting = {
+        lineLenght = 120,
+        formatter = 'texlab',
+      },
+    },
+    latex = {
+      build = {
+        args = {
+          "-pdf",
+          "-shell-escape",
+          "-interaction=nonstopmode",
+          "-synctex=1",
+          "-file-line-error",
+          "%f"
+        },
+        executable = "latexmk",
+        onSave = false,
+      },
+      forwardSearch = {
+        args = { '%p' },
+        onSave = false,
+        executable = 'zathura',
+      },
+      lint = {
+        onChange = true,
+        onSave = true,
+      }
+    },
+  },
+  on_attach = custom_lsp_attach,
+}
+
 -- VIM
 lspconfig.vimls.setup{
   on_attach = custom_lsp_attach,

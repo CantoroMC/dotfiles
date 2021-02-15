@@ -149,7 +149,7 @@ local function open_split(size)
 end
 
 local function set_groundhog_win_opts(groundhog)
-  win_id = groundhog.win_id
+  local win_id = groundhog.win_id
   vim.wo[win_id].winfixheight   = true
   vim.wo[win_id].winfixwidth    = true
   vim.wo[win_id].spell          = false
@@ -163,8 +163,8 @@ local function set_groundhog_win_opts(groundhog)
 end
 
 local function set_groundhog_buf_opts(groundhog)
-  bufnr = groundhog.bufnr
-  num   = groundhog.number
+  local bufnr = groundhog.bufnr
+  local num   = groundhog.number
 
   vim.bo[bufnr].filetype        = groundhogs_ft
   vim.bo[bufnr].buflisted       = false
@@ -232,7 +232,7 @@ function open(num, size)
     groundhog.bufnr  = api.nvim_create_buf(false, false)
 
     api.nvim_set_current_buf(groundhog.bufnr)
-    api.nvim_win_set_buf(groundhog.window, groundhog.bufnr)
+    api.nvim_win_set_buf(groundhog.win_id, groundhog.bufnr)
 
     local cmd = vim.o.shell .. ";#" .. groundhogs_ft .. "#" .. num
     groundhog.job_id = fn.termopen(cmd, {detach = true})

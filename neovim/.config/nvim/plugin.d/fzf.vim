@@ -250,7 +250,7 @@ function! s:VimConfigs() abort " {{{2
   let l:base = expand('~/.config/nvim/')
   let l:dirs = [
         \ '',
-        \ 'after/**',
+        \ 'plugin.d/**',
         \ 'lua/**',
         \ ]
   let l:dirs_joined = join(map(l:dirs, 'l:base.v:val'),',')

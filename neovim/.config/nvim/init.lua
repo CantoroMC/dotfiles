@@ -21,9 +21,11 @@ require'mc.plugin.octolua'.digest()
 require'hardline'.setup {
 }
 
+vim.g.nvim_tree_disable_netrw = 0
+
 require'mc.plugin.colorpicker'.setup {
   active = true,
-  light_time = {7,11},
+  light_time = {7,8},
   themes = {
     [ "dark" ]  = { 'ayu', 'badwolf', 'gruvbox', 'jellybeans', 'PaperColor', 'srcery' },
     [ "light" ] = { 'mayansmoke', 'PaperColor' }
