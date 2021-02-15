@@ -17,7 +17,6 @@ mpv
 neofetch
 neomutt
 ncmpcpp
-neovim
 ranger
 redshift
 ripgrep

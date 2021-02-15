@@ -7,5 +7,4 @@ imagewriter-git
 polyglot-winboard-git
 radiotray-ng
 onlyoffice-bin
-neovim-nightly-git
 lua-language-server-git
