@@ -19,5 +19,4 @@ if !hasmapto('<Plug>FooldmeFMClose', 'n') && maparg(']co','n') ==# ''
   nmap ]co <Plug>FooldmeFMClose
 endif
 
-nnoremap <silent> <Tab>   za
 nnoremap <silent> <S-Tab> :<C-u>call fooldme#orgCycle()<CR>

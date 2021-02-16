@@ -202,7 +202,15 @@ local function init()
   -- }}}
 
   -- TODO: {{{3
-  use '~/Desktop/NeoLuaGit/StatusLine/nvim-hardline'
+  -- use '~/Desktop/NeoLuaGit/StatusLine/nvim-hardline'
+  use { 'glepnir/galaxyline.nvim',
+    branch = 'main',
+    -- config = function() require'mc.plugin.configs.galaxyline' end,
+    as = 'galaxyline',
+    requires = {'kyazdani42/nvim-web-devicons',
+      opt = true
+    }
+  }
   -- REPLs
   --use { 'hkupty/iron.nvim',  -- On nvim terminal in lua
   --  as = 'iron'

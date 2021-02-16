@@ -1,9 +1,6 @@
-function! StartifyEntryFormat() abort " {{{1
+function! StartifyEntryFormat() abort
   return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
 endfunction
-" }}}
-
-
 
 " Session:
 let g:startify_session_dir         = stdpath('data').'/sessions'
@@ -22,19 +19,18 @@ let g:startify_session_number         = 10
 let g:startify_session_sort           = 1
 
 " Intro:
-" Entries: {{{1
 
-function! s:gitModified() abort " {{{2
+" Entries:
+
+function! s:gitModified() abort
   let files = systemlist('git ls-files -m 2>/dev/null')
   return map(files, "{'line': v:val, 'path': v:val}")
 endfunction
-" }}}
 
-function! s:gitUntracked() abort " {{{2
+function! s:gitUntracked() abort
   let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
   return map(files, "{'line': v:val, 'path': v:val}")
 endfunction
-" }}}
 
 let g:startify_lists = [
       \ {

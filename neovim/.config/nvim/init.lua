@@ -17,14 +17,10 @@ vim.cmd('source ' .. vim.fn.stdpath('config') .. '/keymap.vim')
 -- PLUGINS SETTINGS
 require'mc.plugin.octolua'.digest()
 
--- ColorScheme, Buffer and Tab Lines
-require'hardline'.setup {
-}
-
-vim.g.nvim_tree_disable_netrw = 0
+vim.cmd [[colorscheme ayu]]
 
 require'mc.plugin.colorpicker'.setup {
-  active = true,
+  active = false,
   light_time = {7,8},
   themes = {
     [ "dark" ]  = { 'ayu', 'badwolf', 'gruvbox', 'jellybeans', 'PaperColor', 'srcery' },
