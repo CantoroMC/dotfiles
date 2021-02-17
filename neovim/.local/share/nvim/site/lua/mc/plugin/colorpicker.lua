@@ -4,7 +4,8 @@ local plugin_settings = {
   themes     = {
     [ "dark" ]  = { 'slate', 'murphy' },
     [ "light" ] = { 'morning', 'zellner' }
-  }
+  },
+  theme = 'murphy',
 }
 
 local M = {}
@@ -47,6 +48,8 @@ function M.setup(user_settings)
 
   if plugin_settings.active then
     require'mc.plugin.colorpicker'.choose()
+  else
+    vim.cmd('colorscheme ' .. plugin_settings.theme)
   end
 end
 

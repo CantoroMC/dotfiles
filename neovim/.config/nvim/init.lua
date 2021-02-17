@@ -17,15 +17,15 @@ vim.cmd('source ' .. vim.fn.stdpath('config') .. '/keymap.vim')
 -- PLUGINS SETTINGS
 require'mc.plugin.octolua'.digest()
 
-vim.cmd [[colorscheme ayu]]
-
+-- COLORSCHEME: managed by a small lua script
 require'mc.plugin.colorpicker'.setup {
   active = false,
   light_time = {7,8},
   themes = {
     [ "dark" ]  = { 'ayu', 'badwolf', 'gruvbox', 'jellybeans', 'PaperColor', 'srcery' },
     [ "light" ] = { 'mayansmoke', 'PaperColor' }
-  }
+  },
+  theme = 'ayu',
 }
 
 -- CLOSURE

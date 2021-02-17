@@ -122,13 +122,13 @@ augroup END
 " Auto Closing Pairs
 let s:autopair_ft = get(g:, 'edible_autopair_fts',
       \ {
-      \   'parentheses' : ['vim', 'c', 'cpp', 'tex', 'sh', 'ruby', 'zsh', 'haskell',],
-      \   'squareBrace' : ['vim', 'c', 'cpp', 'tex', 'sh', 'ruby', 'zsh', 'haskell',],
-      \   'curlyBrace'  : ['vim', 'ruby', 'zsh', 'ruby', 'sh', 'bash', 'haskell', 'tex'],
-      \   'curlyNewLine': ['vim', 'sh', 'c', 'cpp', 'tex', 'zsh', 'ruby'],
+      \   'parentheses' : ['vim', 'c', 'cpp', 'tex', 'sh', 'ruby', 'zsh', 'haskell', 'lua'],
+      \   'squareBrace' : ['vim', 'c', 'cpp', 'tex', 'sh', 'ruby', 'zsh', 'haskell', 'lua'],
+      \   'curlyBrace'  : ['vim', 'ruby', 'zsh', 'ruby', 'sh', 'bash', 'haskell', 'tex', 'lua'],
+      \   'curlyNewLine': ['vim', 'sh', 'c', 'cpp', 'tex', 'zsh', 'ruby', 'lua'],
       \   'angleBrace'  : [],
-      \   'singleQuote' : ['vim', 'c', 'cpp', 'sh','ruby', 'zsh',],
-      \   'doubleQuote' : ['c', 'cpp','ruby', 'tex', 'zsh', 'sh', 'bash', 'haskell',],
+      \   'singleQuote' : ['vim', 'c', 'cpp', 'sh','ruby', 'zsh', 'lua'],
+      \   'doubleQuote' : ['c', 'cpp','ruby', 'tex', 'zsh', 'sh', 'bash', 'haskell', 'lua'],
       \ })
 
 augroup autoclose_by_filetype
