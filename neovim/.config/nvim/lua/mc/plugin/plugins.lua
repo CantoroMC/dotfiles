@@ -161,6 +161,14 @@ local function init()
   use { 'mhinz/vim-startify',            -- Start page and session management
     requires = 'ryanoasis/vim-devicons', -- Maybe this can be removed
   }
+  use { 'glepnir/galaxyline.nvim',
+    branch = 'main',
+    -- config = function() require'mc.plugin.configs.galaxyline' end,
+    as = 'galaxyline',
+    requires = {'kyazdani42/nvim-web-devicons',
+      opt = true
+    }
+  }
   -- }}}
   -- HIS HOLINESS {{{3
   use 'tpope/vim-apathy'         -- `path`, `suffixesadd`, `include`, `includeexpr` and `define`
@@ -201,24 +209,14 @@ local function init()
   use 'dstein64/vim-startuptime'
   -- }}}
 
-  -- TODO: {{{3
-  -- use '~/Desktop/NeoLuaGit/StatusLine/nvim-hardline'
-  use { 'glepnir/galaxyline.nvim',
-    branch = 'main',
-    -- config = function() require'mc.plugin.configs.galaxyline' end,
-    as = 'galaxyline',
-    requires = {'kyazdani42/nvim-web-devicons',
-      opt = true
-    }
-  }
-  -- REPLs
-  --use { 'hkupty/iron.nvim',  -- On nvim terminal in lua
-  --  as = 'iron'
-  --}
+use {
+  'lewis6991/gitsigns.nvim',
+  requires = {
+    'nvim-lua/plenary.nvim'
+  },
+  as = 'gitsigns',
+}
   -- }}}
-
-  -- }}}
-
 end
 -- }}}
 

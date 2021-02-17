@@ -12,7 +12,7 @@ function! YuppiDoh() abort
   let s = ''
 
   " Left Section: Buffer list
-  let s.= ' Buffers: '
+  let s .= ' Buffers: '
 
   let bufs = filter(range(1,bufnr('$')),
         \ 'buflisted(v:val) && getbufvar(v:val, "&buftype") !=? "quickfix"'
