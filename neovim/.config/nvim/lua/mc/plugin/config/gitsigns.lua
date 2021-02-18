@@ -6,7 +6,7 @@ require('gitsigns').setup {
     topdelete    = {hl = 'DiffDelete', text = '‾', numhl='GitSignsDeleteNr'},
     changedelete = {hl = 'DiffChange', text = '~', numhl='GitSignsChangeNr'},
   },
-  numhl = false,
+  numhl = true,
   keymaps = {
     -- Default keymap options
     noremap = true,

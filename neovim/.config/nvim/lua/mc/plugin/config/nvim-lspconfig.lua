@@ -49,14 +49,14 @@ local custom_lsp_attach = function(client)
     -- Formatting mapping
     lsp_remap('n', vim.g.maplocalleader..'gq', 'vim.lsp.buf.formatting()')
     -- Autoformat on save
-    if vim.tbl_contains({"go", "haskell"}, filetype) then
-      vim.api.nvim_exec([[
-        augroup lsp_format_on_save
-          autocmd!
-          autocmd! BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync(nil,1000)
-        augroup END
-        ]], false)
-    end
+    -- if vim.tbl_contains({"go", "haskell"}, filetype) then
+    --   vim.api.nvim_exec([[
+    --     augroup lsp_format_on_save
+    --       autocmd!
+    --       autocmd! BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync(nil,1000)
+    --     augroup END
+    --     ]], false)
+    -- end
   end
   if client.resolved_capabilities.document_range_formatting then
     lsp_remap('n', vim.g.maplocalleader..'gw', 'vim.lsp.buf.range_formatting()')
@@ -81,18 +81,6 @@ lspconfig.gopls.setup{
   cmd = { "gopls" },
   filetypes = { "go", "gomod" },
   root_dir = lspconfig.util.root_pattern("go.mod", ".git", vim.fn.getcwd() ),
-  on_attach = custom_lsp_attach,
-}
--- HASKELL
-lspconfig.hls.setup{
-  cmd = { 'haskell-language-server-wrapper', '--lsp' },
-  filetypes = { "haskell", "lhaskell" },
-  root_dir = lspconfig.util.root_pattern("*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml", "" ),
-  settings = {
-    haskell = {
-      formattingProvider = 'brittany'
-    },
-  },
   on_attach = custom_lsp_attach,
 }
 -- PERL
@@ -137,6 +125,18 @@ lspconfig.bashls.setup{
 }
 --]===]
 
+-- HASKELL
+lspconfig.hls.setup{
+  cmd = { 'haskell-language-server-wrapper', '--lsp' },
+  filetypes = { "haskell", "lhaskell" },
+  root_dir = lspconfig.util.root_pattern("*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml", ".git", "" ),
+  settings = {
+    haskell = {
+      formattingProvider = 'brittany'
+    },
+  },
+  on_attach = custom_lsp_attach,
+}
 -- LUA
 lspconfig.sumneko_lua.setup {
   cmd = { 'lua-language-server' };

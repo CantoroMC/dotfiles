@@ -61,32 +61,32 @@ augroup coc_map_ft
   autocmd!
   " Diagnostic Navigation
   autocmd FileType
-        \ sh,perl,c,cpp,go,json,typescript,ruby,haskell,lhaskell,tex,bib,plaintex,context,python
+        \ sh,perl,c,cpp,go,json,typescript,ruby,python
         \ nmap <buffer> <leader>qf  <Plug>(coc-fix-current)
   autocmd FileType
-        \ sh,perl,c,cpp,go,json,typescript,ruby,haskell,lhaskell,tex,bib,plaintex,context,python
+        \ sh,perl,c,cpp,go,json,typescript,ruby,python
         \ nmap <buffer> [g          <Plug>(coc-diagnostic-prev)
   autocmd FileType
-        \ sh,perl,c,cpp,go,json,typescript,ruby,haskell,lhaskell,tex,bib,plaintex,context,python
+        \ sh,perl,c,cpp,go,json,typescript,ruby,python
         \ nmap <buffer> ]g          <Plug>(coc-diagnostic-next)
   " code goto navigation and formatting.
   autocmd FileType
-        \ sh,perl,c,cpp,go,json,typescript,ruby,haskell,lhaskell,tex,bib,plaintex,context,python
+        \ sh,perl,c,cpp,go,json,typescript,ruby,python
         \ nmap <buffer> <silent> <Leader>gd <Plug>(coc-definition)
   autocmd FileType
-        \ sh,perl,c,cpp,go,json,typescript,ruby,haskell,lhaskell,tex,bib,plaintex,context,python
+        \ sh,perl,c,cpp,go,json,typescript,ruby,python
         \ nmap <buffer> <silent> <Leader>gy <Plug>(coc-type-definition)
   autocmd FileType
-        \ sh,perl,c,cpp,go,json,typescript,ruby,haskell,lhaskell,tex,bib,plaintex,context,python
+        \ sh,perl,c,cpp,go,json,typescript,ruby,python
         \ nmap <buffer> <silent> <Leader>gi <Plug>(coc-implementation)
   autocmd FileType
-        \ sh,perl,c,cpp,go,json,typescript,ruby,haskell,lhaskell,tex,bib,plaintex,context,python
+        \ sh,perl,c,cpp,go,json,typescript,ruby,python
         \ nmap <buffer> <silent> <Leader>go <Plug>(coc-references)
   autocmd FileType
-        \ sh,perl,c,cpp,go,json,typescript,ruby,haskell,lhaskell,tex,bib,plaintex,context,python
+        \ sh,perl,c,cpp,go,json,typescript,ruby,python
         \ nmap <buffer> <Leader>gf <Plug>(coc-format-selected)
   autocmd FileType
-        \ sh,perl,c,cpp,go,json,typescript,ruby,haskell,lhaskell,tex,bib,plaintex,context,python
+        \ sh,perl,c,cpp,go,json,typescript,ruby,python
         \ xmap <buffer> <Leader>gf <Plug>(coc-format-selected)
 augroup END
 

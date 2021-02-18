@@ -138,9 +138,7 @@ local function init()
     opt = true,
     cmd = { 'SlimuxREPLConfigure', 'SlimuxShellConfigure', 'SlimuxGlobalConfigure' },
   }
-  use { 'preservim/tagbar',
-    cmd = { 'TagbarToggle' }
-  }
+  use 'liuchengxu/vista.vim'
   -- }}}
   -- GUI UTILITIES {{{3
   -- Colorschemes {{{4

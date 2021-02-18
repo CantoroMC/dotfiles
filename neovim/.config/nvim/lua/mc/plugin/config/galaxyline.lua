@@ -1,6 +1,6 @@
 local gl = require('galaxyline')
 local blocks = gl.section
-gl.short_line_list = {'NvimTree','vista','dbui'}
+gl.short_line_list = { 'NvimTree','vista','fugitive' }
 
 local colors = {
   bg         = '#151a1e',
@@ -52,7 +52,7 @@ blocks.left[2] = {
         t      = colors.red
       }
       vim.api.nvim_command('hi GalaxyViMode guifg='..mode_color[vim.fn.mode()])
-      return '  '
+      return '  '
     end,
     highlight = {
       colors.red,
@@ -127,7 +127,7 @@ blocks.left[9] = {
   }
 }
 
-blocks.right[10] = {
+blocks.left[10] = {
   FileFormat = {
     provider = function()
       local is_utf8 = (vim.bo.fileencoding == '' or vim.bo.fileencoding == vim.o.encoding)
@@ -139,6 +139,17 @@ blocks.right[10] = {
   }
 }
 
+--- Vista
+blocks.left[11] = {
+  VistaPlugin = {
+    provider = 'VistaPlugin',
+    separator = ' ',
+    separator_highlight = {'NONE',colors.bg},
+    highlight = {colors.blue,colors.bg},
+  }
+}
+
+--- Right Side
 blocks.right[1] = {
   WhiteSpace = {
     provider = 'WhiteSpace',
@@ -179,23 +190,22 @@ blocks.right[5] = {
   }
 }
 
-
 --- Git
 blocks.right[6] = {
   GitIcon = {
     provider = function() return '  ' end,
-    condition = require('galaxyline.provider_vcs').check_git_workspace,
+    condition = require'galaxyline.condition'.check_git_workspace,
     separator = ' ',
     separator_highlight = {'NONE',colors.bg},
-    highlight = {colors.violet,colors.bg,'bold'},
+    highlight = {colors.red,colors.bg,'bold'},
   }
 }
 
 blocks.right[7] = {
   GitBranch = {
     provider = 'GitBranch',
-    condition = require('galaxyline.provider_vcs').check_git_workspace,
-    highlight = {colors.violet,colors.bg,'bold'},
+    condition = require'galaxyline.condition'.check_git_workspace,
+    highlight = {colors.red,colors.bg,'bold'},
   }
 }
 

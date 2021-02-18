@@ -1,6 +1,6 @@
 set tabline=%!YuppiDoh()
 
-hi TabLine      ctermfg=White  ctermbg=Black     guifg=#232b32 guibg=#eaeaea
+hi TabLine      ctermfg=White  ctermbg=Black     guifg=#eaeaea guibg=#151a1e
 hi TabLineFill  ctermfg=White  ctermbg=Black     guifg=#151a1e guibg=#eaeaea
 hi TabLineSel   ctermfg=White  ctermbg=Green     guifg=#151a1e guibg=#b8cc52
 
@@ -29,20 +29,20 @@ function! YuppiDoh() abort
   " Left Right Separator:
   let s .= '%#TabLineFill#%='
 
-  " Right Section: tab list
-  " loop through each open tab page
-  let s .= 'Tabs: '
-  for tab in range(1,tabpagenr('$'))
-    " Color Highlights
-    let s .= tab == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#'
-    " Clickable label
-    let s .= '%' .tab .'T'
-    " Tab Label
-    let s .= ' %{TabLabel(' . tab . ')} '
-  endfor
-    " Closing button only if there is more than a tab opened
   if tabpagenr('$') > 1
-    let s .= '%#TabLineFill#%999X[]'
+    " Right Section: tab list
+    " loop through each open tab page
+    let s .= 'Tabs: '
+    for tab in range(1,tabpagenr('$'))
+      " Color Highlights
+      let s .= tab == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#'
+      " Clickable label
+      let s .= '%' .tab .'T'
+      " Tab Label
+      let s .= ' %{TabLabel(' . tab . ')} '
+    endfor
+      " Closing button only if there is more than a tab opened
+      let s .= '%#TabLineFill#%999X[]'
   endif
 
   return s
