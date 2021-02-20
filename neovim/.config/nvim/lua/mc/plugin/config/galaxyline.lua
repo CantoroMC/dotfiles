@@ -1,7 +1,12 @@
 local gl = require('galaxyline')
-local blocks = gl.section
-gl.short_line_list = { 'NvimTree','vista','fugitive' }
 
+local buffer_not_empty    = require'galaxyline.condition'.buffer_not_empty
+local check_git_workspace = require'galaxyline.condition'.check_git_workspace
+local hide_in_width       = require'galaxyline.condition'.hide_in_width
+
+
+gl.short_line_list = { 'NvimTree','vista','fugitive' }
+local blocks = gl.section
 local colors = {
   bg         = '#151a1e',
   fg         = '#eaeaea',
@@ -28,31 +33,32 @@ blocks.left[1] = {
 blocks.left[2] = {
   ViMode = {
     provider = function()
-      -- auto change color according the vim mode
-      local mode_color = {
-        n      = colors.magenta,
-        i      = colors.green,
-        v      = colors.blue,
-        [''] = colors.blue,
-        V      = colors.blue,
-        c      = colors.red,
-        no     = colors.magenta,
-        s      = colors.orange,
-        S      = colors.orange,
-        [''] = colors.orange,
-        ic     = colors.yellow,
-        R      = colors.violet,
-        Rv     = colors.violet,
-        cv     = colors.red,
-        ce     = colors.red,
-        r      = colors.cyan,
-        rm     = colors.cyan,
-        ['r?'] = colors.cyan,
-        ['!']  = colors.red,
-        t      = colors.red
+      local modes = {
+        ['?']  = { text = '???',          highlight = colors.red },
+        ['n']  = { text = 'NORMAL',       highlight = colors.fg },
+        ['i']  = { text = 'INSERT',       highlight = colors.yellow },
+        ['v']  = { text = 'VISUAL',       highlight = colors.blue },
+        ['V']  = { text = 'V-LINE',       highlight = colors.blue },
+        [''] = { text = 'V-BLOCK',      highlight = colors.blue },
+        ['c']  = { text = 'COMMAND',      highlight = colors.green },
+        ['no'] = { text = 'OPERATOR',     highlight = colors.green },
+        ['s']  = { text = 'SELECT',       highlight = colors.orange },
+        ['S']  = { text = 'S-LINE',       highlight = colors.orange },
+        [''] = { text = 'S-BLOCK',      highlight = colors.orange },
+        ['ic'] = { text = 'INS-COMP',     highlight = colors.yellow },
+        ['R']  = { text = 'REPLACE',      highlight = colors.violet },
+        ['Rv'] = { text = 'VIRT-REPLACE', highlight = colors.violet },
+        ['cv'] = { text = 'VIM-EX',       highlight = colors.red },
+        ['ce'] = { text = 'NORMAL-EX',    highlight = colors.red },
+        ['r']  = { text = 'HIT-ENTER',    highlight = colors.cyan },
+        ['rm'] = { text = 'MORE',         highlight = colors.cyan },
+        ['r?'] = { text = 'CONFIRM',      highlight = colors.cyan },
+        ['!']  = { text = 'SHELL',        highlight = colors.red },
+        ['t']  = { text = 'TERMINAL',     highlight = colors.green },
       }
-      vim.api.nvim_command('hi GalaxyViMode guifg='..mode_color[vim.fn.mode()])
-      return '  '
+      local mode = modes[vim.fn.mode()] or modes['?']
+      vim.api.nvim_command('hi GalaxyViMode  guifg='..mode.highlight)
+      return '  ' .. mode.text .. ' '
     end,
     highlight = {
       colors.red,
@@ -66,7 +72,7 @@ blocks.left[2] = {
 blocks.left[3] ={
   FileIcon = {
     provider = 'FileIcon',
-    condition = require'galaxyline.condition'.buffer_not_empty,
+    condition = buffer_not_empty,
     highlight = {require('galaxyline.provider_fileinfo').get_file_icon_color,colors.bg},
   },
 }
@@ -74,20 +80,33 @@ blocks.left[3] ={
 blocks.left[4] = {
   FileName = {
     provider = {'FileName'},
-    condition = require'galaxyline.condition'.buffer_not_empty,
+    condition = buffer_not_empty,
+    separator = '|',
     highlight = {colors.green,colors.bg,'bold'}
   }
 }
 
 blocks.left[5] = {
-  FileSize = {
-    provider = 'FileSize',
-    condition = require'galaxyline.condition'.buffer_not_empty,
-    highlight = {colors.fg,colors.bg}
+  FileType = {
+    provider = function()
+      return vim.bo.filetype
+    end,
+    separator = '|',
+    condition = buffer_not_empty,
+    highlight = {colors.green,colors.bg,'bold'}
   }
 }
 
 blocks.left[6] = {
+  FileSize = {
+    provider = 'FileSize',
+    condition = buffer_not_empty,
+    highlight = {colors.fg,colors.bg}
+  }
+}
+
+
+blocks.left[7] = {
   LineInfo = {
     provider = 'LineColumn',
     separator = ' ',
@@ -96,7 +115,17 @@ blocks.left[6] = {
   },
 }
 
-blocks.left[7] = {
+blocks.left[8] = {
+  TotLines = {
+    provider = function ()
+      return '(' .. vim.fn.line('$') .. ')'
+    end,
+    separator_highlight = {'NONE',colors.bg},
+    highlight = {colors.fg,colors.bg,'italic'},
+  }
+}
+
+blocks.left[9] = {
   PerCent = {
     provider = 'LinePercent',
     separator = ' ',
@@ -105,7 +134,7 @@ blocks.left[7] = {
   }
 }
 
-blocks.left[8] = {
+blocks.left[10] = {
   ScrollBar = {
     provider = 'ScrollBar',
     separator = ' ',
@@ -114,7 +143,7 @@ blocks.left[8] = {
   }
 }
 
-blocks.left[9] = {
+blocks.left[11] = {
   FileEncode = {
     provider = function()
       local is_utf8 = (vim.bo.fileencoding == '' or vim.bo.fileencoding == vim.o.encoding)
@@ -127,7 +156,7 @@ blocks.left[9] = {
   }
 }
 
-blocks.left[10] = {
+blocks.left[12] = {
   FileFormat = {
     provider = function()
       local is_utf8 = (vim.bo.fileencoding == '' or vim.bo.fileencoding == vim.o.encoding)
@@ -140,7 +169,7 @@ blocks.left[10] = {
 }
 
 --- Vista
-blocks.left[11] = {
+blocks.left[12] = {
   VistaPlugin = {
     provider = 'VistaPlugin',
     separator = ' ',
@@ -166,6 +195,7 @@ blocks.right[2] = {
     highlight = {colors.red,colors.bg}
   }
 }
+
 blocks.right[3] = {
   DiagnosticWarn = {
     provider = 'DiagnosticWarn',
@@ -193,8 +223,8 @@ blocks.right[5] = {
 --- Git
 blocks.right[6] = {
   GitIcon = {
-    provider = function() return '  ' end,
-    condition = require'galaxyline.condition'.check_git_workspace,
+    provider = function() return ' ' end,
+    condition = check_git_workspace,
     separator = ' ',
     separator_highlight = {'NONE',colors.bg},
     highlight = {colors.red,colors.bg,'bold'},
@@ -204,7 +234,7 @@ blocks.right[6] = {
 blocks.right[7] = {
   GitBranch = {
     provider = 'GitBranch',
-    condition = require'galaxyline.condition'.check_git_workspace,
+    condition = check_git_workspace,
     highlight = {colors.red,colors.bg,'bold'},
   }
 }
@@ -212,7 +242,7 @@ blocks.right[7] = {
 blocks.right[8] = {
   DiffAdd = {
     provider = 'DiffAdd',
-    condition = require'galaxyline.condition'.hide_in_width,
+    condition = hide_in_width,
     icon = '  ',
     highlight = {colors.green,colors.bg},
   }
@@ -220,7 +250,7 @@ blocks.right[8] = {
 blocks.right[9] = {
   DiffModified = {
     provider = 'DiffModified',
-    condition = require'galaxyline.condition'.hide_in_width,
+    condition = hide_in_width,
     icon = ' 柳',
     highlight = {colors.orange,colors.bg},
   }
@@ -228,7 +258,7 @@ blocks.right[9] = {
 blocks.right[10] = {
   DiffRemove = {
     provider = 'DiffRemove',
-    condition = require'galaxyline.condition'.hide_in_width,
+    condition = hide_in_width,
     icon = '  ',
     highlight = {colors.red,colors.bg},
   }
@@ -263,7 +293,7 @@ blocks.short_line_left[2] = {
       end
       return fname
     end,
-    condition = require'galaxyline.condition'.buffer_not_empty,
+    condition = buffer_not_empty,
     highlight = {colors.white,colors.bg,'bold'}
   }
 }

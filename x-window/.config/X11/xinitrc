@@ -12,35 +12,35 @@ sysprofile=/etc/xprofile
 
 # start some nice programs
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
-    for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
-        [ -x "$f" ] && . "$f"
-    done
-    unset f
+  for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
+    [ -x "$f" ] && . "$f"
+  done
+  unset f
 fi
 
 # Desktop Environment or Window Manager
 get_session(){
   local init
   case $1 in
-    awesome) init+=(awesome) ;;
-    bspwm) init+=(bspwm-session) ;;
-    budgie) init+=(budgie-desktop) ;;
-    cinnamon) init+=(cinnamon-session) ;;
-    deepin) init+=(startdde) ;;
-    dwm) init+=(dwm) ;;
-    enlightenment) init+=(enlightenment_start) ;;
-    fluxbox) init+=(startfluxbox) ;;
-    gnome) init+=(gnome-session) ;;
-    i3|i3wm) init+=(i3 --shmlog-size 0) ;;
-    jwm) init+=(jwm) ;;
-    kde) init+=(startplasma-x11) ;;
-    lxde) init+=(startlxde) ;;
-    lxqt) init+=(lxqt-session) ;;
-    mate) init+=(mate-session) ;;
-    openbox) init+=(openbox-session) ;;
-    xfce) init+=(xfce4-session) ;;
-    xmonad) init+=(xmonad) ;;
-    *) init+=($DEFAULT_SESSION) ;;
+    awesome)             init+=(awesome) ;;
+    bspwm)               init+=(bspwm-session) ;;
+    budgie)              init+=(budgie-desktop) ;;
+    cinnamon)            init+=(cinnamon-session) ;;
+    deepin)              init+=(startdde) ;;
+    dwm)                 init+=(dwm) ;;
+    enlightenment)       init+=(enlightenment_start) ;;
+    fluxbox)             init+=(startfluxbox) ;;
+    gnome)               init+=(gnome-session) ;;
+    i3|i3wm)             init+=(i3 --shmlog-size 0) ;;
+    jwm)                 init+=(jwm) ;;
+    kde)                 init+=(startplasma-x11) ;;
+    lxde)                init+=(startlxde) ;;
+    lxqt)                init+=(lxqt-session) ;;
+    mate)                init+=(mate-session) ;;
+    openbox)             init+=(openbox-session) ;;
+    xfce)                init+=(xfce4-session) ;;
+    xmonad-x86_64-linux) init+=(xmonad-x86_64-linux) ;;
+    *)                   init+=($DEFAULT_SESSION) ;;
   esac
 
   echo "${init[*]}"

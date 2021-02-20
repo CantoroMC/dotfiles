@@ -95,4 +95,4 @@ done
 unset plugin plugins
 
 # Load the Shell Prompt Theme
-autoload -Uz promptinit; promptinit; prompt bull blue white yellow
+autoload -Uz promptinit; promptinit; prompt bull white red green

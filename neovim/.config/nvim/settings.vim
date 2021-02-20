@@ -77,7 +77,7 @@ set signcolumn=auto
 " Command Line: {{{1
 
 set cedit=<Home>
-set cmdheight=2
+set cmdheight=1
 set inccommand=split
 set shortmess=atTcoOF
 set showcmd
@@ -119,7 +119,7 @@ augroup filetype_indentation " {{{2
   autocmd!
   " Only Spaces Four Characters:
   autocmd FileType
-        \ python,matlab,help,lisp,haskell,lhaskell
+        \ python,matlab,help,lisp,haskell,lhaskell,config,conf
         \ setl tabstop=4 softtabstop=4 expandtab shiftwidth=4
   " Only Spaces Two Characters:
   autocmd FileType
@@ -158,7 +158,7 @@ augroup filetype_folding_method " {{{2
         \ setl foldmethod=marker
   " Indentation
   autocmd FileType
-        \ make,python,bib,go,json,html,css,javascript,yaml,ruby,xml,haskell,lhaskell,cabal,nix,lua,lisp,zsh,vim
+        \ make,python,bib,go,json,html,css,javascript,yaml,ruby,xml,haskell,lhaskell,cabal,nix,lua,lisp,zsh,vim,config,conf
         \ setl foldmethod=indent
   " Syntax
   autocmd FileType

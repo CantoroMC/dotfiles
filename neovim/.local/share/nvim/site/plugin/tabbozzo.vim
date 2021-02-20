@@ -1,4 +1,4 @@
-set tabline=%!YuppiDoh()
+set tabline=%!Tabbozzo()
 
 hi TabLine      ctermfg=White  ctermbg=Black     guifg=#eaeaea guibg=#151a1e
 hi TabLineFill  ctermfg=White  ctermbg=Black     guifg=#151a1e guibg=#eaeaea
@@ -8,7 +8,7 @@ hi default link BufTabLineCurrent TabLineSel
 hi default link BufTabLineActive  TabLine
 hi default link BufTabLineHidden  Comment
 
-function! YuppiDoh() abort
+function! Tabbozzo() abort
   let s = ''
 
   " Left Section: Buffer list
@@ -22,7 +22,7 @@ function! YuppiDoh() abort
     let s .= buf == curr_buf ?
           \ '%#BufTabLineCurrent#' :
           \ (bufwinnr(buf) > 0 ? '%#BufTabLineActive#' : '%#BufTabLineHidden#')
-    let s .= ' %{BufLabel(' . buf.','.curr_buf. ')} '
+    let s .= ' %{BufLabel('.buf.')} '
     let s .= '%#TabLineFill# '
   endfor
 
@@ -64,7 +64,7 @@ function! TabLabel(n) abort
   return buf_string.' '.mod_win
 endfunction
 
-function BufLabel(b,curr) abort
+function BufLabel(b) abort
     let name = bufname(a:b)
     let identifier = (name == '') ?
           \ '[No Name]' : pathshorten(fnamemodify(name, ':p:~:.'))

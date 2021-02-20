@@ -12,6 +12,7 @@ historyDuplicates: IgnoreConsecutive
 bind: { { } left
 bind: ( ( ) left
 bind: [ [ ] left
+bind: " " " left
 
 -- To find keyseq ghc -e getLine (key and Enter)
 keyseq: "\ESCOP" F1
@@ -25,5 +26,3 @@ bind: F5 killline : r e l o a d return
 bind: F12 killline : q u i t return
 bind: meta-a home
 bind: meta-e end
-
--- vim:ft=haskell

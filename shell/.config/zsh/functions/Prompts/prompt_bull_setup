@@ -24,13 +24,13 @@ prompt_bull_setup () {
   local color2=${2:-'white'}
   local color3=${3:-'blue'}
 
-  local distro_icon="%B%F{$color1}%{ %2G%}%f%b"
+  local intro="%B%F{white}%{ %2G%}%f%b"
   local dir_bar="%B%F{$color1}%K{$color1}$schars[333]$schars[262]$schars[261]$schars[260]%F{$color2}%K{$color1}%(7~|%-3~/.../%3~|%~)%b%F{$color1}%k$schars[333]$schars[262]$schars[261]$schars[260]%f"
-  local start="%(?.%F{$color1}%{➜ %2G%}.%F{red}%{➜ %2G%})%f"
-  local nr_jobs="%B%F{$color2}%(1j.jobs: %j.)%f%b"
-  local return_code="%(?..%F{red}%? %{↵ %2G%})%f"
-  local time="%B%F{$color1}%*%f%b"
+  local nr_jobs="%B%F{$color3}%(1j.jobs: %j.)%f%b"
   local hist_len="%B%F{$color1}%h%f%b"
+
+  local return_code="%(?..%F{red}%? %{↵ %2G%})%f"
+  local start="%(?.%F{$color1}%{➜ %2G%}.%F{red}%{➜ %2G%})%f"
 
   # Info
   ZSH_THEME_GIT_PROMPT_PREFIX="%F{$color2}:%B"
@@ -45,7 +45,7 @@ prompt_bull_setup () {
   ZSH_THEME_GIT_PROMPT_UNMERGED="%B%F{$color1} Um%f%b"
   ZSH_THEME_GIT_PROMPT_UNTRACKED="%B%F{$color1} Ut%f%b"
   # SHA
-  ZSH_THEME_GIT_PROMPT_SHA_BEFORE="%F{$color3}%{ %2G%}:(%B%F{$color1}"
+  ZSH_THEME_GIT_PROMPT_SHA_BEFORE="%F{$color3}(%B%F{$color1}"
   ZSH_THEME_GIT_PROMPT_SHA_AFTER="%f%b"
   # Remote
   ZSH_THEME_GIT_COMMITS_AHEAD_PREFIX="%B%F{$color3}%{⇡%1G%}:"
@@ -57,10 +57,10 @@ prompt_bull_setup () {
   local git_status='$(git_prompt_status)'
   local git_commits='$(git_commits_ahead) $(git_commits_behind)'
 
-  PS1=" ${distro_icon} ${dir_bar} ${nr_jobs} ${return_code} ${time} - ${hist_len} $prompt_newline ${MODE_INDICATOR_PROMPT} ${start} "
+  PS1=" ${intro} ${dir_bar} ${nr_jobs} ${hist_len} $prompt_newline ${MODE_INDICATOR_PROMPT} ${return_code} ${start} "
   PS2="%F{$color1}%K{$color1}$schars[333]$schars[262]$schars[261]$schars[260]%f%k%_>"
   RPS1="${git_commits}${git_branch}${git_status}"
-  
+
 
   prompt_opts=(cr subst percent)
 }
