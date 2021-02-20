@@ -53,3 +53,6 @@ command! -nargs=1 -complete=dir Rmdir
 
 command! -nargs=1 -complete=file XdgOpen
       \ :execute '!xdg-open '.fnameescape(<q-args>).' & disown'
+
+
+nnoremap gx :call kebab#OpenURLUnderCursor()<CR>

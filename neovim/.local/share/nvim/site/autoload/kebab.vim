@@ -61,3 +61,12 @@ function! kebab#browse(...) abort
 
   execute '!'.$BROWSER.' '.name.' & disown'
 endfunction
+
+function! kebab#OpenURLUnderCursor()
+  let l:uri = matchstr(getline('.'), '[a-z]*:\/\/[^ >,;()]*')
+  let l:uri = shellescape(l:uri, 1)
+  if l:uri != ''
+    silent exec "!xdg-open '" . l:uri. "' & disown"
+    :redraw!
+  endif
+endfunction
