@@ -17,6 +17,8 @@ Abolish -cmdline GIt            Git
 Abolish -cmdline Wq             wq
 cabbrev          Neo            Neomake
 cabbrev          Nerd           NERDTree
+cabbrev          Wq             wq
+cabbrev          Wqa            wqa
 " }}}
 
 " Insert Mode Abbreviations: {{{1

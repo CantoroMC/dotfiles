@@ -49,8 +49,8 @@
 	lgd = log --graph --decorate --all
 	ll = log --pretty=oneline --graph --abbrev-commit
 	lol = log --oneline --decorate --graph
-	lolp = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all
-	lolD = log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'
+	lolp = log --graph --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all
+	lolD = log --graph --pretty='%Cred%h%Creset %Cgreen(%ar)%Creset %s %C(dim white)%an%Creset %C(auto)%d%Creset'
 	lolS = log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --stat
 	ld = "!sh -c \"git log --since '${1:-1} days ago' --oneline --author $(git config user.email)\" -"
 	st = status
