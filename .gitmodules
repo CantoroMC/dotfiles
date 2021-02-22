@@ -7,9 +7,6 @@
 [submodule "deploy/third-party/Xmenu/xdg-xmenu"]
 	path = deploy/third-party/Xmenu/xdg-xmenu
 	url = https://github.com/CantoroMC/xdg-xmenu
-[submodule "deploy/third-party/nnn"]
-	path = deploy/third-party/nnn
-	url = https://github.com/CantoroMC/nnn
 [submodule "shell/.config/zsh/plugins/zsh-history-substring-search"]
 	path = shell/.config/zsh/plugins/zsh-history-substring-search
 	url = https://github.com/zsh-users/zsh-history-substring-search
