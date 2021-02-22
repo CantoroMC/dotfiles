@@ -703,6 +703,27 @@ For now is only for remember, could be useful or deleted
       "ts" '(hydra-text-scale/body :which-key "scale text")))
 #+end_src
 
+* Lsp
+#+begin_src emacs-lisp
+  (use-package lsp-mode
+    :commands (lsp lsp-deferred)
+    :init
+    (setq lsp-keymap-prefix "C-c l")
+    :config
+    (lsp-enable-which-key-integration t))
+#+end_src
+
+* LaTeX
+#+begin_src emacs-lisp
+  (use-package lsp-latex
+    :init
+    (with-eval-after-load 'tex-mode
+      (add-hook 'tex-mode-hook 'lsp)
+      (add-hook 'latex-mode-hook 'lsp))
+    (with-eval-after-load 'bibtex
+      (add-hook 'bibtex-mode-hook 'lsp)))
+#+end_src
+
 * Org
 This is the [[https://orgmode.org/org.pdf][link]] for the org-manual in a pdf format.
 
