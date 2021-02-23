@@ -28,3 +28,6 @@
 [submodule "deploy/third-party/nnn"]
 	path = deploy/third-party/nnn
 	url = https://github.com/CantoroMC/nnn
+[submodule "deploy/third-party/neovim"]
+	path = deploy/third-party/neovim
+	url = https://github.com/neovim/neovim
