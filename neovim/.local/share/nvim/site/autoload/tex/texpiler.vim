@@ -23,7 +23,6 @@ function! s:biblio_msg() abort
 endfunction
 
 
-
 " Section: Compiler
 let s:compile_opts = join(get(g:, 'texpiler_opts',
       \   [ '-shell-escape',

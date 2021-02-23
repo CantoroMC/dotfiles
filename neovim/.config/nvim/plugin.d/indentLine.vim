@@ -11,5 +11,9 @@ let g:indentLine_conceallevel         = 2
 let g:indentLine_concealcursor        = 'inc'
 
 let g:indentLine_fileTypeExclude      =
-      \ [ 'text'
+      \ [ 'text',
+      \   'tex',
+      \   'bibtex',
+      \   'markdown',
+      \   'make',
       \ ]

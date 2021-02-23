@@ -11,14 +11,11 @@ endif
 " }}}
 
 " Command Line Abbreviations: {{{1
-
 Abolish -cmdline {,G}gr{ep,pe}  {}gr{ep}
 Abolish -cmdline GIt            Git
 Abolish -cmdline Wq             wq
-cabbrev          Neo            Neomake
-cabbrev          Nerd           NERDTree
-cabbrev          Wq             wq
-cabbrev          Wqa            wqa
+command! Wq  wq
+command! Wqa wqa
 " }}}
 
 " Insert Mode Abbreviations: {{{1

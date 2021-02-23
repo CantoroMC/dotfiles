@@ -218,7 +218,7 @@ set pumheight=20
 
 set nobackup
 set swapfile
-set updatetime=500
+set updatetime=300
 set writebackup
 
 " }}}

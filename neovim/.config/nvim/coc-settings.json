@@ -39,16 +39,12 @@
 
 	"coc.source.file.ignoreHidden": false,
 	"coc.source.syntax.priority": 99,
-	"coc.source.syntax.filetypes": ["arch", "awk", "automake", "cabal", "cmake", "conf", "config", "conkyrc", "crontab", "desktop", "diff", "dircolors", "dirpager", "fstab", "git", "gitcommit", "gitconfig", "gitsendmail", "godoc", "gpg", "groff", "help", "html", "i3", "less", "mail", "mailaliases", "make", "man", "manconf", "manual", "markdown", "matlab", "muttrc", "neomuttrc", "netrc", "netrw", "nix", "nroff", "perl", "pgn", "plaintex", "rasi", "snippets", "snippets_snipmate", "syntax", "template", "texinfo", "texmf", "tmux", "xdefaults", "zsh"],
-	"coc.source.omni.enable": true,
-	"coc.source.omni.filetypes": ["arch", "awk", "automake", "cabal", "cmake", "conf", "config", "conkyrc", "crontab", "desktop", "diff", "dircolors", "dirpager", "fstab", "git", "gitcommit", "gitconfig", "gitsendmail", "godoc", "gpg", "groff", "help", "html", "i3", "less", "mail", "mailaliases", "make", "man", "manconf", "manual", "markdown", "matlab", "muttrc", "neomuttrc", "netrc", "netrw", "nix", "nroff", "perl", "pgn", "plaintex", "rasi", "snippets", "snippets_snipmate", "syntax", "template", "texinfo", "texmf", "tmux", "xdefaults", "zsh"],
-	"coc.source.omni.shortcut": "O",
+	"coc.source.syntax.filetypes": ["arch", "awk", "automake", "cabal", "cmake", "conf", "config", "conkyrc", "crontab", "desktop", "diff", "dircolors", "dirpager", "fstab", "git", "gitcommit", "gitconfig", "gitsendmail", "godoc", "gpg", "groff", "help", "html", "i3", "less", "mail", "mailaliases", "make", "man", "manconf", "manual", "markdown", "matlab", "muttrc", "neomuttrc", "netrc", "netrw", "nix", "nroff", "perl", "pgn", "plaintex", "rasi", "snippets", "snippets_snipmate", "syntax", "template", "texinfo", "texmf", "tmux", "xdefaults"],
 	"coc.source.word.shortcut": "D",
 	"coc.source.word.priority": 1,
 	"coc.source.tmuxcomplete.enable": true,
 	"coc.source.tmuxcomplete.priority": 3,
 	"coc.source.tmuxcomplete.shortcut": "TMUX",
-
 	"coc.source.email.firstMatch": true,
 	"coc.source.email.shortcut": "EMAIL",
 

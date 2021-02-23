@@ -3,7 +3,6 @@ let g:coc_global_extensions = [
       \ 'coc-marketplace',
       \ 'coc-word',
       \ 'coc-syntax',
-      \ 'coc-omni',
       \ 'coc-snippets',
       \ 'coc-solargraph',
       \ 'coc-vimlsp',
@@ -25,8 +24,9 @@ endfunction
 " }}}
 
 inoremap <silent> <expr> <Tab>
-      \ pumvisible() ? "\<C-n>" : <SID>check_back_space() ?
-      \ "\<Tab>" : coc#refresh()
+      \ pumvisible() ?
+      \   "\<C-n>" :
+      \   (<SID>check_back_space() ? "\<Tab>" : coc#refresh())
 inoremap <expr> <S-Tab>
       \ pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
@@ -42,20 +42,18 @@ let g:coc_snippet_next = '<c-j>'
 " Section: Mappings
 
 " Remap <C-f> and <C-b> for scroll float windows/popups.
-if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent> <nowait> <expr> <C-f> 
-        \ coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent> <nowait> <expr> <C-b>
-        \ coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent> <nowait> <expr> <C-f>
-        \ coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<CR>" : "\<Right>"
-  inoremap <silent> <nowait> <expr> <C-b>
-        \ coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<CR>" : "\<Left>"
-  vnoremap <silent> <nowait> <expr> <C-f>
-        \ coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent> <nowait> <expr> <C-b>
-        \ coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-endif
+nnoremap <silent> <nowait> <expr> <C-f>
+      \ coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <silent> <nowait> <expr> <C-b>
+      \ coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+inoremap <silent> <nowait> <expr> <C-f>
+      \ coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<CR>" : "\<Right>"
+inoremap <silent> <nowait> <expr> <C-b>
+      \ coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<CR>" : "\<Left>"
+vnoremap <silent> <nowait> <expr> <C-f>
+      \ coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+vnoremap <silent> <nowait> <expr> <C-b>
+      \ coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 
 augroup coc_map_ft
   autocmd!
