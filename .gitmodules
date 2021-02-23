@@ -25,9 +25,6 @@
 [submodule "deploy/third-party/XMonad/xmonadio/xmonad-contrib"]
 	path = deploy/third-party/XMonad/xmonadio/xmonad-contrib
 	url = https://github.com/xmonad/xmonad-contrib
-[submodule "deploy/third-party/neovim"]
-	path = deploy/third-party/neovim
-	url = https://github.com/neovim/neovim
 [submodule "deploy/third-party/nnn"]
 	path = deploy/third-party/nnn
 	url = https://github.com/CantoroMC/nnn
