@@ -95,8 +95,8 @@ set wildoptions=pum
 
 set laststatus=2
 set ruler
-set showmode
-set showtabline=2
+set noshowmode
+set showtabline=1
 
 " }}}
 

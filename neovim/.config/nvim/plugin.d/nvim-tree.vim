@@ -24,7 +24,6 @@ let g:nvim_tree_disable_netrw      = 1
 let g:nvim_tree_hijack_netrw       = 1
 
 " Section: Appearance
-
 let g:nvim_tree_show_icons =  { 'git' : 1, 'folders' : 1, 'files' : 1 }
 let g:nvim_tree_git_hl     = 0
 " devicons
@@ -46,13 +45,12 @@ let g:nvim_tree_icons = {
       \ }
 
 " Section: Nvim-Tree Keymap
-
 let g:nvim_tree_bindings = {
-      \   'edit'            : [ '<CR>', 'i' ],
+      \   'edit'            : '<CR>',
       \   'edit_vsplit'     : '<C-v>',
-      \   'edit_split'      : '<C-b>',
+      \   'edit_split'      : '<C-x>',
       \   'edit_tab'        : '<C-t>',
-      \   'close_node'      : [ '<S-CR>', '<BS>' ],
+      \   'close_node'      : '<BS>',
       \   'toggle_ignored'  : 'I',
       \   'toggle_dotfiles' : '.',
       \   'refresh'         : 'R',

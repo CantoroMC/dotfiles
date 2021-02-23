@@ -69,6 +69,13 @@ function d() {
 }
 compdef _dirs d
 
+# Short for ../../
+.{1..9} (){
+  local d=.
+  repeat ${0:1} d+=/..
+  cd $d
+}
+
 # ranger
 function rcd() {
   # Allow to change directory using ranger

@@ -159,14 +159,19 @@ local function init()
   use { 'mhinz/vim-startify',            -- Start page and session management
     requires = 'ryanoasis/vim-devicons', -- Maybe this can be removed
   }
-  use { 'glepnir/galaxyline.nvim',
-    branch = 'main',
-    -- config = function() require'mc.plugin.configs.galaxyline' end,
-    as = 'galaxyline',
-    requires = {'kyazdani42/nvim-web-devicons',
-      opt = true
-    }
+  -- use { 'glepnir/galaxyline.nvim',
+  --   branch = 'main',
+  --   -- config = function() require'mc.plugin.configs.galaxyline' end,
+  --   as = 'galaxyline',
+  --   requires = {'kyazdani42/nvim-web-devicons',
+  --     opt = true
+  --   }
+  -- }
+  -- use 'itchyny/lightline.vim'
+  use { 'vim-airline/vim-airline',
+    requires = 'vim-airline/vim-airline-themes'
   }
+
   -- }}}
   -- HIS HOLINESS {{{3
   use 'tpope/vim-apathy'         -- `path`, `suffixesadd`, `include`, `includeexpr` and `define`
