@@ -1,6 +1,6 @@
 name:               xmonadio
 version:            0.13
-cabal-version:      >=1.8
+cabal-version:      >=1.10
 build-type:         Simple
 license:            GPL-3
 license-file:       LICENSE

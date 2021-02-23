@@ -72,7 +72,7 @@ xmDecorationTheme = def
     -- Layouts
 
 tall = renamed [Replace "Tall"]
-    $ IfMax 3 (ResizableTall 1 0.03 0.5 []) (ResizableTall 2 0.03 0.4 [])
+    $ IfMax 3 (ResizableTall 1 0.03 0.5 []) (ResizableTall 2 0.03 0.5 [])
 
 monocle
     :: ModifiedLayout
@@ -93,28 +93,17 @@ combo
                        (Decoration TabbedDecoration DefaultShrinker)
                        Simplest
                  )
-                 ( CombineTwo
-                       (Mirror Tall ())
-                       ( ModifiedLayout
-                             (Decoration TabbedDecoration DefaultShrinker)
-                             Simplest
-                       )
-                       ( ModifiedLayout
-                             (Decoration TabbedDecoration DefaultShrinker)
-                             Simplest
-                       )
+                 ( ModifiedLayout
+                       (Decoration TabbedDecoration DefaultShrinker)
+                       Simplest
                  )
            )
            Window
 combo = renamed
     [Replace "Combo"]
-    (combineTwo
-        (Tall 1 0.03 0.5)
-        (tabbed shrinkText xmDecorationTheme)
-        (combineTwo (Mirror $ Tall 1 0.03 0.5)
-                    (tabbed shrinkText xmDecorationTheme)
-                    (tabbed shrinkText xmDecorationTheme)
-        )
+    (combineTwo (Tall 1 0.03 0.5)
+                (tabbed shrinkText xmDecorationTheme)
+                (tabbed shrinkText xmDecorationTheme)
     )
 
 horizontal :: ModifiedLayout Rename (Mirror ResizableTall) Window
@@ -136,19 +125,11 @@ tatami :: Tatami Window
 tatami = Tatami 1 0.03 0.5
 
 -------------------------------------------------------------------------------
-    -- IfMax
-
-metamorphic =
-    renamed [Replace "Metamorphic"] $ IfMax 3 tall (IfMax 5 tatami threeCol)
-
-matacombico = renamed [Replace "Fisher"] $ IfMax 4 tall combo
-
--------------------------------------------------------------------------------
     -- Per Workspace Combinations
 
-alpha = floatL ||| tall
-beta = matacombico ||| tall ||| monocle ||| floatL
-gamma = metamorphic ||| tall ||| combo ||| monocle ||| floatL
+alpha = floatL ||| tall ||| monocle
+beta = tall ||| monocle ||| floatL
+gamma =  tall ||| combo ||| monocle ||| floatL
 others =
     tall ||| tatami ||| combo ||| monocle ||| horizontal ||| threeCol ||| floatL
 
