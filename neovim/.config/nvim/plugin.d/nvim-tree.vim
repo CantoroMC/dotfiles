@@ -45,28 +45,37 @@ let g:nvim_tree_icons = {
       \ }
 
 " Section: Nvim-Tree Keymap
-let g:nvim_tree_bindings = {
-      \   'edit'            : '<CR>',
-      \   'edit_vsplit'     : '<C-v>',
-      \   'edit_split'      : '<C-x>',
-      \   'edit_tab'        : '<C-t>',
-      \   'close_node'      : '<BS>',
-      \   'toggle_ignored'  : 'I',
-      \   'toggle_dotfiles' : '.',
-      \   'refresh'         : 'R',
-      \   'preview'         : '<Tab>',
-      \   'cd'              : 'o',
-      \   'create'          : 'a',
-      \   'remove'          : 'd',
-      \   'rename'          : 'r',
-      \   'cut'             : 'x',
-      \   'copy'            : 'c',
-      \   'paste'           : 'p',
-      \   'prev_git_item'   : '[g',
-      \   'next_git_item'   : ']g',
-      \   'dir_up'          : '-',
-      \   'close'           : 'q',
-      \ }
+lua << EOF
+local function get_lua_cb(cb_name)
+  return string.format(":lua require'nvim-tree'.on_keypress('%s')<CR>", cb_name)
+end
+
+vim.g.nvim_tree_bindings = {
+  ["<CR>"]   = get_lua_cb("edit"),
+  ["<C-v>"]  = get_lua_cb("vsplit"),
+  ["<C-b>"]  = get_lua_cb("split"),
+  ["<C-t>"]  = get_lua_cb("tabnew"),
+  ["<BS>"]   = get_lua_cb("close_node"),
+  ["<S-CR>"] = get_lua_cb("close_node"),
+  ["I"]      = get_lua_cb("toggle_ignored"),
+  ["."]      = get_lua_cb("toggle_dotfiles"),
+  ["R"]      = get_lua_cb("refresh"),
+  ["<Tab>"]  = get_lua_cb("preview"),
+  ["o"]      = get_lua_cb("cd"),
+  ["a"]      = get_lua_cb("create"),
+  ["d"]      = get_lua_cb("remove"),
+  ["r"]      = get_lua_cb("rename"),
+  ["x"]      = get_lua_cb("cut"),
+  ["c"]      = get_lua_cb("copy"),
+  ["p"]      = get_lua_cb("paste"),
+  ["[g"]     = get_lua_cb("prev_git_item"),
+  ["]g"]     = get_lua_cb("next_git_item"),
+  ["<C-P>"]  = get_lua_cb("dir_up"),
+  ["q"]      = get_lua_cb("close"),
+}
+EOF
+
+
 
 " Section: Vim Bindings
 

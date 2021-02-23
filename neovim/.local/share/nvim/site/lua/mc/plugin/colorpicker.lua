@@ -2,15 +2,19 @@ local plugin_settings = {
   active     = true,
   light_time = { 7,14 },
   themes     = {
-    [ "dark" ]  = { 'slate', 'murphy' },
-    [ "light" ] = { 'morning', 'zellner' }
+    [ "dark" ]  = {
+      [ "slate" ] = 'base16_shell',
+      [ "murphy" ] = 'dark',
+    },
+    [ "light" ] = {
+      [ "morning" ] = 'light',
+      [ "zellner" ] = 'base16_google',
+    }
   },
-  theme = 'murphy',
+  theme = { [ "murphy" ] = 'dark' },
 }
 
 local M = {}
-
-math.randomseed(os.time())
 
 function M.choose(...)
   local args = {...}
@@ -29,27 +33,32 @@ function M.choose(...)
     return
   end
 
-  local themes = plugin_settings.themes[background]
   local theme
+  local pairs = plugin_settings.themes[background]
   if #args == 2 then
     theme = args[#args]
   elseif #args <= 1 then
+    local themes = vim.tbl_keys(pairs)
+    math.randomseed(os.time())
     theme = themes[math.random(1,#themes)]
   end
+  local airline = pairs[theme]
 
+  vim.g.airline_theme = airline
   vim.o.background = background
   vim.cmd('colorscheme '..theme)
 end
 
 function M.setup(user_settings)
   if user_settings then
-    plugin_settings = vim.tbl_deep_extend("force", plugin_settings, user_settings)
+    plugin_settings = vim.tbl_extend("force", plugin_settings, user_settings)
   end
 
   if plugin_settings.active then
     require'mc.plugin.colorpicker'.choose()
   else
-    vim.cmd('colorscheme ' .. plugin_settings.theme)
+    vim.g.airline_theme = table.concat(vim.tbl_values(plugin_settings.theme))
+    vim.cmd('colorscheme ' .. table.concat(vim.tbl_keys(plugin_settings.theme)))
   end
 end
 

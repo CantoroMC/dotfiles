@@ -53,7 +53,7 @@ endif
 let g:airline_left_sep          = ''
 let g:airline_right_sep         = ''
 let g:airline_symbols.branch    = '⎇ '
-let g:airline_symbols.dirty     = ' '
+let g:airline_symbols.dirty     = '  '
 let g:airline_symbols.readonly  = ' '
 let g:airline_symbols.maxlinenr = ''
 let g:airline_symbols.linenr    = ' '
@@ -77,7 +77,6 @@ let g:airline_extensions = [
       \   'nvimlsp',
       \   'po',
       \   'quickfix',
-      \   'searchcount',
       \   'tabline',
       \   'term',
       \   'undotree',
@@ -142,15 +141,24 @@ let g:airline#extensions#wordcount#filetypes = [
       \ ]
 
 
+" Section: Custom 'plugins'
+function! Gitsigns() abort
+  let signs = get(b:, 'gitsigns_status', '')
+  let symbols = [ '柳', ' ', ' ' ]
+
+  let show  = substitute(signs, '\~', '柳', '')
+  let show  = substitute(show, '-', ' ', '')
+  let show  = substitute(show, '+', ' ', '')
+
+  return show
+endfunction
 
 function! AirlineInit()
   let g:airline_section_b = airline#section#create([
-        \ 'branch', '|',
-        \ " %{get(b:,'gitsigns_status', '')}"
+        \ 'branch',
+        \ " %{Gitsigns()}"
         \ ])
-" let g:airline#extensions#hunks#hunk_symbols = [ ' ', '柳 ', ' ' ]
 endfunction
 autocmd User AirlineAfterInit call AirlineInit()
-
 
 let g:airline_theme = 'ayu_dark'
