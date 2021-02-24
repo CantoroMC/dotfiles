@@ -273,9 +273,10 @@ Depends On: libtermkey msgpack-c libluv libvterm libtree-sitter.so(tree-sitter)
 #+begin_src
   sudo pacman -S --needed luajit luarocks lua-lpeg lua-mpack gperf unibilium libmspack libtermkey libvterm jemalloc
 #+end_src
+Add the flag =USE_BUNDLED=OFF= to the make
 
 ** Building
 #+begin_src shell
-  make CMAKE_BUILD_TYPE=RelWithDebInfo USE_BUNDLED=OFF
+  make CMAKE_BUILD_TYPE=RelWithDebInfo
   sudo make CMAKE_INSTALL_PREFIX=/usr install
 #+end_src
