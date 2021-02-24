@@ -212,7 +212,6 @@ local function init()
   -- VIM DEVELOPMENT {{{3
   use 'dstein64/vim-startuptime'
   -- }}}
-  use '~/Downloads/groundhogs'
   -- }}}
 end
 -- }}}
