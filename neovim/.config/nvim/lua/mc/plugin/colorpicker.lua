@@ -16,13 +16,17 @@ local plugin_settings = {
 
 local M = {}
 
+function M.list(bg)
+  return vim.tbl_keys(plugin_settings.themes[bg])
+end
+
 function M.choose(...)
   local args = {...}
   local bgs = { 'dark', 'light' }
 
   local background
   if #args >= 1 and #args <= 2 then
-    background = #args[1]
+    background = args[1]
   elseif #args == 0 then
     local hour = tonumber(os.date('%H'))
     local bg_choose =

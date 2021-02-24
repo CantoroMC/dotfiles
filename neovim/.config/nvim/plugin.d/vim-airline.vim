@@ -17,7 +17,6 @@ let g:airline_exclude_preview   = 1
 let g:airline_filetype_overrides = {
       \ 'fugitive' : ['Fugitive', '%{airline#util#wrap(airline#extensions#branch#get_head(),80)}'],
       \ 'help'     : [ 'Help', '%f' ],
-      \ 'GroundHog': [ ' GroundHog', '%{b:groundhogs_number}' ],
       \ 'NvimTree' : [ ' NvimTree', '' ],
       \ 'startify' : [ 'Startify', '' ],
       \ }

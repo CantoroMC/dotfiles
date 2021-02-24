@@ -33,7 +33,7 @@ local function init()
   if packer == nil then
     packer = require('packer')
     packer.init({
-      disable_commands = true
+      disable_commands = true,
       -- TODO Float Window {{{3
       --[[
       display = {
@@ -86,6 +86,9 @@ local function init()
     opt = true
   }
   -- UTILITIES {{{3
+  use 'neovim/nvim-lspconfig'
+  use 'liuchengxu/vista.vim'
+
   use { 'neoclide/coc.nvim',
     branch = 'release'
   }
@@ -98,11 +101,8 @@ local function init()
       branch = 'release'}
   }
 
-  use 'neovim/nvim-lspconfig'
-
   -- GraveYard {{{
   --[=====[
-
   use 'nvim-lua/completion-nvim'                   -- Completion
   use { 'steelsojka/completion-buffers',
     requires = { 'nvim-lua/completion-nvim' },
@@ -134,11 +134,11 @@ local function init()
   use { 'junegunn/fzf.vim',
     requires = { 'junegunn/fzf' },
   }
+
   use { 'CantoroMC/slimux',  -- On tmux
     opt = true,
     cmd = { 'SlimuxREPLConfigure', 'SlimuxShellConfigure', 'SlimuxGlobalConfigure' },
   }
-  use 'liuchengxu/vista.vim'
   -- }}}
   -- GUI UTILITIES {{{3
   -- Colorschemes {{{4
@@ -152,26 +152,27 @@ local function init()
     as = 'nvim-tree',
     requires = 'kyazdani42/nvim-web-devicons'
   }
+
   use 'Yggdroot/indentLine'              -- Show indent line and leading spaces
+
   use { 'norcalli/nvim-colorizer.lua',   -- Show RGB,HTML... Colors
     as = 'nvim-colorizer'
   }
+
   use { 'mhinz/vim-startify',            -- Start page and session management
     requires = 'ryanoasis/vim-devicons', -- Maybe this can be removed
   }
-  -- use { 'glepnir/galaxyline.nvim',
-  --   branch = 'main',
-  --   -- config = function() require'mc.plugin.configs.galaxyline' end,
-  --   as = 'galaxyline',
-  --   requires = {'kyazdani42/nvim-web-devicons',
-  --     opt = true
-  --   }
-  -- }
-  -- use 'itchyny/lightline.vim'
+
   use { 'vim-airline/vim-airline',
     requires = 'vim-airline/vim-airline-themes'
   }
 
+  use { 'lewis6991/gitsigns.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim'
+    },
+    as = 'gitsigns',
+  }
   -- }}}
   -- HIS HOLINESS {{{3
   use 'tpope/vim-apathy'         -- `path`, `suffixesadd`, `include`, `includeexpr` and `define`
@@ -211,14 +212,7 @@ local function init()
   -- VIM DEVELOPMENT {{{3
   use 'dstein64/vim-startuptime'
   -- }}}
-
-use {
-  'lewis6991/gitsigns.nvim',
-  requires = {
-    'nvim-lua/plenary.nvim'
-  },
-  as = 'gitsigns',
-}
+  use '~/Downloads/groundhogs'
   -- }}}
 end
 -- }}}

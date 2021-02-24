@@ -99,9 +99,11 @@ Install a boot loader (grub)
 
 ** Add user and add it to important groups
 #+begin_src shell
-  useradd -m -G wheel,audio,video,sys,log,floppy,network,scanner,power,adm,lp,optical,storage,users,rfkill -s /bin/zsh USERNAME
+  useradd -m -G video,log,adm,lp,power,network,users,sys,wheel,rfkill -s /bin/zsh USERNAME
   passwd USERNAME
 #+end_src
+
+I used to also add those: audio,floppy,scanner,optical,storage,?
 
 Edit /etc/sudoers with =EDITOR=vi visudo= and uncomment wheel.. to allow
 user of the weel group to execute sudo.
