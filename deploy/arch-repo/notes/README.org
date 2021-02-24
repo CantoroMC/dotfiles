@@ -38,7 +38,7 @@ and enable the swap volume
 
 ** Install essential packages
 #+begin_src shell
-  pacstrap /mnt base base-devel linux linux-firmware vi nano git zsh
+  pacstrap /mnt base base-devel linux linux-firmware vi git zsh
 #+end_src
 
 * Phase II: Configuring the system
