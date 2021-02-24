@@ -10,7 +10,7 @@ $ sudo ./install.sh
 2. Manually:
     * Copy the libraGrub directory in /usr/share/grub/themes/
         ```sh
-        $ cd thinkGrub
+        $ cd libraGrub
         $ sudo mv libraGrub /usr/share/grub/themes
         ```
     * Edit the grub configuration file /etc/default/grub
