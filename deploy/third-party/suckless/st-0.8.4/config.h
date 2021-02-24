@@ -227,7 +227,7 @@ static const char *palettes[][256] = {
 		[5]  = "#560088", /* magenta */
 		[6]  = "#0e717c", /* cyan    */
 		[7]  = "#777777", /* white   */
-    	/* 8 bright colors */
+		/* 8 bright colors */
 		[8]  = "#424242", /* black   */
 		[9]  = "#e83b3f", /* red     */
 		[10] = "#7aba3a", /* green   */
@@ -258,28 +258,6 @@ static const char *palettes[][256] = {
 		[13] = "#ddaaff", /* magenta */
 		[14] = "#b7fff9", /* cyan    */
 		[15] = "#dedacf", /* white   */
-
-		[255] = 0,
-	},
-	{   // EndeavourOS
-		/* 8 normal colors */
-		[0]  = "#08052b", /* black   */
-		[1]  = "#ff7f7f", /* red     */
-		[2]  = "#47b35d", /* green   */
-		[3]  = "#cc3980", /* yellow  */
-		[4]  = "#7fbaff", /* blue    */
-		[5]  = "#7f3fbf", /* magenta */
-		[6]  = "#7f7fff", /* cyan    */
-		[7]  = "#cdccdb", /* white   */
-		/* 8 bright colors */
-		[8]  = "#7fbaff", /* black   */
-		[9]  = "#ff7f7f", /* red     */
-		[10] = "#9999cc", /* green   */
-		[11] = "#ff7f7f", /* yellow  */
-		[12] = "#7f7fff", /* blue    */
-		[13] = "#7f3fbf", /* magenta */
-		[14] = "#7f7fff", /* cyan    */
-		[15] = "#e3e3ea", /* white   */
 
 		[255] = 0,
 	},
