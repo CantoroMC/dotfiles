@@ -76,14 +76,6 @@ compdef _dirs d
   cd $d
 }
 
-# ranger
-function rcd() {
-  # Allow to change directory using ranger
-  ranger --choosedir=$XDG_CACHE_HOME/ranger_dir
-  dir=$(cat $XDG_CACHE_HOME/ranger_dir)
-  [ -n "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
-}
-
 # nnn
 function rcn() {
   # Block nesting of nnn in subshells

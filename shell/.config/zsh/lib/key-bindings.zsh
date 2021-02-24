@@ -152,7 +152,6 @@ bindkey -M viins -s   '^X^M' 'fzf-man\n'
 bindkey -M viins      '^X^N' _nvim_cmd
 bindkey -M viins      '^X^P' fzf-kill
 bindkey -M viins      '^X^S' fzf-bmarks
-bindkey -M viins -s   '^X^R' 'rcd\n'
 bindkey -M viins      '^X^Z' fzf-configs
 # }}}
 

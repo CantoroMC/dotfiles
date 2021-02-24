@@ -91,6 +91,7 @@ gst-plugins-bad
 gst-plugins-ugly
 mplayer
 libdvdcss
+timidity++
 
 efibootmgr
 dosfstools

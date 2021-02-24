@@ -12,6 +12,7 @@ export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export LESSHISTFILE=-
 export MPLAYER_HOME="$XDG_CONFIG_HOME"/mplayer
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
+export STACK_ROOT="$XDG_DATA_HOME"/stack
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 # }}}
