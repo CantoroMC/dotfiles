@@ -52,11 +52,11 @@ let g:startify_lists = [
       \ },
       \ {
       \   'type': function('s:gitModified'),
-      \   'header': ['     git modified']
+      \   'header': ['   柳  git modified']
       \ },
       \ {
       \   'type': function('s:gitUntracked'),
-      \   'header': ['     git untracked']
+      \   'header': ['      git untracked']
       \ },
       \ {
       \   'type': 'commands',
@@ -66,7 +66,8 @@ let g:startify_lists = [
 " Book Marks: {{{1
 let g:startify_bookmarks = [
       \ '~/.config/nvim/init.lua',
-      \ '~/Documents/programming/TeX/matriHX/matriHX.tex',
+      \ '~/.config/zsh/.zshrc',
+      \ '~/Documents/programming/TeX/projects/matriHX/matriHX.tex',
       \]
 " }}}
 " Commands: {{{1

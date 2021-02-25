@@ -1,0 +1,10 @@
+#!/bin/sh
+
+packages=(git emacs neovim texlive music mail shell haskell x-window)
+
+main() {
+  cd ~/dotfiles
+  stow -nv ${packages[@]}
+}
+
+main "$@"

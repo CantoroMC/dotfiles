@@ -47,8 +47,8 @@ set-window-option -g window-status-bell-style bg=#36a3d9,fg=#384550
 set-window-option -g window-status-current-style bg=#3f4e5a,fg=#e7c547
 set-window-option -g window-status-current-format \
 "#[fg=#a37acc, bg=#313d46, nobold, noitalics, nounderscore]\
-#[fg=#151a1e, bg=#b8cc52, bold, italics] 裡#I:\
-#[fg=#151a1e, bg=#b8cc52, bold, italics]#W \
+#[fg=#151a1e, bg=#b8cc52, nobold, italics] 裡#I:\
+#[fg=#151a1e, bg=#b8cc52, nobold, italics]#W \
 #[fg=#a37acc, bg=#313d46, nobold, noitalics, nounderscore]"
 set-window-option -g window-status-style fg=#36a3d9,bg=#151a1e
 set-window-option -g window-status-format \

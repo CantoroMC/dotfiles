@@ -24,7 +24,7 @@ Clone the package and =makepkg -si=
 
 ** Installing AUR packages with yay
    #+begin_src sh
-     yay -S --noansweredit --needed - < ~/dotfiles/deploy/arch-repo/aur-packages.txt
+     yay -S --needed - < ~/dotfiles/deploy/arch-repo/aur-packages.txt
    #+end_src
 
 ** Installing Third Party Packages

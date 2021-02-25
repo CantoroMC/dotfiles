@@ -1,0 +1,37 @@
+#!/bin/sh
+
+check_mkdir() {
+  [ ! -d ${1} ] && mkdir -p ${1} || echo -e "\e[1;97m${1} already exists.\e[0m"
+}
+
+main() {
+  check_mkdir ~/.config/git
+  # git, nvim and emacs
+  check_mkdir ~/.config/git
+  check_mkdir ~/.config/emacs
+  check_mkdir ~/.config/nvim
+  check_mkdir ~/.local/share/nvim/site/pack
+  # music and mail
+  check_mkdir ~/.config/mpd/playlists
+  check_mkdir ~/.config/radiotray-ng
+  check_mkdir ~/.config/neomutt
+  # shell
+  check_mkdir ~/.config/zsh/plugins
+  check_mkdir ~/.config/nnn
+  check_mkdir ~/.local/bin
+  # X
+  check_mkdir ~/.local/share/xorg
+  check_mkdir ~/.local/share/fonts
+  check_mkdir ~/.config/nautilus
+  check_mkdir ~/.local/share/nautilus/scripts
+  check_mkdir ~/.config/gtk-2.0
+  check_mkdir ~/.config/gtk-3.0
+  check_mkdir ~/.config/surf
+  check_mkdir ~/.local/share/surf
+  # Haskell
+  check_mkdir ~/.local/share/stack
+  check_mkdir ~/.cabal
+  check_mkdir ~/.ghc
+}
+
+main "$@"

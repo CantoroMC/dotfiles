@@ -1,0 +1,7 @@
+#!/bin/sh
+
+main() {
+  yay -S --needed - < ../aur-packages.txt
+}
+
+main "$@"
