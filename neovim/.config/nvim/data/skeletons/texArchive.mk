@@ -1,28 +1,36 @@
-# === Configuration ===
-DOC=
+# Variables
+DOCS=$(patsubst %.tex,%.pdf,$(wildcard *.tex))
+TAR=$(wildcard *.cls) $(wildcard *.pdf) $(patsubst %.pdf,%.tex,$(wildcard *.pdf)) Makefile
+ARCHIVE=lezioni
+
+COMP=pdflatex
+COPTS=-shell-escape -synctex=1 -interaction=nonstopmode -file-line-error --output-directory=$(PWD)
+
 bibliography=no
 
-COMP=lualatex
-COPTS=-shell-escape -synctex=1 -interaction=nonstopmode -file-line-error --output-directory=$(PWD)
-READER=zathura
 
-# === Targets ===
+# Targets
+all: $(DOCS)
 
-$(DOC).pdf: $(DOC).tex
+$(DOCS): %.pdf: %.tex
+	$(COMP) $(COPTS) $<
+	$(COMP) $(COPTS) $<
+
+%: %.tex
 	$(COMP) $(COPTS) $<
 ifeq ($(bibliography),yes)
-	bibtex $(DOC).aux
+	bibtex $@.aux
 	$(COMP) $(COPTS) $<
 endif
 	$(COMP) $(COPTS) $<
 ifeq ($(bibliography),yes)
-	bibtex $(DOC).aux
+	bibtex $@.aux
 	$(COMP) $(COPTS) $<
 	$(COMP) $(COPTS) $<
 endif
 
-view: $(DOC).pdf
-	$(READER) $(DOC).pdf & disown
+tarball:
+	tar cjvf $(ARCHIVE)_`date +%F`.tar.bz2 $(TAR)
 
 clean:
 	@rm *.{~,aux,bak,swp,synctex\(busy\).gz,synctex.gz,out,idx,ind} 2>/dev/null || true
@@ -32,3 +40,5 @@ clean:
 
 distclean: clean
 	rm -f *.dvi *.ps *.pdf
+
+.PHONY: clean distclean all

@@ -67,13 +67,13 @@ let g:airline#extensions#default#layout = [
 
 " Section: Builtin extensions
 
+" 'nvimlsp',
 let g:airline_extensions = [
       \   'branch',
       \   'coc',
       \   'fzf',
       \   'fugitiveline',
       \   'hunks',
-      \   'nvimlsp',
       \   'po',
       \   'quickfix',
       \   'tabline',

@@ -29,8 +29,9 @@ let s:compile_opts = join(get(g:, 'texpiler_opts',
       \     '-synctex=1',
       \     '-interaction=nonstopmode',
       \     '-file-line-error',
+      \     '--output-directory='.expand('%:p:h')
       \   ]
-      \ ), ' ')
+      \ ), '')
 
 function! tex#texpiler#build(compiler) abort
   cexpr system(a:compiler.' '.s:compile_opts.' '.shellescape(expand('%:p')))
