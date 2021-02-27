@@ -203,6 +203,9 @@ local function init()
     opt = true,
     cmd = 'UndotreeToggle'
   }
+  use { 'SirVer/ultisnips',
+    requires = 'honza/vim-snippets'
+  }
   -- }}}
   -- FILETYPE PLUGINS {{{3
   use 'neovimhaskell/haskell-vim'       -- Haskell

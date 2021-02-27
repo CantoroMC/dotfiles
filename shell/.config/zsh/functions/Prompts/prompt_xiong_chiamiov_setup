@@ -1,12 +1,12 @@
-prompt_bull_help () {
+prompt_xiong_chiamiov_help () {
   cat <<EOH
 This prompt is color-scheme-able.  You can invoke it thus:
 
-  prompt bull [<color1> [<color2> [<color3>]]]
+  prompt xiong_chiamiov [<bull-bar-and-cwd> [<color2> [<color3>]]]
 
 where the parameters are the colors for the theme-bar and current
 working directory, user@host text, and color3 text respectively.  The
-default colors are green, white, and blue.  This theme works best
+default colors are blue, white, and green.  This theme works best
 with a dark background.
 
 Recommended fonts for this theme: NerdFont.
@@ -15,22 +15,20 @@ stupid.
 EOH
 }
 
-prompt_bull_setup () {
-  local -A schars
-  autoload -Uz prompt_special_chars
-  prompt_special_chars
-
-  local color1=${1:-'green'}
+prompt_xiong_chiamiov_setup () {
+  local color1=${1:-'blue'}
   local color2=${2:-'white'}
-  local color3=${3:-'blue'}
+  local color3=${3:-'green'}
 
-  local intro="%B%F{#138ac1}%{ %2G%}%f%b"
-  local dir_bar="%B%F{$color1}%K{$color1}$schars[333]$schars[262]$schars[261]$schars[260]%F{$color2}%K{$color1}%n at %M in %(7~|%-3~/.../%3~|%~)%b%F{$color1}%k$schars[333]$schars[262]$schars[261]$schars[260]%f"
+  local user_at_machine="%B%F{$color1}┌─[%f%F{$color3}%n%f%F{$color1}@%f%b%F{$color2}%M%f%B%F{$color1}]%f%b"
+  local sep=" - "
+  local dir="%B%F{$color1}[%f%F{$color2}%(7~|%-3~/.../%3~|%~)%f%F{$color1}]%b"
+  local start="%B%F{$color1}└─[%f%(?.%F{$color3}$.%F{red}$)%f%F{$color1}]%b"
+
   local nr_jobs="%B%F{$color3}%(1j.jobs: %j.)%f%b"
-  local hist_len="%B%F{$color2}%h%f%b"
-
+  local hist_len="%B%F{$color1}[%f%F{$color2}%h%f%F{$color1}]%b"
   local return_code="%(?..%F{red}%? %{↵ %2G%})%f"
-  local start="%(?.%F{$color1}%{➜ %2G%}.%F{red}%{➜ %2G%})%f"
+
 
   # Info
   ZSH_THEME_GIT_PROMPT_PREFIX="%F{$color2}:%B"
@@ -57,30 +55,30 @@ prompt_bull_setup () {
   local git_status='$(git_prompt_status)'
   local git_commits='$(git_commits_ahead) $(git_commits_behind)'
 
-  PS1=" ${intro} ${dir_bar} ${nr_jobs} ${hist_len} $prompt_newline ${MODE_INDICATOR_PROMPT} ${return_code} ${start} "
-  PS2="%F{$color1}%K{$color1}$schars[333]$schars[262]$schars[261]$schars[260]%f%k%_>"
-  RPS1="${git_commits}${git_branch}${git_status}"
 
+  PS1="${user_at_machine}${sep}${dir}${sep}${hist_len}$prompt_newline${start}${sep}${MODE_INDICATOR_PROMPT} ${return_code} "
+  PS2="%B%F{$color1}%_>%f%b"
+  RPS1="${git_commits}${git_branch}${git_status}"
 
   prompt_opts=(cr subst percent)
 }
 
-prompt_bull_preview () {
+prompt_xiong_chiamiov_preview () {
   local color colors
   colors=(red yellow green blue magenta)
 
   if (( ! $#* )); then
     for (( i = 1; i <= $#colors; i++ )); do
       color=$colors[$i]
-      prompt_preview_theme bull $color
+      prompt_preview_theme xiong_chiamiov $color
       print
     done
-    prompt_preview_theme bull white grey blue
+    prompt_preview_theme xiong_chiamiov white grey blue
   else
-    prompt_preview_theme bull "$@"
+    prompt_preview_theme xiong_chiamiov "$@"
   fi
 }
 
-prompt_bull_setup "$@"
+prompt_xiong_chiamiov_setup "$@"
 
 # vim:ft=zsh

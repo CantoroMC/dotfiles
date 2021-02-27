@@ -34,7 +34,7 @@ local custom_lsp_attach = function(client)
   lsp_remap('n', vim.g.maplocalleader..'A'    , 'vim.lsp.buf.code_action()')
 
   lsp_remap('n', '[g'                         , 'vim.lsp.diagnostic.goto_prev()')
-  lsp_remap('n', ']d'                         , 'vim.lsp.diagnostic.goto_next()')
+  lsp_remap('n', ']g'                         , 'vim.lsp.diagnostic.goto_next()')
   lsp_remap('n', vim.g.maplocalleader..'sd'   , 'vim.lsp.diagnostic.show_line_diagnostics()')
   lsp_remap('n', vim.g.maplocalleader..'dl'   , 'vim.lsp.diagnostic.set_loclist()')
   lsp_remap('n', vim.g.maplocalleader..'dq'   , 'vim.lsp.diagnostic.document_symbol()')

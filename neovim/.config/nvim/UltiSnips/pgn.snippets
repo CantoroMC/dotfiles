@@ -1,0 +1,10 @@
+snippet PgnHeader "basic pgn infomartions header" b
+[Event "${1:Rated Blitz game}"]
+[Site "${2:https://}"]
+[Date "${3:`!v strftime("%Y.%m.%d")`}"]
+[Round "${4:-}"]
+[White "$5"]
+[Black "$6"]
+[Result "$7"]
+
+endsnippet
