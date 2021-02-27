@@ -43,10 +43,9 @@ command! -buffer TReadDvi call tex#texpiler#openDvi()
 command! -buffer TReadPs  call tex#texpiler#openPs()
 command! -buffer TReadPdf call tex#texpiler#openPdf()
 
-nnoremap <silent> <Plug>TexReadPdf :TexReadPdf<CR>
-if !hasmapto('<Plug>TexReadPdf') || !maparg('<F20>','n')
-  nmap <buffer> <F20>  <Plug>TexReadPdf
-  nmap <buffer> <S-F8> <Plug>TexReadPdf
+nnoremap <silent> <Plug>TReadPdf :TReadPdf<CR>
+if !hasmapto('<Plug>TReadPdf') || !maparg('<C-c>o','n')
+  nmap <buffer> <C-c>o <Plug>TReadPdf
 endif
 
 

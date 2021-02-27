@@ -79,8 +79,7 @@ EOF
 
 " Section: Vim Bindings
 
-nnoremap <silent> <F2>   :<C-U>NvimTreeToggle<CR>
-nnoremap <silent> <S-F2> :<C-U>NvimTreeFindFile<CR>
-nnoremap <silent> <F14>  :<C-U>NvimTreeFindFile<CR>
+nnoremap <silent> <C-x>f     :<C-U>NvimTreeToggle<CR>
+nnoremap <silent> <C-x><C-f> :<C-U>NvimTreeFindFile<CR>
 
 " vim:fdm=indent

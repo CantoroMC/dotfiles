@@ -27,3 +27,5 @@ autocmd FileType ruby
 autocmd FileType tex let b:dispatch = 'latex --output-directory=%:p:h -synctex=1 -interaction=nonstopmode %'
 autocmd FileType vim let b:dispatch = 'vint %'
 autocmd FileType haskell let b:dispatch = 'ghc --make %'
+
+nnoremap <silent> <C-c>c :<C-u>Make<CR>

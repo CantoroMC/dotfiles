@@ -12,6 +12,11 @@ require'nvim-web-devicons'.setup {
       color = "#ff7777",
       name = "Epub",
     },
+    tex = {
+      icon = "",
+      color = "#b8cc52",
+      name = "TeX",
+    },
   };
 
   default = true;

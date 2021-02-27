@@ -29,6 +29,7 @@ require'mc.plugin.colorpicker'.setup {
       [ "jellybeans" ] = 'wombat',
       [ "PaperColor" ] = 'base16_vim',
       [ "srcery" ]     = 'zenburn',
+      [ "sitruuna" ]   = 'base16_pop',
     },
     [ "light" ] = {
       [ "mayansmoke" ] = 'xtermlight',
