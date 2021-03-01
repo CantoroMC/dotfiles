@@ -13,7 +13,7 @@ bug-reports:        https://github.com/CantoroMC/dotfiles
 synopsis:           XMonad Configuration
 description:        My personal xmonad configuration
 category:           Graphics
-tested-with:        GHC == 8.10.2, GHC == 8.10.3
+tested-with:        GHC == 8.10.2, GHC == 8.10.3, GHC == 8.10.4
 extra-source-files: README.org, build, src/.ghci
 
 
