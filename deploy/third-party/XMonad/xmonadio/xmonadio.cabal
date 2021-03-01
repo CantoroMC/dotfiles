@@ -1,5 +1,5 @@
 name:               xmonadio
-version:            0.13
+version:            0.15
 cabal-version:      >=1.10
 build-type:         Simple
 license:            GPL-3
