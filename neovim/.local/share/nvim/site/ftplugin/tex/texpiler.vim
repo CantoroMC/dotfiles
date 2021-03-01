@@ -44,8 +44,8 @@ command! -buffer TReadPs  call tex#texpiler#openPs()
 command! -buffer TReadPdf call tex#texpiler#openPdf()
 
 nnoremap <silent> <Plug>TReadPdf :TReadPdf<CR>
-if !hasmapto('<Plug>TReadPdf') || !maparg('<C-c>o','n')
-  nmap <buffer> <C-c>o <Plug>TReadPdf
+if !hasmapto('<Plug>TReadPdf') || !maparg('<C-c>l','n')
+  nmap <buffer> <C-c>l <Plug>TReadPdf
 endif
 
 
