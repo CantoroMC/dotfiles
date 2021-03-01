@@ -12,7 +12,7 @@ import Config.Workspace
 xmStartupHook :: X ()
 xmStartupHook = do
     fixSupportedAtoms
-    setDefaultCursor xC_bogosity
+    setDefaultCursor xC_arrow
     windows . XMSS.greedyView $ show Gamma
 
 -- | Detect urgency of some programs like kitty (not covered in 'XMonad.Hooks.EwmhDesktops.ewmh'):
