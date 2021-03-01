@@ -8,6 +8,9 @@ export XDG_CONFIG_DIRS="/etc/xdg"
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
 
+export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME"/bundle
+export BUNDLE_USER_CACHE="$XDG_CACHE_HOME"/bundle
+export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME"/bundle
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export LESSHISTFILE=-
 export MPLAYER_HOME="$XDG_CONFIG_HOME"/mplayer

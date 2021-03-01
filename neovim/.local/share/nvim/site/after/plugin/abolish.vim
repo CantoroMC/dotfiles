@@ -53,6 +53,7 @@ Abolish {les,compar,compari}sion{,s}          {les,compari,compari}son{}
 Abolish {,un}nec{ce,ces,e}sar{y,ily}          {}nec{es}sar{}
 Abolish {,un}orgin{,al}                       {}origin{}
 Abolish persistan{ce,t,tly}                   persisten{}
+Abolish proog                                 proof
 Abolish referesh{,es}                         refresh{}
 Abolish {,ir}releven{ce,cy,t,tly}             {}relevan{}
 Abolish rec{co,com,o}mend{,s,ed,ing,ation}    rec{om}mend{}

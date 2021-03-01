@@ -4,6 +4,7 @@ alias cp='nocorrect cp'
 alias man='nocorrect man'
 alias mkdir='nocorrect mkdir'
 alias mv='nocorrect mv'
+alias ssh='nocorrect ssh'
 alias sudo='nocorrect sudo'
 # Useful Lists
 alias aliasList="alias | sed 's/=.*//'"

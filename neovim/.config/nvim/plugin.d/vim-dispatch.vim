@@ -28,4 +28,4 @@ autocmd FileType tex let b:dispatch = 'latex --output-directory=%:p:h -synctex=1
 autocmd FileType vim let b:dispatch = 'vint %'
 autocmd FileType haskell let b:dispatch = 'ghc --make %'
 
-nnoremap <silent> <C-c>c :<C-u>Make<CR>
+nnoremap <silent> <C-c><C-c> :<C-u>Make<CR>
