@@ -1,35 +1,45 @@
-% %FILE%
-
 \documentclass[10pt,a4paper]{article}
 
-% Preamble {{{1
+\usepackage{iftex}
+\ifPDFTeX%
+  \usepackage[utf8x]{inputenc}
+  \usepackage[T1]{fontenc}
+  \usepackage[italian,english]{babel}
+\else
+  \ifXeTeX%
+    \usepackage{fontspec}
+    \setmainfont{cmun}[
+      Extension=.otf,UprightFont=*rm,ItalicFont=*ti,
+      BoldFont=*bx,BoldItalicFont=*bi,
+    ]
+    \setsansfont{cmun}[
+      Extension=.otf,UprightFont=*ss,ItalicFont=*si,
+      BoldFont=*sx,BoldItalicFont=*so,
+    ]
+    \setmonofont{cmun}[
+      Extension=.otf,UprightFont=*btl,ItalicFont=*bto,
+      BoldFont=*tb,BoldItalicFont=*tx,
+    ]
+  \else
+    \usepackage{luatextra}
+    \setmainfont{CMU Serif}
+    \setsansfont{CMU Sans Serif}
+    \setmonofont{CMU Typewriter Text}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX}
+  \usepackage{polyglossia}
+  \setdefaultlanguage{english}
+  \setotherlanguage{italian} % then you can use the italian environment or \textitalian{text}
+\fi
 
-% Packages {{{2
-
-% Languages {{{3
-\usepackage[utf8x]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[english]{babel}
-% }}}
-
-% Math {{{3
 \usepackage{mathtools, amsfonts, amssymb, amsthm, mathrsfs, IEEEtrantools}
-% }}}
 
-% }}}
-
-% Options and Commands {{{2
 %\setcounter{secnumdepth}{-1} % to Avoid section counting
-% }}}
-
-% }}}
 
 \begin{document}
 
-% Front Matter {{{1
-
-\author{%USER%}
-\title{Title}
+\author{Marco Cantoro}
+\title{\Huge{\textbf{Title}}}
 \date{\today}
 
 \maketitle
@@ -38,12 +48,7 @@
 \tableofcontents
 \newpage
 
-% }}}
 
-% Main Matter {{{1
-
-\section[]{%HERE%}
-
-% }}}
+\section[]{First Section}
 
 \end{document}

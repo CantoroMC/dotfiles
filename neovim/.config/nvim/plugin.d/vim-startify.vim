@@ -82,11 +82,11 @@ let g:startify_disable_at_vimenter = 0
 let g:startify_files_number        = 10
 let g:startify_change_to_dir       = 0
 let g:startify_change_to_vcs_root  = 0
-let g:startify_padding_left        = 3
+let g:startify_padding_left        = 5
 let g:startify_enable_special      = 1
 let g:startify_update_oldfiles     = 1
 let g:startify_fortune_use_unicode = 0
 let g:startify_custom_header       =
-      \ startify#fortune#cowsay('', '═','║','╔','╗','╝','╚')
+      \ startify#pad(startify#fortune#cowsay('', '═','║','╔','╗','╝','╚'))
 let g:startify_relative_path = 1
 let g:startify_use_env = 1

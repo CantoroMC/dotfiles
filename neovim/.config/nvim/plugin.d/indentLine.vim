@@ -16,4 +16,5 @@ let g:indentLine_fileTypeExclude      =
       \   'bibtex',
       \   'markdown',
       \   'make',
+      \   'startify',
       \ ]

@@ -1,5 +1,4 @@
-" end the enviroment
-nnoremap <silent> <buffer> <C-c>c Yp0fbcwend<Esc>ko
+nnoremap <silent> <buffer> <C-c>] :call tex#maps#closeEnv()<CR>
 
 nnoremap <silent> <buffer> <C-c>i i\begin{IEEEeqnarray}{rCl}<Esc>o\end{IEEEeqnarray}<Esc>k0
 nnoremap <silent> <buffer> <C-c>o i\begin{IEEEeqnarray*}{rCl}<Esc>o\end{IEEEeqnarray*}<Esc>k0

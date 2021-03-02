@@ -714,6 +714,14 @@ For now is only for remember, could be useful or deleted
 
 * LaTeX
 #+begin_src emacs-lisp
+  (load "auctex.el" nil t t)
+  (setq TeX-auto-save t)
+  (setq TeX-parse-self t)
+  (setq TeX-PDF-mode t)
+  (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+#+end_src
+
+#+begin_src emacs-lisp
   (use-package lsp-latex
     :init
     (with-eval-after-load 'tex-mode

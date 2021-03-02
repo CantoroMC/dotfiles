@@ -154,7 +154,10 @@ local function init()
     requires = 'kyazdani42/nvim-web-devicons'
   }
 
-  use 'Yggdroot/indentLine'              -- Show indent line and leading spaces
+  -- use 'Yggdroot/indentLine'              -- Show indent line and leading spaces
+  use { 'lukas-reineke/indent-blankline.nvim',
+    branch = 'lua'
+  }
 
   use { 'norcalli/nvim-colorizer.lua',   -- Show RGB,HTML... Colors
     as = 'nvim-colorizer'
