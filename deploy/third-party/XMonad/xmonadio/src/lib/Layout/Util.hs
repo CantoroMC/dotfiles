@@ -7,49 +7,30 @@ module Layout.Util
     , xmLayouts
     ) where
 
-import           XMonad                  hiding ( (|||) )
+import XMonad hiding ((|||))
 
-import           XMonad.Layout.Combo            ( CombineTwo
-                                                , combineTwo
-                                                )
-import           XMonad.Layout.Decoration       ( Decoration
-                                                , DefaultShrinker
-                                                , Theme(..)
-                                                )
+import XMonad.Layout.Combo (CombineTwo, combineTwo)
+import XMonad.Layout.Decoration (Decoration, DefaultShrinker, Theme(..))
 
-import           XMonad.Layout.IfMax            ( IfMax(..) )
+import XMonad.Layout.IfMax (IfMax(..))
 
-import           XMonad.Layout.LayoutCombinators
-                                                ( (|||) )
-import           XMonad.Layout.LayoutModifier   ( ModifiedLayout )
-import           XMonad.Layout.PerWorkspace     ( onWorkspace )
-import           XMonad.Layout.Renamed          ( Rename(CutWordsLeft, Replace)
-                                                , renamed
-                                                )
-import           XMonad.Layout.ResizableThreeColumns
-                                                ( ResizableThreeCol
-                                                    ( ResizableThreeColMid
-                                                    )
-                                                )
-import           XMonad.Layout.ResizableTile    ( ResizableTall(..) )
-import           XMonad.Layout.Simplest         ( Simplest(..) )
-import           XMonad.Layout.SimplestFloat    ( SimplestFloat
-                                                , simplestFloat
-                                                )
-import           XMonad.Layout.Spacing          ( Border(..)
-                                                , Spacing(..)
-                                                , spacingRaw
-                                                )
-import           XMonad.Layout.Tabbed           ( TabbedDecoration(..)
-                                                , shrinkText
-                                                , tabbed
-                                                )
+import XMonad.Layout.LayoutCombinators ((|||))
+import XMonad.Layout.LayoutModifier (ModifiedLayout)
+import XMonad.Layout.PerWorkspace (onWorkspace)
+import XMonad.Layout.Renamed (Rename(CutWordsLeft, Replace), renamed)
+import XMonad.Layout.ResizableThreeColumns
+    (ResizableThreeCol(ResizableThreeColMid))
+import XMonad.Layout.ResizableTile (ResizableTall(..))
+import XMonad.Layout.Simplest (Simplest(..))
+import XMonad.Layout.SimplestFloat (SimplestFloat, simplestFloat)
+import XMonad.Layout.Spacing (Border(..), Spacing(..), spacingRaw)
+import XMonad.Layout.Tabbed (TabbedDecoration(..), shrinkText, tabbed)
 
-import           XMonad.Layout.WindowArranger   ( WindowArranger )
+import XMonad.Layout.WindowArranger (WindowArranger)
 
-import qualified Config.Theme                  as XMTheme
-import           Config.Workspace               ( xmWorkspaces )
-import           Layout.Tatami                  ( Tatami(..) )
+import qualified Config.Theme as XMTheme
+import Config.Workspace (xmWorkspaces)
+import Layout.Tatami (Tatami(..))
 
 -------------------------------------------------------------------------------
     -- Decorations Theme
@@ -101,9 +82,10 @@ combo
            Window
 combo = renamed
     [Replace "Combo"]
-    (combineTwo (Tall 1 0.03 0.5)
-                (tabbed shrinkText xmDecorationTheme)
-                (tabbed shrinkText xmDecorationTheme)
+    (combineTwo
+        (Tall 1 0.03 0.5)
+        (tabbed shrinkText xmDecorationTheme)
+        (tabbed shrinkText xmDecorationTheme)
     )
 
 horizontal :: ModifiedLayout Rename (Mirror ResizableTall) Window
@@ -129,7 +111,7 @@ tatami = Tatami 1 0.03 0.5
 
 alpha = floatL ||| tall ||| monocle
 beta = tall ||| monocle ||| floatL
-gamma =  tall ||| combo ||| monocle ||| floatL
+gamma = tall ||| combo ||| monocle ||| floatL
 others =
     tall ||| tatami ||| combo ||| monocle ||| horizontal ||| threeCol ||| floatL
 
