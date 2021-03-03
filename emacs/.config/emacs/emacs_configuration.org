@@ -784,7 +784,8 @@ This is the [[https://orgmode.org/org.pdf][link]] for the org-manual in a pdf fo
     :ensure org-plus-contrib
     :hook (org-mode . mct/org-mode-setup)
     :config
-    (setq org-ellipsis " ▾")
+    (setq org-ellipsis " ▾"
+          org-hide-emphasis-markers t)
     (setq org-src-fontify-natively t)
     (setq org-src-tab-acts-natively t)
     (setq org-src-window-setup 'split-window-below)

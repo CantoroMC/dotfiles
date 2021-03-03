@@ -107,6 +107,7 @@ let g:airline#extensions#tabline#show_tab_count  = 0
 let g:airline#extensions#tabline#exclude_preview = 1
 let g:airline#extensions#tabline#tab_nr_type     = 0
 let g:airline#extensions#tabline#buf_label_first = 1
+let g:airline#extensions#tabline#show_tab_type   = 0
 let g:airline#extensions#tabline#buffers_label   = 'B'
 let g:airline#extensions#tabline#tabs_label      = 'T'
 let g:airline#extensions#tabline#current_first   = 0
