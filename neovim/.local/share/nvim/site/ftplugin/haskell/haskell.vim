@@ -3,7 +3,7 @@ if exists('b:did_ftplugin')
 endif
 source $VIMRUNTIME/ftplugin/haskell.vim
 
-command! HCompile :execute '!ghc --make '.fnameescape(expand('%:p'))
-command! HFormat  :execute '!brittany --write-mode=inplace '.fnameescape(expand('%:p'))
-cabbrev HC HCompile
-cabbrev HF HFormat
+command! -buffer HsFormat
+      \ :execute '!brittany --write-mode=inplace '.fnameescape(expand('%:p'))
+
+nnoremap <buffer> <silent> <C-c><C-f> :HsFormat<CR>

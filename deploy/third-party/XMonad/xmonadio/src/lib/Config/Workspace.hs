@@ -1,5 +1,5 @@
 module Config.Workspace
-    ( Workspace (..)
+    ( Workspace(..)
     , xmWorkspaces
     ) where
 
@@ -18,5 +18,4 @@ data Workspace =
     deriving (Eq, Ord, Read, Show, Enum, Bounded)
 
 xmWorkspaces :: [WorkspaceId]
-xmWorkspaces = show <$> wss
-    where wss = [ minBound .. maxBound ] :: [Workspace]
+xmWorkspaces = show <$> wss where wss = [minBound .. maxBound] :: [Workspace]

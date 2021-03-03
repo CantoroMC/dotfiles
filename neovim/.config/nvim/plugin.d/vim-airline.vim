@@ -8,17 +8,20 @@ let g:airline_detect_spelllang  = 0
 let g:airline_detect_iminsert   = 1
 let g:airline_inactive_collapse = 1
 let g:airline_inactive_alt_sep  = 1
-let g:airline_powerline_fonts   = 0
+let g:airline_powerline_fonts   = 1
 let g:airline_symbols_ascii     = 0
 let g:airline_exclude_preview   = 1
 
 " define the set of names to be displayed instead of a specific filetypes
 " (for section a and b)
 let g:airline_filetype_overrides = {
-      \ 'fugitive' : ['Fugitive', '%{airline#util#wrap(airline#extensions#branch#get_head(),80)}'],
+      \ 'fugitive' : [ 'Fugitive',
+      \   '%{airline#util#wrap(airline#extensions#branch#get_head(),80)}'],
       \ 'help'     : [ 'Help', '%f' ],
       \ 'NvimTree' : [ ' NvimTree', '' ],
       \ 'startify' : [ 'Startify', '' ],
+      \ 'packer'   : [ 'Packer', '' ],
+      \ 'GroundHog': [ 'GroundHog', '' ],
       \ }
 
 
@@ -28,29 +31,29 @@ let g:airline_filetype_overrides = {
 let g:airline#parts#ffenc#skip_expected_string = 'utf-8[unix]'
 let g:airline_mode_map = {
       \ '__'     : '-',
-      \ 'c'      : 'C',
+      \ 'c'      : '',
       \ 'i'      : ' ',
-      \ 'ic'     : 'I',
-      \ 'ix'     : 'I',
-      \ 'n'      : ' ',
-      \ 'ni'     : 'N',
-      \ 'no'     : 'N',
+      \ 'ic'     : '',
+      \ 'ix'     : '',
+      \ 'n'      : ' ',
+      \ 'ni'     : '',
+      \ 'no'     : '',
       \ 'R'      : 'R',
       \ 'Rv'     : 'vR',
       \ 's'      : 'S',
       \ 'S'      : 'S',
       \ ''     : 'S',
-      \ 't'      : 'T',
-      \ '!'      : 'SH',
-      \ 'v'      : 'V',
-      \ 'V'      : 'V-L',
-      \ ''     : 'V-B',
+      \ 't'      : '',
+      \ '!'      : '',
+      \ 'v'      : ' ',
+      \ 'V'      : ' -L',
+      \ ''     : ' -S',
       \ }
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
-let g:airline_left_sep          = ''
-let g:airline_right_sep         = ''
+let g:airline_left_sep = "\ue0b8"
+let g:airline_right_sep = "\ue0ba"
 let g:airline_symbols.branch    = '⎇ '
 let g:airline_symbols.dirty     = '  '
 let g:airline_symbols.readonly  = ' '
@@ -143,13 +146,16 @@ let g:airline#extensions#wordcount#filetypes = [
 " Section: Custom 'plugins'
 function! Gitsigns() abort
   let signs = get(b:, 'gitsigns_status', '')
-  let symbols = [ '柳', ' ', ' ' ]
 
   let show  = substitute(signs, '\~', '柳', '')
   let show  = substitute(show, '-', ' ', '')
   let show  = substitute(show, '+', ' ', '')
 
-  return show
+  if strlen(show) is 0
+    return show
+  else
+    return '| '.show
+  endif
 endfunction
 
 function! AirlineInit()
