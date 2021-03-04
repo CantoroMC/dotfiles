@@ -36,7 +36,7 @@ require'mc.plugin.colorpicker'.setup {
       [ "PaperColor" ] = 'papercolor',
     }
   },
-  theme = { [ "sitruuna" ] = 'base16_tomorrow' },
+  theme = { [ "ayu" ] = 'ayu_dark' },
 }
 
 -- CLOSURE

@@ -24,4 +24,4 @@ let g:vista_executive_for = {
       \ 'vim'       : 'nvim_lsp',
       \ }
 
-nnoremap <silent> <F3> :<C-u>Vista!!<CR>
+nnoremap <silent> <C-x><C-v> :<C-u>Vista!!<CR>

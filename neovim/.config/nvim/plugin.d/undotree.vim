@@ -7,4 +7,4 @@ let g:undotree_TreeNodeShape = "\ue729"
 let g:undotree_ShortIndicators = 1
 let g:undotree_HelpLine        = 0
 
-nnoremap <silent> <F1> :<C-u>UndotreeToggle<CR>
+nnoremap <silent> <C-x><C-u> :<C-u>UndotreeToggle<CR>

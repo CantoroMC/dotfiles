@@ -8,9 +8,7 @@ let g:mkdp_filetypes          = ['markdown']
 augroup mkdp_commands
   autocmd!
   autocmd FileType markdown
-        \ nnoremap <silent> <buffer> <F9>   :<C-U>MarkdownPreview<CR>
+        \ nnoremap <silent> <buffer> <C-c><C-f>      :<C-U>MarkdownPreview<CR>
   autocmd FileType markdown
-        \ nnoremap <silent> <buffer> <S-F9> :<C-U>MarkdownPreviewStop<CR>
-  autocmd FileType markdown
-        \ nnoremap <silent> <buffer> <F21>  :<C-U>MarkdownPreviewStop<CR>
+        \ nnoremap <silent> <buffer> <C-c><C-f><C-s> :<C-U>MarkdownPreviewStop<CR>
 augroup END

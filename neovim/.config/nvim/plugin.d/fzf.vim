@@ -54,7 +54,7 @@ let g:fzf_command_prefix      = ''
 let g:fzf_preview_window      = ['right:65%', 'CTRL-/']
 " Specific
 let g:fzf_buffers_jump        = 1
-let g:fzf_commits_log_options = 
+let g:fzf_commits_log_options =
       \ '--graph --color=always --format="%C(red)%h - %C(auto)%d %s %C(green)(%ad) %C(bold blue)<%an>"'
 let g:fzf_tags_command        = 'ctags -R'
 let g:fzf_commands_expect     = 'alt-enter,ctrl-x'
@@ -63,27 +63,38 @@ let g:fzf_commands_expect     = 'alt-enter,ctrl-x'
 
 " Section: Mappings
 
-nnoremap <silent> <M-f>  :<C-U>FuzzyHelper<CR>
+let s:map_prefix = '<M-x>'
 
-" Builtins: {{{1
-execute 'nnoremap <silent> <M-f>b :<C-U>'.g:fzf_command_prefix.'Buffers<CR>'
-execute 'nnoremap <silent> <M-f>f :<C-U>'.g:fzf_command_prefix.'Files<CR>'
-execute 'nnoremap <silent> <M-f>g :<C-U>'.g:fzf_command_prefix.'GFiles<CR>'
-execute 'nnoremap <silent> <M-f>h :<C-U>'.g:fzf_command_prefix.'History<CR>'
-execute 'nnoremap <silent> <M-f>l :<C-U>'.g:fzf_command_prefix.'BLines<CR>'
-execute 'nnoremap <silent> <M-f>L :<C-U>'.g:fzf_command_prefix.'Lines<CR>'
-execute 'nnoremap <silent> <M-f>r :<C-U>'.g:fzf_command_prefix.'Rg<CR>'
-execute 'nnoremap <silent> <M-f>t :<C-U>'.g:fzf_command_prefix.'Tags<CR>'
+" Mapping Dictionary {{{1
+let s:map_dict = {
+      \ 'FuzzyHelper': [ '',  v:false ],
+      \ 'Bins'       : [ 'B', v:false ],
+      \ 'BibtexCite' : [ 'c', v:false ],
+      \ 'Dotfiles'   : [ 'd', v:false ],
+      \ 'VimConfigs' : [ 'p', v:false ],
+      \ 'Skeletons'  : [ 's', v:false ],
+      \ 'VimData'    : [ 'v', v:false ],
+      \ 'Ag'         : [ 'a', v:true ],
+      \ 'Buffers'    : [ 'b', v:true ],
+      \ 'Files'      : [ 'f', v:true ],
+      \ 'GFiles'     : [ 'g', v:true ],
+      \ 'History'    : [ 'h', v:true ],
+      \ 'BLines'     : [ 'l', v:true ],
+      \ 'Lines'      : [ 'L', v:true ],
+      \ 'Rg'         : [ 'r', v:true ],
+      \ 'Tags'       : [ 't', v:true ],
+      \ }
 " }}}
 
-" User Defined: {{{1
-nnoremap <silent> <M-f>B :<C-U>Bins<CR>
-nnoremap <silent> <M-f>c :<C-U>BibtexCite<CR>
-nnoremap <silent> <M-f>d :<C-U>Dotfiles<CR>
-nnoremap <silent> <M-f>p :<C-U>VimConfigs<CR>
-nnoremap <silent> <M-f>s :<C-U>Skeletons<CR>
-nnoremap <silent> <M-f>v :<C-U>VimData<CR>
+function! s:Mapper(cmd, key, is_native) abort " {{{1
+  let prefix = a:is_native == v:true ? g:fzf_command_prefix : ''
+  execute 'nnoremap <silent> '.s:map_prefix.a:key.' :<C-U>'.prefix.a:cmd.'<CR>'
+endfunction
 " }}}
+
+for k in keys(s:map_dict)
+  call s:Mapper(k,s:map_dict[k][0], s:map_dict[k][1])
+endfor
 
 " Mapping Selecting Mappings: {{{1
 nmap <Leader><Tab> <Plug>(fzf-maps-n)
@@ -113,57 +124,47 @@ endfunction
 " }}}
 
 
-" Fuzzy Commands And Mappings Helper: mappings are hardcoded {{{1
+" Fuzzy Commands And Mappings Helper: {{{1
 
 " Parse Mapped Commands: {{{2
-let s:fzf_commands = [
-      \ '(b)  '.g:fzf_command_prefix.'Buffers',
-      \ '(f)  '.g:fzf_command_prefix.'Files'  ,
-      \ '(g)  '.g:fzf_command_prefix.'GFiles' ,
-      \ '(h)  '.g:fzf_command_prefix.'History',
-      \ '(l)  '.g:fzf_command_prefix.'BLines' ,
-      \ '(L)  '.g:fzf_command_prefix.'Lines'  ,
-      \ '(r)  '.g:fzf_command_prefix.'Rg'     ,
-      \ '(t)  '.g:fzf_command_prefix.'Tags'   ,
-      \ '(-)  '.g:fzf_command_prefix.'GFiles',
-      \ '(-)  '.g:fzf_command_prefix.'GFiles?',
-      \ '(-)  '.g:fzf_command_prefix.'Buffers',
-      \ '(-)  '.g:fzf_command_prefix.'Ag',
-      \ '(-)  '.g:fzf_command_prefix.'Tags',
-      \ '(-)  '.g:fzf_command_prefix.'BTags',
-      \ '(-)  '.g:fzf_command_prefix.'Marks',
-      \ '(-)  '.g:fzf_command_prefix.'Windows',
-      \ '(-)  '.g:fzf_command_prefix.'History:',
-      \ '(-)  '.g:fzf_command_prefix.'History/',
-      \ '(-)  '.g:fzf_command_prefix.'Snippets',
-      \ '(-)  '.g:fzf_command_prefix.'Commits',
-      \ '(-)  '.g:fzf_command_prefix.'BCommits',
-      \ '(-)  '.g:fzf_command_prefix.'Commands',
-      \ '(-)  '.g:fzf_command_prefix.'Maps',
-      \ '(-)  '.g:fzf_command_prefix.'Filetypes',
-      \ ]
+call remove(s:map_dict, 'FuzzyHelper')
+let s:fzf_commands = {
+      \ 'GFiles'    : [ ' ', v:true ],
+      \ 'GFiles?'   : [ ' ', v:true ],
+      \ 'Buffers'   : [ ' ', v:true ],
+      \ 'Tags'      : [ ' ', v:true ],
+      \ 'BTags'     : [ ' ', v:true ],
+      \ 'Marks'     : [ ' ', v:true ],
+      \ 'Windows'   : [ ' ', v:true ],
+      \ 'History:'  : [ ' ', v:true ],
+      \ 'History/'  : [ ' ', v:true ],
+      \ 'Snippets'  : [ ' ', v:true ],
+      \ 'Commits'   : [ ' ', v:true ],
+      \ 'BCommits'  : [ ' ', v:true ],
+      \ 'Commands'  : [ ' ', v:true ],
+      \ 'Maps'      : [ ' ', v:true ],
+      \ 'Filetypes' : [ ' ', v:true ],
+      \ }
+call extend(s:fzf_commands, s:map_dict)
 
-let s:fzf_commands = sort(extend(s:fzf_commands, [
-      \ '(B)  Bins',
-      \ '(c)  BibtexCite',
-      \ '(d)  Dotfiles',
-      \ '(p)  VimConfigs',
-      \ '(s)  Skeletons',
-      \ '(v)  VimData',
-      \ ]), 'i')
+let s:helper_source = []
+for k in keys(s:fzf_commands)
+  call add(s:helper_source,s:fzf_commands[k][0].' '.k)
+endfor
 " }}}
 
-function! s:FuzzyHelper(item) abort " {{{2
-  let command = substitute(a:item, '(\(\w\|\-\))\s*', '', 'e')
-   execute ':'.command
+function! s:HelperSink(item) " {{{2
+  let k = a:item[2:]
+  let cmd = s:fzf_commands[k][1] == v:true ? g:fzf_command_prefix.k : k
+  execute ':'.cmd
 endfunction
 " }}}
 
 " Fuzzy Helper: {{{2
 command! -bang -nargs=0 FuzzyHelper
       \ call fzf#run(fzf#wrap({
-      \   'source' : s:fzf_commands,
-      \   'sink'   : function('<SID>FuzzyHelper'),
+      \   'source' : s:helper_source,
+      \   'sink'   : function('<SID>HelperSink'),
       \   'options': s:common_options('Fuzzy Helper >'),
       \ },
       \ ))
