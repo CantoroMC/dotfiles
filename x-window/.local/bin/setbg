@@ -13,8 +13,7 @@ main() {
   if [ "$#" -gt 1 ]; then
     _feh "$@"
   elif [ "$#" -eq 1 ]; then
-    [ -f "$1" ] && _feh "$1"
-    [ -d "$1" ] && _feh --recursive --randomize "$1"
+    [ -f "$1" ] && _feh "$1" || _feh --recursive --randomize "$1"
   else
     {
       _feh --recursive --randomize "$DEF_DIR" >/dev/null 2>&1

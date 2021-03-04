@@ -4,18 +4,16 @@ module Layout.Tatami
     ( Tatami(..)
     ) where
 
-import Control.Monad ( msum )
-import XMonad        ( IncMasterN(IncMasterN)
-                     , LayoutClass ( description
-                                   , handleMessage
-                                   , pureLayout
-                                   )
-                     , Rectangle(Rectangle)
-                     , Resize(Expand, Shrink)
-                     , fromMessage
-                     , splitHorizontallyBy
-                     , splitVertically
-                     )
+import Control.Monad (msum)
+import XMonad
+    ( IncMasterN(IncMasterN)
+    , LayoutClass(description, handleMessage, pureLayout)
+    , Rectangle(Rectangle)
+    , Resize(Expand, Shrink)
+    , fromMessage
+    , splitHorizontallyBy
+    , splitVertically
+    )
 import qualified XMonad.StackSet as XMSS
 
 -------------------------------------------------------------------------------
@@ -25,7 +23,8 @@ data Tatami a = Tatami
     { tatamiNMaster :: !Int
     , tatamiDelta   :: !Rational
     , tatamiFMaster :: !Rational
-    } deriving (Show, Read)
+    }
+    deriving (Show, Read)
 
 instance LayoutClass Tatami a where
     pureLayout (Tatami nmaster _ frac) r s = zip ws rs
@@ -49,9 +48,9 @@ instance LayoutClass Tatami a where
 tatami :: Rational -> Rectangle -> Int -> Int -> [Rectangle]
 tatami f r nm n
     | nslave <= 0 || nm == 0 = splitVertically n r
-    | otherwise              = splitVertically nm r1
-                                ++ mat nns (head rms)
-                                ++ concatMap matOfSix (tail rms)
+    | otherwise = splitVertically nm r1 ++ mat nns (head rms) ++ concatMap
+        matOfSix
+        (tail rms)
   where
     (r1, r2) = splitHorizontallyBy f r
     nslave   = n - nm
@@ -69,69 +68,45 @@ mat nns r
 
 matOfThree :: Rectangle -> [Rectangle]
 matOfThree (Rectangle sx sy sw sh) =
-    [ Rectangle sx
-                sy
-                smallw
-                deltaY
-    , Rectangle (sx + fromIntegral smallw)
-                sy
-                smallw
-                deltaY
-    , Rectangle sx
-                (sy + fromIntegral deltaY)
-                sw
-                smallh
-    ] where
+    [ Rectangle sx sy smallw deltaY
+    , Rectangle (sx + fromIntegral smallw) sy smallw deltaY
+    , Rectangle sx (sy + fromIntegral deltaY) sw smallh
+    ]  where
     smallh = div sh 3
     smallw = div sw 2
     deltaY = 2 * smallh
 
 matOfFour :: Rectangle -> [Rectangle]
 matOfFour (Rectangle sx sy sw sh) =
-    [ Rectangle sx
-                sy
-                sw
-                smallh
-    , Rectangle sx
-                (sy + fromIntegral smallh)
-                smallw
-                deltaY
-    , Rectangle (sx + fromIntegral smallw)
-                (sy + fromIntegral smallh)
-                smallw
-                deltaY
-    , Rectangle sx
-                (sy + 3 * fromIntegral smallh)
-                sw
-                smallh
-    ] where
+    [ Rectangle sx sy                         sw     smallh
+    , Rectangle sx (sy + fromIntegral smallh) smallw deltaY
+    , Rectangle
+        (sx + fromIntegral smallw)
+        (sy + fromIntegral smallh)
+        smallw
+        deltaY
+    , Rectangle sx (sy + 3 * fromIntegral smallh) sw smallh
+    ]  where
     smallh = div sh 4
     smallw = div sw 2
     deltaY = 2 * smallh
 
 matOfFive :: Rectangle -> [Rectangle]
 matOfFive (Rectangle sx sy sw sh) =
-    [ Rectangle sx
-                sy
-                smallw
-                deltaY
-    , Rectangle (sx + fromIntegral smallw)
-                sy
-                deltaX
-                smallh
-    , Rectangle (sx + fromIntegral smallw)
-                (sy + fromIntegral smallh)
-                smallw
-                smallh
-    , Rectangle (sx + fromIntegral deltaX)
-                (sy + fromIntegral smallh)
-                smallw
-                deltaY
-    , Rectangle sx
-                (sy + fromIntegral deltaY)
-                deltaX
-                smallh
-    ] where
+    [ Rectangle sx                         sy smallw deltaY
+    , Rectangle (sx + fromIntegral smallw) sy deltaX smallh
+    , Rectangle
+        (sx + fromIntegral smallw)
+        (sy + fromIntegral smallh)
+        smallw
+        smallh
+    , Rectangle
+        (sx + fromIntegral deltaX)
+        (sy + fromIntegral smallh)
+        smallw
+        deltaY
+    , Rectangle sx (sy + fromIntegral deltaY) deltaX smallh
+    ]  where
     smallh = div sh 3
     smallw = div sw 3
     deltaX = 2 * smallw
@@ -139,31 +114,25 @@ matOfFive (Rectangle sx sy sw sh) =
 
 matOfSix :: Rectangle -> [Rectangle]
 matOfSix (Rectangle sx sy sw sh) =
-    [ Rectangle sx
-                sy
-                deltaX
-                smallh
-    , Rectangle (sx + fromIntegral deltaX)
-                sy
-                deltaX
-                smallh
-    , Rectangle sx
-                (sy + fromIntegral smallh)
-                smallw
-                deltaY
-    , Rectangle (sx + fromIntegral smallw)
-                (sy + fromIntegral smallh)
-                deltaX
-                smallh
-    , Rectangle (sx + fromIntegral smallw)
-                (sy + fromIntegral deltaY)
-                deltaX
-                smallh
-    , Rectangle (sx + fromIntegral (deltaX+smallw))
-                (sy + fromIntegral smallh)
-                smallw
-                deltaY
-    ] where
+    [ Rectangle sx sy deltaX smallh
+    , Rectangle (sx + fromIntegral deltaX) sy deltaX smallh
+    , Rectangle sx (sy + fromIntegral smallh) smallw deltaY
+    , Rectangle
+        (sx + fromIntegral smallw)
+        (sy + fromIntegral smallh)
+        deltaX
+        smallh
+    , Rectangle
+        (sx + fromIntegral smallw)
+        (sy + fromIntegral deltaY)
+        deltaX
+        smallh
+    , Rectangle
+        (sx + fromIntegral (deltaX + smallw))
+        (sy + fromIntegral smallh)
+        smallw
+        deltaY
+    ]  where
     smallh = div sh 3
     smallw = div sw 4
     deltaY = 2 * smallh

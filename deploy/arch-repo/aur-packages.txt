@@ -1,7 +1,7 @@
 stack-static
 cabal-static
+texlive-most-doc
 bibtool
-latex-enumitem
 ttf-font-awesome-4
 imagewriter-git
 polyglot-winboard-git

@@ -220,16 +220,17 @@ This changes scrolling behavior to only scroll as far as point goes.
 ** Theme settings
 Choose themes and apply one
 #+begin_src emacs-lisp
-    (use-package ayu-theme
-      :config
-      (load-theme 'ayu-dark t))
+  (use-package ayu-theme
+    ;; :config
+    ;; (load-theme 'ayu-dark t)
+    )
 
-    (use-package leuven-theme
-      ;; :config
-      ;; (load-theme 'leuven-dark t)
-      )
+  (use-package leuven-theme
+    ;; :config
+    ;; (load-theme 'leuven-dark t)
+    )
 
-    ;; (load-theme 'leuven t)
+  (load-theme 'leuven t)
 #+end_src
 
 ** Modeline
@@ -947,6 +948,7 @@ Don't ask for confirmation everytime.
   (add-to-list 'org-structure-template-alist '("hs" . "src haskell"))
   (add-to-list 'org-structure-template-alist '("py" . "src python"))
   (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+  (add-to-list 'org-structure-template-alist '("tex" . "src tex"))
 #+end_src
 
 ** Org-Latex
