@@ -130,6 +130,7 @@ export GOPATH="$XDG_DATA_HOME/go"
 # Python
 export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
+export PYTHONHISTFILE="$XDG_CACHE_HOME/python_history"
 export PYLINTHOME="$XDG_CACHE_HOME"/pylint
 # Matlab (Java) doesn't work well with WM
 export _JAVA_AWT_WM_NONREPARENTING=1
