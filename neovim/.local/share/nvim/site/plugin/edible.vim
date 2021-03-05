@@ -122,40 +122,39 @@ augroup END
 " Auto Closing Pairs
 let s:autopair_ft = get(g:, 'edible_autopair_fts',
       \ {
-      \   'parentheses' : ['vim', 'c', 'cpp', 'tex', 'sh', 'ruby', 'zsh', 'haskell', 'lua'],
-      \   'squareBrace' : ['vim', 'c', 'cpp', 'tex', 'sh', 'ruby', 'zsh', 'haskell', 'lua'],
-      \   'curlyBrace'  : ['vim', 'ruby', 'zsh', 'ruby', 'sh', 'bash', 'haskell', 'tex', 'lua'],
+      \   'parentheses' : ['vim', 'c', 'cpp', 'tex', 'sh', 'ruby', 'zsh', 'haskell', 'lua', 'python'],
+      \   'squareBrace' : ['vim', 'c', 'cpp', 'tex', 'sh', 'ruby', 'zsh', 'haskell', 'lua', 'python'],
+      \   'curlyBrace'  : ['vim', 'ruby', 'zsh', 'ruby', 'sh', 'bash', 'haskell', 'tex', 'lua', 'python'],
       \   'curlyNewLine': ['vim', 'sh', 'c', 'cpp', 'tex', 'zsh', 'ruby', 'lua'],
       \   'angleBrace'  : [],
-      \   'singleQuote' : ['vim', 'c', 'cpp', 'sh','ruby', 'zsh', 'lua'],
-      \   'doubleQuote' : ['c', 'cpp','ruby', 'tex', 'zsh', 'sh', 'bash', 'haskell', 'lua'],
+      \   'singleQuote' : ['vim', 'c', 'cpp', 'sh','ruby', 'zsh', 'lua', 'python'],
+      \   'doubleQuote' : ['c', 'cpp','ruby', 'tex', 'zsh', 'sh', 'bash', 'haskell', 'lua', 'python'],
       \ })
 
 augroup autoclose_by_filetype
   autocmd!
   execute 'autocmd FileType '
         \ .join(s:autopair_ft['parentheses'],',')
-        \ .' inoremap <buffer> ( ()<Esc>i'
+        \ .' inoremap <buffer> ( ()<C-G>U<Left>'
   execute 'autocmd FileType '
         \ .join(s:autopair_ft['squareBrace'],',')
-        \ .' inoremap <buffer> [ []<Esc>i'
+        \ .' inoremap <buffer> [ []<C-G>U<Left>'
   execute 'autocmd FileType '
         \ .join(s:autopair_ft['curlyBrace'],',')
-        \ .' inoremap <buffer> { {}<Esc>i'
+        \ .' inoremap <buffer> { {}<C-G>U<Left>'
   execute 'autocmd FileType '
         \ .join(s:autopair_ft['curlyNewLine'],',')
-        \ .' inoremap <buffer> {<CR> {<CR>}<Esc>O'
+        \ .' inoremap <buffer> {<CR> {<CR>}<C-G>U<Up>'
   execute 'autocmd FileType '
         \ .join(s:autopair_ft['angleBrace'],',')
-        \ .' inoremap <buffer> < <><Esc>i'
+        \ .' inoremap <buffer> < <><C-G>U<Left>'
   execute 'autocmd FileType '
         \ .join(s:autopair_ft['singleQuote'],',')
-        \ ." inoremap <buffer> ' ''<Esc>i"
+        \ ." inoremap <buffer> ' ''<C-G>U<Left>"
   execute 'autocmd FileType '
         \ .join(s:autopair_ft['doubleQuote'],',')
-        \ .' inoremap <buffer> " ""<Esc>i'
+        \ .' inoremap <buffer> " ""<C-G>U<Left>'
 augroup END
-
 
 " Section: Grep with a qflist
 

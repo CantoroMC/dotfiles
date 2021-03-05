@@ -1,1 +1,0 @@
-#HttpOnly_.lichess.org	TRUE	/	TRUE	1928827067	lila2	b88f1c0af86ac8eb8d638f02f6a9d24661ebc263-sid=faAk5zXL9rkM4YpBmifbSt&sessionId=AAElt3rpGyEpQJcEQLnhTG	None

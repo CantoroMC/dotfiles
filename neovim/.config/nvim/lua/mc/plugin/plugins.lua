@@ -225,7 +225,7 @@ local function init()
   use 'dstein64/vim-startuptime'
   -- }}}
   -- }}}
-  use '~/Documents/Scratcher/Nvim/Me/nuake'
+  use '~/Documents/Scratcher/Nvim/Me/nvim-nuake'
 end
 -- }}}
 
