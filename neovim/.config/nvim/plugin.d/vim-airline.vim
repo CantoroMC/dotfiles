@@ -21,7 +21,6 @@ let g:airline_filetype_overrides = {
       \ 'NvimTree' : [ ' NvimTree', '' ],
       \ 'startify' : [ 'Startify', '' ],
       \ 'packer'   : [ 'Packer', '' ],
-      \ 'GroundHog': [ 'GroundHog', '' ],
       \ }
 
 
