@@ -21,6 +21,7 @@ let g:airline_filetype_overrides = {
       \ 'NvimTree' : [ ' NvimTree', '' ],
       \ 'startify' : [ 'Startify', '' ],
       \ 'packer'   : [ 'Packer', '' ],
+      \ 'nuake'    : [ ' Nuake', &shell]
       \ }
 
 
@@ -79,7 +80,6 @@ let g:airline_extensions = [
       \   'po',
       \   'quickfix',
       \   'tabline',
-      \   'term',
       \   'undotree',
       \   'vista',
       \   'whitespace',
