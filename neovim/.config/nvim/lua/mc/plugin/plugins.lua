@@ -154,29 +154,25 @@ local function init()
     requires = 'kyazdani42/nvim-web-devicons'
   }
 
-  -- use 'Yggdroot/indentLine'              -- Show indent line and leading spaces
-  use { 'lukas-reineke/indent-blankline.nvim',
+  use { 'lukas-reineke/indent-blankline.nvim', -- Show indent line and leading spaces
     branch = 'lua'
   }
-
-  use { 'norcalli/nvim-colorizer.lua',   -- Show RGB,HTML... Colors
+  use { 'norcalli/nvim-colorizer.lua',         -- Show RGB,HTML... Colors
     as = 'nvim-colorizer'
   }
-
-  use { 'mhinz/vim-startify',            -- Start page and session management
-    requires = 'ryanoasis/vim-devicons', -- Maybe this can be removed
+  use { 'mhinz/vim-startify',                  -- Start page and session management
+    requires = 'ryanoasis/vim-devicons',       -- Maybe this can be removed
   }
-
-  use { 'vim-airline/vim-airline',
+  use { 'vim-airline/vim-airline',             -- Status and Tab lines
     requires = 'vim-airline/vim-airline-themes'
   }
-
-  use { 'lewis6991/gitsigns.nvim',
+  use { 'lewis6991/gitsigns.nvim',             -- Git signs on the signcolumn
     requires = {
       'nvim-lua/plenary.nvim'
     },
     as = 'gitsigns',
   }
+  use 'CantoroMC/nvim-nuake'                  -- Terminal Wrapper
   -- }}}
   -- HIS HOLINESS {{{3
   use 'tpope/vim-apathy'         -- `path`, `suffixesadd`, `include`, `includeexpr` and `define`
@@ -225,7 +221,6 @@ local function init()
   use 'dstein64/vim-startuptime'
   -- }}}
   -- }}}
-  use '~/Documents/Scratcher/Nvim/Me/nvim-nuake'
 end
 -- }}}
 

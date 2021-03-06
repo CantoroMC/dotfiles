@@ -63,7 +63,7 @@ let g:fzf_commands_expect     = 'alt-enter,ctrl-x'
 
 " Section: Mappings
 
-let s:map_prefix = '<M-x>'
+let s:map_prefix = '<C-x><C-c>'
 
 " Mapping Dictionary {{{1
 let s:map_dict = {
