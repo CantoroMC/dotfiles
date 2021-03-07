@@ -18,7 +18,7 @@ set backspace=indent,eol,start
 set colorcolumn+=80
 set conceallevel=2
 set emoji
-set fillchars+=fold:-,eob:~
+set fillchars+=fold:•,eob:~
 set iskeyword+=-
 set list
 set listchars=tab:>-,trail:·,nbsp:+,eol:¬,precedes:←,extends:→
@@ -149,6 +149,7 @@ set foldcolumn=1
 set foldlevelstart=0
 set foldmarker={{{,}}}
 set foldnestmax=10
+set foldtext=fooldme#foldtext()
 
 augroup filetype_folding_method " {{{2
   autocmd!

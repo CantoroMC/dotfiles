@@ -42,3 +42,34 @@ function! fooldme#orgCycle() abort
     echohl None
   endif
 endfunction
+
+function! fooldme#foldtext() abort
+  let l:fold_char = '»'
+
+  let l:start_line = getline(v:foldstart)
+  let l:fold_width = v:foldend - v:foldstart + 1
+  let l:fold_dashes = repeat(l:fold_char, v:foldlevel)
+
+  let l:indent = indent(v:foldstart)
+  let l:fold_indent = repeat(' ',
+        \   max( [indent - strdisplaywidth(l:fold_dashes),
+        \         strdisplaywidth(l:fold_char)] )
+        \ )
+
+  " Strip foldmarkers and commentstring
+  let l:strip_regex = '\%(\s*'.
+        \ substitute(&commentstring, '\s*%s\s*', '', '') .
+        \ '*\s*{{{\d*\s*\)\|\%(\s*{{{\d*\s*\)\|\%(^\s*' .
+        \ substitute(&commentstring, '\s*%s\s*', '', '') .
+        \ '*\s*\)'
+  let l:start_line = substitute(l:start_line, strip_regex, '', 'g')
+  " Strip leading and trailing whitespaces
+  let l:start_line = substitute(l:start_line, '^\s*\|\s*$', '', 'g')
+
+  return printf("%s%s%s [%dℓ] ",
+        \   l:fold_dashes,
+        \   l:fold_indent,
+        \   l:start_line,
+        \   l:fold_width
+        \ )
+endfunction

@@ -10,4 +10,3 @@ xrandr \
   --output HDMI1 --off \
   --output HDMI2 --off \
   --output VIRTUAL1 --off
-

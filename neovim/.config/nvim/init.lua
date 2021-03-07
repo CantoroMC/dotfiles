@@ -19,7 +19,7 @@ require'mc.plugin.octolua'.digest()
 
 -- COLORSCHEME: managed by a small lua script
 require'mc.plugin.colorpicker'.setup {
-  active = false,
+  active = true,
   light_time = {7,8},
   themes     = {
     [ "dark" ]  = {

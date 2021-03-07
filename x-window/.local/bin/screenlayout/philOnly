@@ -1,0 +1,12 @@
+#!/bin/sh
+
+xrandr \
+  --output eDP1 --off \
+  --output DP1 --off \
+  --output DP2 --off \
+  --output HDMI1 --mode 1360x768 --pos 0x0 --rotate normal \
+  --output HDMI2 --off \
+  --output VGA1 --off \
+  --output VIRTUAL1 --off \
+  --output eDP-1-2 --off \
+  --output DVI-D-1-1 --off
