@@ -198,7 +198,7 @@ local function init()
     opt = true,
     cmd = { 'Tabularize' },
   }
-  use 'CantoroMC/vim-sort-motion'
+  use 'christoomey/vim-sort-motion'
   use { 'mbbill/undotree',
     opt = true,
     cmd = 'UndotreeToggle'
