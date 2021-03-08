@@ -60,6 +60,7 @@ prompt_bull_setup () {
   PS1=" ${intro} ${dir_bar} ${nr_jobs} ${hist_len} $prompt_newline ${MODE_INDICATOR_PROMPT} ${return_code} ${start} "
   PS2="%F{$color1}%K{$color1}$schars[333]$schars[262]$schars[261]$schars[260]%f%k%_>"
   RPS1="${git_commits}${git_branch}${git_status}"
+  SPROMPT="zsh: correct %F{red}'%R'%f to %F{green}'%r'%f [%B%Un%u%bo, %B%Uy%u%bes, %B%Ue%u%bdit, %B%Ua%u%bbort]? "
 
 
   prompt_opts=(cr subst percent)

@@ -78,7 +78,6 @@ function lsg() {
   fi
 }
 
-
 #
 # Remembering recent directories with `cdr`
 #
@@ -95,7 +94,9 @@ zstyle ':chpwd:*' recent-dirs-max 100
 # directories that sould not be added to the recent list
 zstyle ':chpwd:*' recent-dirs-prune parent
 
-
+#
+# Automatically ls after cd
+#
 function -auto-ls-after-cd() {
   emulate -L zsh
   # Only in response to a user-initiated `cd`, not indirectly (eg. via another

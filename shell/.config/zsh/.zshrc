@@ -45,7 +45,6 @@ fpath=(
 
 plugins=(
   fzf-tab
-  timer
   zsh-autosuggestions
   zsh-history-substring-search
 )
@@ -103,4 +102,4 @@ done
 unset plugin plugins
 
 # Load the Shell Prompt Theme
-autoload -Uz promptinit; promptinit; prompt bull '#138ac1' white green
+# autoload -Uz promptinit; promptinit; prompt bull '#138ac1' white green
