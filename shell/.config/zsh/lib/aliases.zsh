@@ -4,28 +4,11 @@ alias cp='nocorrect cp'
 alias man='nocorrect man'
 alias mkdir='nocorrect mkdir'
 alias mv='nocorrect mv'
-alias ssh='nocorrect ssh'
 alias sudo='nocorrect sudo'
 # Useful Lists
 alias aliasList="alias | sed 's/=.*//'"
 alias funList="declare -f | grep '^[a-z].* ()' | sed 's/{$//'"
 alias pathList='echo -e ${PATH//:/\\n}'
-# Directory Stack
-alias -g ...='../..'
-alias -g ....='../../..'
-alias git-root='cd $(git rev-parse --show-cdup)'
-# List directory contents
-alias ls='ls --color=auto'
-alias l="ls -Ah --sort='extension' --group-directories-first -1"
-alias ll="ls -lAh --sort='extension' --group-directories-first --time-style=long-iso"
-alias lr="ranger"
-alias lc="nnn"
-alias t="tree --dirsfirst --si -p -a -L 2 --noreport"
-alias td="tree --dirsfirst --si -p -a -L 4 --noreport"
-alias ts="tree -p --si --dirsfirst -L 2"
-alias L="colorls -1Al --sd"
-alias Lg="colorls -1A --git-status --sd"
-alias Lt="colorls -A --tree=2 --sd"
 # File System Utilities
 alias cp="cp -i"
 alias diff='diff --color=auto'
@@ -41,6 +24,11 @@ case ${HIST_STAMPS-} in
   "") alias history='fhistory' ;;
   *) alias history="fhistory -t '$HIST_STAMPS'" ;;
 esac
+
+# Mnemonic: "[G]rep"
+alias -g G="|grep"
+# Mnemonic: "[W]c"
+alias -g W="|wc -l"
 # }}}
 
 # Program Alias {{{1

@@ -59,63 +59,6 @@ function env_default() {
 }
 
 
-# Directory Stack
-function d() {
-  if [[ -n $1 ]]; then
-    dirs "$@"
-  else
-    dirs -v | head -10
-  fi
-}
-compdef _dirs d
-
-# Short for ../../
-.{1..9} (){
-  local d=.
-  repeat ${0:1} d+=/..
-  cd $d
-}
-
-# nnn
-function rcn() {
-  # Block nesting of nnn in subshells
-  if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
-    echo "nnn is already running"
-    return
-  fi
-
-  export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-
-  nnn "$@"
-
-  if [ -f "$NNN_TMPFILE" ]; then
-    . "$NNN_TMPFILE"
-    rm -f "$NNN_TMPFILE" > /dev/null
-  fi
-}
-
-function lsg_help() {
-  printf "%s\n" "desc: list and grep with file permission and color highlights"
-  printf "%s\n" "dependency: grep awk"
-  printf "\n"
-  printf "%s\n" "usage: ${0##*/} [keyword]"
-  printf "\n"
-  printf "%s\n" "  $ ${0##*/} png"
-}
-
-function lsg() {
-  if [ $# -lt 1 ]; then
-    lsg_help
-  elif [ "$1" = -h ] || [ "$1" = --help ]; then
-    lsg_help
-  else
-    keyword=$(printf "%s\n" "${@/ /.*}")
-    ls -hlA --color=yes \
-      | awk '{k=0;for(i=0;i<=8;i++)k+=((substr($1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(" %0o ",k);print}' \
-      | grep -iE "$keyword"
-  fi
-}
-
 # open and disown it
 function open() {
   xdg-open $1 & disown

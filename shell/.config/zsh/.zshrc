@@ -53,7 +53,8 @@ plugins=(
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'tree -a -C -L 2 -F $realpath'
 zstyle ':fzf-tab:*' switch-group '[' ']'
 zstyle ':fzf-tab:complete:cd:*' popup-pad 20 0
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=165'
+HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 ZSH_AUTOSUGGEST_USE_ASYNC='true'
 
 
@@ -74,6 +75,13 @@ handle_completion_insecurities
 compinit -i -C
 
 # Source the zsh library and plugins
+
+# Create a hash table for globally stashing variables without polluting main
+# scope with a bunch of identifiers.
+typeset -A __BULL
+
+__BULL[ITALIC_ON]=$'\e[3m'
+__BULL[ITALIC_OFF]=$'\e[23m'
 
 # Load all of the config files in ZDOTDIR/lib that end in .zsh
 for config_file ($ZDOTDIR/lib/*.zsh); do

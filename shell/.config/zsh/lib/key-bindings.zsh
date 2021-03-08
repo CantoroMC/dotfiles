@@ -80,6 +80,17 @@ _nvim_cmd () {
   zle accept-line
 }
 zle -N _nvim_cmd
+
+# Make CTRL-Z background things and unbackground them.
+function _fg-bg() {
+  if [[ $#BUFFER -eq 0 ]]; then
+    fg
+  else
+    zle accept-line
+    fg
+  fi
+}
+zle -N _fg-bg
 # }}}
 
 # Kzbd compatible {{{2
@@ -135,9 +146,10 @@ bindkey -M viins      '^Q'    _exit-cmd
 bindkey -M vicmd      '^Q'    _exit-cmd
 # bindkey -M viins      '^R'    fzf-history-widget
 # bindkey -M viins      '^T'    fzf-file-widget
-bindkey -M viins      '^V'    edit-command-line
-bindkey -M vicmd      '^V'    edit-command-line
+# bindkey -M viins      '^K'    vi-quoted-insert (can be used for something else)
 bindkey -M viins      '^Y'    copy-prev-shell-word
+bindkey -M viins      '^Z'    _fg-bg
+bindkey -M vicmd      '^Z'    _fg-bg
 bindkey -M viins      ' '     magic-space
 
 bindkey -M viins      '^G^B' fzf-git-branches
@@ -145,6 +157,8 @@ bindkey -M viins      '^G^F' fzf-git-files
 bindkey -M viins      '^G^H' fzf-git-hashes
 bindkey -M viins      '^G^R' fzf-git-remotes
 bindkey -M viins      '^G^T' fzf-git-tags
+bindkey -M viins      '^X^E' edit-command-line
+bindkey -M vicmd      '^X^E' edit-command-line
 bindkey -M viins -s   '^X^F' 'rcn\n'
 bindkey -M viins      '^X^K' fzf-bindkey
 bindkey -M viins      '^X^L' _nnn_cmd

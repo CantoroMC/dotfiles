@@ -1,4 +1,4 @@
-# The zsh/complist module offers three extensions to completion listings: 
+# The zsh/complist module offers three extensions to completion listings:
 #     the ability to high-light matches in such a list ($ZLS_COLORS or :list-colors)
 #     the ability to scroll through long lists  ($LISTPROMPT or :listprompt)
 #     a different style of menu completion. (select, auto_menu)
@@ -6,27 +6,40 @@ zmodload -i zsh/complist
 
 WORDCHARS=''
 
-unsetopt flowcontrol      # output flow control via start/stop characters is disabled
-unsetopt menu_complete    # do not autoselect the first completion entry
-setopt auto_menu          # show completion menu on after the second consecutive
-                          #   request for completion
-setopt complete_in_word   # the cursor stays where it is and completion is done
-                          #   from both ends (default)
-setopt always_to_end      # move the cursor to the end of the word when
-                          #   completion is performed (default)
+setopt noflowcontrol    # output flow control via start/stop characters is disabled
+setopt nomenucomplete   # do not autoselect the first completion entry
+setopt automenu         # show completion menu on after the second consecutive
+                        #   request for completion
+setopt completeinword   # the cursor stays where it is and completion is done
+                        #   from both ends (default)
+setopt alwaystoend      # move the cursor to the end of the word when
+                        #   completion is performed (default)
+setopt listpacked       # make completion lists more densely packed
 
 zstyle ':completion:*:*:*:*:*' menu select
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
-zstyle ':completion:*' special-dirs true   # Complete . and .. special directories
+# Make completion:
+# - Try exact (case-sensitive) match first.
+# - Then fall back to case-insensitive.
+# - Accept abbreviations after . or _ or - (ie. f.b -> foo.bar).
+# - Substring complete (ie. bar -> foobar).
+zstyle ':completion:*' matcher-list '' '+m:{[:lower:]}={[:upper:]}' '+m:{[:upper:]}={[:lower:]}' '+m:{_-}={-_}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+# Complete . and .. special directories
+zstyle ':completion:*' special-dirs true
+# Colorize completions using default `ls` colors.
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+# Categorize completion suggestions with headings:
+zstyle ':completion:*' group-name ''
 zstyle ':completion:*:descriptions' format '[%d]'
+# zstyle ':completion:*:descriptions' format %F{blue}%B%{$__BULL[ITALIC_ON]%}--- %d ---%{$__BULL[ITALIC_OFF]%}%b%f # don't work with fzf-tab
+
+# disable named-directories autocompletion
+zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories
+
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
 zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
 zstyle ':completion:*:git-checkout:*' sort false
 
-# disable named-directories autocompletion
-zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories
 # Use caching so that commands like apt and dpkg complete are useable
 zstyle ':completion:*' use-cache yes
 # Don't complete uninteresting users

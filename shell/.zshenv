@@ -71,6 +71,8 @@ export HISTFILE="$XDG_CACHE_HOME/zsh_history"
 export HISTSIZE=50000
 export SAVEHIST=10000
 export HIST_STAMPS="dd.mm.yyyy"
+# Corrections
+export CORRECT_IGNORE_FILE='.*'
 
 # ZLS_COLORS and LS_COLORS: {{{2
 # ZLS_COLORS: {{{3
