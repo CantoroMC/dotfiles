@@ -83,6 +83,7 @@ function lsg() {
 #
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
+
 # enable menu-style completion for cdr
 zstyle ':completion:*:*:cdr:*:*' menu selection
 # insert directly the directory path and not the index
