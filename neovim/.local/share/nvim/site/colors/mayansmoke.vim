@@ -341,3 +341,19 @@ hi phpBoolean ctermfg=58 cterm=NONE guifg=brown
 
 " 1}}}
 
+let g:terminal_color_0  = '#323232'
+let g:terminal_color_1  = '#ff3333'
+let g:terminal_color_2  = '#86b300'
+let g:terminal_color_3  = '#f29718'
+let g:terminal_color_4  = '#41a6d9'
+let g:terminal_color_5  = '#f07178'
+let g:terminal_color_6  = '#4dbf99'
+let g:terminal_color_7  = '#5c6773'
+let g:terminal_color_8  = '#ffffff'
+let g:terminal_color_9  = '#ff6565'
+let g:terminal_color_10 = '#b8e532'
+let g:terminal_color_11 = '#ffc94a'
+let g:terminal_color_12 = '#73d8ff'
+let g:terminal_color_13 = '#ffa4aa'
+let g:terminal_color_14 = '#7ff1cb'
+let g:terminal_color_15 = '#fafafa'

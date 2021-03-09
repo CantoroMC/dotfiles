@@ -10,6 +10,7 @@ let g:nvim_tree_ignore =
       \   '__pycache__',
       \ ]
 
+
 let g:nvim_tree_auto_open          = 1
 let g:nvim_tree_auto_close         = 0
 let g:nvim_tree_quit_on_open       = 1
@@ -43,6 +44,8 @@ let g:nvim_tree_icons = {
       \     'symlink': '',
       \   },
       \ }
+
+
 
 " Section: Nvim-Tree Keymap
 lua << EOF
@@ -81,5 +84,3 @@ EOF
 
 nnoremap <silent> <C-x>f     :<C-U>NvimTreeToggle<CR>
 nnoremap <silent> <C-x><C-f> :<C-U>NvimTreeFindFile<CR>
-
-" vim:fdm=indent

@@ -20,6 +20,13 @@ function M.list(bg)
   return vim.tbl_keys(plugin_settings.themes[bg])
 end
 
+local function bg_color()
+  local hour = tonumber(os.date('%H'))
+  return
+    (hour >= plugin_settings.light_time[1] and hour < plugin_settings.light_time[2]) and
+      2 or 1
+end
+
 function M.choose(...)
   local args = {...}
   local bgs = { 'dark', 'light' }
@@ -28,10 +35,7 @@ function M.choose(...)
   if #args >= 1 and #args <= 2 then
     background = args[1]
   elseif #args == 0 then
-    local hour = tonumber(os.date('%H'))
-    local bg_choose =
-      (hour >= plugin_settings.light_time[1] and hour < plugin_settings.light_time[2]) and
-        2 or 1
+    bg_choose = bg_color()
     background = bgs[bg_choose]
   else
     return
@@ -61,6 +65,7 @@ function M.setup(user_settings)
   if plugin_settings.active then
     require'mc.plugin.colorpicker'.choose()
   else
+    vim.o.background = bg_color == 1 and 'light' or 'dark'
     vim.g.airline_theme = table.concat(vim.tbl_values(plugin_settings.theme))
     vim.cmd('colorscheme ' .. table.concat(vim.tbl_keys(plugin_settings.theme)))
   end

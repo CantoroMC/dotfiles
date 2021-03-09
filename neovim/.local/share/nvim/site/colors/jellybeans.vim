@@ -744,3 +744,20 @@ delf s:grey_level
 delf s:grey_number
 
 " }}}
+
+let g:terminal_color_0  = '#151a1e'
+let g:terminal_color_1  = '#3f4e5a'
+let g:terminal_color_2  = '#ff3333'
+let g:terminal_color_3  = '#ff7733'
+let g:terminal_color_4  = '#b8cc52'
+let g:terminal_color_5  = '#eafe84'
+let g:terminal_color_6  = '#e7c547'
+let g:terminal_color_7  = '#fff779'
+let g:terminal_color_8  = '#36a3d9'
+let g:terminal_color_9  = '#68d5ff'
+let g:terminal_color_10 = '#f07178'
+let g:terminal_color_11 = '#ffa3aa'
+let g:terminal_color_12 = '#95e6cb'
+let g:terminal_color_13 = '#c7fffd'
+let g:terminal_color_14 = '#eaeaea'
+let g:terminal_color_15 = '#fafafa'
