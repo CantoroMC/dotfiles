@@ -21,7 +21,7 @@ set emoji
 set fillchars+=fold:•,eob:~
 set iskeyword+=-
 set list
-set listchars=tab:>-,trail:·,nbsp:+,eol:¬,precedes:←,extends:→
+set listchars=tab:-\|,trail:·,nbsp:+,eol:¬,precedes:←,extends:→
 set matchpairs+=<:>
 set matchtime=5
 set nrformats=bin,hex

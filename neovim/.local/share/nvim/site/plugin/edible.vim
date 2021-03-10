@@ -124,11 +124,11 @@ let s:autopair_ft = get(g:, 'edible_autopair_fts',
       \ {
       \   'parentheses' : ['vim', 'c', 'cpp', 'tex', 'sh', 'ruby', 'zsh', 'haskell', 'lua', 'python'],
       \   'squareBrace' : ['vim', 'c', 'cpp', 'tex', 'sh', 'ruby', 'zsh', 'haskell', 'lua', 'python'],
-      \   'curlyBrace'  : ['vim', 'ruby', 'zsh', 'ruby', 'sh', 'bash', 'haskell', 'tex', 'lua', 'python'],
-      \   'curlyNewLine': ['vim', 'sh', 'c', 'cpp', 'tex', 'zsh', 'ruby', 'lua'],
-      \   'angleBrace'  : [],
-      \   'singleQuote' : ['vim', 'c', 'cpp', 'sh','ruby', 'zsh', 'lua', 'python'],
-      \   'doubleQuote' : ['c', 'cpp','ruby', 'tex', 'zsh', 'sh', 'bash', 'haskell', 'lua', 'python'],
+      \   'curlyBrace'  : ['vim', 'ruby', 'zsh', 'ruby', 'sh', 'bash', 'haskell', 'tex', 'lua', 'python', 'css',],
+      \   'curlyNewLine': ['vim', 'sh', 'c', 'cpp', 'tex', 'zsh', 'ruby', 'lua', 'css',],
+      \   'angleBrace'  : ['html',],
+      \   'singleQuote' : ['vim', 'c', 'cpp', 'sh','ruby', 'zsh', 'lua', 'python', 'html',],
+      \   'doubleQuote' : ['c', 'cpp','ruby', 'tex', 'zsh', 'sh', 'bash', 'haskell', 'lua', 'python', 'html',],
       \ })
 
 augroup autoclose_by_filetype
@@ -144,7 +144,7 @@ augroup autoclose_by_filetype
         \ .' inoremap <buffer> { {}<C-G>U<Left>'
   execute 'autocmd FileType '
         \ .join(s:autopair_ft['curlyNewLine'],',')
-        \ .' inoremap <buffer> {<CR> {<CR>}<C-G>U<Up>'
+        \ .' inoremap <buffer> {<CR> {<CR><CR>}<C-G>U<Up>'
   execute 'autocmd FileType '
         \ .join(s:autopair_ft['angleBrace'],',')
         \ .' inoremap <buffer> < <><C-G>U<Left>'

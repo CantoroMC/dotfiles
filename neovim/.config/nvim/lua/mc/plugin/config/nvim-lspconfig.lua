@@ -125,7 +125,7 @@ lspconfig.bashls.setup{
 }
 --]===]
 
--- HASKELL
+--- HASKELL
 lspconfig.hls.setup{
   cmd = { 'haskell-language-server-wrapper', '--lsp' },
   filetypes = { "haskell", "lhaskell" },
@@ -137,7 +137,8 @@ lspconfig.hls.setup{
   },
   on_attach = custom_lsp_attach,
 }
--- LUA
+
+--- LUA
 lspconfig.sumneko_lua.setup {
   cmd = { 'lua-language-server' };
   filetypes = { 'lua', '-E', '/usr/share/lua-language-server/main.lua' },
@@ -175,7 +176,7 @@ lspconfig.sumneko_lua.setup {
   on_attach = custom_lsp_attach,
 }
 
--- TEX
+--- TEX
 lspconfig.texlab.setup{
   cmd = { 'texlab' },
   filetypes = { 'tex', 'bib', 'plaintex' },
@@ -213,7 +214,7 @@ lspconfig.texlab.setup{
   on_attach = custom_lsp_attach,
 }
 
--- VIM
+--- VIM
 lspconfig.vimls.setup{
   on_attach = custom_lsp_attach,
 }

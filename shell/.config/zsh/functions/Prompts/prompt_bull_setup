@@ -43,7 +43,7 @@ prompt_bull_setup () {
   local dir_bar="%B%F{$color1}%K{$color1}$schars[333]$schars[262]$schars[261]$schars[260]%F{$color2}%K{$color1}%(7~|%-3~/.../%3~|%~)%b%F{$color1}%k$schars[333]$schars[262]$schars[261]$schars[260]%f"
 
   local nr_jobs="%B%F{$color3}%(1j.%(2j.%j.)*.)%f%b"
-  local hist_len="%B%F{$color2}%{ %2G%}:%h%f%b"
+  local hist_len="%B%F{$color2}%{ %2G%}%h%f%b"
 
   # Primary Prompt, printed before a command is read.
   PS1="$dir_bar$ssh_info $hist_len$prompt_newline$MODE_INDICATOR_PROMPT$nr_jobs$start"

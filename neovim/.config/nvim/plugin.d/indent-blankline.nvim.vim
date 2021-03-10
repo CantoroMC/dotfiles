@@ -9,7 +9,19 @@ let g:indent_blankline_filetype_exclude     =
       \   'NvimTree',
       \   'GroundHog',
       \   'help',
+      \   'make',
+      \   'json',
+      \   'html',
+      \   'css',
+      \   'javascript',
+      \   'neomuttrc',
+      \   'muttrc',
+      \   'go',
+      \   'c',
+      \   'cpp',
+      \   'h',
       \ ]
 let g:indent_blankline_buftype_exclude      =
       \ [ 'terminal',
+      \   'nofile',
       \ ]

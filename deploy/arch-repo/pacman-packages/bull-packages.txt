@@ -19,6 +19,7 @@ neomutt
 ncmpcpp
 redshift
 ripgrep
+rsync
 stow
 sxiv
 texlive-most

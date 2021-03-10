@@ -1,8 +1,11 @@
-rsync
+bash-language-server
 boost
 clang
 cmake
 extra-cmake-modules
+ghc
+ghc-libs
+ghc-static
 go
 go-tools
 gopls
@@ -23,8 +26,4 @@ python-pylint
 ruby-docs
 ruby-rake
 ruby-rdoc
-ghc
-ghc-libs
-ghc-static
 texlab
-bash-language-server
