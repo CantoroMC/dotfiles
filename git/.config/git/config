@@ -83,26 +83,26 @@
 	ui = true
 	status = auto
 [color "branch"]
-	current = yellow reverse
+	current = yellow reverse italic
 	local = yellow
 	remote = green
 [color "diff"]
-	meta = "blue black bold"
-	frag = magenta bold
+	meta = blue black italic
+	frag = cyan bold italic
 	commit = yellow bold
-	old = red bold
-	new = green bold
+	old = red italic
+	new = green italic
 	whitespace = blue reverse
 [color "diff-highlight"]
-	oldNormal = red
-	oldHighlight = red bold 52
+	oldNormal = red italic
+	oldHighlight = red 52
 	newNormal = green
-	newHighlight = green bold 22
+	newHighlight = green 22
 [color "status"]
-	header = blue
-	branch = white bold
+	header = white dim italic
+	branch = white bold italic
 	added = green bold
-	changed = red
+	changed = red dim italic
 	untracked = blue bold
 	deleted = red bold
 
