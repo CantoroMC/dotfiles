@@ -25,7 +25,6 @@ autocmd FileType ruby
       \ endif
 
 autocmd FileType tex let b:dispatch = 'pdflatex --output-directory=%:p:h -synctex=1 -interaction=nonstopmode %'
-autocmd FileType vim let b:dispatch = 'vint %'
 autocmd FileType haskell let b:dispatch = 'ghc --make %'
 autocmd FileType python let b:dispatch = 'python %'
 

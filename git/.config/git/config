@@ -7,7 +7,7 @@
 
 [core]
 	editor = nvim
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = diff-so-fancy --color | less --tabs=4 -RFX
 	autocrlf = input
 	trustctime = false
 
@@ -20,6 +20,7 @@
 	status = true
 
 [diff]
+	algorithm = histogram
 	submodule = log
 
 [status]
@@ -86,21 +87,23 @@
 	local = yellow
 	remote = green
 [color "diff"]
-	meta = 11
+	meta = "blue black bold"
 	frag = magenta bold
 	commit = yellow bold
 	old = red bold
 	new = green bold
-	whitespace = red reverse
+	whitespace = blue reverse
 [color "diff-highlight"]
-	oldNormal = red bold
+	oldNormal = red
 	oldHighlight = red bold 52
-	newNormal = green bold
+	newNormal = green
 	newHighlight = green bold 22
 [color "status"]
-	added = yellow
-	changed = green
-	untracked = cyan
-	deleted = red
+	header = blue
+	branch = white bold
+	added = green bold
+	changed = red
+	untracked = blue bold
+	deleted = red bold
 
 ; vim:fdm=indent:tw=78:ft=gitconfig
