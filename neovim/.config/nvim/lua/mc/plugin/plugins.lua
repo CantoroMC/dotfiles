@@ -101,19 +101,8 @@ local function init()
       branch = 'release'}
   }
 
-  -- GraveYard {{{
+  -- Treesitter {{{
   --[=====[
-  use 'nvim-lua/completion-nvim'                   -- Completion
-  use { 'steelsojka/completion-buffers',
-    requires = { 'nvim-lua/completion-nvim' },
-  }
-  use { 'albertoCaroM/completion-tmux',
-    requires = { 'nvim-lua/completion-nvim' },
-  }
-  use { 'nvim-treesitter/completion-treesitter',
-    requires = { {'nvim-lua/completion-nvim'}, {'nvim-treesitter/nvim-treesitter'} },
-  }
-
   -- Tree Sitter: Syntax, Indentation, TextObject, Foldings.... SYNTAX AWARE.
   use { 'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
@@ -128,6 +117,9 @@ local function init()
     requires = 'nvim-treesitter/nvim-treesitter',
   }
   --]=====]
+  --[===[
+  use 'nvim-lua/completion-nvim'                   -- Completion
+  --]===]
   -- }}}
 
   use 'junegunn/fzf'

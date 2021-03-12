@@ -56,6 +56,7 @@ zstyle ':fzf-tab:complete:cd:*' popup-pad 20 0
 HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 ZSH_AUTOSUGGEST_USE_ASYNC='true'
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
 
 # fpath and compinit
