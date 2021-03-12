@@ -1,3 +1,9 @@
+" plugin/packer.vim
+if exists('g:loaded_packer')
+  finish
+endif
+let g:loaded_packer = 1
+
 command! PackerDownload
       \ packadd! packer.nvim  | lua require('mc.plugin.plugins')
 command! PackerInstall

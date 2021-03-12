@@ -1,3 +1,9 @@
+" plugin/colorpicker.vim
+if exists('g:loaded_colorpicker')
+  finish
+endif
+let g:loaded_colorpicker = 1
+
 command! Dark
       \ lua require'mc.plugin.colorpicker'.choose('dark')
 command! Light
