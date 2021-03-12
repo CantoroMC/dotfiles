@@ -36,6 +36,10 @@
 	autocorrect = 20
 	browser = vivaldi-stable
 
+[gui]
+	fontui = -family \"Operator Mono Lig\" -size 9 -weight normal -slant roman -underline 0 -overstrike 0
+	fontdiff = -family \"Operator Mono Lig\" -size 9 -weight normal -slant roman -underline 0 -overstrike 0
+
 [alias]
 	alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
 	visual = !gitk
