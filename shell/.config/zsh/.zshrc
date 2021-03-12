@@ -47,6 +47,7 @@ plugins=(
   fzf-tab
   zsh-autosuggestions
   zsh-history-substring-search
+  zsh-syntax-highlighting
 )
 # Plugin configuration
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'tree -a -C -L 2 -F $realpath'

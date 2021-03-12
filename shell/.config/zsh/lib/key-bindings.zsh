@@ -146,7 +146,7 @@ bindkey -M viins      '^Q'    _exit-cmd
 bindkey -M vicmd      '^Q'    _exit-cmd
 # bindkey -M viins      '^R'    fzf-history-widget
 # bindkey -M viins      '^T'    fzf-file-widget
-# bindkey -M viins      '^K'    vi-quoted-insert (can be used for something else)
+# bindkey -M viins      '^V'    vi-quoted-insert (can be used for something else)
 bindkey -M viins      '^Y'    copy-prev-shell-word
 bindkey -M viins      '^Z'    _fg-bg
 bindkey -M vicmd      '^Z'    _fg-bg

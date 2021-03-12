@@ -31,3 +31,6 @@
 [submodule "deploy/third-party/XMonad/xmonadio/xmonad-contrib"]
 	path = deploy/third-party/XMonad/xmonadio/xmonad-contrib
 	url = https://github.com/xmonad/xmonad-contrib
+[submodule "shell/.config/zsh/plugins/zsh-syntax-highlighting"]
+	path = shell/.config/zsh/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting

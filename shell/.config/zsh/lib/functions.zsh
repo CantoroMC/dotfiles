@@ -384,3 +384,7 @@ function thumbCollage() {
   montage ${VID_NAME}*.png -mode Concatenate -tile 4x4 -geometry +0+0 ${VID_NAME}.jpg
   rm ${VID_NAME}*.png
 }
+
+function fzf-pac-search() {
+  pacman -Slq | fzf --multi --preview 'cat <(pacman -Si {1}) <(pacman -Fl {1} | awk "{print \$2}")'
+}
