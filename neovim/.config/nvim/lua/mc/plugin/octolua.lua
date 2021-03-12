@@ -73,14 +73,15 @@ end
 -- Print the list of lua 's plugin configuration
 local excrete = function()
   local lua_configs,vim_configs = limbs()
-  print(
+  local cexpr =
     "Lua Required:\n" ..
     "=============\n" ..
     table.concat(lua_configs, "\n") ..
     "\n\nVim Required:\n" ..
     "=============\n" ..
     table.concat(vim_configs, "\n")
-  )
+  vim.cmd('cexpr ' .. vim.fn.string(cexpr))
+  vim.cmd 'copen'
 end
 
 return {
