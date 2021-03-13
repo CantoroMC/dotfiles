@@ -20,6 +20,7 @@ import XMonad.Actions.CycleWS
     , shiftToNext
     , prevWS
     , nextWS
+    , toggleWS
     )
 import XMonad.Actions.CopyWindow
     ( copy
@@ -50,6 +51,8 @@ import XMonad.Util.Types
 
 import Manage.Util
     ( xmBigRect
+    , xmMedRect
+    , xmSmallRect
     , xmUpLeftRect
     , xmUpRightRect
     , xmDownLeftRect
@@ -81,8 +84,8 @@ xmKeys mask = do
     --------------------------------------------------------------------------
     -- Left side characters
     bind $ mask ... xK_q
-      |/- "recompile and restart xmonad"
-        ^> spawn "xmonad-x86_64-linux --recompile; xmonad-x86_64-linux --restart"
+      |/- "toggle to the workspace displayed previously"
+        ^> toggleWS
     bind $ mask .|. shiftMask ... xK_q
       |/- "kill focused window"
         ^> kill
@@ -108,8 +111,14 @@ xmKeys mask = do
       |/- "move focused floating window back into layout"
         ^> withFocused $ windows . XMSS.sink
     bind $ mask .|. shiftMask ... xK_t
-      |/- "float and center the focused window"
+      |/- "float and center the focused window with quite big dimension"
         ^> withFocused $ windows . flip XMSS.float xmBigRect
+    bind $ mask .|. controlMask ... xK_t
+      |/- "float and center the focused window"
+        ^> withFocused $ windows . flip XMSS.float xmMedRect
+    bind $ mask .|. shiftMask .|. controlMask ... xK_t
+      |/- "float and center the focused window with quite small dimension"
+        ^> withFocused $ windows . flip XMSS.float xmSmallRect
     bind $ mask ... xK_a
       |/- "spawn default terminal"
         ^> spawn =<< terminalFromConf

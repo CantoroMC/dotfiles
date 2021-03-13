@@ -1,6 +1,7 @@
 module Manage.Util
     ( xmBigRect
     , xmMedRect
+    , xmSmallRect
     , xmUpLeftRect
     , xmUpRightRect
     , xmDownLeftRect
@@ -14,6 +15,9 @@ xmBigRect = XMSS.RationalRect 0.166 0.166 0.666 0.666
 
 xmMedRect :: XMSS.RationalRect
 xmMedRect = XMSS.RationalRect 0.25 0.25 0.5 0.5
+
+xmSmallRect :: XMSS.RationalRect
+xmSmallRect = XMSS.RationalRect 0.3 0.3 0.3 0.3
 
 xmUpLeftRect :: XMSS.RationalRect
 xmUpLeftRect = XMSS.RationalRect 0 0.02 0.5 0.49

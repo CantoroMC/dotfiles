@@ -87,22 +87,6 @@ local function init()
   }
   -- UTILITIES {{{3
   use 'neovim/nvim-lspconfig'
-  use 'liuchengxu/vista.vim'
-
-  use { 'neoclide/coc.nvim',
-    branch = 'release'
-  }
-  use { 'rafcamlet/coc-nvim-lua',
-    require = { 'neoclide/coc.nvim',
-      branch = 'release'}
-  }
-  use { 'wellle/tmux-complete.vim',
-    require = { 'neoclide/coc.nvim',
-      branch = 'release'}
-  }
-
-  -- Treesitter {{{
-  --[=====[
   -- Tree Sitter: Syntax, Indentation, TextObject, Foldings.... SYNTAX AWARE.
   use { 'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
@@ -116,7 +100,18 @@ local function init()
   use { 'nvim-treesitter/playground',
     requires = 'nvim-treesitter/nvim-treesitter',
   }
-  --]=====]
+  use 'liuchengxu/vista.vim'
+  use { 'neoclide/coc.nvim',
+    branch = 'release'
+  }
+  use { 'rafcamlet/coc-nvim-lua',
+    require = { 'neoclide/coc.nvim',
+      branch = 'release'}
+  }
+  use { 'wellle/tmux-complete.vim',
+    require = { 'neoclide/coc.nvim',
+      branch = 'release'}
+  }
   --[===[
   use 'nvim-lua/completion-nvim'                   -- Completion
   --]===]
@@ -140,6 +135,7 @@ local function init()
   use 'NLKNguyen/papercolor-theme'
   use 'srcery-colors/srcery-vim'
   use 'eemed/sitruuna.vim'
+  use 'Th3Whit3Wolf/one-nvim'
   -- }}}
   use { 'kyazdani42/nvim-tree.lua',
     as = 'nvim-tree',

@@ -25,11 +25,11 @@ endfunction
 
 " Section: Compiler
 let s:compile_opts = join(get(g:, 'texpiler_opts',
-      \   [ '-shell-escape',
-      \     '-synctex=1',
-      \     '-interaction=nonstopmode',
-      \     '-file-line-error',
-      \     '--output-directory='.expand('%:p:h')
+      \   [ ' -shell-escape',
+      \     ' -synctex=1',
+      \     ' -interaction=nonstopmode',
+      \     ' -file-line-error',
+      \     ' --output-directory='.expand('%:p:h')
       \   ]
       \ ), '')
 

@@ -11,7 +11,7 @@ require'nvim-treesitter.configs'.setup {
 
   highlight = {
     enable = true,
-    disable = {"bash"},
+    disable = {},
     use_languagetree = false,
     -- custom_captures = {
       -- ["capture.group"] = "HighlightGroup",
@@ -54,7 +54,6 @@ require'nvim-treesitter.configs'.setup {
         goto_previous_usage = "<M-[>",
       },
     },
-
   },
 
   textobjects = { -- Tree-Sitter TextObject: syntax-aware textobjects
