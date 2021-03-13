@@ -1,0 +1,12 @@
+#!/bin/sh
+
+main() {
+  cd ~/Downloads
+  git clone https://aur.archlinux.org/packages/auracle-git
+  cd auracle-git
+  makepkg -si
+  cd ..
+  rm -rf auracle-git
+}
+
+main "$@"

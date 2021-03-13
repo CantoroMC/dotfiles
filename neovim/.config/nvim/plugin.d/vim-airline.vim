@@ -8,7 +8,7 @@ let g:airline_detect_spelllang  = 0
 let g:airline_detect_iminsert   = 1
 let g:airline_inactive_collapse = 1
 let g:airline_inactive_alt_sep  = 1
-let g:airline_powerline_fonts   = 1
+let g:airline_powerline_fonts   = 0
 let g:airline_symbols_ascii     = 0
 let g:airline_exclude_preview   = 1
 
@@ -21,7 +21,8 @@ let g:airline_filetype_overrides = {
       \ 'NvimTree' : [ ' NvimTree', '' ],
       \ 'startify' : [ 'Startify', '' ],
       \ 'packer'   : [ 'Packer', '' ],
-      \ 'nuake'    : [ ' Nuake', &shell]
+      \ 'nuake'    : [ ' Nuake', &shell ],
+      \ 'man'      : [ ' Man', '' ]
       \ }
 
 

@@ -40,7 +40,7 @@ prompt_bull_setup () {
   # username and hostname if on an ssh session
   local ssh_info="%B${SSH_TTY:+:}%b$__BULL[ITALIC_ON]%}%F{$color1}${SSH_TTY:+%n@%m}%f%{$__BULL[ITALIC_OFF]%}"
   # current directory with shaded bar
-  local dir_bar="%B%F{$color1}%K{$color1}$schars[333]$schars[262]$schars[261]$schars[260]%F{$color2}%K{$color1}%(7~|%-3~/.../%3~|%~)%b%F{$color1}%k$schars[333]$schars[262]$schars[261]$schars[260]%f"
+  local dir_bar="%B%F{$color1}$(printf '\ue0ca%1.0s')%K{$color1}$schars[333]$schars[262]$schars[261]$schars[260]%F{$color2}%K{$color1}%(7~|%-3~/.../%3~|%~)%b%F{$color1}%k$schars[333]$schars[262]$schars[261]$schars[260]$(printf '\ue0c8%1.0s')%f"
 
   local nr_jobs="%B%F{$color3}%(1j.%(2j.%j.)*.)%f%b"
   local hist_len="%B%F{$color2}%{ %2G%}%h%f%b"

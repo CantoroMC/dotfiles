@@ -91,6 +91,11 @@ function _fg-bg() {
   fi
 }
 zle -N _fg-bg
+
+function insert-datestamp() {
+  LBUFFER+=${(%):-'%D{%Y-%m-%d}'};
+}
+zle -N insert-datestamp
 # }}}
 
 # Kzbd compatible {{{2
@@ -160,6 +165,7 @@ bindkey -M viins      '^G^T' fzf-git-tags
 bindkey -M viins      '^X^E' edit-command-line
 bindkey -M vicmd      '^X^E' edit-command-line
 bindkey -M viins -s   '^X^F' 'rcn\n'
+bindkey -M viins      '^X^I' insert-datestamp
 bindkey -M viins      '^X^K' fzf-bindkey
 bindkey -M viins      '^X^L' _nnn_cmd
 bindkey -M viins -s   '^X^M' 'fzf-man\n'

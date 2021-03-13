@@ -16,15 +16,15 @@
      sudo pacman -S --noconfirm --needed --asdeps - < ~/dotfiles/deploy/arch-repo/pacman-packages/dependent-packages.txt
    #+end_src
 
-** Install yay for help
+** Install AUR helper
 Clone the package and =makepkg -si=
 #+begin_src shell
-  git clone https://aur.archlinux.org/yay-git.git
+  git clone https://aur.archlinux.org/packages/auracle-git
 #+end_src
 
-** Installing AUR packages with yay
+** Installing AUR packages
    #+begin_src sh
-     yay -S --needed - < ~/dotfiles/deploy/arch-repo/aur-packages.txt
+     auracle clone - < ~/dotfiles/deploy/arch-repo/aur-packages.txt
    #+end_src
 
 ** Installing Third Party Packages
@@ -234,7 +234,7 @@ and when the installation process is finished
 
 libselinux libsepol are requested and can be installed from the AUR
 #+begin_src sh
-  yay -S --noansweredit libselinux libsepol
+  auracle clone libselinux libsepol
 #+end_src
 
 also =/usr/local/MATLAB/R2019b/cefclient/sys/os/glnxa64/=
