@@ -8,9 +8,9 @@ zstyle ':vcs_info:*' get-revision true
 
 # Formats
 zstyle ':vcs_info:*' formats \
-  "%F{green}%B%{$__BULL[ITALIC_ON]%}%s%%b:%{$__BULL[ITALIC_OFF]%}[%f%F{blue}%B%{$__BULL[ITALIC_ON]%}%b%%b%{$__BULL[ITALIC_OFF]%}%f%F{yellow}%{$__BULL[ITALIC_ON]%}<%7.7i>%{$__BULL[ITALIC_OFF]%}%f%c%u%F{green}]%f %m"
+  "%F{green}%B%{$__BULL[ITALIC_ON]%}%s%%b:%{$__BULL[ITALIC_OFF]%}[%f%F{blue}%B%{$__BULL[ITALIC_ON]%}%b%%b%{$__BULL[ITALIC_OFF]%}%f%F{cyan}%{$__BULL[ITALIC_ON]%} %7.7i %{$__BULL[ITALIC_OFF]%}%f%c%u%F{green}]%f %m"
 zstyle ':vcs_info:*' actionformats \
-  "(%F{red}%B%{$__BULL[ITALIC_ON]%}%s%%b%{$__BULL[ITALIC_OFF]%}%f)%F{green}[%f%F{blue}%B%{$__BULL[ITALIC_ON]%}%b%%b%{$__BULL[ITALIC_OFF]%}%f%F{yellow}%{$__BULL[ITALIC_ON]%}<%7.7i>%{$__BULL[ITALIC_OFF]%}%f%c%u%F{green}]%f %m-%F{red}%a%f"
+  "(%F{red}%B%{$__BULL[ITALIC_ON]%}%s%%b%{$__BULL[ITALIC_OFF]%}%f)%F{green}[%f%F{blue}%B%{$__BULL[ITALIC_ON]%}%b%%b%{$__BULL[ITALIC_OFF]%}%f%F{cyan}%{$__BULL[ITALIC_ON]%} %7.7i %{$__BULL[ITALIC_OFF]%}%f%c%u%F{green}]%f %m-%F{red}%a%f"
 zstyle ':vcs_info:*' stagedstr \
   "%F{green}%{● %2G%}%f"
 zstyle ':vcs_info:*' unstagedstr \

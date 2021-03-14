@@ -1,3 +1,11 @@
+prompt_bull_precmd() {
+	local exitstatus=$?
+	setopt localoptions noxtrace noksharrays
+	psvar=(SIG)
+	[[ $exitstatus -gt 128 ]] && psvar[1]=SIG$signals[$exitstatus-127]
+	[[ $psvar[1] = SIG ]] && psvar[1]=$exitstatus
+}
+
 prompt_bull_help () {
   cat <<EOH
 This prompt is color-scheme-able.  You can invoke it thus:
@@ -20,9 +28,9 @@ prompt_bull_setup () {
   autoload -Uz prompt_special_chars
   prompt_special_chars
 
-  local color1=${1:-'green'}
+  local color1=${1:-'#138ac1'}
   local color2=${2:-'white'}
-  local color3=${3:-'blue'}
+  local color3=${3:-'green'}
 
   local LVL=$SHLVL
   # Check for tmux by looking at $TERM, because $TMUX won't be propagated to any
@@ -36,7 +44,7 @@ prompt_bull_setup () {
   fi
 
   # return code and ❯ (according to shell levels)
-  local start="%B%(?.%F{green}.%F{red}%?)%{"$(printf '\u276f%.0s' {1..$LVL})'%'$LVL'G%} %f%b'
+  local start="%B%(?.%F{green}.%F{red}%v)%{"$(printf '\u276f%.0s' {1..$LVL})'%'$LVL'G%} %f%b'
   # username and hostname if on an ssh session
   local ssh_info="%B${SSH_TTY:+:}%b$__BULL[ITALIC_ON]%}%F{$color1}${SSH_TTY:+%n@%m}%f%{$__BULL[ITALIC_OFF]%}"
   # current directory with shaded bar
@@ -98,6 +106,7 @@ prompt_bull_setup () {
   SPROMPT="zsh: correct %F{red}'%R'%f to %F{green}'%r'%f [%B%Un%u%bo, %B%Uy%u%bes, %B%Ue%u%bdit, %B%Ua%u%bbort]? "
 
   prompt_opts=(cr subst percent)
+  add-zsh-hook precmd prompt_bull_precmd
 }
 
 prompt_bull_preview () {

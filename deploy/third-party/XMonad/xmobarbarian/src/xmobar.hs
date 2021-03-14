@@ -59,7 +59,7 @@ xmobarConfig p = (baseConfig p)
         ++ "|LIML| "
         ++ "|date|"
         ++ "{"
-        ++ action "sudo pacman -Syu" 3 " |pacman|"
+        ++ action "st sudo pacman -Syu" 3 " |pacman|"
         ++ " "
         ++ "|memory| |swap|"
         ++ " "
