@@ -17,6 +17,7 @@ alias ts="tree -p --si --dirsfirst -L 2"
 alias L="colorls -1Al --sd"
 alias Lg="colorls -1A --git-status --sd"
 alias Lt="colorls -A --tree=2 --sd"
+alias z="cdr"
 
 #
 # Functions
