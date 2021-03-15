@@ -186,7 +186,7 @@ fi
 
 # Bibtex
 # FZF_BIBTEX_SOURCES: path to bibtex file; multiple items separated by a ':'
-export FZF_BIBTEX_SOURCES="$TEXMFHOME/bibtex/bib/matriHX.bib"
+export FZF_BIBTEX_SOURCES="$TEXMFHOME/bibtex/bib/polimi.bib"
 # }}}
 
 # vim:fdm=marker

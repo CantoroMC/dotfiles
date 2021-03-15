@@ -19,7 +19,7 @@ let g:nvim_tree_auto_ignore_ft     = [
       \ 'startify'
       \ ]
 let g:nvim_tree_follow             = 0
-let g:nvim_tree_indent_markers     = 0
+let g:nvim_tree_indent_markers     = 1
 let g:nvim_tree_width_allow_resize = 0
 let g:nvim_tree_disable_netrw      = 1
 let g:nvim_tree_hijack_netrw       = 1

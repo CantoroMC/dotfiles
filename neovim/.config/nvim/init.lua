@@ -15,7 +15,7 @@ require'mc.plugin.octolua'.digest()
 
 -- COLORSCHEME: managed by a small lua script
 require'mc.plugin.colorpicker'.setup {
-  active = true,
+  active = false,
   light_time = {6,8},
   themes     = {
     [ "dark" ]  = {
@@ -33,7 +33,7 @@ require'mc.plugin.colorpicker'.setup {
       [ "PaperColor" ] = 'papercolor',
     }
   },
-  theme = { [ "sitruuna" ] = 'base16_pop' },
+  theme = { [ "ayu" ] = 'ayu_dark' },
 }
 
 -- CLOSURE
