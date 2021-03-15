@@ -39,7 +39,7 @@
 
 	"coc.source.file.ignoreHidden": false,
 	"coc.source.syntax.priority": 99,
-	"coc.source.syntax.filetypes": ["arch", "awk", "automake", "cabal", "cmake", "conf", "config", "conkyrc", "crontab", "desktop", "diff", "dircolors", "dirpager", "fstab", "git", "gitcommit", "gitconfig", "gitsendmail", "godoc", "gpg", "groff", "help", "html", "i3", "less", "mail", "mailaliases", "make", "man", "manconf", "manual", "markdown", "matlab", "muttrc", "neomuttrc", "netrc", "netrw", "nix", "nroff", "perl", "pgn", "plaintex", "rasi", "snippets", "snippets_snipmate", "syntax", "template", "texinfo", "texmf", "tmux", "xdefaults"],
+	"coc.source.syntax.filetypes": ["arch", "awk", "automake", "cabal", "cmake", "conf", "config", "conkyrc", "crontab", "desktop", "diff", "dircolors", "dirpager", "fstab", "git", "gitcommit", "gitconfig", "gitsendmail", "godoc", "gpg", "groff", "help", "html", "i3", "less", "mail", "mailaliases", "make", "man", "manconf", "manual", "markdown", "matlab", "muttrc", "neomuttrc", "netrc", "netrw", "nix", "nroff", "perl", "pgn", "plaintex", "rasi", "sshconfig", "snippets", "snippets_snipmate", "syntax", "template", "texinfo", "texmf", "tmux", "xdefaults"],
 	"coc.source.word.enable": true,
 	"coc.source.word.shortcut": "﬜",
 	"coc.source.word.priority": 1,

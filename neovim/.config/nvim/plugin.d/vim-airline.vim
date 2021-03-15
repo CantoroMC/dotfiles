@@ -22,7 +22,7 @@ let g:airline_filetype_overrides = {
       \ 'startify' : [ 'Startify', '' ],
       \ 'packer'   : [ 'Packer', '' ],
       \ 'nuake'    : [ ' Nuake', &shell ],
-      \ 'man'      : [ ' Man', '' ]
+      \ 'man'      : [ ' Man', '%t | %p%%  %l/%L:%c' ]
       \ }
 
 
