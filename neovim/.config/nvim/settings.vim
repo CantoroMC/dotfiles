@@ -192,7 +192,7 @@ set nospell
 " Enable Spelling
 augroup spell_for_textual
   autocmd!
-  autocmd FileType 
+  autocmd FileType
         \ tex,plaintex,context,bibtex,text,gitcommit
         \ setl spell
 augroup END
@@ -201,7 +201,7 @@ augroup END
 " Insert Mode Completion: {{{1
 
 set complete+=i,kspell
-set completeopt=menuone,preview,noinsert,noselect
+set completeopt=menuone,noinsert,noselect
 set dictionary+="spell"
 set omnifunc=syntaxcomplete#Complete
 set showfulltag

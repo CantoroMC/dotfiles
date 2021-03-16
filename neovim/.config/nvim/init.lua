@@ -23,7 +23,6 @@ require'mc.plugin.colorpicker'.setup {
       [ "badwolf" ]    = 'badwolf',
       [ "gruvbox" ]    = 'base16_gruvbox_dark_hard',
       [ "jellybeans" ] = 'wombat',
-      [ "one-nvim" ]   = 'onedark',
       [ "PaperColor" ] = 'base16_vim',
       [ "srcery" ]     = 'zenburn',
       [ "sitruuna" ]   = 'base16_pop',

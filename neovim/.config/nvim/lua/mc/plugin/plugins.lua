@@ -87,6 +87,7 @@ local function init()
   }
   -- UTILITIES {{{3
   use 'neovim/nvim-lspconfig'
+  use 'kosayoda/nvim-lightbulb'
   -- Tree Sitter: Syntax, Indentation, TextObject, Foldings.... SYNTAX AWARE.
   use { 'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
@@ -112,16 +113,10 @@ local function init()
     require = { 'neoclide/coc.nvim',
       branch = 'release'}
   }
-  --[===[
-  use 'nvim-lua/completion-nvim'                   -- Completion
-  --]===]
-  -- }}}
-
   use 'junegunn/fzf'
   use { 'junegunn/fzf.vim',
     requires = { 'junegunn/fzf' },
   }
-
   use { 'CantoroMC/slimux',  -- On tmux
     opt = true,
     cmd = { 'SlimuxREPLConfigure', 'SlimuxShellConfigure', 'SlimuxGlobalConfigure' },
@@ -135,7 +130,6 @@ local function init()
   use 'NLKNguyen/papercolor-theme'
   use 'srcery-colors/srcery-vim'
   use 'eemed/sitruuna.vim'
-  use 'Th3Whit3Wolf/one-nvim'
   -- }}}
   use { 'kyazdani42/nvim-tree.lua',
     as = 'nvim-tree',
@@ -154,7 +148,7 @@ local function init()
   use { 'vim-airline/vim-airline',             -- Status and Tab lines
     requires = 'vim-airline/vim-airline-themes'
   }
-  use { 'lewis6991/gitsigns.nvim',             -- Git signs on the signcolumn
+  use { 'lewis6988/gitsigns.nvim',             -- Git signs on the signcolumn
     requires = {
       'nvim-lua/plenary.nvim'
     },
