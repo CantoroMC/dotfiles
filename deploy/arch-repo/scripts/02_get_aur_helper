@@ -2,9 +2,9 @@
 
 main() {
   cd ~/Downloads
-  git clone https://aur.archlinux.org/packages/auracle-git
+  git clone https://aur.archlinux.org/auracle-git
   cd auracle-git
-  makepkg -si
+  makepkg -sri
   cd ..
   rm -rf auracle-git
 }
