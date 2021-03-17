@@ -24,9 +24,9 @@ autocmd FileType ruby
       \   let b:dispatch = 'ruby -wc %' |
       \ endif
 
-autocmd FileType tex let b:dispatch = 'pdflatex --output-directory=%:p:h -synctex=1 -interaction=nonstopmode %'
+autocmd FileType tex let b:dispatch = 'latexmk -pdf --output-directory=%:h %'
 autocmd FileType haskell let b:dispatch = 'ghc --make %'
 autocmd FileType python let b:dispatch = 'python %'
 
 nnoremap <silent> <C-c><C-c> :<C-u>Make<CR>
-nnoremap <silent> <C-c><C-d> :<C-u>Dispatch<CR>
+nnoremap <silent> <C-c><C-d> :<C-u>Dispatch!<CR>

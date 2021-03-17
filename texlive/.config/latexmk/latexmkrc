@@ -1,0 +1,4 @@
+$dvi_previewer = 'start evince';
+$ps_previewer  = 'start zathura';
+$pdf_previewer = 'start zathura';
+$pdflatex = 'pdflatex -shell-escape -synctex=1 -file-line-error -interaction=nonstopmode %O %S';
