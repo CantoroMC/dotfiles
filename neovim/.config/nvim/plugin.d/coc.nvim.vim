@@ -61,41 +61,41 @@ augroup coc_map_ft
   autocmd!
   " Diagnostic Navigation
   autocmd FileType
-        \ sh,perl,c,cpp,go,json,typescript,ruby,python
-        \ nmap <buffer> <leader>qf  <Plug>(coc-fix-current)
+        \ haskell,tex,lua,vim,sh,perl,c,cpp,go,json,typescript,ruby,python
+        \ nmap <buffer> <LocalLeader>qf  <Plug>(coc-fix-current)
   autocmd FileType
-        \ sh,perl,c,cpp,go,json,typescript,ruby,python
+        \ haskell,tex,lua,vim,sh,perl,c,cpp,go,json,typescript,ruby,python
         \ nmap <buffer> [g          <Plug>(coc-diagnostic-prev)
   autocmd FileType
-        \ sh,perl,c,cpp,go,json,typescript,ruby,python
+        \ haskell,tex,lua,vim,sh,perl,c,cpp,go,json,typescript,ruby,python
         \ nmap <buffer> ]g          <Plug>(coc-diagnostic-next)
   " code goto navigation and formatting.
   autocmd FileType
-        \ sh,perl,c,cpp,go,json,typescript,ruby,python
-        \ nmap <buffer> <silent> <Leader>gd <Plug>(coc-definition)
+        \ haskell,tex,lua,vim,sh,perl,c,cpp,go,json,typescript,ruby,python
+        \ nmap <buffer> <silent> <LocalLeader>gd <Plug>(coc-definition)
   autocmd FileType
-        \ sh,perl,c,cpp,go,json,typescript,ruby,python
-        \ nmap <buffer> <silent> <Leader>gy <Plug>(coc-type-definition)
+        \ haskell,tex,lua,vim,sh,perl,c,cpp,go,json,typescript,ruby,python
+        \ nmap <buffer> <silent> <LocalLeader>gD <Plug>(coc-type-definition)
   autocmd FileType
-        \ sh,perl,c,cpp,go,json,typescript,ruby,python
-        \ nmap <buffer> <silent> <Leader>gi <Plug>(coc-implementation)
+        \ haskell,tex,lua,vim,sh,perl,c,cpp,go,json,typescript,ruby,python
+        \ nmap <buffer> <silent> <LocalLeader>gi <Plug>(coc-implementation)
   autocmd FileType
-        \ sh,perl,c,cpp,go,json,typescript,ruby,python
-        \ nmap <buffer> <silent> <Leader>go <Plug>(coc-references)
+        \ haskell,tex,lua,vim,sh,perl,c,cpp,go,json,typescript,ruby,python
+        \ nmap <buffer> <silent> <LocalLeader>R <Plug>(coc-references)
   autocmd FileType
-        \ sh,perl,c,cpp,go,json,typescript,ruby,python
-        \ nmap <buffer> <Leader>gf <Plug>(coc-format-selected)
+        \ haskell,tex,lua,vim,sh,perl,c,cpp,go,json,typescript,ruby,python
+        \ nmap <buffer> <LocalLeader>gq <Plug>(coc-format-selected)
   autocmd FileType
-        \ sh,perl,c,cpp,go,json,typescript,ruby,python
-        \ xmap <buffer> <Leader>gf <Plug>(coc-format-selected)
+        \ haskell,tex,lua,vim,sh,perl,c,cpp,go,json,typescript,ruby,python
+        \ xmap <buffer> <LocalLeader>gq <Plug>(coc-format-selected)
 augroup END
 
-nnoremap <silent> <Leader>cA :<C-u>CocAction<CR>
-nnoremap <silent> <Leader>cD :<C-u>CocDiagnostic<CR>
-nnoremap <silent> <leader>cH :CocHover<CR>
-nnoremap <silent> <Leader>cO :<C-u>CocList outline<CR>
-nnoremap <silent> <Leader>cR :<C-u>CocRestart<CR>
-nnoremap <silent> <Leader>cS :<C-u>CocList -I symbols<CR>
+nnoremap <silent> <LocalLeader>ca :<C-u>CocAction<CR>
+nnoremap <silent> <LocalLeader>dl :<C-u>CocDiagnostic<CR>
+nnoremap <silent> <LocalLeader>H :CocHover<CR>
+nnoremap <silent> <LocalLeader>co :<C-u>CocList outline<CR>
+nnoremap <silent> <LocalLeader>cr :<C-u>CocRestart<CR>
+nnoremap <silent> <LocalLeader>cs :<C-u>CocList -I symbols<CR>
 
 command! -nargs=0 CocHover          :call CocActionAsync('doHover')
 command! -nargs=0 CocFormat         :call CocAction('format')
