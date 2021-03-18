@@ -33,6 +33,12 @@
     "typeParameter": "<>",
 		"default": "-"
 	},
+	"diagnostic.messageTarget": "float",
+	"diagnostic.virtualText": true,
+	"diagnostic.errorSign": " ",
+	"diagnostic.warningSign": " ",
+	"diagnostic.infoSign": " ",
+	"diagnostic.hintSign": " ",
 	"coc.preferences.useQuickfixForLocations": true,
 	"coc.preferences.hoverTarget": "float",
 	"codeLens.enable": true,

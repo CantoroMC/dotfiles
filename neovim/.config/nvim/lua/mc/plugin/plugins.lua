@@ -86,8 +86,10 @@ local function init()
     opt = true
   }
   -- UTILITIES {{{3
-  use 'neovim/nvim-lspconfig'
-  use 'kosayoda/nvim-lightbulb'
+
+  -- use 'neovim/nvim-lspconfig'
+  -- use 'kosayoda/nvim-lightbulb'
+
   -- Tree Sitter: Syntax, Indentation, TextObject, Foldings.... SYNTAX AWARE.
   use { 'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
