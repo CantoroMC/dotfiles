@@ -15,6 +15,7 @@ setopt completeinword   # the cursor stays where it is and completion is done
 setopt alwaystoend      # move the cursor to the end of the word when
                         #   completion is performed (default)
 setopt listpacked       # make completion lists more densely packed
+setopt globdots
 
 zstyle ':completion:*:*:*:*:*' menu select
 # Make completion:

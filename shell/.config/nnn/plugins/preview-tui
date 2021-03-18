@@ -158,10 +158,14 @@ preview_file () {
   elif [ "$encoding" = "binary" ]; then
     if [ "${mimetype%%/*}" = "image" ] || [ "${mimetype%%/*}" = "video" ]; then
       if [ "${mimetype%%/*}" = "video" ] && [ "$USE_VIDEOTHUMB" -ne 0 ] && exists ffmpegthumbnailer; then
-        videothumb="/tmp/videothumb.$$.png"
-        ffmpegthumbnailer -s 0 -i "$1" -o "$videothumb" >/dev/null 2>&1
-        set "$videothumb"
-        trap 'rm "$videothumb"' EXIT
+        for ii in $(seq 5 8 100); do
+          videothumb="/tmp/videothumb.$$.$ii"
+          ffmpegthumbnailer -q 4 -s 0 -i "$1" -t "${ii}" -o "$videothumb.jpeg" >/dev/null 2>&1
+        done
+        videothumb="/tmp/videothumb.$$"
+        montage ${videothumb}*.jpeg -mode Concatenate -tile 3x4 -geometry +0+0 ${videothumb}.png
+        set "$videothumb.png"
+        trap 'rm "$videothumb.png"' EXIT
       fi
       if [ "$TERMINAL" = "kitty" ]; then
         # Kitty terminal users can use the native image preview method.
