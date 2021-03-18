@@ -272,7 +272,7 @@ xmKeys mask = do
         ^> spawn =<< terminalFromConf
     bind $ mask .|. shiftMask ... xK_Return
       |/- "spawn secondary terminal"
-        ^> spawn "tabbed -r 2 st -w ''"
+        ^> spawn "tabbed -c -r 2 st -w ''"
     bind $ mask .|. controlMask ... xK_Return
       |/- "spawn kitty"
         ^> spawn "kitty"
