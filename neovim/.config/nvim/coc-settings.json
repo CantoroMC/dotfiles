@@ -35,6 +35,7 @@
 	},
 	"diagnostic.messageTarget": "float",
 	"diagnostic.virtualText": true,
+	"diagnostic.virtualTextCurrentLineOnly": false,
 	"diagnostic.errorSign": " ",
 	"diagnostic.warningSign": " ",
 	"diagnostic.infoSign": " ",
