@@ -52,7 +52,13 @@ noremap <C-S> <C-L>
 
 " Exit insert mode with ease
 inoremap jk <Esc>
-
+" Emacs-like line navigation
+inoremap <M-a> <Home>
+inoremap <M-e> <End>
+inoremap <M-f> <S-Right>
+inoremap <M-b> <S-Left>
+inoremap <M-p> <Up>
+inoremap <M-n> <Down>
 " }}}
 
 " Command Mode: {{{1

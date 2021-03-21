@@ -103,6 +103,9 @@ local function init()
   use { 'nvim-treesitter/playground',
     requires = 'nvim-treesitter/nvim-treesitter',
   }
+  use { 'p00f/nvim-ts-rainbow',
+    requires = 'nvim-treesitter/nvim-treesitter',
+  }
   use 'liuchengxu/vista.vim'
   use { 'neoclide/coc.nvim',
     branch = 'release'
