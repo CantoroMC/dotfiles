@@ -1,11 +1,13 @@
 local M = {}
 
 local plug_settings = {
-  ["true"] = "false",
-  ["True"] = "False",
-  ["1"]    = "0",
-  ["Yes"]  = "No",
-  ["yes"]  = "no",
+  ["true"]  = "false",
+  ["True"]  = "False",
+  ["1"]     = "0",
+  ["Yes"]   = "No",
+  ["yes"]   = "no",
+  ["right"] = "left",
+  ["pre"]   = "post",
 }
 
 plug_settings = vim.tbl_add_reverse_lookup(plug_settings)

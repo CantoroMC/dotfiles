@@ -201,6 +201,7 @@ local function init()
   use { 'norcalli/nvim-terminal.lua',
     as = 'nvim-terminal'
   }
+  use 'KeitaNakamura/tex-conceal.vim'
   -- }}}
   -- VIM DEVELOPMENT {{{3
   use 'dstein64/vim-startuptime'

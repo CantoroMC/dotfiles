@@ -129,6 +129,8 @@ export GEM_HOME="$XDG_DATA_HOME"/gem
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
 # Go
 export GOPATH="$XDG_DATA_HOME/go"
+# Node
+export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 # Python
 export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter

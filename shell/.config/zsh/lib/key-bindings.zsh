@@ -96,6 +96,12 @@ function insert-datestamp() {
   LBUFFER+=${(%):-'%D{%Y-%m-%d}'};
 }
 zle -N insert-datestamp
+
+_zle_disown() {
+  [[ -z $BUFFER ]] && zle up-history
+	BUFFER="$BUFFER& disown"
+}
+zle -N _zle_disown
 # }}}
 
 # Kzbd compatible {{{2
@@ -162,6 +168,8 @@ bindkey -M viins      '^G^F' fzf-git-files
 bindkey -M viins      '^G^H' fzf-git-hashes
 bindkey -M viins      '^G^R' fzf-git-remotes
 bindkey -M viins      '^G^T' fzf-git-tags
+bindkey -M viins      '^X^A' _zle_disown
+bindkey -M vicmd      '^X^A' _zle_disown
 bindkey -M viins      '^X^E' edit-command-line
 bindkey -M vicmd      '^X^E' edit-command-line
 bindkey -M viins -s   '^X^F' 'rcn\n'
