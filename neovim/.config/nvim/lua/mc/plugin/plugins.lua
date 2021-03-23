@@ -153,7 +153,7 @@ local function init()
   use { 'vim-airline/vim-airline',             -- Status and Tab lines
     requires = 'vim-airline/vim-airline-themes'
   }
-  use { 'lewis6988/gitsigns.nvim',             -- Git signs on the signcolumn
+  use { 'lewis6991/gitsigns.nvim',             -- Git signs on the signcolumn
     requires = {
       'nvim-lua/plenary.nvim'
     },

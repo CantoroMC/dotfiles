@@ -19,7 +19,7 @@
 ** Install AUR helper
 Clone the package and =makepkg -si=
 #+begin_src shell
-  git clone https://aur.archlinux.org/packages/auracle-git
+  git clone https://aur.archlinux.org/auracle-git
 #+end_src
 
 ** Installing AUR packages
