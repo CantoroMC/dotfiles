@@ -98,7 +98,7 @@ export ZLS_COLORS LS_COLORS
 
 # Language/Programs Specifics {{{1
 export ADDRESSES="$HOME/Documents/organization/contacts/addressbook"
-export BACKGROUND_COLOR="dark"
+export BACKGROUND_COLOR="light"
 export BAT_THEME="Dracula"
 export DOTFILES="$HOME"/dotfiles
 export MPC_FORMAT="[[%artist%  - ]%title% (%time%)]|[%file%]"

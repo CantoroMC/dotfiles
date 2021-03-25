@@ -71,7 +71,6 @@ let g:airline#extensions#default#layout = [
 
 " Section: Builtin extensions
 
-" 'nvimlsp',
 let g:airline_extensions = [
       \   'branch',
       \   'coc',
@@ -93,9 +92,6 @@ let g:airline#extensions#hunks#hunk_symbols = [ ' ', '柳 ', ' ' ]
 
 let g:airline#extensions#coc#error_symbol   = ' '
 let g:airline#extensions#coc#warning_symbol = ' '
-
-let g:airline#extensions#nvimlsp#error_symbol   = ' '
-let g:airline#extensions#nvimlsp#warning_symbol = ' '
 
 let g:airline#extensions#quickfix#quickfix_text = 'QFL'
 let g:airline#extensions#quickfix#location_text = 'LCL'
