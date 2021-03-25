@@ -81,7 +81,7 @@ local excrete = function()
     "=============\n" ..
     table.concat(vim_configs, "\n")
   vim.cmd('cexpr ' .. vim.fn.string(cexpr))
-	vim.fn.setqflist({}, 'a', {["title"] = 'Octolua'})
+  vim.fn.setqflist({}, 'a', {["title"] = 'Octolua'})
   vim.cmd 'copen'
 end
 

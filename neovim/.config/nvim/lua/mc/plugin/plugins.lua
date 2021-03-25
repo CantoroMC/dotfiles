@@ -89,6 +89,7 @@ local function init()
 
   -- use 'neovim/nvim-lspconfig'
   -- use 'kosayoda/nvim-lightbulb'
+  -- use 'liuchengxu/vista.vim'
 
   -- Tree Sitter: Syntax, Indentation, TextObject, Foldings.... SYNTAX AWARE.
   use { 'nvim-treesitter/nvim-treesitter',
@@ -106,7 +107,10 @@ local function init()
   use { 'p00f/nvim-ts-rainbow',
     requires = 'nvim-treesitter/nvim-treesitter',
   }
-  use 'liuchengxu/vista.vim'
+  use { 'preservim/tagbar',
+    -- opt = true,
+    -- cmd = 'TagbarToggle',
+  }
   use { 'neoclide/coc.nvim',
     branch = 'release'
   }
@@ -207,7 +211,10 @@ local function init()
   use 'KeitaNakamura/tex-conceal.vim'
   -- }}}
   -- VIM DEVELOPMENT {{{3
-  use 'dstein64/vim-startuptime'
+  use { 'dstein64/vim-startuptime',
+    opt = true,
+    cmd = 'StartupTime',
+  }
   -- }}}
   -- }}}
 end

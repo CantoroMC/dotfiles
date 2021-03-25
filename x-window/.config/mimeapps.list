@@ -2,7 +2,7 @@
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
 image/jpeg=sxiv.desktop;
 image/png=sxiv.desktop;
-text/plain=emacs.desktop
+text/plain=nvim.desktop;emacs.desktop;
 video/mp4=mpv.desktop;
 
 [Added Associations]
@@ -12,5 +12,5 @@ image/jpeg=sxiv.desktop;
 image/png=sxiv.desktop;
 inode/directory=exo-file-manager.desktop;
 x-scheme-handler/trash=exo-file-manager.desktop;
-text/plain=emacs.desktop;
+text/plain=nvim.desktop;emacs.desktop;
 video/mp4=mpv.desktop;

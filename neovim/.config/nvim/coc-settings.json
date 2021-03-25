@@ -41,7 +41,6 @@
 	"diagnostic.infoSign": " ",
 	"diagnostic.hintSign": " ",
 	"coc.preferences.useQuickfixForLocations": true,
-	"coc.preferences.hoverTarget": "float",
 	"codeLens.enable": true,
 
 	"coc.source.file.ignoreHidden": false,

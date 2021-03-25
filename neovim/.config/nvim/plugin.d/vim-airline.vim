@@ -81,8 +81,8 @@ let g:airline_extensions = [
       \   'po',
       \   'quickfix',
       \   'tabline',
+      \   'tagbar',
       \   'undotree',
-      \   'vista',
       \   'whitespace',
       \   'wordcount',
       \ ]
