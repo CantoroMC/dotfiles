@@ -1,0 +1,123 @@
+#!/bin/zsh
+
+AUR_HELPER=${AUR_HELPER:-'yay'}
+DOTFILES=${DOTFILES:-'~/dotfiles'}
+PKG_LISTS_DIR=$DOTFILES/deploy/arch-repo/pacman-packages
+PKGS=(bull-packages gtk-packages x-packages programming-packages)
+BOXES=(git emacs neovim texlive music mail shell haskell x-window)
+XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-'~/.config'}
+XDG_DATA_HOME=${XDG_DATA_HOME:-'~/.local/share'}
+HOMIES=(
+  .cabal
+  .ghc
+  .local/bin
+  )
+CONFIGS=(
+  emacs
+  git
+  gtk-2.0
+  gtk-3.0
+  mpd/playlists
+  nautilus
+  neomutt
+  nnn
+  nvim
+  radiotray-ng
+  surf
+  zsh/plugins
+)
+DATAS=(
+  nvim/site/pack
+  xorg
+  fonts
+  nautilus/scripts
+  surf
+  stack
+
+)
+
+
+wrap_pacman() {
+  sudo pacman -S --needed - < ${1}
+}
+
+packages_pacman() {
+  sudo pacman -Syu
+  for pkg ($PKGS); do
+    wrap_pacman "$PKG_LISTS_DIR"/"$pkg".txt
+  done
+  sudo pacman -S --needed --asdeps - < "$PKG_LISTS_DIR"/dependent-packages.txt
+}
+
+aur_helper(){
+  cd ~/Downloads
+  git clone https://aur.archlinux.org/$AUR_HELPER
+  cd $AUR_HELPER
+  makepkg -sri
+  cd ..
+  rm -rf $AUR_HELPER
+}
+
+
+check_mkdir() {
+  [ ! -d ${1} ] && mkdir -p ${1} || echo -e "\e[1;97m${1} already exists.\e[0m"
+}
+
+prepare_ft(){
+  for dir ($HOMIES); do
+    echo "$HOME"/"$dir"
+  done
+  for dir ($CONFIGS); do
+    echo "$XDG_CONFIG_HOME"/"$dir"
+  done
+  for dir ($DATAS); do
+    echo "$XDG_DATA_HOME"/"$dir"
+  done
+}
+
+
+check_stow() {
+  cd $DOTFILES
+  stow -nv ${BOXES[@]}
+}
+
+use_stow() {
+  cd $DOTFILES
+  stow -R ${BOXES[@]}
+}
+
+
+
+helper(){
+  cat << _EOF_
+  This is the help function but it still TODO
+_EOF_
+}
+
+main() {
+  case ${1} in
+    "pkg")
+      packages_pacman
+      ;;
+    "get_aur")
+      aur_helper
+      ;;
+    "prepare")
+      prepare_ft
+      ;;
+    "check")
+      check_stow
+      ;;
+    "stow")
+      use_stow
+      ;;
+    "help")
+      helper
+      ;;
+    *)
+      helper
+      ;;
+  esac
+}
+
+main "$@"
