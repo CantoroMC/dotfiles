@@ -28,6 +28,7 @@ tmux
 tree
 vint
 vivaldi
+vivaldi-ffmpeg-codecs
 xboard
 zathura
 zsh
