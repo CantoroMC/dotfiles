@@ -3,7 +3,6 @@ gnome-disk-utility
 gnome-themes-extra
 gpick
 gcolor2
-papirus-icon-theme
 parcellite
 transmission-gtk
 nautilus

@@ -8,3 +8,4 @@ polyglot-winboard-git
 radiotray-ng
 onlyoffice-bin
 lua-language-server-git
+tela-icon-theme-git
