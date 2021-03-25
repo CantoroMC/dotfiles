@@ -107,10 +107,7 @@ local function init()
   use { 'p00f/nvim-ts-rainbow',
     requires = 'nvim-treesitter/nvim-treesitter',
   }
-  use { 'preservim/tagbar',
-    -- opt = true,
-    -- cmd = 'TagbarToggle',
-  }
+  use 'preservim/tagbar'
   use { 'neoclide/coc.nvim',
     branch = 'release'
   }
