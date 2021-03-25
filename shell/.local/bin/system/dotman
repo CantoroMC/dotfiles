@@ -1,7 +1,7 @@
 #!/bin/zsh
 
-AUR_HELPER=${AUR_HELPER:-'yay'}
-DOTFILES=${DOTFILES:-'~/dotfiles'}
+AUR_HELPER=${AUR_HELPER:-'auracle-git'}
+DOTFILES=${DOTFILES:-$HOME'/dotfiles'}
 PKG_LISTS_DIR=$DOTFILES/deploy/arch-repo/pacman-packages
 PKGS=(bull-packages gtk-packages x-packages programming-packages)
 BOXES=(git emacs neovim texlive music mail shell haskell x-window)
@@ -65,13 +65,13 @@ check_mkdir() {
 
 prepare_ft(){
   for dir ($HOMIES); do
-    echo "$HOME"/"$dir"
+    check_mkdir "$HOME"/"$dir"
   done
   for dir ($CONFIGS); do
-    echo "$XDG_CONFIG_HOME"/"$dir"
+    check_mkdir "$XDG_CONFIG_HOME"/"$dir"
   done
   for dir ($DATAS); do
-    echo "$XDG_DATA_HOME"/"$dir"
+    check_mkdir "$XDG_DATA_HOME"/"$dir"
   done
 }
 
