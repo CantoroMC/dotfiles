@@ -1,6 +1,6 @@
 local plugin_settings = {
   active     = true,
-  light_time = { 7,14 },
+  light_time = { 6,8 },
   themes     = {
     [ "dark" ]  = {
       [ "slate" ] = 'base16_shell',
@@ -12,6 +12,9 @@ local plugin_settings = {
     }
   },
   theme = { [ "murphy" ] = 'dark' },
+  add_highlight = {
+    ["Comment"] = 'gui=italic',
+  }
 }
 
 local M = {}
@@ -68,6 +71,9 @@ function M.setup(user_settings)
     vim.o.background = bg_color == 1 and 'light' or 'dark'
     vim.g.airline_theme = table.concat(vim.tbl_values(plugin_settings.theme))
     vim.cmd('colorscheme ' .. table.concat(vim.tbl_keys(plugin_settings.theme)))
+  end
+  for k,v in pairs(plugin_settings.add_highlight) do
+    vim.cmd('highlight ' .. k .. ' ' .. v)
   end
 end
 

@@ -15,26 +15,22 @@ require'mc.plugin.octolua'.digest()
 
 -- COLORSCHEME: managed by a small lua script
 require'mc.plugin.colorpicker'.setup {
-  active = true,
-  light_time = {6,8},
   themes     = {
     [ "dark" ]  = {
       [ "ayu" ]        = 'ayu_dark',
-      -- [ "badwolf" ]    = 'badwolf',
       [ "gruvbox" ]    = 'base16_gruvbox_dark_hard',
-      -- [ "jellybeans" ] = 'wombat',
       [ "PaperColor" ] = 'base16_vim',
-      -- [ "srcery" ]     = 'zenburn',
       [ "sitruuna" ]   = 'base16_pop',
+      -- [ "jellybeans" ] = 'wombat',
+      -- [ "badwolf" ]    = 'badwolf',
+      -- [ "srcery" ]     = 'zenburn',
     },
     [ "light" ] = {
       [ "mayansmoke" ] = 'xtermlight',
       [ "PaperColor" ] = 'papercolor',
     }
   },
-  theme = { [ "ayu" ] = 'ayu_dark' },
 }
-vim.cmd('highlight Comment gui=italic')
 
 -- CLOSURE
 vim.o.secure = true

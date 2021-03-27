@@ -50,14 +50,15 @@ plugins=(
   zsh-syntax-highlighting
 )
 # Plugin configuration
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'tree -a -C -L 2 -F $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'tree -a -C -I .git -L 2 -F $realpath'
 zstyle ':fzf-tab:*' switch-group '[' ']'
 zstyle ':fzf-tab:complete:cd:*' popup-pad 20 0
 HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 ZSH_AUTOSUGGEST_USE_ASYNC='true'
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
-
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[comment]='fg=59'
 
 # fpath and compinit
 autoload -U compaudit compinit
