@@ -10,16 +10,19 @@ help:
 	@echo ""
 	@echo -e "\e[1;33mTo compile, type:\e[0m"
 	@echo ""
-	@echo "	make target"
+	@echo "make target"
 	@echo ""
 	@echo -e "\e[1;33mSupported targets:\e[0m"
-	@echo "	all				Build the specified executables"
-	@echo "	clean			Clean up the directory"
+	@echo "all        Build the specified executables"
+	@echo "clean      Clean up the directory"
 
 all: $(EXE)
 
 exeName: exeName.o depName1.o depName2.o
 	$(COMP) $(CFLAGS) $^ -o $@
+
+# %.o: %.h %.cpp
+	# $(COMP) $(CFLAGS) -c $(filter-out $<,$^)
 
 exeName.o: exeName.cpp
 	$(COMP) $(CFLAGS) -c $^
@@ -32,4 +35,3 @@ depName2.o: ../dir/depName2.h ../dir/depName2.cpp
 
 clean:
 	@rm *.o $(EXE)
-

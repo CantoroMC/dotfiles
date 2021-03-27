@@ -1,0 +1,31 @@
+#compdef dotman
+
+local curcontext="$curcontext" state line ret=1
+
+_arguments \
+	'1: :->cmds' \
+	'*:: :->args' && ret=0
+
+case $state in
+	cmds)
+		_values "dotman command" \
+      "aur_helper[Install the define AUR helper]" \
+			"prepare[create directory on branches of the home directory]" \
+			"pkg[Install packages with pacman]" \
+      "stow[Use stow to refresh all of the dotfiles packages]" \
+			"help[Describe available tasks or one specific task]"
+		ret=0
+		;;
+  args)
+    case $line[1] in
+			help)
+				_values 'commands' 'pkg' 'aur_help' && ret=0
+				;;
+			*)
+        _normal && ret=0
+				;;
+    esac
+    ;;
+esac
+
+return ret

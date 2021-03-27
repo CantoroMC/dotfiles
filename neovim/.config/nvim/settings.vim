@@ -159,11 +159,11 @@ augroup filetype_folding_method " {{{2
         \ setl foldmethod=marker
   " Indentation
   autocmd FileType
-        \ make,python,bib,go,json,html,css,javascript,yaml,ruby,xml,haskell,lhaskell,cabal,nix,lua,lisp,zsh,vim,config,conf,tex,plaintex
+        \ make,python,bib,go,json,html,css,javascript,yaml,ruby,xml,haskell,lhaskell,cabal,nix,lua,lisp,zsh,vim,config,conf,tex,plaintex,cpp
         \ setl foldmethod=indent
   " Syntax
   autocmd FileType
-        \ c,cpp,git,gitcommit,sh
+        \ c,git,gitcommit,sh
         \ setl foldmethod=syntax
 augroup END
 " }}}

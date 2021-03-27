@@ -33,7 +33,6 @@ DATAS=(
   nautilus/scripts
   surf
   stack
-
 )
 
 
@@ -75,18 +74,10 @@ prepare_ft(){
   done
 }
 
-
-check_stow() {
-  cd $DOTFILES
-  stow -nv ${BOXES[@]}
-}
-
 use_stow() {
   cd $DOTFILES
   stow -R ${BOXES[@]}
 }
-
-
 
 helper(){
   cat << _EOF_
@@ -99,14 +90,11 @@ main() {
     "pkg")
       packages_pacman
       ;;
-    "get_aur")
+    "aur_helper")
       aur_helper
       ;;
     "prepare")
       prepare_ft
-      ;;
-    "check")
-      check_stow
       ;;
     "stow")
       use_stow

@@ -34,6 +34,7 @@ require'mc.plugin.colorpicker'.setup {
   },
   theme = { [ "ayu" ] = 'ayu_dark' },
 }
+vim.cmd('highlight Comment gui=italic')
 
 -- CLOSURE
 vim.o.secure = true

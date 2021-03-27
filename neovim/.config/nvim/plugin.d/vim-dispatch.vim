@@ -26,7 +26,7 @@ autocmd FileType ruby
 
 autocmd FileType tex let b:dispatch = 'latexmk -pdf --output-directory=%:h %'
 autocmd FileType haskell let b:dispatch = 'ghc --make %'
-autocmd FileType python let b:dispatch = 'python %'
+autocmd FileType python let b:dispatch = 'python -m py_compile %'
 
 nnoremap <silent> <C-c><C-c> :<C-u>Make<CR>
 nnoremap <silent> <C-c><C-d> :<C-u>Dispatch!<CR>
