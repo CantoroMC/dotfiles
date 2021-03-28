@@ -165,7 +165,7 @@ local function init()
   -- HIS HOLINESS {{{3
   use 'tpope/vim-apathy'         -- `path`, `suffixesadd`, `include`, `includeexpr` and `define`
   use 'tpope/vim-abolish'        -- Language friendly searches, substitutions and abbreviations
-  use 'tpope/vim-characterize'
+  use 'tpope/vim-characterize'   -- Unicode character metadata (with `ga`)
   use 'tpope/vim-commentary'     -- Comment stuff out
   use { 'tpope/vim-dispatch',    -- Asynchronous build and test dispatcher
     opt = true,
@@ -175,7 +175,7 @@ local function init()
   use 'tpope/vim-eunuch'         -- Vim sugar for the unix shell commands that need it the most
   use 'tpope/vim-fugitive'       -- Git wrapper
   use 'tpope/vim-scriptease'     -- A Vim plugin for vim plugins
-  use 'tpope/vim-speeddating'     -- A Vim plugin for vim plugins
+  use 'tpope/vim-speeddating'    -- <CTRL-A>/<CTRL-X> to increment dates, times and dates
   use 'tpope/vim-surround'       -- quotizing/parenthesizing (and more) made simple
   use 'tpope/vim-repeat'         -- enable repeating supported plugin maps with `.`
   use 'tpope/vim-rhubarb'        -- GitHub extension for fugitive.vim

@@ -1,35 +1,26 @@
 " Abolishments And Abbreviations:
-
 let g:abolish_save_file = expand('<sfile>')
-
-" After Plugin Guards: {{{1
-
 if !exists(':Abolish')
   finish
 endif
 
-" }}}
 
-" Command Line Abbreviations: {{{1
+" Section: Command Line Abbreviations
 Abolish -cmdline {,G}gr{ep,pe}  {}gr{ep}
 Abolish -cmdline GIt            Git
 Abolish -cmdline Wq             wq
-command! Wq  wq
-command! Wqa wqa
-" }}}
+Abolish -cmdline Wqa            wqa
 
-" Insert Mode Abbreviations: {{{1
 
+" Section: Insert Mode Abbreviations
 iabbrev _DATE <C-R>=strftime("%d/%m/%y %H:%M:%S")<CR>
 iabbrev _tod  <C-R>=strftime("%b %d, %y")<CR><Esc>4bgUl$a
-iabbrev _git  https://github.com/
-iabbrev _me   Marco Cantoro
-iabbrev _mail marco.cantoro92@outlook.it
 
-" }}}
 
-" Insert Mode Abolishments: {{{1
-
+" Section: Insert Mode Abolishments
+Abolish _mail                                 marco.cantoro92@outlook.it
+Abolish _me                                   Marco Cantoro
+Abolish _git                                  https://github.com/
 Abolish a{los,slo}                            a{lso}
 Abolish anomol{y,ies}                         anomal{}
 Abolish austrail{a,an,ia,ian}                 austral{ia,ian}
@@ -65,10 +56,8 @@ Abolish seperat{e,es,ed,ing,ely,ion,ions,or}  separat{}
 Abolish segument{,s,ed,ation}                 segment{}
 Abolish u{,n}si{gn,ng}ed                      u{n}si{gn}ed
 
-" Text Insertion: {{{2
+
+" Section: Text Insertion
 Abolish supercali   supercalifragilisticexpialidocious
 Abolish Tqbf        The quick, brown fox jumps over the lazy dog
 Abolish Lipsum      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-" }}}
-
-" }}}
