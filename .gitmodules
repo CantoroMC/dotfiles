@@ -19,9 +19,6 @@
 [submodule "deploy/third-party/XMonad/xmobarbarian/xmobar"]
 	path = deploy/third-party/XMonad/xmobarbarian/xmobar
 	url = https://github.com/jaor/xmobar
-[submodule "deploy/third-party/nnn"]
-	path = deploy/third-party/nnn
-	url = https://github.com/CantoroMC/nnn
 [submodule "deploy/third-party/neovim"]
 	path = deploy/third-party/neovim
 	url = https://github.com/neovim/neovim
@@ -34,3 +31,6 @@
 [submodule "shell/.config/zsh/plugins/zsh-syntax-highlighting"]
 	path = shell/.config/zsh/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "deploy/third-party/nnn"]
+	path = deploy/third-party/nnn
+	url = https://github.com/CantoroMC/nnn
