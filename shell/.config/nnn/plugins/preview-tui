@@ -275,7 +275,14 @@ generate_preview() {
         pdftoppm -jpeg -f 1 -singlefile "$3" "$NNN_PREVIEWDIR/$3" >/dev/null 2>&1
         ;;
       video)
-        ffmpegthumbnailer -s 0 -i "$3" -o "$NNN_PREVIEWDIR/$3.jpg" >/dev/null 2>&1 || rm "$NNN_PREVIEWDIR/$3.jpg"
+        # ffmpegthumbnailer -s 0 -i "$3" -o "$NNN_PREVIEWDIR/$3.jpg" >/dev/null 2>&1 || rm "$NNN_PREVIEWDIR/$3.jpg"
+        for ii in $(seq 5 8 100); do
+          videothumb="$NNN_PREVIEWDIR/$3.$ii"
+          ffmpegthumbnailer -q 4 -s 0 -i "$3" -t "${ii}" -o "$videothumb.jpeg" >/dev/null 2>&1
+        done
+        videothumb="$NNN_PREVIEWDIR/$3"
+        montage "${videothumb}*.jpeg" -mode Concatenate -tile 3x4 -geometry +0+0 "${videothumb}.jpg"
+        rm "${videothumb}"*.jpeg
         ;;
     esac
   fi

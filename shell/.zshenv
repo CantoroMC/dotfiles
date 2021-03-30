@@ -106,7 +106,7 @@ export MPD_HOST=$HOME/.config/mpd/socket
 export RANGER_LOAD_DEFAULT_RC="FALSE"
 export TERMINAL='/usr/local/bin/st'
 # Nnn
-export NNN_OPTS="FHRUde"
+export NNN_OPTS="FHRUude"
 export NNN_BMS='b:~/.local/bin;c:~/.config;d:~/dotfiles;h:~/Documents/programming/Haskell;M:~/Music/database;m:/mnt;s:~/.config/zsh'
 export NNN_PLUG='a:mp3conv;b:oldbigfile;c:fzcd;i:imgview;m:mimelist;o:fzopen;p:preview-tui;t:preview-tabbed'
 export USE_VIDEOTHUMB='1'
