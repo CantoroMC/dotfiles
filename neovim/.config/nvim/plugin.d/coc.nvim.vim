@@ -92,10 +92,13 @@ augroup END
 
 nnoremap <silent> <LocalLeader>ca :<C-u>CocAction<CR>
 nnoremap <silent> <LocalLeader>dl :<C-u>CocDiagnostic<CR>
-nnoremap <silent> <LocalLeader>H :CocHover<CR>
+nnoremap <silent> <LocalLeader>H  :<C-u>CocHover<CR>
 nnoremap <silent> <LocalLeader>co :<C-u>CocList outline<CR>
+nnoremap <silent> <LocalLeader>cf :<C-u>CocFormat<CR>
 nnoremap <silent> <LocalLeader>cr :<C-u>CocRestart<CR>
 nnoremap <silent> <LocalLeader>cs :<C-u>CocList -I symbols<CR>
 
 command! -nargs=0 CocHover          :call CocActionAsync('doHover')
 command! -nargs=0 CocFormat         :call CocAction('format')
+
+command! -nargs=0 ClangdSwitchSourceHeader :CocCommand clangd.switchSourceHeader
