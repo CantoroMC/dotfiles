@@ -96,7 +96,6 @@ let g:airline#extensions#coc#warning_symbol = ' '
 let g:airline#extensions#quickfix#quickfix_text = 'QFL'
 let g:airline#extensions#quickfix#location_text = 'LCL'
 
-let g:airline#extensions#tabline#formatter       = 'unique_tail_improved'
 let g:airline#extensions#tabline#show_splits     = 1
 let g:airline#extensions#tabline#show_buffers    = 1
 let g:airline#extensions#tabline#show_tab_count  = 0
@@ -154,6 +153,20 @@ function! Gitsigns() abort
     return '| '.show
   endif
 endfunction
+
+function! AirlineWebDevIcons(...)
+  let w:airline_section_x = get(w:, 'airline_section_x',
+        \ get(g:, 'airline_section_x', ''))
+  let w:airline_section_x .= ' %{v:lua.webDevIcons(expand("%:p"))} '
+  if airline#parts#ffenc() !=? ''
+    let w:airline_section_y = ' %{&fenc . " " . v.lua.webDevIcons()} '
+  endif
+endfunction
+call airline#add_statusline_func('AirlineWebDevIcons')
+
+let g:airline#extensions#tabline#formatter       = 'unique_tail_improved'
+let g:_webDevIcons_basefmt = get(g:,'airline#extensions#tabline#formatter', 'default')
+let g:airline#extensions#tabline#formatter = 'webDevIcons'
 
 function! AirlineInit()
   let g:airline_section_b = airline#section#create([

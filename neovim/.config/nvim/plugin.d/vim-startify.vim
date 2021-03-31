@@ -1,5 +1,5 @@
 function! StartifyEntryFormat() abort
-  return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
+  return 'v:lua.webDevIcons(absolute_path) . " " . entry_path'
 endfunction
 
 " Session:

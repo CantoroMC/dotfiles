@@ -149,10 +149,14 @@ local function init()
     as = 'nvim-colorizer'
   }
   use { 'mhinz/vim-startify',                  -- Start page and session management
-    requires = 'ryanoasis/vim-devicons',       -- Maybe this can be removed
+    requires = 'kyazdani42/nvim-web-devicons'
   }
+
   use { 'vim-airline/vim-airline',             -- Status and Tab lines
-    requires = 'vim-airline/vim-airline-themes'
+    requires = {
+      'vim-airline/vim-airline-themes',
+      'kyazdani42/nvim-web-devicons',
+    }
   }
   use { 'lewis6991/gitsigns.nvim',             -- Git signs on the signcolumn
     requires = {
@@ -228,4 +232,3 @@ local plugins = setmetatable({}, {
 return plugins
 
 -- vim:fdm=marker:nospell
-
