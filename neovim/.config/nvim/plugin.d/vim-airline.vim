@@ -158,9 +158,6 @@ function! AirlineWebDevIcons(...)
   let w:airline_section_x = get(w:, 'airline_section_x',
         \ get(g:, 'airline_section_x', ''))
   let w:airline_section_x .= ' %{v:lua.webDevIcons(expand("%:p"))} '
-  if airline#parts#ffenc() !=? ''
-    let w:airline_section_y = ' %{&fenc . " " . v.lua.webDevIcons()} '
-  endif
 endfunction
 call airline#add_statusline_func('AirlineWebDevIcons')
 
