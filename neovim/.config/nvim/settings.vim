@@ -338,12 +338,14 @@ let g:loaded_tutor_mode_plugin = 1
 
 " Add Optional Packages: {{{1
 
+" Terminal debugger
+packadd! termdebug
+let g:termdebug_wide = &columns/2
+" let g:termdebug_disasm_window = 5
 " Text justification
 packadd! justify
 " Quickfix list filtering
 packadd! cfilter
-" Terminal debugger
-" packadd! termdebug
 " Make life easier with plugins
 " packadd! vimball
 

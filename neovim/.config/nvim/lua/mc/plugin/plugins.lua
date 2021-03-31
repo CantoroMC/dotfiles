@@ -212,6 +212,7 @@ local function init()
     opt = true,
     cmd = 'StartupTime',
   }
+  use 'HiPhish/info.vim'
   -- }}}
   -- }}}
 end

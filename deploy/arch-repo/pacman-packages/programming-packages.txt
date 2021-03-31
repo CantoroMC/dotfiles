@@ -3,6 +3,7 @@ boost
 clang
 cmake
 extra-cmake-modules
+gdb
 ghc
 ghc-libs
 ghc-static
