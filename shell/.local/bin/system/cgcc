@@ -1,0 +1,142 @@
+#!/bin/sh
+
+warn_ft() {
+  echo -e "\t\e[1;31mError! You cannot perform any action on file with extension ${ext}\e[0m"
+  echo -e "\t\e[1;31mPlease select a c or cpp file\e[0m"
+}
+
+cgcc_help() {
+  echo -e "\tPass -bg for \e[1;34mbuild the c/cpp file with pedantic options and/or debuggin options\e[0m"
+  echo -e "\tPass -bo for \e[1;34mbuild the c/cpp file with optimization\e[0m"
+  echo -e "\tPass -bs for \e[1;34mbuild the c/cpp file\e[0m"
+  echo -e "\tPass -c  for \e[1;33mcompile the c/cpp file\e[0m"
+  echo -e "\tPass -re for \e[1;31mdelete all the executables, recursively\e[0m"
+  echo -e "\tPass -ro for \e[1;31mdelete all the output files, recursively\e[0m"
+}
+
+clean() {
+  dmenu_confirm "Delete all the output files?" \
+    $(find . -type f -name "*.o" -delete)
+}
+
+dist_clean() {
+  clean
+  dmenu_confirm "Delete all the executables?" \
+    $(find . -type f -executable | xargs rm)
+}
+
+main() {
+  document=$(readlink -f "$2")
+  folder=$(dirname "$document")
+  name="${document##*/}"
+  doc="${name%.*}"
+  ext="${name##*.}"
+
+  cd "$folder" || exit
+
+  case ${1} in
+    "compile")
+      case "${ext}" in
+        "c")
+          COMP="gcc"
+          FLAGS=(-Wall -lm -c)
+          ;;
+        "cpp")
+          COMP="g++"
+          FLAGS=(-Wall -c)
+          ;;
+        *)
+          warn_ft
+          return
+          ;;
+      esac
+      ;;
+    "build")
+      case "${ext}" in
+        "c")
+          COMP="gcc"
+          FLAGS=(-Wall -lm)
+          ;;
+        "cpp")
+          COMP="g++"
+          FLAGS=(-Wall)
+          ;;
+        *)
+          warn_ft
+          return
+          ;;
+      esac
+      ;;
+    "debug")
+      case "${ext}" in
+        "c")
+          COMP="gcc"
+          FLAGS=(-std=c11 -Wextra -Wshadow -Wno-long-long -Wall -g -pedantic -std=c11 -fstack-protector -lm)
+          ;;
+        "cpp")
+          COMP="g++"
+          FLAGS=(-std=c++17 -Wextra -Wshadow -Wall -g -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG)
+          ;;
+        *)
+          warn_ft
+          return
+          ;;
+      esac
+      ;;
+    "optimize")
+      case "${ext}" in
+        "c")
+          COMP="gcc"
+          FLAGS=(-std=c11 -Wall -O2 -lm)
+          ;;
+        "cpp")
+          COMP="g++"
+          FLAGS=(-std=c++17 -Wall -O2)
+          ;;
+        *)
+          warn_ft
+          return
+          ;;
+      esac
+      ;;
+    "clean"|"dist_clean")
+      ;;
+    "help")
+      cgcc_help
+      return
+      ;;
+    *)
+      echo -e "${1} Not allowed option."
+      cgcc_help
+      return
+      ;;
+  esac
+
+  case ${1} in
+    "build"|"debug"|"optimize")
+        if [ "$#" -gt 2 ]; then
+          "${COMP}" "${FLAGS[@]}" -o "${folder}"/"${doc}" "${@:2}"
+        else
+          "${COMP}" "${FLAGS[@]}" -o "${folder}"/"${doc}" "${2}"
+        fi ;;
+    "compile")
+        "${COMP}" "${FLAGS[@]}" "${@:2}" ;;
+    "clean")
+      clean
+      ;;
+    "dist_clean")
+      dist_clean
+      ;;
+    "help")
+      cgcc_help
+      return
+      ;;
+    *)
+      echo -e "${1} Not allowed option."
+      cgcc_help
+      return
+      ;;
+  esac
+}
+
+main "$@"

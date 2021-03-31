@@ -1,0 +1,21 @@
+#compdef cgcc
+
+_arguments \
+	'1: :->cmds' \
+  '*:c or cpp file:_files -g "*.(c|cpp|cc|C|h|hpp|hh|H)(-.)"' && ret=0
+
+case $state in
+	cmds)
+		_values "cgcc command" \
+      "build[Build the c/cpp file]" \
+			"compile[Compile the c/cpp files]" \
+			"debug[Build the c/cpp file with debugging flags]" \
+      "optimize[Build the c/cpp file with optimization flags]" \
+      "clean[Remove all the object files]" \
+      "dist_clean[Remove all the executable files]" \
+			"help[Describe available tasks]"
+		ret=0
+		;;
+esac
+
+return ret

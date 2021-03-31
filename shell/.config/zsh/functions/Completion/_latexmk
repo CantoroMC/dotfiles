@@ -1,104 +1,104 @@
 #compdef latexmk
 
 _arguments : \
-    '-aux-directory=[set name of directory for auxiliary files (aux, log)]:directory:_dirs:' \
-    '-aux-dir=[set name of directory for auxiliary files (aux, log)]:directory:_dirs:' \
-    '-bibtex[use bibtex when needed (default)]' \
-    '-bibtex\-[never use bibtex]' \
-    '-bibtex-cond[use bibtex when needed, but only if the bib file exists]' \
-    '-bibtex-cond1[use bibtex when needed, but only if the bib file exists;on cleanup delete bbl file only if bib file exists]' \
-    '-bibfudge[use change-directory fudge needed for old bibtexs]' \
-    '-bibfudge\-[don not use change-directory fudge needed for old bibtexs]' \
-    '-bm[Print message across the page when converting to postscript]:STRING:' \
-    '-bi[Set contrast or intensity of banner]:STRING:' \
-    '-bs[Set scale for banner]:STRING:' \
-    '-commands[list commands used by latexmk for processing files]' \
-    '-c[clean up (remove) all nonessential files, except dvi, ps and pdf files]' \
-    '-C[clean up (remove) all nonessential files,including aux, dep, dvi, postscript and pdf files and file of database of file information]' \
-    '-CA[clean up (remove) all nonessential files.Equivalent to -C option]' \
-    '-CF[Remove file of database of file information before doing other actions]' \
-    '-cd[Change to directory of source file when processing it]' \
-    '-cd\-[Do NOT change to directory of source file when processing it]' \
-    '-dependents[Show list of dependent files after processing]' \
-    '-deps[Show list of dependent files after processing]' \
-    '-dependents\-[Do not show list of dependent files]'\
-    '-deps\-[Do not show list of dependent files]'\
-    '-deps-out=[Set name of output file for dependency list, and turn on showing of dependency list]:file:_files' \
-    '-dF[Filter to apply to dvi file]:STRING:' \
-    '-dvi[generate dvi]' \
-    '-dvi\-[turn off required dvi]' \
-    '-e[Execute specified Perl code (as part of latexmk start-up code)]' \
-    '-f[force continued processing past errors]' \
-    '-f\-[turn off forced continuing processing past errors]' \
-    '-gg[Super go mode: clean out generated files (-CA), and then process files regardless of file timestamps]' \
-    '-g[process regardless of file timestamps]' \
-    '-g\-[Turn off -g]' \
-    '-h[display this help and exit]' \
-    '-help[display this help and exit]' \
-    '-jobname=[set basename of output file(s) to STRING]:STRING:' \
-    '-l[force landscape mode]' \
-    '-l\-[turn off landscape mode]' \
-    '-latex=[set program used for latex]:command:_path_commands' \
-    '-latexoption=[add the given option to the *latex command]' \
-    '-logfilewarninglist[give list of warnings after run of *latex]' \
-    '-logfilewarnings[give list of warnings after run of *latex]' \
-    '-logfilewarninglist\-[do not give list of warnings after run of *latex]' \
-    '-logfilewarnings\-[do not give list of warnings after run of *latex]' \
-    '-lualatex[use lualatex for processing files to pdf and turn dvi/ps modes off]' \
-    '-M[Show list of dependent files after processing]'\
-    '-MF[Specifies name of file to receives list dependent files]:file:_files' \
-    '-MP[List of dependent files includes phony target for each source file.]' \
-    '-MSWinBackSlash[under MSWin use backslash (\) for directory separators for filenames given to called programs]' \
-    '-MSWinBackSlash\-[under MSWin use forward slash (/) for directory separators for filenames given to called programs]' \
-    '-new-viewer[in -pvc mode, always start a new viewer]' \
-    '-new-viewer\-[in -pvc mode, start a new viewer only if needed]' \
-    '-nobibtex[never use bibtex]' \
-    '-nobibfudge[don not use change-directory fudge needed for old bibtexs]' \
-    '-nodependents[Do not show list of dependent files after processing]' \
-    '-norc[omit automatic reading of system, user and project rc files]' \
-    '-output-directory=[set name of directory for output files]:directory:_dirs' \
-    '-outdir=[set name of directory for output files]:directory:_dirs' \
-    '-pdf[generate pdf by pdflatex]' \
-    '-pdfdvi[generate pdf by dvipdf]' \
-    '-pdflatex=[set program used for pdflatex]:command:_path_commands' \
-    '-pdflualatex=[set program used for lualatex]:command:_path_commands' \
-    '-pdfps[generate pdf by ps2pdf]' \
-    '-pdflua[generate pdf by lualatex]' \
-    '-pdfxe[generate pdf by xelatex]' \
-    '-pdfxelatex=[set program used for xelatex]:command:_path_commands' \
-    '-pdf\-[turn off pdf]' \
-    '-ps[generate postscript]' \
-    '-ps\-[turn off postscript]' \
-    '-pF[Filter to apply to postscript file]:STRING:' \
-    '-p[print document after generating output]' \
-    '-pretex=[Sets TeX code to be executed before inputting source file, if commands suitable configured]:TEX:' \
-    '-print=[when file is to be printed, print the FMT file]:FMT:(dvi ps pdf)' \
-    '-pv[preview document]' \
-    '-pv\-[turn off preview mode]' \
-    '-pvc[preview document and continuously update]' \
-    '-pvc\-[turn off -pvc]' \
-    '-pvctimeout[timeout in pvc mode after period of inactivity]' \
-    '-pvctimeout\-[don not timeout in pvc mode after inactivity]' \
-    '-pvctimeoutmins=[set period of inactivity (minutes) for pvc timeout]:MINUTES:' \
-    '-quiet[silence progress messages from called programs]' \
-    '-r[Read custom RC file]:file:_files' \
-    '-recorder[Use -recorder option for *latex]' \
-    '-recorder\-[Do not use -recorder option for *latex]' \
-    '-rules[Show list of rules after processing]' \
-    '-rules\-[Do not show list of rules after processing]' \
-    '-showextraoptions[Show other allowed options that are simply passed as is to latex and pdflatex]' \
-    '-silent[silence progress messages from called programs]' \
-    '-stdtexcmds[Sets standard commands for *latex]' \
-    '-time[show CPU time used]' \
-    '-time\-[don not show CPU time used]' \
-    '-use-make[use the make program to try to make missing files]' \
-    '-use-make\-[don not use the make program to try to make missing files]' \
+  '-aux-directory=[set name of directory for auxiliary files (aux, log)]:directory:_dirs:' \
+  '-aux-dir=[set name of directory for auxiliary files (aux, log)]:directory:_dirs:' \
+  '-bibtex[use bibtex when needed (default)]' \
+  '-bibtex\-[never use bibtex]' \
+  '-bibtex-cond[use bibtex when needed, but only if the bib file exists]' \
+  '-bibtex-cond1[use bibtex when needed, but only if the bib file exists;on cleanup delete bbl file only if bib file exists]' \
+  '-bibfudge[use change-directory fudge needed for old bibtexs]' \
+  '-bibfudge\-[don not use change-directory fudge needed for old bibtexs]' \
+  '-bm[Print message across the page when converting to postscript]:STRING:' \
+  '-bi[Set contrast or intensity of banner]:STRING:' \
+  '-bs[Set scale for banner]:STRING:' \
+  '-commands[list commands used by latexmk for processing files]' \
+  '-c[clean up (remove) all nonessential files, except dvi, ps and pdf files]' \
+  '-C[clean up (remove) all nonessential files,including aux, dep, dvi, postscript and pdf files and file of database of file information]' \
+  '-CA[clean up (remove) all nonessential files.Equivalent to -C option]' \
+  '-CF[Remove file of database of file information before doing other actions]' \
+  '-cd[Change to directory of source file when processing it]' \
+  '-cd\-[Do NOT change to directory of source file when processing it]' \
+  '-dependents[Show list of dependent files after processing]' \
+  '-deps[Show list of dependent files after processing]' \
+  '-dependents\-[Do not show list of dependent files]'\
+  '-deps\-[Do not show list of dependent files]'\
+  '-deps-out=[Set name of output file for dependency list, and turn on showing of dependency list]:file:_files' \
+  '-dF[Filter to apply to dvi file]:STRING:' \
+  '-dvi[generate dvi]' \
+  '-dvi\-[turn off required dvi]' \
+  '-e[Execute specified Perl code (as part of latexmk start-up code)]' \
+  '-f[force continued processing past errors]' \
+  '-f\-[turn off forced continuing processing past errors]' \
+  '-gg[Super go mode: clean out generated files (-CA), and then process files regardless of file timestamps]' \
+  '-g[process regardless of file timestamps]' \
+  '-g\-[Turn off -g]' \
+  '-h[display this help and exit]' \
+  '-help[display this help and exit]' \
+  '-jobname=[set basename of output file(s) to STRING]:STRING:' \
+  '-l[force landscape mode]' \
+  '-l\-[turn off landscape mode]' \
+  '-latex=[set program used for latex]:command:_path_commands' \
+  '-latexoption=[add the given option to the *latex command]' \
+  '-logfilewarninglist[give list of warnings after run of *latex]' \
+  '-logfilewarnings[give list of warnings after run of *latex]' \
+  '-logfilewarninglist\-[do not give list of warnings after run of *latex]' \
+  '-logfilewarnings\-[do not give list of warnings after run of *latex]' \
+  '-lualatex[use lualatex for processing files to pdf and turn dvi/ps modes off]' \
+  '-M[Show list of dependent files after processing]'\
+  '-MF[Specifies name of file to receives list dependent files]:file:_files' \
+  '-MP[List of dependent files includes phony target for each source file.]' \
+  '-MSWinBackSlash[under MSWin use backslash (\) for directory separators for filenames given to called programs]' \
+  '-MSWinBackSlash\-[under MSWin use forward slash (/) for directory separators for filenames given to called programs]' \
+  '-new-viewer[in -pvc mode, always start a new viewer]' \
+  '-new-viewer\-[in -pvc mode, start a new viewer only if needed]' \
+  '-nobibtex[never use bibtex]' \
+  '-nobibfudge[don not use change-directory fudge needed for old bibtexs]' \
+  '-nodependents[Do not show list of dependent files after processing]' \
+  '-norc[omit automatic reading of system, user and project rc files]' \
+  '-output-directory=[set name of directory for output files]:directory:_dirs' \
+  '-outdir=[set name of directory for output files]:directory:_dirs' \
+  '-pdf[generate pdf by pdflatex]' \
+  '-pdfdvi[generate pdf by dvipdf]' \
+  '-pdflatex=[set program used for pdflatex]:command:_path_commands' \
+  '-pdflualatex=[set program used for lualatex]:command:_path_commands' \
+  '-pdfps[generate pdf by ps2pdf]' \
+  '-pdflua[generate pdf by lualatex]' \
+  '-pdfxe[generate pdf by xelatex]' \
+  '-pdfxelatex=[set program used for xelatex]:command:_path_commands' \
+  '-pdf\-[turn off pdf]' \
+  '-ps[generate postscript]' \
+  '-ps\-[turn off postscript]' \
+  '-pF[Filter to apply to postscript file]:STRING:' \
+  '-p[print document after generating output]' \
+  '-pretex=[Sets TeX code to be executed before inputting source file, if commands suitable configured]:TEX:' \
+  '-print=[when file is to be printed, print the FMT file]:FMT:(dvi ps pdf)' \
+  '-pv[preview document]' \
+  '-pv\-[turn off preview mode]' \
+  '-pvc[preview document and continuously update]' \
+  '-pvc\-[turn off -pvc]' \
+  '-pvctimeout[timeout in pvc mode after period of inactivity]' \
+  '-pvctimeout\-[don not timeout in pvc mode after inactivity]' \
+  '-pvctimeoutmins=[set period of inactivity (minutes) for pvc timeout]:MINUTES:' \
+  '-quiet[silence progress messages from called programs]' \
+  '-r[Read custom RC file]:file:_files' \
+  '-recorder[Use -recorder option for *latex]' \
+  '-recorder\-[Do not use -recorder option for *latex]' \
+  '-rules[Show list of rules after processing]' \
+  '-rules\-[Do not show list of rules after processing]' \
+  '-showextraoptions[Show other allowed options that are simply passed as is to latex and pdflatex]' \
+  '-silent[silence progress messages from called programs]' \
+  '-stdtexcmds[Sets standard commands for *latex]' \
+  '-time[show CPU time used]' \
+  '-time\-[don not show CPU time used]' \
+  '-use-make[use the make program to try to make missing files]' \
+  '-use-make\-[don not use the make program to try to make missing files]' \
     '-usepretex[Sets commands for *latex to use extra code before inputting source file]' \
-    '-usepretex=[Equivalent to -pretex=<TeX code> -usepretex]:TEX:' \
-    '-v[display program version]' \
-    '-version[display program version]' \
-    '-verbose[display usual progress messages from called programs]' \
-    '-view=[select viewer]:FMT:(default dvi ps pdf none)' \
-    '-Werror[treat warnings from called programs as errors]' \
-    '-xelatex[use xelatex for processing files to pdf and turn dvi/ps modes off]' \
-    '*:TeX or LaTeX file:_files -g "*.(tex|TEX|texinfo|texi)(-.)"'
+  '-usepretex=[Equivalent to -pretex=<TeX code> -usepretex]:TEX:' \
+  '-v[display program version]' \
+  '-version[display program version]' \
+  '-verbose[display usual progress messages from called programs]' \
+  '-view=[select viewer]:FMT:(default dvi ps pdf none)' \
+  '-Werror[treat warnings from called programs as errors]' \
+  '-xelatex[use xelatex for processing files to pdf and turn dvi/ps modes off]' \
+  '*:TeX or LaTeX file:_files -g "*.(tex|TEX|texinfo|texi)(-.)"'
