@@ -87,9 +87,9 @@ local function init()
   }
   -- UTILITIES {{{3
 
-  -- use 'neovim/nvim-lspconfig'
-  -- use 'kosayoda/nvim-lightbulb'
-  -- use 'liuchengxu/vista.vim'
+  use 'neovim/nvim-lspconfig'
+  use 'kosayoda/nvim-lightbulb'
+  use 'liuchengxu/vista.vim'
 
   -- Tree Sitter: Syntax, Indentation, TextObject, Foldings.... SYNTAX AWARE.
   use { 'nvim-treesitter/nvim-treesitter',
@@ -228,3 +228,4 @@ local plugins = setmetatable({}, {
 return plugins
 
 -- vim:fdm=marker:nospell
+

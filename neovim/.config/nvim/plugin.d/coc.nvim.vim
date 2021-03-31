@@ -61,38 +61,38 @@ augroup coc_map_ft
   autocmd!
   " Diagnostic Navigation
   autocmd FileType
-        \ haskell,tex,lua,vim,sh,perl,c,cpp,go,json,typescript,ruby,python
+        \ sh,perl,go,json,typescript,ruby
         \ nmap <buffer> <LocalLeader>qf  <Plug>(coc-fix-current)
   autocmd FileType
-        \ haskell,tex,lua,vim,sh,perl,c,cpp,go,json,typescript,ruby,python
+        \ sh,perl,go,json,typescript,ruby
         \ nmap <buffer> [g          <Plug>(coc-diagnostic-prev)
   autocmd FileType
-        \ haskell,tex,lua,vim,sh,perl,c,cpp,go,json,typescript,ruby,python
+        \ sh,perl,go,json,typescript,ruby
         \ nmap <buffer> ]g          <Plug>(coc-diagnostic-next)
   " code goto navigation and formatting.
   autocmd FileType
-        \ haskell,tex,lua,vim,sh,perl,c,cpp,go,json,typescript,ruby,python
+        \ sh,perl,go,json,typescript,ruby
         \ nmap <buffer> <silent> <LocalLeader>gd <Plug>(coc-definition)
   autocmd FileType
-        \ haskell,tex,lua,vim,sh,perl,c,cpp,go,json,typescript,ruby,python
+        \ sh,perl,go,json,typescript,ruby
         \ nmap <buffer> <silent> <LocalLeader>gD <Plug>(coc-type-definition)
   autocmd FileType
-        \ haskell,tex,lua,vim,sh,perl,c,cpp,go,json,typescript,ruby,python
+        \ sh,perl,go,json,typescript,ruby
         \ nmap <buffer> <silent> <LocalLeader>gi <Plug>(coc-implementation)
   autocmd FileType
-        \ haskell,tex,lua,vim,sh,perl,c,cpp,go,json,typescript,ruby,python
+        \ sh,perl,go,json,typescript,ruby
         \ nmap <buffer> <silent> <LocalLeader>R <Plug>(coc-references)
   autocmd FileType
-        \ haskell,tex,lua,vim,sh,perl,c,cpp,go,json,typescript,ruby,python
+        \ sh,perl,go,json,typescript,ruby
         \ nmap <buffer> <LocalLeader>gq <Plug>(coc-format-selected)
   autocmd FileType
-        \ haskell,tex,lua,vim,sh,perl,c,cpp,go,json,typescript,ruby,python
+        \ sh,perl,go,json,typescript,ruby
         \ xmap <buffer> <LocalLeader>gq <Plug>(coc-format-selected)
 augroup END
 
 nnoremap <silent> <LocalLeader>ca :<C-u>CocAction<CR>
-nnoremap <silent> <LocalLeader>dl :<C-u>CocDiagnostic<CR>
-nnoremap <silent> <LocalLeader>H  :<C-u>CocHover<CR>
+" nnoremap <silent> <LocalLeader>dl :<C-u>CocDiagnostic<CR>
+nnoremap <silent> <LocalLeader>ch :<C-u>CocHover<CR>
 nnoremap <silent> <LocalLeader>co :<C-u>CocList outline<CR>
 nnoremap <silent> <LocalLeader>cf :<C-u>CocFormat<CR>
 nnoremap <silent> <LocalLeader>cr :<C-u>CocRestart<CR>
@@ -101,4 +101,4 @@ nnoremap <silent> <LocalLeader>cs :<C-u>CocList -I symbols<CR>
 command! -nargs=0 CocHover          :call CocActionAsync('doHover')
 command! -nargs=0 CocFormat         :call CocAction('format')
 
-command! -nargs=0 ClangdSwitchSourceHeader :CocCommand clangd.switchSourceHeader
+" command! -nargs=0 ClangdSwitchSourceHeader :CocCommand clangd.switchSourceHeader

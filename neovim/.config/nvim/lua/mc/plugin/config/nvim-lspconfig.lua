@@ -53,14 +53,14 @@ local custom_lsp_attach = function(client)
     -- Formatting mapping
     lsp_remap('n', vim.g.maplocalleader..'gq', 'vim.lsp.buf.formatting()')
     -- Autoformat on save
-    -- if vim.tbl_contains({"go", "haskell"}, filetype) then
-    --   vim.api.nvim_exec([[
-    --     augroup lsp_format_on_save
-    --       autocmd!
-    --       autocmd! BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync(nil,1000)
-    --     augroup END
-    --     ]], false)
-    -- end
+    if vim.tbl_contains({"go", "haskell"}, filetype) then
+      vim.api.nvim_exec([[
+        augroup lsp_format_on_save
+          autocmd!
+          autocmd! BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync(nil,1000)
+        augroup END
+        ]], false)
+    end
   end
   if client.resolved_capabilities.document_range_formatting then
     lsp_remap('n', vim.g.maplocalleader..'gw', 'vim.lsp.buf.range_formatting()')
@@ -68,18 +68,6 @@ local custom_lsp_attach = function(client)
 end
 
 --[===[
--- C,CPP
-lspconfig.clangd.setup({
-  cmd = {
-    "clangd",
-    "--background-index",
-    "--suggest-missing-includes",
-    "--clang-tidy",
-    "--header-insertion=iwyu",
-  },
-  filetypes = { "c", "cpp", "objc", "objcpp" },
-  on_attach = custom_lsp_attach,
-})
 -- GO
 lspconfig.gopls.setup{
   cmd = { "gopls" },
@@ -89,12 +77,6 @@ lspconfig.gopls.setup{
 }
 -- PERL
 lspconfig.perlls.setup{
-  on_attach = custom_lsp_attach,
-}
--- PYTHON
-lspconfig.pyls.setup{
-  cmd = { 'pyls' },
-  filetypes = { 'python' },
   on_attach = custom_lsp_attach,
 }
 -- RUBY
@@ -128,6 +110,26 @@ lspconfig.bashls.setup{
   on_attach = custom_lsp_attach,
 }
 --]===]
+
+-- C,CPP
+lspconfig.clangd.setup({
+  cmd = {
+    "clangd",
+    "--background-index",
+    "--suggest-missing-includes",
+    "--clang-tidy",
+    "--header-insertion=iwyu",
+  },
+  filetypes = { "c", "cpp", "objc", "objcpp" },
+  on_attach = custom_lsp_attach,
+})
+
+-- PYTHON
+lspconfig.pyls.setup{
+  cmd = { 'pyls' },
+  filetypes = { 'python' },
+  on_attach = custom_lsp_attach,
+}
 
 --- HASKELL
 lspconfig.hls.setup{
