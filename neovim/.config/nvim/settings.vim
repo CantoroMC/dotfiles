@@ -129,14 +129,15 @@ augroup filetype_indentation " {{{2
   autocmd FileType
         \ make,json,html,css,javascript,neomuttrc,muttrc
         \ setl tabstop=2 softtabstop=2 noexpandtab shiftwidth=2
-  " Tabs With Four Characters:
-  autocmd FileType
-        \ go,c,cpp,h
-        \ setl tabstop=4 softtabstop=4 noexpandtab shiftwidth=4
-  " C Indentation:
+  " Tabs With Three Characters And Cindent:
   autocmd FileType
         \ c,cpp,h
+        \ setl tabstop=3 softtabstop=3 noexpandtab shiftwidth=3 |
         \ setl cindent
+  " Tabs With Four Characters:
+  autocmd FileType
+        \ go
+        \ setl tabstop=4 softtabstop=4 noexpandtab shiftwidth=4
 augroup END
 " }}}
 

@@ -6,12 +6,12 @@ warn_ft() {
 }
 
 cgcc_help() {
-  echo -e "\tPass -bg for \e[1;34mbuild the c/cpp file with pedantic options and/or debuggin options\e[0m"
-  echo -e "\tPass -bo for \e[1;34mbuild the c/cpp file with optimization\e[0m"
-  echo -e "\tPass -bs for \e[1;34mbuild the c/cpp file\e[0m"
-  echo -e "\tPass -c  for \e[1;33mcompile the c/cpp file\e[0m"
-  echo -e "\tPass -re for \e[1;31mdelete all the executables, recursively\e[0m"
-  echo -e "\tPass -ro for \e[1;31mdelete all the output files, recursively\e[0m"
+  echo -e "Use debug      for \e[1;34mbuild the c/cpp file with pedantic options and debugging options\e[0m"
+  echo -e "Use optimize   for \e[1;34mbuild the c/cpp file with optimization\e[0m"
+  echo -e "Use build      for \e[1;34mbuild the c/cpp file\e[0m"
+  echo -e "Use compile    for \e[1;33mcompile the c/cpp file\e[0m"
+  echo -e "Use dist_clean for \e[1;31mdelete all the objects files and executables, recursively\e[0m"
+  echo -e "Use clean      for \e[1;31mdelete all the objects files, recursively\e[0m"
 }
 
 clean() {

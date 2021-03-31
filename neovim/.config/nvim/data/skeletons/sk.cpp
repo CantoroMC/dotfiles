@@ -1,6 +1,5 @@
 #include <iostream>
 
-int main(int argc, char *args[])
-{
-    return 0;
-}
+using std::cout;
+
+int main(int argc, char *args[]) { return 0; }

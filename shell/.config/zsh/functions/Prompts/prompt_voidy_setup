@@ -1,4 +1,4 @@
-prompt_bull_precmd() {
+prompt_voidy_precmd() {
 	local exitstatus=$?
 	setopt localoptions noxtrace noksharrays
 	psvar=(SIG)
@@ -6,11 +6,11 @@ prompt_bull_precmd() {
 	[[ $psvar[1] = SIG ]] && psvar[1]=$exitstatus
 }
 
-prompt_bull_help () {
+prompt_voidy_help () {
   cat <<EOH
 This prompt is color-scheme-able.  You can invoke it thus:
 
-  prompt bull [<color1> [<color2> [<color3>]]]
+  prompt voidy [<color1> [<color2> [<color3>]]]
 
 where the parameters are the colors for the theme-bar and current
 working directory, user@host text, and color3 text respectively.  The
@@ -23,14 +23,10 @@ stupid.
 EOH
 }
 
-prompt_bull_setup () {
-  local -A schars
-  autoload -Uz prompt_special_chars
-  prompt_special_chars
-
-  local color1=${1:-'#138ac1'}
+prompt_voidy_setup () {
+  local color1=${1:-'red'}
   local color2=${2:-'white'}
-  local color3=${3:-'green'}
+  local color3=${3:-'#138ac1'}
 
   local LVL=$SHLVL
   # Check for tmux by looking at $TERM, because $TMUX won't be propagated to any
@@ -48,7 +44,7 @@ prompt_bull_setup () {
   # username and hostname if on an ssh session
   local ssh_info="%B${SSH_TTY:+:}%b$__BULL[ITALIC_ON]%}%F{$color1}${SSH_TTY:+%n@%m}%f%{$__BULL[ITALIC_OFF]%}"
   # current directory with shaded bar
-  local dir_bar="%B%F{$color1}$(printf '\ue0ca%1.0s')%K{$color1}$schars[333]$schars[262]$schars[261]$schars[260]%F{$color2}%K{$color1}%{$__BULL[ITALIC_ON]%}%(7~|%-3~/.../%3~|%~)%{$__BULL[ITALIC_OFF]%}%b%F{$color1}%k$schars[333]$schars[262]$schars[261]$schars[260]$(printf '\ue0c8%1.0s')%f"
+  local dir_bar=" %F{$color1}%{$__BULL[ITALIC_ON]%}%(7~|%-3~/.../%3~|%~)%{$__BULL[ITALIC_OFF]%}%f"
 
   local nr_jobs="%B%F{$color3}%(1j.%(2j.%j.)*.)%f%b"
   local hist_len="%B%F{$color2}%{ %2G%}%h%f%b"
@@ -57,7 +53,7 @@ prompt_bull_setup () {
   PS1="$dir_bar$ssh_info $hist_len$prompt_newline$MODE_INDICATOR_PROMPT$nr_jobs $start"
   # Secondary Prompt, printed when the shell needs more information to complete
   # a command
-  PS2="%F{$color1}%K{$color1}$schars[333]$schars[262]$schars[261]$schars[260]%k%_%f> "
+  PS2="%F{$color1}%_%f> "
 
   #
   # Right-Hand side prompt: VcsInfo, Timer
@@ -106,25 +102,25 @@ prompt_bull_setup () {
   SPROMPT="zsh: correct %F{red}'%R'%f to %F{green}'%r'%f [%B%Un%u%bo, %B%Uy%u%bes, %B%Ue%u%bdit, %B%Ua%u%bbort]? "
 
   prompt_opts=(cr subst percent)
-  add-zsh-hook precmd prompt_bull_precmd
+  add-zsh-hook precmd prompt_voidy_precmd
 }
 
-prompt_bull_preview () {
+prompt_voidy_preview () {
   local color colors
   colors=(red yellow green blue magenta)
 
   if (( ! $#* )); then
     for (( i = 1; i <= $#colors; i++ )); do
       color=$colors[$i]
-      prompt_preview_theme bull $color
+      prompt_preview_theme voidy $color
       print
     done
-    prompt_preview_theme bull white grey blue
+    prompt_preview_theme voidy white grey blue
   else
-    prompt_preview_theme bull "$@"
+    prompt_preview_theme voidy "$@"
   fi
 }
 
-prompt_bull_setup "$@"
+prompt_voidy_setup "$@"
 
 # vim:ft=zsh
