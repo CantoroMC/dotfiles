@@ -21,6 +21,7 @@ jq
 feh
 dunst
 arc-gtk-theme
+papirus-icon-theme
 gtk-engine-murrine
 system-config-printer
 seahorse
