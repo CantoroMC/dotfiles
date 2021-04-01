@@ -27,7 +27,7 @@ set reverse_realname
 set imap_user = "marco.cantoro92@outlook.it"
 # NOTE: Encrypted password generation
 # echo -n "$(read -s;echo -n "$REPLY")" | gpg --encrypt -r marco.cantoro92@outlook.it > $XDG_CONFIG_HOME/neomutt/outlook_password.gpg
-set imap_pass = "`gpg --batch -q --decrypt $XDG_CONFIG_HOME/neomutt/outlook_password.gpg`"
+# set imap_pass = "`gpg --batch -q --decrypt $XDG_CONFIG_HOME/neomutt/outlook_password.gpg`"
 
 set folder = "imaps://marco.cantoro92@outlook.it@outlook.office365.com:993"
 set spoolfile = "=INBOX"
@@ -36,7 +36,7 @@ set record = "=Sent"
 set trash = "=Deleted"
 
 set smtp_url = "smtp://marco.cantoro92@outlook.it@smtp.office365.com:587"
-set smtp_pass = "`gpg --batch -q --decrypt $XDG_CONFIG_HOME/neomutt/outlook_password.gpg`"
+# set smtp_pass = "`gpg --batch -q --decrypt $XDG_CONFIG_HOME/neomutt/outlook_password.gpg`"
 
 mailboxes =INBOX =Sent =Drafts =Deleted =Junk
 # }}}
