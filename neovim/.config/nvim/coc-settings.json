@@ -115,37 +115,6 @@
 				}
 			}
 		},
-		"lua": {
-			"command": "/usr/bin/lua-language-server",
-			"args": ["-E", "/usr/share/lua-language-server/main.lua"],
-			"filetypes": [ "lua" ],
-			"rootPatterns": [".git"],
-			"settings": {
-				"Lua": {
-					"runtime": {
-						"version": "LuaJIT"
-					},
-					"hint": {
-						"enable": false,
-						"setType": false
-					},
-					"compleiton": {
-						"keywordSnippet": "Both"
-					},
-					"diagnostics": {
-						"enable": false,
-						"globals": [ "vim", "define", "it", "describe", "before_each", "after_each" ],
-						"disable": [ "lowercase-global" ]
-					},
-					"workspace": {
-						"library": {
-							"/usr/share/nvim/runtime/lua": true,
-							"/usr/share/nvim/runtime/lua/vim/lsp": true
-						}
-					}
-				}
-			}
-		},
 		"python": {
 			"command": "pyls",
 			"filetypes": ["python"],

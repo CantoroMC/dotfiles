@@ -1,6 +1,6 @@
 function! coc#source#email#init() abort
   return {
-        \ 'priority': 1,
+        \ 'priority': 3,
         \ 'shortcut': '@',
         \ 'triggerCharacters': ['@'],
         \}

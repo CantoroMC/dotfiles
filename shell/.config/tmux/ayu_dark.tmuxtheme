@@ -55,7 +55,7 @@ set-window-option -g window-status-current-format \
 set-window-option -g window-status-style fg=#36a3d9,bg=#151a1e
 set-window-option -g window-status-format \
 "#[fg=#151a1e, bg=#151a1e, nobold, noitalics, nounderscore]\ue0b8 \
-#[fg=#36a3d9,bg=#151a1e]#I:\
+#[fg=#36a3d9,bg=#151a1e]#I-#P/#{window_panes}:\
 #[fg=#36a3d9, bg=#151a1e]#W \
 #[fg=#a37acc, bg=#313d46, nobold, noitalics, nounderscore]"
 set-window-option -g window-status-last-style fg=#36a3d9,bg=#151a1e,bold,italics
