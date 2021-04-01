@@ -100,44 +100,6 @@ lspconfig.hls.setup{
   on_attach = custom_lsp_attach,
 }
 
---- LUA
-lspconfig.sumneko_lua.setup {
-  cmd = { 'lua-language-server' };
-  filetypes = { 'lua', '-E', '/usr/share/lua-language-server/main.lua' },
-
-  settings = {
-    Lua = {
-      runtime = {
-        version = 'LuaJIT',
-        path = vim.split(package.path, ';'),
-      },
-
-      completion = {
-        keywordSnippet = { "Both" },
-      },
-
-      hint = {
-        enable = true,
-        setType = true,
-      },
-
-      diagnostics = {
-        enable = true,
-        globals = {'vim', 'define', 'it'},
-        disable = { "lowercase-global" },
-      },
-
-      workspace = {
-        library = {
-          [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-          [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-        },
-      },
-    },
-  },
-  on_attach = custom_lsp_attach,
-}
-
 --- TEX
 lspconfig.texlab.setup{
   cmd = { 'texlab' },
@@ -221,6 +183,43 @@ lspconfig.vimls.setup{
       GLOB_PATTERN = "*@(.sh|.inc|.bash|.command)"
     },
     filetypes = { "sh", "bash", "zsh" },
+    on_attach = custom_lsp_attach,
+  }
+  --- LUA
+  lspconfig.sumneko_lua.setup {
+    cmd = { 'lua-language-server' };
+    filetypes = { 'lua', '-E', '/usr/share/lua-language-server/main.lua' },
+
+    settings = {
+      Lua = {
+        runtime = {
+          version = 'LuaJIT',
+          path = vim.split(package.path, ';'),
+        },
+
+        completion = {
+          keywordSnippet = { "Both" },
+        },
+
+        hint = {
+          enable = true,
+          setType = true,
+        },
+
+        diagnostics = {
+          enable = true,
+          globals = {'vim', 'define', 'it'},
+          disable = { "lowercase-global" },
+        },
+
+        workspace = {
+          library = {
+            [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+            [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+          },
+        },
+      },
+    },
     on_attach = custom_lsp_attach,
   }
 --]===]

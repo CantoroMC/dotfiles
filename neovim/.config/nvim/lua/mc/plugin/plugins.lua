@@ -34,51 +34,84 @@ local function init()
     packer = require('packer')
     packer.init({
       disable_commands = true,
-      -- TODO Float Window {{{3
-      --[[
+      -- Float Window {{{3
       display = {
         open_fn = function(name)
+          -- main window
           local last_win = vim.api.nvim_get_current_win()
           local last_pos = vim.api.nvim_win_get_cursor(last_win)
+
           local columns = vim.o.columns
-          local lines = vim.o.lines
-          local width = math.ceil(columns * 0.8)
+          local lines   = vim.o.lines
+
+          local width  = math.ceil(columns * 0.8)
           local height = math.ceil(lines * 0.8 - 4)
-          local left = math.ceil((columns - width) * 0.5)
-          local top = math.ceil((lines - height) * 0.5 - 1)
+          local left   = math.ceil((columns - width) * 0.5)
+          local top    = math.ceil((lines - height) * 0.5 - 1)
 
           local opts = {
             relative = 'editor',
-            style = 'minimal',
-            width = width,
-            height = height,
-            col = left,
-            row = top
+            style    = 'minimal',
+            width    = width,
+            height   = height,
+            col      = left,
+            row      = top,
           }
 
           local buf = vim.api.nvim_create_buf(false, false)
-          local win = vim.api.nvim_open_win(buf, true, opts)
 
+
+          -- border window
+          local border_buf = vim.api.nvim_create_buf(false, true)
+          local border_opts = {
+            relative = 'editor',
+            style    = 'minimal',
+            width    = width + 2,
+            height   = height + 2,
+            col      = left - 1,
+            row      = top - 1
+          }
+          local border_lines = { }
+          local top_line    = '╔' .. string.rep('═', width) .. '╗'
+          local middle_line = '║' .. string.rep(' ', width) .. '║'
+          local bottom_line = '╚' .. string.rep('═', width) .. '╝'
+          table.insert(border_lines, top_line)
+          for i = 1, height do
+            table.insert(border_lines, middle_line)
+          end
+          table.insert(border_lines, bottom_line)
+
+          vim.api.nvim_buf_set_lines(border_buf, 0, -1, false, border_lines)
+          local border_win = vim.api.nvim_open_win(border_buf, true, border_opts)
+          vim.api.nvim_win_set_option(border_win, 'winblend', 10)
+          vim.api.nvim_win_set_option(border_win, 'winhighlight', 'Normal:Normal')
+
+
+          local win = vim.api.nvim_open_win(buf, true, opts)
+          vim.api.nvim_buf_set_name(buf, name)
+          vim.api.nvim_win_set_option(win, 'winblend', 10)
+          vim.api.nvim_win_set_option(win, 'winhighlight', 'Normal:Normal')
+
+          -- post tasks
           function restore_cursor()
             vim.api.nvim_set_current_win(last_win)
             vim.api.nvim_win_set_cursor(last_win, last_pos)
           end
 
           vim.cmd('autocmd! BufWipeout <buffer> lua restore_cursor()')
+          vim.cmd('autocmd! BufWipeout <buffer> execute "silent bwipeout! "'..border_buf)
 
-          return win, buf
+          return true, win, buf
         end
-      }
-      --]]
-
       -- }}}
+      }
     })
   end
+  -- }}}
 
   local use = packer.use
   -- local use_rocks = packer.use_rocks
   packer.reset()
-  -- }}}
 
   -- PACKAGES {{{2
   -- Let Packer Manage Itself
@@ -151,7 +184,6 @@ local function init()
   use { 'mhinz/vim-startify',                  -- Start page and session management
     requires = 'kyazdani42/nvim-web-devicons'
   }
-
   use { 'vim-airline/vim-airline',             -- Status and Tab lines
     requires = {
       'vim-airline/vim-airline-themes',
@@ -164,7 +196,12 @@ local function init()
     },
     as = 'gitsigns',
   }
-  use 'CantoroMC/nvim-nuake'                  -- Terminal Wrapper
+  use 'CantoroMC/nvim-nuake'                   -- Terminal Wrapper
+  use {
+    'HiPhish/info.vim',
+    opt = true,
+    cmd = 'Info',
+  }
   -- }}}
   -- HIS HOLINESS {{{3
   use 'tpope/vim-apathy'         -- `path`, `suffixesadd`, `include`, `includeexpr` and `define`
@@ -200,23 +237,32 @@ local function init()
   }
   -- }}}
   -- FILETYPE PLUGINS {{{3
-  use 'neovimhaskell/haskell-vim'       -- Haskell
-  use 'euclidianace/betterlua.vim'      -- Lua
-  use { 'iamcco/markdown-preview.nvim', -- Markdown
-    run = ':call mkdp#util#install()',
+  use {
+    'neovimhaskell/haskell-vim',       -- Haskell
+    ft = { 'haskell', 'lhaskell' }
   }
-  use 'CantoroMC/vim-rasi'              -- Rofi Advanced Style Information
+  use {
+    'iamcco/markdown-preview.nvim',    -- Markdown
+    run = ':call mkdp#util#install()',
+    ft = 'markdown'
+  }
+  use {
+    'CantoroMC/vim-rasi',              -- Rofi Advanced Style Information
+    ft = 'rasi'
+  }
   use { 'norcalli/nvim-terminal.lua',
     as = 'nvim-terminal'
   }
-  use 'KeitaNakamura/tex-conceal.vim'
+  use {
+    'KeitaNakamura/tex-conceal.vim',
+    ft = { 'tex', 'context', 'plaintex' }
+  }
   -- }}}
   -- VIM DEVELOPMENT {{{3
   use { 'dstein64/vim-startuptime',
     opt = true,
     cmd = 'StartupTime',
   }
-  use 'HiPhish/info.vim'
   -- }}}
   -- }}}
 end
