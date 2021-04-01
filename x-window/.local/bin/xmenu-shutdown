@@ -1,9 +1,9 @@
 #!/bin/sh
 
 cat << EOF | xmenu | sh &
-Lock	slock
-Suspend	systemctl suspend
-Hibernate	systemctl hibernate
-Reboot	reboot
-Shutdown	poweroff
+IMG:/usr/share/icons/Adwaita/16x16/legacy/system-lock-screen.png	Lock	slock
+IMG:/usr/share/icons/Adwaita/16x16/legacy/emblem-important.png	Suspend	systemctl suspend
+IMG:/usr/share/icons/Adwaita/16x16/legacy/network-offline.png	Hibernate	systemctl hibernate
+IMG:/usr/share/icons/Adwaita/16x16/actions/system-reboot-symbolic.symbolic.png	Reboot	slock
+IMG:/usr/share/icons/Adwaita/16x16/legacy/system-shutdown.png	Shutdown	poweroff
 EOF
