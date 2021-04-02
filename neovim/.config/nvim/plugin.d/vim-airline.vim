@@ -68,7 +68,6 @@ let g:airline_extensions = [
       \   'coc',
       \   'fzf',
       \   'fugitiveline',
-      \   'nvimlsp',
       \   'po',
       \   'quickfix',
       \   'tabline',
