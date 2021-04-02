@@ -187,16 +187,7 @@ set nolangremap
 set spelllang=en,it
 set spellfile=$XDG_CONFIG_HOME/nvim/spell/dictionary.utf-8.add
 set spelloptions=camel
-set nospell
-
-
-" Enable Spelling
-augroup spell_for_textual
-  autocmd!
-  autocmd FileType
-        \ tex,plaintex,context,bibtex,text,gitcommit
-        \ setl spell
-augroup END
+set spell
 " }}}
 
 " Insert Mode Completion: {{{1
