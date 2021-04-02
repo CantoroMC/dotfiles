@@ -1,3 +1,5 @@
+require'compe'.register_source('email', require'mc.plugin.config.nvim-compe.email')
+
 require'compe'.setup {
   enabled          = true;
   autocomplete     = true;
@@ -13,6 +15,7 @@ require'compe'.setup {
   documentation    = true;
 
   source = {
+    -- Builtin Sources
     path            = true;
     buffer          = true;
     spell           = true;
@@ -20,18 +23,25 @@ require'compe'.setup {
     calc            = false;
     emoji           = true;
 
+    -- Builting Lsp
     nvim_lsp        = true;
     nvim_lua        = true;
 
+    -- Builting Plugins
     snippets_nvim   = false;
     vsnip           = false;
     ultisnips       = true;
     nvim_treesitter = false;
 
+    -- External Sources
     zsh             = true;
     latex_symbols   = {
-     priority = 999
+     priority = 999;
+     filetypes = { 'tex', 'plaintex', 'bibtex' };
     };
+
+    -- My sources
+    email = true;
   };
 }
 

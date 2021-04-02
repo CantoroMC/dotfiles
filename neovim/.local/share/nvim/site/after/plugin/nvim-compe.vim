@@ -1,6 +1,6 @@
 inoremap <silent> <expr> <Plug>CustomCompeCR
       \ pumvisible() ?
-      \   compe#confirm('\<CR>') :
+      \   compe#confirm('<CR>') :
       \ "\<C-g>u\<CR>\<C-r>=EndwiseDiscretionary()\<CR>"
 imap <CR> <Plug>CustomCompeCR
 
