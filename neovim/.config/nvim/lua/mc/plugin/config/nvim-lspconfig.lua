@@ -17,6 +17,14 @@ local custom_lsp_attach = function(client)
       { noremap = true, silent = true }
     )
   end
+  local lsp_command = function(name, cmd)
+    vim.api.nvim_command(
+      string.format(
+        'command! -buffer %s :lua vim.%s',
+        name, cmd
+      )
+    )
+  end
 
   if client.config.flags then
     -- Allow using on_line callbacks for lsp
@@ -25,6 +33,22 @@ local custom_lsp_attach = function(client)
 
   -- Set omni completion (i_CTRL-X_CTRL-O) to the lsp omnifunction
   vim.bo.omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+  -- Commands
+  lsp_command('LspDefinition',      'lsp.buf.definition()')
+  lsp_command('LspDeclaration',     'lsp.buf.declaration()')
+  lsp_command('LspReferences',      'lsp.buf.references()')
+  lsp_command('LspImplementation',  'lsp.buf.implementation()')
+  lsp_command('LspTypeDefinition',  'lsp.buf.type_definition()')
+  lsp_command('LspRename',          'lsp.buf.rename()')
+  lsp_command('LspHover',           'lsp.buf.hover()')
+  lsp_command('LspSignatureHelp',   'lsp.buf.signature_help()')
+  lsp_command('LspCodeAction',      'lsp.buf.code_action()')
+
+  lsp_command('LspLineDiagnostics', 'lsp.diagnostic.show_line_diagnostics()')
+  lsp_command('LspLocationList',    'lsp.diagnostic.set_loclist()')
+  lsp_command('LspDocSymbol',       'lsp.buf.document_symbol()')
+  lsp_command('LspWsSymbol',        'lsp.buf.workspace_symbol()')
 
   -- KeyBindings
   lsp_remap('n', vim.g.maplocalleader..'<C-]>', 'vim.lsp.buf.definition()')
@@ -41,11 +65,8 @@ local custom_lsp_attach = function(client)
   lsp_remap('n', ']g'                         , 'vim.lsp.diagnostic.goto_next()')
   lsp_remap('n', vim.g.maplocalleader..'sd'   , 'vim.lsp.diagnostic.show_line_diagnostics()')
   lsp_remap('n', vim.g.maplocalleader..'dl'   , 'vim.lsp.diagnostic.set_loclist()')
-  lsp_remap('n', vim.g.maplocalleader..'dq'   , 'vim.lsp.diagnostic.document_symbol()')
-
-  lsp_remap('n', vim.g.maplocalleader..'af'   , 'vim.lsp.buf.add_workspace_folder()')
-  lsp_remap('n', vim.g.maplocalleader..'rf'   , 'vim.lsp.buf.remove_workspace_folder()')
-  lsp_remap('n', vim.g.maplocalleader..'pf'   , 'print(vim.inspect(vim.lsp.buf.list_workspace_folders()))')
+  lsp_remap('n', vim.g.maplocalleader..'dq'   , 'vim.lsp.buf.document_symbol()')
+  lsp_remap('n', vim.g.maplocalleader..'ws'   , 'vim.lsp.buf.workspace_symbol()')
 
   -- TODO: Define LspCommands
 

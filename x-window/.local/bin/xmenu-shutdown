@@ -4,6 +4,6 @@ cat << EOF | xmenu | sh &
 IMG:/usr/share/icons/Adwaita/16x16/legacy/system-lock-screen.png	Lock	slock
 IMG:/usr/share/icons/Adwaita/16x16/legacy/emblem-important.png	Suspend	systemctl suspend
 IMG:/usr/share/icons/Adwaita/16x16/legacy/network-offline.png	Hibernate	systemctl hibernate
-IMG:/usr/share/icons/Adwaita/16x16/actions/system-reboot-symbolic.symbolic.png	Reboot	slock
+IMG:/usr/share/icons/Adwaita/16x16/actions/system-reboot-symbolic.symbolic.png	Reboot	reboot
 IMG:/usr/share/icons/Adwaita/16x16/legacy/system-shutdown.png	Shutdown	poweroff
 EOF
