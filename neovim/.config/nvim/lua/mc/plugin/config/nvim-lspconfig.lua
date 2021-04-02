@@ -4,7 +4,7 @@ local lspconfig = require'lspconfig'
 -- ON ATTACH FUNCTION: Hooked to all language protocols
 local custom_lsp_attach = function(client)
   -- completion
-  -- vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- options
   local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
