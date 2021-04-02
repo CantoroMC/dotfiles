@@ -184,6 +184,11 @@ local function init()
       'neoclide/coc.nvim', branch = 'release'
     }
   }
+  use { 'CantoroMC/coc-latex_symbols',
+    require = {
+      'neoclide/coc.nvim', branch = 'release'
+    }
+  }
   -- }}}
 
   -- Tag Viewer with Ctags
