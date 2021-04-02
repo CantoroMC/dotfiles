@@ -206,6 +206,10 @@ ln -sv $XMONAD_CONFIG_DIR/xmonad-x86_64-linux ~/.local/bin
 #+begin_src shell
   npm install -g neovim
   npm install -g vim-language-server
+  npm install -g vscode-html-languageserver-bin
+  npm install -g vscode-css-languageserver-bin
+  npm install -g typescript typescript-language-server
+  # maybe typescript via `pacman` ??
 #+end_src
 
 ** Perl

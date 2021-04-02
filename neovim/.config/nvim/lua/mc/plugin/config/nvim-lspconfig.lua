@@ -4,7 +4,7 @@ local lspconfig = require'lspconfig'
 -- ON ATTACH FUNCTION: Hooked to all language protocols
 local custom_lsp_attach = function(client)
   -- completion
-  vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  -- vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- options
   local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
@@ -74,7 +74,7 @@ local custom_lsp_attach = function(client)
     -- Formatting mapping
     lsp_remap('n', vim.g.maplocalleader..'gq', 'vim.lsp.buf.formatting()')
     -- Autoformat on save
-    if vim.tbl_contains({ "cpp", "haskell" }, filetype) then
+    if vim.tbl_contains({ "cpp" }, filetype) then
       vim.api.nvim_exec([[
         augroup lsp_format_on_save
           autocmd!
@@ -87,6 +87,12 @@ local custom_lsp_attach = function(client)
     lsp_remap('n', vim.g.maplocalleader..'gw', 'vim.lsp.buf.range_formatting()')
   end
 end
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+
+
 
 -- C,CPP
 lspconfig.clangd.setup({
@@ -202,46 +208,59 @@ lspconfig.vimls.setup{
   on_attach = custom_lsp_attach,
 }
 
---[===[
-  -- GO
-  lspconfig.gopls.setup{
-    cmd = { "gopls" },
-    filetypes = { "go", "gomod" },
-    root_dir = lspconfig.util.root_pattern("go.mod", ".git", vim.fn.getcwd() ),
-    on_attach = custom_lsp_attach,
-  }
-  -- PERL
-  lspconfig.perlls.setup{
-    on_attach = custom_lsp_attach,
-  }
-  -- RUBY
-  lspconfig.solargraph.setup{
-    cmd = { "solargraph", "stdio" },
-    filetypes = { "ruby" },
-    root_dir = lspconfig.util.root_pattern("Gemfile", ".git", vim.fn.getcwd() ),
-    settings = {
-      solargraph = {
-        checkGemVersion = true,
-        completion = true,
-        definitions = true,
-        diagnostics = true,
-        folding = true,
-        formatting = true,
-        hover = true,
-        references = true,
-        rename = true,
-        symbols = true,
-      }
-    },
-    on_attach = custom_lsp_attach,
-  }
-  -- SHELL
-  lspconfig.bashls.setup{
-    cmd = { "bash-language-server", "start" },
-    cmd_env = {
-      GLOB_PATTERN = "*@(.sh|.inc|.bash|.command)"
-    },
-    filetypes = { "sh", "bash", "zsh" },
-    on_attach = custom_lsp_attach,
-  }
---]===]
+-- GO
+lspconfig.gopls.setup{
+  cmd = { "gopls" },
+  filetypes = { "go", "gomod" },
+  root_dir = lspconfig.util.root_pattern("go.mod", ".git", vim.fn.getcwd() ),
+  on_attach = custom_lsp_attach,
+}
+
+-- PERL
+lspconfig.perlls.setup{
+  on_attach = custom_lsp_attach,
+}
+
+-- RUBY
+lspconfig.solargraph.setup{
+  cmd = { "solargraph", "stdio" },
+  filetypes = { "ruby" },
+  root_dir = lspconfig.util.root_pattern("Gemfile", ".git", vim.fn.getcwd() ),
+  settings = {
+    solargraph = {
+      checkGemVersion = true,
+      completion = true,
+      definitions = true,
+      diagnostics = true,
+      folding = true,
+      formatting = true,
+      hover = true,
+      references = true,
+      rename = true,
+      symbols = true,
+    }
+  },
+  on_attach = custom_lsp_attach,
+}
+
+-- SHELL
+lspconfig.bashls.setup{
+  cmd = { "bash-language-server", "start" },
+  cmd_env = {
+    GLOB_PATTERN = "*@(.sh|.inc|.bash|.command)"
+  },
+  filetypes = { "sh", "bash", "zsh" },
+  on_attach = custom_lsp_attach,
+}
+
+-- HTML
+require'lspconfig'.html.setup {
+  capabilities = capabilities,
+}
+
+-- CSS
+require'lspconfig'.cssls.setup{}
+
+-- Java/TypeScript
+require'lspconfig'.tsserver.setup{}
+

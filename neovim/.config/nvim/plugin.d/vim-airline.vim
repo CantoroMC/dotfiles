@@ -11,7 +11,6 @@ let g:airline_inactive_alt_sep  = 1
 let g:airline_powerline_fonts   = 0
 let g:airline_symbols_ascii     = 0
 let g:airline_exclude_preview   = 1
-
 " define the set of names to be displayed instead of a specific filetypes
 " (for section a and b)
 let g:airline_filetype_overrides = {
@@ -42,14 +41,7 @@ let g:airline_mode_map = {
       \ ''     : 'V-BLOCK',
       \ 't'      : 'T',
       \ }
-"       \ 'ix'     : '',
-"       \ 'ni'     : '',
-"       \ 'no'     : '',
-"       \ 'Rv'     : 'vR',
-"       \ 's'      : 'S',
-"       \ 'S'      : 'S',
-"       \ ''     : 'S',
-"       \ '!'      : '',
+
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
@@ -73,10 +65,10 @@ let g:airline#extensions#default#layout = [
 
 let g:airline_extensions = [
       \   'branch',
-      \   'coc',
       \   'fzf',
       \   'fugitiveline',
       \   'hunks',
+      \   'nvimlsp',
       \   'po',
       \   'quickfix',
       \   'tabline',
@@ -91,8 +83,8 @@ let g:airline#extensions#branch#format     = 2
 let g:airline#extensions#branch#vcs_checks = [ 'untracked', 'dirty' ]
 let g:airline#extensions#hunks#hunk_symbols = [ ' ', '柳 ', ' ' ]
 
-let g:airline#extensions#coc#error_symbol   = ' '
-let g:airline#extensions#coc#warning_symbol = ' '
+let g:airline#extensions#nvimlsp#error_symbol   = ':'
+let g:airline#extensions#nvimlsp#warning_symbol = ' :'
 
 let g:airline#extensions#quickfix#quickfix_text = 'QFL'
 let g:airline#extensions#quickfix#location_text = 'LCL'

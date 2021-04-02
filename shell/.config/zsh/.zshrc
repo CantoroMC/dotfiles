@@ -106,3 +106,5 @@ unset plugin plugins
 
 # Load the Shell Prompt Theme
 autoload -Uz promptinit; promptinit; prompt bull
+
+zmodload zsh/zpty

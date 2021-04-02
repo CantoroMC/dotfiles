@@ -120,47 +120,97 @@ local function init()
   }
   -- UTILITIES {{{3
 
+  -- NeoVim Language Server Protocol And Completion {{{4
   use 'neovim/nvim-lspconfig'
   use 'kosayoda/nvim-lightbulb'
   use 'liuchengxu/vista.vim'
 
-  -- Tree Sitter: Syntax, Indentation, TextObject, Foldings.... SYNTAX AWARE.
-  use { 'nvim-treesitter/nvim-treesitter',
+  use 'hrsh7th/nvim-compe'
+  use {
+    'onsails/lspkind-nvim',
+    requires = { 'hrsh7th/nvim-compe' }
+  }
+  use {
+    'tamago324/compe-zsh',
+    requires = {
+      'hrsh7th/nvim-compe',
+      'nvim-lua/plenary.nvim'
+    }
+  }
+  use {
+    'GoldsteinE/compe-latex-symbols',
+    requires = { 'hrsh7th/nvim-compe' },
+  }
+  -- }}}
+
+  -- Tree Sitter: Syntax, Indentation, TextObject, Foldings.... SYNTAX AWARE. {{{4
+  use {
+    'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
   }
-  use { 'nvim-treesitter/nvim-treesitter-refactor',
+  use {
+    'nvim-treesitter/nvim-treesitter-refactor',
     requires = 'nvim-treesitter/nvim-treesitter',
   }
-  use { 'nvim-treesitter/nvim-treesitter-textobjects',
+  use {
+    'nvim-treesitter/nvim-treesitter-textobjects',
     requires = 'nvim-treesitter/nvim-treesitter',
   }
-  use { 'nvim-treesitter/playground',
+  use {
+    'nvim-treesitter/playground',
     requires = 'nvim-treesitter/nvim-treesitter',
   }
-  use { 'p00f/nvim-ts-rainbow',
+  use {
+    'p00f/nvim-ts-rainbow',
     requires = 'nvim-treesitter/nvim-treesitter',
   }
-  use 'preservim/tagbar'
-  use { 'neoclide/coc.nvim',
+  -- }}}
+
+  -- Conquer Of Completion {{{4
+  --[==[
+  use {
+    'neoclide/coc.nvim',
     branch = 'release'
   }
-  use { 'rafcamlet/coc-nvim-lua',
-    require = { 'neoclide/coc.nvim',
-      branch = 'release'}
+  use {
+    'rafcamlet/coc-nvim-lua',
+    require = {
+      'neoclide/coc.nvim', branch = 'release'
+    }
   }
   use { 'wellle/tmux-complete.vim',
-    require = { 'neoclide/coc.nvim',
-      branch = 'release'}
+    require = {
+      'neoclide/coc.nvim', branch = 'release'
+    }
   }
+  --]==]
+  -- }}}
+
+  -- Tag Viewer with Ctags
+  use 'preservim/tagbar'
+  -- FuzzyFinder
   use 'junegunn/fzf'
   use { 'junegunn/fzf.vim',
     requires = { 'junegunn/fzf' },
   }
-  use { 'CantoroMC/slimux',  -- On tmux
-    opt = true,
-    cmd = { 'SlimuxREPLConfigure', 'SlimuxShellConfigure', 'SlimuxGlobalConfigure' },
+  -- Snippets
+  use {
+    'SirVer/ultisnips',
+    requires = 'honza/vim-snippets'
   }
+  -- REPL around Tmux
+  use {
+    'CantoroMC/slimux',
+    opt = true,
+    cmd = {
+      'SlimuxREPLConfigure',
+      'SlimuxShellConfigure',
+      'SlimuxGlobalConfigure'
+    },
+  }
+
   -- }}}
+
   -- GUI UTILITIES {{{3
   -- Colorschemes {{{4
   use 'CantoroMC/ayu-vim'
@@ -170,47 +220,68 @@ local function init()
   use 'srcery-colors/srcery-vim'
   use 'eemed/sitruuna.vim'
   -- }}}
-  use { 'kyazdani42/nvim-tree.lua',
+
+  -- File Explorer
+  use {
+    'kyazdani42/nvim-tree.lua',
     as = 'nvim-tree',
     requires = 'kyazdani42/nvim-web-devicons'
   }
-
-  use { 'lukas-reineke/indent-blankline.nvim', -- Show indent line and leading spaces
+  -- Indent line and Leading spaces
+  use {
+    'lukas-reineke/indent-blankline.nvim',
     branch = 'lua'
   }
-  use { 'norcalli/nvim-colorizer.lua',         -- Show RGB,HTML... Colors
+  -- Show RGB,HTML... Colors
+  use {
+    'norcalli/nvim-colorizer.lua',
     as = 'nvim-colorizer'
   }
-  use { 'mhinz/vim-startify',                  -- Start page and session management
+  -- Start page and session management
+  use {
+    'mhinz/vim-startify',
     requires = 'kyazdani42/nvim-web-devicons'
   }
-  use { 'vim-airline/vim-airline',             -- Status and Tab lines
+  -- Status and Tab lines
+  use {
+    'vim-airline/vim-airline',
     requires = {
       'vim-airline/vim-airline-themes',
       'kyazdani42/nvim-web-devicons',
     }
   }
-  use { 'lewis6991/gitsigns.nvim',             -- Git signs on the signcolumn
+  -- Git signs on the signcolumn
+  use { 'lewis6991/gitsigns.nvim',
     requires = {
       'nvim-lua/plenary.nvim'
     },
     as = 'gitsigns',
   }
-  use 'CantoroMC/nvim-nuake'                   -- Terminal Wrapper
+  -- Terminal Wrapper
+  use 'CantoroMC/nvim-nuake'
+  -- Linux Info
   use {
     'HiPhish/info.vim',
     opt = true,
     cmd = 'Info',
   }
   -- }}}
+
   -- HIS HOLINESS {{{3
   use 'tpope/vim-apathy'         -- `path`, `suffixesadd`, `include`, `includeexpr` and `define`
   use 'tpope/vim-abolish'        -- Language friendly searches, substitutions and abbreviations
   use 'tpope/vim-characterize'   -- Unicode character metadata (with `ga`)
   use 'tpope/vim-commentary'     -- Comment stuff out
-  use { 'tpope/vim-dispatch',    -- Asynchronous build and test dispatcher
+  use {
+    'tpope/vim-dispatch',        -- Asynchronous build and test dispatcher
     opt = true,
-    cmd = { 'Make', 'Start', 'Dispatch', 'Focus', 'FocusDispatch' },
+    cmd = {
+      'Make',
+      'Start',
+      'Dispatch',
+      'Focus',
+      'FocusDispatch'
+    },
   }
   use 'tpope/vim-endwise'        -- wisely add `end`
   use 'tpope/vim-eunuch'         -- Vim sugar for the unix shell commands that need it the most
@@ -222,20 +293,21 @@ local function init()
   use 'tpope/vim-rhubarb'        -- GitHub extension for fugitive.vim
   use 'CantoroMC/vim-unimpaired' -- Pairs of handy bracket mappings
   -- }}}
+
   -- TEXT MANIPULATION {{{3
-  use { 'godlygeek/tabular',
+  use {
+    'godlygeek/tabular',
     opt = true,
-    cmd = { 'Tabularize' },
+    cmd = 'Tabularize',
   }
   use 'christoomey/vim-sort-motion'
-  use { 'mbbill/undotree',
+  use {
+    'mbbill/undotree',
     opt = true,
     cmd = 'UndotreeToggle'
   }
-  use { 'SirVer/ultisnips',
-    requires = 'honza/vim-snippets'
-  }
   -- }}}
+
   -- FILETYPE PLUGINS {{{3
   use {
     'neovimhaskell/haskell-vim',       -- Haskell
@@ -250,7 +322,8 @@ local function init()
     'CantoroMC/vim-rasi',              -- Rofi Advanced Style Information
     ft = 'rasi'
   }
-  use { 'norcalli/nvim-terminal.lua',
+  use {
+    'norcalli/nvim-terminal.lua',
     as = 'nvim-terminal'
   }
   use {
@@ -258,12 +331,15 @@ local function init()
     ft = { 'tex', 'context', 'plaintex' }
   }
   -- }}}
+
   -- VIM DEVELOPMENT {{{3
-  use { 'dstein64/vim-startuptime',
+  use {
+    'dstein64/vim-startuptime',
     opt = true,
     cmd = 'StartupTime',
   }
   -- }}}
+
   -- }}}
 end
 -- }}}
