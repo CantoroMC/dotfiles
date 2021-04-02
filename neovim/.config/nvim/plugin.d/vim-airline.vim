@@ -65,6 +65,7 @@ let g:airline#extensions#default#layout = [
 
 let g:airline_extensions = [
       \   'branch',
+      \   'coc',
       \   'fzf',
       \   'fugitiveline',
       \   'nvimlsp',
@@ -83,6 +84,8 @@ let g:airline#extensions#branch#vcs_checks = [ 'untracked', 'dirty' ]
 
 let g:airline#extensions#nvimlsp#error_symbol   = ':'
 let g:airline#extensions#nvimlsp#warning_symbol = ' :'
+let g:airline#extensions#coc#error_symbol       = ':'
+let g:airline#extensions#coc#warning_symbol     = ' :'
 
 let g:airline#extensions#quickfix#quickfix_text = 'QFL'
 let g:airline#extensions#quickfix#location_text = 'LCL'

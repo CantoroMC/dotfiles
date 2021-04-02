@@ -125,6 +125,7 @@ local function init()
   use 'kosayoda/nvim-lightbulb'
   use 'liuchengxu/vista.vim'
 
+  --[==[
   use 'hrsh7th/nvim-compe'
   use {
     'onsails/lspkind-nvim',
@@ -141,6 +142,7 @@ local function init()
     'GoldsteinE/compe-latex-symbols',
     requires = { 'hrsh7th/nvim-compe' },
   }
+  --]==]
   -- }}}
 
   -- Tree Sitter: Syntax, Indentation, TextObject, Foldings.... SYNTAX AWARE. {{{4
@@ -167,7 +169,6 @@ local function init()
   -- }}}
 
   -- Conquer Of Completion {{{4
-  --[==[
   use {
     'neoclide/coc.nvim',
     branch = 'release'
@@ -183,7 +184,6 @@ local function init()
       'neoclide/coc.nvim', branch = 'release'
     }
   }
-  --]==]
   -- }}}
 
   -- Tag Viewer with Ctags

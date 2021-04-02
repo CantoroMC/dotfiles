@@ -88,12 +88,12 @@ local custom_lsp_attach = function(client)
   end
 end
 
+-- CAPABILITIES:
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 
-
-
+-- LANGUAGESERVERS:
 -- C,CPP
 lspconfig.clangd.setup({
   cmd = {
@@ -209,6 +209,7 @@ lspconfig.vimls.setup{
   on_attach = custom_lsp_attach,
 }
 
+--[==[ Temporary Taken up by coc
 -- GO
 lspconfig.gopls.setup{
   cmd = { "gopls" },
@@ -264,4 +265,4 @@ require'lspconfig'.cssls.setup{}
 
 -- Java/TypeScript
 require'lspconfig'.tsserver.setup{}
-
+-- ]==]
