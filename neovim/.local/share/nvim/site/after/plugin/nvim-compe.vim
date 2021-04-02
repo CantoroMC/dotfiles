@@ -1,3 +1,5 @@
+inoremap <silent><expr> <C-Space> compe#complete()
+
 inoremap <silent> <expr> <Plug>CustomCompeCR
       \ pumvisible() ?
       \   compe#confirm('<CR>') :

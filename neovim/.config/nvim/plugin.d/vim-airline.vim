@@ -47,8 +47,8 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_left_sep = "\ue0b8"
 let g:airline_right_sep = "\ue0ba"
-let g:airline_symbols.branch    = '⎇ '
-let g:airline_symbols.dirty     = '  '
+let g:airline_symbols.branch    = ''
+let g:airline_symbols.dirty     = '  '
 let g:airline_symbols.readonly  = ' '
 let g:airline_symbols.maxlinenr = ''
 let g:airline_symbols.linenr    = ' '
@@ -67,7 +67,6 @@ let g:airline_extensions = [
       \   'branch',
       \   'fzf',
       \   'fugitiveline',
-      \   'hunks',
       \   'nvimlsp',
       \   'po',
       \   'quickfix',
@@ -81,7 +80,6 @@ let g:airline_extensions = [
 
 let g:airline#extensions#branch#format     = 2
 let g:airline#extensions#branch#vcs_checks = [ 'untracked', 'dirty' ]
-let g:airline#extensions#hunks#hunk_symbols = [ ' ', '柳 ', ' ' ]
 
 let g:airline#extensions#nvimlsp#error_symbol   = ':'
 let g:airline#extensions#nvimlsp#warning_symbol = ' :'

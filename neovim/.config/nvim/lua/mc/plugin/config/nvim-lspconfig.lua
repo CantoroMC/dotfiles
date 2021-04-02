@@ -105,6 +105,7 @@ lspconfig.clangd.setup({
   },
   filetypes = { "c", "cpp", "objc", "objcpp" },
   on_attach = custom_lsp_attach,
+  capabilities = capabilities,
 })
 
 -- PYTHON
