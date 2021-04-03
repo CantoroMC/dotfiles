@@ -29,6 +29,7 @@ tree
 vint
 vivaldi
 vivaldi-ffmpeg-codecs
+youtube-dl
 xboard
 zathura
 zsh

@@ -28,8 +28,6 @@ Clone the package and =makepkg -si=
    #+end_src
 
 ** Installing Third Party Packages
-
-*** Third-party Executables
 Programs in this directory are:
 - a grub-theme
 - nnn file manager
@@ -44,12 +42,6 @@ Programs in this directory are:
   - tabbed
 - xmobarbarian: cabal project for xmobar configuration
 - xmonad: cabal project for xmonad configuration
-
-*** Youtube-dl
-   #+begin_src sh
-     sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
-     sudo chmod a+rx /usr/local/bin/youtube-dl
-   #+end_src
 
 * Stowing
 It is wise to check with =stow -nv package= every one of them.
