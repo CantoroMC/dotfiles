@@ -40,7 +40,7 @@ zle -N edit-command-line
 # }}}
 
 # Fzf widgets {{{2
-autoload fzf-git fzf-bindkey fzf-kill fzf-bmarks fzf-configs
+autoload fzf-git fzf-bindkey fzf-kill fzf-bmarks fzf-configs fzf-editor
 
 zle -N fzf-git-branches fzf-git
 zle -N fzf-git-files fzf-git
@@ -51,6 +51,7 @@ zle -N fzf-bindkey
 zle -N fzf-kill
 zle -N fzf-bmarks
 zle -N fzf-configs
+zle -N fzf-editor
 # }}}
 
 # Most used commands -> Widgets: {{{2
@@ -170,6 +171,8 @@ bindkey -M viins      '^G^R' fzf-git-remotes
 bindkey -M viins      '^G^T' fzf-git-tags
 bindkey -M viins      '^X^A' _zle_disown
 bindkey -M vicmd      '^X^A' _zle_disown
+bindkey -M viins      '^X^B' fzf-editor
+bindkey -M vicmd      '^X^B' fzf-editor
 bindkey -M viins      '^X^E' edit-command-line
 bindkey -M vicmd      '^X^E' edit-command-line
 bindkey -M viins -s   '^X^F' 'rcn\n'

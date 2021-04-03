@@ -386,5 +386,10 @@ function thumbCollage() {
 }
 
 function fzf-pac-search() {
-  pacman -Slq | fzf --multi --preview 'cat <(pacman -Si {1}) <(pacman -Fl {1} | awk "{print \$2}")'
+  selected=$(\
+    pacman -Slq | \
+    fzf --multi --preview 'cat <(pacman -Si {1}) <(pacman -Fl {1} | awk "{print \$2}")')
+
+  [ -z "$selected" ] && exit
+  echo "$selected" | while read -r line ; do pacman -Ss "$line"; done
 }

@@ -1,0 +1,17 @@
+fzf-editor::joinLines() {
+  local item
+  while read item; do
+    echo -n "${(q)item} "
+  done
+}
+
+fzf-kill::editor() {
+  local s=$(ls -Ap -I .git | fzf --preview=bat | fzf-editor::joinLines)
+  [[ -n $s ]] && print "$EDITOR ${s}"
+}
+
+BUFFER="$(fzf-kill::editor)"
+CURSOR=$#BUFFER
+zle redisplay
+
+# vim:ft=zsh
