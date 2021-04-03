@@ -16,7 +16,7 @@
     geometry = "360x6-30+30"
     indicate_hidden = yes
     shrink = yes
-    transparency = 24
+    transparency = 10
     # The height of the entire notification.  If the height is smaller
     # than the font height and padding combined, it will be raised
     # to the font height and padding.
