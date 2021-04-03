@@ -172,7 +172,7 @@ song_columns_list_format = (20)[yellow]{a} (50)[blue]{t|f:Title} (20)[red]{bE} (
 
 # various settings {{{1
 
-# execute_on_song_change = notify-send --urgency="low" -t 3000 -i exaile-play "Now Playing" "$(mpc current)"
+execute_on_song_change = notify-send --urgency="low" -t 3000 -i exaile-play "Now Playing" "$(mpc current)"
 # execute_on_player_state_change = ""
 
 playlist_show_mpd_host = no

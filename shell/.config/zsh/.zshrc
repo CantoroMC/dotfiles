@@ -107,4 +107,5 @@ unset plugin plugins
 # Load the Shell Prompt Theme
 autoload -Uz promptinit; promptinit; prompt bull
 
-zmodload zsh/zpty
+# Load the zpty module for nvim-compe-zsh
+# zmodload zsh/zpty

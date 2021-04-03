@@ -165,7 +165,7 @@ preview_file() {
   if [ -d "$1" ]; then
     cd "$1" || return
     if exists tree; then
-      fifo_pager tree -a -C --dirsfirst -F -L 2
+      fifo_pager tree -a -C --dirsfirst -F -L 1
     elif exists exa; then
       fifo_pager exa -G --colour=always 2>/dev/null
     else
