@@ -1,0 +1,35 @@
+#+TITLE: dotfiles
+#+AUTHOR: Marco Cantoro
+#+EMAIL: marco.cantoro92@outlook.it
+#+STARTUP: overview
+#+OPTIONS: toc:3 num:3
+
+I use ArchLinux with Xmonad(mainly) or dwm.
+
+#+ATTR_HTML: :style margin-left: auto; margin-right: auto;
+  [[./dwm.png]]
+
+** Configuration Files
+Only the most important and tweaked stuff are here reported
+
+- git
+- NeoVim (0.5 Lua)
+- zsh
+- tmux
+- nnn
+- X11
+
+** Applications
+Some are used as submodules and builded from source.
+
+- Xmonad and Xmobar
+- Xmenu
+- nnn
+- NeoVim Nightly
+- Suckless
+  - dmenu
+  - dwm and slstatus
+  - slock
+  - st
+  - surf
+  - tabbed
