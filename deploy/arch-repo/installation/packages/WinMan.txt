@@ -20,7 +20,7 @@ dex
 jq
 feh
 dunst
-arc-gtk-theme
+adapta-gtk-theme
 papirus-icon-theme
 gtk-engine-murrine
 system-config-printer

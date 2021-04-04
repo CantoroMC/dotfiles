@@ -1,6 +1,6 @@
 # gtk 2.0 config
 
-gtk-theme-name="Arc-Darker"
+gtk-theme-name="Adapta"
 gtk-icon-theme-name="Papirus"
 gtk-font-name="Operator Mono Lig weight=325 8"
 gtk-cursor-theme-name="Adwaita"
