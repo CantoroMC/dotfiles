@@ -3,6 +3,7 @@ bat
 biber
 calibre
 cmus
+conky
 ctags
 diff-so-fancy
 easytag

@@ -37,7 +37,8 @@ manageOthers = composeAll
     , className =? "MATLAB R2020b - academic use" --> doShiftAndGo
         (xmWorkspaces !! 1)
       -- doIgnore
-    , resource =? "stalonetray" --> doIgnore
+    , resource  =? "stalonetray" --> doIgnore
+    , className =? "Conky" --> doIgnore
     ]
     where doShiftAndGo = doF . liftM2 (.) XMSS.greedyView XMSS.shift
 
