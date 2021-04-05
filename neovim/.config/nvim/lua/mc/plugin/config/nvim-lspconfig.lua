@@ -151,7 +151,7 @@ lspconfig.sumneko_lua.setup {
 
       diagnostics = {
         enable = true,
-        globals = {'vim', 'define', 'it'},
+        globals = {'vim', 'define', 'it', 'conky'},
         disable = { "lowercase-global" },
       },
 

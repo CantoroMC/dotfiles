@@ -92,7 +92,8 @@ redshift -l 45.48:9.19 -t 6500:3500 -m randr &
 # Feh wrapper to pick a random wallpaper from ~/Pictures/wallpapers
 setbg &
 # Conky
-conky &
+conky -c ${XDG_CONFIG_HOME}/conky/conky_left.lua &
+conky -c ${XDG_CONFIG_HOME}/conky/conky_right.lua &
 # }}}
 
 # }}}
