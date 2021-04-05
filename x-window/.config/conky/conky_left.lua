@@ -104,8 +104,8 @@ ${offset 5}${voffset 10}${color gray}Machine: $color$alignr$nodename - ${addr wl
 ${offset 5}${color gray}System: $color$alignr $sysname ($kernel)
 ${offset 150}$distribution
 ${offset 5}${color grey}Uptime: $color$alignr$uptime
-${offset 5}${color grey}Disk Space $color $alignr / (${fs_type /}) ${fs_used /}/${fs_size /}
-$alignr backup (${fs_type /mnt/LinuxExt4}) ${fs_used /mnt/LinuxExt4}/${fs_size /mnt/LinuxExt4}
+${offset 5}${color grey}Disk Space $color $alignr / (${fs_type /}) ${fs_free /}/${fs_size /}
+$alignr backup (${fs_type /mnt/LinuxExt4}) ${fs_free /mnt/LinuxExt4}/${fs_size /mnt/LinuxExt4}
 ${offset 5}${color grey}Battery $color${color3}${alignr}${battery_bar 4,130 BAT0} ${battery_percent BAT0}%$color
 $alignr (${battery_status BAT0} ${battery_time BAT0})
 ${color2}$font4  $font$font0 Calendar ${hr 2}$color$font
@@ -118,14 +118,17 @@ ${offset 10}${color grey}Sensor 3$color${goto 240} ${hwmon 4 temp 3} °C
 ${offset 10}${color grey}Sensor 4$color${goto 240} ${hwmon 4 temp 4} °C
 ${offset 10}${color grey}Sensor 5$color${goto 240} ${hwmon 4 temp 5} °C
 ${color4}$font4  $font$font0 Music ${hr 2}$color$font
-${voffset 10}$font1 Cmus$font: $alignr $color7${scroll 40 $cmus_title - $cmus_artist}$color
+${if_running cmus}${voffset 10}$font1 Cmus$font: $alignr $color7${scroll 40 $cmus_title - $cmus_artist}$color
 $font2$color7$font3 $font $cmus_repeat $font3 $font $cmus_random$color$alignr$color3${cmus_progress 4,130}$color
-$alignr$cmus_state: $cmus_curtime/$cmus_totaltime
+$alignr$cmus_state: $cmus_curtime/$cmus_totaltime$endif
 $if_mpd_playing $font1 Mpd$font: $alignr $color7${scroll 40 $mpd_title - $mpd_artist}$color
 $font2$color7$font3 $font $mpd_repeat $font3 $font $mpd_random$color$alignr$color3${mpd_bar 4,130}$color
 $alignr$mpd_status: $mpd_elapsed/$mpd_length $endif
+]]
+..
+[[
 ${color4}$font4 ﱅ $font$font0 Note ${hr 2}$color$font
 Configure conky and use it also as reminder application
-
 ]]
+
 -- }}}
