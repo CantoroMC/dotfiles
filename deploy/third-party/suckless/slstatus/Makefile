@@ -10,13 +10,11 @@ COM =\
 	components/cpu\
 	components/datetime\
 	components/disk\
-	components/netspeeds\
 	components/ram\
 	components/run_command\
 	components/separator\
 	components/swap\
 	components/temperature\
-	components/uptime\
 
 all: slstatus
 

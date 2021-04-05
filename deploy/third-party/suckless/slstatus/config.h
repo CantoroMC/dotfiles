@@ -50,21 +50,16 @@ static const char unknown_str[] = "n/a";
 
 static const struct arg args[] = {
 	/* function          format        argument */
-	{ netspeed_rx,       " %sﯲ ",     "wlan0" },
-	{ netspeed_tx,       "%sﯴ B/s",    "wlan0" },
-	{ separator,         "|",          NULL },
-	{ disk_free,         " %sB ",     "/" },
 	{ ram_perc,          " %s%%",     NULL },
 	{ swap_perc,         "(%s%%) ",    NULL },
 	{ cpu_perc,          " %s%%",     NULL },
 	{ cpu_freq,          "(%sHz) ",    NULL },
+	{ separator,         "|",          NULL },
 	{ temp,              " :%s ",     "/sys/bus/platform/devices/coretemp.0/hwmon/hwmon4/temp1_input" },
 	{ temp,              "%s ",        "/sys/bus/platform/devices/coretemp.0/hwmon/hwmon4/temp2_input" },
 	{ temp,              "%s ",        "/sys/bus/platform/devices/coretemp.0/hwmon/hwmon4/temp3_input" },
 	{ temp,              "%s ",        "/sys/bus/platform/devices/coretemp.0/hwmon/hwmon4/temp4_input" },
 	{ temp,              "%s°C ",      "/sys/bus/platform/devices/coretemp.0/hwmon/hwmon4/temp5_input" },
-	{ separator,         "|",          NULL },
-	{ uptime,            "祥 %s",      NULL },
 	{ separator,         "|",          NULL },
 	{ run_command,       "%s",         "sls-volume" },
 	{ separator,         "|",          NULL },
