@@ -25,7 +25,7 @@ conky.config = {
   top_name_width             = 15,
   -- }}}
   -- CONKY: {{{1
-  alignment              = 'middle_right',
+  alignment              = 'bottom_right',
   color0                 = '151a1e',
   color1                 = 'ff3333',
   color2                 = '88cc52',
@@ -43,8 +43,8 @@ conky.config = {
   font2                  = 'Operator Mono Lig:size=9',
   font3                  = "SauceCodePro Nerd Font:style=Black Italic:size=9:hinting=true",
   font4                  = "mononoki Nerd Font:style=Regular:pixelsize=13",
-  gap_x                  = 40,
-  gap_y                  = 0,
+  gap_x                  = 20,
+  gap_y                  = 40,
   minimum_height         = 5,
   minimum_width          = 5,
   maximum_width          = 300,
