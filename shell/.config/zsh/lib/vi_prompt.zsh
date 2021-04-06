@@ -1,3 +1,8 @@
+# Global aliases can break things.
+# Unset before using any non-builtins.
+[[ -o aliases ]] && _vim_mode_shopt_aliases=1
+builtin set -o no_aliases
+
 export VIM_MODE_KEYMAP
 
 autoload -Uz add-zsh-hook
@@ -230,3 +235,11 @@ vim-mode-update-prompt () {
 
 vim-mode-set-up-indicators
 vim_mode_keymap_funcs+=vim-mode-update-prompt
+
+# Restore shell option 'aliases'. This must be the last thing here. {{{1
+if [[ $_vim_mode_shopt_aliases = 1 ]]; then
+  unset _vim_mode_shopt_aliases
+  set -o aliases
+fi
+# }}}
+

@@ -8,6 +8,7 @@ let g:indent_blankline_filetype_exclude     =
       \   'packer',
       \   'NvimTree',
       \   'GroundHog',
+      \   'diff',
       \   'help',
       \   'make',
       \   'json',

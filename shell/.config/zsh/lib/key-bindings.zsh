@@ -1,8 +1,3 @@
-# Global aliases can break things.
-# Unset before using any non-builtins.
-[[ -o aliases ]] && _vim_mode_shopt_aliases=1
-builtin set -o no_aliases
-
 # create a zkbd compatible hash {{{1
 # https://jlk.fjfi.cvut.cz/arch/manpages/man/user_caps.5
 
@@ -132,14 +127,6 @@ zle -N _zle_disown
 [[ -n "${key[PageDown]}"       ]] && bindkey -M viins "${key[PageDown]}"       down-line-or-beginning-search
 [[ -n "${key[Shift-Tab]}"      ]] && bindkey -M viins "${key[Shift-Tab]}"      reverse-menu-complete
 
-# Additional binding for Delete
-bindkey -M viins "^[[3~" delete-char
-bindkey -M vicmd "^[[3~" delete-char
-bindkey -M viins "^[[P" delete-char
-bindkey -M vicmd "^[[P" delete-char
-bindkey -M viins "^[3;5~" delete-char
-bindkey -M vicmd "^[3;5~" delete-char
-
 # }}}
 
 # Ctrl+Key {{{2
@@ -243,13 +230,6 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
   function zle_application_mode_stop { echoti rmkx }
   add-zle-hook-widget -Uz zle-line-init zle_application_mode_start
   add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
-fi
-# }}}
-
-# Restore shell option 'aliases'. This must be the last thing here. {{{1
-if [[ $_vim_mode_shopt_aliases = 1 ]]; then
-   unset _vim_mode_shopt_aliases
-   set -o aliases
 fi
 # }}}
 
