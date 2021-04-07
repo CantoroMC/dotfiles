@@ -66,10 +66,14 @@ function! fooldme#foldtext() abort
   " Strip leading and trailing whitespaces
   let l:start_line = substitute(l:start_line, '^\s*\|\s*$', '', 'g')
 
-  return printf("%s%s%s [%dℓ] ",
+  let l:right_padding = repeat(' ', 39 - len(l:start_line))
+
+
+  return printf("%s%s%s%s [%dℓ] ",
         \   l:fold_dashes,
         \   l:fold_indent,
         \   l:start_line,
-        \   l:fold_width
+        \   l:right_padding,
+        \   l:fold_width,
         \ )
 endfunction

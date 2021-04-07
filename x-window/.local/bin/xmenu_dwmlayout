@@ -6,6 +6,7 @@ cat <<EOF | xmenu
 TTT Bottom Stack	2
 >>= Floating	3
 |+| Tatami	4
-||| Three Columns	5
-[M] Monocle	6
+|M| Centered Master	5
+>M> Centered Floating Master	6
+[M] Monocle	7
 EOF

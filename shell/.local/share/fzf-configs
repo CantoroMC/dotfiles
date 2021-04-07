@@ -9,6 +9,8 @@ $ZDOTDIR/.zshrc
 $XDG_CONFIG_HOME/X11/xinitrc
 $XDG_CONFIG_HOME/X11/xprofile_dwm
 $XDG_CONFIG_HOME/X11/xprofile_xmonad-x86_64-linux
+$XDG_DATA_HOME/xorg/xsession-errors
+$XDG_DATA_HOME/xorg/Xorg.0.log
 # Everything else
 $XDG_CONFIG_HOME/nvim/init.lua
 $XDG_CONFIG_HOME/git/config
