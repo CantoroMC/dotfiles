@@ -1,0 +1,75 @@
+# merge in defaults and keymaps {{{1
+
+# Xresources {{{2
+sysresources=/etc/X11/xinit/.Xresources
+userresources=$XDG_CONFIG_HOME/X11/xinit/.Xresources
+
+[ -f $sysresources ] && xrdb -merge "$sysresources"
+[ -f "$userresources" ] && xrdb -merge "$userresources"
+[ $BACKGROUND_COLOR = 'light' ] && xrdb -merge ~/.config/X11/xinit/.Xresources_light
+[ $BACKGROUND_COLOR = 'dark' ] && xrdb -merge ~/.config/X11/xinit/.Xresources_dark
+# }}}
+
+# Xmodmap {{{2
+sysmodmap=/etc/X11/xinit/.Xmodmap
+usermodmap=$XDG_CONFIG_HOME/X11/xinit/.Xmodmap
+
+[ -f $sysmodmap ] && xmodmap "$sysmodmap"
+[ -f "$usermodmap" ] && xmodmap "$usermodmap"
+# }}}
+
+# }}}
+
+# User preference options for the display {{{1
+
+# Display Power Management Signaling: {{{2
+# Screen Saver(s): (timeout cycle)
+# Energy Star(dpms): inactivity period [s] (standby suspend off)
+xset s 480 dpms 600 1200 1200 &
+# }}}
+
+# Mouse Acceleration: {{{2
+# slowing down ThinkPad track-point (acceleration and threshold [px/10ms] )
+xset m 1/2 0 &
+xinput set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" -0.5
+# }}}
+
+# Keyboard Auto repetition {{{2
+# delay[ms] and rate[Nrep/s]
+xset r rate 400 30 &
+# }}}
+
+# }}}
+
+# Start Programs {{{1
+
+# Start a session bus instance of dbus-daemon.
+if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
+  ## if not found, launch a new one
+  eval `dbus-launch --auto-syntax`
+  echo "D-Bus per-session daemon address is: $DBUS_SESSION_BUS_ADDRESS"
+fi
+
+# Get Auth Work With Polkit-gnome
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+# Music daemon {{{2
+[ ! -s ~/.config/mpd/pid ] && mpd
+# }}}
+
+# Desktop notifications {{{2
+dunst &
+# }}}
+
+# Transparency {{{2
+# xcompmgr &
+picom -cb &
+# }}}
+
+# Screen Auto locker {{{2
+xautolock -detectsleep -time 18 -notifier "notify-send -u critical -t 2000 -- 'Locking Screen...'" -notify 50 -locker 'slock' &
+# }}}
+
+# }}}
+
+# vim:ft=sh:fdm=marker

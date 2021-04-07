@@ -1,15 +1,17 @@
 #!/bin/sh
 
 # ( xmonad-x86_64-linux, dwm, awesome )
-DEFAULT_SESSION=dwm
+DEFAULT_SESSION=xmonad-x86_64-linux
 
 # Load xprofile
 sysprofile=/etc/xprofile
-[ "$#" -eq 0 ] && userprofile=$XDG_CONFIG_HOME/X11/xprofile_$DEFAULT_SESSION
-[ "$#" -eq 1 ] && userprofile=$XDG_CONFIG_HOME/X11/xprofile_$1
+userprofile=$XDG_CONFIG_HOME/X11/xprofile
+[ "$#" -eq 0 ] && wmprofile=$XDG_CONFIG_HOME/X11/xprofile_$DEFAULT_SESSION
+[ "$#" -eq 1 ] && wmprofile=$XDG_CONFIG_HOME/X11/xprofile_$1
 
 [ -f $sysprofile ] && . "$sysprofile"
 [ -f "$userprofile" ] && . "$userprofile"
+[ -f "$wmprofile" ] && . "$wmprofile"
 
 # start some nice programs
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
@@ -40,6 +42,7 @@ get_session(){
     mate)                init+=(mate-session) ;;
     openbox)             init+=(openbox-session) ;;
     xfce)                init+=(xfce4-session) ;;
+    xmonad)              init+=(xmonad) ;;
     xmonad-x86_64-linux) init+=(xmonad-x86_64-linux) ;;
     *)                   init+=($DEFAULT_SESSION) ;;
   esac
