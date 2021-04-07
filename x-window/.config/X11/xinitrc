@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # ( xmonad-x86_64-linux, dwm, awesome )
-DEFAULT_SESSION=xmonad-x86_64-linux
+DEFAULT_SESSION=dwm
 
 # Load xprofile
 sysprofile=/etc/xprofile

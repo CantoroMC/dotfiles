@@ -122,6 +122,12 @@ xmKeys mask = do
     bind $ mask ... xK_a
       |/- "spawn default terminal"
         ^> spawn =<< terminalFromConf
+    bind $ mask .|. shiftMask ... xK_a
+      |/- "spawn kitty"
+        ^> spawn "kitty"
+    bind $ mask .|. controlMask ... xK_a
+      |/- "spawn secondary terminal"
+        ^> spawn "tabbed -c -r 2 st -w ''"
     bind $ mask ... xK_s
       |/- "increase gap spacing"
         ^> incWindowSpacing 1
@@ -262,11 +268,14 @@ xmKeys mask = do
       |/- "reset layout on current workspaces"
         ^> setLayout =<< asks (layoutHook . config)
     bind $ mask ... xK_space
-      |/- "select the monocle layout"
+      |/- "select the tiling layout"
         ^> sendMessage $ JumpToLayout "Tall"
     bind $ mask .|. shiftMask ... xK_space
       |/- "select the floating layout"
         ^> sendMessage $ JumpToLayout "Float >>="
+    bind $ mask .|. controlMask ... xK_space
+      |/- "select the monocle layout"
+        ^> sendMessage $ JumpToLayout "Monocle"
     bind $ mask ... xK_Return
       |/- "spawn default terminal"
         ^> spawn =<< terminalFromConf
