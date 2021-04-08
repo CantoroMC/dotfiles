@@ -61,14 +61,6 @@ MainMenu = freedesktop.menu.build({
   }
 })
 
--- Hide the wibar menu when mouse leves it
-MainMenu.wibox:connect_signal(
-  "mouse::leave",
-  function()
-    MainMenu:hide()
-  end
-)
-
 Launcher = awful.widget.launcher({
   image = beautiful.awesome_icon,
   menu = MainMenu
