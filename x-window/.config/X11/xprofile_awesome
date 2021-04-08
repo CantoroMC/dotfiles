@@ -1,0 +1,14 @@
+# Network manager-applet
+nm-applet &
+# Bluetooth
+blueberry-tray &
+# System Clipboard
+parcellite &
+
+# Screen configuration and wallpaper
+# Xrandr wrapper to setup the native monitor even when on a dock station
+Thinkpad &
+# Redshift
+redshift -l 45.48:9.19 -t 6500:3500 -m randr &
+
+# vim:ft=sh
