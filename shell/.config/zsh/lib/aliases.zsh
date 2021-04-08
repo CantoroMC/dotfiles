@@ -53,7 +53,7 @@ alias py="python"
 alias pyFind='find . -name "*.py"'
 alias pyGrep='grep -r --include="*.py"'
 # OpenFOAM
-alias injectOF="[[ -f $FOAM_INST_DIR/OpenFOAM-dev/etc/bashrc ]] && . $FOAM_INST_DIR/OpenFOAM-dev/etc/bashrc"
+alias injectOF="[[ -f $FOAM_INST_DIR/OpenFOAM-dev/etc/bashrc ]] && source $FOAM_INST_DIR/OpenFOAM-dev/etc/bashrc"
 alias paraFoam='paraFoam -builtin & disown'
 # Haskell Compiler
 alias hcompile='ghc --make -outputdir ./out'

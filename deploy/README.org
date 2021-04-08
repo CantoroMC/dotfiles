@@ -24,7 +24,7 @@ Clone the package and =makepkg -si=
 
 ** Installing AUR packages
    #+begin_src sh
-     auracle clone - < ~/dotfiles/deploy/arch-repo/aur-packages.txt
+     auracle clone $(< ~/dotfiles/deploy/arch-repo/aur-packages.txt)
    #+end_src
 
 ** Installing Third Party Packages
@@ -170,7 +170,6 @@ ln -sv $XMONAD_CONFIG_DIR/xmonad-x86_64-linux ~/.local/bin
 #+begin_src sh
   cabal install hlint
   cabal install hoogle
-  # cabal install utf8-string-1.0.1.1 ListLike-4.7.3 hoogle # (may fix the current issue)
   cabal install brittany
 #+end_src
 
@@ -198,9 +197,9 @@ ln -sv $XMONAD_CONFIG_DIR/xmonad-x86_64-linux ~/.local/bin
 #+begin_src shell
   npm install -g neovim
   npm install -g vim-language-server
-  npm install -g vscode-html-languageserver-bin
-  npm install -g vscode-css-languageserver-bin
-  npm install -g typescript typescript-language-server
+  #npm install -g vscode-html-languageserver-bin
+  #npm install -g vscode-css-languageserver-bin
+  #npm install -g typescript typescript-language-server
   # maybe typescript via `pacman` ??
 #+end_src
 

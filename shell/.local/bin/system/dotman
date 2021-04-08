@@ -5,8 +5,8 @@ DOTFILES=${DOTFILES:-$HOME'/dotfiles'}
 PKG_LISTS_DIR=$DOTFILES/deploy/arch-repo/pacman-packages
 PKGS=(bull-packages gtk-packages x-packages programming-packages)
 BOXES=(git emacs neovim texlive music mail shell haskell x-window)
-XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-'~/.config'}
-XDG_DATA_HOME=${XDG_DATA_HOME:-'~/.local/share'}
+XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME'/.config'}
+XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME'/.local/share'}
 HOMIES=(
   .cabal
   .ghc
@@ -59,7 +59,7 @@ aur_helper(){
 
 
 check_mkdir() {
-  [ ! -d ${1} ] && mkdir -p ${1} || echo -e "\e[1;97m${1} already exists.\e[0m"
+  [ ! -d "${1}" ] && mkdir -p "${1}" || echo -e "\e[1;97m${1} already exists.\e[0m"
 }
 
 prepare_ft(){
