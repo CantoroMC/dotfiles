@@ -23,6 +23,9 @@ let g:nvim_tree_indent_markers     = 1
 let g:nvim_tree_width_allow_resize = 0
 let g:nvim_tree_disable_netrw      = 1
 let g:nvim_tree_hijack_netrw       = 1
+let g:nvim_tree_add_trailing       = 1
+let g:nvim_tree_group_empty        = 0
+let g:nvim_tree_lsp_diagnostics    = 0
 
 " Section: Appearance
 let g:nvim_tree_show_icons =  { 'git' : 1, 'folders' : 1, 'files' : 1 }

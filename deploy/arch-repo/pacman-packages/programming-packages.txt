@@ -24,6 +24,7 @@ python-pycodestyle
 python-rope
 python-pyflakes
 python-pylint
+python-pynvim
 ruby-docs
 ruby-rake
 ruby-rdoc

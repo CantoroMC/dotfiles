@@ -171,7 +171,7 @@ static Key keys[] = {
 	{ MODKEY,                GDK_KEY_slash,  spawn,      SETPROP("_SURF_FIND", "_SURF_FIND", PROMPT_FIND) },
 
 	/* download-console */
-	{ MODKEY,                GDK_KEY_d,      spawndls,   { 0 } },
+	{ MODKEY|GDK_SHIFT_MASK, GDK_KEY_d,      spawndls,   { 0 } },
 
 	// Stop and Reload
 	{ 0,                     GDK_KEY_Escape, stop,       { .i = 0 } },

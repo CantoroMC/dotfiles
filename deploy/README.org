@@ -84,6 +84,18 @@ It is wise to check with =stow -nv package= every one of them.
      sudo reflector --protocol http,https --fastest 5 --latest 100 --age 24 --country Italy,France,German,Spain,Switzerland --save /etc/pacman.d/mirrorlist
    #+end_src
 
+** Man database
+Initizialise index database caches.
+#+begin_src shell
+  sudo mandb
+#+end_src
+
+** Pacman files database
+#+begin_src shell
+  sudo  pacman -Fy
+#+end_src
+to use with =command_not_found_handler=
+
 ** Systemd
 
 *** Reflector timer

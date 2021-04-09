@@ -289,7 +289,7 @@ function command_not_found_handler() {
   local pkgs cmd="$1" files=()
   files=(${(f)"$(pacman -F --machinereadable -- "/usr/bin/${cmd}")"})
   if (( ${#files[@]} )); then
-    printf '%s may be found in the following packages:\n' "$cmd"
+    printf '\e[3m\e[1;33m%s\e[0m \e[3mmay be found in the following packages:\e[23m\n' "$cmd"
     local res=() repo package version file
     for file in "$files[@]"; do
       res=("${(0)file}")
@@ -297,10 +297,10 @@ function command_not_found_handler() {
       package="$res[2]"
       version="$res[3]"
       file="$res[4]"
-      printf '  %s/%s %s: /%s\n' "$repo" "$package" "$version" "$file"
+      printf '\t\t\e[1;33m%s/%s %s\e[0m: /%s\n' "$repo" "$package" "$version" "$file"
     done
   else
-    printf 'zsh: command not found: %s\n' "$cmd"
+    printf '\e[31mzsh: command not found: %s\e[0m\n' "$cmd"
   fi
   return 127
 }
@@ -391,5 +391,10 @@ function fzf-pac-search() {
     fzf --multi --preview 'cat <(pacman -Si {1}) <(pacman -Fl {1} | awk "{print \$2}")')
 
   [ -z "$selected" ] && return
-  echo "$selected" | while read -r line ; do pacman -Ss "$line"; done
+  echo "$selected" | while read -r line ; do\
+    pacman -Qi "$line" &> /dev/null && echo "\e[1;33m$line\e[0m is installed" ;\
+    pacman -Si "$line";\
+    pacman -Fl "$line" | awk "{print \$2}";\
+    echo '\e[0;33m====================================================================\e[0m';\
+  done
 }
