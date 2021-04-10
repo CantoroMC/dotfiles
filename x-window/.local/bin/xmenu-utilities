@@ -1,0 +1,28 @@
+#!/bin/sh
+
+cat << EOF | xmenu | sh &
+IMG:/home/cantoro/.local/share/xmenu-icons/mpv.png	MPV
+	IMG:/home/cantoro/.local/share/xmenu-icons/stop.png	Quit all	mpv_bulk_quit
+	IMG:/home/cantoro/.local/share/xmenu-icons/pause.png	Pause/Play all	mpv_bulk_toggle
+IMG:/home/cantoro/.local/share/xmenu-icons/mpc.png	MPC
+	IMG:/home/cantoro/.local/share/xmenu-icons/start.png	 Play	mpc play
+	IMG:/home/cantoro/.local/share/xmenu-icons/pause.png	 Pause	mpc pause
+	IMG:/home/cantoro/.local/share/xmenu-icons/backward.png	Previous	mpc prev
+	IMG:/home/cantoro/.local/share/xmenu-icons/forward.png	Next	mpc next
+	IMG:/home/cantoro/.local/share/xmenu-icons/stop.png	Stop	mpc stop
+	IMG:/home/cantoro/.local/share/xmenu-icons/shuffle.png	Shuffle	mpc shuffle
+	IMG:/home/cantoro/.local/share/xmenu-icons/repeat.png	Repeat	mpc repeat
+IMG:/home/cantoro/.local/share/xmenu-icons/brightness.png	Brightness
+	IMG:/home/cantoro/.local/share/xmenu-icons/brighter.png	 100%	xbacklight -set 100
+	IMG:/home/cantoro/.local/share/xmenu-icons/brightness.png	 50%	xbacklight -set 50
+	IMG:/home/cantoro/.local/share/xmenu-icons/darken.png	 10%	xbacklight -set 10
+	Increase%	xbacklight -inc 5
+	Decrease%	xbacklight -dec 5
+IMG:/home/cantoro/.local/share/xmenu-icons/computerIO.png	Exit?
+	IMG:/home/cantoro/.local/share/xmenu-icons/lock.png	Lock	slock
+	IMG:/home/cantoro/.local/share/xmenu-icons/suspend.png	Suspend	systemctl suspend
+	IMG:/home/cantoro/.local/share/xmenu-icons/hibernate.png	Hibernate	systemctl hibernate
+	IMG:/home/cantoro/.local/share/xmenu-icons/reboot.png	Reboot	reboot
+	IMG:/home/cantoro/.local/share/xmenu-icons/shutdown.png	Shutdown	poweroff
+IMG:/home/cantoro/.local/share/xmenu-icons/terminal.png	Terminal	st
+EOF
