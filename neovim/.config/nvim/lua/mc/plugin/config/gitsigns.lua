@@ -31,8 +31,6 @@ require('gitsigns').setup {
       linehl='GitSignsChangeLn'
     },
   },
-  numhl = false,
-  linehl = false,
   keymaps = {
     -- Default keymap options
     noremap = true,
@@ -54,6 +52,11 @@ require('gitsigns').setup {
   watch_index = {
     interval = 1000
   },
-  sign_priority = 6,
-  status_formatter = nil, -- Use default
+  numhl              = false,
+  linehl             = false,
+  current_line_blame = false,
+  sign_priority      = 6,
+  status_formatter   = nil,
+  use_decoration_api = true,
+  use_internal_diff  = true,
 }
