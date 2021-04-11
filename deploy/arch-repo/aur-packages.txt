@@ -5,6 +5,8 @@ bibtool
 ttf-font-awesome-4
 imagewriter-git
 polyglot-winboard-git
+stockfish-git
 radiotray-ng
 onlyoffice-bin
 lua-language-server-git
+awesome-git
