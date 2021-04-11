@@ -257,7 +257,6 @@ local function init()
   }
   -- Git signs on the signcolumn
   use { 'lewis6991/gitsigns.nvim',
-    commit = '5be4faa',
     requires = {
       'nvim-lua/plenary.nvim'
     },

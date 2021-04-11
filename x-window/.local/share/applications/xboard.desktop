@@ -4,5 +4,5 @@ Comment=Chess Game
 GenericName=Chess Game
 Type=Application
 Categories=Game;BoardGame;
-Exec=xboard -fcp "/home/cantoro/Documents/chess/engines/stockfish_ssse3" -fd "/home/cantoro/Documents/chess/engines" -fn "stockfishSsse3" -fUCI
+Exec=xboard -fcp "/usr/bin/stockfish" -fd "/usr/bin" -fn "Aur" -fUCI
 Icon=xboard

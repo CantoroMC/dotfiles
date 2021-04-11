@@ -1,3 +1,2 @@
-python-pynvim
 zathura-pdf-mupdf
 zathura-ps

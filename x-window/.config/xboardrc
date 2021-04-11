@@ -139,8 +139,7 @@ stockfish12_bmi2
 OldStocco
 stockfish12_modern
 }
--firstChessProgramNames {"StockfishBmi2" -fcp "/home/cantoro/Documents/chess/engines/stockfish12_bmi2" -fd "/home/cantoro/Documents/chess/engines/Stockfish" -fn "StockfishBmi2" -fUCI
-"OldStocco" -fcp "/home/cantoro/Documents/chess/engines/stockfish_old" -fd "/home/cantoro/Documents/chess/engines" -fn "OldStocco" -fUCI
+-firstChessProgramNames {"AurStock" -fcp "/usr/bin/stockfish" -fd "/usr/bin" -fn "AurStock" -fUCI
 }
 -themeNames {"native" -ubt false -pid "" -trueColors false -flipBlack false -overrideLineGap -1
 "classic" -ubt false -lsc #c8c365 -dsc #77a26d -pid "" -wpc #ffffcc -bpc #202020 -hsc #ffff00 -phc #ff0000 -overrideLineGap -1 -flipBlack false

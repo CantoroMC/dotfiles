@@ -27,6 +27,7 @@ export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 if whereis nvim &>/dev/null; then
   export VISUAL="/usr/bin/nvim"
   export EDITOR='/usr/bin/nvim'
+  export DIFFPROG='/usr/bin/nvim -d'
 elif whereis vim &>/dev/null; then
   export VISUAL="/usr/bin/vim"
   export EDITOR='/usr/bin/vim'
