@@ -1,33 +1,21 @@
 # Maintainer: Marco Cantoro <marco dot cantoro92 at outlook dot it>
 
-pkgname=dmenu-git
-pkgver=r1.cd3effe
+pkgname=slstatus-git
+pkgver=r1.dda9fd2
 pkgrel=1
-pkgdesc="A dynamic menu for X"
+pkgdesc="Status monitor for window managers that use WM_NAME or stdin to fill the status bar"
 arch=('x86_64')
-url="https://tools.suckless.org/dmenu"
-license=('MIT')
+url="https://tools.suckless.org/slstatus"
+license=('custom:ISC')
 depends=(
-  'expat'
-  'fontconfig'
-  'freetype2'
-  'glib2'
-  'graphite'
-  'harfbuzz'
-  'libpng'
   'libxau'
   'libxcb'
   'libxdmcp'
-  'libx11'
-  'libxft'
-  'libxrender'
-  'pcre'
-  'zlib'
 )
 makedepends=('git')
 provides=("${pkgname%-git}")
 conflicts=("${pkgname%-git}")
-source=('git+https://github.com/CantoroMC/dmenu')
+source=('git+https://github.com/CantoroMC/slstatus')
 md5sums=('SKIP')
 
 pkgver() {
@@ -47,6 +35,6 @@ package() {
 	cd "$srcdir/${pkgname%-git}"
 	make PREFIX=/usr DESTDIR="$pkgdir" install
 
-  install --mode 0644 -D --target-directory "$licdir" "$srcdir/${pkgname%-git}/LICENSE"
-  install --mode 0644 -D --target-directory "$docdir" "$srcdir/${pkgname%-git}/README.md"
+  install -Dm0644 --target-directory "$licdir" "$srcdir/${pkgname%-git}/LICENSE"
+  install -Dm0644 --target-directory "$docdir" "$srcdir/${pkgname%-git}/README"
 }

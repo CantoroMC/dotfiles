@@ -1,0 +1,32 @@
+pkgbase = tabbed-git
+	pkgdesc = Simple generic tabbed frontend to xembed-aware applications
+	pkgver = 0.6
+	pkgrel = 1
+	url = https://tools.suckless.org/tabbed
+	arch = x86_64
+	license = MIT
+	makedepends = git
+	depends = expat
+	depends = fontconfig
+	depends = freetype2
+	depends = glib2
+	depends = graphite
+	depends = harfbuzz
+	depends = libpng
+	depends = libx11
+	depends = libxau
+	depends = libxcb
+	depends = libxdmcp
+	depends = libxft
+	depends = libxrender
+	depends = pcre
+	depends = zlib
+	provides = tabbed
+	provides = xembed
+	conflicts = tabbed
+	conflicts = xembed
+	source = git+https://github.com/CantoroMC/tabbed
+	md5sums = SKIP
+
+pkgname = tabbed-git
+

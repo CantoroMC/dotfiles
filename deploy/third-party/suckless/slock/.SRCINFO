@@ -1,0 +1,34 @@
+pkgbase = slock-git
+	pkgdesc = Simple X display locker
+	pkgver = 1.4
+	pkgrel = 1
+	url = https://tools.suckless.org/slock
+	arch = x86_64
+	license = MIT
+	makedepends = git
+	depends = expat
+	depends = fontconfig
+	depends = freetype2
+	depends = glib2
+	depends = graphite
+	depends = harfbuzz
+	depends = libpng
+	depends = libx11
+	depends = libxau
+	depends = libxcb
+	depends = libxcrypt
+	depends = libxdmcp
+	depends = libxext
+	depends = libxft
+	depends = libxinerama
+	depends = libxrandr
+	depends = libxrender
+	depends = pcre
+	depends = zlib
+	provides = slock
+	conflicts = slock
+	source = git+https://github.com/CantoroMC/slock
+	md5sums = SKIP
+
+pkgname = slock-git
+

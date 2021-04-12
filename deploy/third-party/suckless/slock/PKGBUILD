@@ -1,11 +1,11 @@
 # Maintainer: Marco Cantoro <marco dot cantoro92 at outlook dot it>
 
-pkgname=dmenu-git
-pkgver=r1.cd3effe
+pkgname=slock-git
+pkgver=r1.5358246
 pkgrel=1
-pkgdesc="A dynamic menu for X"
+pkgdesc="Simple X display locker"
 arch=('x86_64')
-url="https://tools.suckless.org/dmenu"
+url="https://tools.suckless.org/slock"
 license=('MIT')
 depends=(
   'expat'
@@ -15,11 +15,15 @@ depends=(
   'graphite'
   'harfbuzz'
   'libpng'
+  'libx11'
   'libxau'
   'libxcb'
+  'libxcrypt'
   'libxdmcp'
-  'libx11'
+  'libxext'
   'libxft'
+  'libxinerama'
+  'libxrandr'
   'libxrender'
   'pcre'
   'zlib'
@@ -27,7 +31,7 @@ depends=(
 makedepends=('git')
 provides=("${pkgname%-git}")
 conflicts=("${pkgname%-git}")
-source=('git+https://github.com/CantoroMC/dmenu')
+source=('git+https://github.com/CantoroMC/slock')
 md5sums=('SKIP')
 
 pkgver() {
@@ -47,6 +51,6 @@ package() {
 	cd "$srcdir/${pkgname%-git}"
 	make PREFIX=/usr DESTDIR="$pkgdir" install
 
-  install --mode 0644 -D --target-directory "$licdir" "$srcdir/${pkgname%-git}/LICENSE"
-  install --mode 0644 -D --target-directory "$docdir" "$srcdir/${pkgname%-git}/README.md"
+  install -Dm0644 --target-directory "$licdir" "$srcdir/${pkgname%-git}/LICENSE"
+  install -Dm0644 --target-directory "$docdir" "$srcdir/${pkgname%-git}/README"
 }

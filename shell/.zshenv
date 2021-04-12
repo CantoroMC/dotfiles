@@ -106,7 +106,7 @@ export DOTFILES="$HOME"/dotfiles
 export MPC_FORMAT="[[%artist%  - ]%title% (%time%)]|[%file%]"
 export MPD_HOST=$HOME/.config/mpd/socket
 export RANGER_LOAD_DEFAULT_RC="FALSE"
-export TERMINAL='/usr/local/bin/st'
+export TERMINAL='/usr/bin/st'
 # Nnn
 export NNN_OPTS="FHRUude"
 export NNN_BMS='b:~/.local/bin;c:~/.config;D:~/Documents;d:~/dotfiles;M:~/Music;m:/mnt;p:~/Documents/programming;s:~/.config/zsh;V:~/Videos'
