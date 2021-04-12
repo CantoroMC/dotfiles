@@ -1,0 +1,56 @@
+# Maintainer: Marco Cantoro <marco dot cantoro92 at outlook dot it>
+
+pkgname=xmenu-git
+pkgver=r153.20a96bd
+pkgrel=1
+pkgdesc="A X11 menu utility"
+arch=('x86_64')
+url="https://github.com/phillbush/xmenu"
+license=('MIT')
+depends=(
+  'expat'
+  'fontconfig'
+  'freetype2'
+  'glib2'
+  'graphite'
+  'harfbuzz'
+  'imlib2'
+  'libpng'
+  'libx11'
+  'libxau'
+  'libxcb'
+  'libxdmcp'
+  'libxext'
+  'libxft'
+  'libxinerama'
+  'libxrender'
+  'pcre'
+  'zlib'
+)
+makedepends=('git')
+provides=("${pkgname%-git}")
+conflicts=("${pkgname%-git}")
+source=('git+https://github.com/CantoroMC/xmenu')
+md5sums=('SKIP')
+
+pkgver() {
+	cd "$srcdir/${pkgname%-git}"
+	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+	cd "$srcdir/${pkgname%-git}"
+	make
+}
+
+package() {
+  local licdir="$pkgdir/usr/share/licenses/${pkgname%-git}"
+  local docdir="$pkgdir/usr/share/doc/${pkgname%-git}"
+
+	cd "$srcdir/${pkgname%-git}"
+	make PREFIX=/usr DESTDIR="$pkgdir" install
+
+  install -Dm0644 --target-directory "$licdir" "$srcdir/${pkgname%-git}/LICENSE"
+  install -Dm0644 --target-directory "$docdir" "$srcdir/${pkgname%-git}/README.md"
+  install -Dm0644 --target-directory "$docdir" "$srcdir/${pkgname%-git}/CHANGELOG"
+}
