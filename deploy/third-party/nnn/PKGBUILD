@@ -1,0 +1,65 @@
+# Maintainer: Marco Cantoro <marco dot cantoro92 at outlook dot it>
+
+pkgname=nnn-git
+pkgver=r3255.0363b1f
+pkgrel=1
+pkgdesc="The unorthodox terminal file manager"
+arch=('x86_64')
+url="https://github.com/jarun/nnn"
+license=('BSD')
+depends=(
+  'ncurses'
+  'readline'
+)
+optdepends=(
+  'atool: for more archive formats'
+  'autojump: navigate to path'
+  'dragon-drag-and-drop: drag/drop file from/into nnn'
+  'moc: play random music from a directory'
+  'fuse2: unmount remotes'
+  'fzf: for fuzzy findings'
+  'jump: navigate to path'
+  'libarchive: for more archive formats'
+  'rclone: mount remotes'
+  'sshfs: mount remotes'
+  'sxiv: browse images, set wallpaper and copy path'
+  'trash-cli: to trash files'
+  'unzip: for zip archive format'
+  'xdg-utils: desktop opener'
+  'zoxide: navigate to path'
+  'zip: for zip archive format'
+)
+makedepends=('git')
+provides=("${pkgname%-git}")
+conflicts=("${pkgname%-git}")
+source=('git+https://github.com/CantoroMC/nnn')
+md5sums=('SKIP')
+
+pkgver() {
+	cd "$srcdir/${pkgname%-git}"
+	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+	cd "$srcdir/${pkgname%-git}"
+	make
+}
+
+package() {
+  local licdir="$pkgdir/usr/share/licenses/${pkgname%-git}"
+  local docdir="$pkgdir/usr/share/doc/${pkgname%-git}"
+  local fishdir="$pkgdir/usr/share/fish/vendor_completions.d"
+  local bashdir="$pkgdir/usr/share/bash-completion/completions"
+  local zshdir="$pkgdir/usr/share/zsh/site-functions"
+
+	cd "$srcdir/${pkgname%-git}"
+	make PREFIX=/usr DESTDIR="$pkgdir" install
+	make PREFIX=/usr DESTDIR="$pkgdir" install-desktop
+
+  install -Dm0644 --target-directory "$licdir" "$srcdir/${pkgname%-git}/LICENSE"
+  install -Dm0644 --target-directory "$docdir" "$srcdir/${pkgname%-git}/README.md"
+  install -Dm0644 --target-directory "$docdir" "$srcdir/${pkgname%-git}/CHANGELOG"
+  install -Dm0644 --target-directory "$fishdir" "$srcdir/${pkgname%-git}/misc/auto-completion/fish/nnn.fish"
+  install -Dm0644 --target-directory "$zshdir" "$srcdir/${pkgname%-git}/misc/auto-completion/zsh/_nnn"
+  install -Dm0644 misc/auto-completion/bash/nnn-completion.bash "${bashdir}/nnn"
+}

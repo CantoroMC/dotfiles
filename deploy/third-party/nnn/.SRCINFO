@@ -1,0 +1,33 @@
+pkgbase = nnn-git
+	pkgdesc = The unorthodox terminal file manager
+	pkgver = 3.6
+	pkgrel = 1
+	url = https://github.com/jarun/nnn
+	arch = x86_64
+	license = BSD
+	makedepends = git
+	depends = ncurses
+	depends = readline
+	optdepends = atool: for more archive formats
+	optdepends = autojump: navigate to path
+	optdepends = dragon-drag-and-drop: drag/drop file from/into nnn
+	optdepends = moc: play random music from a directory
+	optdepends = fuse2: unmount remotes
+	optdepends = fzf: for fuzzy findings
+	optdepends = jump: navigate to path
+	optdepends = libarchive: for more archive formats
+	optdepends = rclone: mount remotes
+	optdepends = sshfs: mount remotes
+	optdepends = sxiv: browse images, set wallpaper and copy path
+	optdepends = trash-cli: to trash files
+	optdepends = unzip: for zip archive format
+	optdepends = xdg-utils: desktop opener
+	optdepends = zoxide: navigate to path
+	optdepends = zip: for zip archive format
+	provides = nnn
+	conflicts = nnn
+	source = git+https://github.com/CantoroMC/nnn
+	md5sums = SKIP
+
+pkgname = nnn-git
+

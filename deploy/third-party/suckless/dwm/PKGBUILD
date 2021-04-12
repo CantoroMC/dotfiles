@@ -1,0 +1,54 @@
+# Maintainer: Marco Cantoro <marco dot cantoro92 at outlook dot it>
+
+pkgname=dwm-git
+pkgver=r1752.a416242
+pkgrel=1
+pkgdesc="Dynamic window manager for X"
+arch=('x86_64')
+url="https://dwm.suckless.org"
+license=('MIT')
+depends=(
+  'expat'
+  'fontconfig'
+  'freetype2'
+  'glib2'
+  'graphite'
+  'harfbuzz'
+  'libpng'
+  'libx11'
+  'libxau'
+  'libxcb'
+  'libxdmcp'
+  'libxext'
+  'libxft'
+  'libxinerama'
+  'libxrender'
+  'pcre'
+  'zlib'
+)
+makedepends=('git')
+provides=("${pkgname%-git}")
+conflicts=("${pkgname%-git}")
+source=('git+https://github.com/CantoroMC/dwm')
+md5sums=('SKIP')
+
+pkgver() {
+	cd "$srcdir/${pkgname%-git}"
+	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+	cd "$srcdir/${pkgname%-git}"
+	make
+}
+
+package() {
+  local licdir="$pkgdir/usr/share/licenses/${pkgname%-git}"
+  local docdir="$pkgdir/usr/share/doc/${pkgname%-git}"
+
+	cd "$srcdir/${pkgname%-git}"
+	make PREFIX=/usr DESTDIR="$pkgdir" install
+
+  install -Dm0644 --target-directory "$licdir" "$srcdir/${pkgname%-git}/LICENSE"
+  install -Dm0644 --target-directory "$docdir" "$srcdir/${pkgname%-git}/README.org"
+}
