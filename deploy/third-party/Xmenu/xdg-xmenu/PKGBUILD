@@ -20,8 +20,8 @@ source=('git+https://github.com/CantoroMC/xdg-xmenu')
 md5sums=('SKIP')
 
 pkgver() {
-	cd "$srcdir/${pkgname%-bull-git}"
-	printf "1.0.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  cd "$srcdir/${pkgname%-bull-git}"
+  printf "1.0.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 package() {
@@ -29,8 +29,8 @@ package() {
   local mandir="$pkgdir/usr/share/man/man1"
   local docdir="$pkgdir/usr/share/doc/${pkgname%-bull-git}"
 
-	install -Dm0755 --target-directory "$bindir" "$srcdir/${pkgname%-bull-git}/xdg-xmenu"
-	install -Dm0644 --target-directory "$mandir" "$srcdir/${pkgname%-bull-git}/xdg-xmenu.1"
+  install -Dm0755 --target-directory "$bindir" "$srcdir/${pkgname%-bull-git}/xdg-xmenu"
+  install -Dm0644 --target-directory "$mandir" "$srcdir/${pkgname%-bull-git}/xdg-xmenu.1"
   install -Dm0644 --target-directory "$docdir" "$srcdir/${pkgname%-bull-git}/README.md"
   install -Dm0644 --target-directory "$docdir" "$srcdir/${pkgname%-bull-git}/demo.gif"
 }

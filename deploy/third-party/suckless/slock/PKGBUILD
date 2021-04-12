@@ -35,21 +35,21 @@ source=('git+https://github.com/CantoroMC/slock')
 md5sums=('SKIP')
 
 pkgver() {
-	cd "$srcdir/${pkgname%-bull-git}"
-	printf "1.4.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  cd "$srcdir/${pkgname%-bull-git}"
+  printf "1.4.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 build() {
-	cd "$srcdir/${pkgname%-bull-git}"
-	make
+  cd "$srcdir/${pkgname%-bull-git}"
+  make
 }
 
 package() {
   local licdir="$pkgdir/usr/share/licenses/${pkgname%-bull-git}"
   local docdir="$pkgdir/usr/share/doc/${pkgname%-bull-git}"
 
-	cd "$srcdir/${pkgname%-bull-git}"
-	make PREFIX=/usr DESTDIR="$pkgdir" install
+  cd "$srcdir/${pkgname%-bull-git}"
+  make PREFIX=/usr DESTDIR="$pkgdir" install
 
   install -Dm0644 --target-directory "$licdir" "$srcdir/${pkgname%-bull-git}/LICENSE"
   install -Dm0644 --target-directory "$docdir" "$srcdir/${pkgname%-bull-git}/README"

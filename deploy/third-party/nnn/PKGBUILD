@@ -36,13 +36,13 @@ source=('git+https://github.com/CantoroMC/nnn')
 md5sums=('SKIP')
 
 pkgver() {
-	cd "$srcdir/${pkgname%-bull-git}"
-	printf "3.6.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  cd "$srcdir/${pkgname%-bull-git}"
+  printf "3.6.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 build() {
-	cd "$srcdir/${pkgname%-bull-git}"
-	make
+  cd "$srcdir/${pkgname%-bull-git}"
+  make
 }
 
 package() {
@@ -52,9 +52,9 @@ package() {
   local bashdir="$pkgdir/usr/share/bash-completion/completions"
   local zshdir="$pkgdir/usr/share/zsh/site-functions"
 
-	cd "$srcdir/${pkgname%-bull-git}"
-	make PREFIX=/usr DESTDIR="$pkgdir" install
-	make PREFIX=/usr DESTDIR="$pkgdir" install-desktop
+  cd "$srcdir/${pkgname%-bull-git}"
+  make PREFIX=/usr DESTDIR="$pkgdir" install
+  make PREFIX=/usr DESTDIR="$pkgdir" install-desktop
 
   install -Dm0644 --target-directory "$licdir" "$srcdir/${pkgname%-bull-git}/LICENSE"
   install -Dm0644 --target-directory "$docdir" "$srcdir/${pkgname%-bull-git}/README.md"
