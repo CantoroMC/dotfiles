@@ -1,0 +1,30 @@
+pkgbase = dmenu
+	pkgdesc = A dynamic menu for X
+	pkgver = 5.0
+	pkgrel = 1
+	url = https://tools.suckless.org/dmenu
+	arch = x86_64
+	license = MIT
+	makedepends = git
+	depends = expat
+	depends = fontconfig
+	depends = freetype2
+	depends = glib2
+	depends = graphite
+	depends = harfbuzz
+	depends = libpng
+	depends = libxau
+	depends = libxcb
+	depends = libxdmcp
+	depends = libx11
+	depends = libxft
+	depends = libxrender
+	depends = pcre
+	depends = zlib
+	provides = dmenu
+	conflicts = dmenu
+	source = git+https://github.com/CantoroMC/dmenu
+	md5sums = SKIP
+
+pkgname = dmenu
+
