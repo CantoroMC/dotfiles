@@ -1,6 +1,6 @@
-pkgbase = dmenu
+pkgbase = dmenu-bull-git
 	pkgdesc = A dynamic menu for X
-	pkgver = 5.0
+	pkgver = 5.0.r1.cd3effe
 	pkgrel = 1
 	url = https://tools.suckless.org/dmenu
 	arch = x86_64
@@ -22,9 +22,11 @@ pkgbase = dmenu
 	depends = pcre
 	depends = zlib
 	provides = dmenu
+	provides = stest
 	conflicts = dmenu
+	conflicts = stest
 	source = git+https://github.com/CantoroMC/dmenu
 	md5sums = SKIP
 
-pkgname = dmenu
+pkgname = dmenu-bull-git
 

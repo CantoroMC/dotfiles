@@ -1,7 +1,7 @@
 # Maintainer: Marco Cantoro <marco dot cantoro92 at outlook dot it>
 
-pkgname=nnn-git
-pkgver=r3255.0363b1f
+pkgname=nnn-bull-git
+pkgver=3.6.r3255.0363b1f
 pkgrel=1
 pkgdesc="The unorthodox terminal file manager"
 arch=('x86_64')
@@ -30,36 +30,36 @@ optdepends=(
   'zip: for zip archive format'
 )
 makedepends=('git')
-provides=("${pkgname%-git}")
-conflicts=("${pkgname%-git}")
+provides=("${pkgname%-bull-git}")
+conflicts=("${pkgname%-bull-git}")
 source=('git+https://github.com/CantoroMC/nnn')
 md5sums=('SKIP')
 
 pkgver() {
-	cd "$srcdir/${pkgname%-git}"
-	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+	cd "$srcdir/${pkgname%-bull-git}"
+	printf "3.6.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 build() {
-	cd "$srcdir/${pkgname%-git}"
+	cd "$srcdir/${pkgname%-bull-git}"
 	make
 }
 
 package() {
-  local licdir="$pkgdir/usr/share/licenses/${pkgname%-git}"
-  local docdir="$pkgdir/usr/share/doc/${pkgname%-git}"
+  local licdir="$pkgdir/usr/share/licenses/${pkgname%-bull-git}"
+  local docdir="$pkgdir/usr/share/doc/${pkgname%-bull-git}"
   local fishdir="$pkgdir/usr/share/fish/vendor_completions.d"
   local bashdir="$pkgdir/usr/share/bash-completion/completions"
   local zshdir="$pkgdir/usr/share/zsh/site-functions"
 
-	cd "$srcdir/${pkgname%-git}"
+	cd "$srcdir/${pkgname%-bull-git}"
 	make PREFIX=/usr DESTDIR="$pkgdir" install
 	make PREFIX=/usr DESTDIR="$pkgdir" install-desktop
 
-  install -Dm0644 --target-directory "$licdir" "$srcdir/${pkgname%-git}/LICENSE"
-  install -Dm0644 --target-directory "$docdir" "$srcdir/${pkgname%-git}/README.md"
-  install -Dm0644 --target-directory "$docdir" "$srcdir/${pkgname%-git}/CHANGELOG"
-  install -Dm0644 --target-directory "$fishdir" "$srcdir/${pkgname%-git}/misc/auto-completion/fish/nnn.fish"
-  install -Dm0644 --target-directory "$zshdir" "$srcdir/${pkgname%-git}/misc/auto-completion/zsh/_nnn"
+  install -Dm0644 --target-directory "$licdir" "$srcdir/${pkgname%-bull-git}/LICENSE"
+  install -Dm0644 --target-directory "$docdir" "$srcdir/${pkgname%-bull-git}/README.md"
+  install -Dm0644 --target-directory "$docdir" "$srcdir/${pkgname%-bull-git}/CHANGELOG"
+  install -Dm0644 --target-directory "$fishdir" "$srcdir/${pkgname%-bull-git}/misc/auto-completion/fish/nnn.fish"
+  install -Dm0644 --target-directory "$zshdir" "$srcdir/${pkgname%-bull-git}/misc/auto-completion/zsh/_nnn"
   install -Dm0644 misc/auto-completion/bash/nnn-completion.bash "${bashdir}/nnn"
 }

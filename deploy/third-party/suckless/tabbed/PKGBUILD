@@ -1,7 +1,7 @@
 # Maintainer: Marco Cantoro <marco dot cantoro92 at outlook dot it>
 
-pkgname=tabbed-git
-pkgver=r1.1dc0507
+pkgname=tabbed-bull-git
+pkgver=0.6.r1.1dc0507
 pkgrel=1
 pkgdesc="Simple generic tabbed frontend to xembed-aware applications"
 arch=('x86_64')
@@ -25,29 +25,29 @@ depends=(
   'zlib'
 )
 makedepends=('git')
-provides=("${pkgname%-git}" "xembed")
-conflicts=("${pkgname%-git}" "xembed")
+provides=("${pkgname%-bull-git}" "xembed")
+conflicts=("${pkgname%-bull-git}" "xembed")
 source=('git+https://github.com/CantoroMC/tabbed')
 md5sums=('SKIP')
 
 pkgver() {
-	cd "$srcdir/${pkgname%-git}"
-	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+	cd "$srcdir/${pkgname%-bull-git}"
+	printf "0.6.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 build() {
-	cd "$srcdir/${pkgname%-git}"
+	cd "$srcdir/${pkgname%-bull-git}"
 	make
 }
 
 package() {
-  local licdir="$pkgdir/usr/share/licenses/${pkgname%-git}"
-  local docdir="$pkgdir/usr/share/doc/${pkgname%-git}"
+  local licdir="$pkgdir/usr/share/licenses/${pkgname%-bull-git}"
+  local docdir="$pkgdir/usr/share/doc/${pkgname%-bull-git}"
 
-	cd "$srcdir/${pkgname%-git}"
+	cd "$srcdir/${pkgname%-bull-git}"
 	make PREFIX=/usr DESTDIR="$pkgdir" install
 
-  install -Dm0644 --target-directory "$licdir" "$srcdir/${pkgname%-git}/LICENSE"
-  install -Dm0644 --target-directory "$docdir" "$srcdir/${pkgname%-git}/README"
-  install -Dm0644 --target-directory "$docdir" "$srcdir/${pkgname%-git}/TODO"
+  install -Dm0644 --target-directory "$licdir" "$srcdir/${pkgname%-bull-git}/LICENSE"
+  install -Dm0644 --target-directory "$docdir" "$srcdir/${pkgname%-bull-git}/README"
+  install -Dm0644 --target-directory "$docdir" "$srcdir/${pkgname%-bull-git}/TODO"
 }

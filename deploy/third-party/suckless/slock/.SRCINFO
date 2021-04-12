@@ -1,4 +1,4 @@
-pkgbase = slock-git
+pkgbase = slock-bull-git
 	pkgdesc = Simple X display locker
 	pkgver = 1.4
 	pkgrel = 1
@@ -30,5 +30,5 @@ pkgbase = slock-git
 	source = git+https://github.com/CantoroMC/slock
 	md5sums = SKIP
 
-pkgname = slock-git
+pkgname = slock-bull-git
 

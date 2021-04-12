@@ -1,4 +1,4 @@
-pkgbase = nnn-git
+pkgbase = nnn-bull-git
 	pkgdesc = The unorthodox terminal file manager
 	pkgver = 3.6
 	pkgrel = 1
@@ -29,5 +29,5 @@ pkgbase = nnn-git
 	source = git+https://github.com/CantoroMC/nnn
 	md5sums = SKIP
 
-pkgname = nnn-git
+pkgname = nnn-bull-git
 

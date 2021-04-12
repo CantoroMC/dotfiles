@@ -1,4 +1,4 @@
-pkgbase = st-git
+pkgbase = st-bull-git
 	pkgdesc = A simple terminal implementation for X
 	pkgver = 0.8.4
 	pkgrel = 1
@@ -27,5 +27,5 @@ pkgbase = st-git
 	source = git+https://github.com/CantoroMC/st
 	md5sums = SKIP
 
-pkgname = st-git
+pkgname = st-bull-git
 

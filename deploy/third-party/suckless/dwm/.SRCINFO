@@ -1,4 +1,4 @@
-pkgbase = dwm-git
+pkgbase = dwm-bull-git
 	pkgdesc = Dynamic window manager for X
 	pkgver = 6.2
 	pkgrel = 1
@@ -6,6 +6,7 @@ pkgbase = dwm-git
 	arch = x86_64
 	license = MIT
 	makedepends = git
+	depends = dmenu
 	depends = expat
 	depends = fontconfig
 	depends = freetype2
@@ -22,11 +23,12 @@ pkgbase = dwm-git
 	depends = libxinerama
 	depends = libxrender
 	depends = pcre
+	depends = st
 	depends = zlib
 	provides = dwm
 	conflicts = dwm
 	source = git+https://github.com/CantoroMC/dwm
 	md5sums = SKIP
 
-pkgname = dwm-git
+pkgname = dwm-bull-git
 

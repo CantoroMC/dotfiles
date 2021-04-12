@@ -1,4 +1,4 @@
-pkgbase = surf-git
+pkgbase = surf-bull-git
 	pkgdesc = a simple web browser based on WebKit2/GTK+
 	pkgver = 2.0
 	pkgrel = 1
@@ -104,5 +104,5 @@ pkgbase = surf-git
 	source = git+https://github.com/CantoroMC/surf
 	md5sums = SKIP
 
-pkgname = surf-git
+pkgname = surf-bull-git
 

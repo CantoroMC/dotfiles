@@ -1,4 +1,4 @@
-pkgbase = tabbed-git
+pkgbase = tabbed-bull-git
 	pkgdesc = Simple generic tabbed frontend to xembed-aware applications
 	pkgver = 0.6
 	pkgrel = 1
@@ -28,5 +28,5 @@ pkgbase = tabbed-git
 	source = git+https://github.com/CantoroMC/tabbed
 	md5sums = SKIP
 
-pkgname = tabbed-git
+pkgname = tabbed-bull-git
 

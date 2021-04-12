@@ -1,4 +1,4 @@
-pkgbase = slstatus-git
+pkgbase = slstatus-bull-git
 	pkgdesc = Status monitor for window managers that use WM_NAME or stdin to fill the status bar
 	pkgver = 1.0
 	pkgrel = 1
@@ -14,5 +14,5 @@ pkgbase = slstatus-git
 	source = git+https://github.com/CantoroMC/slstatus
 	md5sums = SKIP
 
-pkgname = slstatus-git
+pkgname = slstatus-bull-git
 
