@@ -1,0 +1,36 @@
+# Maintainer: Marco Cantoro <marco dot cantoro92 at outlook dot it>
+
+pkgname=xdg-xmenu-bull-git
+pkgver=1.0.r12.c6cdad9
+pkgrel=1
+pkgdesc="A shell script to generate menu for xmenu"
+arch=('x86_64')
+url="https://github.com/OliverLew/xdg-xmenu"
+license=('unknown')
+depends=('xmenu')
+optdepends=(
+  'rsvg-convert: svg to png conversion'
+  'imagemagick: svg to png conversion'
+  'inkscape: svg to png conversion'
+  )
+makedepends=('git')
+provides=("${pkgname%-bull-git}")
+conflicts=("${pkgname%-bull-git}")
+source=('git+https://github.com/CantoroMC/xdg-xmenu')
+md5sums=('SKIP')
+
+pkgver() {
+	cd "$srcdir/${pkgname%-bull-git}"
+	printf "1.0.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+package() {
+  local bindir="$pkgdir/usr/bin"
+  local mandir="$pkgdir/usr/share/man/man1"
+  local docdir="$pkgdir/usr/share/doc/${pkgname%-bull-git}"
+
+	install -Dm0755 --target-directory "$bindir" "$srcdir/${pkgname%-bull-git}/xdg-xmenu"
+	install -Dm0644 --target-directory "$mandir" "$srcdir/${pkgname%-bull-git}/xdg-xmenu.1"
+  install -Dm0644 --target-directory "$docdir" "$srcdir/${pkgname%-bull-git}/README.md"
+  install -Dm0644 --target-directory "$docdir" "$srcdir/${pkgname%-bull-git}/demo.gif"
+}
