@@ -16,8 +16,32 @@ local naughty       = require("naughty")             -- Notification library
 local ruled         = require("ruled")
 local wibox         = require("wibox")               -- Widget and layout library
 
+local calendar = require("widgets.calendar")
+local battery  = require("widgets.battery")
+
 require("awful.autofocus")
 -- require("awful.hotkeys_popup.keys")
+
+
+function load_zen_widget(config)
+  require(config.widget)
+
+  -- if user defined a zenstate, assign it to the widget so it can respond accordingly
+  if config.zenstate then
+    widget.zenstate = config.zenstate
+  end
+
+  -- notify that the widget was loaded, if asked by rc.lua
+  if config.notify then
+    naughty.notify({
+      title = "Widget Loaded",
+      text = "Loaded " .. config.widget
+    })
+  end
+
+  return widget
+end
+
 
 -- ERROR_HANDLING: {{{
 -- Check if awesome encountered an error during startup and fell back to
@@ -97,6 +121,26 @@ end)
 
 -- WIBAR: {{{
 TextClock = wibox.widget.textclock()
+local Calendar = calendar({
+  placement = 'top_right',
+
+})
+TextClock:connect_signal(
+  "button::press",
+  function(_, _, _, button)
+    if button == 1 then Calendar.toggle() end
+  end
+)
+
+TempWidget = load_zen_widget({
+  widget = "widgets.temperature",
+	zenstate = function(t)
+    if t < 50 then
+      return true
+    end
+    return false
+  end,
+})
 
 screen.connect_signal("request::wallpaper", function(s)
   -- Wallpaper
@@ -209,8 +253,10 @@ screen.connect_signal("request::desktop_decoration", function(s)
     s.TaskList,
     {
       layout = wibox.layout.fixed.horizontal,
+      TempWidget,
       s.PromptBox,
       wibox.widget.systray(),
+      battery(),
       TextClock,
     },
   }
