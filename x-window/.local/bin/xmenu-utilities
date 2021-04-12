@@ -16,8 +16,8 @@ IMG:/home/cantoro/.local/share/xmenu-icons/brightness.png	Brightness
 	IMG:/home/cantoro/.local/share/xmenu-icons/brighter.png	 100%	xbacklight -set 100
 	IMG:/home/cantoro/.local/share/xmenu-icons/brightness.png	 50%	xbacklight -set 50
 	IMG:/home/cantoro/.local/share/xmenu-icons/darken.png	 10%	xbacklight -set 10
-	Increase%	xbacklight -inc 5
-	Decrease%	xbacklight -dec 5
+	Increase	xbacklight -inc 5
+	Decrease	xbacklight -dec 5
 IMG:/home/cantoro/.local/share/xmenu-icons/computerIO.png	Exit?
 	IMG:/home/cantoro/.local/share/xmenu-icons/lock.png	Lock	slock
 	IMG:/home/cantoro/.local/share/xmenu-icons/suspend.png	Suspend	systemctl suspend
