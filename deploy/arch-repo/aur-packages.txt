@@ -1,5 +1,4 @@
 stack-static
-cabal-static
 texlive-most-doc
 bibtool
 ttf-font-awesome-4

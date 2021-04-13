@@ -92,6 +92,15 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+-- Diagnostic Signs
+vim.fn.sign_define('LspDiagnosticsSignError',
+  { text = '✗', texthl = 'LspDiagnosticsSignError' })
+vim.fn.sign_define('LspDiagnosticsSignWarning',
+  { text = '', texthl = 'LspDiagnosticsSignWarning' })
+vim.fn.sign_define('LspDiagnosticsSignInformation',
+  { text = '', texthl = 'LspDiagnosticsSignInformation' })
+vim.fn.sign_define('LspDiagnosticsSignHint',
+  { text = '', texthl = 'LspDiagnosticsSignHint' })
 
 -- LANGUAGESERVERS:
 -- C,CPP

@@ -235,7 +235,8 @@ local function init()
   -- Indent line and Leading spaces
   use {
     'lukas-reineke/indent-blankline.nvim',
-    branch = 'lua'
+    branch = 'lua',
+    as = 'indent-blankline'
   }
   -- Show RGB,HTML... Colors
   use {
