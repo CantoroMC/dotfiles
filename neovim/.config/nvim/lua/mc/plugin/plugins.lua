@@ -96,7 +96,10 @@ local function init()
   -- NeoVim Language Server Protocol And Completion {{{4
   use 'neovim/nvim-lspconfig'
   use 'kosayoda/nvim-lightbulb'
-  use 'liuchengxu/vista.vim'
+  use {
+    'liuchengxu/vista.vim',
+    as = 'vista',
+  }
 
   --[==[
   use 'hrsh7th/nvim-compe'

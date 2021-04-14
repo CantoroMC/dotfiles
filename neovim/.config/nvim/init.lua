@@ -12,7 +12,7 @@ require'mc.plugin.octolua'.digest()
 -- COLORSCHEME: managed by a small lua script
 require'mc.plugin.colorpicker'.setup {
   active = false,
-  theme = { [ "PaperColor" ] = 'base16_vim'},
+  theme = { [ "ayu" ] = 'ayu_dark'},
   themes     = {
     [ "dark" ]  = {
       [ "ayu" ]        = 'ayu_dark',
