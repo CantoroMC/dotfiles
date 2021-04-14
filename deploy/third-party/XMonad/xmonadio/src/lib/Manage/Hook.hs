@@ -81,6 +81,7 @@ manageFloatings =
         , "Pavucontrol"
         , "qv4l2"
         , "qvidcap"
+        , "Snapper-gui"
         , "Sxiv"
         , "System-config-printer.py"
         , "Transmission-gtk"

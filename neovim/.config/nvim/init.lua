@@ -1,27 +1,18 @@
 -- NeoLua Init File
 
--- GLOBAL LUA VARIABLES
-function _G.webDevIcons(path)
-  local filename = vim.fn.fnamemodify(path, ':t')
-  local extension = vim.fn.fnamemodify(path, ':e')
-  return require'nvim-web-devicons'.get_icon(filename, extension, { default = true })
-end
-PP = function(v)
-  print(vim.inspect(v))
-  return v
-end
+require('mc.util.globals')
 
 -- SETTINGS AND MAPPINGS
-vim.cmd('source ' .. vim.fn.stdpath('config') .. '/settings.vim')
-vim.cmd('source ' .. vim.fn.stdpath('config') .. '/keymap.vim')
+vim.cmd(string.format('source %s/settings.vim', vim.fn.stdpath('config')))
+vim.cmd(string.format('source %s/keymap.vim',   vim.fn.stdpath('config')))
 
 -- PLUGINS SETTINGS
 require'mc.plugin.octolua'.digest()
 
 -- COLORSCHEME: managed by a small lua script
 require'mc.plugin.colorpicker'.setup {
-  active = true,
-  theme = { [ "ayu" ] = 'ayu_dark'},
+  active = false,
+  theme = { [ "PaperColor" ] = 'base16_vim'},
   themes     = {
     [ "dark" ]  = {
       [ "ayu" ]        = 'ayu_dark',

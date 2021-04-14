@@ -52,6 +52,7 @@ local function init()
           local opts = {
             relative = 'editor',
             style    = 'minimal',
+            border   = 'double',
             width    = width,
             height   = height,
             col      = left,
@@ -59,33 +60,6 @@ local function init()
           }
 
           local buf = vim.api.nvim_create_buf(false, false)
-
-
-          -- border window
-          local border_buf = vim.api.nvim_create_buf(false, true)
-          local border_opts = {
-            relative = 'editor',
-            style    = 'minimal',
-            width    = width + 2,
-            height   = height + 2,
-            col      = left - 1,
-            row      = top - 1
-          }
-          local border_lines = { }
-          local top_line    = '╔' .. string.rep('═', width) .. '╗'
-          local middle_line = '║' .. string.rep(' ', width) .. '║'
-          local bottom_line = '╚' .. string.rep('═', width) .. '╝'
-          table.insert(border_lines, top_line)
-          for i = 1, height do
-            table.insert(border_lines, middle_line)
-          end
-          table.insert(border_lines, bottom_line)
-
-          vim.api.nvim_buf_set_lines(border_buf, 0, -1, false, border_lines)
-          local border_win = vim.api.nvim_open_win(border_buf, true, border_opts)
-          vim.api.nvim_win_set_option(border_win, 'winblend', 10)
-          vim.api.nvim_win_set_option(border_win, 'winhighlight', 'Normal:Normal')
-
 
           local win = vim.api.nvim_open_win(buf, true, opts)
           vim.api.nvim_buf_set_name(buf, name)
@@ -99,7 +73,6 @@ local function init()
           end
 
           vim.cmd('autocmd! BufWipeout <buffer> lua restore_cursor()')
-          vim.cmd('autocmd! BufWipeout <buffer> execute "silent bwipeout! "'..border_buf)
 
           return true, win, buf
         end

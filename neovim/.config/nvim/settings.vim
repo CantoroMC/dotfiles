@@ -103,7 +103,7 @@ set showtabline=1
 " Windows: {{{1
 
 set equalalways
-set splitbelow
+set nosplitbelow
 set splitright
 
 " }}}
@@ -123,7 +123,7 @@ augroup filetype_indentation " {{{2
         \ setl tabstop=4 softtabstop=4 expandtab shiftwidth=4
   " Only Spaces Two Characters:
   autocmd FileType
-        \ vim,sh,zsh,markdown,tex,plaintex,bib,text,yaml,ruby,xml,xdefaults,tmux,cabal,nix,lua
+        \ vim,sh,zsh,markdown,tex,plaintex,bib,text,yaml,ruby,xml,xdefaults,tmux,cabal,nix,lua,sshconfig
         \ setl tabstop=2 softtabstop=2 expandtab shiftwidth=2
   " Tabs With Two Characters:
   autocmd FileType
@@ -160,7 +160,7 @@ augroup filetype_folding_method " {{{2
         \ setl foldmethod=marker
   " Indentation
   autocmd FileType
-        \ make,python,bib,go,json,html,css,javascript,yaml,ruby,xml,haskell,lhaskell,cabal,nix,lua,lisp,zsh,vim,config,conf,tex,plaintex,cpp,c,sh
+        \ make,python,bib,go,json,html,css,javascript,yaml,ruby,xml,haskell,lhaskell,cabal,nix,lua,lisp,zsh,vim,config,conf,tex,plaintex,cpp,c,sh,sshconfig
         \ setl foldmethod=indent
   " Syntax
   autocmd FileType

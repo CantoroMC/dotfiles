@@ -105,7 +105,7 @@ ${offset 5}${color gray}System: $color$alignr $sysname ($kernel)
 ${offset 150}$distribution
 ${offset 5}${color grey}Uptime: $color$alignr$uptime
 ${offset 5}${color grey}Disk Space $color $alignr / (${fs_type /}) ${fs_free /}/${fs_size /}
-$alignr backup (${fs_type /mnt/LinuxExt4}) ${fs_free /mnt/LinuxExt4}/${fs_size /mnt/LinuxExt4}
+$alignr backup (${fs_type /mnt/backup}) ${fs_free /mnt/backup}/${fs_size /mnt/backup}
 ${offset 5}${color grey}Battery $color${color3}${alignr}${battery_bar 4,130 BAT0} ${battery_percent BAT0}%$color
 $alignr (${battery_status BAT0} ${battery_time BAT0})
 ${color2}$font4  $font$font0 Calendar ${hr 2}$color$font

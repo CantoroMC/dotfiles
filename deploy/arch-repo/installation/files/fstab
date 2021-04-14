@@ -2,13 +2,27 @@
 # See fstab(5) for details.
 
 # <file system> <dir> <type> <options> <dump> <pass>
-# /dev/sdb1
-UUID=6c32e52c-77e2-4a28-b526-2b862c032c2c	/         	ext4      	rw,relatime	0 1
+# /dev/sdb1 LABEL=archlinux
+UUID=64277b0d-6e49-4dd2-be10-7b757356bec2	/         	btrfs     	rw,noatime,compress=zstd:3,ssd,space_cache=v2,autodefrag,subvolid=256,subvol=/@,subvol=@	0 0
 
-# /dev/sdb2
-UUID=002a83b0-39a5-45fc-94ed-c9fa43a57ecd	none      	swap      	defaults  	0 0
+# /dev/sdb1 LABEL=archlinux
+UUID=64277b0d-6e49-4dd2-be10-7b757356bec2	/home     	btrfs     	rw,noatime,compress=zstd:3,ssd,space_cache=v2,autodefrag,subvolid=257,subvol=/@home,subvol=@home	0 0
+
+# /dev/sdb1 LABEL=archlinux
+UUID=64277b0d-6e49-4dd2-be10-7b757356bec2	/.snapshots	btrfs     	rw,noatime,compress=zstd:3,ssd,space_cache=v2,autodefrag,subvolid=258,subvol=/@snapshots,subvol=@snapshots	0 0
+
+# /dev/sdb1 LABEL=archlinux
+UUID=64277b0d-6e49-4dd2-be10-7b757356bec2	/var/log  	btrfs     	rw,noatime,compress=zstd:3,ssd,space_cache=v2,autodefrag,subvolid=259,subvol=/@log,subvol=@log	0 0
+
+# /dev/sdb1 LABEL=archlinux
+UUID=64277b0d-6e49-4dd2-be10-7b757356bec2	/var/cache/pacman/pkg	btrfs     	rw,noatime,compress=zstd:3,ssd,space_cache=v2,autodefrag,subvolid=260,subvol=/@pkg,subvol=@pkg	0 0
+
+# /dev/sdb1 LABEL=archlinux
+UUID=64277b0d-6e49-4dd2-be10-7b757356bec2	/var/tmp  	btrfs     	rw,noatime,compress=zstd:3,ssd,space_cache=v2,autodefrag,subvolid=261,subvol=/@tmp,subvol=@tmp	0 0
+
+# /dev/sdb2 LABEL=swap
+UUID=f62af340-f530-4ae9-97a0-232249e07f87	none      	swap      	defaults  	0 0
+
 
 # CD-Rom External Disk
-UUID=0b9c6bb9-34e9-49be-bc5f-2c914e37a5f6	/mnt/LinuxExt4	ext4      	rw,relatime,nosuid,nodev,noauto,x-systemd.automount,x-systemd.mount-timeout=30,_netdev,nofail,x-systemd.device-timeout=1ms,x-gvfs-show	0 2
-
-UUID=7760E730573CDF0F                    	/mnt/Store	ntfs      	rw,relatime,nosuid,nodev,noauto,x-systemd.automount,x-systemd.mount-timeout=30,_netdev,nofail,x-systemd.device-timeout=1ms,x-gvfs-show	0 2
+UUID=7cc94e5d-9383-444b-90e6-1c8dcf49ae12	/mnt/backup	btrfs      	rw,noatime,nosuid,nodev,noauto,x-systemd.automount,x-systemd.mount-timeout=30,_netdev,nofail,x-systemd.device-timeout=1ms,x-gvfs-show	0 2
