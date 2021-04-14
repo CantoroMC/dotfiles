@@ -1,7 +1,7 @@
 # Maintainer: Marco Cantoro <marco dot cantoro92 at outlook dot it>
 
 pkgname=nnn-bull-git
-pkgver=3.6.r3255.0363b1f
+pkgver=3.7.r3266.00c03c6
 pkgrel=1
 pkgdesc="The unorthodox terminal file manager"
 arch=('x86_64')
@@ -37,7 +37,7 @@ md5sums=('SKIP')
 
 pkgver() {
   cd "$srcdir/${pkgname%-bull-git}"
-  printf "3.6.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  printf "3.7.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 build() {

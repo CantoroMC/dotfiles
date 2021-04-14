@@ -92,7 +92,7 @@ Initizialise index database caches.
 
 ** Pacman files database
 #+begin_src shell
-  sudo  pacman -Fy
+  sudo pacman -Fy
 #+end_src
 to use with =command_not_found_handler=
 

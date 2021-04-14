@@ -1,6 +1,6 @@
 pkgbase = nnn-bull-git
 	pkgdesc = The unorthodox terminal file manager
-	pkgver = 3.6
+	pkgver = 3.7
 	pkgrel = 1
 	url = https://github.com/jarun/nnn
 	arch = x86_64
