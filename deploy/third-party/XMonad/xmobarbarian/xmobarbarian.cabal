@@ -11,7 +11,7 @@ stability:          experimental
 homepage:           http://xmobar.org
 bug-reports:        https://github.com/CantoroMC/dotfiles
 synopsis:           XMobar Configuration
-description:        My personal xmonad configuration
+description:        My personal xmobar configuration
 category:           System
 tested-with:        GHC == 8.10.2, GHC == 8.10.3
 data-files:         icons/**/*.xpm, src/*

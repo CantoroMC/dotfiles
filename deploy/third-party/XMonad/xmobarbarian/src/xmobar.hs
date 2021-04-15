@@ -51,7 +51,7 @@ xmobarConfig p = (baseConfig p)
                ]
   , template =
         " "
-        ++ xMenu "xmenu-apps" "\58911"
+        ++ xMenu "xmenu-apps" "\58911" "#8ce00a"
         ++ "|UnsafeStdinReader| "
         ++ " "
         ++ "|music| "
@@ -81,7 +81,7 @@ xmobarConfig p = (baseConfig p)
         ++ " "
         ++ "|dynnetwork|"
         ++ " "
-        ++ xMenu "xmenu-shutdown" "\61457"
+        ++ xMenu "xmenu-shutdown" "\61457" "#008df8"
         ++ " "
         ++ "   |trayerPad|"
   }

@@ -55,9 +55,9 @@ mpdMusic p =
             ++ action "wmctrl -xR ncmpcpp" 3 "<artist>-<title>"
             ++ action "mpc random" 1 (fn 3 " \61556 ")
             ++ action "mpc seek +1%" 4 (action "mpc seek -1%" 5
-                (fc "#ff3333" "[<lapsed>/<length>]"))
+                (fc "#008df8" "[<lapsed>/<length>]"))
             ++ action "mpc volume +3" 4 (action "mpc volume -3" 5
-                (fc "#68d5ff" (fn 3 " 墳 " ++ "<volume>%")))
+                (fn 3 " 墳 " ++ "<volume>%"))
         , "-M", "12"
         ]
         [ "-P", action "mpc prev" 1 (fn 3 " 玲")
@@ -137,14 +137,14 @@ thermal p =
                     [ "-t", fn 2 "<maxipat> <max>°C"
                     ]
                     [ "--max-icon-pattern", icon "temperature/temperature_%%.xpm"
-                    , "--mintemp" , "20"
+                    , "--mintemp" , "55"
                     , "--maxtemp" , "100"
                     ]
                   ) 50
 
 uptime :: Monitors
 uptime = Uptime
-    [ "-t", fc "#b8cc52" "Up:" ++ "<hours><minutes>"
+    [ "-t", fc "#8ce00a" "Up:" ++ "<hours><minutes>"
     , "-w", "3"
     , "-S", "True"
     ] 60
@@ -220,7 +220,7 @@ wifi p =
 clock :: Palette -> Date
 clock p =
     Date (action "emacs -e calendar --name 'orgenda'" 3
-        (fc (pBorder p) "%T" ++ " - " ++ fc (pBorder p) "%a %e %b %Y")) "date" 10
+        (fc (pLow p) "%T" ++ " - " ++ fc (pBorder p) "%a %e %b %Y")) "date" 10
 
 keyboard :: Kbd
 keyboard = Kbd
@@ -228,5 +228,5 @@ keyboard = Kbd
     , ("it", action "setxkbmap us; xmodmap ~/.config/X11/xinit/.Xmodmap" 3 (fn 2 "IT"))
     ]
 
-xMenu :: String -> String -> String
-xMenu com ic = action com 1 (fn 1 (ic ++ " "))
+xMenu :: String -> String -> String -> String
+xMenu com ic color = action com 1 (fn 1 (fc color (ic ++ " ")))

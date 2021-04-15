@@ -3,22 +3,16 @@ module Log.XMobar
     , spawnXMobar
     ) where
 
-import           GHC.IO.Handle                  ( Handle )
+import GHC.IO.Handle (Handle)
 
-import           XMonad
-import qualified XMonad.StackSet               as XMSS
+import XMonad
+import qualified XMonad.StackSet as XMSS
 
-import           XMonad.Hooks.DynamicLog        ( PP(..)
-                                                , shorten
-                                                , xmobarColor
-                                                , xmobarPP
-                                                )
-import           XMonad.Util.Run                ( hPutStrLn
-                                                , spawnPipe
-                                                )
+import XMonad.Hooks.DynamicLog (PP(..), shorten, xmobarColor, xmobarPP)
+import XMonad.Util.Run (hPutStrLn, spawnPipe)
 
-import qualified Config.Theme                  as XMTheme
-import           Config.Workspace               ( Workspace )
+import qualified Config.Theme as XMTheme
+import Config.Workspace (Workspace)
 
 spawnXMobar :: MonadIO m => m Handle
 spawnXMobar = spawnPipe $ unwords [executable, flagIconroot]  where
@@ -37,29 +31,31 @@ xmXMobarPP h = xmobarPP
     , ppSep             = " "
     , ppWsSep           = ""
     , ppTitle = xmobarColor (XMTheme.activeTextColor XMTheme.xmTheme) ""
-                    . shorten 50
+        . shorten 50
     , ppLayout = xmobarColor (XMTheme.urgentBorderColor XMTheme.xmTheme) ""
     , ppOutput          = hPutStrLn h
     , ppExtras          = [windowCount]
-    , ppOrder           = \(ws : l : t : ex) -> [ws, l] ++ ex ++ [t]
+    , ppOrder           = \(ws : l : t : ex) -> [ws, "<fn=4>"++l++"</fn>"] ++ ex ++ [t]
     }
 
 clickableIcon :: String -> WorkspaceId -> String
 clickableIcon status wsId =
-    let ws = read wsId :: Workspace
+    let
+        ws = read wsId :: Workspace
         n  = show $ 1 + fromEnum ws
-    in  "<action=`xdotool key 0xffeb+"
-            <> n
-            <> "` button=1>"
-            <> "<action=`xdotool key 0xffeb+0xffe1+"
-            <> n
-            <> "` button=3>"
-            <> "<icon=workspaces/"
-            <> status
-            <> "/workspace_"
-            <> n
-            <> ".xpm/>"
-            <> "</action></action>"
+    in
+        "<action=`xdotool key 0xffeb+"
+        <> n
+        <> "` button=1>"
+        <> "<action=`xdotool key 0xffeb+0xffe1+"
+        <> n
+        <> "` button=3>"
+        <> "<icon=workspaces/"
+        <> status
+        <> "/workspace_"
+        <> n
+        <> ".xpm/>"
+        <> "</action></action>"
 
 windowCount :: X (Maybe String)
 windowCount =
