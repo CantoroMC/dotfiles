@@ -226,11 +226,14 @@ local function init()
   }
   -- Status and Tab lines
   use {
-    'vim-airline/vim-airline',
-    requires = {
-      'vim-airline/vim-airline-themes',
-      'kyazdani42/nvim-web-devicons',
-    }
+    'hoob3rt/lualine.nvim',
+    as       = 'lualine',
+    requires = { 'kyazdani42/nvim-web-devicons' },
+  }
+  use {
+    'akinsho/nvim-bufferline.lua',
+    as = 'nvim-bufferline',
+    requires = 'kyazdani42/nvim-web-devicons'
   }
   -- Git signs on the signcolumn
   use { 'lewis6991/gitsigns.nvim',
