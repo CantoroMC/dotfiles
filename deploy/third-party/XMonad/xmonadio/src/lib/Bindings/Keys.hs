@@ -269,13 +269,13 @@ xmKeys mask = do
         ^> setLayout =<< asks (layoutHook . config)
     bind $ mask ... xK_space
       |/- "select the tiling layout"
-        ^> sendMessage $ JumpToLayout "Tall"
+        ^> sendMessage $ JumpToLayout "[]="
     bind $ mask .|. shiftMask ... xK_space
       |/- "select the floating layout"
-        ^> sendMessage $ JumpToLayout "Float >>="
+        ^> sendMessage $ JumpToLayout ">>="
     bind $ mask .|. controlMask ... xK_space
       |/- "select the monocle layout"
-        ^> sendMessage $ JumpToLayout "Monocle"
+        ^> sendMessage $ JumpToLayout "[M]"
     bind $ mask ... xK_Return
       |/- "spawn default terminal"
         ^> spawn =<< terminalFromConf

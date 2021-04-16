@@ -124,7 +124,7 @@ baseConfig p = defaultConfig
         [ "xft:SauceCodePro Nerd Font:style=Black Italic:size=10:hinting=true"
         , "xft:Ubuntu:weight=bold:pixelsize=7:antialias=true:hinting=true"
         , "xft:FiraCode Nerd Font:style=Regular:pixelsize=9"
-        , "xft:Operator Mono Lig:style=Bold:pixelsize=12"
+        , "xft:Operator Mono Lig:style=Bold:pixelsize=14"
         ]
     , bgColor          = pBackground p
     , fgColor          = pForeground p

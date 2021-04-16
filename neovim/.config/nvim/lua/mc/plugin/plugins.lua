@@ -52,7 +52,7 @@ local function init()
           local opts = {
             relative = 'editor',
             style    = 'minimal',
-            border   = 'double',
+            border   = {"╔", "═" ,"╗", "║", "╝", "═", "╚", "║"},
             width    = width,
             height   = height,
             col      = left,

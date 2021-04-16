@@ -52,8 +52,12 @@ xmDecorationTheme = def
 -------------------------------------------------------------------------------
     -- Layouts
 
-tall = renamed [Replace "Tall"]
+tall :: ModifiedLayout Rename (IfMax ResizableTall ResizableTall) Window
+tall = renamed [Replace "[]="]
     $ IfMax 3 (ResizableTall 1 0.03 0.5 []) (ResizableTall 2 0.03 0.5 [])
+
+single :: ModifiedLayout Rename ResizableTall Window
+single = renamed [Replace "M|"] $ ResizableTall 1 0.03 0.8 []
 
 monocle
     :: ModifiedLayout
@@ -63,7 +67,7 @@ monocle
                  Simplest
            )
            Window
-monocle = renamed [Replace "Monocle"] $ tabbed shrinkText xmDecorationTheme
+monocle = renamed [Replace "[M]"] $ tabbed shrinkText xmDecorationTheme
 
 combo
     :: ModifiedLayout
@@ -81,7 +85,7 @@ combo
            )
            Window
 combo = renamed
-    [Replace "Combo"]
+    [Replace "[D]"]
     (combineTwo
         (Tall 1 0.03 0.5)
         (tabbed shrinkText xmDecorationTheme)
@@ -90,38 +94,36 @@ combo = renamed
 
 horizontal :: ModifiedLayout Rename (Mirror ResizableTall) Window
 horizontal =
-    renamed [Replace "MirrorTall"] $ Mirror (ResizableTall 1 0.03 0.5 [])
+    renamed [Replace "TTT"] $ Mirror (ResizableTall 1 0.03 0.5 [])
 
 threeCol :: ModifiedLayout Rename ResizableThreeCol Window
 threeCol =
-    renamed [Replace "ThreeColumns"] $ ResizableThreeColMid 1 0.03 0.5 []
+    renamed [Replace "|M|"] $ ResizableThreeColMid 1 0.03 0.5 []
 
 floatL
     :: ModifiedLayout
            Rename
            (ModifiedLayout WindowArranger SimplestFloat)
            Window
-floatL = renamed [Replace "Float >>="] simplestFloat
+floatL = renamed [Replace ">>="] simplestFloat
 
-tatami :: Tatami Window
-tatami = Tatami 1 0.03 0.5
+tatami :: ModifiedLayout Rename Tatami Window
+tatami = renamed [Replace "M-|"] $ Tatami 1 0.03 0.5
 
 -------------------------------------------------------------------------------
     -- Per Workspace Combinations
 
 alpha = floatL ||| tall ||| monocle
-beta = tall ||| monocle ||| floatL
-gamma = tall ||| combo ||| monocle ||| floatL
+beta = single ||| monocle ||| combo
 others =
-    tall ||| tatami ||| combo ||| monocle ||| horizontal ||| threeCol ||| floatL
+    tall ||| horizontal ||| combo ||| monocle ||| tatami ||| threeCol ||| floatL
 
 -------------------------------------------------------------------------------
     -- Layout Hook
 
 xmLayouts =
     onWorkspace (head xmWorkspaces) alpha
-        $ onWorkspace (xmWorkspaces !! 1) beta
-        $ onWorkspace (xmWorkspaces !! 2) gamma others
+        $ onWorkspace (xmWorkspaces !! 1) beta others
 
 applySpacing
     :: Integer
