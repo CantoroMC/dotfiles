@@ -1,13 +1,10 @@
-local ayu = require'lualine.themes.ayu_dark'
+require'mc.plugin.picasso.brush'.setup()
+local theme = require('mc.plugin.picasso.themes.'
+  .. require'mc.plugin.picasso.brush'.lualine())
 
--- -- Chnage the background of lualine_c section for normal mode
-ayu.normal.a.bg = '#b8cc52' -- rgb colors are supported
-ayu.insert.a.bg = '#36a3d9' -- rgb colors are supported
-
-
-require('lualine').setup{
+require'lualine'.setup{
   options = {
-    theme                = ayu,
+    theme                = theme,
     section_separators   = {'', ''},
     component_separators = {'', ''},
     icons_enabled        = true,
@@ -40,7 +37,7 @@ require('lualine').setup{
         right_padding = 0,
       },
       {
-        require'mc.plugin.statusline'.file_size,
+        require'mc.plugin.picasso'.file_size,
         left_padding = 0,
       }
     },
@@ -51,7 +48,7 @@ require('lualine').setup{
         sections = { 'error', 'warn', 'info' },
         symbols  = { error = ' ', warn = ' ', info = ' ' }
       },
-      require'mc.plugin.statusline'.vista,
+      require'mc.plugin.picasso'.vista,
     },
     lualine_y = {
       {
@@ -69,7 +66,7 @@ require('lualine').setup{
 
       },
       'filetype',
-      require'mc.plugin.statusline'.whitespaces,
+      require'mc.plugin.picasso'.whitespaces,
     },
     lualine_z = {
       {
@@ -78,7 +75,7 @@ require('lualine').setup{
         right_padding = 0,
       },
       {
-        require'mc.plugin.statusline'.nr_lines,
+        require'mc.plugin.picasso'.nr_lines,
         left_padding = 0,
       },
     },

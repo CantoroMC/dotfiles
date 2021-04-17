@@ -8,4 +8,4 @@ let LuaToggleAlternate = luaeval('require"mc.plugin.lanternate".toggleAlternate'
 
 " Available commands
 command! -nargs=* ToggleAlternate call LuaToggleAlternate(expand('<cword>'))
-nnoremap <silent> <C-C><C-a> :<C-U>ToggleAlternate<CR>
+nnoremap <silent> <C-c><C-a> :<C-U>ToggleAlternate<CR>

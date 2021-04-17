@@ -3,7 +3,7 @@ require'bufferline'.setup{
     max_name_length         = 18,
     max_prefix_length       = 15,
     tab_size                = 18,
-    always_show_bufferline  = true,
+    always_show_bufferline  = false,
     enforce_regular_tabs    = false,
     separator_style         = "slant",
     view                    = "multiwindow",
