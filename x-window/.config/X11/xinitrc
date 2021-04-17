@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# ( xmonad-x86_64-linux, dwm, awesome )
-DEFAULT_SESSION=xmonad-x86_64-linux
+# ( comonad, dwm, awesome )
+DEFAULT_SESSION=comonad
 
 # Load xprofile
 sysprofile=/etc/xprofile
@@ -25,26 +25,26 @@ fi
 get_session(){
   local init
   case $1 in
-    awesome)             init+=(awesome) ;;
-    bspwm)               init+=(bspwm-session) ;;
-    budgie)              init+=(budgie-desktop) ;;
-    cinnamon)            init+=(cinnamon-session) ;;
-    deepin)              init+=(startdde) ;;
-    dwm)                 init+=(dwm) ;;
-    enlightenment)       init+=(enlightenment_start) ;;
-    fluxbox)             init+=(startfluxbox) ;;
-    gnome)               init+=(gnome-session) ;;
-    i3|i3wm)             init+=(i3 --shmlog-size 0) ;;
-    jwm)                 init+=(jwm) ;;
-    kde)                 init+=(startplasma-x11) ;;
-    lxde)                init+=(startlxde) ;;
-    lxqt)                init+=(lxqt-session) ;;
-    mate)                init+=(mate-session) ;;
-    openbox)             init+=(openbox-session) ;;
-    xfce)                init+=(xfce4-session) ;;
-    xmonad)              init+=(xmonad) ;;
-    xmonad-x86_64-linux) init+=(xmonad-x86_64-linux) ;;
-    *)                   init+=($DEFAULT_SESSION) ;;
+    awesome)       init+=(awesome) ;;
+    bspwm)         init+=(bspwm-session) ;;
+    budgie)        init+=(budgie-desktop) ;;
+    cinnamon)      init+=(cinnamon-session) ;;
+    deepin)        init+=(startdde) ;;
+    dwm)           init+=(dwm) ;;
+    enlightenment) init+=(enlightenment_start) ;;
+    fluxbox)       init+=(startfluxbox) ;;
+    gnome)         init+=(gnome-session) ;;
+    i3|i3wm)       init+=(i3 --shmlog-size 0) ;;
+    jwm)           init+=(jwm) ;;
+    kde)           init+=(startplasma-x11) ;;
+    lxde)          init+=(startlxde) ;;
+    lxqt)          init+=(lxqt-session) ;;
+    mate)          init+=(mate-session) ;;
+    openbox)       init+=(openbox-session) ;;
+    xfce)          init+=(xfce4-session) ;;
+    xmonad)        init+=(xmonad) ;;
+    comonad)       init+=(comonad) ;;
+    *)             init+=($DEFAULT_SESSION) ;;
   esac
 
   echo "${init[*]}"

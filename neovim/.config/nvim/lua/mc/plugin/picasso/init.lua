@@ -92,7 +92,7 @@ function M.vista(vista_icon)
 end
 
 function M.nr_lines()
-  return [[☰%L]]
+  return [[☰ %3L]]
 end
 
 function M.file_size()

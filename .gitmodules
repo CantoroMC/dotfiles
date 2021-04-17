@@ -10,12 +10,6 @@
 [submodule "shell/.config/zsh/plugins/fzf-tab"]
 	path = shell/.config/zsh/plugins/fzf-tab
 	url = https://github.com/Aloxaf/fzf-tab
-[submodule "deploy/third-party/XMonad/xmonadio/xmonad"]
-	path = deploy/third-party/XMonad/xmonadio/xmonad
-	url = https://github.com/xmonad/xmonad
-[submodule "deploy/third-party/XMonad/xmonadio/xmonad-contrib"]
-	path = deploy/third-party/XMonad/xmonadio/xmonad-contrib
-	url = https://github.com/xmonad/xmonad-contrib
 [submodule "deploy/third-party/XMonad/xmobarbarian/xmobar"]
 	path = deploy/third-party/XMonad/xmobarbarian/xmobar
 	url = https://github.com/jaor/xmobar
