@@ -13,6 +13,12 @@
 [submodule "deploy/third-party/XMonad/xmobarbarian/xmobar"]
 	path = deploy/third-party/XMonad/xmobarbarian/xmobar
 	url = https://github.com/jaor/xmobar
+[submodule "deploy/third-party/XMonad/comonad/xmonad"]
+	path = deploy/third-party/XMonad/comonad/xmonad
+	url = https://github.com/xmonad/xmonad
+[submodule "deploy/third-party/XMonad/comonad/xmonad-contrib"]
+	path = deploy/third-party/XMonad/comonad/xmonad-contrib
+	url = https://github.com/xmonad/xmonad-contrib
 [submodule "deploy/third-party/neovim"]
 	path = deploy/third-party/neovim
 	url = https://github.com/neovim/neovim
