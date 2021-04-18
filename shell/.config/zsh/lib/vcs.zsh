@@ -14,7 +14,7 @@ zstyle ':vcs_info:*' actionformats \
 zstyle ':vcs_info:*' stagedstr \
   "%F{green}%{● %2G%}%f"
 zstyle ':vcs_info:*' unstagedstr \
-  "%F{red}%{● %2G%}%f"
+  "%F{red}%{ %2G%}%f"
 
 # Vcs_Info Hook
 zstyle ':vcs_info:git+set-message:*' hooks git-untracked git-commits_ahead git-commits_behind
@@ -28,7 +28,7 @@ function __git_prompt_git() {
 # Check if there are untracked files
 function +vi-git-untracked() {
   if [[ -n $(__git_prompt_git ls-files --exclude-standard --others 2> /dev/null) ]]; then
-    hook_com[unstaged]+="%F{blue}%{● %2G%}%f"
+    hook_com[unstaged]+="%F{blue}%{ %2G%}%f"
   fi
 }
 # Gets the number of commits ahead from remote

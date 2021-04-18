@@ -158,7 +158,7 @@ vim-mode-set-up-indicators () {
   if [[ -n $indicator || $set > 0 ]]; then
     if (( ! $set )); then
       if [[ $indicator = DEFAULT ]]; then
-        MODE_INDICATOR_VIINS='%F{3}I%f'
+        MODE_INDICATOR_VIINS='%F{4}I%f'
         MODE_INDICATOR_VICMD='%F{2}N%f'
         MODE_INDICATOR_REPLACE='%F{1}R%f'
         MODE_INDICATOR_SEARCH='%F{5}S%f'

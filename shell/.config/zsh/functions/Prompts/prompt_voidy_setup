@@ -24,9 +24,9 @@ EOH
 }
 
 prompt_voidy_setup () {
-  local color1=${1:-'red'}
+  local color1=${1:-'blue'}
   local color2=${2:-'white'}
-  local color3=${3:-'#138ac1'}
+  local color3=${3:-'green'}
 
   local LVL=$SHLVL
   # Check for tmux by looking at $TERM, because $TMUX won't be propagated to any
@@ -40,17 +40,16 @@ prompt_voidy_setup () {
   fi
 
   # return code and ❯ (according to shell levels)
-  local start="%B%(?.%F{green}.%F{red}%v)%{"$(printf '\u276f%.0s' {1..$LVL})'%'$LVL'G%} %f%b'
+  local start="%F{$color1}╰─ %f%B%(?.%F{$color1}.%F{red}%v)%{"$(printf '\u276f%.0s' {1..$LVL})'%'$LVL'G%} %f%b'
   # username and hostname if on an ssh session
-  local ssh_info="%B${SSH_TTY:+:}%b$__BULL[ITALIC_ON]%}%F{$color1}${SSH_TTY:+%n@%m}%f%{$__BULL[ITALIC_OFF]%}"
   # current directory with shaded bar
-  local dir_bar=" %F{$color1}%{$__BULL[ITALIC_ON]%}%(7~|%-3~/.../%3~|%~)%{$__BULL[ITALIC_OFF]%}%f"
+  local dir_bar=" %F{$color1}%{$__BULL[ITALIC_ON]%}╭─ %n%f at %F{$color1}%m%f in %F{$color3}%(7~|%-3~/.../%3~|%~)%{$__BULL[ITALIC_OFF]%}%f"
 
   local nr_jobs="%B%F{$color3}%(1j.%(2j.%j.)*.)%f%b"
   local hist_len="%B%F{$color2}%{ %2G%}%h%f%b"
 
   # Primary Prompt, printed before a command is read.
-  PS1="$dir_bar$ssh_info $hist_len$prompt_newline$MODE_INDICATOR_PROMPT$nr_jobs $start"
+  PS1="$dir_bar$prompt_newline $start$nr_jobs$MODE_INDICATOR_PROMPT "
   # Secondary Prompt, printed when the shell needs more information to complete
   # a command
   PS2="%F{$color1}%_%f> "
@@ -58,7 +57,7 @@ prompt_voidy_setup () {
   #
   # Right-Hand side prompt: VcsInfo, Timer
   #
-  RPROMPT_BASE="\${vcs_info_msg_0_}"
+  RPROMPT_BASE="$hist_len \${vcs_info_msg_0_}"
   RPS1=$RPROMPT_BASE
 
   #

@@ -113,6 +113,7 @@ export NNN_BMS='b:~/.local/bin;c:~/.config;D:~/Documents;d:~/dotfiles;M:~/Music;
 export NNN_PLUG='a:mp3conv;b:oldbigfile;c:fzcd;i:imgview;m:mimelist;o:fzopen;p:preview-tui;t:preview-tabbed'
 export USE_VIDEOTHUMB='1'
 export NNN_COLORS='7342'
+export NNN_FCOLORS='c1e2192e006033f7c6d6abc4'
 export NNN_ARCHIVE="\\.(7z|bz2|gz|tar|tgz|zip)$"
 export NNN_FIFO='/tmp/nnn.fifo'
 
