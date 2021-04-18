@@ -57,8 +57,8 @@ local function worker(user_args)
   }
 
   battery_widget = wibox.widget {
-    level_widget,
     icon_widget,
+    level_widget,
     layout = wibox.layout.fixed.horizontal,
   }
   -- Popup with battery info
@@ -140,7 +140,7 @@ local function worker(user_args)
     charge = charge / capacity
 
     if show_current_level then
-      level_widget.text = string.format('%d%%', charge)
+      level_widget.text = string.format('%d%% ', charge)
     end
 
     if (charge >= 0 and charge < 15) then

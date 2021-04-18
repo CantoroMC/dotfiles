@@ -12,20 +12,20 @@ theme.wallpaper  = theme_path.."/wallpapers/zenburn.png"
 theme.icon_theme = "Papirus" -- if `nil` icon from /usr/share/icons and /usr/share/icons/hicolor
 
 -- Colors {{{1
-theme.bg_normal           = "#151a1e"
-theme.bg_focus            = "#232b32"
+theme.bg_normal           = "#0d0f18"
+theme.bg_focus            = "#222222"
 theme.bg_urgent           = "#ff3333"
-theme.bg_minimize         = "#3f4e5a"
-theme.bg_systray          = "#232b32"
-theme.fg_normal           = "#fafafa"
-theme.fg_focus            = "#b8cc52"
-theme.fg_urgent           = "#e7c547"
-theme.fg_minimize         = "#eaeaea"
+theme.bg_minimize         = "#232b32"
+theme.bg_systray          = "#0d0f18"
+theme.fg_normal           = "#ffffff"
+theme.fg_focus            = "#8ce00a"
+theme.fg_urgent           = "#ffb900"
+theme.fg_minimize         = "#ffffff"
 theme.useless_gap         = dpi(2)
 theme.border_width        = dpi(1)
-theme.border_color_normal = "#000000"
-theme.border_color_active = "#535d6c"
-theme.border_color_marked = "#91231c"
+theme.border_color_normal = "#0d0f18"
+theme.border_color_active = "#8ce00a"
+theme.border_color_marked = "#ff273f"
 -- There are other variable sets
 -- overriding the default one when
 -- defined, the sets are:

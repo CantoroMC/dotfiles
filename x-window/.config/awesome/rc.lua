@@ -3,9 +3,6 @@
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
 
--- this is to trick the LSP
-local awesome, client, mouse, screen, tag = awesome, client, mouse, screen, tag
-
 local awful         = require("awful")               -- Standard awesome library
 local beautiful     = require("beautiful")           -- Theme handling library
 local freedesktop   = require("freedesktop")         -- freedesktop complaiant menu
@@ -16,8 +13,12 @@ local naughty       = require("naughty")             -- Notification library
 local ruled         = require("ruled")
 local wibox         = require("wibox")               -- Widget and layout library
 
-local calendar = require("widgets.calendar")
-local battery  = require("widgets.battery")
+-- Widgets
+local battery    = require("widgets.battery")
+local brightness = require("widgets.brightness")
+local calendar   = require("widgets.calendar")
+local cpu        = require("widgets.cpu")
+local volume     = require("widgets.volume")
 
 require("awful.autofocus")
 -- require("awful.hotkeys_popup.keys")
@@ -123,7 +124,6 @@ end)
 TextClock = wibox.widget.textclock()
 local Calendar = calendar({
   placement = 'top_right',
-
 })
 TextClock:connect_signal(
   "button::press",
@@ -135,7 +135,7 @@ TextClock:connect_signal(
 TempWidget = load_zen_widget({
   widget = "widgets.temperature",
 	zenstate = function(t)
-    if t < 50 then
+    if t < 30 then
       return true
     end
     return false
@@ -253,11 +253,14 @@ screen.connect_signal("request::desktop_decoration", function(s)
     s.TaskList,
     {
       layout = wibox.layout.fixed.horizontal,
+      TextClock,
+      cpu(),
       TempWidget,
       s.PromptBox,
-      wibox.widget.systray(),
       battery(),
-      TextClock,
+      volume(),
+      brightness(),
+      wibox.widget.systray(),
     },
   }
 end)
@@ -682,7 +685,7 @@ awful.keyboard.append_global_keybindings({
   awful.key(
     { }, "XF86MonBrightnessDown",
     function ()
-      awful.spawn("xbacklight -dec 5")
+      brightness:dec()
     end,
     { description = "-5% brightness",
       group = "utilities"
@@ -691,7 +694,7 @@ awful.keyboard.append_global_keybindings({
   awful.key(
     { }, "XF86MonBrightnessUp",
     function ()
-      awful.spawn("xbacklight -inc 5")
+      brightness:inc()
     end,
     { description = "+5% brightness",
       group = "utilities"
