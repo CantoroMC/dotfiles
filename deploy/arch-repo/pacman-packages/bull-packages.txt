@@ -9,6 +9,7 @@ diff-so-fancy
 easytag
 emacs
 evince
+exa
 fzf
 github-cli
 kitty

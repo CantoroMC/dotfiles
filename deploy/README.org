@@ -202,7 +202,7 @@ ln -sv $XMONAD_CONFIG_DIR/xmonad-x86_64-linux ~/.local/bin
 
 ** Ruby
 #+begin_src sh
-  gem install neovim solargraph colorls
+  gem install neovim solargraph
 #+end_src
 
 ** Node

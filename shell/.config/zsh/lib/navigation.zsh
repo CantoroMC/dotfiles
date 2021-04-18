@@ -13,9 +13,9 @@ alias lc="nnn"
 alias t="tree --dirsfirst --si -p -a -L 2 --noreport -I .git"
 alias td="tree --dirsfirst --si -p -a -L 4 --noreport -I .git"
 alias ts="tree -p --si --dirsfirst -L 2 -I .git"
-alias L="colorls -1Al --sd"
-alias Lg="colorls -1A --git-status --sd"
-alias Lt="colorls -A --tree=2 --sd"
+alias L="exa -alg --group-directories-first --icons --git"
+alias Ls="exa -a1 --group-directories-first --icons"
+alias Lt="exa -algT -L=3 --group-directories-first --icons --git -I=.git"
 alias z="cdr"
 
 #
