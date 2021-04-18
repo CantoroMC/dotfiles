@@ -68,6 +68,7 @@ manageFloatings =
         , "CMakeSetup"
         , "Exo-helper-2"
         , "feh"
+        , "File-roller"
         , "Gimp"
         , "Gnome-disks"
         , "Gpick"
