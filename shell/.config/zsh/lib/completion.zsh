@@ -32,7 +32,7 @@ zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 # Categorize completion suggestions with headings:
 zstyle ':completion:*' group-name ''
-zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*:descriptions' format '%d'
 # zstyle ':completion:*:descriptions' format %F{blue}%B%{$__BULL[ITALIC_ON]%}--- %d ---%{$__BULL[ITALIC_OFF]%}%b%f # don't work with fzf-tab
 
 # disable named-directories autocompletion

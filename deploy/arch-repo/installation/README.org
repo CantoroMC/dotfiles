@@ -95,7 +95,7 @@ Install a boot loader (grub)
 
 ** Exit and Reboot
 
-* Phase III: Installing X and Deploy dotfiles for dwm and XMonad
+* Phase III: Installing X and Deploy dotfiles
 
 ** Add user and add it to important groups
 #+begin_src shell
@@ -125,5 +125,246 @@ user of the weel group to execute sudo.
   nmtui
 #+end_src
 
-** Install packages and deploy dotfiles
-Look[[file:~/dotfiles/deploy/README.org::*Package-Management][ here]]
+** Package-Management
+
+*** Retrieve the latest Pacman mirrorlist
+   #+begin_src sh
+     sudo reflector --protocol http,https --fastest 5 --latest 100 --age 24 --country Italy,France,German,Spain,Switzerland --save /etc/pacman.d/mirrorlist
+   #+end_src
+
+*** Man database
+Initizialise index database caches.
+#+begin_src shell
+  sudo mandb
+#+end_src
+
+*** Pacman files database
+#+begin_src shell
+  sudo pacman -Fy
+#+end_src
+to use with =command_not_found_handler=
+
+*** Pacman pkgs
+*** Aur pkgs
+#+begin_src sh
+  auracle clone $(< ~/dotfiles/deploy/arch-repo/aur-packages.txt)
+#+end_src
+
+*** More pkgs
+
+**** Haskell and XMonad
+
+***** Setup stack and install cabal-install
+#+begin_src sh
+  stack setup --system-ghc
+  stack install --system-ghc cabal-install
+
+  cabal update
+  cabal install cabal-uninstall
+#+end_src
+=ghc-pkg list= to check if you have installed only statically linked Haskell packages.
+Now you re ready to go!
+
+***** XMonad and XMobar
+After the first compilation of the two cabal projects.
+#+begin_src sh
+ln -sv $XMONAD_CONFIG_DIR/xmonad-x86_64-linux ~/.local/bin
+#+end_src
+
+***** Pandoc
+#+begin_src sh
+  cabal install pandoc
+#+end_src
+
+***** Utilitites
+#+begin_src sh
+  cabal install hlint
+  cabal install hoogle
+  cabal install brittany
+#+end_src
+
+**** Go
+
+***** Bibtex-ls
+#+begin_src sh
+  go get github.com/msprev/fzf-bibtex/cmd/bibtex-ls
+  go install github.com/msprev/fzf-bibtex/cmd/bibtex-ls
+  go install github.com/msprev/fzf-bibtex/cmd/bibtex-markdown
+  go install github.com/msprev/fzf-bibtex/cmd/bibtex-cite
+#+end_src
+
+**** Python
+#+begin_src shell
+  pip install neovim-remote
+#+end_src
+
+**** Ruby
+#+begin_src sh
+  gem install neovim solargraph
+#+end_src
+
+**** Node
+#+begin_src shell
+  npm install -g neovim
+  npm install -g vim-language-server
+  #npm install -g vscode-html-languageserver-bin
+  #npm install -g vscode-css-languageserver-bin
+  #npm install -g typescript typescript-language-server
+  # maybe typescript via `pacman` ??
+#+end_src
+
+**** Perl
+#+begin_src sh
+  cpan Perl::LanguageServer
+  # cpan Neovim::Ext # not working
+#+end_src
+
+** Systemd services
+*** Reflector services
+#+begin_src sh
+  systemctl enable reflector.service
+  systemctl start reflector.service
+  systemctl enable reflector.timer
+  systemctl start reflector.timer
+#+end_src
+
+*** Bluetooth service
+#+begin_src sh
+  systemctl enable bluetooth.service
+  systemctl start bluetooth.service
+#+end_src
+
+*** Ssh service
+#+begin_src sh
+  systemctl enable sshd.service
+  systemctl start sshd.service
+#+end_src
+
+*** Snapper services
+#+begin_src shell
+  systemctl enable snapper-cleanup.service
+  systemctl start snapper-cleanup.service
+  systemctl enable snapper-timeline.service
+  systemctl start snapper-timeline.service
+#+end_src
+
+**** TODO Btrfs configuration and zen
+
+** Configuration Files
+
+*** Audio devices
+
+**** Speakers
+Check kernel driver for audio device
+#+begin_src sh
+  lspci -knn|grep -iA2 audio
+#+end_src
+If it is snd_hda_intel add kernel module
+#+begin_src sh
+  sudo cp ~/dotfiles/deploy/arch-repo/installation/files/etc/modprobe.d/default.conf /etc/modprobe.d/
+#+end_src
+
+**** Avoid annoying fn key beeping
+#+begin_src sh
+  sudo cp ~/dotfiles/deploy/arch-repo/installation/files/etc/modprobe.d/nobeep.conf /etc/modprobe.d/
+#+end_src
+
+**** Load /dev/mixer module
+#+begin_src sh
+  sudo cp ~/dotfiles/deploy/arch-repo/installation/files/etc/modules-load.d/modules.conf /etc/modules-load.d/
+#+end_src
+
+*** Swappiness
+Reduce the swappiness to improve system responsiveness
+#+begin_src sh
+  sudo cp ~/dotfiles/deploy/arch-repo/installation/files/etc/sysctl.d/99-swappiness.conf /etc/sysctl.d/
+#+end_src
+=sysctl vm.swappiness= to check the current swappiness value (0-200)
+
+*** Pacman
+#+begin_src sh
+  sudo cp ~/dotfiles/deploy/arch-repo/installation/files/etc/pacman.conf /etc/
+#+end_src
+
+**** Hooks
+
+***** paccache
+#+begin_src sh
+  sudo cp ~/dotfiles/deploy/arch-repo/installation/files/usr/share/libalpm/hooks/paccache.hook /usr/share/libalpm/hooks/
+#+end_src
+
+*** Xorg
+
+**** Touchpad
+#+begin_src sh
+  sudo cp ~/dotfiles/deploy/arch-repo/installation/files/etc/X11/xorg.conf.d/30-touchpad.conf /etc/X11/xorg.conf.d/
+#+end_src
+
+*** Autologin on tty2
+#+begin_src sh
+  sudo cp ~/dotfiles/deploy/arch-repo/installation/files/etc/systemd/system/getty@tty2.service.d/override.conf /etc/systemd/system/getty@tty2.service.d/
+#+end_src
+
+*** XDG-base-directory specifications
+
+**** =/etc/gemrc=
+Comment =gem: --user-install=
+
+**** =/etc/xboard.conf=
+Modify =saveSettingsFile= and =settingsFile= to =~/.config/xboardrc=
+
+*** Note
+
+**** OpenFOAM: download from github and compile it
+( requires AUR scotch-git and base cgal and paraview )
+
+**** Matlab
+can be installed by donwloading it and run the installer with administrator privileges
+The temp directory may run out of space so you can
+#+begin_src sh
+  mkdir "$HOME/matlabdl"
+  sudo mount --bind -o nonempty "$HOME/matlabdl" /tmp
+#+end_src
+and when the installation process is finished
+#+begin_src sh
+  sudo umount /tmp
+  rm -rf $HOME/matlabdl
+#+end_src
+
+libselinux libsepol are requested and can be installed from the AUR
+#+begin_src sh
+  auracle clone libselinux libsepol
+#+end_src
+
+also =/usr/local/MATLAB/R2019b/cefclient/sys/os/glnxa64/=
+- libgio
+- liglib
+- libgmodule
+- libgobject
+- libgthread
+
+causes problem to the documentation rendering....
+#+begin_src sh
+  sudo mkdir /usr/local/MATLAB/R2019b/cefclient/sys/os/glnxa64/Exclude
+  sudo mv /usr/local/MATLAB/R2019b/cefclient/sys/os/glnxa64/libglib* -t/usr/local/MATLAB/R2019b/cefclient/sys/os/glnxa64/Exclude
+#+end_src
+
+***** Add Symlink for Mlint
+#+begin_src shell
+  sudo ln -sv /usr/local/MATLAB/R2019b/bin/glnxa64/mlint /usr/local/bin/mlint
+#+end_src
+
+*** NeoVim Nightly
+NeoVim v5.0 will be soon released
+
+**** Build prerequisites
+Additional (not already installed) packages required to build neovim from source
+#+begin_src shell
+  sudo pacman -S --needed ninja tree-sitter
+#+end_src
+
+**** Building
+#+begin_src shell
+  make CMAKE_BUILD_TYPE=RelWithDebInfo
+  sudo make CMAKE_INSTALL_PREFIX=/usr install
+#+end_src
