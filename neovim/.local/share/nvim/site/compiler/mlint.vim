@@ -1,4 +1,4 @@
-" Vim Compiler File: {{{1
+" Vim Compiler File:
 
 " Compiler:         Matlab mlint code checker
 " Maintainer:       Marco Cantoro
@@ -9,22 +9,21 @@
 "                   - L x (C y-z): message (where x is the line number, y and
 "                   z the column numbers where the error comes from) }}}
 
-" }}}
 
-" Add Mlint Compiler: {{{1
+" Add Mlint Compiler:
 
 if exists('current_compiler')
   finish
 endif
 let current_compiler = 'mlint'
 
-" }}}
-
-" Compiler Set: {{{1
+" Compiler Set:
 
 if exists(':CompilerSet') != 2
   command -nargs=* CompilerSet setlocal <args>
 endif
+
+CompilerSet makeprg=mlint\ -id\ %
 
 CompilerSet errorformat=
       \%-P==========\ %f\ ==========,
@@ -33,7 +32,3 @@ CompilerSet errorformat=
       \L\ %l\ (C\ %c):\ %m,
       \L\ %l\ (C\ %c-%*[0-9]):\ %m,
       \%-Q
-
-CompilerSet makeprg=mlint\ -id\ %\ %<
-
-" }}}

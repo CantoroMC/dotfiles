@@ -29,6 +29,7 @@ autocmd FileType haskell let b:dispatch = 'ghc --make %'
 autocmd FileType python  let b:dispatch = 'python -m py_compile %'
 autocmd FileType c       let b:dispatch = 'gcc -g -o %:r %'
 autocmd FileType cpp     let b:dispatch = 'g++ -g -o %:r %'
+autocmd FileType matlab  let b:dispatch = 'mlint -id %'
 
 nnoremap <silent> <C-c><C-c> :<C-u>Make<CR>
 nnoremap <silent> <C-c><C-d> :<C-u>Dispatch!<CR>

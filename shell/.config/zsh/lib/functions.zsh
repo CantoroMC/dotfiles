@@ -305,6 +305,20 @@ function command_not_found_handler() {
   return 127
 }
 
+function fzf-pac-search() {
+  selected=$(\
+    pacman -Slq | \
+    fzf --multi --preview 'cat <(pacman -Si {1}) <(pacman -Fl {1} | awk "{print \$2}")')
+
+  [ -z "$selected" ] && return
+  echo "$selected" | while read -r line ; do\
+    pacman -Qi "$line" &> /dev/null && echo "\e[1;33m$line\e[0m is installed" ;\
+    pacman -Si "$line";\
+    pacman -Fl "$line" | awk "{print \$2}";\
+    echo '\e[0;33m====================================================================\e[0m';\
+  done
+}
+
 # extractor - archive extractor (usage: extractor <archive>)
 function extractor() {
   if [ -f $1 ] ; then
@@ -357,44 +371,4 @@ function meteo() {
 # Moon
 function moon() {
   curl -s "wttr.in/moon?F"
-}
-
-# Videos collage
-function imageFromVideo() {
-  VID_NAME=${3%.*}
-  case ${1} in
-    "-s" | "--single")
-      ffmpegthumbnailer -i "${3}" -o "./${VID_NAME}.jpg" -s 0 -q 10 -t ${3};;
-    "-m" | "--mutliple")
-      for ii in $(seq 0 ${2} 100); do
-        ffmpegthumbnailer -i "${3}" -o "./${VID_NAME}$ii.png" -s 0 -q 10 -t "${ii}"
-      done
-      ;;
-    *)
-      echo -e "\e[1;34mimageFromVideo -s Time Video\e[0m for taking a picture of Video at the time"
-      echo -e "       specified as absolute time hh:mm:ss or as percentage."
-      echo -e "\e[1;34mimageFromVideo -m Snaps Video\e[0m for taking pictures of Video at regular"
-      echo -e "       intervals every Snaps percentage."
-      ;;
-  esac
-}
-
-function thumbCollage() {
-  VID_NAME=${1%.*}
-  montage ${VID_NAME}*.png -mode Concatenate -tile 4x4 -geometry +0+0 ${VID_NAME}.jpg
-  rm ${VID_NAME}*.png
-}
-
-function fzf-pac-search() {
-  selected=$(\
-    pacman -Slq | \
-    fzf --multi --preview 'cat <(pacman -Si {1}) <(pacman -Fl {1} | awk "{print \$2}")')
-
-  [ -z "$selected" ] && return
-  echo "$selected" | while read -r line ; do\
-    pacman -Qi "$line" &> /dev/null && echo "\e[1;33m$line\e[0m is installed" ;\
-    pacman -Si "$line";\
-    pacman -Fl "$line" | awk "{print \$2}";\
-    echo '\e[0;33m====================================================================\e[0m';\
-  done
 }

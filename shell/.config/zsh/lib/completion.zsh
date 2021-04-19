@@ -25,14 +25,19 @@ zstyle ':completion:*:*:*:*:*' menu select
 # - Substring complete (ie. bar -> foobar).
 zstyle ':completion:*' matcher-list '' \
   '+m:{[:lower:]}={[:upper:]}' '+m:{[:upper:]}={[:lower:]}' '+m:{_-}={-_}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-# Complete . and .. special directories
-zstyle ':completion:*' special-dirs '..'
+# Complete .. when the current prefix is empty, is a single '.' or consists
+# only of path beginning with '../'
+zstyle -e ':completion:*' special-dirs \
+  '[[ $PREFIX = (../)#(|.|..) ]] && reply=(..)'
 # Colorize completions using default `ls` colors.
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+# List directory first when completing files
+zstyle ':completion:*' list-dirs-first true
 # Categorize completion suggestions with headings:
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:descriptions' format '%d'
+zstyle ':completion:*' list-grouped true
 # zstyle ':completion:*:descriptions' format %F{blue}%B%{$__BULL[ITALIC_ON]%}--- %d ---%{$__BULL[ITALIC_OFF]%}%b%f # don't work with fzf-tab
 
 # disable named-directories autocompletion

@@ -29,6 +29,8 @@ setlocal suffixes+=.asv
 
 setlocal nospell
 
+compiler mlint
+
 " Foldings: {{{1
 
 function! s:IndLvl(lnum) abort " {{{2

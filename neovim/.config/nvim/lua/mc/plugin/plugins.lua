@@ -82,39 +82,39 @@ local function init()
   end
   -- }}}
 
-  local use = packer.use
+  local usepackage = packer.use
   -- local use_rocks = packer.use_rocks
   packer.reset()
 
   -- PACKAGES {{{2
   -- Let Packer Manage Itself
-  use { 'wbthomason/packer.nvim',
+  usepackage { 'wbthomason/packer.nvim',
     opt = true
   }
   -- UTILITIES {{{3
 
   -- NeoVim Language Server Protocol And Completion {{{4
-  use 'neovim/nvim-lspconfig'
-  use 'kosayoda/nvim-lightbulb'
-  use {
+  usepackage 'neovim/nvim-lspconfig'
+  usepackage 'kosayoda/nvim-lightbulb'
+  usepackage {
     'liuchengxu/vista.vim',
     as = 'vista',
   }
 
   --[==[
-  use 'hrsh7th/nvim-compe'
-  use {
+  usepackage 'hrsh7th/nvim-compe'
+  usepackage {
     'onsails/lspkind-nvim',
     requires = { 'hrsh7th/nvim-compe' }
   }
-  use {
+  usepackage {
     'tamago324/compe-zsh',
     requires = {
       'hrsh7th/nvim-compe',
       'nvim-lua/plenary.nvim'
     }
   }
-  use {
+  usepackage {
     'GoldsteinE/compe-latex-symbols',
     requires = { 'hrsh7th/nvim-compe' },
   }
@@ -122,45 +122,45 @@ local function init()
   -- }}}
 
   -- Tree Sitter: Syntax, Indentation, TextObject, Foldings.... SYNTAX AWARE. {{{4
-  use {
+  usepackage {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
   }
-  use {
+  usepackage {
     'nvim-treesitter/nvim-treesitter-refactor',
     requires = 'nvim-treesitter/nvim-treesitter',
   }
-  use {
+  usepackage {
     'nvim-treesitter/nvim-treesitter-textobjects',
     requires = 'nvim-treesitter/nvim-treesitter',
   }
-  use {
+  usepackage {
     'nvim-treesitter/playground',
     requires = 'nvim-treesitter/nvim-treesitter',
   }
-  use {
+  usepackage {
     'p00f/nvim-ts-rainbow',
     requires = 'nvim-treesitter/nvim-treesitter',
   }
   -- }}}
 
   -- Conquer Of Completion {{{4
-  use {
+  usepackage {
     'neoclide/coc.nvim',
     branch = 'release'
   }
-  use {
+  usepackage {
     'rafcamlet/coc-nvim-lua',
     require = {
       'neoclide/coc.nvim', branch = 'release'
     }
   }
-  use { 'wellle/tmux-complete.vim',
+  usepackage { 'wellle/tmux-complete.vim',
     require = {
       'neoclide/coc.nvim', branch = 'release'
     }
   }
-  use { 'CantoroMC/coc-latex_symbols',
+  usepackage { 'CantoroMC/coc-latex_symbols',
     require = {
       'neoclide/coc.nvim', branch = 'release'
     }
@@ -168,19 +168,20 @@ local function init()
   -- }}}
 
   -- Tag Viewer with Ctags
-  use 'preservim/tagbar'
+  usepackage 'preservim/tagbar'
   -- FuzzyFinder
-  use 'junegunn/fzf'
-  use { 'junegunn/fzf.vim',
+  usepackage 'junegunn/fzf'
+  usepackage {
+    'junegunn/fzf.vim',
     requires = { 'junegunn/fzf' },
   }
   -- Snippets
-  use {
+  usepackage {
     'SirVer/ultisnips',
     requires = 'honza/vim-snippets'
   }
   -- REPL around Tmux
-  use {
+  usepackage {
     'CantoroMC/slimux',
     opt = true,
     cmd = {
@@ -194,58 +195,58 @@ local function init()
 
   -- GUI UTILITIES {{{3
   -- Colorschemes {{{4
-  use 'CantoroMC/ayu-vim'
-  use 'sjl/badwolf'
-  use 'morhetz/gruvbox'
-  use 'NLKNguyen/papercolor-theme'
-  use 'srcery-colors/srcery-vim'
-  use 'eemed/sitruuna.vim'
+  usepackage 'CantoroMC/ayu-vim'
+  usepackage 'sjl/badwolf'
+  usepackage 'morhetz/gruvbox'
+  usepackage 'NLKNguyen/papercolor-theme'
+  usepackage 'srcery-colors/srcery-vim'
+  usepackage 'eemed/sitruuna.vim'
   -- }}}
 
   -- File Explorer
-  use {
+  usepackage {
     'kyazdani42/nvim-tree.lua',
     as = 'nvim-tree',
     requires = 'kyazdani42/nvim-web-devicons'
   }
   -- Indent line and Leading spaces
-  use {
+  usepackage {
     'lukas-reineke/indent-blankline.nvim',
     branch = 'lua',
     as = 'indent-blankline'
   }
   -- Show RGB,HTML... Colors
-  use {
+  usepackage {
     'norcalli/nvim-colorizer.lua',
     as = 'nvim-colorizer'
   }
   -- Start page and session management
-  use {
+  usepackage {
     'mhinz/vim-startify',
     requires = 'kyazdani42/nvim-web-devicons'
   }
   -- Status and Tab lines
-  use {
+  usepackage {
     'hoob3rt/lualine.nvim',
     as       = 'lualine',
     requires = { 'kyazdani42/nvim-web-devicons' },
   }
-  use {
+  usepackage {
     'akinsho/nvim-bufferline.lua',
     as = 'nvim-bufferline',
     requires = 'kyazdani42/nvim-web-devicons'
   }
   -- Git signs on the signcolumn
-  use { 'lewis6991/gitsigns.nvim',
+  usepackage { 'lewis6991/gitsigns.nvim',
     requires = {
       'nvim-lua/plenary.nvim'
     },
     as = 'gitsigns',
   }
   -- Terminal Wrapper
-  use 'CantoroMC/nvim-nuake'
+  usepackage 'CantoroMC/nvim-nuake'
   -- Linux Info
-  use {
+  usepackage {
     'HiPhish/info.vim',
     opt = true,
     cmd = 'Info',
@@ -253,11 +254,11 @@ local function init()
   -- }}}
 
   -- HIS HOLINESS {{{3
-  use 'tpope/vim-apathy'         -- `path`, `suffixesadd`, `include`, `includeexpr` and `define`
-  use 'tpope/vim-abolish'        -- Language friendly searches, substitutions and abbreviations
-  use 'tpope/vim-characterize'   -- Unicode character metadata (with `ga`)
-  use 'tpope/vim-commentary'     -- Comment stuff out
-  use {
+  usepackage 'tpope/vim-apathy'         -- `path`, `suffixesadd`, `include`, `includeexpr` and `define`
+  usepackage 'tpope/vim-abolish'        -- Language friendly searches, substitutions and abbreviations
+  usepackage 'tpope/vim-characterize'   -- Unicode character metadata (with `ga`)
+  usepackage 'tpope/vim-commentary'     -- Comment stuff out
+  usepackage {
     'tpope/vim-dispatch',        -- Asynchronous build and test dispatcher
     opt = true,
     cmd = {
@@ -268,25 +269,25 @@ local function init()
       'FocusDispatch'
     },
   }
-  use 'tpope/vim-endwise'        -- wisely add `end`
-  use 'tpope/vim-eunuch'         -- Vim sugar for the unix shell commands that need it the most
-  use 'tpope/vim-fugitive'       -- Git wrapper
-  use 'tpope/vim-scriptease'     -- A Vim plugin for vim plugins
-  use 'tpope/vim-speeddating'    -- <CTRL-A>/<CTRL-X> to increment dates, times and dates
-  use 'tpope/vim-surround'       -- quotizing/parenthesizing (and more) made simple
-  use 'tpope/vim-repeat'         -- enable repeating supported plugin maps with `.`
-  use 'tpope/vim-rhubarb'        -- GitHub extension for fugitive.vim
-  use 'CantoroMC/vim-unimpaired' -- Pairs of handy bracket mappings
+  usepackage 'tpope/vim-endwise'        -- wisely add `end`
+  usepackage 'tpope/vim-eunuch'         -- Vim sugar for the unix shell commands that need it the most
+  usepackage 'tpope/vim-fugitive'       -- Git wrapper
+  usepackage 'tpope/vim-scriptease'     -- A Vim plugin for vim plugins
+  usepackage 'tpope/vim-speeddating'    -- <CTRL-A>/<CTRL-X> to increment dates, times and dates
+  usepackage 'tpope/vim-surround'       -- quotizing/parenthesizing (and more) made simple
+  usepackage 'tpope/vim-repeat'         -- enable repeating supported plugin maps with `.`
+  usepackage 'tpope/vim-rhubarb'        -- GitHub extension for fugitive.vim
+  usepackage 'CantoroMC/vim-unimpaired' -- Pairs of handy bracket mappings
   -- }}}
 
   -- TEXT MANIPULATION {{{3
-  use {
+  usepackage {
     'godlygeek/tabular',
     opt = true,
     cmd = 'Tabularize',
   }
-  use 'christoomey/vim-sort-motion'
-  use {
+  usepackage 'christoomey/vim-sort-motion'
+  usepackage {
     'mbbill/undotree',
     opt = true,
     cmd = 'UndotreeToggle'
@@ -294,31 +295,31 @@ local function init()
   -- }}}
 
   -- FILETYPE PLUGINS {{{3
-  use {
+  usepackage {
     'neovimhaskell/haskell-vim',       -- Haskell
     ft = { 'haskell', 'lhaskell' }
   }
-  use {
+  usepackage {
     'iamcco/markdown-preview.nvim',    -- Markdown
     run = ':call mkdp#util#install()',
     ft = 'markdown'
   }
-  use {
+  usepackage {
     'CantoroMC/vim-rasi',              -- Rofi Advanced Style Information
     ft = 'rasi'
   }
-  use {
+  usepackage {
     'norcalli/nvim-terminal.lua',
     as = 'nvim-terminal'
   }
-  use {
+  usepackage {
     'KeitaNakamura/tex-conceal.vim',
     ft = { 'tex', 'context', 'plaintex' }
   }
   -- }}}
 
   -- VIM DEVELOPMENT {{{3
-  use {
+  usepackage {
     'dstein64/vim-startuptime',
     opt = true,
     cmd = 'StartupTime',
