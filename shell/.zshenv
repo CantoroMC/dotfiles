@@ -17,7 +17,6 @@ export LESSHISTFILE=-
 export MPLAYER_HOME="$XDG_CONFIG_HOME"/mplayer
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export STACK_ROOT="$XDG_DATA_HOME"/stack
-export QT_QPA_PLATFORMTHEME="qt5ct"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 # }}}
 
@@ -60,6 +59,7 @@ export BROWSER='/usr/bin/vivaldi-stable'
 export EMAIL='marco.cantoro92@outlook.it'
 export NAME='Marco Cantoro'
 export PAGER='less'
+export QT_QPA_PLATFORMTHEME="qt5ct"
 export READER='zathura'
 export SHELL='/usr/bin/zsh'
 # }}}
@@ -178,6 +178,7 @@ if whence fzf &>/dev/null; then
     --layout=reverse
     --multi
     --info=inline
+    --preview-window=right,60%
     '
   # Ayu Dark
   export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'

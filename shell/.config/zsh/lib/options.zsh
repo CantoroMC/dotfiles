@@ -21,7 +21,7 @@ setopt extendedhistory     # record timestamp of command in HISTFILE
 setopt histexpiredupsfirst # delete duplicates first when HISTFILE size exceeds HISTSIZE
 setopt histfindnodups      # don't show dupes when searching
 setopt histignoredups      # ignore duplicated commands history list
-setopt nohistignorealldups # don't filter non-contiguous duplicates from history
+setopt histignorealldups   # filter non-contiguous duplicates from history
 setopt nohistignorespace   # don't ignore commands that start with space
 setopt histverify          # show command with history expansion to user before running it
 setopt sharehistory        # share command history data

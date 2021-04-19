@@ -8,18 +8,20 @@ prompt_voidy_precmd() {
 
 prompt_voidy_help () {
   cat <<EOH
+
 This prompt is color-scheme-able.  You can invoke it thus:
 
   prompt voidy [<color1> [<color2> [<color3>]]]
 
 where the parameters are the colors for the theme-bar and current
-working directory, user@host text, and color3 text respectively.  The
-default colors are green, white, and blue.  This theme works best
-with a dark background.
+working directory, user@host text, and color3 text respectively.
+The default colors are blue, white, and green.
+This theme works best with a dark background.
 
 Recommended fonts for this theme: NerdFont.
 If you don't have any of these, the 8-bit characters will probably look
 stupid.
+
 EOH
 }
 

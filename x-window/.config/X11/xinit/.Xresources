@@ -21,19 +21,19 @@ XTerm*faceName:          Fixed
 XTerm*faceSize:          10
 XTerm*reverseVideo:      off
 XTerm*selectToClipboard: true
-XTerm*font:              FiraCode Nerd Font Mono-8
+XTerm*font:              Operator Mono Lig-10
 !! }}}
 
 !! UXTerm: {{{1
-UXTerm*faceName: FiraCode Nerd Font Mono
+UXTerm*faceName: Operator Mono Lig
 UXTerm*faceSize: 8
 !! }}}
 
 !! URxvt: {{{1
-URxvt.font: xft:FiraCode Nerd Font:style=Regular:size=9
-URxvt.boldFont: xft:FiraCode Nerd Font:style=Bold:size=9
-URxvt.italicFont: xft:FiraCode Nerd Font:style=Italic:size=9
-URxvt.boldItalicfont: xft:SauceCodePro Nerd Font:style=Bold Italic:size=9
+URxvt.font: xft:Operator Mono Lig:style=Regular:size=9
+URxvt.boldFont: xft:Operator Mono Lig:style=Bold:size=9
+URxvt.italicFont: xft:Operator Mono Lig:style=Italic:size=9
+URxvt.boldItalicfont: xft:Operator Mono Lig:style=Bold Italic:size=9
 URxvt.letterSpace: 0
 URxvt.lineSpace: 0
 URxvt.geometry: 92x24

@@ -61,8 +61,8 @@ plugins=(
 )
 
 # Plugins configuration
-zstyle ':fzf-tab:complete:cd:*' \
-  fzf-preview 'tree -a -C -I .git -L 2 -F $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview \
+  'exa --color=always -aT -L=2 --group-directories-first -I=.git $realpath'
 zstyle ':fzf-tab:*' switch-group '[' ']'
 zstyle ':fzf-tab:complete:cd:*' popup-pad 20 0
 HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
@@ -125,3 +125,4 @@ unset plugin plugins
 # Shell Prompt
 #
 autoload -Uz promptinit; promptinit; prompt voidy
+

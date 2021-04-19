@@ -1,7 +1,7 @@
 # Maintainer: Marco Cantoro <marco dot cantoro92 at outlook dot it>
 
 pkgname=st-bull-git
-pkgver=0.8.4.r4.400a03c
+pkgver=0.8.4.r3.1d23aac
 pkgrel=1
 pkgdesc="A simple terminal implementation for X"
 arch=('x86_64')
