@@ -293,13 +293,6 @@ Reduce the swappiness to improve system responsiveness
   sudo cp ~/dotfiles/deploy/arch-repo/installation/files/usr/share/libalpm/hooks/paccache.hook /usr/share/libalpm/hooks/
 #+end_src
 
-*** Xorg
-
-**** Touchpad
-#+begin_src sh
-  sudo cp ~/dotfiles/deploy/arch-repo/installation/files/etc/X11/xorg.conf.d/30-touchpad.conf /etc/X11/xorg.conf.d/
-#+end_src
-
 *** Autologin on tty2
 #+begin_src sh
   sudo cp ~/dotfiles/deploy/arch-repo/installation/files/etc/systemd/system/getty@tty2.service.d/override.conf /etc/systemd/system/getty@tty2.service.d/
