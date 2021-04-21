@@ -194,7 +194,7 @@ set nospell
 augroup spell_for_textual
   autocmd!
   autocmd FileType
-        \ tex,plaintex,context,bibtex,text,gitcommit
+        \ plaintex,context,bibtex,text,gitcommit
         \ setl spell
 augroup END
 " }}}

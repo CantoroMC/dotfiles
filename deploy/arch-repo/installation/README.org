@@ -22,16 +22,40 @@ Partition the disk with =cfdisk=
 
 ** Format the partitions
 #+begin_src shell
-  mkfs.ext4 -L rootName /dev/<root>
+  mkfs.btfs -L rootName /dev/<root>
   mkswap -L swap /dev/<swap>
 #+end_src
 
 ** Mount the filesystem
+
+*** Mount the btrs partition
 #+begin_src shell
   mount /dev/<root> /mnt
 #+end_src
 
-and enable the swap volume
+*** Create Subvolumes
+#+begin_src shell
+  btrfs subvolume create /mnt/@
+  btrfs subvolume create /mnt/@home
+  btrfs subvolume create /mnt/@log
+  btrfs subvolume create /mnt/@pkg
+  btrfs subvolume create /mnt/@tmp
+  btrfs subvolume create /mnt/@snapshots
+  umount /mnt
+#+end_src
+
+*** Mount the subvolumes in their respective directories
+#+begin_src shell
+  mount -o noatime,compress=zstd,space_cache=v2,autodefrag,subvol=@ /dev/sda1 /mnt
+  mkdir -p /mnt/{home,var/{log,cache/pacman/pkg,tmp},.snapshots}
+  mount -o noatime,compress=zstd,space_cache=v2,autodefrag,subvol=@home /dev/sda1 /mnt/home
+  mount -o noatime,compress=zstd,space_cache=v2,autodefrag,subvol=@log /dev/sda1 /mnt/var/log
+  mount -o noatime,compress=zstd,space_cache=v2,autodefrag,subvol=@pkg /dev/sda1 /mnt/var/cache/pacman/pkg
+  mount -o noatime,compress=zstd,space_cache=v2,autodefrag,subvol=@tmp /dev/sda1 /mnt/var/tmp
+  mount -o noatime,compress=zstd,space_cache=v2,autodefrag,subvol=@snapshots /dev/sda1 /mnt/.snapshots
+#+end_src
+
+*** enable the swap volume
 #+begin_src shell
   swapon /dev/<swap>
 #+end_src
@@ -87,7 +111,12 @@ Look at =./packages/*=
 ** Root password with =passwd=
 
 ** Boot loader
-Install a boot loader (grub)
+
+*** Add the =btrfs= module to mkinitcpio
+/etc/mkinitcpio.conf -> MODULES=(btrfs)
+and then recreate the initial ram disk =mkinitcpio -P=
+
+*** Install a boot loader (grub)
 #+begin_src shell
   grub-install --target=i386-pc /dev/<device>
   grub-mkconfig -o /boot/grub/grub.cfg
@@ -219,6 +248,37 @@ ln -sv $XMONAD_CONFIG_DIR/xmonad-x86_64-linux ~/.local/bin
   # cpan Neovim::Ext # not working
 #+end_src
 
+*** Btrfs Utilitites
+pacman: snapper grub-btrfs snap-pac
+aur: snap-pac-grub snapper-gui-git
+
+**** Snapper configuration
+Create the config
+#+begin_src shell
+  umount /.snapshots
+  rm -rf /.snapshots/ #Little trickle
+  snapper -c root create-config /
+  mount -a
+#+end_src
+
+Edit the config =/etc/snapper/configs/root=
+ALLOW_USER="cantoro"
+and adjust cleanup timeline --> daily 7 and hourly 5 .. others 0
+
+Change permissions to the snapshots directory
+#+begin_src shell
+  chmod a+rx /.snapshots
+  chown :users /.snapshots
+#+end_src
+
+Enable systemd services for snapper
+#+begin_src shell
+  systemctl enable snapper-timeline.timer
+  systemctl start snapper-timeline.timer
+  systemctl enable snapper-cleanup.timer
+  systemctl start snapper-cleanup.timer
+#+end_src
+
 ** Systemd services
 *** Reflector services
 #+begin_src sh
@@ -239,16 +299,6 @@ ln -sv $XMONAD_CONFIG_DIR/xmonad-x86_64-linux ~/.local/bin
   systemctl enable sshd.service
   systemctl start sshd.service
 #+end_src
-
-*** Snapper services
-#+begin_src shell
-  systemctl enable snapper-cleanup.service
-  systemctl start snapper-cleanup.service
-  systemctl enable snapper-timeline.service
-  systemctl start snapper-timeline.service
-#+end_src
-
-**** TODO Btrfs configuration and zen
 
 ** Configuration Files
 
