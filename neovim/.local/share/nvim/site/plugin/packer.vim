@@ -16,3 +16,6 @@ command! PackerClean
       \ packadd! packer.nvim  | lua require('mc.plugin.plugins').clean()
 command! PackerCompile
       \ packadd! packer.nvim  | lua require('mc.plugin.plugins').compile()
+
+command! PackerInspect
+      \ lua require'mc.plugin.config'.excrete()
