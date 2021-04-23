@@ -203,7 +203,7 @@ augroup END
 
 set complete+=i,kspell
 set completeopt=menuone,noinsert,noselect
-set dictionary+="spell"
+set dictionary+=spell,/usr/share/dict/cracklib-small
 set omnifunc=syntaxcomplete#Complete
 set showfulltag
 

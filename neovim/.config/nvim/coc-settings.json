@@ -5,6 +5,7 @@
 	"suggest.floatEnable": true,
 	"suggest.detailField": "preview",
 	"suggest.echodocSupport": true,
+	"suggest.languageSourcePriority": 1,
 	"suggest.completionItemKindLabels": {
 	"text": "",
 	"method": "ƒ",
@@ -43,6 +44,7 @@
 	"coc.preferences.useQuickfixForLocations": true,
 	"codeLens.enable": true,
 
+	"coc.source.buffer.priority": 10,
 	"coc.source.file.ignoreHidden": false,
 	"coc.source.syntax.priority": 10,
 	"coc.source.syntax.shortcut": "SYN",
@@ -55,6 +57,7 @@
 	"coc.source.tmuxcomplete.shortcut": "",
 	"snippets.priority": 30,
 	"snippets.shortcut": "זּ",
+	"coc.source.latex_symbols.enable": false,
 
 	"solargraph.trace.server": "messages",
 	"solargraph.promptDownload": true,

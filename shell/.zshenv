@@ -88,8 +88,8 @@ ZLS_COLORS=${ZLS_COLORS}':*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob
 ZLS_COLORS=${ZLS_COLORS}':*.pdf=00;32:*.ps=00;32:*.txt=00;32:*.patch=00;32:*.diff=00;32:*.log=00;32:*.doc=00;32'
 # Audio formats (cyan)
 ZLS_COLORS=${ZLS_COLORS}':*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36'
-# Additional coloring
-ZLS_COLORS=${ZLS_COLORS}':*.c=01;39:*.cpp=01;39:*.hs=01;39:*.py=01;39:*.md=00;34:*.vim=01;31:*.tex=01;33:*.bib=01;33:*.sty=01;33:*.cls=01;33:';
+# # Additional coloring
+# ZLS_COLORS=${ZLS_COLORS}':*.c=01;39:*.cpp=01;39:*.hs=01;39:*.py=01;39:*.md=00;34:*.vim=01;31:*.tex=01;33:*.bib=01;33:*.sty=01;33:*.cls=01;33:';
 # }}}
 
 LS_COLORS=${ZLS_COLORS}
@@ -181,13 +181,23 @@ if whence fzf &>/dev/null; then
     --preview-window=right,60%
     '
   # Ayu Dark
-  export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-   --color=fg:-1,bg:-1,hl:#68d5ff
-   --color=fg+:#36a3d9,bg+:#3f4e5a,hl+:#eafe84
-   --color=info:#68d5ff,prompt:#36a3d9,pointer:#c7fffd
-   --color=marker:#ff3333,spinner:#ff3333,header:#eafe84
-   --color=preview-fg:-1,preview-bg:-1
-  '
+  if [ $BACKGROUND_COLOR = "dark" ]; then
+    export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+    --color=fg:-1,bg:-1,hl:#68d5ff
+    --color=fg+:#36a3d9,bg+:#3f4e5a,hl+:#eafe84
+    --color=info:#68d5ff,prompt:#36a3d9,pointer:#c7fffd
+    --color=marker:#ff3333,spinner:#ff3333,header:#eafe84
+    --color=preview-fg:-1,preview-bg:-1
+    '
+  elif [ $BACKGROUND_COLOR = "light" ]; then
+    export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+    --color=fg:-1,bg:-1,hl:#eafe84
+    --color=fg+:#41a6d9,bg+:#ffffff,hl+:#f29718
+    --color=info:#68d5ff,prompt:#41a6d9,pointer:#73d8ff
+    --color=marker:#ff3333,spinner:#ff3333,header:#f29718
+    --color=preview-fg:-1,preview-bg:-1
+    '
+  fi
 fi
 
 # Bibtex

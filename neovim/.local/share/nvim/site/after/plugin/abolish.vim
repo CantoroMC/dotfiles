@@ -25,6 +25,7 @@ Abolish a{los,slo}                            a{lso}
 Abolish anomol{y,ies}                         anomal{}
 Abolish austrail{a,an,ia,ian}                 austral{ia,ian}
 Abolish becuase                               because
+Abolish berb                                  verb
 Abolish cal{a,e}nder{,s}                      cal{e}ndar{}
 Abolish {c,m}arraige{,s}                      {}arriage{}
 Abolish {,in}consistan{cy,cies,t,tly}         {}consisten{}

@@ -42,7 +42,7 @@ prompt_voidy_setup () {
   fi
 
   # return code and ❯ (according to shell levels)
-  local start="%F{$color1}╰─ %f%B%(?.%F{$color1}.%F{red}%v)%{"$(printf '\u276f%.0s' {1..$LVL})'%'$LVL'G%} %f%b'
+  local start="%F{$color1}╰─%f%B%(?.%F{$color1}.%F{red}%v)%{"$(printf '\u276f%.0s' {1..$LVL})'%'$LVL'G%} %f%b'
   # username and hostname if on an ssh session
   # current directory with shaded bar
   local dir_bar=" %F{$color1}%{$__BULL[ITALIC_ON]%}╭─ %n%f at %F{$color1}%m%f in %F{$color3}%(7~|%-3~/.../%3~|%~)%{$__BULL[ITALIC_OFF]%}%f"
