@@ -1,6 +1,7 @@
 vim.g.indent_blankline_enabled    = 1
 vim.g.indent_blankline_char_list  = { '|', '|', '¦', '┆', '┊' }
 vim.g.indent_blankline_space_char = '·'
+vim.g.indent_blankline_space_char_blankline = ' '
 
 vim.g.indent_blankline_show_first_indent_level        = false
 vim.g.indent_blankline_show_trailing_blankline_indent = false
