@@ -44,7 +44,7 @@ prompt_bull_setup () {
   fi
 
   # return code and ❯ (according to shell levels)
-  local start="%B%(?.%F{green}.%F{red}%v)%{"$(printf '\u276f%.0s' {1..$LVL})'%'$LVL'G%} %f%b'
+  local start="%B%(?.%F{green}.%F{red}%v)%{"$(printf '❯%.0s' {1..$LVL})'%'$LVL'G%} %f%b'
   # username and hostname if on an ssh session
   local ssh_info="%B${SSH_TTY:+:}%b$__BULL[ITALIC_ON]%}%F{$color1}${SSH_TTY:+%n@%m}%f%{$__BULL[ITALIC_OFF]%}"
   # current directory with shaded bar

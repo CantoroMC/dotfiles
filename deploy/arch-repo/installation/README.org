@@ -22,13 +22,13 @@ Partition the disk with =cfdisk=
 
 ** Format the partitions
 #+begin_src shell
-  mkfs.btfs -L rootName /dev/<root>
+  mkfs.btrfs -L rootName /dev/<root>
   mkswap -L swap /dev/<swap>
 #+end_src
 
 ** Mount the filesystem
 
-*** Mount the btrs partition
+*** Mount the btrfs partition
 #+begin_src shell
   mount /dev/<root> /mnt
 #+end_src
