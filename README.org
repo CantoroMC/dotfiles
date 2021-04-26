@@ -5,9 +5,13 @@
 #+OPTIONS: toc:3 num:3
 
 I use ArchLinux with Xmonad(mainly) or dwm.
-
+#+TITLE:Dwn
 #+ATTR_HTML: :style margin-left: auto; margin-right: auto;
   [[./dwm.png]]
+
+#+TITLE:XMonad
+#+ATTR_HTML: :style margin-left: auto; margin-right: auto;
+  [[./xmonad.png]]
 
 ** Configuration Files
 Only the most important and tweaked stuff are here reported
