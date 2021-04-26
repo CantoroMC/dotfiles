@@ -45,6 +45,7 @@ require('gitsigns').setup {
     ['n <C-C><C-H><C-S>'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
     ['n <C-C><C-H><C-U>'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
     ['n <C-C><C-H><C-R>'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
+    ['n <C-C><C-H><C-F>'] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
     ['n <C-C><C-H><C-P>'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
     ['n <C-C><C-H><C-B>'] = '<cmd>lua require"gitsigns".blame_line()<CR>',
 

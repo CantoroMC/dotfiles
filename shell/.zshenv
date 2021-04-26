@@ -85,11 +85,9 @@ ZLS_COLORS=${ZLS_COLORS}':*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=
 ZLS_COLORS=${ZLS_COLORS}':*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35'
 ZLS_COLORS=${ZLS_COLORS}':*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35'
 # Document formats (green)
-ZLS_COLORS=${ZLS_COLORS}':*.pdf=00;32:*.ps=00;32:*.txt=00;32:*.patch=00;32:*.diff=00;32:*.log=00;32:*.doc=00;32'
+ZLS_COLORS=${ZLS_COLORS}':*.pdf=00;31:*.ps=00;31:*.txt=00;32:*.patch=00;32:*.diff=00;32:*.log=00;32:*.doc=00;32'
 # Audio formats (cyan)
 ZLS_COLORS=${ZLS_COLORS}':*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36'
-# # Additional coloring
-# ZLS_COLORS=${ZLS_COLORS}':*.c=01;39:*.cpp=01;39:*.hs=01;39:*.py=01;39:*.md=00;34:*.vim=01;31:*.tex=01;33:*.bib=01;33:*.sty=01;33:*.cls=01;33:';
 # }}}
 
 LS_COLORS=${ZLS_COLORS}
@@ -99,8 +97,12 @@ export ZLS_COLORS LS_COLORS
 # }}}
 
 # Language/Programs Specifics {{{1
+if [ $(date +%H) -ge 20 ] || [ $(date +%H) -lt 8 ]; then
+  export BACKGROUND_COLOR="dark"
+else
+  export BACKGROUND_COLOR="light"
+fi
 export ADDRESSES="$HOME/Documents/organization/contacts/addressbook"
-export BACKGROUND_COLOR="dark"
 export BAT_THEME="Dracula"
 export DOTFILES="$HOME"/dotfiles
 export MPC_FORMAT="[[%artist%  - ]%title% (%time%)]|[%file%]"

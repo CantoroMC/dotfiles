@@ -63,6 +63,13 @@ _nnn_cmd () {
 }
 zle -N _nnn_cmd
 
+_rcn_cmd () {
+  BUFFER="rcn"
+  zle end-of-line
+  zle accept-line
+}
+zle -N _rcn_cmd
+
 _tmux_cmd () {
   BUFFER="tmux"
   zle end-of-line
@@ -162,7 +169,8 @@ bindkey -M viins      '^X^B' fzf-editor
 bindkey -M vicmd      '^X^B' fzf-editor
 bindkey -M viins      '^X^E' edit-command-line
 bindkey -M vicmd      '^X^E' edit-command-line
-bindkey -M viins -s   '^X^F' 'rcn\n'
+bindkey -M viins      '^X^F' _rcn_cmd
+bindkey -M vicmd      '^X^F' _rcn_cmd
 bindkey -M viins      '^X^I' insert-datestamp
 bindkey -M viins      '^X^K' fzf-bindkey
 bindkey -M viins      '^X^L' _nnn_cmd
