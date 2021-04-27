@@ -15,30 +15,68 @@ require'compe'.setup {
   documentation    = true;
 
   source = {
-    -- Builtin Sources
-    path            = true;
-    buffer          = true;
-    spell           = true;
-    tags            = true;
-    calc            = false;
-    emoji           = true;
+    -- Builtin Sources (kind and menu entries)
+    path = {
+      menu = " "
+    };
+    buffer = {
+      dup = false;
+      menu = "B"
+    };
+    spell = {
+      dup = false;
+      menu = "﬜",
+    };
+    tags = {
+      dup = false;
+      menu = "T",
+    };
+    emoji = {
+      menu = "ﲃ",
+    };
+    calc = false;
 
     -- Builting Lsp
-    nvim_lsp        = true;
-    nvim_lua        = true;
+    nvim_lsp = {
+      priority = 2;
+      menu = "撚",
+    };
+    nvim_lua = {
+      priority = 5;
+      menu = "",
+    };
 
     -- Builting Plugins
-    snippets_nvim   = false;
-    vsnip           = false;
-    ultisnips       = true;
-    nvim_treesitter = false;
+    ultisnips = {
+      priority = 1;
+      dup = true;
+      menu = "";
+    };
+    nvim_treesitter = {
+      priority = 10;
+      dup = false;
+      menu = "";
+    };
+    snippets_nvim = false;
+    vsnip = false;
 
     -- External Sources
-    zsh             = true;
-    latex_symbols   = {
-     priority = 999;
-     filetypes = { 'tex', 'plaintex', 'bibtex' };
+    zsh = {
+      priority = 10;
+      filetypes = { 'zsh' };
+      dup = false;
+      menu = '';
     };
+    latex_symbols = false;
+    --[[
+    latex_symbols = {
+      enable = false;
+      priority = 999;
+      filetypes = { 'tex', 'plaintex', 'bibtex' };
+      dup = false;
+      menu = "﨧";
+    };
+    --]]
 
     -- My sources
     email = true;

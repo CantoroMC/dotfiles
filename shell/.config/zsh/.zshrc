@@ -126,3 +126,5 @@ unset plugin plugins
 #
 autoload -Uz promptinit; promptinit; prompt voidy
 
+
+zmodload zsh/zpty

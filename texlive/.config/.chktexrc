@@ -1,75 +1,32 @@
-##
-##  ChkTeX, example resource file for ChkTeX.
-##  Copyright (C) 1995-96 Jens T. Berger Thielemann
-##
-##  This program is free software; you can redistribute it and/or modify
-##  it under the terms of the GNU General Public License as published by
-##  the Free Software Foundation; either version 2 of the License, or
-##  (at your option) any later version.
-##
-##  This program is distributed in the hope that it will be useful,
-##  but WITHOUT ANY WARRANTY; without even the implied warranty of
-##  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-##  GNU General Public License for more details.
-##
-##  You should have received a copy of the GNU General Public License
-##  along with this program; if not, write to the Free Software
-##  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
-##
-##  Contact the author at:
-##      Jens Berger
-##      Spektrumvn. 4
-##      N-0666 Oslo
-##      Norway
-##      E-mail: <jensthi@ifi.uio.no>
-##
+# The { ... } syntax does now mean case-sensitive comparing,
+# while [ ... ] means case-insensitive comparing of the keywords.
+# Case-insensitive comparing of the keywords is only supported on a few of the
+# keywords (it's not meaningful in all contexts, and it slows ChkTeX
+# down). Keywords supporting this are marked throughout the file.
+#
 
-#####################################################################
-#
-# Note:   The  format  has  changed  slightly  (again).  The { ...  }
-# syntax does now mean case-sensitive comparing, while [ ...  ] means
-# case-insensitive   comparing  of  the  keywords.   Case-insensitive
-# comparing  of  the  keywords  is  only  supported  on  a few of the
-# keywords  (it's not meaningful in all contexts, and it slows ChkTeX
-# down).  Keywords supporting this are marked throughout the file.
-#
-# You  may  also reset a list by saying "KEYWORD = { ...  }"; it will
-# then be set equal to the contents of the list you specify.
-#
-# Comments  begin  with  `#', and continues for the rest of the line.
-# Blank lines plus leading and trailing spaces are of course ignored.
-#
 # The general format of this file is the following:
+#   KEYWORD { item item ...} [ item item ... ] /* Adds items */
+#   KEYWORD [ item item ...] { item item ... } /* Adds items */
+#   KEYWORD = item
+#   KEYWORD = { item item ... }                /* Clears list before adding */
+#   KEYWORD = [ item item ... ]                /* Clears list before adding */
 #
-# KEYWORD { item item ...} [ item item ... ] /* Adds items */
-#
-# KEYWORD [ item item ...] { item item ... } /* Adds items */
-#
-# KEYWORD = item
-#
-# KEYWORD = { item item ... } /* Clears list before adding */
-#
-# KEYWORD = [ item item ... ] /* Clears list before adding */
-#
-# This  does  _not_  mean  that  you may alternate the forms; certain
-# keywords  demands  a  list, other a single value.  You thus have to
-# look at the examples of their use.
-#
-# Please  also  note  that if you specify a list-keyword twice, we'll
-# concatenate the lists.   If you specify a item-keyword twice, we'll
+# NOTE that if you specify a list-keyword twice, we'll
+# concatenate the lists.  If you specify a item-keyword twice, we'll
 # kill the previous value.
 #
-# We  are  slightly  context-sensitive when detecting tokens like "}"
-# and "]"; they have to be preceded by a space.  This generally makes
+# We are slightly context-sensitive when detecting tokens like "}"
+# and "]"; they have to be preceded by a space. This generally makes
 # life easier.
 #
-# Items  are separated by spaces.  Newlines are considered as spaces,
-# but  can't be escaped.  You may surround items with quotes (`"') to
+# Items are separated by spaces. Newlines are considered as spaces,
+# but can't be escaped. You may surround items with quotes (`"') to
 # easily put spaces into them.
 #
 # Escape sequences available:
 #
-#   Sequence        Resulting character
+#  Sequence       Resulting character
 #   !               A space (type `! ', not just a exclamation mark)
 #   !"              "
 #   !#              #
@@ -93,8 +50,8 @@
 #                   three characters must be included. Unspecified
 #                   results if DDD > 377.
 #
-# Minor  note:   As  you  can see, most of these escape sequences are
-# equal  to  those  in  C  (with  some extensions); however, we use !
+# Minor note: As you can see, most of these escape sequences are
+# equal to those in C (with  some extensions); however, we use !
 # instead of \ as escape character for obvious reasons.
 #
 #
@@ -104,7 +61,7 @@
 #   Abbrev*     - A list of abbreviations not automatically caught.
 #   CenterDots  - Commands/characters  which  should  have  \cdots in
 #                 between.
-#   CmdLine     - Default   commandline   options.    These  will  be
+#   CmdLine     - Default   commandline   options.  These  will  be
 #                 processed  before  the ones you give on the command
 #                 line.
 #   HyphDash   \
@@ -165,7 +122,7 @@ QuoteStyle = Logical
 # intervals are supported.
 #
 
-TabSize = 8
+TabSize = 2
 
 #####################################################################
 #
@@ -175,6 +132,7 @@ TabSize = 8
 
 CmdLine
 {
+    -v2
 }
 
 #####################################################################
@@ -385,6 +343,8 @@ Silent
     \addlinespace \cr \fill \frontmatter
     \toprule \midrule \bottomrule
 
+    \tikz \draw \path \pic \coordinate
+
 }[
 # Here you can put regular expressions to match Silent macros.  It was
 # designed for  the case where you  have many custom macros  sharing a
@@ -436,7 +396,7 @@ NumDash
 
 WordDash
 {
-    3
+    2 3
 }
 
 #####################################################################
@@ -549,7 +509,7 @@ TextCmd
 VerbEnvir
 {
     verbatim comment listing verbatimtab rawhtml errexam picture texdraw
-    filecontents pgfpicture tikzpicture minted lstlisting IPA
+    filecontents pgfpicture tikzpicture minted lstlisting IPA code
 }
 
 #####################################################################

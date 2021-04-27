@@ -91,6 +91,13 @@ end
 -- CAPABILITIES:
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits',
+  }
+}
 
 -- Diagnostic Signs
 vim.fn.sign_define('LspDiagnosticsSignError',
@@ -122,6 +129,7 @@ lspconfig.pyls.setup{
   cmd = { 'pyls' },
   filetypes = { 'python' },
   on_attach = custom_lsp_attach,
+  capabilities = capabilities,
 }
 
 --- HASKELL
@@ -135,6 +143,7 @@ lspconfig.hls.setup{
     },
   },
   on_attach = custom_lsp_attach,
+  capabilities = capabilities,
 }
 
 -- Json
@@ -145,7 +154,8 @@ require'lspconfig'.jsonls.setup {
         vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
       end
     }
-  }
+  },
+  capabilities = capabilities,
 }
 
 --- LUA
@@ -184,6 +194,7 @@ lspconfig.sumneko_lua.setup {
     },
   },
   on_attach = custom_lsp_attach,
+  capabilities = capabilities,
 }
 
 -- SHELL
@@ -194,6 +205,7 @@ lspconfig.bashls.setup{
   },
   filetypes = { "sh", "bash", "zsh" },
   on_attach = custom_lsp_attach,
+  capabilities = capabilities,
 }
 
 --- TEX
@@ -233,11 +245,13 @@ lspconfig.texlab.setup{
     },
   },
   on_attach = custom_lsp_attach,
+  capabilities = capabilities,
 }
 
 --- VIM
 lspconfig.vimls.setup{
   on_attach = custom_lsp_attach,
+  capabilities = capabilities,
 }
 
 --[==[ Temporary Taken up by coc
