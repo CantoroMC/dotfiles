@@ -3,12 +3,15 @@
 	"suggest.maxPreviewWidth": 80,
 	"suggest.enablePreview": true,
 	"suggest.floatEnable": true,
+	"suggest.labelMaxLength": 80,
 	"suggest.detailField": "preview",
+	"suggest.snippetIndicator":"זּ ",
 	"suggest.echodocSupport": true,
-	"suggest.languageSourcePriority": 1,
+	"suggest.removeDuplicateItems": true,
+	"suggest.languageSourcePriority": 2,
 	"suggest.completionItemKindLabels": {
-	"text": "",
-	"method": "ƒ",
+		"text": "",
+		"method": "ƒ",
 		"function": "",
 		"constructor": " ",
 		"field": " ",
@@ -34,6 +37,7 @@
 		"typeParameter": "<>",
 		"default": "-"
 	},
+	"diagnostic.checkCurrentLine": false,
 	"diagnostic.messageTarget": "float",
 	"diagnostic.virtualText": true,
 	"diagnostic.virtualTextCurrentLineOnly": false,
@@ -41,10 +45,21 @@
 	"diagnostic.warningSign": " ",
 	"diagnostic.infoSign": " ",
 	"diagnostic.hintSign": " ",
-	"coc.preferences.useQuickfixForLocations": true,
 	"codeLens.enable": true,
+  "codeLens.separator": " ",
+  "codeLens.subseparator": " - ",
+	"list.previousKeymap": "<C-p>",
+	"list.nextKeymap": "<C-n>",
+	"coc.preferences.useQuickfixForLocations": true,
+  "coc.preferences.enableMessageDialog": false,
+  "coc.preferences.bracketEnterImprove": false,
 
+	"coc.source.around.priority": 4,
+	"coc.source.around.shortcut": " ",
 	"coc.source.buffer.priority": 10,
+	"coc.source.buffer.shortcut": "﬘",
+	"coc.source.file.priority": 10,
+	"coc.source.file.shortcut": " ",
 	"coc.source.file.ignoreHidden": false,
 	"coc.source.syntax.priority": 10,
 	"coc.source.syntax.shortcut": "SYN",
@@ -55,9 +70,10 @@
 	"coc.source.tmuxcomplete.enable": true,
 	"coc.source.tmuxcomplete.priority": 99,
 	"coc.source.tmuxcomplete.shortcut": "",
-	"snippets.priority": 30,
-	"snippets.shortcut": "זּ",
 	"coc.source.latex_symbols.enable": false,
+	"snippets.priority": 30,
+
+	"snippets.shortcut": " זּ ",
 
 	"solargraph.trace.server": "messages",
 	"solargraph.promptDownload": true,
@@ -96,6 +112,7 @@
 				},
 				"latex": {
 					"build": {
+						"executable": "latexmk",
 						"args": [
 							"-pdf",
 							"-shell-escape",
@@ -104,13 +121,12 @@
 							"-file-line-error",
 							"%f"
 						],
-						"executable": "latexmk",
 						"onSave": false
 					},
 					"forwardSearch": {
-						"args": [ "%p" ],
-						"onSave": false,
-						"executable": "zathura"
+						"executable": "zathura",
+						"args" : [ "--synctex-forward", "%l:1:%f", "%p" ],
+						"onSave": false
 					},
 					"lint": {
 						"onChange": true,

@@ -137,6 +137,17 @@ lspconfig.hls.setup{
   on_attach = custom_lsp_attach,
 }
 
+-- Json
+require'lspconfig'.jsonls.setup {
+  commands = {
+    Format = {
+      function()
+        vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
+      end
+    }
+  }
+}
+
 --- LUA
 lspconfig.sumneko_lua.setup {
   cmd = { 'lua-language-server' };
@@ -175,6 +186,16 @@ lspconfig.sumneko_lua.setup {
   on_attach = custom_lsp_attach,
 }
 
+-- SHELL
+lspconfig.bashls.setup{
+  cmd = { "bash-language-server", "start" },
+  cmd_env = {
+    GLOB_PATTERN = "*@(.sh|.inc|.bash|.command)"
+  },
+  filetypes = { "sh", "bash", "zsh" },
+  on_attach = custom_lsp_attach,
+}
+
 --- TEX
 lspconfig.texlab.setup{
   cmd = { 'texlab' },
@@ -188,6 +209,7 @@ lspconfig.texlab.setup{
     },
     latex = {
       build = {
+        executable = "latexmk",
         args = {
           "-pdf",
           "-shell-escape",
@@ -196,13 +218,13 @@ lspconfig.texlab.setup{
           "-file-line-error",
           "%f"
         },
-        executable = "latexmk",
         onSave = false,
+        forwardSearchAfter = true,
       },
       forwardSearch = {
-        args = { '%p' },
-        onSave = false,
         executable = 'zathura',
+        args = { "--synctex-forward", "%l:1:%f", "%p" },
+        onSave = false,
       },
       lint = {
         onChange = true,
@@ -219,6 +241,7 @@ lspconfig.vimls.setup{
 }
 
 --[==[ Temporary Taken up by coc
+
 -- GO
 lspconfig.gopls.setup{
   cmd = { "gopls" },
@@ -254,15 +277,6 @@ lspconfig.solargraph.setup{
   on_attach = custom_lsp_attach,
 }
 
--- SHELL
-lspconfig.bashls.setup{
-  cmd = { "bash-language-server", "start" },
-  cmd_env = {
-    GLOB_PATTERN = "*@(.sh|.inc|.bash|.command)"
-  },
-  filetypes = { "sh", "bash", "zsh" },
-  on_attach = custom_lsp_attach,
-}
 
 -- HTML
 require'lspconfig'.html.setup {
@@ -274,4 +288,5 @@ require'lspconfig'.cssls.setup{}
 
 -- Java/TypeScript
 require'lspconfig'.tsserver.setup{}
+
 -- ]==]
