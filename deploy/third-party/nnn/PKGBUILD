@@ -1,7 +1,7 @@
 # Maintainer: Marco Cantoro <marco dot cantoro92 at outlook dot it>
 
 pkgname=nnn-bull-git
-pkgver=4.0.r3300.3329468
+pkgver=4.0.r3311.7b44154
 pkgrel=1
 pkgdesc="The unorthodox terminal file manager"
 arch=('x86_64')

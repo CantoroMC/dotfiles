@@ -5,7 +5,7 @@
 ; but if you add other options, the next Save Settings will not save them.
 ; Use a shortcut, an @indirection file, or a .bat file instead.
 ;
--saveDate 1610965745
+-saveDate 1619640524
 -whitePieceColor #FFFFCC
 -blackPieceColor #202020
 -lightSquareColor #c4ced8
@@ -134,10 +134,10 @@ Open Chat Box (name);$chat;
 "kc" -icshost alanimus.com -icshelper timeseal
 }
 -recentEngines 4
--recentEngineList {StockfishBmi2
+-recentEngineList {stockfish
+StockfishBmi2
 stockfish12_bmi2
 OldStocco
-stockfish12_modern
 }
 -firstChessProgramNames {"AurStock" -fcp "/usr/bin/stockfish" -fd "/usr/bin" -fn "AurStock" -fUCI
 }
@@ -211,7 +211,7 @@ stockfish12_modern
 -repeatsToDraw 6
 -backgroundObserve false
 -dualBoard false
--smpCores 1
+-smpCores 2
 -egtFormats "syzygy:/EGT/Syzygy,scorpio:/EGT/bitbases"
 -niceEngines 0
 -logoSize 0
@@ -272,5 +272,5 @@ stockfish12_modern
 -engineOutputUp true
 -engineOutputX 12
 -engineOutputY 501
--engineOutputW 498
--engineOutputH 139
+-engineOutputW 504
+-engineOutputH 145

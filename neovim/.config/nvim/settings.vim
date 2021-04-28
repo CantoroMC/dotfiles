@@ -305,6 +305,7 @@ augroup comment_strings " {{{1
   autocmd!
   autocmd FileType c,cpp,cs setlocal commentstring=//\ %s
   autocmd FileType desktop  setlocal commentstring=#\ %s
+  autocmd FileType cabal    setlocal commentstring=--\ %s
 augroup END
 " }}}
 

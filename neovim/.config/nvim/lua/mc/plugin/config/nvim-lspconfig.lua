@@ -146,18 +146,6 @@ lspconfig.hls.setup{
   capabilities = capabilities,
 }
 
--- Json
-require'lspconfig'.jsonls.setup {
-  commands = {
-    Format = {
-      function()
-        vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
-      end
-    }
-  },
-  capabilities = capabilities,
-}
-
 --- LUA
 lspconfig.sumneko_lua.setup {
   cmd = { 'lua-language-server' };
@@ -303,4 +291,15 @@ require'lspconfig'.cssls.setup{}
 -- Java/TypeScript
 require'lspconfig'.tsserver.setup{}
 
+-- Json
+require'lspconfig'.jsonls.setup {
+  commands = {
+    Format = {
+      function()
+        vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
+      end
+    }
+  },
+  capabilities = capabilities,
+}
 -- ]==]

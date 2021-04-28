@@ -55,7 +55,7 @@ end
 -- Print the list of lua 's plugin configuration
 local excrete = function()
   local lua_configs = limbs()
-  local cexpr       = table.concat(vim.fn.sort(lua_configs), "\n")
+  local cexpr       = vim.fn.sort(lua_configs)
 
   vim.cmd('cexpr ' .. vim.fn.string(cexpr))
   vim.fn.setqflist({}, 'a', {["title"] = 'PackerConfigs'})
