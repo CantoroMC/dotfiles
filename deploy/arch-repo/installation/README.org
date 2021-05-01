@@ -141,12 +141,9 @@ user of the weel group to execute sudo.
 ** Network
 *** Activate network services
 #+begin_src shell
-  systemctl enable systemd-networkd
-  systemctl start systemd-networkd
-  systemctl enable systemd-resolved
-  systemctl start systemd-resolved
-  systemctl enable NetworkManager
-  systemctl start NetworkManager
+  systemctl enable --now systemd-networkd
+  systemctl enable --now systemd-resolved
+  systemctl enable --now NetworkManager
 #+end_src
 
 *** Wifi
@@ -273,31 +270,25 @@ Change permissions to the snapshots directory
 
 Enable systemd services for snapper
 #+begin_src shell
-  systemctl enable snapper-timeline.timer
-  systemctl start snapper-timeline.timer
-  systemctl enable snapper-cleanup.timer
-  systemctl start snapper-cleanup.timer
+  systemctl enable --now snapper-timeline.timer
+  systemctl enable --now snapper-cleanup.timer
 #+end_src
 
 ** Systemd services
 *** Reflector services
 #+begin_src sh
-  systemctl enable reflector.service
-  systemctl start reflector.service
-  systemctl enable reflector.timer
-  systemctl start reflector.timer
+  systemctl enable --now reflector.service
+  systemctl enable --now reflector.timer
 #+end_src
 
 *** Bluetooth service
 #+begin_src sh
-  systemctl enable bluetooth.service
-  systemctl start bluetooth.service
+  systemctl enable --now bluetooth.service
 #+end_src
 
 *** Ssh service
 #+begin_src sh
-  systemctl enable sshd.service
-  systemctl start sshd.service
+  systemctl enable --now sshd.service
 #+end_src
 
 ** Configuration Files
