@@ -1,6 +1,9 @@
 # general
 set scroll-page-aware "true"
-set font "FiraCode Nerd Font Mono 9"
+set statusbar-home-tilde "true"
+set window-title-basename "true"
+set window-title-page "true"
+set font "Operator Mono Lig 9"
 set show-hidden "true"
 set guioptions ""
 set dbus-service "true"
@@ -8,6 +11,7 @@ set synctex "true"
 set synctex-editor-command "nvr --remote +%{line} %{input}"
 set selection-clipboard "clipboard"
 set selection-notification "false"
+set recolor-keephue "true"
 
 # colors
 set default-bg "#000000"
@@ -15,7 +19,7 @@ set default-fg "#FFFFFF"
 set recolor-lightcolor "#151a1e"
 set recolor-darkcolor "#FFFFFF"
 set statusbar-fg "#E7C547"
-set statusbar-bg "#465764"
+set statusbar-bg "#151a1e"
 set inputbar-fg "#B8CC52"
 set inputbar-bg "#151a1e"
 set completion-highlight-fg "#B8CC52"
@@ -25,5 +29,7 @@ set highlight-active-color "#FF3333"
 set highlight-transparency 0.5
 set notification-fg "#FF3333"
 set notification-bg "#1c2328"
+set index-bg "#151a1e"
+set index-fg "#ffffff"
 
 # vim:fdm=marker:ft=config

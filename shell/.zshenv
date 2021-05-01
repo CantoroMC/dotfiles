@@ -107,7 +107,6 @@ export BAT_THEME="Dracula"
 export DOTFILES="$HOME"/dotfiles
 export MPC_FORMAT="[[%artist%  - ]%title% (%time%)]|[%file%]"
 export MPD_HOST=$HOME/.config/mpd/socket
-export RANGER_LOAD_DEFAULT_RC="FALSE"
 export TERMINAL='/usr/bin/st'
 # Nnn
 export NNN_OPTS="AHRUude"

@@ -343,7 +343,7 @@ Silent
     \addlinespace \cr \fill \frontmatter
     \toprule \midrule \bottomrule
 
-    \tikz \draw \path \pic \coordinate
+    \tikz \draw \path \pic \coordinate \shade \shadedraw \clip \fill \filldraw
 
 }[
 # Here you can put regular expressions to match Silent macros.  It was
