@@ -347,12 +347,12 @@ Comment =gem: --user-install=
 **** =/etc/xboard.conf=
 Modify =saveSettingsFile= and =settingsFile= to =~/.config/xboardrc=
 
-*** Note
+** Note
 
-**** OpenFOAM: download from github and compile it
+*** OpenFOAM: download from github and compile it
 ( requires AUR scotch-git and base cgal and paraview )
 
-**** Matlab
+*** Matlab
 can be installed by donwloading it and run the installer with administrator privileges
 The temp directory may run out of space so you can
 #+begin_src sh
@@ -383,21 +383,21 @@ causes problem to the documentation rendering....
   sudo mv /usr/local/MATLAB/R2019b/cefclient/sys/os/glnxa64/libglib* -t/usr/local/MATLAB/R2019b/cefclient/sys/os/glnxa64/Exclude
 #+end_src
 
-***** Add Symlink for Mlint
+**** Add Symlink for Mlint
 #+begin_src shell
   sudo ln -sv /usr/local/MATLAB/R2019b/bin/glnxa64/mlint /usr/local/bin/mlint
 #+end_src
 
-*** NeoVim Nightly
+** NeoVim Nightly
 NeoVim v5.0 will be soon released
 
-**** Build prerequisites
+*** Build prerequisites
 Additional (not already installed) packages required to build neovim from source
 #+begin_src shell
   sudo pacman -S --needed ninja tree-sitter
 #+end_src
 
-**** Building
+*** Building
 #+begin_src shell
   make CMAKE_BUILD_TYPE=RelWithDebInfo
   sudo make CMAKE_INSTALL_PREFIX=/usr install
