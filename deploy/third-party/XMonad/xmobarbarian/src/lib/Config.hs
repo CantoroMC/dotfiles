@@ -1,7 +1,6 @@
 module Config
     ( Palette(..)
     , palette
-    , defaultHeight
     , baseConfig
     , (<~>)
     , (>~<)
@@ -14,14 +13,9 @@ module Config
     , xmobarConfigDir
     ) where
 
-------------------------------------------------------------------------------
-    -- Imports
 import System.Environment (lookupEnv)
-
 import Xmobar
 
-------------------------------------------------------------------------------
-    -- Basic Variables
 
 xmobarConfigDir :: String
 xmobarConfigDir = "\"${DOTFILES}\"/deploy/third-party/XMonad/xmobarbarian"
@@ -29,8 +23,6 @@ xmobarConfigDir = "\"${DOTFILES}\"/deploy/third-party/XMonad/xmobarbarian"
 icons :: String -> String
 icons bg = xmobarConfigDir ++ "/icons/" ++ bg
 
-------------------------------------------------------------------------------
-    -- Operators
 
 (<~>) :: Palette -> [String] -> [String]
 (<~>) p args =
@@ -59,8 +51,7 @@ icon arg = "<icon=" ++ arg ++ "/>"
 separator :: String
 separator = icon "separators/separator.xpm"
 
-------------------------------------------------------------------------------
-    -- Color Palettes
+
 
 data Palette = Palette
     { pFont       :: String
@@ -72,17 +63,17 @@ data Palette = Palette
     , pLow        :: String
     , pNormal     :: String
     , pHigh       :: String
-    , pIsLight :: Bool
+    , pIsLight    :: Bool
     }
 
-lightPalette :: Palette -- TODO
+lightPalette :: Palette
 lightPalette = Palette
     { pFont       = "xft:Operator Mono Lig:style=Italic:pixelsize=10"
     , pForeground = "#151a1e"
     , pBackground = "#eaeaea"
     , pAlpha      = 255
     , pBorder     = "#36a3d9"
-    , pIconRoot   = icons "dark"
+    , pIconRoot   = icons "light"
     , pLow        = "#36a3d9"
     , pNormal     = "#151a1e"
     , pHigh       = "#ff3333"
@@ -111,12 +102,6 @@ palette = do
     light <- isLight
     if light then return lightPalette else return darkPalette
 
-------------------------------------------------------------------------------
-    -- Configuration
-
-defaultHeight :: Int
-defaultHeight = 24
-
 baseConfig :: Palette -> Config
 baseConfig p = defaultConfig
     { font             = pFont p
@@ -129,7 +114,9 @@ baseConfig p = defaultConfig
     , bgColor          = pBackground p
     , fgColor          = pForeground p
     , alpha            = pAlpha p
+    , position         = TopSize C 99 24
     , borderColor      = pBorder p
+    , border           = NoBorder
     , textOffset       = -1
     , textOffsets      = [-1, -1, -1]
     , iconOffset       = -1
