@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# ( comonad, dwm, awesome )
-DEFAULT_SESSION=dwm
+# ( comonad, dwm, qtile )
+DEFAULT_SESSION=qtile
 
 # Load xprofile
 sysprofile=/etc/xprofile
@@ -41,6 +41,7 @@ get_session(){
     lxqt)          init+=(lxqt-session) ;;
     mate)          init+=(mate-session) ;;
     openbox)       init+=(openbox-session) ;;
+    qtile)         init+=(qtile) ;;
     xfce)          init+=(xfce4-session) ;;
     xmonad)        init+=(xmonad) ;;
     comonad)       init+=(comonad) ;;

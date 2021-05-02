@@ -8,4 +8,3 @@ stockfish-git
 radiotray-ng
 onlyoffice-bin
 lua-language-server-git
-awesome-git
