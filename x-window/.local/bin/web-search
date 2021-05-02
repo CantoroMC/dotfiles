@@ -25,18 +25,19 @@ URLS=(
 
 # List for rofi
 gen_list() {
-    for i in "${!URLS[@]}"
-    do
-      echo "$i"
-    done
+  for i in "${!URLS[@]}"; do
+    echo "$i"
+  done
 }
 
 main() {
   # Pass the list to rofi
-  platform=$( (gen_list) | rofi -dmenu -matching fuzzy -no-custom -location 0 -p "Search > " )
+  # platform=$( (gen_list) | rofi -dmenu -matching fuzzy -no-custom -location 0 -p "Search > " )
+  platform=$( (gen_list) | fzf --prompt 'Search Engine: ')
 
   if [[ -n "$platform" ]]; then
-    query=$( (echo ) | rofi  -dmenu -matching fuzzy -location 0 -p "Query > " )
+    # query=$( (echo ) | rofi  -dmenu -matching fuzzy -location 0 -p "Query > " )
+    read -p "Query: " -r query
 
     if [[ -n "$query" ]]; then
       url=${URLS[$platform]}$query
