@@ -8,7 +8,7 @@
 . "$(dirname "$0")"/.nnn-plugin-helper
 
 if [ "$(cmd_exists fzf)" -eq "0" ]; then
-  sel=$(fzf)
+  sel=$(fzf --delimiter / --with-nth=-2,-1 --tiebreak=begin)
 else
   exit 1
 fi
