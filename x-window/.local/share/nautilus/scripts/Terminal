@@ -1,9 +1,0 @@
-#!/bin/sh
-#
-# openTerminalHere
-
-main() {
-  $TERMINAL
-}
-
-main "$@"

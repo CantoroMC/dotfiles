@@ -1,4 +1,0 @@
-:set -Wall -ilib
-:load xmobar.hs
-
--- vim:ft=haskell

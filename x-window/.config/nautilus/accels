@@ -1,2 +1,0 @@
-; I'm unable to do it
-(gtk_accel_path "<Actions>/ScriptsGroup/Terminal" "F12")

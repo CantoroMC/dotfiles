@@ -1,7 +1,7 @@
 # Maintainer: Marco Cantoro <marco dot cantoro92 at outlook dot it>
 
 pkgname=dwm-bull-git
-pkgver=6.2.r1753.c06ff52
+pkgver=6.2.r1755.026b2d0
 pkgrel=1
 pkgdesc="Dynamic window manager for X"
 arch=('x86_64')
@@ -33,6 +33,11 @@ provides=("${pkgname%-bull-git}")
 conflicts=("${pkgname%-bull-git}")
 source=('git+https://github.com/CantoroMC/dwm')
 md5sums=('SKIP')
+
+prepare() {
+  cd "$srcdir/${pkgname%-bull-git}"
+  git checkout --track origin/T450s
+}
 
 pkgver() {
   cd "$srcdir/${pkgname%-bull-git}"

@@ -1,5 +1,0 @@
-packages: ./ xmonad/ xmonad-contrib/
-executable-stripping: True
-optimization: True
-
--- vim:ft=cabal

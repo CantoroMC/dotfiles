@@ -5,5 +5,3 @@ gpick
 gcolor2
 parcellite
 transmission-gtk
-nautilus
-nautilus-sendto
