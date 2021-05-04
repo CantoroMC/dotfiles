@@ -8,7 +8,7 @@
 	"suggest.snippetIndicator":"זּ ",
 	"suggest.echodocSupport": true,
 	"suggest.removeDuplicateItems": true,
-	"suggest.languageSourcePriority": 2,
+	"suggest.languageSourcePriority": 100,
 	"suggest.completionItemKindLabels": {
 		"text": "",
 		"method": "ƒ",
@@ -54,24 +54,24 @@
   "coc.preferences.enableMessageDialog": false,
   "coc.preferences.bracketEnterImprove": false,
 
-	"coc.source.around.priority": 4,
+	"coc.source.around.priority": 90,
 	"coc.source.around.shortcut": " ",
-	"coc.source.buffer.priority": 10,
+	"coc.source.buffer.priority": 70,
 	"coc.source.buffer.shortcut": "﬘",
-	"coc.source.file.priority": 10,
+	"coc.source.file.priority": 70,
 	"coc.source.file.shortcut": " ",
 	"coc.source.file.ignoreHidden": false,
-	"coc.source.syntax.priority": 10,
+	"coc.source.syntax.priority": 50,
 	"coc.source.syntax.shortcut": "SYN",
 	"coc.source.syntax.filetypes": ["arch", "awk", "automake", "cabal", "cmake", "conf", "config", "conkyrc", "crontab", "desktop", "diff", "dircolors", "dirpager", "fstab", "git", "gitcommit", "gitconfig", "gitsendmail", "godoc", "gpg", "groff", "help", "html", "i3", "less", "mail", "mailaliases", "make", "man", "manconf", "manual", "markdown", "matlab", "muttrc", "neomuttrc", "netrc", "netrw", "nix", "nroff", "perl", "pgn", "plaintex", "rasi", "sshconfig", "snippets", "snippets_snipmate", "syntax", "template", "texinfo", "texmf", "tmux", "xdefaults", "xf86conf"],
 	"coc.source.word.enable": true,
 	"coc.source.word.shortcut": "﬜",
-	"coc.source.word.priority": 99,
+	"coc.source.word.priority": 10,
 	"coc.source.tmuxcomplete.enable": true,
-	"coc.source.tmuxcomplete.priority": 99,
+	"coc.source.tmuxcomplete.priority": 10,
 	"coc.source.tmuxcomplete.shortcut": "",
 	"coc.source.latex_symbols.enable": false,
-	"snippets.priority": 30,
+	"snippets.priority": 80,
 
 	"snippets.shortcut": " זּ ",
 
@@ -95,7 +95,8 @@
 			"filetypes": ["haskell", "lhaskell"],
 			"settings": {
 				"haskell": {
-					"formattingProvider": "brittany"
+					"formattingProvider": "brittany",
+					"diagnosticsOnChange": false
 				}
 			}
 		},

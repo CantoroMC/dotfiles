@@ -2,19 +2,19 @@
 
 # Formatted echoing
 case ${1} in
-    "-b")
-        # Bold Blue
-        echo -e "\e[1;34m${@/-b/}\e[0m";;
-    "-r")
-        # Bold red
-        echo -e "\e[1;31m${@/-r/}\e[0m";;
-    "-y")
-        # Bold yellow
-        echo -e "\e[1;33m${@/-y/}\e[0m";;
-    "-w")
-        # Bold white
-        echo -e "\e[1;97m${@/-w/}\e[0m";;
-    *)
+  "-b")
+    # Bold Blue
+    echo -e "\e[1;34m${@/-b/}\e[0m";;
+  "-r")
+    # Bold red
+    echo -e "\e[1;31m${@/-r/}\e[0m";;
+  "-y")
+    # Bold yellow
+    echo -e "\e[1;33m${@/-y/}\e[0m";;
+  "-w")
+    # Bold white
+    echo -e "\e[1;97m${@/-w/}\e[0m";;
+  *)
     echo -e "$@ Not allowed option."
     echo -e "\tPass -b for \e[1;34mbolded blue\e[0m"
     echo -e "\tPass -r for \e[1;31mbolded red\e[0m"

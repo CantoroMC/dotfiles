@@ -240,10 +240,10 @@ preview_file() {
       [ "$SPLIT" = v ] && [ "$TERMINAL" = "kitty" ] && BSTR="\n"
       # shellcheck disable=SC2012
       ls -F --group-directories-first | head -n "$((lines - 3))" | "$(dirname "$0")"/.iconlookup -l "$cols" -B "$BSTR" -b " "
-    elif exists tree; then
-      fifo_pager tree --filelimit "$(find . -maxdepth 1 | wc -l)" -L 3 -C -F --dirsfirst --noreport
     elif exists exa; then
-      exa -G --group-directories-first --colour=always 2>/dev/null
+      exa -aT -L=2 --group-directories-first --colour=always --icons --git -I=.git 2>/dev/null
+    elif exists tree; then
+      fifo_pager tree --filelimit "$(find . -maxdepth 1 | wc -l)" -L 3 -C -F --dirsfirst --noreport -I .git
     else
       fifo_pager ls -F --group-directories-first --color=always
     fi
