@@ -323,10 +323,6 @@ Reduce the swappiness to improve system responsiveness
 =sysctl vm.swappiness= to check the current swappiness value (0-200)
 
 *** Pacman
-#+begin_src sh
-  sudo cp ~/dotfiles/deploy/arch-repo/installation/files/etc/pacman.conf /etc/
-#+end_src
-
 **** Hooks
 
 ***** paccache
