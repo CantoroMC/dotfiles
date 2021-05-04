@@ -104,7 +104,7 @@ Add matching entries to =/etc/hosts=
   127.0.1.1    HOSTNAME.localdomain    HOSTNAME
 #+end_src
 
-*** Install remaing packages
+*** Install remaining packages
 They contain also network management softwares, grub ...
 Look at =./packages/*=
 
