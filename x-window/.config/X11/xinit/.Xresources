@@ -68,6 +68,8 @@ URxvt.underlineURLs: true
 URxvt.urlButton: 1
 !! }}}
 
+Sxiv.font:         Operator Mono Lig:style=italic:size=9
+
 !! Color Palette: {{{1
 *.alpha:                          100
 *fading:                          8

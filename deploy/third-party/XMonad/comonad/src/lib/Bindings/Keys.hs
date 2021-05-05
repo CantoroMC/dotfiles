@@ -120,11 +120,11 @@ xmKeys mask = do
       |/- "float and center the focused window with quite small dimension"
         ^> withFocused $ windows . flip XMSS.float xmSmallRect
     bind $ mask ... xK_a
-      |/- "spawn default terminal"
-        ^> spawn =<< terminalFromConf
-    bind $ mask .|. shiftMask ... xK_a
       |/- "spawn kitty"
         ^> spawn "kitty"
+    bind $ mask .|. shiftMask ... xK_a
+      |/- "spawn default terminal"
+        ^> spawn =<< terminalFromConf
     bind $ mask .|. controlMask ... xK_a
       |/- "spawn secondary terminal"
         ^> spawn "tabbed -c -r 2 st -w ''"
@@ -277,11 +277,11 @@ xmKeys mask = do
       |/- "select the monocle layout"
         ^> sendMessage $ JumpToLayout "[M]"
     bind $ mask ... xK_Return
-      |/- "spawn default terminal"
-        ^> spawn =<< terminalFromConf
-    bind $ mask .|. shiftMask ... xK_Return
       |/- "spawn kitty"
         ^> spawn "kitty"
+    bind $ mask .|. shiftMask ... xK_Return
+      |/- "spawn default terminal"
+        ^> spawn =<< terminalFromConf
     bind $ mask .|. controlMask ... xK_Return
       |/- "spawn secondary terminal"
         ^> spawn "tabbed -c -r 2 st -w ''"

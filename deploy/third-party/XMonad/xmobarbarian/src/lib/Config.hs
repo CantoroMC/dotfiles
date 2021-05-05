@@ -4,7 +4,8 @@ module Config
     , baseConfig
     , (<~>)
     , (>~<)
-    , withPlugArgs
+    , withHighArgs
+    , withLowArgs
     , fc
     , fn
     , action
@@ -32,8 +33,11 @@ icons bg = xmobarConfigDir ++ "/icons/" ++ bg
 (>~<) p args =
     args ++ ["--low", pHigh p, "--normal", pNormal p, "--high", pLow p]
 
-withPlugArgs :: Palette -> [String] -> [String] -> [String]
-withPlugArgs p args extras = concat [p <~> args, ["--"], extras]
+withHighArgs :: Palette -> [String] -> [String] -> [String]
+withHighArgs p args extras = concat [p <~> args, ["--"], extras]
+
+withLowArgs :: Palette -> [String] -> [String] -> [String]
+withLowArgs p args extras = concat [p >~< args, ["--"], extras]
 
 fc :: String -> String -> String
 fc color arg = "<fc=" ++ color ++ ">" ++ arg ++ "</fc>"
@@ -88,7 +92,7 @@ darkPalette = Palette
     , pAlpha      = 255
     , pBorder     = "#8ce00a"
     , pIconRoot   = icons "dark"
-    , pLow        = "#008df8"
+    , pLow        = "#00d7eb"
     , pNormal     = "#ffffff"
     , pHigh       = "#ff000f"
     , pIsLight    = False
@@ -114,7 +118,7 @@ baseConfig p = defaultConfig
     , bgColor          = pBackground p
     , fgColor          = pForeground p
     , alpha            = pAlpha p
-    , position         = TopSize C 99 24
+    , position         = TopSize C 100 24
     , borderColor      = pBorder p
     , border           = NoBorder
     , textOffset       = -1

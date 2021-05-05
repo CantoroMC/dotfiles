@@ -22,4 +22,7 @@
 *.color14:                        #7ff1cb
 *.color15:                        #fafafa
 
+Sxiv.foreground:   #323232
+Sxiv.background:   #fafafa
+
 !! vim:ft=xdefaults:fdm=marker:ts=2:sts=2:et:sw=2:sr:tw=0:cms=!!\ %s

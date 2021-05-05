@@ -30,7 +30,8 @@ import Config
     , fc
     , fn
     , icon
-    , withPlugArgs
+    , withHighArgs
+    , withLowArgs
     , xmobarConfigDir
     )
 
@@ -50,7 +51,7 @@ xmSound = Com "/bin/sh" ["-c", xmobarConfigDir ++ "/scripts/xmVolume"] "xmVolume
     -- Monitors
 mpdMusic :: Palette -> Monitors
 mpdMusic p = MPDX
-    (withPlugArgs p
+    (withHighArgs p
         [ "--template", "<statei> "
             ++ action "wmctrl -xR ncmpcpp" 3 "<artist>-<title>"
             ++ action "mpc random"         1 (fn 3 " \61556 ")
@@ -108,7 +109,7 @@ weather = WeatherX
 
 memory :: Palette -> Monitors
 memory p = Memory
-    (withPlugArgs
+    (withHighArgs
         p
         [ "--template"
         , action "st htop" 3 (fn 2 "<usedipat> <usedratio>")
@@ -126,7 +127,7 @@ swap = Swap ["--template", fn 2 "(<usedratio>)", "-p", "2", "--suffix", "True"] 
 
 multicpu :: Palette -> Monitors
 multicpu p = MultiCpu
-    (withPlugArgs
+    (withHighArgs
         p
         [ "--template", "<ipat>" ++ fn 2 "<total0><total1><total2><total3><total4><total5><total6><total7>"
         , "--suffix" , "True"
@@ -142,7 +143,7 @@ multicpu p = MultiCpu
 
 thermal :: Palette -> Monitors
 thermal p = MultiCoreTemp
-    (withPlugArgs
+    (withHighArgs
         p
         ["--template", fn 2 "<maxipat> <max>°C"]
         [ "--max-icon-pattern"
@@ -165,7 +166,7 @@ uptime = Uptime
 battery :: Palette -> String -> Alias -> Monitors
 battery p a = BatteryN
     [a]
-    (withPlugArgs p
+    (withLowArgs p
         [ "--template", "<fn=2><leftipat> <acstatus></fn>"
         , "--suffix", "True"
         ]
@@ -183,7 +184,7 @@ battery p a = BatteryN
 
 brightness :: Palette -> Monitors
 brightness p = Brightness
-    (withPlugArgs
+    (withLowArgs
         p
         [ "--template"
         , action
@@ -214,7 +215,7 @@ volume :: Palette -> Monitors
 volume p = Volume
     "default"
     "Master"
-    (withPlugArgs
+    (withHighArgs
         p
         [ "--template"
         , action
@@ -252,7 +253,7 @@ volume p = Volume
 
 wifi :: Palette -> Monitors
 wifi p = DynNetwork
-    (withPlugArgs
+    (withHighArgs
         p
         ["--template", fn 2 "<txipat><rxipat>", "--suffix", "True", "-d", "1"]
         [ "--rx-icon-pattern"
