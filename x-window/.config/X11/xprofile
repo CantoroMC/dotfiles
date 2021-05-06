@@ -62,7 +62,6 @@ dunst &
 # }}}
 
 # Transparency {{{2
-# xcompmgr &
 picom -cb &
 # }}}
 
