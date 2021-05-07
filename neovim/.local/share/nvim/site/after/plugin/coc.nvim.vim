@@ -61,32 +61,32 @@ augroup coc_map_ft
   autocmd!
   " Diagnostic Navigation
   autocmd FileType
-        \ sh,perl,go,json,typescript,ruby
+        \ sh,perl,go,json,typescript,ruby,python
         \ nmap <buffer> <LocalLeader>qf  <Plug>(coc-fix-current)
   autocmd FileType
-        \ sh,perl,go,json,typescript,ruby
+        \ sh,perl,go,json,typescript,ruby,python
         \ nmap <buffer> [g          <Plug>(coc-diagnostic-prev)
   autocmd FileType
-        \ sh,perl,go,json,typescript,ruby
+        \ sh,perl,go,json,typescript,ruby,python
         \ nmap <buffer> ]g          <Plug>(coc-diagnostic-next)
   " code goto navigation and formatting.
   autocmd FileType
-        \ sh,perl,go,json,typescript,ruby
+        \ sh,perl,go,json,typescript,ruby,python
         \ nmap <buffer> <silent> <LocalLeader>gd <Plug>(coc-definition)
   autocmd FileType
-        \ sh,perl,go,json,typescript,ruby
+        \ sh,perl,go,json,typescript,ruby,python
         \ nmap <buffer> <silent> <LocalLeader>gD <Plug>(coc-type-definition)
   autocmd FileType
-        \ sh,perl,go,json,typescript,ruby
+        \ sh,perl,go,json,typescript,ruby,python
         \ nmap <buffer> <silent> <LocalLeader>gi <Plug>(coc-implementation)
   autocmd FileType
-        \ sh,perl,go,json,typescript,ruby
+        \ sh,perl,go,json,typescript,ruby,python
         \ nmap <buffer> <silent> <LocalLeader>R <Plug>(coc-references)
   autocmd FileType
-        \ sh,perl,go,json,typescript,ruby
+        \ sh,perl,go,json,typescript,ruby,python
         \ nmap <buffer> <LocalLeader>gq <Plug>(coc-format-selected)
   autocmd FileType
-        \ sh,perl,go,json,typescript,ruby
+        \ sh,perl,go,json,typescript,ruby,python
         \ xmap <buffer> <LocalLeader>gq <Plug>(coc-format-selected)
 augroup END
 

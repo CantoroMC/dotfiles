@@ -50,3 +50,11 @@ for d in $fpath; do
     break
   fi
 done
+
+# Sticky notes
+autoload -Uz sticky-note
+zstyle :sticky-note notefile "$ZDOTDIR/zsticky"
+zstyle :sticky-note maxnotes 1000
+zstyle :sticky-note theme \
+  bg blue \
+  fg $fg_bold[white]

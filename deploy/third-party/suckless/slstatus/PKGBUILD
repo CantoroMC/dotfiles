@@ -1,7 +1,7 @@
 # Maintainer: Marco Cantoro <marco dot cantoro92 at outlook dot it>
 
 pkgname=slstatus-bull-git
-pkgver=1.0.r5.4e1e424
+pkgver=1.0.r6.089c2e2
 pkgrel=1
 pkgdesc="Status monitor for window managers that use WM_NAME or stdin to fill the status bar"
 arch=('x86_64')
