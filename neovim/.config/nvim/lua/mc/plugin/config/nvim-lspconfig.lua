@@ -124,14 +124,6 @@ lspconfig.clangd.setup({
   capabilities = capabilities,
 })
 
--- PYTHON
-lspconfig.pyls.setup{
-  cmd = { 'pyls' },
-  filetypes = { 'python' },
-  on_attach = custom_lsp_attach,
-  capabilities = capabilities,
-}
-
 --- HASKELL
 lspconfig.hls.setup{
   cmd = { 'haskell-language-server-wrapper', '--lsp' },
@@ -250,6 +242,14 @@ lspconfig.gopls.setup{
   filetypes = { "go", "gomod" },
   root_dir = lspconfig.util.root_pattern("go.mod", ".git", vim.fn.getcwd() ),
   on_attach = custom_lsp_attach,
+}
+
+-- PYTHON
+lspconfig.pyls.setup{
+  cmd = { 'pyls' },
+  filetypes = { 'python' },
+  on_attach = custom_lsp_attach,
+  capabilities = capabilities,
 }
 
 -- PERL

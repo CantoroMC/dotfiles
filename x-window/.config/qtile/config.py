@@ -1,7 +1,10 @@
 from typing import List  # noqa: F401
 
+import os
+import socket
+
 from colors import Argonaut as Color
-from libqtile import bar, layout, widget
+from libqtile import bar, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, Match, Screen
 from libqtile.config import Key, KeyChord
 from libqtile.config import DropDown, ScratchPad
@@ -11,6 +14,7 @@ from libqtile.utils import guess_terminal
 
 mod = "mod4"
 terminal = guess_terminal()
+config_dir = os.path.expanduser("~/.config/qtile/")
 
 
 auto_fullscreen = False
@@ -32,68 +36,211 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        top=bar.Bar(
-            [
-                widget.GroupBox(),
-                widget.Chord(
-                    chords_colors={
-                        'launch': ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                widget.CurrentLayoutIcon(),
-                widget.WindowCount(),
-                widget.Spacer(10),
-                widget.WindowName(),
-                widget.Spacer(30),
-                widget.Prompt(),
-                widget.Spacer(30),
-                widget.Cmus(),
-                widget.Mpd2(),
-                widget.Spacer(30),
-                widget.CheckUpdates(),
-                widget.Spacer(30),
-                widget.Clock(
-                    format='%H:%M - %d %a %b',
-                    fmt=' {}',
-                ),
-                widget.Spacer(30),
-                widget.WidgetBox(
-                    widgets=[
-                        widget.ThermalSensor(thresold=80),
-                        widget.Spacer(10),
-                        widget.CPU(),
-                        widget.CPUGraph(),
-                        widget.Spacer(10),
-                        widget.Memory(),
-                        widget.MemoryGraph(),
-                    ],
-                    close_button_location='right',
-                    text_closed='Monitors  ',
-                    text_open=' ',
-                ),
-                widget.Spacer(30),
-                widget.Backlight(
-                    backlight_name='intel_backlight',
-                    step=5,
-                    fmt=' {}',
-                ),
-                widget.Spacer(10),
-                widget.Battery(
-                    battery=0,
-                    format='{char} {percent:2.0%} ({hour:d}:{min:02d})'+
-                           ' {watt:.2f} W',
-                    hide_threshold=None,
-                    charge_char='[C]', discharge_char='[D]',
-                    empty_char='[E]', full_char='[F]',
-                ),
-                widget.Spacer(10),
-                widget.Volume(
-                    fmt='墳 {}',
-                ),
-                widget.Spacer(10),
-                widget.Systray(icon_size=20, padding=3),
-            ],
+        top=bar.Bar([
+            widget.Image(
+                filename=config_dir + "media/menu.png",
+                scale=True,
+                margin=4,
+                mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(terminal)}
+            ),
+            widget.GroupBox(
+                font="SauceCodePro Nerd Font Italic",
+                fontsize=11,
+                margin_y=3,
+                margin_x=1,
+                padding_y=5,
+                padding_x=3,
+                borderwidth=4,
+                active=Color.green[0],
+                inactive=Color.fg[0],
+                highlight_method="line",
+                highlight_color=[Color.bg1[1], Color.bg1[0]],
+                this_current_screen_border=Color.green[1],
+                this_screen_border=Color.green[0],
+                other_current_screen_border=Color.blue[1],
+                other_screen_border=Color.blue[0],
+                foreground=Color.fg[0],
+                background=Color.bg[0]
+            ),
+            widget.Chord(
+                font="FantasqueSansMono Nerd Font Bold Italic",
+                fontsize=12,
+                chords_colors={
+                    'MPC': (Color.bg[1], Color.fg[1]),
+                },
+                name_transform=lambda name: name.upper(),
+            ),
+            widget.CurrentLayoutIcon(
+                custom_icon_paths=[config_dir + "media/layouts"],
+                scale=0.7
+            ),
+            widget.Prompt(
+                prompt="{0}@{1}: ".format(
+                    os.environ["USER"], socket.gethostname()),
+                padding=5,
+                foreground=Color.fg[0],
+                background=Color.bg1[0]
+            ),
+            widget.WindowCount(
+                fmt=' {}',
+                mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(terminal)},
+            ),
+            widget.WindowName(
+                font="FantasqueSansMono Nerd Font Italic",
+                padding=5
+            ),
+            widget.TextBox(
+                text='',
+                fontsize=24,
+                background=Color.bg[0],
+                foreground=Color.blue[1],
+                padding=0,
+            ),
+            widget.Mpd2(
+                status_format='{play_status} {artist} - {title}' +
+                              '({elapsed}/{duration})' +
+                              ' [{random}{repeat}{consume}{single}]',
+                space='',
+                idle_message='',
+                idle_format='{idle_message}',
+                background=Color.blue[1],
+                foreground=Color.fg[0],
+                padding=5,
+            ),
+            widget.Cmus(
+                background=Color.blue[1],
+                foreground=Color.fg[0],
+                padding=5,
+            ),
+            widget.TextBox(
+                text='',
+                fontsize=24,
+                background=Color.blue[1],
+                foreground=Color.cyan[0],
+                padding=0,
+            ),
+            widget.CheckUpdates(
+                update_interval=1800,
+                distro="Arch",
+                display_format=" {updates}",
+                no_update_string="  Ok",
+                colour_have_updates=Color.fg[0],
+                colour_no_updates=Color.green[0],
+                background=Color.cyan[0],
+                foreground=Color.fg[1],
+                mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(
+                        terminal + ' -e sudo pacman -Syu')
+                },
+            ),
+            widget.TextBox(
+                text='',
+                fontsize=24,
+                background=Color.cyan[0],
+                foreground=Color.bg[0],
+                padding=0,
+            ),
+            widget.Clock(
+                fontsize=12,
+                format='%H:%M - %d %a %b',
+                fmt=' {}',
+                padding=0,
+                background=Color.bg[0],
+                foreground=Color.fg[0],
+            ),
+            widget.TextBox(
+                text='',
+                fontsize=24,
+                background=Color.bg[0],
+                foreground=Color.yellow[0],
+            ),
+            widget.ThermalSensor(
+                threshold=80,
+                fmt=' {}',
+                foreground_alert=Color.red[0],
+                background=Color.yellow[0],
+                foreground=Color.bg[0],
+                padding=0,
+            ),
+            widget.Spacer(10, background=Color.yellow[0]),
+            widget.CPU(
+                format='  {load_percent}% ({freq_current}GHz)',
+                background=Color.yellow[0],
+                foreground=Color.bg[0],
+            ),
+            widget.Spacer(10, background=Color.yellow[0]),
+            widget.Memory(
+                background=Color.yellow[0],
+                foreground=Color.bg[0],
+            ),
+            widget.Spacer(10, background=Color.yellow[0]),
+            widget.WidgetBox(
+                widgets=[
+                    widget.CPUGraph(
+                        background=Color.yellow[0],
+                        foreground=Color.bg[0],
+                    ),
+                    widget.Spacer(10, background=Color.yellow[0]),
+                    widget.MemoryGraph(
+                        background=Color.yellow[0],
+                        foreground=Color.bg[0],
+                    ),
+                ],
+                close_button_location='right',
+                text_closed=' Monitors',
+                text_open=' ',
+                background=Color.yellow[0],
+                foreground=Color.bg[0],
+                padding=5,
+            ),
+            widget.TextBox(
+                text='',
+                fontsize=24,
+                background=Color.yellow[0],
+                foreground=Color.green[1],
+            ),
+            widget.Backlight(
+                backlight_name='intel_backlight',
+                step=5,
+                fmt=' {}',
+                background=Color.green[1],
+                foreground=Color.fg[0],
+            ),
+            widget.Spacer(5, background=Color.green[1]),
+            widget.Battery(
+                battery=0,
+                format='{char} {percent:2.0%} ({hour:d}:{min:02d})' +
+                       ' {watt:.2f} W',
+                hide_threshold=None,
+                charge_char='[C]',
+                discharge_char='[D]',
+                empty_char='[E]',
+                full_char='[F]',
+                background=Color.green[1],
+                foreground=Color.fg[0],
+            ),
+            widget.Spacer(5, background=Color.green[1]),
+            widget.Volume(
+                fmt='墳 {}',
+                background=Color.green[1],
+                foreground=Color.fg[0],
+            ),
+            widget.TextBox(
+                text='',
+                fontsize=24,
+                background=Color.green[1],
+                foreground=Color.bg[0],
+            ),
+            widget.Systray(icon_size=20, padding=3),
+        ],
+            24,
+            background=Color.bg[0],
+            opacity=1,
+            margin=[0, 0, 0, 0],
+        ),
+    ),
+    Screen(
+        top=bar.Bar([
+        ],
             24,
             background=Color.bg[1],
             opacity=1,
@@ -193,6 +340,7 @@ layouts = [
         single_border_width=0,
         single_margin=5,
     ),
+    layout.Max(),
     layout.Columns(
         fair=False,
         grow_amount=5,
@@ -207,7 +355,6 @@ layouts = [
         border_focus=Color.green[0], border_focus_stack=Color.green[1],
         border_normal=Color.bg[0], border_normal_stack=Color.bg[1],
     ),
-    layout.Max(),
     layout.Floating(
         fullscreen_border_width=0, max_border_width=0,
         border_width=1, border_focus=Color.green[0], border_normal=Color.bg[0],
@@ -215,7 +362,6 @@ layouts = [
 ]
 
 floating_layout = layout.Floating(float_rules=[
-    # Run the utility of `xprop` to see the wm class and name of an X client.
     *layout.Floating.default_float_rules,
     Match(wm_class='Arandr'),
     Match(wm_class='Avahi-discover'),
@@ -260,6 +406,13 @@ keys = [
     Key([mod],          "q", lazy.restart(),     desc="Restart Qtile"),
     Key([mod, "shift"], "q", lazy.window.kill(), desc="Kill focused window"),
 
+    Key([mod], "w",
+        lazy.prev_screen(),
+        desc='Move focus to prev monitor'),
+    Key([mod], "e",
+        lazy.next_screen(),
+        desc='Move focus to next monitor'),
+
     Key([mod, "shift"], "r", lazy.screen.toggle_group(),
         desc="Move to the last visited group"),
 
@@ -282,16 +435,6 @@ keys = [
     Key([mod, "control"], "z", lazy.layout.maximize(),
         desc="Reset all window sizes"),
 
-    KeyChord(
-        [mod], "c",
-        [
-            Key([mod], "h", lazy.layout.grow_left()),
-            Key([mod], "j", lazy.layout.grow_down()),
-            Key([mod], "k", lazy.layout.grow_up()),
-            Key([mod], "l", lazy.layout.grow_right()),
-        ],
-        mode="Resize"
-    ),
     # Right side letters ======================================================
     Key([mod], "u", lazy.spawncmd(),
         desc="Spawn a command using the prompt widget"),
@@ -302,44 +445,64 @@ keys = [
         Key([], "h", lazy.spawn("mpc prev"),
             desc="Mpc previous song"),
         ],
+        mode="MPC",
     ),
 
-
     # {in,de}crease_ratio
-    Key([mod], "j", lazy.layout.next(),
+    Key([mod], "j",
+        lazy.layout.next(),
         desc="Move focus to next window"),
-    Key([mod], "k", lazy.layout.previous(),
+    Key([mod], "k",
+        lazy.layout.previous(),
         desc="Move focus to next window"),
-    Key([mod, "shift"], "j", lazy.layout.shuffle_down(),
+    Key([mod, "shift"], "j",
+        lazy.layout.shuffle_down(),
         desc="Grow window down"),
-    Key([mod, "shift"], "k", lazy.layout.shuffle_up(),
+    Key([mod, "shift"], "k",
+        lazy.layout.shuffle_up(),
         desc="Grow window up"),
 
-    Key([mod], "h", lazy.layout.shrink_main(),
+    Key([mod], "h",
+        lazy.layout.shrink_main(),
+        lazy.layout.grow_left(),
         desc="Decrease the master ratio"),
-    Key([mod], "l", lazy.layout.grow_main(),
+    Key([mod], "l",
+        lazy.layout.grow_main(),
+        lazy.layout.grow_right(),
         desc="Increase the master ratio"),
-    Key([mod, "shift"], "h", lazy.layout.shrink(),
+    Key([mod, "shift"], "h",
+        lazy.layout.shrink(),
+        lazy.layout.grow_down(),
         desc="Grow window to the left"),
-    Key([mod, "shift"], "l", lazy.layout.grow(),
+    Key([mod, "shift"], "l",
+        lazy.layout.grow(),
+        lazy.layout.grow_up(),
         desc="Grow window to the right"),
 
-    Key([mod, "control"], "h", lazy.layout.left(),
+    Key([mod, "control"], "h",
+        lazy.layout.left(),
         desc="Move focus to left"),
-    Key([mod, "control"], "l", lazy.layout.right(),
+    Key([mod, "control"], "l",
+        lazy.layout.right(),
         desc="Move focus to right"),
-    Key([mod, "control"], "j", lazy.layout.down(),
+    Key([mod, "control"], "j",
+        lazy.layout.down(),
         desc="Move focus down"),
-    Key([mod, "control"], "k", lazy.layout.up(),
+    Key([mod, "control"], "k",
+        lazy.layout.up(),
         desc="Move focus up"),
 
-    Key([mod, "shift", "control"], "h", lazy.layout.shuffle_left(),
+    Key([mod, "shift", "control"], "h",
+        lazy.layout.shuffle_left(),
         desc="Move window to the left"),
-    Key([mod, "shift", "control"], "l", lazy.layout.shuffle_right(),
+    Key([mod, "shift", "control"], "l",
+        lazy.layout.shuffle_right(),
         desc="Move window to the right"),
-    Key([mod, "shift", "control"], "j", lazy.layout.shuffle_down(),
+    Key([mod, "shift", "control"], "j",
+        lazy.layout.shuffle_down(),
         desc="Move window down"),
-    Key([mod, "shift", "control"], "k", lazy.layout.shuffle_up(),
+    Key([mod, "shift", "control"], "k",
+        lazy.layout.shuffle_up(),
         desc="Move window up"),
 
     Key([mod, "shift", "control"], "m",

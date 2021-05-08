@@ -12,6 +12,7 @@ go-tools
 gopls
 lua
 ldoc
+ninja
 npm
 ipython
 jupyter-notebook
@@ -29,3 +30,4 @@ ruby-docs
 ruby-rake
 ruby-rdoc
 texlab
+tree-sitter

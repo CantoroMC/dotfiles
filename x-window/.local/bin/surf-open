@@ -5,7 +5,7 @@
 
 xidfile="$HOME/.cache/tabbed-surf.xid"
 
-uri="https://duckduckgo.com/"
+uri="file:///home/cantoro/.config/surf/homepage/homepage.html"
 if [ "$#" -gt 0 ];
 then
   uri="$1"

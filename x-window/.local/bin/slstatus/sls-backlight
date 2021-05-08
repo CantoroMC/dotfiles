@@ -1,0 +1,12 @@
+#!/bin/sh
+
+blg=$(xbacklight -get)
+if [ "$blg" -gt "75" ]; then
+	icon=" "
+elif [ "$blg" -gt "35" ]; then
+	icon=" "
+else
+	icon=" "
+fi
+
+echo "$icon$blg%"
