@@ -97,7 +97,7 @@ export ZLS_COLORS LS_COLORS
 # }}}
 
 # Language/Programs Specifics {{{1
-if [ $(date +%H) -ge 19 ] || [ $(date +%H) -lt 8 ]; then
+if [ $(date +%H) -ge 10 ] || [ $(date +%H) -lt 8 ]; then
   export BACKGROUND_COLOR="dark"
 else
   export BACKGROUND_COLOR="light"
