@@ -1,7 +1,7 @@
 # Maintainer: Marco Cantoro <marco dot cantoro92 at outlook dot it>
 
 pkgname=dwm-bull-git
-pkgver=6.2.r1758.9f2f3ad
+pkgver=6.2.r1765.c04b9f5
 pkgrel=1
 pkgdesc="Dynamic window manager for X"
 arch=('x86_64')
