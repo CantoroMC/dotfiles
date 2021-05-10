@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Nibbler
+Comment=Chess Analysis GUI for UCI engines
+GenericName=Chess Game
+Type=Application
+Categories=Game;BoardGame;
+Exec=nibbler
+Icon=nnn

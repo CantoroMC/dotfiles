@@ -14,3 +14,4 @@ inode/directory=exo-file-manager.desktop;
 x-scheme-handler/trash=exo-file-manager.desktop;
 text/plain=nvim.desktop;emacs.desktop;
 video/mp4=mpv.desktop;
+application/json=nvim.desktop;
