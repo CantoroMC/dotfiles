@@ -128,7 +128,7 @@ export TEXMFSYSCONFIG="/etc/texmf/"
 export TEXMFHOME="$XDG_DATA_HOME/texmf"
 export TEXMFVAR="$XDG_CONFIG_HOME/texlive/texmf-var"
 export TEXMFCONFIG="$XDG_CONFIG_HOME/texlive/texmf-config"
-export CHKTEXRC="$XDG_CONFIG_HOME"
+export CHKTEXRC="$XDG_CONFIG_HOME/chktex"
 # Ruby
 export GEM_HOME="$XDG_DATA_HOME"/gem
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem

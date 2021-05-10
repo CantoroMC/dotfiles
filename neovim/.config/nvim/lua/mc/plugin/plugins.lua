@@ -34,6 +34,7 @@ local function init()
     packer = require('packer')
     packer.init({
       disable_commands = true,
+      --[[
       -- Float Window {{{3
       display = {
         open_fn = function(name)
@@ -78,6 +79,7 @@ local function init()
         end
       -- }}}
       }
+      --]]
     })
   end
   -- }}}
