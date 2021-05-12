@@ -43,7 +43,7 @@ packages_pacman() {
   for pkg ($PKGS); do
     wrap_pacman "$PKG_LISTS_DIR"/"$pkg".txt
   done
-  sudo pacman -S --needed --asdeps - < "$PKG_LISTS_DIR"/dependent-packages.txt
+  sudo pacman -S --needed --asdeps - < "$PKG_LISTS_DIR"/dependent-pkgs.txt
 }
 
 aur_helper(){
