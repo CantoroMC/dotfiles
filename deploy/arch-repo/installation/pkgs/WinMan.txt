@@ -1,4 +1,3 @@
-acpi
 arandr
 arc-gtk-theme
 archlinux-xdg-menu
@@ -10,7 +9,6 @@ gtk-engine-murrine
 jq
 lxappearance-gtk3
 network-manager-applet
-otf-font-awesome
 papirus-icon-theme
 picom
 polkit-gnome
@@ -19,7 +17,4 @@ rofi
 scrot
 sysstat
 system-config-printer
-xbindkeys
 xcursor-neutral
-xdg-user-dirs-gtk
-xorg-xdpyinfo
