@@ -31,9 +31,8 @@ require'lualine'.setup{
     lualine_c = { -- File name and size
       {
         'filename',
-        file_status = true,
-        full_path   = true,
-        shorten     = true,
+        file_status   = true,
+        path          = 1,
         right_padding = 0,
       },
       {

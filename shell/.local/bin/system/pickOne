@@ -1,8 +1,10 @@
 #!/bin/sh
 
 main() {
-  local many=$(ls -A | wc -l)
-  echo $(($(($RANDOM%many))+1))
+  local objs=($(find -maxdepth 1 -type f))
+  local many=${#objs[@]}
+  local pos=$(($(($RANDOM%many))+1))
+  xdg-open ${objs[$pos]} & disown
 }
 
 main "$@"

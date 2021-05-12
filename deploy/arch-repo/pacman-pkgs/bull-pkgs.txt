@@ -10,6 +10,7 @@ emacs
 evince
 exa
 fzf
+gimp
 github-cli
 kitty
 mpc
@@ -33,4 +34,3 @@ vivaldi-ffmpeg-codecs
 youtube-dl
 xboard
 zathura
-zsh

@@ -1,5 +1,6 @@
 vim.g.indent_blankline_enabled    = 1
 vim.g.indent_blankline_char_list  = { '|', '|', '¦', '┆', '┊' }
+vim.g.indent_blankline_char_highlight_list = {'Comment', 'Keyword', 'Boolean', 'Special'}
 vim.g.indent_blankline_space_char = '·'
 vim.g.indent_blankline_space_char_blankline = ' '
 

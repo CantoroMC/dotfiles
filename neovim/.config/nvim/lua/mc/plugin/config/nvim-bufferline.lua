@@ -19,7 +19,10 @@ require'bufferline'.setup{
     show_close_icon         = true,
     show_tab_indicators     = true,
     persist_buffer_sort     = true,
-    sort_by                 = 'directory',
+    sort_by                 =
+      function(buf_a,buf_b)
+        return vim.fn.bufnr(vim.fn.bufname(buf_a.id)) < vim.fn.bufnr(vim.fn.bufname(buf_b.id))
+      end,
     custom_filter           =
       function(bufnr)
         if vim.bo[bufnr].filetype ~= "fugitive"

@@ -1,17 +1,20 @@
 [Default Applications]
+application/json=nvim.desktop;
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=onlyoffice-desktopeditors.desktop
 image/jpeg=sxiv.desktop;
 image/png=sxiv.desktop;
 text/plain=nvim.desktop;emacs.desktop;
 video/mp4=mpv.desktop;
 
 [Added Associations]
+application/json=nvim.desktop;
 application/octet-stream=emacs.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=onlyoffice-desktopeditors.desktop
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
 image/jpeg=sxiv.desktop;
 image/png=sxiv.desktop;
 inode/directory=exo-file-manager.desktop;
-x-scheme-handler/trash=exo-file-manager.desktop;
 text/plain=nvim.desktop;emacs.desktop;
 video/mp4=mpv.desktop;
-application/json=nvim.desktop;
+x-scheme-handler/trash=exo-file-manager.desktop;
