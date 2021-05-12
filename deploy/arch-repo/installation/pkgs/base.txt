@@ -49,7 +49,6 @@ pulsemixer
 time
 unrar
 unzip
-vi
 wget
 xclip
 xorg-server
