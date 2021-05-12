@@ -40,21 +40,30 @@ xdg-user-dirs-gtk
 xdg-utils
 
 bash-completion
+bc
 bind
 dialog
 libwnck3
+lynx
+pulsemixer
 time
+unrar
+unzip
 vi
 wget
+xclip
 xorg-server
 xorg-xdpyinfo
 xorg-xinit
 xorg-xinput
 xorg-xkill
 xorg-xrandr
+xsel
 yad
+zip
 
 acpi
+acpilight
 glances
 hardinfo
 htop
@@ -97,6 +106,9 @@ xl2tpd
 alsa-firmware
 alsa-plugins
 alsa-utils
+bluez
+bluez-utils
+blueberry
 bluez-hid2hci
 paprefs
 pavucontrol

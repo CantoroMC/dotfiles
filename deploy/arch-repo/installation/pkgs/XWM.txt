@@ -17,4 +17,12 @@ rofi
 scrot
 sysstat
 system-config-printer
+wmctrl
+xautolock
 xcursor-neutral
+xdotool
+xorg-mkfontscale
+xorg-xev
+xorg-xmessage
+xorg-xsetroot
+xorg-xwininfo

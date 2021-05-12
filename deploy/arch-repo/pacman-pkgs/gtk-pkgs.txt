@@ -1,4 +1,3 @@
-baobab
 gnome-disk-utility
 gnome-themes-extra
 gcolor2
