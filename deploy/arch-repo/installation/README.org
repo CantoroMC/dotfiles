@@ -62,7 +62,7 @@ Partition the disk with =cfdisk=
 
 ** Install essential packages
 #+begin_src shell
-  pacstrap /mnt base base-devel linux linux-firmware vi git zsh
+  pacstrap /mnt base base-devel linux-zen linux-firmware vi git zsh
 #+end_src
 
 * Phase II: Configuring the system
