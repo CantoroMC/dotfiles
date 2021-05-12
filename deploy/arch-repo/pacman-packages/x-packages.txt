@@ -3,11 +3,8 @@ bc
 bluez
 bluez-utils
 blueberry
-man-db
 pulsemixer
 lynx
-pacman-contrib
-qtile
 stalonetray
 unrar
 unzip
