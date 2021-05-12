@@ -4,18 +4,22 @@ if exists('g:loaded_packer')
 endif
 let g:loaded_packer = 1
 
-command! PackerDownload
-      \ packadd! packer.nvim  | lua require('mc.plugin.plugins')
-command! PackerInstall
-      \ packadd! packer.nvim  | lua require('mc.plugin.plugins').install()
-command! PackerUpdate
-      \ packadd! packer.nvim  | lua require('mc.plugin.plugins').update()
-command! PackerSync
-      \ packadd! packer.nvim  | lua require('mc.plugin.plugins').sync()
-command! PackerClean
-      \ packadd! packer.nvim  | lua require('mc.plugin.plugins').clean()
-command! PackerCompile
-      \ packadd! packer.nvim  | lua require('mc.plugin.plugins').compile()
+command! PackerInspect  lua require'mc.plugin.config'.excrete()
+command! PackerDownload lua require'mc.plugin.plugins'
 
-command! PackerInspect
-      \ lua require'mc.plugin.config'.excrete()
+command! PackerClean
+      \ packadd! packer.nvim | lua require('mc.plugin.plugins').clean()
+command! -nargs=* PackerCompile
+      \ packadd! packer.nvim | lua require('mc.plugin.plugins').compile(<q-args>)
+command! PackerInstall
+      \ packadd! packer.nvim | lua require('mc.plugin.plugins').install()
+command! PackerProfile
+      \ packadd! packer.nvim | lua require('mc.plugin.plugins').profile_output()
+command! PackerStatus
+      \ packadd! packer.nvim | lua require('mc.plugin.plugins').status()
+command! PackerSync
+      \ packadd! packer.nvim | lua require('mc.plugin.plugins').sync()
+command! PackerUpdate
+      \ packadd! packer.nvim | lua require('mc.plugin.plugins').update()
+command! -nargs=+ -complete=customlist,v:lua.require'mc.plugin.plugins'.loader_complete PackerLoad
+      \ packadd! packer.nvim | lua require('mc.plugin.plugins').loader(<q-args>)

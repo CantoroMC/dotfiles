@@ -64,8 +64,8 @@ local function init()
 
           local win = vim.api.nvim_open_win(buf, true, opts)
           vim.api.nvim_buf_set_name(buf, name)
-          vim.api.nvim_win_set_option(win, 'winblend', 10)
           vim.api.nvim_win_set_option(win, 'winhighlight', 'Normal:Normal')
+          vim.api.nvim_win_set_option(win, 'winblend', 10)
 
           -- post tasks
           function restore_cursor()
@@ -78,8 +78,12 @@ local function init()
           return true, win, buf
         end
       -- }}}
-      }
+      },
       --]]
+      profile = {
+        enable = true,
+        threshold = 0,
+      },
     })
   end
   -- }}}
@@ -102,7 +106,6 @@ local function init()
     'liuchengxu/vista.vim',
     as = 'vista',
   }
-
   --[[
   usepackage 'hrsh7th/nvim-compe'
   usepackage {
@@ -120,8 +123,8 @@ local function init()
     'GoldsteinE/compe-latex-symbols',
     requires = { 'hrsh7th/nvim-compe' },
   }
-  -- }}}
   --]]
+  -- }}}
 
   -- Tree Sitter: Syntax, Indentation, TextObject, Foldings.... SYNTAX AWARE. {{{4
   usepackage {

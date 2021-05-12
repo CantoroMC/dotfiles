@@ -13,7 +13,6 @@ unrar
 unzip
 zip
 wmctrl
-xarchiver
 xautolock
 xdotool
 xorg-mkfontscale
