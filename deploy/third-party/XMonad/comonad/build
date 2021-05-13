@@ -2,7 +2,7 @@
 
 SRC_DIR=$XMONAD_CONFIG_DIR
 EXE_NAME=comonad
-output_file=$1; shift
+output_file=$SRC_DIR/$EXE_NAME
 
 cd $SRC_DIR
 

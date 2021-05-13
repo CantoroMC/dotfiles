@@ -13,8 +13,8 @@ bug-reports:        https://github.com/CantoroMC/dotfiles
 synopsis:           XMobar Configuration
 description:        My personal xmobar configuration
 category:           System
-tested-with:        GHC == 8.10.2, GHC == 8.10.3
-data-files:         icons/**/*.xpm, src/*
+tested-with:        GHC == 8.10.2, GHC == 8.10.3, GHC == 8.10.4
+data-files:         icons/**/*.xpm
 extra-source-files: README.org, build, src/.ghci
 
 
