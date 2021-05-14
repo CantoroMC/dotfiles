@@ -7,10 +7,12 @@ import XMonad.Hooks.EwmhDesktops (ewmh)
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
 import XMonad.Util.Loggers
+import XMonad.Hooks.ManageDocks (docks)
 -- import XMonad.Util.ClickableWorkspaces
 
 import Bindings.Keys (xmKeys)
 import Layout.Hook (xmLayoutHook)
+import Manage.Hook (xmManageHook)
 
 
 xmXmobarPP :: PP
@@ -47,17 +49,19 @@ xmConfig = def
     , clickJustFocuses   = True
     , borderWidth        = 1
     , modMask            = mod4Mask
-    , workspaces         = ["𑇡", "𑇢", "𑇣", "𑇤", "𑇥", "𑇦", "𑇧", "𑇨", "𑇩"]
+    , workspaces         = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
     , normalBorderColor  = "#151a1e"
     , focusedBorderColor = "#b8cc52"
     -- More complicated stuff
     , keys               = xmKeys
+    , manageHook         = xmManageHook
     , layoutHook         = xmLayoutHook
     }
 
 main :: IO ()
 main =
     xmonad
+        . docks
         . ewmh
         . withEasySB (statusBarProp "xbar" (pure xmXmobarPP)) defToggleStrutsKey
         $ xmConfig

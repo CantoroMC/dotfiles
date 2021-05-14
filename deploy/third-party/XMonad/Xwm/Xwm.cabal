@@ -21,6 +21,8 @@ library
   exposed-modules:  Bindings.Keys
                     , Layout.Tatami
                     , Layout.Hook
+                    , Manage.Util
+                    , Manage.Hook
   build-depends:    base
                     , containers
                     , mtl

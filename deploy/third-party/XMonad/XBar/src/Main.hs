@@ -1,15 +1,15 @@
 import Xmobar
 
 config :: Config
-config = defaultConfig {
-    font = "xft:Sans Mono-9"
+config = defaultConfig
+    { font = "xft:Operator Mono Lig:style=Italic:pixelsize=10"
     , additionalFonts = []
     , borderColor = "black"
     , border = TopB
     , bgColor = "black"
     , fgColor = "grey"
     , alpha = 255
-    , position = Top
+    , position         = TopSize C 100 24
     , textOffset = -1
     , iconOffset = -1
     , lowerOnStart = True

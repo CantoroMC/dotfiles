@@ -200,7 +200,7 @@ local function init()
 
   -- GUI UTILITIES {{{3
   -- Colorschemes {{{4
-  usepackage 'CantoroMC/ayu-vim'
+  usepackage 'Shatur95/neovim-ayu'
   usepackage 'sjl/badwolf'
   usepackage 'morhetz/gruvbox'
   usepackage 'NLKNguyen/papercolor-theme'
