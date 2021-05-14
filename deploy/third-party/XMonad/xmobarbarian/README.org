@@ -1,3 +1,0 @@
-
-* Todo
-Revisit Monitors and add =<fc=#fg,bg:0>string</fc>=

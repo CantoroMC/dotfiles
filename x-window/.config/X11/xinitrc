@@ -1,7 +1,8 @@
 #!/bin/sh
 
 # ( comonad, dwm, qtile )
-DEFAULT_SESSION=dwm
+# DEFAULT_SESSION=dwm
+DEFAULT_SESSION=xwm
 
 # Load xprofile
 sysprofile=/etc/xprofile

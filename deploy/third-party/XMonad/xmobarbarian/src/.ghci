@@ -1,2 +1,0 @@
-:set -Wall -ilib
-:load xmobar.hs

@@ -1,0 +1,4 @@
+:set -Wall -ilib
+:load Main.hs
+
+-- vim:ft=haskell

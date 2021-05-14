@@ -1,6 +1,0 @@
-packages: ./ xmobar/
-flags: +all_extensions
-executable-stripping: True
-optimization: True
-
--- vim:ft=cabal

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+SRC_DIR="${XMOBAR_DATA_DIR:-$(pwd)/bin}"
+EXE_NAME="$(awk '!done && /^executable / {print $2; done = 1}' *.cabal)"
+output=$SRC_DIR/$EXE_NAME
+
+d="$(dirname "$output")"
+
+cabal install exe:"$EXE_NAME" \
+  --enable-executable-stripping \
+  --enable-optimization=2 \
+  --installdir="$d" \
+  --overwrite-policy=always

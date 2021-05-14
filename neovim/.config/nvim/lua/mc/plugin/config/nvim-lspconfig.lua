@@ -124,20 +124,6 @@ lspconfig.clangd.setup({
   capabilities = capabilities,
 })
 
---- HASKELL
-lspconfig.hls.setup{
-  cmd = { 'haskell-language-server-wrapper', '--lsp' },
-  filetypes = { "haskell", "lhaskell" },
-  root_dir = lspconfig.util.root_pattern("*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"),
-  settings = {
-    haskell = {
-      formattingProvider = 'brittany'
-    },
-  },
-  on_attach = custom_lsp_attach,
-  capabilities = capabilities,
-}
-
 --- LUA
 lspconfig.sumneko_lua.setup {
   cmd = { 'lua-language-server' };
@@ -279,6 +265,19 @@ lspconfig.solargraph.setup{
   on_attach = custom_lsp_attach,
 }
 
+--- HASKELL
+lspconfig.hls.setup{
+  cmd = { 'haskell-language-server-wrapper', '--lsp' },
+  filetypes = { "haskell", "lhaskell" },
+  root_dir = lspconfig.util.root_pattern("*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"),
+  settings = {
+    haskell = {
+      formattingProvider = 'brittany'
+    },
+  },
+  on_attach = custom_lsp_attach,
+  capabilities = capabilities,
+}
 
 -- HTML
 require'lspconfig'.html.setup {

@@ -1,0 +1,4 @@
+packages: ./ ../xmobar/
+flags: +all_extensions
+
+-- vim:ft=cabal
