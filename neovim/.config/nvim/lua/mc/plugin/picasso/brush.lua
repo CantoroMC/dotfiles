@@ -1,8 +1,8 @@
 local bgs = { 'dark', 'light' }
 local M = {}
 local plug_confs = {
-  active     = true,
-  light_time = { 6, 19 },
+  active     = false,
+  light_time = { 6, 13 },
   themes     = {
     [ "dark" ]  = {
       [ "ayu" ]        = 'ayu',

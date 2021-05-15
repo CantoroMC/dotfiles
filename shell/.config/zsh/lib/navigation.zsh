@@ -86,6 +86,8 @@ add-zsh-hook chpwd chpwd_recent_dirs
 
 # enable menu-style completion for cdr
 zstyle ':completion:*:*:cdr:*:*' menu selection
+# recent directory file
+zstyle ':chpwd:*' recent-dirs-file ~/.cache/chpwd-recent-dirs
 # insert directly the directory path and not the index
 zstyle ':completion:*:*:cdr:*:*' recent-dirs-insert true
 # fall through to cd if cdr is passed a non-recent dir as an argument

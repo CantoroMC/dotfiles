@@ -41,5 +41,5 @@ package() {
   make PREFIX=/usr DESTDIR="$pkgdir" install
 
   install -Dm0644 --target-directory "$licdir" "$srcdir/${pkgname%-bull-git}/LICENSE"
-  install -Dm0644 --target-directory "$docdir" "$srcdir/${pkgname%-bull-git}/README"
+  install -Dm0644 --target-directory "$docdir" "$srcdir/${pkgname%-bull-git}/README.md"
 }
