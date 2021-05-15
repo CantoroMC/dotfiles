@@ -1,11 +1,11 @@
 module Manage.Util
-    ( xmBigRect
-    , xmMedRect
-    , xmSmallRect
-    , xmUpLeftRect
-    , xmUpRightRect
-    , xmDownLeftRect
-    , xmDownRightRect
+    ( xwmBigRect
+    , xwmMedRect
+    , xwmSmallRect
+    , xwmUpLeftRect
+    , xwmUpRightRect
+    , xwmDownLeftRect
+    , xwmDownRightRect
     ) where
 
 
@@ -14,23 +14,23 @@ import qualified XMonad.StackSet as XMSS
 
 
 
-xmBigRect :: XMSS.RationalRect
-xmBigRect = XMSS.RationalRect 0.166 0.166 0.666 0.666
+xwmBigRect :: XMSS.RationalRect
+xwmBigRect = XMSS.RationalRect 0.166 0.166 0.666 0.666
 
-xmMedRect :: XMSS.RationalRect
-xmMedRect = XMSS.RationalRect 0.25 0.25 0.5 0.5
+xwmMedRect :: XMSS.RationalRect
+xwmMedRect = XMSS.RationalRect 0.25 0.25 0.5 0.5
 
-xmSmallRect :: XMSS.RationalRect
-xmSmallRect = XMSS.RationalRect 0.3 0.3 0.3 0.3
+xwmSmallRect :: XMSS.RationalRect
+xwmSmallRect = XMSS.RationalRect 0.3 0.3 0.3 0.3
 
-xmUpLeftRect :: XMSS.RationalRect
-xmUpLeftRect = XMSS.RationalRect 0 0.02 0.5 0.49
+xwmUpLeftRect :: XMSS.RationalRect
+xwmUpLeftRect = XMSS.RationalRect 0 0.02 0.5 0.49
 
-xmUpRightRect :: XMSS.RationalRect
-xmUpRightRect = XMSS.RationalRect 0.5 0.02 0.5 0.49
+xwmUpRightRect :: XMSS.RationalRect
+xwmUpRightRect = XMSS.RationalRect 0.5 0.02 0.5 0.49
 
-xmDownLeftRect :: XMSS.RationalRect
-xmDownLeftRect = XMSS.RationalRect 0 0.51 0.5 0.49
+xwmDownLeftRect :: XMSS.RationalRect
+xwmDownLeftRect = XMSS.RationalRect 0 0.51 0.5 0.49
 
-xmDownRightRect :: XMSS.RationalRect
-xmDownRightRect = XMSS.RationalRect 0.5 0.51 0.5 0.49
+xwmDownRightRect :: XMSS.RationalRect
+xwmDownRightRect = XMSS.RationalRect 0.5 0.51 0.5 0.49

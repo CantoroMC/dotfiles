@@ -14,18 +14,29 @@ import Text.Regex (matchRegex, mkRegex)
 import XMonad
 import qualified XMonad.StackSet as XMSS
 
-import XMonad.Actions.SpawnOn (manageSpawn)
-import XMonad.Hooks.ManageDocks (manageDocks)
+-- import XMonad.Actions.SpawnOn (manageSpawn)
+-- import XMonad.Hooks.ManageDocks (manageDocks)
 import XMonad.Hooks.ManageHelpers (doCenterFloat, doRectFloat)
 
-import Manage.Util (xmBigRect, xmMedRect)
+import Manage.Util (xwmBigRect, xwmMedRect)
 
 
 -- workspacesFromConf :: (MonadIO m, MonadReader XConf m) => m String
 -- workspacesFromConf = reader $ workspaces . config
 
-xmManageHook :: ManageHook
-xmManageHook = manageSpawn <+> manageDocks <+> manageFloatings <+> manageOthers
+
+role :: Query String
+role = stringProperty "WM_WINDOW_ROLE"
+
+-- name :: Query String
+-- name = stringProperty "WM_NAME"
+
+(*!=) :: String -> String -> Bool
+q *!= x = isNothing $ matchRegex (mkRegex x) q
+
+(*!?) :: Functor f => f String -> String -> f Bool
+q *!? x = fmap (*!= x) q
+
 
 manageOthers :: ManageHook
 manageOthers = composeAll
@@ -33,7 +44,7 @@ manageOthers = composeAll
       -- className =? "Transmission-gtk" --> doShift (xmWorkspaces !! 8)
     -- , className =? "mpv" --> doShiftAndGo (xmWorkspaces !! 4)
     -- , className =? "MATLAB R2021a - academic use" --> doShiftAndGo (xmWorkspaces !! 1)
-      -- doIgnore
+    -- doIgnore
     resource  =? "stalonetray" --> doIgnore
     , className =? "Conky" --> doIgnore
     ]
@@ -47,10 +58,10 @@ manageFloatings =
            ]
         ++ [ title =? "Event Tester" --> doFloat
            , title =? "lstopo" --> doCenterFloat
-           , title =? "weatherreport" --> doRectFloat xmBigRect
-           , title =? "keysheet" --> doRectFloat xmBigRect
-           , title =? "orgenda" --> doRectFloat xmBigRect
-           , title =? "volume" --> doRectFloat xmMedRect
+           , title =? "weatherreport" --> doRectFloat xwmBigRect
+           , title =? "keysheet" --> doRectFloat xwmBigRect
+           , title =? "orgenda" --> doRectFloat xwmBigRect
+           , title =? "volume" --> doRectFloat xwmMedRect
            , role =? "pop-up" --> doCenterFloat
            , (className =? "Display" <&&> title =? "ImageMagick: ") --> doCenterFloat
            , (className =? "MATLAB R2021a - academic use" <&&> title *!?  "^MATLAB") --> doFloat
@@ -91,14 +102,7 @@ manageFloatings =
         , "Yad-icon-browser"
         ]
 
-role :: Query String
-role = stringProperty "WM_WINDOW_ROLE"
+xmManageHook :: ManageHook
+xmManageHook = manageFloatings <+> manageOthers
+-- xmManageHook = manageSpawn <+> manageDocks <+> manageFloatings <+> manageOthers
 
--- name :: Query String
--- name = stringProperty "WM_NAME"
-
-(*!=) :: String -> String -> Bool
-q *!= x = isNothing $ matchRegex (mkRegex x) q
-
-(*!?) :: Functor f => f String -> String -> f Bool
-q *!? x = fmap (*!= x) q

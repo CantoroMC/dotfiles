@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DEFAULT_SESSION=dwm
+DEFAULT_SESSION=xwm
 
 # Load xprofile
 sysprofile=/etc/xprofile
