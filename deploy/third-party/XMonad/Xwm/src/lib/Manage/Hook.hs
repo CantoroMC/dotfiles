@@ -1,7 +1,7 @@
 {-# LANGUAGE FlexibleContexts #-}
 
 module Manage.Hook
-    ( xmManageHook
+    ( xwmManageHook
     ) where
 
 
@@ -14,15 +14,13 @@ import Text.Regex (matchRegex, mkRegex)
 import XMonad
 import qualified XMonad.StackSet as XMSS
 
--- import XMonad.Actions.SpawnOn (manageSpawn)
--- import XMonad.Hooks.ManageDocks (manageDocks)
+import XMonad.Hooks.ManageDocks (manageDocks)
 import XMonad.Hooks.ManageHelpers (doCenterFloat, doRectFloat)
+import XMonad.Util.NamedScratchpad (namedScratchpadManageHook)
 
-import Manage.Util (xwmBigRect, xwmMedRect)
+import Config.Workspaces (xwmWorkspaces)
+import Manage.Util (xwmBigRect, xwmMedRect, xwmSPDs)
 
-
--- workspacesFromConf :: (MonadIO m, MonadReader XConf m) => m String
--- workspacesFromConf = reader $ workspaces . config
 
 
 role :: Query String
@@ -41,14 +39,14 @@ q *!? x = fmap (*!= x) q
 manageOthers :: ManageHook
 manageOthers = composeAll
     [ -- doShift
-      -- className =? "Transmission-gtk" --> doShift (xmWorkspaces !! 8)
-    -- , className =? "mpv" --> doShiftAndGo (xmWorkspaces !! 4)
-    -- , className =? "MATLAB R2021a - academic use" --> doShiftAndGo (xmWorkspaces !! 1)
+      className =? "Transmission-gtk" --> doShift (xwmWorkspaces !! 8)
+    , className =? "mpv" --> doShiftAndGo (xwmWorkspaces !! 4)
+    , className =? "MATLAB R2021a - academic use" --> doShiftAndGo (xwmWorkspaces !! 1)
     -- doIgnore
-    resource  =? "stalonetray" --> doIgnore
+    , resource  =? "stalonetray" --> doIgnore
     , className =? "Conky" --> doIgnore
     ]
-    -- where doShiftAndGo = doF . liftM2 (.) XMSS.greedyView XMSS.shift
+    where doShiftAndGo = doF . liftM2 (.) XMSS.greedyView XMSS.shift
 
 manageFloatings :: ManageHook
 manageFloatings =
@@ -59,50 +57,42 @@ manageFloatings =
         ++ [ title =? "Event Tester" --> doFloat
            , title =? "lstopo" --> doCenterFloat
            , title =? "weatherreport" --> doRectFloat xwmBigRect
-           , title =? "keysheet" --> doRectFloat xwmBigRect
-           , title =? "orgenda" --> doRectFloat xwmBigRect
            , title =? "volume" --> doRectFloat xwmMedRect
-           , role =? "pop-up" --> doCenterFloat
+           , role  =? "pop-up" --> doCenterFloat
            , (className =? "Display" <&&> title =? "ImageMagick: ") --> doCenterFloat
            , (className =? "MATLAB R2021a - academic use" <&&> title *!?  "^MATLAB") --> doFloat
            ]  where
-    appsToFloat =
-        [ "Arandr"
-        , "Avahi-discover"
-        , "Baobab"
-        , "Blueberry.py"
-        , "Bssh"
-        , "Bvnc"
-        , "CMakeSetup"
-        , "Exo-helper-2"
-        , "feh"
-        , "File-roller"
-        , "Gimp"
-        , "Gnome-disks"
-        , "Gpick"
-        , "Hardinfo"
-        , "imagewriter"
-        , "Lxappearance"
-        , "MPlayer"
-        , "Nitrogen"
-        , "ParaView"
-        , "Parcellite"
-        , "Pavucontrol"
-        , "qv4l2"
-        , "qvidcap"
-        , "Snapper-gui"
-        , "Sxiv"
-        , "System-config-printer.py"
-        , "Transmission-gtk"
-        , "Xarchiver"
-        , "Xboard"
-        , "Xfce4-about"
-        , "Xmessage"
-        , "Yad"
-        , "Yad-icon-browser"
-        ]
+            appsToFloat =
+                [ "Arandr"
+                , "Avahi-discover"
+                , "Baobab"
+                , "Blueberry.py"
+                , "Bssh"
+                , "Bvnc"
+                , "CMakeSetup"
+                , "feh"
+                , "Hardinfo"
+                , "imagewriter"
+                , "Lxappearance"
+                , "MPlayer"
+                , "ParaView"
+                , "Parcellite"
+                , "Pavucontrol"
+                , "qv4l2"
+                , "qvidcap"
+                , "Snapper-gui"
+                , "Sxiv"
+                , "System-config-printer.py"
+                , "Transmission-gtk"
+                , "Xboard"
+                , "Xmessage"
+                , "Yad"
+                , "Yad-icon-browser"
+                ]
 
-xmManageHook :: ManageHook
-xmManageHook = manageFloatings <+> manageOthers
--- xmManageHook = manageSpawn <+> manageDocks <+> manageFloatings <+> manageOthers
-
+xwmManageHook :: ManageHook
+xwmManageHook =
+    namedScratchpadManageHook xwmSPDs
+    <+> manageDocks
+    <+> manageFloatings
+    <+> manageOthers

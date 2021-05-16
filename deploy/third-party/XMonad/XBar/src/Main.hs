@@ -1,46 +1,32 @@
 import Xmobar
 
-config :: Config
-config = defaultConfig
-    { font = "xft:Operator Mono Lig:style=Italic:pixelsize=10"
-    , additionalFonts = []
-    , borderColor = "black"
-    , border = TopB
-    , bgColor = "black"
-    , fgColor = "grey"
-    , alpha = 255
-    , position         = TopSize C 100 24
-    , textOffset = -1
-    , iconOffset = -1
-    , lowerOnStart = True
-    , pickBroadest = False
-    , persistent = False
-    , hideOnStart = False
-    , iconRoot = "."
-    , allDesktops = True
-    , overrideRedirect = True
-    , commands =
-        [ Run XMonadLog
-        , Run $ Weather "EGPH"
-            [ "-t","<station>: <tempC>C"
-            , "-L","18"
-            , "-H","25"
-            , "--normal", "green"
-            , "--high", "red"
-            , "--low", "lightblue"
-            ] 36000
-        , Run $ Network "eth0"
-            [ "-L", "0"
-            , "-H", "32"
-            , "--normal", "green"
-            , "--high", "red"
-            ] 10
-        , Run $ Network "eth1"
-            [ "-L", "0"
-            , "-H", "32"
-            , "--normal", "green"
-            , "--high", "red"
-            ] 10
+import Colors (Palette(..), palette)
+import Config (baseConfig)
+import Monitors
+    ( trayerPad
+    , pacman
+    , sound
+    , weather
+    , dynNet
+    , wireless
+    , clock
+    , keyboard
+    )
+import Util (action)
+
+
+xBarConfig :: Palette -> Config
+xBarConfig p = (baseConfig p)
+    { commands =
+        [ Run UnsafeXMonadLog
+        , Run trayerPad
+        , Run pacman
+        , Run sound
+        , Run (weather p)
+        , Run (dynNet p)
+        , Run wireless
+        , Run (clock p)
+        , Run keyboard
         , Run $ Cpu
             [ "-L", "3"
             , "-H", "50"
@@ -49,16 +35,28 @@ config = defaultConfig
             ] 10
         , Run $ Memory ["-t","Mem: <usedratio>%"] 10
         , Run $ Swap [] 10
-        , Run $ Com "uname" ["-s","-r"] "" 36000
-        , Run $ Date "%a %b %_d %Y %H:%M:%S" "date" 10
         ]
-    , sepChar = "%"
-    , alignSep = "}{"
     , template =
-        "%XMonadLog% } " ++
-        " <fc=#ee9a00>%date%</fc>| %EGPH% | %uname%" ++
-        "{ %cpu% | %memory% * %swap% | %eth0% - %eth1%"
-}
+        " "
+        ++ "|UnsafeXMonadLog| "
+        ++ "}"
+        ++ "|LIML|"
+        ++ " |date|"
+        ++ "{"
+        ++ action "st sudo pacman -Syu" 3 " |pacman|"
+        ++ " |cpu| - |memory| * |swap| - |wlan0wi|"
+        ++ action "pactl set-sink-volume @DEFAULT_SINK@ -5%" 5
+               (action "pactl set-sink-volume @DEFAULT_SINK@ +5%" 4
+                   (action "pactl set-sink-mute @DEFAULT_SINK@ toggle" 2
+                       (action "st -n volume -t volume pulsemixer" 1
+                           (action "pavucontrol" 3 "|sound|")
+                       )
+                   )
+               )
+        ++ " |kbd|"
+        ++ " |dynnetwork|"
+        ++ " |trayerPad|"
+    }
 
 main :: IO ()
-main = xmobar config
+main = palette >>= configFromArgs . xBarConfig >>= xmobar

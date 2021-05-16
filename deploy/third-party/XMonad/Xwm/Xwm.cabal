@@ -19,10 +19,15 @@ extra-source-files: README.md, build, src/.ghci
 library
   hs-source-dirs:   src/lib
   exposed-modules:  Bindings.Keys
+                    , Config.Colors
+                    , Config.Theme
+                    , Config.Workspaces
                     , Layout.Tatami
                     , Layout.Hook
+                    , Log.StatusBar
                     , Manage.Util
                     , Manage.Hook
+                    , Startup.Hook
   build-depends:    base
                     , containers
                     , mtl

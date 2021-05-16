@@ -1,4 +1,3 @@
-{-# LANGUAGE FlexibleContexts #-}
 
 module Bindings.Keys
     ( xwmKeys
@@ -13,7 +12,9 @@ import System.Exit (exitSuccess)
 import XMonad
 import qualified XMonad.StackSet as XMSS
 
-import XMonad.Layout.ResizableTile (MirrorResize (..))
+import XMonad.Hooks.ManageDocks (ToggleStruts(..))
+import XMonad.Layout.ResizableTile (MirrorResize(..))
+import XMonad.Util.NamedScratchpad (namedScratchpadAction)
 import XMonad.Util.Ungrab (unGrab)
 
 import Manage.Util
@@ -24,17 +25,11 @@ import Manage.Util
     , xwmUpRightRect
     , xwmDownLeftRect
     , xwmDownRightRect
+    , terminalFromConf
+    , inTerminalFromConf
+    , xwmSPDs
     )
 
-
-
-terminalFromConf :: (MonadIO m, MonadReader XConf m) => m String
-terminalFromConf = reader $ terminal . config
-
-inTerminalFromConf :: (MonadIO m, MonadReader XConf m) => String -> m String
-inTerminalFromConf prog = do
-    terminalEmulator <- terminalFromConf
-    return $ terminalEmulator <> " -t " <> prog <> " -e " <> prog
 
 
 xwmKeys :: XConfig Layout -> Map.Map (KeyMask, KeySym) (X ())
@@ -78,18 +73,27 @@ xwmKeys conf@XConfig {XMonad.modMask = winKey} = Map.fromList $
     , ((winKey .|. shiftMask,                 xK_f),
         -- Spawn secondary web browser
         spawn "surf-open")
-    -- , ((winKey              , xK_b     ), sendMessage ToggleStruts)
+    , ((winKey,                               xK_b),
+        -- Toggle the status bar gap
+        sendMessage ToggleStruts)
     ---------------------------------------------------------------------------
         -- Right side characters
-    , ((winKey,                               xK_p),
+
+    , ((winKey .|. shiftMask .|. controlMask, xK_y),
+        -- Terminal scratchpad
+        namedScratchpadAction xwmSPDs "Yakuake")
+    , ((winKey,                               xK_u),
         -- Spawn dmenu launcher
         spawn "dmenu_run")
-    , ((winKey .|. shiftMask,                 xK_p),
+    , ((winKey .|. shiftMask,                 xK_u),
         -- Spawn rofi launcher
         spawn "rofi -modi drun,run,combi -show combi")
-    , ((winKey .|. controlMask,               xK_p),
+    , ((winKey .|. controlMask,               xK_u),
         -- Spawn xmenu launcher
         spawn "xmenu-apps")
+    , ((winKey .|. shiftMask .|. controlMask, xK_o),
+        -- Emacs-Org-mode scratchpad
+        namedScratchpadAction xwmSPDs "Orgenda")
     , ((winKey,                               xK_k),
         -- Move focus to the previous window
         windows XMSS.focusUp)
@@ -116,12 +120,18 @@ xwmKeys conf@XConfig {XMonad.modMask = winKey} = Map.fromList $
         sendMessage MirrorExpand)
     -- Resize viewed windows to the correct size
     -- , ((winKey,               xK_n     ), refresh)
+    , ((winKey .|. shiftMask .|. controlMask, xK_n),
+        -- Ncmpcpp scratchpad
+        namedScratchpadAction xwmSPDs "Ncmpcpp")
     , ((winKey,                               xK_m),
         -- Move focus to the master window
         windows XMSS.focusMaster)
     , ((winKey .|. shiftMask,                 xK_m),
         -- Swap the focused window and the master window
         windows XMSS.swapMaster)
+    , ((winKey .|. shiftMask .|. controlMask, xK_m),
+        -- Cmus scratchpad
+        namedScratchpadAction xwmSPDs "Cmus")
     ---------------------------------------------------------------------------
         -- Surrounding keys
     , ((winKey,                               xK_Tab),

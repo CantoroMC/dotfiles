@@ -147,7 +147,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export XMONAD_CONFIG_DIR="${DOTFILES}/deploy/third-party/XMonad/Xwm"
 export XMONAD_DATA_DIR="${XMONAD_CONFIG_DIR}/data"
 export XMONAD_CACHE_DIR="${XMONAD_DATA_DIR}/cache"
-export XMOBAR_DATA_DIR="${DOTFILES}/deploy/third-party/XMonad/XBar/bin"
+export XMOBAR_CONFIG_DIR="${DOTFILES}/deploy/third-party/XMonad/XBar"
 # }}}
 
 # Path {{{1
@@ -163,7 +163,7 @@ path=(
   "$HOME/.cabal/bin"
   "$HOME/.local/share/npm/bin"
   "$XMONAD_DATA_DIR"
-  "$XMOBAR_DATA_DIR"
+  "$XMOBAR_CONFIG_DIR/bin"
   "$GOPATH/bin"
   "$GEM_HOME/bin"
   "$path[@]"
