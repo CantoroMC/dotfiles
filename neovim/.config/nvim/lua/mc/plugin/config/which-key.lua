@@ -23,7 +23,7 @@ require'which-key'.setup {
     group = " ",
   },
   window = {
-    border   = "none",   -- none, single, double, shadow
+    border   = "single",   -- none, single, double, shadow
     position = "bottom", -- bottom, top
     margin   = { 0, 0, 0, 0 }, -- extra window margin [top, right, bottom, left]
     padding  = { 1, 1, 1, 1 }, -- extra window padding [top, right, bottom, left]

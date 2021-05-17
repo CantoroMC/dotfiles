@@ -1,6 +1,8 @@
-local fn, vim = vim.fn, vim
+local vim,fn, cmd = vim, vim.fn, vim.cmd
 local b, bo = vim.b, vim.bo
 local fmt = string.format
+
+
 
 local M = {}
 
@@ -11,6 +13,8 @@ local options = {
   max_lines = 5000,
 }
 
+
+
 local function search(prefix, pattern)
   local line = fn.search(pattern, 'nw')
   if line == 0 then
@@ -18,6 +22,14 @@ local function search(prefix, pattern)
   end
   return fmt('[%s:%d]', prefix, line)
 end
+
+local function set_cache_autocmds(augroup)
+  cmd(fmt('augroup %s', augroup))
+  cmd('autocmd!')
+  cmd(fmt('autocmd CursorHold,BufWritePost * unlet! b:%s', augroup))
+  cmd('augroup END')
+end
+
 
 local function check_trailing()
   return search('trail', [[\s$]])
@@ -53,12 +65,7 @@ local function check_conflict()
   return search('confl', pattern)
 end
 
-local function set_cache_autocmds(augroup)
-  vim.cmd(fmt('augroup %s', augroup))
-  vim.cmd('autocmd!')
-  vim.cmd(fmt('autocmd CursorHold,BufWritePost * unlet! b:%s', augroup))
-  vim.cmd('augroup END')
-end
+
 
 function M.whitespaces()
   if not enabled then
@@ -82,33 +89,6 @@ function M.whitespaces()
     check_conflict(),
   })
   return cache
-end
-
-function M.vista(vista_icon)
-  local has_vista,vista_info = pcall(vim.api.nvim_buf_get_var,0,'vista_nearest_method_or_function')
-  if not has_vista then return end
-  local icon = vista_icon or '襁'
-  return icon .. vista_info
-end
-
-function M.nr_lines()
-  return [[☰ %3L]]
-end
-
-function M.file_size()
-  local file = vim.fn.expand('%:p')
-  if string.len(file) == 0 then return '' end
-
-  local size = vim.fn.getfsize(file)
-  if size <= 0 then return '' end
-  local sufixes = {'b', 'k', 'm', 'g'}
-
-  local i = 1
-  while size > 1024 do
-    size = size / 1024
-    i = i + 1
-  end
-  return string.format('[%.1f%s]', size, sufixes[i])
 end
 
 return M

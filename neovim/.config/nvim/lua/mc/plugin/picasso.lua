@@ -1,5 +1,6 @@
-local bgs = { 'dark', 'light' }
 local M = {}
+
+local bgs = { 'dark', 'light' }
 local plug_confs = {
   active     = true,
   light_time = { 6, 13 },
@@ -24,11 +25,11 @@ local plug_confs = {
   }
 }
 
-local function bg_color()
+local function isLight()
   local hour = tonumber(os.date('%H'))
   return
     (hour >= plug_confs.light_time[1] and hour < plug_confs.light_time[2])
-      and 2 or 1
+      and true or false
 end
 
 function M.list(bg)
@@ -42,7 +43,7 @@ function M.paint(...)
   if #args >= 1 and #args <= 2 then
     bg = args[1]
   elseif #args == 0 then
-    bg = bgs[bg_color()]
+    bg = bgs[isLight() and 2 or 1]
   else
     return
   end
@@ -58,6 +59,10 @@ function M.paint(...)
 
   vim.o.background = bg
   vim.cmd('colorscheme '..theme)
+
+  for k,v in pairs(plug_confs.add_highlight) do
+    vim.cmd('highlight ' .. k .. ' ' .. v)
+  end
 end
 
 function M.lualine()
@@ -74,17 +79,13 @@ function M.setup(usr_conf)
   end
 
   if plug_confs.active then
-    require'mc.plugin.picasso.brush'.paint()
+    M.paint()
   else
-    vim.o.background = bg_color() == 2 and 'light' or 'dark'
-    require'mc.plugin.picasso.brush'.paint(
-      bg_color() == 2 and 'light' or 'dark',
+    vim.o.background = isLight() and 'light' or 'dark'
+    M.paint(
+      isLight() and 'light' or 'dark',
       table.concat(vim.tbl_keys(plug_confs.theme))
     )
-  end
-
-  for k,v in pairs(plug_confs.add_highlight) do
-    vim.cmd('highlight ' .. k .. ' ' .. v)
   end
 end
 

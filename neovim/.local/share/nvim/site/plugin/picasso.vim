@@ -5,19 +5,19 @@ endif
 let g:loaded_picasso = 1
 
 command! Dark
-      \ lua require'mc.plugin.picasso.brush'.paint('dark')
+      \ lua require'mc.plugin.picasso'.paint('dark')
 command! Light
-      \ lua require'mc.plugin.picasso.brush'.paint('light')
+      \ lua require'mc.plugin.picasso'.paint('light')
 
-command! -nargs=* -complete=custom,s:comp_ColorScheme ColorScheme
-      \ lua require'mc.plugin.picasso.brush'.paint(<f-args>)
+command! -nargs=* -complete=custom,s:comp_picasso Picasso
+      \ lua require'mc.plugin.picasso'.paint(<f-args>)
 
-function! s:comp_ColorScheme(A, L, P)
-  if a:L ==# 'ColorScheme '.a:A
+function! s:comp_picasso(A, L, P)
+  if a:L ==# 'Picasso '.a:A
     return join(['dark', 'light'], "\n")."\n"
   else
     let bg = split(a:L)[1]
-    let themes = join(luaeval('require"mc.plugin.picasso.brush".list(_A)', bg), "\n")."\n"
+    let themes = join(luaeval('require"mc.plugin.picasso".list(_A)', bg), "\n")."\n"
     return themes
   endif
 endfunction
