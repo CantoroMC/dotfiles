@@ -27,7 +27,7 @@ data Palette = Palette
 
 lightPalette :: Palette
 lightPalette = Palette
-    { pFont       = "xft:Operator Mono Lig:style=Italic:size=9"
+    { pFont       = "xft:Operator Mono Lig:style=Italic:size=8"
     , pForeground = "#151a1e"
     , pBackground = "#eaeaea"
     , pAlpha      = 255
@@ -41,7 +41,7 @@ lightPalette = Palette
 
 darkPalette :: Palette
 darkPalette = Palette
-    { pFont       = "xft:Operator Mono Lig:style=Italic:size=9"
+    { pFont       = "xft:Operator Mono Lig:style=Italic:size=8"
     , pForeground = "#eaeaea"
     , pBackground = "#151a1e"
     , pAlpha      = 255

@@ -18,11 +18,14 @@ extra-source-files: README.md, build, src/.ghci
 
 library
   hs-source-dirs:   src/lib
-  exposed-modules:  Bindings.Keys
+  exposed-modules:  Bindings.Binder
+                    , Bindings.Keys
+                    , Bindings.Mouse
                     , Config.Colors
                     , Config.Theme
                     , Config.Workspaces
                     , Layout.Tatami
+                    , Layout.Layouts
                     , Layout.Hook
                     , Log.StatusBar
                     , Manage.Util

@@ -6,6 +6,7 @@ import Monitors
     ( trayerPad
     , pacman
     , sound
+    , battery
     , weather
     , dynNet
     , wireless
@@ -22,6 +23,7 @@ xBarConfig p = (baseConfig p)
         , Run trayerPad
         , Run pacman
         , Run sound
+        , Run (battery p "BAT0" "battery0")
         , Run (weather p)
         , Run (dynNet p)
         , Run wireless
@@ -49,12 +51,14 @@ xBarConfig p = (baseConfig p)
                (action "pactl set-sink-volume @DEFAULT_SINK@ +5%" 4
                    (action "pactl set-sink-mute @DEFAULT_SINK@ toggle" 2
                        (action "st -n volume -t volume pulsemixer" 1
-                           (action "pavucontrol" 3 "|sound|")
+                           (action "pavucontrol" 3 " |sound|")
                        )
                    )
                )
+        ++ " |battery0|"
         ++ " |kbd|"
         ++ " |dynnetwork|"
+        ++ "  "
         ++ " |trayerPad|"
     }
 

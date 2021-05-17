@@ -6,6 +6,7 @@ module Monitors
     , sound
         -- * Monitors
         -- $monitors
+    , battery
     , weather
     , dynNet
     , wireless
@@ -45,6 +46,23 @@ sound = Com "/bin/sh" ["-c", xBarConfigDir ++ "/utilities/scripts/xmVolume"] "so
 -------------------------------------------------------------------------------
     -- Monitors
 
+battery :: Palette -> String -> Alias -> Monitors
+battery p b = BatteryN [b]
+    ( withLowArgs p
+        [ "--template", "<leftipat> <acstatus>"
+        , "--suffix", "True"
+        ]
+        [ "--on-icon-pattern",   icon "battery/on/battery_on_%%.xpm"
+        , "--off-icon-pattern",  icon "battery/off/battery_off_%%.xpm"
+        , "--idle-icon-pattern", icon "battery/idle/battery_idle_%%.xpm"
+        , "-o" , "<left> (<timeleft>)"
+        , "-O" , "<left> (<timeleft>)"
+        , "-i" , "IDLE <left>"
+        , "-a" , "notify-send -u critical 'Battery low'"
+        , "-A" , "3"
+        ]
+    ) 400
+
 weather :: Palette -> Monitors
 weather p = WeatherX
     "LIML"
@@ -64,7 +82,7 @@ weather p = WeatherX
     [ "--template", action "weather" 3
         ( " <skyConditionS> <tempC>°C "
         ++ fc (pBorder p) "<rh>% "
-        ++ fn 1 "\57982 "
+        ++ fn 3 "\57982 "
         ++ "<windKmh> km/h <weather>"
         )
     ] 100

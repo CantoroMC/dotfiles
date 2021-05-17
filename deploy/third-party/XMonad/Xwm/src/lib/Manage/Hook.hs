@@ -15,7 +15,14 @@ import XMonad
 import qualified XMonad.StackSet as XMSS
 
 import XMonad.Hooks.ManageDocks (manageDocks)
-import XMonad.Hooks.ManageHelpers (doCenterFloat, doRectFloat)
+import XMonad.Hooks.ManageHelpers
+    ( doCenterFloat
+    , doRectFloat
+    , (-?>)
+    , isDialog
+    , transience
+    , composeOne
+    )
 import XMonad.Util.NamedScratchpad (namedScratchpadManageHook)
 
 import Config.Workspaces (xwmWorkspaces)
@@ -50,18 +57,20 @@ manageOthers = composeAll
 
 manageFloatings :: ManageHook
 manageFloatings =
-    composeAll
-        $  [ className =? appToFloat --> doCenterFloat
+    composeAll $
+        [ className =? appToFloat --> doCenterFloat
            | appToFloat <- appsToFloat
-           ]
-        ++ [ title =? "Event Tester" --> doFloat
-           , title =? "lstopo" --> doCenterFloat
-           , title =? "weatherreport" --> doRectFloat xwmBigRect
-           , title =? "volume" --> doRectFloat xwmMedRect
-           , role  =? "pop-up" --> doCenterFloat
-           , (className =? "Display" <&&> title =? "ImageMagick: ") --> doCenterFloat
-           , (className =? "MATLAB R2021a - academic use" <&&> title *!?  "^MATLAB") --> doFloat
-           ]  where
+        ]
+        ++
+        [ title =? "Event Tester" --> doFloat
+        , title =? "lstopo" --> doCenterFloat
+        , title =? "weatherreport" --> doRectFloat xwmBigRect
+        , title =? "keysheet" --> doRectFloat xwmBigRect
+        , title =? "volume" --> doRectFloat xwmMedRect
+        , role  =? "pop-up" --> doCenterFloat
+        , (className =? "Display" <&&> title =? "ImageMagick: ") --> doCenterFloat
+        , (className =? "MATLAB R2021a - academic use" <&&> title *!?  "^MATLAB") --> doFloat
+        ]  where
             appsToFloat =
                 [ "Arandr"
                 , "Avahi-discover"
@@ -92,7 +101,11 @@ manageFloatings =
 
 xwmManageHook :: ManageHook
 xwmManageHook =
-    namedScratchpadManageHook xwmSPDs
+    composeOne
+        [ transience
+        , isDialog -?> doCenterFloat
+        ]
+    <+> namedScratchpadManageHook xwmSPDs
     <+> manageDocks
     <+> manageFloatings
     <+> manageOthers

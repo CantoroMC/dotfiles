@@ -11,6 +11,7 @@ module Manage.Util
     , terminalFromConf
     , inTerminalFromConf
     , xwmSPDs
+    , applyUrgencyHook
     ) where
 
 
@@ -18,7 +19,16 @@ module Manage.Util
 import XMonad
 import qualified XMonad.StackSet as XMSS
 import XMonad.Hooks.ManageHelpers (doRectFloat)
+import XMonad.Hooks.UrgencyHook
+    ( BorderUrgencyHook (..)
+    , UrgencyConfig (..)
+    , SuppressWhen (..)
+    , RemindWhen (..)
+    , withUrgencyHookC
+    )
 import XMonad.Util.NamedScratchpad (NamedScratchpad(NS), NamedScratchpads)
+
+import qualified Config.Theme as XwmTheme
 
 
 
@@ -64,3 +74,15 @@ xwmSPDs =
     , NS "Orgenda" "emacs --name Orgenda ~/Documents/organization/Notes.org"
         (title =? "Orgenda") (doRectFloat xwmMedRect)
     ]
+
+
+applyUrgencyHook :: LayoutClass l Window => XConfig l -> XConfig l
+applyUrgencyHook = withUrgencyHookC xwmUrgencyHook xwmUrgencyConfig
+  where
+    xwmUrgencyHook = BorderUrgencyHook
+        { urgencyBorderColor = XwmTheme.urgentBorderColor XwmTheme.xwmTheme
+        }
+    xwmUrgencyConfig = UrgencyConfig
+        { suppressWhen = Focused
+        , remindWhen = Repeatedly 3 30
+        }

@@ -9,6 +9,7 @@ import XMonad
         , normalBorderColor
         , focusedBorderColor
         , keys
+        , mouseBindings
         , manageHook
         , startupHook
         , layoutHook
@@ -21,10 +22,13 @@ import XMonad.Hooks.EwmhDesktops (ewmh)
 import XMonad.Hooks.ManageDocks (docks)
 import XMonad.Hooks.StatusBar (withSB)
 
+import Bindings.Binder (mapBindings, storeBindings)
 import Bindings.Keys (xwmKeys)
+import Bindings.Mouse (xwmMouseBindings)
 import qualified Config.Theme as XwmTheme
 import Config.Workspaces (xwmWorkspaces)
 import Layout.Hook (xwmLayoutHook)
+import Manage.Util (applyUrgencyHook)
 import Manage.Hook (xwmManageHook)
 import Log.StatusBar (xBarConfig)
 import Startup.Hook (xwmStartupHook)
@@ -33,7 +37,8 @@ import Startup.Hook (xwmStartupHook)
 
 main :: IO ()
 main = do
-    let xwmConfig' = def {
+    let (applicableKeys, explainableBindings) = mapBindings $ xwmKeys . modMask
+        xwmConfig' = def {
         terminal             = "kitty"
         , focusFollowsMouse  = False
         , clickJustFocuses   = True
@@ -42,15 +47,18 @@ main = do
         , workspaces         = xwmWorkspaces
         , normalBorderColor  = XwmTheme.inactiveBorderColor XwmTheme.xwmTheme
         , focusedBorderColor = XwmTheme.activeBorderColor   XwmTheme.xwmTheme
-
-        , keys               = xwmKeys
-        -- , mouseBindings      = xmMouseBindings
-
+        , keys               = applicableKeys
+        , mouseBindings      = xwmMouseBindings
         , manageHook         = xwmManageHook
         -- , handleEventHook    = myEventHook
         -- , logHook            = xmLogHook xmproc
         , startupHook        = xwmStartupHook
         , layoutHook         = xwmLayoutHook
         }
-        xwmConfig = docks . ewmh . withSB xBarConfig $ xwmConfig'
+        xwmConfig =
+            storeBindings explainableBindings
+            . docks
+            . applyUrgencyHook
+            . ewmh
+            . withSB xBarConfig $ xwmConfig'
     xmonad xwmConfig
