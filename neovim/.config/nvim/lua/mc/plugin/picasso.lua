@@ -2,17 +2,17 @@ local M = {}
 
 local bgs = { 'dark', 'light' }
 local plug_confs = {
-  active     = true,
+  active     = false,
   light_time = { 6, 13 },
   themes     = {
     [ "dark" ]  = {
       [ "ayu" ]        = 'ayu',
       [ "PaperColor" ] = 'papercolor_dark',
       [ "sitruuna" ]   = 'codedark',
-      -- [ "gruvbox" ]    = 'gruvbox_material',
-      -- [ "jellybeans" ] = 'codedark',
-      -- [ "badwolf" ]    = 'codedark',
-      -- [ "srcery" ]     = 'codedark',
+      [ "gruvbox" ]    = 'gruvbox_material',
+      [ "jellybeans" ] = 'codedark',
+      [ "badwolf" ]    = 'codedark',
+      [ "srcery" ]     = 'codedark',
     },
     [ "light" ] = {
       [ "mayansmoke" ] = 'iceberg_light',

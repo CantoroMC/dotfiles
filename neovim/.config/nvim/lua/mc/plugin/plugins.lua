@@ -204,7 +204,10 @@ local function init()
 
   -- GUI UTILITIES {{{3
   -- Colorschemes {{{4
-  usepackage 'Shatur95/neovim-ayu'
+  usepackage {
+    'Shatur95/neovim-ayu',
+    as = 'ayu'
+  }
   usepackage 'sjl/badwolf'
   usepackage 'morhetz/gruvbox'
   usepackage 'NLKNguyen/papercolor-theme'

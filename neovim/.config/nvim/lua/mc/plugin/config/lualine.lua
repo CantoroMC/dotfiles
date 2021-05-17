@@ -2,7 +2,7 @@ require'mc.plugin.picasso'.setup()
 
 local folderOfThisFile = (...):match("(.-)[^%.]+$")
 local monitors         = require(folderOfThisFile .. 'lualine.monitors')
-local theme = require(string.format(
+local theme            = require(string.format(
   '%slualine.themes.%s',
   folderOfThisFile,
   require'mc.plugin.picasso'.lualine()
