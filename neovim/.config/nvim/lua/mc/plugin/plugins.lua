@@ -196,6 +196,10 @@ local function init()
     },
   }
 
+  usepackage {
+    'folke/which-key.nvim',
+    as = 'which-key',
+  }
   -- }}}
 
   -- GUI UTILITIES {{{3
@@ -278,7 +282,7 @@ local function init()
   usepackage 'tpope/vim-eunuch'         -- Vim sugar for the unix shell commands that need it the most
   usepackage 'tpope/vim-fugitive'       -- Git wrapper
   usepackage 'tpope/vim-scriptease'     -- A Vim plugin for vim plugins
-  usepackage 'tpope/vim-speeddating'    -- <CTRL-A>/<CTRL-X> to increment dates, times and dates
+  -- usepackage 'tpope/vim-speeddating'    -- <CTRL-A>/<CTRL-X> to increment dates, times and dates
   usepackage 'tpope/vim-surround'       -- quotizing/parenthesizing (and more) made simple
   usepackage 'tpope/vim-repeat'         -- enable repeating supported plugin maps with `.`
   usepackage 'tpope/vim-rhubarb'        -- GitHub extension for fugitive.vim

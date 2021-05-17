@@ -80,10 +80,10 @@ weather p = WeatherX
     , ("obscured"               , icon "weather/weather_obscured.xpm")
     ]
     [ "--template", action "weather" 3
-        ( " <skyConditionS> <tempC>°C "
-        ++ fc (pBorder p) "<rh>% "
+        ( "<skyConditionS><weather> <tempC>°C "
+        ++ fc (pLow p) "<rh>% "
         ++ fn 3 "\57982 "
-        ++ "<windKmh> km/h <weather>"
+        ++ "<windKmh>km/h"
         )
     ] 100
 
@@ -109,10 +109,9 @@ wireless = Wireless "wlan0"
 
 -------------------------------------------------------------------------------
     -- Others
-clock :: Palette -> Date
-clock p = Date
-    ( action "emacs -e calendar --name 'Orgenda'" 3
-        (fc (pLow p) "%T" ++ " - " ++ fc (pBorder p) "%a %e %b %Y")
+clock :: Date
+clock = Date
+    ( action "emacs -e calendar --name 'Orgenda'" 3 ("%T" ++ " - " ++ "%a %e %b")
     ) "date" 10
 
 keyboard :: Kbd

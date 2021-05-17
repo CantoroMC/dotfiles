@@ -18,15 +18,15 @@ let g:fzf_action = {
 
 " Layout: {{{1
 
-let g:fzf_layout = { 'window': {
-      \ 'width':      0.9,
-      \ 'height':     0.9 ,
-      \ 'xoffset':    0.5,
-      \ 'yoffset':    0.5 ,
-      \ 'border':    'sharp'
-      \ }}
+" let g:fzf_layout = { 'window': {
+"       \ 'width':      0.9,
+"       \ 'height':     0.9 ,
+"       \ 'xoffset':    0.5,
+"       \ 'yoffset':    0.5 ,
+"       \ 'border':    'sharp'
+"       \ }}
 
-" let g:fzf_layout = { 'down': '~30%' }
+let g:fzf_layout = { 'down': '~30%' }
 
 " }}}
 
@@ -67,7 +67,6 @@ let s:map_prefix = '<C-x><C-c>'
 
 " Mapping Dictionary {{{1
 let s:map_dict = {
-      \ 'FuzzyHelper': [ '',  v:false ],
       \ 'Bins'       : [ 'B', v:false ],
       \ 'BibtexCite' : [ 'c', v:false ],
       \ 'Dotfiles'   : [ 'd', v:false ],
@@ -108,26 +107,7 @@ omap <Leader><Tab> <Plug>(fzf-maps-o)
 
 " Section: User Commands
 
-function! s:common_options(prompt, ...) abort " {{{1
-  let options = [
-        \ '--ansi',
-        \ '--layout=reverse',
-        \ '--multi',
-        \ '--info=inline',
-        \ '--prompt='.a:prompt.' ',
-        \ ]
-  if a:0 isnot 0
-    let options = extend(options, a:000)
-  endif
-  return options
-endfunction
-" }}}
-
-
 " Fuzzy Commands And Mappings Helper: {{{1
-
-" Parse Mapped Commands: {{{2
-call remove(s:map_dict, 'FuzzyHelper')
 let s:fzf_commands = {
       \ 'GFiles'    : [ ' ', v:true ],
       \ 'GFiles?'   : [ ' ', v:true ],
@@ -153,23 +133,19 @@ for k in keys(s:fzf_commands)
 endfor
 " }}}
 
-function! s:HelperSink(item) " {{{2
-  let k = a:item[2:]
-  let cmd = s:fzf_commands[k][1] == v:true ? g:fzf_command_prefix.k : k
-  execute ':'.cmd
+function! s:common_options(prompt, ...) abort " {{{1
+  let options = [
+        \ '--ansi',
+        \ '--layout=reverse',
+        \ '--multi',
+        \ '--info=inline',
+        \ '--prompt='.a:prompt.' ',
+        \ ]
+  if a:0 isnot 0
+    let options = extend(options, a:000)
+  endif
+  return options
 endfunction
-" }}}
-
-" Fuzzy Helper: {{{2
-command! -bang -nargs=0 FuzzyHelper
-      \ call fzf#run(fzf#wrap({
-      \   'source' : s:helper_source,
-      \   'sink'   : function('<SID>HelperSink'),
-      \   'options': s:common_options('Fuzzy Helper >'),
-      \ },
-      \ ))
-" }}}
-
 " }}}
 
 

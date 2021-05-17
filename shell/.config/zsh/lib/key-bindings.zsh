@@ -84,6 +84,14 @@ _nvim_cmd () {
 }
 zle -N _nvim_cmd
 
+_notepad (){
+  nf="$HOME/Documents/organization/note.md"
+  BUFFER="nvim $nf"
+  zle end-of-line
+  zle accept-line
+}
+zle -N _notepad
+
 # Make CTRL-Z background things and unbackground them.
 function _fg-bg() {
   if [[ $#BUFFER -eq 0 ]]; then
@@ -176,6 +184,7 @@ bindkey -M viins      '^X^K' fzf-bindkey
 bindkey -M viins      '^X^L' _nnn_cmd
 bindkey -M viins -s   '^X^M' 'fzf-man\n'
 bindkey -M viins      '^X^N' _nvim_cmd
+bindkey -M viins      '^X^V' _notepad
 bindkey -M viins      '^X^P' fzf-kill
 bindkey -M viins -s   '^X^R' 'fzf-run\n'
 bindkey -M viins      '^X^S' fzf-bmarks

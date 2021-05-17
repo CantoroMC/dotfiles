@@ -27,7 +27,7 @@ xBarConfig p = (baseConfig p)
         , Run (weather p)
         , Run (dynNet p)
         , Run wireless
-        , Run (clock p)
+        , Run clock
         , Run keyboard
         , Run $ Cpu
             [ "-L", "3"
@@ -39,11 +39,10 @@ xBarConfig p = (baseConfig p)
         , Run $ Swap [] 10
         ]
     , template =
-        " "
-        ++ "|UnsafeXMonadLog| "
+        "|UnsafeXMonadLog| "
         ++ "}"
-        ++ "|LIML|"
-        ++ " |date|"
+        ++ "|date|"
+        ++ " |LIML|"
         ++ "{"
         ++ action "st sudo pacman -Syu" 3 " |pacman|"
         ++ " |cpu| - |memory| * |swap| - |wlan0wi|"

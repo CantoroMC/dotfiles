@@ -95,8 +95,8 @@ xwmKeys mask = do
     ---------------------------------------------------------------------------
         -- Left side characters
     bind $ mask ... xK_q
-        |/- "Recompile and restart xmonad"
-        ^> spawn "xwm --recompile" >> restart "xwm" True
+        |/- "Restart xmonad"
+        ^> restart "xwm" True
     bind $ mask .|. shiftMask ... xK_q
         |/- "Kill focused client"
         ^> kill
