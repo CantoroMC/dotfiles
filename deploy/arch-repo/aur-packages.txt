@@ -2,6 +2,7 @@ abook
 bibtool
 imagewriter-git
 lua-language-server-git
+neovim-nightly-git
 onlyoffice-bin
 ttf-font-awesome-4
 polyglot-winboard-git
