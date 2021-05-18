@@ -144,10 +144,10 @@ export PYLINTHOME="$XDG_CACHE_HOME"/pylint
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 # XMonad
-export XMONAD_CONFIG_DIR="${DOTFILES}/deploy/third-party/XMonad/Xwm"
+export XMONAD_CONFIG_DIR="${DOTFILES}/deploy/XMonad/Xwm"
 export XMONAD_DATA_DIR="${XMONAD_CONFIG_DIR}/data"
 export XMONAD_CACHE_DIR="${XMONAD_DATA_DIR}/cache"
-export XMOBAR_CONFIG_DIR="${DOTFILES}/deploy/third-party/XMonad/XBar"
+export XMOBAR_CONFIG_DIR="${DOTFILES}/deploy/XMonad/XBar"
 # }}}
 
 # Path {{{1

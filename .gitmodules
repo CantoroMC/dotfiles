@@ -1,9 +1,1 @@
-[submodule "deploy/third-party/XMonad/xmobar"]
-	path = deploy/third-party/XMonad/xmobar
-	url = https://github.com/jaor/xmobar/
-[submodule "deploy/third-party/XMonad/xmonad"]
-	path = deploy/third-party/XMonad/xmonad
-	url = https://github.com/xmonad/xmonad
-[submodule "deploy/third-party/XMonad/xmonad-contrib"]
-	path = deploy/third-party/XMonad/xmonad-contrib
-	url = https://github.com/xmonad/xmonad-contrib
+
