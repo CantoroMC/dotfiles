@@ -40,9 +40,9 @@ baseConfig p = defaultConfig
     { font             = pFont p
     , additionalFonts  =
         [ "xft:FantasqueSansMono Nerd Font:style=Italic:size=7:hinting=true" -- for the win titles
-        , "xft:Ubuntu:weight=bold:pixelsize=7:antialias=true:hinting=true"
+        , "xft:Operator Mono Lig:style:Italic:size=7:antialias=true:hinting=true"
         , "xft:FiraCode Nerd Font:style=Regular:pixelsize=11" -- for the workspaces
-        , "xft:Operator Mono Lig:style=Bold:pixelsize=14"
+        , "xft:FiraCode Nerd Font:style=Regular:pixelsize=16"
         ]
     , bgColor          = pBackground p
     , fgColor          = pForeground p

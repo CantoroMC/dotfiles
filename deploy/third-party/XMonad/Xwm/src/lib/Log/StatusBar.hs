@@ -3,6 +3,7 @@ module Log.StatusBar (xBarConfig) where
 
 
 import XMonad
+import qualified XMonad.StackSet as XMSS
 import XMonad.Hooks.StatusBar ( statusBarProp, StatusBarConfig )
 import XMonad.Hooks.StatusBar.PP
     ( PP( ppCurrent
@@ -31,11 +32,21 @@ import XMonad.Hooks.StatusBar.PP
     , xmobarStrip
     , filterOutWsPP
     )
-import XMonad.Util.Loggers ( logTitles )
 import XMonad.Util.NamedScratchpad (scratchpadWorkspaceTag)
 import XMonad.Util.WorkspaceCompare (getSortByIndex)
 
 
+windowCount :: X (Maybe String)
+windowCount =
+    gets
+        $ Just
+        . show
+        . length
+        . XMSS.integrate'
+        . XMSS.stack
+        . XMSS.workspace
+        . XMSS.current
+        . windowset
 
 xmobarFont ::
     Int
@@ -56,24 +67,18 @@ xBarPP = def
     , ppRename           = pure
     , ppSep              = " "
     , ppWsSep            = ""
-    , ppTitle            = shorten 50
+    , ppTitle            = xmobarFont 2 . shorten 50
     , ppTitleSanitize    = xmobarStrip
     , ppLayout           = xmobarColor "#36a3d9" ""
-    , ppOrder            = \[ws, l, _, ex] -> [ws, l, ex]
+    , ppOrder            = \[ws, l, t, ex] -> [ws, l, ex, t]
     , ppSort             = getSortByIndex
-    , ppExtras           = [logTitles fmtFocused fmtUnfocused]
+    , ppExtras           = [windowCount]
     , ppOutput           = putStrLn
     }
-      where
-        fmtFocused   = xmobarColor "#b8cc52" "" . xmobarFont 1 . wrap "•" "" . ppTitle
-        fmtUnfocused = xmobarFont 1 . wrap "•" "" . ppTitle
-
-        ppTitle :: String -> String
-        ppTitle = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 30
 
 xBarConfig :: StatusBarConfig
 xBarConfig = statusBarProp xbarCmd $ pure $ filterOutWsPP [scratchpadWorkspaceTag] xBarPP
   where
     xbarCmd = unwords ["xbar", flagIconRoot]
-    flagIconRoot = "--iconroot=" <> xbarConfigDir <> "/utilities/icons/dark"
+    flagIconRoot = "--iconroot=" <> xbarConfigDir <> "/utilities/icons"
     xbarConfigDir = "\"${XMOBAR_CONFIG_DIR}\""

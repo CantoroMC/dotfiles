@@ -2,7 +2,7 @@
 
 _pkgname=Stockfish
 pkgname=stockfish-bull-git
-pkgver=13.r5206.b62af7ac
+pkgver=13.r5212.f90274d8
 pkgrel=1
 pkgdesc="Free, powerful UCI chess engine derived from Glaurung 2.1."
 arch=('i686' 'x86_64')

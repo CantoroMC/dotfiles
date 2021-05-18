@@ -8,8 +8,8 @@ import System.Environment (lookupEnv)
 xBarConfigDir :: String
 xBarConfigDir = "\"${XMOBAR_CONFIG_DIR}\""
 
-icons :: String -> String
-icons bg = xBarConfigDir ++ "/utilities/icons/" ++ bg
+icons :: String
+icons = xBarConfigDir ++ "/utilities/icons"
 
 
 data Palette = Palette
@@ -32,7 +32,7 @@ lightPalette = Palette
     , pBackground = "#eaeaea"
     , pAlpha      = 255
     , pBorder     = "#36a3d9"
-    , pIconRoot   = icons "light"
+    , pIconRoot   = icons
     , pLow        = "#36a3d9"
     , pNormal     = "#151a1e"
     , pHigh       = "#ff3333"
@@ -46,7 +46,7 @@ darkPalette = Palette
     , pBackground = "#151a1e"
     , pAlpha      = 255
     , pBorder     = "#b8cc52"
-    , pIconRoot   = icons "dark"
+    , pIconRoot   = icons
     , pLow        = "#36a3d9"
     , pNormal     = "#fafafa"
     , pHigh       = "#ff3333"

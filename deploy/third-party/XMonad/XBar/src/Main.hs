@@ -7,9 +7,15 @@ import Monitors
     , pacman
     , sound
     , battery
-    , weather
+    , brightness
     , dynNet
-    , wireless
+    , memory
+    , mpdMusic
+    , multicpu
+    , swap
+    , thermal
+    , uptime
+    , weather
     , clock
     , keyboard
     )
@@ -24,28 +30,34 @@ xBarConfig p = (baseConfig p)
         , Run pacman
         , Run sound
         , Run (battery p "BAT0" "battery0")
-        , Run (weather p)
+        , Run (brightness p)
         , Run (dynNet p)
-        , Run wireless
+        , Run (memory p)
+        , Run (mpdMusic p)
+        , Run (multicpu p)
+        , Run swap
+        , Run (thermal p)
+        , Run uptime
+        , Run (weather p)
         , Run clock
         , Run keyboard
-        , Run $ Cpu
-            [ "-L", "3"
-            , "-H", "50"
-            , "--normal", "green"
-            , "--high", "red"
-            ] 10
-        , Run $ Memory ["-t","Mem: <usedratio>%"] 10
-        , Run $ Swap [] 10
         ]
     , template =
-        "|UnsafeXMonadLog| "
+        "|UnsafeXMonadLog|"
+        ++ " |music|"
         ++ "}"
         ++ "|date|"
         ++ " |LIML|"
-        ++ "{"
         ++ action "st sudo pacman -Syu" 3 " |pacman|"
-        ++ " |cpu| - |memory| * |swap| - |wlan0wi|"
+        ++ "{"
+        ++ "|multicpu|"
+        ++ " |multicoretemp|"
+        ++ " |memory|(|swap|)"
+        ++ "   "
+        ++ "|dynnetwork|"
+        ++ "   "
+        ++ "|uptime|"
+        ++ " |kbd|"
         ++ action "pactl set-sink-volume @DEFAULT_SINK@ -5%" 5
                (action "pactl set-sink-volume @DEFAULT_SINK@ +5%" 4
                    (action "pactl set-sink-mute @DEFAULT_SINK@ toggle" 2
@@ -54,11 +66,10 @@ xBarConfig p = (baseConfig p)
                        )
                    )
                )
+        ++ " |bright|"
         ++ " |battery0|"
-        ++ " |kbd|"
-        ++ " |dynnetwork|"
-        ++ "  "
-        ++ " |trayerPad|"
+        ++ "   "
+        ++ "|trayerPad|"
     }
 
 main :: IO ()
