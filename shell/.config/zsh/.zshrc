@@ -2,15 +2,8 @@
 
 
 #
-# Auxiliary functions
+## Auxiliary functions
 #
-function is_plugin() {
-  local base_dir=$1
-  local name=$2
-  builtin test -f $base_dir/plugins/$name/$name.plugin.zsh \
-    || builtin test -f $base_dir/plugins/$name/_$name
-}
-
 function handle_completion_insecurities() {
   # List of the absolute paths of all unique insecure directories, split on
   # newline from compaudit()'s output.
@@ -39,9 +32,8 @@ EOD
 }
 
 
-
 #
-# Variables
+## Variables
 #
 
 # Directories to add to fpath
@@ -52,13 +44,11 @@ fpath=(
   $fpath
 )
 
-# Plugins to load
-plugins=(
-  fzf-tab
-  zsh-autosuggestions
-  zsh-history-substring-search
-  zsh-syntax-highlighting
-)
+source $ZDOTDIR/miniplug.zsh
+miniplug plugin Aloxaf/fzf-tab
+miniplug plugin zsh-users/zsh-autosuggestions
+miniplug plugin zsh-users/zsh-history-substring-search
+miniplug plugin zsh-users/zsh-syntax-highlighting
 
 # Plugins configuration
 zstyle ':fzf-tab:complete:cd:*' fzf-preview \
@@ -86,17 +76,10 @@ __BULL[ITALIC_OFF]=$'\e[23m'
 #
 autoload -U compaudit compinit
 
-for plugin ($plugins); do
-  is_plugin $ZDOTDIR $plugin && fpath=($ZDOTDIR/plugins/$plugin $fpath) \
-    || echo "zsh plugin '$plugin' not found"
-done
-
 # If completion insecurities exist, warn the user
 handle_completion_insecurities
 # Load only from secure directories
 compinit -i -C
-
-
 
 #
 # Source the zsh library and plugins
@@ -108,10 +91,7 @@ for config_file ($ZDOTDIR/lib/*.zsh); do
 done
 unset config_file
 
-# Load all of the desired plugins
-for plugin ($plugins); do
-  is_plugin $ZDOTDIR $plugin && source $ZDOTDIR/plugins/$plugin/$plugin.plugin.zsh
-done
+miniplug load
 
 # Load fzf completion and key bindings
 for plugin (/usr/share/fzf/*.zsh); do
@@ -120,11 +100,10 @@ done
 unset plugin plugins
 
 
-
 #
 # Shell Prompt
 #
 autoload -Uz promptinit; promptinit; prompt voidy
 
 
-zmodload zsh/zpty
+# zmodload zsh/zpty

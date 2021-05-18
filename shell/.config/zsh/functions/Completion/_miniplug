@@ -1,0 +1,16 @@
+#compdef miniplug
+
+_arguments '1: :->cmds' && ret=0
+
+case $state in
+  cmds)
+    _values "miniplug command" \
+    "plugin[Register a plugin]" \
+    "install[Install plugins]" \
+    "update[Update plugins]" \
+    "help[Show this message]"
+    ret=0
+    ;;
+esac
+
+return ret
