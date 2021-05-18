@@ -175,10 +175,18 @@ local function init()
   -- Tag Viewer with Ctags
   usepackage 'preservim/tagbar'
   -- FuzzyFinder
-  usepackage 'junegunn/fzf'
   usepackage {
-    'junegunn/fzf.vim',
-    requires = { 'junegunn/fzf' },
+    'nvim-telescope/telescope.nvim',
+    as = 'telescope',
+    requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' }
+  }
+  usepackage {
+    'nvim-telescope/telescope-symbols.nvim',
+    requires = {
+      'nvim-telescope/telescope',
+      'nvim-lua/popup.nvim',
+      'nvim-lua/plenary.nvim'
+    }
   }
   -- Snippets
   usepackage {
