@@ -38,7 +38,6 @@ zstyle ':completion:*' list-dirs-first true
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:descriptions' format '%d'
 zstyle ':completion:*' list-grouped true
-# zstyle ':completion:*:descriptions' format %F{blue}%B%{$__BULL[ITALIC_ON]%}--- %d ---%{$__BULL[ITALIC_OFF]%}%b%f # don't work with fzf-tab
 
 # disable named-directories autocompletion
 zstyle ':completion:*:cd:*' tag-order local-directories directory-stack path-directories

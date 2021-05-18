@@ -1,9 +1,17 @@
 # zsh configuration file
 
+#
+### fpath and compinit
+#
+fpath=(
+  $ZDOTDIR/functions/Completion
+  $ZDOTDIR/functions/Prompts
+  $ZDOTDIR/functions/Zle
+  $fpath
+)
 
-#
-## Auxiliary functions
-#
+autoload -U compaudit compinit
+
 function handle_completion_insecurities() {
   # List of the absolute paths of all unique insecure directories, split on
   # newline from compaudit()'s output.
@@ -30,80 +38,63 @@ function handle_completion_insecurities() {
 
 EOD
 }
-
-
-#
-## Variables
-#
-
-# Directories to add to fpath
-fpath=(
-  $ZDOTDIR/functions/Completion
-  $ZDOTDIR/functions/Prompts
-  $ZDOTDIR/functions/Zle
-  $fpath
-)
-
-source $ZDOTDIR/miniplug.zsh
-miniplug plugin Aloxaf/fzf-tab
-miniplug plugin zsh-users/zsh-autosuggestions
-miniplug plugin zsh-users/zsh-history-substring-search
-miniplug plugin zsh-users/zsh-syntax-highlighting
-
-# Plugins configuration
-zstyle ':fzf-tab:complete:cd:*' fzf-preview \
-  'exa --color=always -aT -L=2 --group-directories-first -I=.git $realpath'
-zstyle ':fzf-tab:*' switch-group '[' ']'
-zstyle ':fzf-tab:complete:cd:*' popup-pad 20 0
-HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
-ZSH_AUTOSUGGEST_USE_ASYNC='true'
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[comment]='fg=59'
-
-# Create a hash table for globally stashing variables without polluting main
-# scope with a bunch of identifiers.
-typeset -A __BULL
-
-__BULL[ITALIC_ON]=$'\e[3m'
-__BULL[ITALIC_OFF]=$'\e[23m'
-
-
-
-#
-# fpath and compinit
-#
-autoload -U compaudit compinit
-
 # If completion insecurities exist, warn the user
 handle_completion_insecurities
 # Load only from secure directories
 compinit -i -C
 
-#
-# Source the zsh library and plugins
-#
 
-# Load all of the config files in ZDOTDIR/lib that end in .zsh
-for config_file ($ZDOTDIR/lib/*.zsh); do
-  source $config_file
+#
+### Zsh library
+#
+function isMod() {
+  builtin test -f $ZDOTDIR/lib/$1.zsh
+}
+
+Mods=(
+  miniplug
+  options
+  completion
+  functions
+  keybindings
+  navigation
+  aliases
+  termtitle
+  vcs
+  vi_prompt
+)
+for mod ($Mods); do
+  isMod $mod && source $ZDOTDIR/lib/$mod.zsh || \
+    printf "[warn] \x1b[33m$mod.zsh not found.\x1b[0m\n" "$@"
 done
-unset config_file
 
+
+#
+### Zsh plugins
+#
+miniplug plugin Aloxaf/fzf-tab
+miniplug plugin zsh-users/zsh-autosuggestions
+miniplug plugin zsh-users/zsh-history-substring-search
+miniplug plugin zsh-users/zsh-syntax-highlighting
 miniplug load
 
-# Load fzf completion and key bindings
+# Plugins configuration
+for miniplug_conf ($MINIPLUG_LOADED_PLUGINS); do
+  miniplug_conf="${miniplug_conf##*/}"
+  isMod "plug.d/$miniplug_conf" && source $ZDOTDIR/lib/plug.d/$miniplug_conf.zsh || \
+    printf "[warn] \x1b[33m$miniplug_conf.zsh not found.\x1b[0m\n" "$@"
+done
+
+# Load fzf modules
 for plugin (/usr/share/fzf/*.zsh); do
   source $plugin
 done
-unset plugin plugins
+
+unset miniplug_conf plugin Mods mod
+unset -f handle_completion_insecurities isMod
 
 
 #
-# Shell Prompt
+### Shell Prompt
 #
 autoload -Uz promptinit; promptinit; prompt voidy
-
-
-# zmodload zsh/zpty
