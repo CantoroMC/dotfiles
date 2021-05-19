@@ -27,6 +27,7 @@ library
                     , Layout.Tatami
                     , Layout.Layouts
                     , Layout.Hook
+                    , Log.ClickableWorkspaces
                     , Log.StatusBar
                     , Manage.Util
                     , Manage.Hook

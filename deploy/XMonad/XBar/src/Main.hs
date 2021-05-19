@@ -45,10 +45,10 @@ xBarConfig p = (baseConfig p)
     , template =
         "|UnsafeXMonadLog|"
         ++ " |music|"
+        ++ action "st sudo pacman -Syu" 3 " |pacman|"
         ++ "}"
         ++ "|date|"
         ++ " |LIML|"
-        ++ action "st sudo pacman -Syu" 3 " |pacman|"
         ++ "{"
         ++ "|multicpu|"
         ++ " |multicoretemp|"

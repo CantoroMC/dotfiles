@@ -35,6 +35,7 @@ import XMonad.Hooks.StatusBar.PP
 import XMonad.Util.NamedScratchpad (scratchpadWorkspaceTag)
 import XMonad.Util.WorkspaceCompare (getSortByIndex)
 
+import Log.ClickableWorkspaces (clickablePP)
 
 windowCount :: X (Maybe String)
 windowCount =
@@ -77,7 +78,7 @@ xBarPP = def
     }
 
 xBarConfig :: StatusBarConfig
-xBarConfig = statusBarProp xbarCmd $ pure $ filterOutWsPP [scratchpadWorkspaceTag] xBarPP
+xBarConfig = statusBarProp xbarCmd $ clickablePP $ filterOutWsPP [scratchpadWorkspaceTag] xBarPP
   where
     xbarCmd = unwords ["xbar", flagIconRoot]
     flagIconRoot = "--iconroot=" <> xbarConfigDir <> "/utilities/icons"
