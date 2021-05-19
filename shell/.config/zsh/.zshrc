@@ -52,7 +52,7 @@ function isMod() {
 }
 
 Mods=(
-  miniplug
+  zplug
   options
   completion
   functions
@@ -72,17 +72,17 @@ done
 #
 ### Zsh plugins
 #
-miniplug plugin Aloxaf/fzf-tab
-miniplug plugin zsh-users/zsh-autosuggestions
-miniplug plugin zsh-users/zsh-history-substring-search
-miniplug plugin zsh-users/zsh-syntax-highlighting
-miniplug load
+zplug plugin Aloxaf/fzf-tab
+zplug plugin zsh-users/zsh-autosuggestions
+zplug plugin zsh-users/zsh-history-substring-search
+zplug plugin zsh-users/zsh-syntax-highlighting
+zplug load
 
 # Plugins configuration
-for miniplug_conf ($MINIPLUG_LOADED_PLUGINS); do
-  miniplug_conf="${miniplug_conf##*/}"
-  isMod "plug.d/$miniplug_conf" && source $ZDOTDIR/lib/plug.d/$miniplug_conf.zsh || \
-    printf "[warn] \x1b[33m$miniplug_conf.zsh not found.\x1b[0m\n" "$@"
+for zplug_conf ($zplug_LOADED_PLUGINS); do
+  zplug_conf="${zplug_conf##*/}"
+  isMod "plug.d/$zplug_conf" && source $ZDOTDIR/lib/plug.d/$zplug_conf.zsh || \
+    printf "[warn] \x1b[33m$zplug_conf.zsh not found.\x1b[0m\n" "$@"
 done
 
 # Load fzf modules
@@ -90,7 +90,7 @@ for plugin (/usr/share/fzf/*.zsh); do
   source $plugin
 done
 
-unset miniplug_conf plugin Mods mod
+unset zplug_conf plugin Mods mod
 unset -f handle_completion_insecurities isMod
 
 
