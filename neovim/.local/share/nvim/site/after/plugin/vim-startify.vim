@@ -73,7 +73,7 @@ let g:startify_bookmarks = [
 " Commands: {{{1
 let g:startify_commands = [
     \ ['Git', ':Git'],
-    \ {'s': ['Load Last Session', ':SLoad!'] },
+    \ {'s': ['Load Last Session', ':LoadLastSession'] },
     \ {'p': ['Vim Startup Time', ':StartupTime']},
     \ ]
 " }}}

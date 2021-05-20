@@ -1,3 +1,10 @@
+# Create a hash table for globally stashing variables without polluting main
+# scope with a bunch of identifiers.
+typeset -A __FMT
+
+__FMT[ITALIC_ON]=$'\e[3m'
+__FMT[ITALIC_OFF]=$'\e[23m'
+
 prompt_bull_precmd() {
 	local exitstatus=$?
 	setopt localoptions noxtrace noksharrays
@@ -46,9 +53,9 @@ prompt_bull_setup () {
   # return code and ❯ (according to shell levels)
   local start="%B%(?.%F{green}.%F{red}%v)%{"$(printf '❯%.0s' {1..$LVL})'%'$LVL'G%} %f%b'
   # username and hostname if on an ssh session
-  local ssh_info="%B${SSH_TTY:+:}%b$__BULL[ITALIC_ON]%}%F{$color1}${SSH_TTY:+%n@%m}%f%{$__BULL[ITALIC_OFF]%}"
+  local ssh_info="%B${SSH_TTY:+:}%b$__FMT[ITALIC_ON]%}%F{$color1}${SSH_TTY:+%n@%m}%f%{$__FMT[ITALIC_OFF]%}"
   # current directory with shaded bar
-  local dir_bar="%B%F{$color1}$(printf '\ue0ca%1.0s')%K{$color1}$schars[333]$schars[262]$schars[261]$schars[260]%F{$color2}%K{$color1}%{$__BULL[ITALIC_ON]%}%(7~|%-3~/.../%3~|%~)%{$__BULL[ITALIC_OFF]%}%b%F{$color1}%k$schars[333]$schars[262]$schars[261]$schars[260]$(printf '\ue0c8%1.0s')%f"
+  local dir_bar="%B%F{$color1}$(printf '\ue0ca%1.0s')%K{$color1}$schars[333]$schars[262]$schars[261]$schars[260]%F{$color2}%K{$color1}%{$__FMT[ITALIC_ON]%}%(7~|%-3~/.../%3~|%~)%{$__FMT[ITALIC_OFF]%}%b%F{$color1}%k$schars[333]$schars[262]$schars[261]$schars[260]$(printf '\ue0c8%1.0s')%f"
 
   local nr_jobs="%B%F{$color3}%(1j.%(2j.%j.)*.)%f%b"
   local hist_len="%B%F{$color2}%{ %2G%}%h%f%b"
@@ -92,7 +99,7 @@ prompt_bull_setup () {
         SECS="$((~~$SECS))s"
       fi
       ELAPSED="${ELAPSED}${SECS}"
-      RPS1="%F{cyan}%{$__BULL[ITALIC_ON]%}${ELAPSED}%{$__BULL[ITALIC_OFF]%}%f $RPROMPT_BASE"
+      RPS1="%F{cyan}%{$__FMT[ITALIC_ON]%}${ELAPSED}%{$__FMT[ITALIC_OFF]%}%f $RPROMPT_BASE"
       unset ZSH_START_TIME
     else
       RPS1="$RPROMPT_BASE"

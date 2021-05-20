@@ -1,0 +1,14 @@
+#!/bin/sh
+
+nr_pacup=$(checkupdates | wc -l)
+nr_aurUp=$(auracle outdated | wc -l)
+
+[ "$nr_pacup" -eq 0 ] && pacman_state="<fn=1><fc=#ffff00> </fc></fn>Ok "
+[ "$nr_pacup" -gt 0 ] && pacman_state="<fn=1><fc=#ffff00> </fc></fn> $nr_pacup"
+
+[ "$nr_aurUp" -eq 0 ] && aur_state="<fn=1><fc=#138ac1> </fc></fn>Ok"
+[ "$nr_aurUp" -gt 0 ] && aur_state="<fn=1><fc=#138ac1> </fc></fn> $nr_aurUp"
+
+echo $pacman_state $aur_state
+
+exit 0

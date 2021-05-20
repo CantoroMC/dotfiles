@@ -31,6 +31,7 @@ vim.g.indent_blankline_filetype_exclude = {
   'muttrc',
   'neomuttrc',
   'text',
+  'markdown',
   'GroundHog',
   'NvimTree',
   'packer',

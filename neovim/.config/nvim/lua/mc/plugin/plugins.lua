@@ -175,10 +175,18 @@ local function init()
   -- Tag Viewer with Ctags
   usepackage 'preservim/tagbar'
   -- FuzzyFinder
-  usepackage 'junegunn/fzf'
   usepackage {
-    'junegunn/fzf.vim',
-    requires = { 'junegunn/fzf' },
+    'nvim-telescope/telescope.nvim',
+    as = 'telescope',
+    requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' }
+  }
+  usepackage {
+    'nvim-telescope/telescope-symbols.nvim',
+    requires = {
+      'nvim-telescope/telescope',
+      'nvim-lua/popup.nvim',
+      'nvim-lua/plenary.nvim'
+    }
   }
   -- Snippets
   usepackage {
@@ -196,11 +204,18 @@ local function init()
     },
   }
 
+  usepackage {
+    'folke/which-key.nvim',
+    as = 'which-key',
+  }
   -- }}}
 
   -- GUI UTILITIES {{{3
   -- Colorschemes {{{4
-  usepackage 'Shatur95/neovim-ayu'
+  usepackage {
+    'Shatur95/neovim-ayu',
+    as = 'ayu'
+  }
   usepackage 'sjl/badwolf'
   usepackage 'morhetz/gruvbox'
   usepackage 'NLKNguyen/papercolor-theme'
@@ -278,7 +293,7 @@ local function init()
   usepackage 'tpope/vim-eunuch'         -- Vim sugar for the unix shell commands that need it the most
   usepackage 'tpope/vim-fugitive'       -- Git wrapper
   usepackage 'tpope/vim-scriptease'     -- A Vim plugin for vim plugins
-  usepackage 'tpope/vim-speeddating'    -- <CTRL-A>/<CTRL-X> to increment dates, times and dates
+  -- usepackage 'tpope/vim-speeddating'    -- <CTRL-A>/<CTRL-X> to increment dates, times and dates
   usepackage 'tpope/vim-surround'       -- quotizing/parenthesizing (and more) made simple
   usepackage 'tpope/vim-repeat'         -- enable repeating supported plugin maps with `.`
   usepackage 'tpope/vim-rhubarb'        -- GitHub extension for fugitive.vim

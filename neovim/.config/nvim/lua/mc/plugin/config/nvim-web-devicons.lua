@@ -72,7 +72,11 @@ require'nvim-web-devicons'.setup {
       color = "#DE6B74",
       name = "lock"
     },
+    makefile = {
+      icon = "",
+      color = '#ffffff',
+      name = "Makefile",
+    }
   };
-
   default = true;
 }

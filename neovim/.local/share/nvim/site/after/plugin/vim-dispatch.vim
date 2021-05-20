@@ -33,5 +33,5 @@ augroup dispatch_configs
   autocmd FileType matlab  let b:dispatch = 'mlint -id %'
 augroup END
 
-nnoremap <silent> <C-c><C-c> :<C-u>Make<CR>
+nnoremap <silent> <C-c><C-m> :<C-u>Make<CR>
 nnoremap <silent> <C-c><C-d> :<C-u>Dispatch!<CR>

@@ -7,10 +7,18 @@ zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' get-revision true
 
 # Formats
+
+# Create a hash table for globally stashing variables without polluting main
+# scope with a bunch of identifiers.
+typeset -A __FMT
+
+__FMT[ITALIC_ON]=$'\e[3m'
+__FMT[ITALIC_OFF]=$'\e[23m'
+
 zstyle ':vcs_info:*' formats \
-  " %F{green}%B%{$__BULL[ITALIC_ON]%}%s%%b%{$__BULL[ITALIC_OFF]%} %f%F{blue}%{ %2G%}%B%{$__BULL[ITALIC_ON]%}%b%%b%{$__BULL[ITALIC_OFF]%}%f%F{yellow}%{$__BULL[ITALIC_ON]%} %{ %2G%}%7.7i %{$__BULL[ITALIC_OFF]%}%f%c%u%F{green}%f %m"
+  " %F{green}%B%{$__FMT[ITALIC_ON]%}%s%%b%{$__FMT[ITALIC_OFF]%} %f%F{blue}%{ %2G%}%B%{$__FMT[ITALIC_ON]%}%b%%b%{$__FMT[ITALIC_OFF]%}%f%F{yellow}%{$__FMT[ITALIC_ON]%} %{ %2G%}%7.7i %{$__FMT[ITALIC_OFF]%}%f%c%u%F{green}%f %m"
 zstyle ':vcs_info:*' actionformats \
-  "(%F{red}%B%{$__BULL[ITALIC_ON]%}%s%%b%{$__BULL[ITALIC_OFF]%}%f)%F{green}[%f%F{blue}%B%{$__BULL[ITALIC_ON]%}%b%%b%{$__BULL[ITALIC_OFF]%}%f%F{cyan}%{$__BULL[ITALIC_ON]%} %7.7i %{$__BULL[ITALIC_OFF]%}%f%c%u%F{green}]%f %m-%F{red}%a%f"
+  "(%F{red}%B%{$__FMT[ITALIC_ON]%}%s%%b%{$__FMT[ITALIC_OFF]%}%f)%F{green}[%f%F{blue}%B%{$__FMT[ITALIC_ON]%}%b%%b%{$__FMT[ITALIC_OFF]%}%f%F{cyan}%{$__FMT[ITALIC_ON]%} %7.7i %{$__FMT[ITALIC_OFF]%}%f%c%u%F{green}]%f %m-%F{red}%a%f"
 zstyle ':vcs_info:*' stagedstr \
   "%F{green}%{ %2G%}%f"
 zstyle ':vcs_info:*' unstagedstr \

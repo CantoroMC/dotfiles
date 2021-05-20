@@ -2,7 +2,7 @@
 
 AUR_HELPER=${AUR_HELPER:-'auracle-git'}
 DOTFILES=${DOTFILES:-$HOME'/dotfiles'}
-PKG_LISTS_DIR=$DOTFILES/deploy/arch-repo/pacman-pkgs
+PKG_LISTS_DIR=$DOTFILES/deploy/pacman-pkgs
 PKGS=(bull-pkgs gtk-pkgs xmonad-extra-pkgs programming-pkgs)
 BOXES=(git emacs neovim texlive music mail shell haskell x-window)
 XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME'/.config'}
@@ -23,10 +23,10 @@ CONFIGS=(
   nvim
   radiotray-ng
   surf
-  zsh/plugins
 )
 DATAS=(
   nvim/site/pack
+  nvim/site/spell
   xorg
   fonts
   surf
@@ -57,7 +57,8 @@ aur_helper(){
 
 
 check_mkdir() {
-  [ ! -d "${1}" ] && mkdir -p "${1}" || echo -e "\e[1;97m${1} already exists.\e[0m"
+  [ ! -d "${1}" ] && mkdir -p "${1}" || \
+    echo -e "\e[1;34m:: \e[0m\e[1;97m${1} already exists.\e[0m"
 }
 
 prepare_ft(){

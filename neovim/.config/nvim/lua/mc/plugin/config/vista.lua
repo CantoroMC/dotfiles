@@ -27,5 +27,5 @@ vim.api.nvim_exec([[
 ]], false)
 
 
-vim.api.nvim_set_keymap('n', '<C-x><C-v>',
+vim.api.nvim_set_keymap('n', '<C-c><C-v>',
   '<Cmd>Vista!!<CR>', { noremap = true, silent = true })
