@@ -35,5 +35,5 @@ vim.g.tagbar_scopestrs = {
   ["variable"]       = '',
 }
 
-vim.api.nvim_set_keymap('n', '<C-x><C-t>',
+vim.api.nvim_set_keymap('n', '<C-c><C-t>',
   '<Cmd>TagbarToggle<CR>', { noremap = true, silent = true })

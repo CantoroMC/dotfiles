@@ -37,8 +37,6 @@ nnoremap Q @@
 nnoremap ZQ :wqall<CR>
 " Closing
 nnoremap <C-Q> :q<CR>
-" Emacs save
-nnoremap <C-x><C-s> :update<CR>
 " Movement with control:
 noremap <C-J> G
 noremap <C-K> gg

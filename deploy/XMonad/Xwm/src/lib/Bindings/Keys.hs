@@ -118,6 +118,9 @@ xwmKeys mask = do
     bind $ mask .|. controlMask ... xK_e
         |/- "Swap current physical/Xinerama screen with the next"
         ^> swapNextScreen
+    bind $ mask ... xK_r
+        |/- "Spawn tabbed zathura"
+        ^> spawn "tabbed -c zathura -e"
     bind $ mask ... xK_t
         |/- "Push focused client back into tiling"
         ^> withFocused $ windows . XMSS.sink

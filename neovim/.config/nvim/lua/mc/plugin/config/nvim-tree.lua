@@ -81,7 +81,7 @@ vim.g.nvim_tree_bindings = {
 
 
 -- BINDINGS:
-vim.api.nvim_set_keymap('n', '<C-x>f',
+vim.api.nvim_set_keymap('n', '<C-c>f',
   '<Cmd>NvimTreeToggle<CR>',   { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-x><C-f>',
+vim.api.nvim_set_keymap('n', '<C-c><C-f>',
   '<Cmd>NvimTreeFindFile<CR>', { noremap = true, silent = true })

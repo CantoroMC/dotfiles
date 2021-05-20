@@ -28,7 +28,7 @@ end
 
 function M.skeletons()
   require'telescope.builtin'.find_files {
-    prompt_title = 'Custom Picker',
+    prompt_title = 'Skeletons',
     shorten_path = false,
     cwd = vim.fn.stdpath('config').."/data/skeletons",
     attach_mappings = function(prompt_bufnr)

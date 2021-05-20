@@ -4,26 +4,24 @@ telescope.setup{
     -- Layout
     initial_mode    = "insert",
     scroll_startegy = 'cycle',
-    prompt_position = "bottom",
+    prompt_position = "top",
     prompt_prefix   = "❯ ",
     selection_caret = "❯ ",
     entry_prefix    = "  ",
     winblend        = 10,
     border          = true,
-    -- borderchars     = { '═', '║', '═', '║', '╔', '╗', '╝', '╚' },
     borderchars = {
       "z",
       prompt  = { "─", " ", " ", " ", "─", "─", " ", " " },
       results = { " " },
-      preview = { '═', '║', '═', '║', '╔', '╗', '╝', '╚' },
+      preview = { '═', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
     },
     color_devicons  = true,
     -- IN PROGRESS:
     -- width = 0.90,
-    -- preview_cutoff = 120,
+    preview_cutoff = 1,
     -- results_height = 1,
-    -- results_width = 0.8,
-    -- layout_strategy = "flex",
+    results_width = 0.4,
     layout_strategy = "bottom_pane",
     layout_config = {
       height = 25,
@@ -69,7 +67,7 @@ local folderOfThisFile = (...):match("(.-)[^%.]+$")
 luv_picker = require(folderOfThisFile..'telescope.picker')
 
 -- Mappings via WhichKey
-vim.api.nvim_set_keymap('n', '<C-x><C-x>', '<Cmd>Telescope<CR>',
+vim.api.nvim_set_keymap('n', '<C-c><C-x>', '<Cmd>Telescope<CR>',
   { noremap = true, silent = true })
 local wk = require'which-key'
 wk.register(
@@ -97,7 +95,7 @@ wk.register(
   },
   {
     mode    = "n",
-    prefix  = "<C-x><C-c>",
+    prefix  = "<C-c><C-c>",
     silent  = true,
     noremap = true,
     nowait  = false,
@@ -118,7 +116,7 @@ wk.register(
   },
   {
     mode    = "n",
-    prefix  = "<C-x><C-c><C-l>",
+    prefix  = "<C-c><C-c><C-l>",
     silent  = true,
     noremap = true,
     nowait  = false,
@@ -135,7 +133,7 @@ wk.register(
   },
   {
     mode    = "n",
-    prefix  = "<C-x><C-c><C-g>",
+    prefix  = "<C-c><C-c><C-g>",
     silent  = true,
     noremap = true,
     nowait  = false,

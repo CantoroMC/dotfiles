@@ -42,7 +42,7 @@ command! -nargs=0 LoadLastSession
       \ :execute 'source '.s:last_session
 command! LLS LoadLastSession
 
-nnoremap <silent> <C-x><C-l><C-s> :<C-U>LoadLastSession<CR>
+nnoremap <silent> <C-c><C-l><C-s> :<C-U>LoadLastSession<CR>
 
 augroup save_session_before_leaving
   autocmd!

@@ -35,6 +35,7 @@ import XMonad.Hooks.StatusBar.PP
 import XMonad.Util.NamedScratchpad (scratchpadWorkspaceTag)
 import XMonad.Util.WorkspaceCompare (getSortByIndex)
 
+import qualified Config.Theme as XwmTheme
 import Log.ClickableWorkspaces (clickablePP)
 
 windowCount :: X (Maybe String)
@@ -59,18 +60,36 @@ xmobarFont n  = wrap ("<fn=" ++ show n ++ ">") "</fn>"
 
 xBarPP :: PP
 xBarPP = def
-    { ppCurrent          = xmobarColor "#b8cc52" "" . xmobarBorder "Top" "#b8cc52" 2 . pad . xmobarFont 3
-    , ppVisible          = xmobarColor "#68d5ff" "" . xmobarBorder "Top" "#68d5ff" 1 . pad . xmobarFont 3
-    , ppHidden           = pad . xmobarBorder "Bottom" "#fafafa" 2 . xmobarFont 3
-    , ppHiddenNoWindows  = xmobarColor "#3f4e5a" "" . pad . xmobarFont 3
+    { ppCurrent =
+        xmobarColor (XwmTheme.activeTextColor XwmTheme.xwmTheme) ""
+        . xmobarBorder "Top" (XwmTheme.activeTextColor XwmTheme.xwmTheme) 2
+        . pad
+        . xmobarFont 3
+    , ppVisible =
+        xmobarColor (XwmTheme.inactiveTextColor XwmTheme.xwmTheme) ""
+        . xmobarBorder "Top" (XwmTheme.inactiveTextColor XwmTheme.xwmTheme) 1
+        . pad
+        . xmobarFont 3
+    , ppHidden =
+        pad
+        . xmobarBorder "Bottom" (XwmTheme.urgentTextColor XwmTheme.xwmTheme) 2
+        . xmobarFont 3
+    , ppHiddenNoWindows  =
+        xmobarColor (XwmTheme.activeColor XwmTheme.xwmTheme) ""
+        . pad
+        . xmobarFont 3
     , ppVisibleNoWindows = Nothing
-    , ppUrgent           = wrap "(" ")" . xmobarColor "#ff3333" "" . pad . xmobarFont 3
+    , ppUrgent =
+        wrap "(" ")"
+        . xmobarColor (XwmTheme.urgentColor XwmTheme.xwmTheme) ""
+        . pad
+        . xmobarFont 3
     , ppRename           = pure
     , ppSep              = " "
     , ppWsSep            = ""
     , ppTitle            = xmobarFont 2 . shorten 50
     , ppTitleSanitize    = xmobarStrip
-    , ppLayout           = xmobarColor "#36a3d9" ""
+    , ppLayout           = xmobarColor (XwmTheme.inactiveTextColor XwmTheme.xwmTheme) ""
     , ppOrder            = \[ws, l, t, ex] -> [ws, l, ex, t]
     , ppSort             = getSortByIndex
     , ppExtras           = [windowCount]
