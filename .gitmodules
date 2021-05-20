@@ -1,4 +1,3 @@
-
 [submodule "deploy/XMonad/xmonad-contrib"]
 	path = deploy/XMonad/xmonad-contrib
 	url = https://github.com/xmonad/xmonad-contrib
