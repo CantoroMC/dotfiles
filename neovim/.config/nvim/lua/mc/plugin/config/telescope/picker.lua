@@ -17,6 +17,13 @@ function M.dotfiles()
     prompt_title = "Dotfiles",
     shorten_path = false,
     cwd = "~/dotfiles",
+    find_command = {
+      'rg',
+      '--hidden',
+      '--files',
+      '--glob=!.git/*',
+      '-l',
+    },
 
     attach_mappings = function(_, map)
       map('i', '<c-y>', set_prompt_to_entry_value)

@@ -29,6 +29,7 @@ Abolish berb                                  verb
 Abolish cal{a,e}nder{,s}                      cal{e}ndar{}
 Abolish {c,m}arraige{,s}                      {}arriage{}
 Abolish {,in}consistan{cy,cies,t,tly}         {}consisten{}
+Abolish desing                                design
 Abolish destionation{,s}                      destination{}
 Abolish delimeter{,s}                         delimiter{}
 Abolish {,non}existan{ce,t}                   {}existen{}

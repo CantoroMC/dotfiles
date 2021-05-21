@@ -1,4 +1,5 @@
 local telescope = require'telescope'
+
 telescope.setup{
   defaults = {
     -- Layout
@@ -50,7 +51,8 @@ telescope.setup{
       '--with-filename',
       '--line-number',
       '--column',
-      '--smart-case'
+      '--smart-case',
+      '--hidden',
     },
     -- Preview
     use_less         = true,
@@ -60,7 +62,7 @@ telescope.setup{
 
     -- Developer configurations: Not meant for general override
     buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
-  }
+  },
 }
 
 local folderOfThisFile = (...):match("(.-)[^%.]+$")
@@ -76,7 +78,7 @@ wk.register(
     a = { "<cmd>Telescope current_buffer_fuzzy_find<CR>", "Fuzzy find current buffer" },
     b = { "<cmd>Telescope buffers<CR>",                   "List buffers" },
     c = { "<cmd>Telescope command<CR>",                   "Vim commands" },
-    d = { "<cmd>lua luv_picker.dotfiles()<CR>",                   "Dotfiles" },
+    d = { "<cmd>lua luv_picker.dotfiles()<CR>",           "Dotfiles" },
     f = { "<cmd>Telescope find_files<CR>",                "Files in pwd" },
     F = { "<cmd>Telescope file_browser<CR>",              "Fuzzy browser" },
     g = { "<cmd>Telescope live_grep<CR>",                 "Live grep in pwd" },

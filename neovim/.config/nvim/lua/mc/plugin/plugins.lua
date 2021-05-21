@@ -97,6 +97,7 @@ local function init()
   usepackage { 'wbthomason/packer.nvim',
     opt = true
   }
+
   -- UTILITIES {{{3
 
   -- NeoVim Language Server Protocol And Completion {{{4
@@ -172,9 +173,7 @@ local function init()
   }
   -- }}}
 
-  -- Tag Viewer with Ctags
-  usepackage 'preservim/tagbar'
-  -- FuzzyFinder
+  -- Telescope {{{4
   usepackage {
     'nvim-telescope/telescope.nvim',
     as = 'telescope',
@@ -188,6 +187,11 @@ local function init()
       'nvim-lua/plenary.nvim'
     }
   }
+  --- }}}
+
+  -- Tag Viewer with Ctags
+  usepackage 'preservim/tagbar'
+
   -- Snippets
   usepackage {
     'SirVer/ultisnips',
