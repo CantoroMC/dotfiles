@@ -59,12 +59,12 @@ command! RemoveUndos :execute '!rm '.&undodir.'/*'
 " Section: Swap Management
 augroup swap_management
   autocmd!
-    autocmd SwapExists *  let v:swapchoice = 'r' | let b:swapname = v:swapname
-    autocmd BufWritePost *
-          \ if exists("b:swapname") |
-          \   call delete(b:swapname) |
-          \   unlet b:swapname |
-          \ endif
+  autocmd SwapExists *  let v:swapchoice = 'r' | let b:swapname = v:swapname
+  autocmd BufWritePost *
+        \ if exists("b:swapname") |
+        \   call delete(b:swapname) |
+        \   unlet b:swapname |
+        \ endif
 augroup END
 
 

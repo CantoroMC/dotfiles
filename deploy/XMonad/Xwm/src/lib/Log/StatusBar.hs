@@ -29,6 +29,7 @@ import XMonad.Hooks.StatusBar.PP
     , xmobarBorder
     , xmobarColor
     , xmobarRaw
+    , xmobarAction
     , xmobarStrip
     , filterOutWsPP
     )
@@ -89,7 +90,12 @@ xBarPP = def
     , ppWsSep            = ""
     , ppTitle            = xmobarFont 2 . shorten 50
     , ppTitleSanitize    = xmobarStrip
-    , ppLayout           = xmobarColor (XwmTheme.inactiveTextColor XwmTheme.xwmTheme) ""
+    , ppLayout           =
+        xmobarAction "xdotool key 0xffeb+0x20" "1"
+        . xmobarAction "xdotool key 0xffeb+0xffe1+0x20" "2"
+        . xmobarAction "xdotool key 0xffeb+0xffe3+0x20" "3"
+        . xmobarAction "xdotool key 0xffeb+0xff09" "5"
+        . xmobarColor (XwmTheme.inactiveTextColor XwmTheme.xwmTheme) ""
     , ppOrder            = \[ws, l, t, ex] -> [ws, l, ex, t]
     , ppSort             = getSortByIndex
     , ppExtras           = [windowCount]

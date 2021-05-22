@@ -14,6 +14,7 @@ ipw2100-fw
 ipw2200-fw
 r8168
 xf86-input-libinput
+xf86-input-synaptics
 xf86-video-fbdev
 xf86-video-intel
 xf86-video-nouveau
@@ -57,6 +58,7 @@ xorg-xinit
 xorg-xinput
 xorg-xkill
 xorg-xrandr
+xorg-xfontsel
 xsel
 yad
 zip
