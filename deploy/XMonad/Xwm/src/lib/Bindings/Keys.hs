@@ -207,6 +207,7 @@ xwmKeys mask = do
             , ((shiftMask, xK_r),     spawn "mpc consume")
             , ((noModMask, xK_z),     spawn "mpc random")
             , ((noModMask, xK_y),     spawn "mpc single")
+            , ((noModMask, xK_m),     spawn =<< inTerminalFromConf "pulsemixer")
             , ((noModMask, xK_q),     spawn "mpv_bulk_quit")
             , ((noModMask, xK_t),     spawn "mpv_bulk_toggle")
             , ((noModMask, xK_q),     spawn "mpv_bulk_quit")
