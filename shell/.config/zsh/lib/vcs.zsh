@@ -16,13 +16,13 @@ __FMT[ITALIC_ON]=$'\e[3m'
 __FMT[ITALIC_OFF]=$'\e[23m'
 
 zstyle ':vcs_info:*' formats \
-  " %F{green}%B%{$__FMT[ITALIC_ON]%}%s%%b%{$__FMT[ITALIC_OFF]%} %f%F{blue}%{ %2G%}%B%{$__FMT[ITALIC_ON]%}%b%%b%{$__FMT[ITALIC_OFF]%}%f%F{yellow}%{$__FMT[ITALIC_ON]%} %{ %2G%}%7.7i %{$__FMT[ITALIC_OFF]%}%f%c%u%F{green}%f %m"
+  " %F{green}%B%{$__FMT[ITALIC_ON]%}%s%%b%{$__FMT[ITALIC_OFF]%} %f%F{blue}%B%b%%b%f%F{yellow}%f %c%u%m SHA-%7.7i"
 zstyle ':vcs_info:*' actionformats \
   "(%F{red}%B%{$__FMT[ITALIC_ON]%}%s%%b%{$__FMT[ITALIC_OFF]%}%f)%F{green}[%f%F{blue}%B%{$__FMT[ITALIC_ON]%}%b%%b%{$__FMT[ITALIC_OFF]%}%f%F{cyan}%{$__FMT[ITALIC_ON]%} %7.7i %{$__FMT[ITALIC_OFF]%}%f%c%u%F{green}]%f %m-%F{red}%a%f"
 zstyle ':vcs_info:*' stagedstr \
-  "%F{green}%{ %2G%}%f"
+  "%F{green}%{● %2G%}%f"
 zstyle ':vcs_info:*' unstagedstr \
-  "%F{red}%{ %2G%}%f"
+  "%F{red}%{● %2G%}%f"
 
 # Vcs_Info Hook
 zstyle ':vcs_info:git+set-message:*' hooks git-untracked git-commits_ahead git-commits_behind
@@ -36,7 +36,7 @@ function __git_prompt_git() {
 # Check if there are untracked files
 function +vi-git-untracked() {
   if [[ -n $(__git_prompt_git ls-files --exclude-standard --others 2> /dev/null) ]]; then
-    hook_com[unstaged]+="%F{blue}%{ %2G%}%f"
+    hook_com[unstaged]+="%F{blue}%{● %2G%}%f"
   fi
 }
 # Gets the number of commits ahead from remote

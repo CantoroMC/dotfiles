@@ -167,9 +167,13 @@ bindkey -M vicmd      '^Z'    _fg-bg
 bindkey -M viins      ' '     magic-space
 
 bindkey -M viins      '^G^B' fzf-git-branches
+bindkey -M viins -s   '^G^D' 'git diff\n'
 bindkey -M viins      '^G^F' fzf-git-files
 bindkey -M viins      '^G^H' fzf-git-hashes
+bindkey -M viins -s   '^G^L' 'git-root\n'
+bindkey -M viins -s   '^G^M' 'git commit\n'
 bindkey -M viins      '^G^R' fzf-git-remotes
+bindkey -M viins -s   '^G^S' 'git status\n'
 bindkey -M viins      '^G^T' fzf-git-tags
 bindkey -M viins      '^X^A' _zle_disown
 bindkey -M vicmd      '^X^A' _zle_disown

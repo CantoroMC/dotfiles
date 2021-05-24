@@ -9,6 +9,6 @@ setlocal formatoptions=jcrqlnB
 
 command! -buffer HsFormat
       \ :execute '!brittany --write-mode=inplace '.fnameescape(expand('%:p'))
-nnoremap <buffer> <silent> <C-c><C-f> :HsFormat<CR>
+nnoremap <buffer> <silent> <C-l><C-f> :HsFormat<CR>
 
 let b:undo_ftplugin = "setl com< cms< fo<"

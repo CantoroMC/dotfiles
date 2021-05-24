@@ -42,7 +42,7 @@ let s:def_session_name = get(g:, 'def_session_name', 'last.vim')
 let s:last_session = s:session_dir.s:def_session_name
 
 function! easypeasy#save_session(...) abort
-  if isdirectory(s:session_dir) is 0 
+  if isdirectory(s:session_dir) is 0
     call mkdir(s:session_dir, 'p')
   end
   execute 'mksession!' (a:0 == 0) ? (s:last_session) : (s:session_dir.a:1)

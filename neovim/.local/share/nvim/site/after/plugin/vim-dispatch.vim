@@ -25,12 +25,13 @@ augroup dispatch_configs
         \   let b:dispatch = 'ruby -wc %' |
         \ endif
 
-  autocmd FileType tex     let b:dispatch = 'latexmk -pdf --output-directory=%:h %'
-  autocmd FileType haskell let b:dispatch = 'ghc --make %'
-  autocmd FileType python  let b:dispatch = 'python -m py_compile %'
-  autocmd FileType c       let b:dispatch = 'gcc -g -o %:r %'
-  autocmd FileType cpp     let b:dispatch = 'g++ -g -o %:r %'
-  autocmd FileType matlab  let b:dispatch = 'mlint -id %'
+  autocmd FileType tex      let b:dispatch = 'latexmk -pdf --output-directory=%:h %'
+  autocmd FileType haskell  let b:dispatch = 'ghc --make %'
+  autocmd FileType python   let b:dispatch = 'python -m py_compile %'
+  autocmd FileType c        let b:dispatch = 'gcc -g -o %:r %'
+  autocmd FileType cpp      let b:dispatch = 'g++ -g -o %:r %'
+  autocmd FileType matlab   let b:dispatch = 'mlint -id %'
+  autocmd FileType markdown let b:dispatch = 'pandoc --pdf-engine=xelatex -o %:r.pdf %'
 augroup END
 
 nnoremap <silent> <C-c><C-m> :<C-u>Make<CR>

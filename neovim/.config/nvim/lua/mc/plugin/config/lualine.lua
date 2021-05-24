@@ -15,6 +15,7 @@ require'lualine'.setup{
     component_separators = {'', ''},
     icons_enabled        = true,
     padding              = 1,
+    disabled_filetypes   = { 'startify', 'packer' },
   },
   sections = {
     lualine_a = { -- Vim Mode

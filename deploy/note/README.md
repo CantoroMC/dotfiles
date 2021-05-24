@@ -83,7 +83,7 @@ hwclock --systohc
 
 ### Localization
 Edit /etc/locale.gen and uncommented needed locales
-(`en_US.UTF-8 UTF-8` and `it_IT.UTF-8 UTF-8`).<br> 
+(`en_US.UTF-8 UTF-8` and `it_IT.UTF-8 UTF-8`).<br>
 And the generate locales by
 ```sh
 locale-gen

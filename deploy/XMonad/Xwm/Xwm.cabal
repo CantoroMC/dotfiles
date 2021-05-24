@@ -31,6 +31,7 @@ library
                     , Log.StatusBar
                     , Manage.Util
                     , Manage.Hook
+                    , Prompt.Config
                     , Startup.Hook
   build-depends:    base
                     , containers

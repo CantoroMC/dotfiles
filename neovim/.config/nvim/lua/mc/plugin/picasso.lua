@@ -2,7 +2,7 @@ local M = {}
 
 local bgs = { 'dark', 'light' }
 local plug_confs = {
-  active     = false,
+  active     = true,
   light_time = { 6, 13 },
   themes     = {
     [ "dark" ]  = {

@@ -14,7 +14,24 @@ synopsis:           XMobar Configuration
 description:        Custom build of Xmobar using cabal
 category:           System
 tested-with:        GHC == 8.10.4
-extra-source-files: README.md, build, src/.ghci
+extra-source-files: README.md
+                    utilities/scripts/padding-icon
+                    utilities/scripts/xmPacman
+                    utilities/scripts/xmVolume
+                    utilities/icons/battery/idle/*.xpm
+                    utilities/icons/battery/off/*.xpm
+                    utilities/icons/battery/on/*.xpm
+                    utilities/icons/brightness/*.xpm
+                    utilities/icons/cpu/*.xpm
+                    utilities/icons/music/*.xpm
+                    utilities/icons/network/rx/*.xpm
+                    utilities/icons/network/tx/*.xpm
+                    utilities/icons/ram/*.xpm
+                    utilities/icons/separators/*.xpm
+                    utilities/icons/temperature/*.xpm
+                    utilities/icons/volume/*.xpm
+                    utilities/icons/weather/*.xpm
+
 
 library
   hs-source-dirs:   src/lib
