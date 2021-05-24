@@ -100,6 +100,29 @@ local function init()
 
   -- UTILITIES {{{3
 
+  -- Conquer Of Completion {{{4
+  usepackage {
+    'neoclide/coc.nvim',
+    branch = 'release'
+  }
+  usepackage {
+    'rafcamlet/coc-nvim-lua',
+    require = {
+      'neoclide/coc.nvim', branch = 'release'
+    }
+  }
+  usepackage { 'wellle/tmux-complete.vim',
+    require = {
+      'neoclide/coc.nvim', branch = 'release'
+    }
+  }
+  usepackage { 'CantoroMC/coc-latex_symbols',
+    require = {
+      'neoclide/coc.nvim', branch = 'release'
+    }
+  }
+  -- }}}
+
   -- NeoVim Language Server Protocol And Completion {{{4
   usepackage 'neovim/nvim-lspconfig'
   usepackage 'kosayoda/nvim-lightbulb'
@@ -150,30 +173,7 @@ local function init()
   }
   -- }}}
 
-  -- Conquer Of Completion {{{4
-  usepackage {
-    'neoclide/coc.nvim',
-    branch = 'release'
-  }
-  usepackage {
-    'rafcamlet/coc-nvim-lua',
-    require = {
-      'neoclide/coc.nvim', branch = 'release'
-    }
-  }
-  usepackage { 'wellle/tmux-complete.vim',
-    require = {
-      'neoclide/coc.nvim', branch = 'release'
-    }
-  }
-  usepackage { 'CantoroMC/coc-latex_symbols',
-    require = {
-      'neoclide/coc.nvim', branch = 'release'
-    }
-  }
-  -- }}}
-
-  -- Telescope {{{4
+  -- Telescope: Fuzzy Finder {{{4
   usepackage {
     'nvim-telescope/telescope.nvim',
     as = 'telescope',
@@ -191,7 +191,6 @@ local function init()
 
   -- Tag Viewer with Ctags
   usepackage 'preservim/tagbar'
-
   -- Snippets
   usepackage {
     'SirVer/ultisnips',
@@ -207,10 +206,13 @@ local function init()
       'SlimuxGlobalConfigure'
     },
   }
-
+  -- Terminal Wrapper
+  usepackage 'CantoroMC/nvim-nuake'
+  -- Linux Info
   usepackage {
-    'folke/which-key.nvim',
-    as = 'which-key',
+    'HiPhish/info.vim',
+    opt = true,
+    cmd = 'Info',
   }
   -- }}}
 
@@ -239,6 +241,11 @@ local function init()
     branch = 'lua',
     as = 'indent-blankline'
   }
+  -- Mapping Suggestions
+  usepackage {
+    'folke/which-key.nvim',
+    as = 'which-key',
+  }
   -- Show RGB,HTML... Colors
   usepackage {
     'norcalli/nvim-colorizer.lua',
@@ -266,14 +273,6 @@ local function init()
       'nvim-lua/plenary.nvim'
     },
     as = 'gitsigns',
-  }
-  -- Terminal Wrapper
-  usepackage 'CantoroMC/nvim-nuake'
-  -- Linux Info
-  usepackage {
-    'HiPhish/info.vim',
-    opt = true,
-    cmd = 'Info',
   }
   -- }}}
 
