@@ -128,7 +128,7 @@ mpdMusic p = MPDX
                 (action "mpc seek -1%" 5 (fn 2 " [<lapsed>/<length>]"))
             ++ action "mpc volume +3" 4
                 (action "mpc volume -3" 5 (fn 3 " ﱛ" ++ fn 2 " <volume>%"))
-        , "-S" , action "mpc play" 1 ("Mpd " ++ icon "music/music_stopped.xpm")
+        , "-S" , action "mpc play" 1 (fn 3 "\63622 " ++ icon "music/music_stopped.xpm")
         ]
     ) 10 "music"
 

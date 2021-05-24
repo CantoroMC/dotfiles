@@ -44,7 +44,8 @@ xBarConfig p = (baseConfig p)
         ]
     , template =
         "|UnsafeXMonadLog|"
-        ++ " |music|"
+        ++ "   "
+        ++ "|music|"
         ++ action "st sudo pacman -Syu" 3 " |pacman|"
         ++ "}"
         ++ "|date|"

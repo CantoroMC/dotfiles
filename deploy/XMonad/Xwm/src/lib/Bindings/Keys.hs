@@ -14,29 +14,40 @@ import qualified XMonad.StackSet as XMSS
 import XMonad.Actions.CopyWindow (copy, kill1, copyToAll, killAllOtherCopies)
 import XMonad.Actions.CycleWS
     ( Direction1D(Next, Prev)
-    , WSType(NonEmptyWS)
+    , WSType(NonEmptyWS, WSIs)
     , moveTo
-    , prevWS
-    , nextWS
-    , shiftToPrev
-    , shiftToNext
+    , shiftTo
     , toggleWS'
     , prevScreen
     , nextScreen
-    , shiftNextScreen
     , shiftPrevScreen
+    , shiftNextScreen
     , swapPrevScreen
     , swapNextScreen
     )
 import XMonad.Actions.Promote (promote)
 import XMonad.Actions.FloatKeys (keysMoveWindow, keysResizeWindow)
 import qualified XMonad.Actions.Submap as XMSM (submap)
+
 import XMonad.Hooks.ManageDocks (ToggleStruts(..))
 import XMonad.Hooks.UrgencyHook (focusUrgent)
+
 import XMonad.Layout.LayoutCombinators (JumpToLayout (..))
 import XMonad.Layout.ResizableTile (MirrorResize(..))
 import XMonad.Layout.Spacing (setScreenWindowSpacing, incScreenWindowSpacing, decScreenWindowSpacing)
 import XMonad.Layout.WindowNavigation (Navigate (..))
+
+import XMonad.Prompt.Layout (layoutPrompt)
+import XMonad.Prompt.Man (manPrompt)
+import XMonad.Prompt.Shell (shellPrompt)
+import XMonad.Prompt.Window
+    ( allWindows
+    , windowPrompt
+    , wsWindows
+    , WindowPrompt(Goto, Bring)
+    )
+import XMonad.Prompt.XMonad (xmonadPrompt)
+
 import XMonad.Util.Types (Direction2D (..))
 import XMonad.Util.NamedScratchpad (namedScratchpadAction)
 import XMonad.Util.Ungrab (unGrab)
@@ -63,6 +74,7 @@ import Manage.Util
     , inTerminalFromConf
     , xwmSPDs
     )
+import Prompt.Config (xwmXpConfig)
 
 
 
@@ -88,6 +100,9 @@ moveFloat d = keysMoveWindow (direction d)
 
 resizeFloat :: Direction -> Window -> X ()
 resizeFloat d = keysResizeWindow (direction d) (0 , 0)
+
+wsNonNSP :: WSType
+wsNonNSP = WSIs $ return (\ws -> XMSS.tag ws /= "NSP")
 
 
 xwmKeys :: KeyMask -> Binder ()
@@ -181,7 +196,7 @@ xwmKeys mask = do
         |/- "Emacs-Org-mode scratchpad"
         ^> namedScratchpadAction xwmSPDs "Orgenda"
     bind $ mask ... xK_p
-        |/- "submap for mpc and mpv players"
+        |/- "Submap for mpc and mpv players"
         ^> XMSM.submap . Map.fromList $
             [ ((noModMask, xK_h),     spawn "mpc prev")
             , ((noModMask, xK_l),     spawn "mpc next")
@@ -195,6 +210,17 @@ xwmKeys mask = do
             , ((noModMask, xK_q),     spawn "mpv_bulk_quit")
             , ((noModMask, xK_t),     spawn "mpv_bulk_toggle")
             , ((noModMask, xK_q),     spawn "mpv_bulk_quit")
+            ]
+    bind $ mask .|. shiftMask ... xK_p
+        |/- "Submap for XMonad prompt"
+        ^> XMSM.submap . Map.fromList $
+            [ ((noModMask, xK_b), windowPrompt xwmXpConfig Bring allWindows)
+            , ((noModMask, xK_g), windowPrompt xwmXpConfig Goto wsWindows)
+            , ((shiftMask, xK_g), windowPrompt xwmXpConfig Goto allWindows)
+            , ((noModMask, xK_l), layoutPrompt xwmXpConfig)
+            , ((noModMask, xK_m), manPrompt xwmXpConfig)
+            , ((noModMask, xK_s), shellPrompt xwmXpConfig)
+            , ((noModMask, xK_x), xmonadPrompt xwmXpConfig)
             ]
     bind $ mask ... xK_k
         |/- "Move focus to the previous window"
@@ -314,16 +340,16 @@ xwmKeys mask = do
         ^> spawn "tabbed -c -r 2 st -w ''"
     bind $ mask ... xK_bracketleft
         |/- "Go to previous workspace"
-        ^> prevWS
+        ^> moveTo Prev wsNonNSP
     bind $ mask ... xK_bracketright
         |/- "Go to next workspace"
-        ^> nextWS
+        ^> moveTo Next wsNonNSP
     bind $ mask .|. shiftMask ... xK_bracketleft
         |/- "Move focused window to previous workspace"
-        ^> shiftToPrev >> prevWS
+        ^> shiftTo Prev wsNonNSP >> moveTo Prev wsNonNSP
     bind $ mask .|. shiftMask ... xK_bracketright
         |/- "Move focused window to next workspace"
-        ^> shiftToNext >> nextWS
+        ^> shiftTo Next wsNonNSP >> moveTo Next wsNonNSP
     bind $ mask ... xK_comma
         |/- "Increment the number of windows in the master area"
         ^> sendMessage $ IncMasterN 1
