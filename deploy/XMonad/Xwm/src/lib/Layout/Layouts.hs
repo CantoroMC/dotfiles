@@ -93,17 +93,34 @@ xwmFloat :: ModifiedLayout WithBorder
     (ModifiedLayout Rename (ModifiedLayout WindowArranger SimplestFloat)) Window
 xwmFloat = noBorders . renamed [Replace "Float"] $ simplestFloat
 
-
 xwmCombo :: ModifiedLayout SmartBorder (ModifiedLayout Rename
-    (CombineTwo (Tall ())
-        (Mirror ResizableTall)
-        (ModifiedLayout (Decoration TabbedDecoration DefaultShrinker) Simplest))
-    )
-    Window
+    (IfMax
+        (CombineTwo (Tall ())
+            (Mirror ResizableTall)
+            (ModifiedLayout (Decoration TabbedDecoration DefaultShrinker) Simplest)
+        )
+        (CombineTwo (Tall ())
+            (Mirror ResizableTall)
+            (CombineTwo (Mirror Tall ())
+                (ModifiedLayout (Decoration TabbedDecoration DefaultShrinker) Simplest)
+                (ModifiedLayout (Decoration TabbedDecoration DefaultShrinker) Simplest)
+            )
+        )
+    )) Window
+
 xwmCombo = smartBorders . renamed [Replace "Combo"] $
-    combineTwo (Tall 1 0.03 0.5)
-        (Mirror $ ResizableTall 1 0.03 0.5 [])
-        (tabbed shrinkText xwmDecorationTheme)
+    IfMax 4
+        ( combineTwo (Tall 1 0.03 0.5)
+            (Mirror $ ResizableTall 1 0.03 0.5 [])
+            (tabbed shrinkText xwmDecorationTheme)
+        )
+        ( combineTwo (Tall 1 0.03 0.5)
+            (Mirror $ ResizableTall 1 0.03 0.5 [])
+            (combineTwo (Mirror $ Tall 1 0.03 0.5)
+                (tabbed shrinkText xwmDecorationTheme)
+                (tabbed shrinkText xwmDecorationTheme)
+            )
+        )
 
 
 applySpacing :: Integer -> l Window -> ModifiedLayout Rename (ModifiedLayout Spacing l) Window

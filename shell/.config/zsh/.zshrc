@@ -72,10 +72,10 @@ done
 #
 ### Zsh plugins
 #
-zplug plugin Aloxaf/fzf-tab
-zplug plugin zsh-users/zsh-autosuggestions
-zplug plugin zsh-users/zsh-history-substring-search
-zplug plugin zsh-users/zsh-syntax-highlighting
+zplug plug Aloxaf/fzf-tab
+zplug plug zsh-users/zsh-autosuggestions
+zplug plug zsh-users/zsh-history-substring-search
+zplug plug zsh-users/zsh-syntax-highlighting
 zplug load
 
 # Plugins configuration

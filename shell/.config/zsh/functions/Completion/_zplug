@@ -5,8 +5,9 @@ _arguments '1: :->cmds' && ret=0
 case $state in
   cmds)
     _values "miniplug command" \
-    "plugin[Register a plugin]" \
+    "plug[Register a plugin]" \
     "install[Install plugins]" \
+    "load[Source plugins]" \
     "update[Update plugins]" \
     "help[Show this message]"
     ret=0

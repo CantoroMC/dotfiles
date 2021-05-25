@@ -5,7 +5,7 @@ require'bufferline'.setup{
     tab_size                = 18,
     always_show_bufferline  = false,
     enforce_regular_tabs    = false,
-    separator_style         = "slant",
+    separator_style         = 'thin',
     view                    = "multiwindow",
     numbers                 = "buffer_id",
     number_style            = "superscript",

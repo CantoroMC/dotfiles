@@ -79,6 +79,7 @@ manageFloatings =
                 , "Bssh"
                 , "Bvnc"
                 , "CMakeSetup"
+                , "Gnome-disks"
                 , "feh"
                 , "Hardinfo"
                 , "imagewriter"
