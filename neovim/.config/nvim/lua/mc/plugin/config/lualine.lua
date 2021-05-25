@@ -41,6 +41,7 @@ require'lualine'.setup{
         file_status   = true,
         path          = 1,
         right_padding = 0,
+        symbols = { modified = '[+]', readonly = '[RO]'}
       },
       {
         monitors.file_size,

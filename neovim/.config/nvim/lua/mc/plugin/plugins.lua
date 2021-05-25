@@ -222,6 +222,10 @@ local function init()
     'Shatur95/neovim-ayu',
     as = 'ayu'
   }
+  usepackage {
+    'marko-cerovac/material.nvim',
+    as = 'material',
+  }
   usepackage 'sjl/badwolf'
   usepackage 'morhetz/gruvbox'
   usepackage 'NLKNguyen/papercolor-theme'
