@@ -5,7 +5,7 @@ local M = {}
 local function create_window()
   local width      = vim.api.nvim_get_option("columns")
   local height     = vim.api.nvim_get_option("lines")
-  local win_height = math.ceil(height * 0.3 - 8)
+  local win_height = math.ceil(height * 0.5 - 8)
   local win_width  = math.ceil(width * 0.3 - 6)
   local x_pos      = 1
   local y_pos      = width - win_width
