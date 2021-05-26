@@ -7,6 +7,7 @@ case $state in
     _values "miniplug command" \
     "plug[Register a plugin]" \
     "install[Install plugins]" \
+    "list[List sourced plugins]" \
     "load[Source plugins]" \
     "update[Update plugins]" \
     "help[Show this message]"

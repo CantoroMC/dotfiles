@@ -185,6 +185,7 @@ function __zplug_usage() {
   Commands:
     help           -  Show this message
     install        -  Install plugins
+    list           -  List sourced plugins
     load           -  Source plugins
     plug <source>  -  Register a plugin
     update         -  Update plugins
@@ -233,6 +234,13 @@ function __zplug_load() {
   done
 }
 
+function __zplug_list() {
+  printf "\x1b[32mLoaded plugins: \x1b[0m\n\n"
+  for plugin_url in ${ZPLUG_LOADED_PLUGINS[*]}; do
+    printf "\t\x1b[1;97m- $plugin_url\x1b[0m\n"
+  done
+}
+
 #
 ## Main
 #
@@ -249,6 +257,9 @@ function zplug() {
       ;;
     load)
       __zplug_load
+      ;;
+    list)
+      __zplug_list
       ;;
     help)
       __zplug_usage
