@@ -38,7 +38,7 @@ import Startup.Hook (xwmStartupHook)
 main :: IO ()
 main = do
     let (applicableKeys, explainableBindings) = mapBindings $ xwmKeys . modMask
-        xwmConfig' = def {
+        xwmConfig = def {
         terminal             = "kitty"
         , focusFollowsMouse  = False
         , clickJustFocuses   = True
@@ -55,10 +55,10 @@ main = do
         , startupHook        = xwmStartupHook
         , layoutHook         = xwmLayoutHook
         }
-        xwmConfig =
+        xwm =
             storeBindings explainableBindings
             . docks
             . applyUrgencyHook
             . ewmh
-            . withSB xBarConfig $ xwmConfig'
-    xmonad xwmConfig
+            . withSB xBarConfig $ xwmConfig
+    xmonad xwm
