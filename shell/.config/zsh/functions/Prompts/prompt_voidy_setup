@@ -47,6 +47,9 @@ prompt_voidy_setup () {
   if [ -n "$XAUTHORITY" ]; then
     LVL=$(($LVL - 2))
   fi
+  if [ -n "$VIMRUNTIME" ]; then
+    LVL=$(($LVL - 1))
+  fi
 
   # return code and ❯ (according to shell levels)
   local start="%F{$color1}╰─%f%B%(?.%F{$color1}.%F{red}%v)%{"$(printf '❯%.0s' {1..$LVL})'%'$LVL'G%} %f%b'

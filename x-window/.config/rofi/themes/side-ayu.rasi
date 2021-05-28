@@ -21,17 +21,17 @@
 }
 
 window {
-    height:     60%;
-    width:      60em;
+    height:     50%;
+    width:      50em;
     background-color: @blackdarkest;
-    anchor: center;
-    location: center;
-    y-offset: +10px;
+    anchor: north east;
+    location: north east;
+    y-offset: +24px;
 }
 
 mainbox {
     background-color: @blackdarkest;
-    spacing:0px;
+    spacing: 0px;
     children: [inputbar, message, mode-switcher, listview];
 }
 
@@ -48,7 +48,7 @@ textbox {
 listview {
    fixed-height: false;
    dynamic: true;
-   columns: 4;
+   columns: 3;
    scrollbar: false;
    spacing: 0px;
    padding: 1px 0px 0px 0px;
