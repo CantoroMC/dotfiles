@@ -218,11 +218,11 @@ local function init()
 
   -- GUI UTILITIES {{{3
   -- Colorschemes {{{4
-  usepackage {
-    'CantoroMC/neovim-ayu',
-    as = 'ayu'
-  }
-  -- usepackage '~/Documents/programming/Nvim/ayu-nvim'
+  -- usepackage {
+  --   'CantoroMC/neovim-ayu',
+  --   as = 'ayu'
+  -- }
+  usepackage '~/Documents/programming/Nvim/ayu-nvim'
   usepackage {
     'marko-cerovac/material.nvim',
     as = 'material',

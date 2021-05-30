@@ -1,26 +1,26 @@
  /* No menu button; you can toggle the menu with ALT or F10, */
-.vivaldi {
-  display: none !important; /* then navigate it with arrow keys. */
-}
+/* .vivaldi { */
+/*   display: none !important; /1* then navigate it with arrow keys. *1/ */
+/* } */
 
  /* No new tab button. Use Quick Command/CTRL-T, */
-div.button-toolbar.newtab {
-  display: none !important;
-}
+/* div.button-toolbar.newtab { */
+/*   display: none !important; */
+/* } */
 
 /* No trash button */
-.toolbar-tabbar > .button-toolbar.toggle-trash,
-.toolbar-tabbar > .toolbar-group > .button-toolbar.toggle-trash {
-  display: none !important;
-}
+/* .toolbar-tabbar > .button-toolbar.toggle-trash, */
+/* .toolbar-tabbar > .toolbar-group > .button-toolbar.toggle-trash { */
+/*   display: none !important; */
+/* } */
 
 /* TAB CONTAINER */
-#tabs-container.top {
-  padding-left: 2px !important;
-  height: 16px !important;
-  padding-right: 0 !important; /* Tab bar uses entire window width */
-  width: calc(100vw - 20px) !important; /* Also needed for entire width */
-  padding-top: 0px !important; /* remove Vivaldi useless tab top-padding */
-  border: 0 !important; /* No border below tab bar */
-  padding-bottom: 2px !important;
-}
+/* #tabs-container.top { */
+/*   padding-left: 2px !important; */
+/*   height: 16px !important; */
+/*   padding-right: 0 !important; /1* Tab bar uses entire window width *1/ */
+/*   width: calc(100vw - 20px) !important; /1* Also needed for entire width *1/ */
+/*   padding-top: 0px !important; /1* remove Vivaldi useless tab top-padding *1/ */
+/*   border: 0 !important; /1* No border below tab bar *1/ */
+/*   padding-bottom: 2px !important; */
+/* } */

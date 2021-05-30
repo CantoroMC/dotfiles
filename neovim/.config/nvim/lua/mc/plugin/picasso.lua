@@ -6,7 +6,7 @@ vim.g.ayu_borders         = false
 vim.g.ayu_italic_comments = true
 vim.g.ayu_italic_strings  = true
 vim.g.ayu_contrast        = true
-vim.g.ayu_contrast_amount = -40
+vim.g.ayu_contrast_amount = -10
 -- Badwolf
 vim.g.badwolf_darkgutter          = true  -- gutters are rendered darker (bool)
 vim.g.badwolf_tabline             = 0     -- Tab line background (0..3) the lower the darker
@@ -63,7 +63,7 @@ local M = {}
 local bgs = { 'dark', 'light' }
 local plug_confs = {
   active     = false,
-  light_time = { 6, 18 },
+  light_time = { 6, 20 },
   themes     = {
     [ "dark" ]  = {
       [ "ayu" ]        = 'ayu',
