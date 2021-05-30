@@ -62,6 +62,7 @@ Mods=(
   termtitle
   vcs
   vi_prompt
+  calendar
 )
 for mod ($Mods); do
   isMod $mod && source $ZDOTDIR/lib/$mod.zsh || \

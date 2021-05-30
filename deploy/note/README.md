@@ -187,12 +187,6 @@ cabal install cabal-uninstall
 `ghc-pkg list` to check if you have installed only statically linked Haskell packages.
 Now you re ready to go!
 
-###### XMonad and XMobar
-After the first compilation of the two cabal projects.
-```sh
-ln -sv $XMONAD_CONFIG_DIR/xmonad-x86_64-linux ~/.local/bin
-```
-
 ###### Pandoc
 ```sh
 cabal install pandoc
@@ -289,23 +283,23 @@ lspci -knn|grep -iA2 audio
 
 If it is `snd_hda_intel` add kernel module
 ```sh
-sudo cp ~/dotfiles/deploy/arch-repo/installation/files/etc/modprobe.d/default.conf /etc/modprobe.d/
+sudo cp ~/dotfiles/deploy/note/root/etc/modprobe.d/default.conf /etc/modprobe.d/
 ```
 
 ##### Avoid annoying fn key beeping
 ```sh
-sudo cp ~/dotfiles/deploy/arch-repo/installation/files/etc/modprobe.d/nobeep.conf /etc/modprobe.d/
+sudo cp ~/dotfiles/deploy/note/root/etc/modprobe.d/nobeep.conf /etc/modprobe.d/
 ```
 
 ##### Load /dev/mixer module
 ```sh
-sudo cp ~/dotfiles/deploy/arch-repo/installation/files/etc/modules-load.d/modules.conf /etc/modules-load.d/
+sudo cp ~/dotfiles/deploy/note/root/etc/modules-load.d/modules.conf /etc/modules-load.d/
 ```
 
 #### Swappiness
 Reduce the swappiness to improve system responsiveness
 ```sh
-sudo cp ~/dotfiles/deploy/arch-repo/installation/files/etc/sysctl.d/99-swappiness.conf /etc/sysctl.d/
+sudo cp ~/dotfiles/deploy/note/root/etc/sysctl.d/99-swappiness.conf /etc/sysctl.d/
 ```
 `sysctl vm.swappiness` to check the current swappiness value (0-200)
 
@@ -314,12 +308,12 @@ sudo cp ~/dotfiles/deploy/arch-repo/installation/files/etc/sysctl.d/99-swappines
 
 ###### paccache
 ```sh
-sudo cp ~/dotfiles/deploy/arch-repo/installation/files/usr/share/libalpm/hooks/paccache.hook /usr/share/libalpm/hooks/
+sudo cp ~/dotfiles/deploy/note/root/usr/share/libalpm/hooks/paccache.hook /usr/share/libalpm/hooks/
 ```
 
 #### Autologin on tty2
 ```sh
-sudo cp ~/dotfiles/deploy/arch-repo/installation/files/etc/systemd/system/getty@tty2.service.d/override.conf /etc/systemd/system/getty@tty2.service.d/
+sudo cp ~/dotfiles/deploy/note/root/etc/systemd/system/getty@tty2.service.d/override.conf /etc/systemd/system/getty@tty2.service.d/
 ```
 
 #### XDG-base-directory specifications

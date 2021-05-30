@@ -9,7 +9,7 @@ set-option -g status-style bg=#151a1e,fg=#465764
 set-option -g status-left-length 50
 set-option -g status-left \
 "#[fg=#304357, bg=#b8cc52, italics, bold]  #S:#I.#P/#{window_panes} \
-#[fg=#b8cc52, bg=#304357, nobold, noitalics, nounderscore]\ue0b8"
+#[fg=#b8cc52, bg=#304357, nobold, noitalics, nounderscore]"
 # Right Side
 set -g status-right-length 50
 set-option -g status-right \
@@ -49,17 +49,17 @@ set-window-option -g window-status-bell-style bg=#36a3d9,fg=#384550
 set-window-option -g window-status-current-style bg=#3f4e5a,fg=#e7c547
 set-window-option -g window-status-current-format \
 "#[fg=#a37acc, bg=#313d46, nobold, noitalics, nounderscore]\
-#[fg=#b8cc52, bg=#304357, nobold, italics] 裡#I:\
+#[fg=#b8cc52, bg=#304357, nobold, italics] #I:\
 #[fg=#b8cc52, bg=#304357, nobold, italics]#W \
-#[fg=#304357, bg=#151a1e, nobold, noitalics, nounderscore]\ue0b8"
+#[fg=#304357, bg=#151a1e, nobold, noitalics, nounderscore]"
 set-window-option -g window-status-style fg=#36a3d9,bg=#151a1e
 set-window-option -g window-status-format \
-"#[fg=#151a1e, bg=#151a1e, nobold, noitalics, nounderscore]\ue0b8 \
-#[fg=#36a3d9,bg=#151a1e]#I-#P/#{window_panes}:\
+"#[fg=#151a1e, bg=#151a1e, nobold, noitalics, nounderscore] \
+#[fg=#36a3d9,bg=#151a1e]#I.#{window_panes}:\
 #[fg=#36a3d9, bg=#151a1e]#W \
 #[fg=#a37acc, bg=#313d46, nobold, noitalics, nounderscore]"
 set-window-option -g window-status-last-style fg=#36a3d9,bg=#151a1e,bold,italics
-set-window-option -g window-status-separator ""
+set-window-option -g window-status-separator "|"
 # }}}
 # }}}
 

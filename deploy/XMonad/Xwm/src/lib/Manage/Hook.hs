@@ -85,6 +85,7 @@ manageFloatings =
                 , "imagewriter"
                 , "Lxappearance"
                 , "MPlayer"
+                , "Nm-connection-editor"
                 , "ParaView"
                 , "Parcellite"
                 , "Pavucontrol"
