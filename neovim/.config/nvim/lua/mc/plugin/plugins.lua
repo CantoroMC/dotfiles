@@ -218,10 +218,11 @@ local function init()
 
   -- GUI UTILITIES {{{3
   -- Colorschemes {{{4
-  usepackage {
-    'Shatur95/neovim-ayu',
-    as = 'ayu'
-  }
+  -- usepackage {
+  --   'CantoroMC/neovim-ayu',
+  --   as = 'ayu'
+  -- }
+  usepackage '~/Documents/programming/Nvim/ayu-nvim'
   usepackage {
     'marko-cerovac/material.nvim',
     as = 'material',
@@ -333,7 +334,6 @@ local function init()
   }
   usepackage {
     'CantoroMC/vim-rasi',              -- Rofi Advanced Style Information
-    ft = 'rasi'
   }
   usepackage {
     'norcalli/nvim-terminal.lua',
@@ -366,4 +366,4 @@ local plugins = setmetatable({}, {
 
 return plugins
 
--- vim:fdm=marker:nospell
+-- vim:fdm=marker
