@@ -23,6 +23,8 @@ CONFIGS=(
   nvim
   radiotray-ng
   surf
+  vivaldi
+  zsh
 )
 DATAS=(
   nvim/site/pack
