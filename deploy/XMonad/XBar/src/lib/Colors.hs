@@ -33,8 +33,8 @@ lightPalette = Palette
     , pAlpha      = 255
     , pBorder     = "#36a3d9"
     , pIconRoot   = icons
-    , pLow        = "#36a3d9"
-    , pNormal     = "#151a1e"
+    , pLow        = "#151a1e"
+    , pNormal     = "#36a3d9"
     , pHigh       = "#ff3333"
     , pIsLight    = True
     }
@@ -47,8 +47,8 @@ darkPalette = Palette
     , pAlpha      = 255
     , pBorder     = "#b8cc52"
     , pIconRoot   = icons
-    , pLow        = "#36a3d9"
-    , pNormal     = "#fafafa"
+    , pLow        = "#fafafa"
+    , pNormal     = "#36a3d9"
     , pHigh       = "#ff3333"
     , pIsLight    = False
     }
