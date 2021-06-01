@@ -7,7 +7,6 @@ let g:coc_global_extensions = [
       \ 'coc-solargraph',
       \ 'coc-vimlsp',
       \ 'coc-sh',
-      \ 'coc-perl',
       \ 'coc-clangd',
       \ 'coc-go',
       \ 'coc-json',
