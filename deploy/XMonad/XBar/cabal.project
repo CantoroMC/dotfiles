@@ -1,4 +1,4 @@
 packages: ./ ../xmobar/
-flags: +all_extensions
+flags: +with_xft +with_utf8 +with_mpd +with_datezone +with_xpm +with_weather
 
 -- vim:ft=cabal

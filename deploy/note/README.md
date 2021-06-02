@@ -110,8 +110,8 @@ Look at `./packages/*`
 
 ### Boot loader
 
-#### Add the =btrfs= module to mkinitcpio
-/etc/mkinitcpio.conf -> MODULES=(btrfs)<br>
+#### Add the `btrfs` module to mkinitcpio
+/etc/mkinitcpio.conf -> `MODULES=(btrfs)`<br>
 and then recreate the initial ram disk `mkinitcpio -P`
 
 #### Install a boot loader (grub)
@@ -178,8 +178,8 @@ auracle clone $(< ~/dotfiles/deploy/arch-repo/aur-packages.txt)
 
 ###### Setup stack and install cabal-install
 ```sh
-stack setup --system-ghc
-stack install --system-ghc cabal-install
+stack setup --system-ghc --resolver <resolver>
+stack install --system-ghc --resolver <resolver> cabal-install
 
 cabal update
 cabal install cabal-uninstall
@@ -214,20 +214,11 @@ gem install neovim solargraph
 ```sh
 npm install -g neovim
 npm install -g vim-language-server
-#npm install -g vscode-html-languageserver-bin
-#npm install -g vscode-css-languageserver-bin
-#npm install -g typescript typescript-language-server
-```
-
-##### Perl
-```sh
-cpan Perl::LanguageServer
-# cpan Neovim::Ext # not working
 ```
 
 #### Btrfs Utilitites
-pacman: snapper grub-btrfs snap-pac
-aur: snap-pac-grub snapper-gui-git
+**pacman**: snapper grub-btrfs snap-pac<br>
+**aur**: snap-pac-grub snapper-gui-git
 
 ##### Snapper configuration
 Create the config

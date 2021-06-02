@@ -47,13 +47,13 @@
 	"diagnostic.hintSign": " ",
 	"diagnostic.format": "%message\n[%source:%code]",
 	"codeLens.enable": true,
-  "codeLens.separator": " ",
-  "codeLens.subseparator": " - ",
+	"codeLens.separator": " ",
+	"codeLens.subseparator": " - ",
 	"list.previousKeymap": "<C-p>",
 	"list.nextKeymap": "<C-n>",
 	"coc.preferences.useQuickfixForLocations": true,
-  "coc.preferences.enableMessageDialog": false,
-  "coc.preferences.bracketEnterImprove": false,
+	"coc.preferences.enableMessageDialog": false,
+	"coc.preferences.bracketEnterImprove": false,
 
 	"coc.source.around.priority": 90,
 	"coc.source.around.shortcut": " ",
@@ -73,7 +73,6 @@
 	"coc.source.tmuxcomplete.shortcut": "",
 	"coc.source.latex_symbols.enable": false,
 	"snippets.priority": 80,
-
 	"snippets.shortcut": " זּ ",
 
 	"solargraph.trace.server": "messages",
