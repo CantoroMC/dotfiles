@@ -1,8 +1,9 @@
-BASE_PKGS = bat biber calibre cmus conky ctags diff-so-fancy easytag emacs evince \
-	exa fzf gimp github-cli kitty mpc mpd mpv neofetch neomutt ncmpcpp redshift \
-	ripgrep rsync stalonetray stow sxiv texlive-most the_silver_searcher tmux \
-	tree vint vivaldi vivaldi-ffmpeg-codecs youtube-dl xboard \
-	zathura zathura-pdf-mupdf zathura-ps
+BASE_PKGS = bat biber calibre cmus conky ctags diff-so-fancy easytag emacs \
+	evince exa fzf gimp github-cli kitty mpc mpd mpv neofetch neomutt ncmpcpp \
+	redshift ripgrep rsync stalonetray stow sxiv texlive-most the_silver_searcher \
+	tmux tree vint vivaldi vivaldi-ffmpeg-codecs youtube-dl xboard zathura
+
+DEP_PKGS = zathura-pdf-mupdf zathura-ps
 
 GTK_PKGS = gnome-disk-utility gnome-themes-extra gcolor2 parcellite transmission-gtk
 
@@ -20,8 +21,8 @@ AUR_HELPER = auracle-git
 
 HOMIES=.ghc .cabal .local/bin
 
-CONFIGS=emacs git gtk-2.0 gtk-3.0 mpd/playlists neomutt nnn nvim \
-	radiotray-ng surf
+CONFIGS=emacs git gtk-2.0 gtk-3.0 mpd/playlists ncmpcpp neomutt nnn nvim \
+	radiotray-ng surf vivaldi zsh
 
 DATAS= nvim/site/pack nvim/site/spell xorg fonts surf stack
 
@@ -31,20 +32,24 @@ STOW = git emacs neovim texlive music mail shell haskell x-window
 help:
 	@echo "Supported targets:"
 	@echo ""
-	@echo "help                    > Display this help message"
-	@echo "pkgs                    > Install all the pacman packages"
-	@echo "aur                     > Install Aur helper"
-	@echo "filesystem              > Make directory for stowing"
-	@echo "stow                    > Stow all the dotfiles packages"
-	@echo "all                     > Install pkgs, aur_helper, prepare directory and stow"
+	@echo "help        > Display this help message"
+	@echo "pkgs        > Install all the pacman packages"
+	@echo "aur         > Install Aur helper"
+	@echo "filesystem  > Make directory for stowing"
+	@echo "stow        > Stow all the dotfiles packages"
+	@echo "all         > Install pkgs, aur_helper, prepare directory and stow"
 	@echo ""
 
 all: pkgs aur filesystem stow
 
-pkgs: base_pkgs gtk_pkgs prog_pkgs
+pkgs: base_pkgs dep_pkgs gtk_pkgs prog_pkgs
 
 base_pkgs:
 	sudo pacman -S --needed $(BASE_PKGS)
+
+dep_pkgs:
+	sudo pacman -S --needed --asdeps $(BASE_PKGS)
+
 
 gtk_pkgs:
 	sudo pacman -S --needed $(GTK_PKGS)

@@ -6,7 +6,8 @@ module Layout.Hook
 
 
 
-import XMonad.Layout.LayoutCombinators ((|||))
+import XMonad ((|||))
+
 import XMonad.Layout.PerWorkspace (onWorkspace)
 import XMonad.Layout.WindowNavigation (windowNavigation)
 
