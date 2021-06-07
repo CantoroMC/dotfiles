@@ -4,8 +4,6 @@ module Startup.Hook (xwmStartupHook) where
 
 import XMonad
 import qualified XMonad.StackSet               as XMSS
-import XMonad.Util.Cursor (setDefaultCursor)
-
 
 
 -- | Detect urgency of some programs like kitty (not covered in 'XMonad.Hooks.EwmhDesktops.ewmh'):
@@ -19,4 +17,4 @@ fixSupportedAtoms = withDisplay $ \dpy -> do
     io $ changeProperty32 dpy r a c propModeAppend (fmap fromIntegral supp)
 
 xwmStartupHook :: X ()
-xwmStartupHook = fixSupportedAtoms >> setDefaultCursor xC_left_ptr
+xwmStartupHook = fixSupportedAtoms

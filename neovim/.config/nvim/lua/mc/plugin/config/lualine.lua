@@ -52,8 +52,8 @@ require'lualine'.setup{
       {
         'diagnostics',
         sources  = { 'nvim_lsp', 'coc' },
-        sections = { 'error', 'warn', 'info' },
-        symbols  = { error = ' ', warn = ' ', info = ' ' }
+        sections = { 'error', 'warn', 'info', 'hint' },
+        symbols  = { error = ' ', warn = ' ', info = ' ', hint = ' ' }
       },
       monitors.vista,
     },
