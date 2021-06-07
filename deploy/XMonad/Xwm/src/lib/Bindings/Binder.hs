@@ -44,8 +44,9 @@ data KeyCombination = KeyCombination
     , key      :: KeySym
     }
     deriving (Eq, Ord)
-data Explanation = Explanation String
-                 | AliasExplanation KeyCombination String
+data Explanation =
+    Explanation String
+    | AliasExplanation KeyCombination String
 
 
 -- Keys

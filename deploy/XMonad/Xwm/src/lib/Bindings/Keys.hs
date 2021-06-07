@@ -32,7 +32,6 @@ import qualified XMonad.Actions.Submap as XMSM (submap)
 import XMonad.Hooks.ManageDocks (ToggleStruts(..))
 import XMonad.Hooks.UrgencyHook (focusUrgent)
 
-import XMonad.Layout.LayoutCombinators (JumpToLayout (..))
 import XMonad.Layout.ResizableTile (MirrorResize(..))
 import XMonad.Layout.Spacing (setScreenWindowSpacing, incScreenWindowSpacing, decScreenWindowSpacing)
 import XMonad.Layout.WindowNavigation (Navigate (..))

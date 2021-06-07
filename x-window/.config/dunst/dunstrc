@@ -138,7 +138,7 @@
     # debug: all less than unimportant stuff
     verbosity = info
     # If the radius is 0, you have no rounded corners.
-    corner_radius = 15
+    corner_radius = 0
 
     ### Legacy
     # Use the Xinerama extension instead of RandR for multi-monitor support.
@@ -180,20 +180,22 @@
     context = ctrl+shift+grave
 
 [urgency_low]
-    background = "#fafafa"
-    foreground = "#41a6d9"
+    background = "#151a1e"
+    foreground = "#eaeaea"
+    frame_color = "#b8cc52"
     timeout = 5
     icon = /usr/share/icons/Papirus/symbolic/status/dialog-information-symbolic.svg
 
 [urgency_normal]
-    background = "#fafafa"
-    foreground = "#41a6d9"
+    background = "#151a1e"
+    foreground = "#eaeaea"
+    frame_color = "#41a6d9"
     timeout = 20
     icon = /usr/share/icons/Papirus/symbolic/status/dialog-question-symbolic.svg
 
 [urgency_critical]
-    background = "#fafafa"
-    foreground = "#ff3333"
+    background = "#232b32"
+    foreground = "#e7c547"
     frame_color = "#ff3333"
     timeout = 120
     icon = /usr/share/icons/Papirus/symbolic/status/dialog-error-symbolic.svg
