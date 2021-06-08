@@ -1,4 +1,3 @@
--- Weather module for weather.nvim plugin
 local win, buf
 local M = {}
 

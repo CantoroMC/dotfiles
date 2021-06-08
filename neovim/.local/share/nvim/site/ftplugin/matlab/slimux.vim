@@ -13,8 +13,7 @@ command! -buffer -nargs=1 Dbstop
       \ :execute 'SlimuxShellRun dbstop in '.expand('%').' at '. <args>
 
 " Section: Mappings
-nnoremap <silent> <buffer> <F5>   :<C-U>Dbstep<CR>
-nnoremap <silent> <buffer> <F17>  :<C-U>DbstepIn<CR>
-nnoremap <silent> <buffer> <S-F5> :<C-U>DbstepIn<CR>
-nnoremap <silent> <buffer> <F8>   :<C-U>DbstopHere<CR>
-nnoremap <silent> <buffer> <F6>   :<C-U>Dbcont<CR>
+nnoremap <silent> <buffer> <C-l><C-s> :<C-U>Dbstep<CR>
+nnoremap <silent> <buffer> <C-l><C-i> :<C-U>DbstepIn<CR>
+nnoremap <silent> <buffer> <C-l><C-h> :<C-U>DbstopHere<CR>
+nnoremap <silent> <buffer> <C-l><C-c> :<C-U>Dbcont<CR>
