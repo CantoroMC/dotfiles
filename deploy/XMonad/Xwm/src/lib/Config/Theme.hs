@@ -22,7 +22,7 @@ data Theme = Theme
 
 xwmTheme :: Theme
 xwmTheme = Theme
-    { borderWidth         = 3
+    { borderWidth         = 1
     , activeColor         = bBlack xwmColors
     , inactiveColor       = black xwmColors
     , urgentColor         = red xwmColors

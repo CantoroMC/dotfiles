@@ -97,7 +97,7 @@ export ZLS_COLORS LS_COLORS
 # }}}
 
 # Language/Programs Specifics {{{1
-if [ $(date +%H) -ge 18 ] || [ $(date +%H) -lt 8 ]; then
+if [ $(date +%H) -ge 11 ] || [ $(date +%H) -lt 8 ]; then
   export BACKGROUND_COLOR="dark"
 else
   export BACKGROUND_COLOR="light"
@@ -111,7 +111,7 @@ export TERMINAL='/usr/bin/st'
 # Nnn
 export NNN_OPTS="AHGRUue"
 export NNN_BMS='b:~/.local/bin;c:~/.config;D:~/Documents;d:~/dotfiles;M:~/Music;m:/mnt;p:~/Documents/programming;s:~/.config/zsh;V:~/Videos'
-export NNN_PLUG='a:mp3conv;b:oldbigfile;c:fzcd;d:-!git diff;e:-!&emacs $nnn;f:-!pickOne;g:-!git status;i:imgview;m:mimelist;o:fzopen;p:-preview-tui;t:-preview-tabbed'
+export NNN_PLUG='a:mp3conv;b:oldbigfile;c:fzcd;d:-!git diff;e:-!&emacs $nnn;f:-!&pickOne;g:-!git status;i:imgview;m:mimelist;o:fzopen;p:-preview-tui;t:-preview-tabbed'
 export USE_VIDEOTHUMB='1'
 export NNN_COLORS='7342'
 export NNN_FCOLORS='c1e2192e006033f7c6d6abc4'
