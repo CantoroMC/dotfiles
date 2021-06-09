@@ -14,6 +14,17 @@ vim.g.nvim_tree_hijack_netrw       = 1
 vim.g.nvim_tree_add_trailing       = 1
 vim.g.nvim_tree_group_empty        = 1
 vim.g.nvim_tree_lsp_diagnostics    = 1
+vim.g.nvim_tree_disable_window_picker = 0
+vim.g.nvim_tree_hijack_cursor = 1
+vim.g.nvim_tree_icon_padding = ' '
+vim.g.nvim_tree_update_cwd = 0
+vim.g.nvim_tree_window_picker_exclude = {
+  ["filetype"] = { 'packer', 'qf' },
+  ["buftype"] =  { 'terminal' },
+}
+vim.g.nvim_tree_special_files = {
+  'README.md', 'Makefile', 'MAKEFILE'
+}
 
 vim.g.nvim_tree_ignore = {
   '.git',
@@ -33,8 +44,8 @@ vim.g.nvim_tree_show_icons =  {
   ["files"]   = 1
 }
 vim.g.nvim_tree_icons = {
-  ["default"] = ' ',
-  ["symlink"] = ' ',
+  ["default"] = '',
+  ["symlink"] = '',
   ["git"]     = {
     ["unstaged"]  = '✗',
     ["staged"]    = '✓',
@@ -43,9 +54,9 @@ vim.g.nvim_tree_icons = {
     ["untracked"] = '★',
   },
   ["folder"] = {
-    ["default"] = ' ',
-    ["open"   ] = ' ',
-    ["symlink"] = ' ',
+    ["default"] = '',
+    ["open"   ] = '',
+    ["symlink"] = '',
   },
 }
 
@@ -73,6 +84,9 @@ vim.g.nvim_tree_bindings = {
   ["x"]      = get_lua_cb("cut"),
   ["c"]      = get_lua_cb("copy"),
   ["p"]      = get_lua_cb("paste"),
+  ["y"]      = get_lua_cb("copy_name"),
+  ["Y"]      = get_lua_cb("copy_path"),
+  ["gy"]     = get_lua_cb("copy_absolute_path"),
   ["[g"]     = get_lua_cb("prev_git_item"),
   ["]g"]     = get_lua_cb("next_git_item"),
   ["<C-P>"]  = get_lua_cb("dir_up"),
