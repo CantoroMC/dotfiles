@@ -109,7 +109,7 @@ export MPC_FORMAT="[[%artist%  - ]%title% (%time%)]|[%file%]"
 export MPD_HOST=$HOME/.config/mpd/socket
 export TERMINAL='/usr/bin/st'
 # Nnn
-export NNN_OPTS="AHGRUue"
+export NNN_OPTS="AHGRUdeu"
 export NNN_BMS='b:~/.local/bin;c:~/.config;D:~/Documents;d:~/dotfiles;M:~/Music;m:/mnt;p:~/Documents/programming;s:~/.config/zsh;V:~/Videos'
 export NNN_PLUG='a:mp3conv;b:oldbigfile;c:fzcd;d:-!git diff;e:-!&emacs $nnn;f:-!&pickOne;g:-!git status;i:imgview;m:mimelist;o:fzopen;p:-preview-tui;t:-preview-tabbed'
 export USE_VIDEOTHUMB='1'

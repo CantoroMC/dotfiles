@@ -57,9 +57,9 @@ xwmFullWSL =
     ||| xwmFloat
 
 xwmLayouts =
-    onWorkspace (last xwmWorkspaces) xwmFloatWSL
-        $ onWorkspace (xwmWorkspaces !! 1) xwmFullWSL
-        $ onWorkspace (xwmWorkspaces !! 2) xwmComboWSL
+    onWorkspace       (xwmWorkspaces !! 2) xwmComboWSL
+        $ onWorkspace (last xwmWorkspaces) xwmFloatWSL
+        $ onWorkspace (xwmWorkspaces !! 3) xwmFullWSL
         xwmLayout
 
 -------------------------------------------------------------------------------

@@ -5,8 +5,8 @@ require(folderOfThisFile .. 'picasso.colorschemes')
 
 local bgs = { 'dark', 'light' }
 local plug_confs = {
-  active     = true,
-  light_time = { 14, 18 },
+  active     = false,
+  light_time = { 10, 13 },
   themes     = {
     [ "dark" ]  = {
       [ "ayu" ]        = 'ayu',

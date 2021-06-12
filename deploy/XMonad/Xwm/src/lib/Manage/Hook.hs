@@ -26,7 +26,7 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Util.NamedScratchpad (namedScratchpadManageHook)
 
 import Config.Workspaces (xwmWorkspaces)
-import Manage.Util (xwmBigRect, xwmMedRect, xwmSPDs)
+import Manage.Util (xwmBigRect, xwmMedRect, xwmSideLeft, xwmSPDs)
 
 
 
@@ -65,7 +65,7 @@ manageFloatings =
         [ title =? "Event Tester" --> doFloat
         , title =? "lstopo" --> doCenterFloat
         , title =? "weatherreport" --> doRectFloat xwmBigRect
-        , title =? "keysheet" --> doRectFloat xwmBigRect
+        , title =? "keysheet" --> doRectFloat xwmSideLeft
         , title =? "volume" --> doRectFloat xwmMedRect
         , role  =? "pop-up" --> doCenterFloat
         , (className =? "Display" <&&> title =? "ImageMagick: ") --> doCenterFloat
