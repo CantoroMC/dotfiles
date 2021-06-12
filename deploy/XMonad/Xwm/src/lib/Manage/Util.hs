@@ -8,6 +8,7 @@ module Manage.Util
     , xwmUpRightRect
     , xwmDownLeftRect
     , xwmDownRightRect
+    , xwmSideLeft
     , terminalFromConf
     , inTerminalFromConf
     , xwmSPDs
@@ -53,6 +54,8 @@ xwmDownLeftRect = XMSS.RationalRect 0 0.51 0.5 0.49
 xwmDownRightRect :: XMSS.RationalRect
 xwmDownRightRect = XMSS.RationalRect 0.5 0.51 0.5 0.49
 
+xwmSideLeft :: XMSS.RationalRect
+xwmSideLeft = XMSS.RationalRect 0 0.02 0.5 0.98
 
 terminalFromConf :: (MonadIO m, MonadReader XConf m) => m String
 terminalFromConf = reader $ terminal . config

@@ -5,10 +5,10 @@ main_dir=""
 start_session() {
   tmux has-session -t 'Matlab'
   if [ $? != 0 ]; then
-    tmux new-session -d -s 'Matlab' -n 'Vim' -c ~/Documents/programming/MATLAB/2018_Cantoro/MatriHX/MatriHX_v05
-    tmux split-window -d -h -t Matlab:Vim.1 -c ~/Documents/programming/MATLAB/2018_Cantoro/MatriHX/MatriHX_v05
+    tmux new-session -d -s 'Matlab' -n 'Vim' -c ~/Documents/poliMi/thesis/stageDECA/Theses/2018_Cantoro/MatriHX/MatriHX_v05
+    tmux split-window -d -h -t Matlab:Vim.1 -c ~/Documents/poliMi/thesis/stageDECA/Theses/2018_Cantoro/MatriHX/MatriHX_v05
 
-    tmux new-window  -d -t Matlab:2 -n 'Help' -c ~/Documents/programming/MATLAB
+    tmux new-window  -d -t Matlab:2 -n 'Help' -c ~/Documents/poliMi/thesis/stageDECA/Theses/2018_Cantoro/MatriHX/MatriHX_v05
 
     tmux send-keys -t Matlab:Vim.2 'matlab -nodesktop -nosplash -nojvm' C-m
   fi

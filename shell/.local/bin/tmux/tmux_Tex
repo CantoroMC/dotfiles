@@ -1,17 +1,20 @@
 #!/bin/sh
 
 start_session() {
-  tmux has-session -t 'TeX'
-  if [ $? != 0 ]; then
-    tmux new-session -d -s 'TeX' -n 'TeX' -c ~/Documents/programming/TeX
+  tmux has-session -t 'TeX' &> /dev/null
 
-    tmux new-window  -d -t TeX:2 -n 'Help' -c ~/Documents/programming/TeX
-    tmux split-window -d -v -t TeX:2.1
+  if [ $? != 0 ]; then
+    tmux new-session -d -s 'TeX' -n 'TeX' -c ~/Documents/poliMi/thesis/teXis
+
+    tmux new-window  -d -t TeX:2 -n 'Help' -c ~/Documents/poliMi/thesis/teXis
+    tmux split-window -d -h -t TeX:2.1
   fi
+
   tmux attach -d -t TeX
 }
 
 main() {
   start_session
 }
+
 main "$@"

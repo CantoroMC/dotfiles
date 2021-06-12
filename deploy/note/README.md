@@ -248,6 +248,10 @@ systemctl enable --now snapper-cleanup.timer
 ### Systemd services
 #### Reflector services
 ```sh
+sudo cp ~/dotfiles/deploy/note/root/etc/xdg/reflector/reflector.conf /etc/xdg/reflector/
+```
+
+```sh
 systemctl enable --now reflector.service
 systemctl enable --now reflector.timer
 ```
