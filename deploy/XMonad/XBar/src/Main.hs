@@ -30,6 +30,7 @@ xBarConfig p = (baseConfig p)
         , Run pacman
         , Run sound
         , Run (battery p "BAT0" "battery0")
+        , Run (battery p "BAT1" "battery1")
         , Run (brightness p)
         , Run (dynNet p)
         , Run (memory p)
@@ -69,6 +70,7 @@ xBarConfig p = (baseConfig p)
                )
         ++ " |bright|"
         ++ " |battery0|"
+        ++ " |battery1|"
         ++ "   "
         ++ "|trayerPad|"
     }

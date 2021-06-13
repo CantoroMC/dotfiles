@@ -136,7 +136,7 @@ multicpu :: Palette -> Monitors
 multicpu p = MultiCpu
     ( withHighArgs p
         [ "--template", "<ipat>" ++
-            fn 2 "<total0><total1><total2><total3><total4><total5><total6><total7>"
+            fn 2 "<total0><total1><total2><total3>"
         , "--suffix",   "True"
         , "--ppad",     "3"
         , "--ddigits",  "0"

@@ -39,10 +39,10 @@ baseConfig :: Palette -> Config
 baseConfig p = defaultConfig
     { font             = pFont p
     , additionalFonts  =
-        [ "xft:FantasqueSansMono Nerd Font:style=Italic:size=7:hinting=true" -- for the win titles
-        , "xft:Operator Mono Lig:style:Italic:size=7:antialias=true:hinting=true"
-        , "xft:FiraCode Nerd Font:style=Regular:pixelsize=11" -- for the workspaces
-        , "xft:FiraCode Nerd Font:style=Regular:pixelsize=16"
+        [ "xft:FantasqueSansMono Nerd Font:style=Italic:size=6:hinting=true" -- for the win titles
+        , "xft:Operator Mono Lig:style:Italic:size=6:antialias=true:hinting=true"
+        , "xft:FiraCode Nerd Font:style=Regular:pixelsize=10" -- for the workspaces
+        , "xft:FiraCode Nerd Font:style=Regular:pixelsize=14"
         ]
     , bgColor          = pBackground p
     , fgColor          = pForeground p
