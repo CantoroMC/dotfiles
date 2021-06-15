@@ -1,7 +1,7 @@
 # Maintainer: Marco Cantoro <marco dot cantoro92 at outlook dot it>
 
 pkgname=slock-bull-git
-pkgver=1.4.r1.5358246
+pkgver=1.4
 pkgrel=1
 pkgdesc="Simple X display locker"
 arch=('x86_64')

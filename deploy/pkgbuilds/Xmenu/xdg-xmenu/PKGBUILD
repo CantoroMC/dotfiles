@@ -1,7 +1,7 @@
 # Maintainer: Marco Cantoro <marco dot cantoro92 at outlook dot it>
 
 pkgname=xdg-xmenu-bull-git
-pkgver=1.0.r12.c6cdad9
+pkgver=1.0
 pkgrel=1
 pkgdesc="A shell script to generate menu for xmenu"
 arch=('x86_64')
