@@ -50,12 +50,10 @@ packages_pacman() {
 }
 
 aur_helper() {
-  cd ~/Downloads
+  cd /tmp
   git clone https://aur.archlinux.org/$AUR_HELPER
   cd $AUR_HELPER
   makepkg -sri
-  cd ..
-  rm -rf $AUR_HELPER
 }
 
 
@@ -83,7 +81,11 @@ use_stow() {
 
 helper(){
   cat << _EOF_
-  This is the help function but it still TODO
+  pkg:         Install pacman packages
+  aur_helper:  Install aur helper
+  prepare:     Create directories for stowing
+  stow:        Stow all the dotfiles packages
+  help:        Show this help message
 _EOF_
 }
 

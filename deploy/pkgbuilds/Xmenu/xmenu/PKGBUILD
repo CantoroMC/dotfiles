@@ -1,7 +1,7 @@
 # Maintainer: Marco Cantoro <marco dot cantoro92 at outlook dot it>
 
 pkgname=xmenu-bull-git
-pkgver=4.5.5.r153.20a96bd
+pkgver=4.5.5
 pkgrel=1
 pkgdesc="A X11 menu utility"
 arch=('x86_64')

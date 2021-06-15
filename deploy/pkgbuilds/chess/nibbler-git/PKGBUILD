@@ -2,7 +2,7 @@
 
 _pkgname=nibbler
 pkgname=nibbler-bull-git
-pkgver=2.1.6.r3233.001c0c4
+pkgver=2.1.6
 pkgrel=1
 pkgdesc="Leela Chess Zero (Lc0) interface"
 arch=('i686' 'x86_64')

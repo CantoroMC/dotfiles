@@ -1,7 +1,7 @@
 # Maintainer: Marco Cantoro <marco dot cantoro92 at outlook dot it>
 
 pkgname=tabbed-bull-git
-pkgver=0.6.r1.1dc0507
+pkgver=0.6
 pkgrel=1
 pkgdesc="Simple generic tabbed frontend to xembed-aware applications"
 arch=('x86_64')

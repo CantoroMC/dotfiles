@@ -1,7 +1,7 @@
 # Maintainer: Marco Cantoro <marco dot cantoro92 at outlook dot it>
 
 pkgname=dmenu-bull-git
-pkgver=5.0.r1.cd3effe
+pkgver=5.0
 pkgrel=1
 pkgdesc="A dynamic menu for X"
 arch=('x86_64')
