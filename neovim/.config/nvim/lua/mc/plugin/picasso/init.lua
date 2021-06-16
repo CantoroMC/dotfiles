@@ -16,14 +16,14 @@ local plug_confs = {
       -- [ "gruvbox" ]    = 'gruvbox_material',
       -- [ "jellybeans" ] = 'codedark',
       -- [ "badwolf" ]    = 'codedark',
-      -- [ "srcery" ]     = 'codedark',
+      -- [ "srcery" ]     = 'srcery',
     },
     [ "light" ] = {
       [ "mayansmoke" ] = 'iceberg_light',
       [ "PaperColor" ] = 'papercolor_light',
     }
   },
-  theme = { [ "ayu" ] = 'ayu'},
+  theme = { [ "srcery" ] = 'srcery'},
   add_highlight = {
   }
 }

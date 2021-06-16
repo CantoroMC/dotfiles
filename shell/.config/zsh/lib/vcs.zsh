@@ -16,13 +16,10 @@ __FMT[ITALIC_ON]=$'\e[3m'
 __FMT[ITALIC_OFF]=$'\e[23m'
 
 zstyle ':vcs_info:*' formats \
-  " %F{green}%B%{$__FMT[ITALIC_ON]%}%s%%b%{$__FMT[ITALIC_OFF]%} %f%F{blue}%B%b%%b%f%F{yellow}%f %c%u%m%7.7i"
-zstyle ':vcs_info:*' actionformats \
-  "(%F{red}%B%{$__FMT[ITALIC_ON]%}%s%%b%{$__FMT[ITALIC_OFF]%}%f)%F{green}[%f%F{blue}%B%{$__FMT[ITALIC_ON]%}%b%%b%{$__FMT[ITALIC_OFF]%}%f%F{cyan}%{$__FMT[ITALIC_ON]%} %7.7i %{$__FMT[ITALIC_OFF]%}%f%c%u%F{green}]%f %m-%F{red}%a%f"
-zstyle ':vcs_info:*' stagedstr \
-  "%F{green}%{● %2G%}%f"
-zstyle ':vcs_info:*' unstagedstr \
-  "%F{red}%{● %2G%}%f"
+  " %F{green}%B%{$__FMT[ITALIC_ON]%}%s:%%b%{$__FMT[ITALIC_OFF]%}%f%F{blue}%B%b%%b%f %c%u%7.7i %m"
+zstyle ':vcs_info:*' actionformats '(%B%F{red}%b|%a%c%u%%b%f)'
+zstyle ':vcs_info:*' stagedstr   "%F{green}%{● %2G%}%f"
+zstyle ':vcs_info:*' unstagedstr "%F{red}%{● %2G%}%f"
 
 # Vcs_Info Hook
 zstyle ':vcs_info:git+set-message:*' hooks git-untracked git-commits_ahead git-commits_behind
