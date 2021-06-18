@@ -6,11 +6,11 @@ __FMT[ITALIC_ON]=$'\e[3m'
 __FMT[ITALIC_OFF]=$'\e[23m'
 
 prompt_voidy_precmd() {
-	local exitstatus=$?
-	setopt localoptions noxtrace noksharrays
-	psvar=(SIG)
-	[[ $exitstatus -gt 128 ]] && psvar[1]=SIG$signals[$exitstatus-127]
-	[[ $psvar[1] = SIG ]] && psvar[1]=$exitstatus
+  local exitstatus=$?
+  setopt localoptions noxtrace noksharrays
+  psvar=(SIG)
+  [[ $exitstatus -gt 128 ]] && psvar[1]=SIG$signals[$exitstatus-127]
+  [[ $psvar[1] = SIG ]] && psvar[1]=$exitstatus
 }
 
 prompt_voidy_help () {
@@ -33,9 +33,9 @@ EOH
 }
 
 prompt_voidy_setup () {
-  local color1=${1:-'blue'}
+  local color1=${1:-'green'}
   local color2=${2:-'white'}
-  local color3=${3:-'green'}
+  local color3=${3:-'blue'}
 
   local LVL=$SHLVL
   # Check for tmux by looking at $TERM, because $TMUX won't be propagated to any

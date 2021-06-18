@@ -12,10 +12,10 @@ local plug_confs = {
       [ "ayu" ]        = 'ayu',
       [ "material" ]   = 'material',
       [ "srcery" ]     = 'srcery',
+      -- [ "jellybeans" ] = 'codedark',
       -- [ "PaperColor" ] = 'papercolor_dark',
       -- [ "sitruuna" ]   = 'codedark',
       -- [ "gruvbox" ]    = 'gruvbox_material',
-      -- [ "jellybeans" ] = 'codedark',
       -- [ "badwolf" ]    = 'codedark',
     },
     [ "light" ] = {
@@ -24,7 +24,9 @@ local plug_confs = {
       [ "PaperColor" ] = 'papercolor_light',
     }
   },
-  theme = { [ "ayu" ] = 'ayu'},
+  theme = {
+    [ "ayu" ] = 'ayu'
+  },
   add_highlight = {
   }
 }
