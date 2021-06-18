@@ -67,8 +67,8 @@ let g:startify_lists = [
 let g:startify_bookmarks = [
       \ '~/.config/nvim/init.lua',
       \ '~/.config/zsh/.zshrc',
-      \ '~/Documents/programming/TeX/projects/matriHX/matriHX.tex',
-      \]
+      \ '~/Documents/poliMi/thesis/teXis/matriHX.tex',
+      \ ]
 " }}}
 " Commands: {{{1
 let g:startify_commands = [
