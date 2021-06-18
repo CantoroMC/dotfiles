@@ -218,11 +218,10 @@ local function init()
 
   -- GUI UTILITIES {{{3
   -- Colorschemes {{{4
-  -- usepackage {
-  --   'CantoroMC/neovim-ayu',
-  --   as = 'ayu'
-  -- }
-  usepackage '~/Documents/programming/Nvim/ayu-nvim'
+  usepackage {
+    'CantoroMC/ayu-nvim',
+    as = 'ayu'
+  }
   usepackage {
     'marko-cerovac/material.nvim',
     as = 'material',
@@ -230,7 +229,7 @@ local function init()
   usepackage 'sjl/badwolf'
   usepackage 'morhetz/gruvbox'
   usepackage 'NLKNguyen/papercolor-theme'
-  usepackage 'srcery-colors/srcery-vim'
+  usepackage 'CantoroMC/srcery-nvim'
   usepackage 'eemed/sitruuna.vim'
   -- }}}
 

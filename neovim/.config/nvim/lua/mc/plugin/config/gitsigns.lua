@@ -53,11 +53,13 @@ require('gitsigns').setup {
   watch_index = {
     interval = 1000
   },
-  numhl              = false,
-  linehl             = false,
-  current_line_blame = false,
-  sign_priority      = 6,
-  status_formatter   = nil,
-  use_decoration_api = true,
-  use_internal_diff  = true,
+  numhl                       = false,
+  linehl                      = false,
+  current_line_blame          = true,
+  current_line_blame_delay    = 1000,
+  current_line_blame_position = 'eol',
+  sign_priority               = 6,
+  status_formatter            = nil,
+  use_decoration_api          = true,
+  use_internal_diff           = true,
 }

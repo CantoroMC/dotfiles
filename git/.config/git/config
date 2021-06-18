@@ -108,7 +108,7 @@
 	new = green italic
 	whitespace = blue reverse
 [color "diff-highlight"]
-	oldNormal = red italic
+	oldNormal = red
 	oldHighlight = red 52
 	newNormal = green
 	newHighlight = green 22

@@ -5,6 +5,7 @@
 #
 fpath=(
   $ZDOTDIR/functions/Completion
+  $ZDOTDIR/functions/Misc
   $ZDOTDIR/functions/Prompts
   $ZDOTDIR/functions/Zle
   $fpath
@@ -70,6 +71,14 @@ for mod ($Mods); do
 done
 
 
+
+#
+### Shell Prompt
+#
+autoload -Uz promptinit; promptinit; prompt voidy
+
+
+
 #
 ### Zsh plugins
 #
@@ -93,9 +102,3 @@ done
 
 unset zplug_conf plugin Mods mod
 unset -f handle_completion_insecurities isMod
-
-
-#
-### Shell Prompt
-#
-autoload -Uz promptinit; promptinit; prompt voidy

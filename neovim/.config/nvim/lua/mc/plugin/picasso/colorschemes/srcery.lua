@@ -1,4 +1,10 @@
-vim.g.srcery_italic    = 1
-vim.g.srcery_bold      = 1
-vim.g.srcery_underline = 1
-vim.g.srcery_undercurl = 1
+vim.g.srcery_italic              = 1
+vim.g.srcery_disable_bg          = false
+vim.g.srcery_italic_comments     = true
+vim.g.srcery_italic_strings      = true
+vim.g.srcery_italic_types        = true
+vim.g.srcery_dim_lisp_paren      = true
+vim.g.srcery_inverse             = false
+vim.g.srcery_inverse_match_paren = false
+vim.g.srcery_contrast            = true
+vim.g.srcery_contrast_amount     = -10
