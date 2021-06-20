@@ -99,7 +99,6 @@ local function init()
   }
 
   -- UTILITIES {{{3
-
   -- Conquer Of Completion {{{4
   usepackage {
     'neoclide/coc.nvim',
@@ -122,7 +121,6 @@ local function init()
     }
   }
   -- }}}
-
   -- NeoVim Language Server Protocol And Completion {{{4
   usepackage 'neovim/nvim-lspconfig'
   usepackage 'kosayoda/nvim-lightbulb'
@@ -130,26 +128,7 @@ local function init()
     'liuchengxu/vista.vim',
     as = 'vista',
   }
-  --[[
-  usepackage 'hrsh7th/nvim-compe'
-  usepackage {
-    'onsails/lspkind-nvim',
-    requires = { 'hrsh7th/nvim-compe' }
-  }
-  usepackage {
-    'tamago324/compe-zsh',
-    requires = {
-      'hrsh7th/nvim-compe',
-      'nvim-lua/plenary.nvim'
-    }
-  }
-  usepackage {
-    'GoldsteinE/compe-latex-symbols',
-    requires = { 'hrsh7th/nvim-compe' },
-  }
-  --]]
   -- }}}
-
   -- Tree Sitter: Syntax, Indentation, TextObject, Foldings.... SYNTAX AWARE. {{{4
   usepackage {
     'nvim-treesitter/nvim-treesitter',
@@ -172,7 +151,6 @@ local function init()
     requires = 'nvim-treesitter/nvim-treesitter',
   }
   -- }}}
-
   -- Telescope: Fuzzy Finder {{{4
   usepackage {
     'nvim-telescope/telescope.nvim',
@@ -187,8 +165,7 @@ local function init()
       'nvim-lua/plenary.nvim'
     }
   }
-  --- }}}
-
+  -- }}}
   -- Tag Viewer with Ctags
   usepackage 'preservim/tagbar'
   -- Snippets
@@ -232,7 +209,6 @@ local function init()
   usepackage 'CantoroMC/srcery-nvim'
   usepackage 'eemed/sitruuna.vim'
   -- }}}
-
   -- File Explorer
   usepackage {
     'kyazdani42/nvim-tree.lua',

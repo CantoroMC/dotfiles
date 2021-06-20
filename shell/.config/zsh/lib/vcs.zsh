@@ -16,7 +16,7 @@ __FMT[ITALIC_ON]=$'\e[3m'
 __FMT[ITALIC_OFF]=$'\e[23m'
 
 zstyle ':vcs_info:*' formats \
-  " %F{green}%B%{$__FMT[ITALIC_ON]%}%s:%%b%{$__FMT[ITALIC_OFF]%}%f%F{blue}%B%b%%b%f %c%u%7.7i %m"
+  " %F{green}%{$__FMT[ITALIC_ON]%}%s %{$__FMT[ITALIC_OFF]%}%f%F{blue}%B%b%%b%f %c%u%7.7i %m"
 zstyle ':vcs_info:*' actionformats '(%B%F{red}%b|%a%c%u%%b%f)'
 zstyle ':vcs_info:*' stagedstr   "%F{green}%{● %2G%}%f"
 zstyle ':vcs_info:*' unstagedstr "%F{red}%{● %2G%}%f"
