@@ -40,7 +40,7 @@ function +vi-git-untracked() {
 function +vi-git-commits_ahead() {
   local commits="$(__git_prompt_git rev-list --count @{upstream}..HEAD 2>/dev/null)"
   if [[ -n "$commits" && "$commits" != 0 ]]; then
-    hook_com[branch]+=" %F{red}$commits%{⇡ %2G%}%f"
+    hook_com[branch]+=" %F{cyan}$commits%{⇡ %2G%}%f"
   fi
 }
 # Gets the number of commits behind remote
