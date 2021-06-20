@@ -180,13 +180,8 @@ lspconfig.texlab.setup{
   cmd = { 'texlab' },
   filetypes = { 'tex', 'bib', 'plaintex' },
   settings = {
-    bibtex = {
-      formatting = {
-        lineLenght = 120,
-        formatter = 'texlab',
-      },
-    },
-    latex = {
+    texlab = {
+      auxDirectory = ".",
       build = {
         executable = "latexmk",
         args = {
@@ -198,17 +193,20 @@ lspconfig.texlab.setup{
           "%f"
         },
         onSave = false,
-        forwardSearchAfter = true,
+        forwardSearchAfter = false,
       },
+      chktex = {
+        onOpenAndSave = true,
+        onEdit = false,
+      },
+      diagnosticsDelay = 300,
       forwardSearch = {
         executable = 'zathura',
         args = { "--synctex-forward", "%l:1:%f", "%p" },
         onSave = false,
       },
-      lint = {
-        onChange = true,
-        onSave = true,
-      }
+      bibtexFormatter = "texlab",
+      formatterLineLength = 80,
     },
   },
   on_attach = custom_lsp_attach,
