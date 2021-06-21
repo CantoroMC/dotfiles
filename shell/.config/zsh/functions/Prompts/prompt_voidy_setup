@@ -113,6 +113,7 @@ prompt_voidy_setup () {
   #
   # Right-Hand side prompt: VcsInfo, Timer
   #
+
   async_start_worker vcs_updater_worker
   async_register_callback vcs_updater_worker vcs_update
 

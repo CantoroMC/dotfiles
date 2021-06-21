@@ -107,7 +107,7 @@ export BAT_THEME="Dracula"
 export DOTFILES="$HOME"/dotfiles
 export MPC_FORMAT="[[%artist%  - ]%title% (%time%)]|[%file%]"
 export MPD_HOST=$HOME/.config/mpd/socket
-export TERMINAL='/usr/bin/st'
+export TERMINAL='/usr/bin/kitty'
 # Nnn
 export NNN_OPTS="AHGRUdeu"
 export NNN_BMS='b:~/.local/bin;c:~/.config;D:~/Documents;d:~/dotfiles;M:~/Music;m:/mnt;p:~/Documents/programming;s:~/.config/zsh;V:~/Videos'
