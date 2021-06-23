@@ -13,7 +13,7 @@ bug-reports:        https://github.com/CantoroMC/dotfiles
 synopsis:           XMonad Configuration
 description:        Custom build of XMonad using cabal
 category:           Graphics
-tested-with:        GHC == 8.10.4
+tested-with:        GHC == 8.10.4, GHC == 8.10.5
 extra-source-files: README.md, build, src/.ghci
 
 library

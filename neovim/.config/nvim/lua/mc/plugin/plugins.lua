@@ -318,6 +318,10 @@ local function init()
     'KeitaNakamura/tex-conceal.vim',
     ft = { 'tex', 'context', 'plaintex' }
   }
+  usepackage {
+    'LnL7/vim-nix',
+    ft = { 'nix' }
+  }
   -- }}}
 
   -- VIM DEVELOPMENT {{{3
