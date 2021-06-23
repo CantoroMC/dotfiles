@@ -16,8 +16,9 @@ __FMT[ITALIC_ON]=$'\e[3m'
 __FMT[ITALIC_OFF]=$'\e[23m'
 
 zstyle ':vcs_info:*' formats \
-  " %F{green}%B%{$__FMT[ITALIC_ON]%}%s:%%b%{$__FMT[ITALIC_OFF]%}%f%F{blue}%B%b%%b%f %c%u%7.7i %m"
-zstyle ':vcs_info:*' actionformats '(%B%F{red}%b|%a%c%u%%b%f)'
+  "%F{green}%{$__FMT[ITALIC_ON]%}%s %{$__FMT[ITALIC_OFF]%}%f%F{blue}%B%b%%b%f %c%u%7.7i %m"
+zstyle ':vcs_info:*' actionformats \
+  "%F{green}%{$__FMT[ITALIC_ON]%}%s %{$__FMT[ITALIC_OFF]%}%f%F{blue}%B%b%%b%f %F{red}%a%f %c%u%"
 zstyle ':vcs_info:*' stagedstr   "%F{green}%{● %2G%}%f"
 zstyle ':vcs_info:*' unstagedstr "%F{red}%{● %2G%}%f"
 
@@ -40,7 +41,7 @@ function +vi-git-untracked() {
 function +vi-git-commits_ahead() {
   local commits="$(__git_prompt_git rev-list --count @{upstream}..HEAD 2>/dev/null)"
   if [[ -n "$commits" && "$commits" != 0 ]]; then
-    hook_com[branch]+=" %F{red}$commits%{⇡ %2G%}%f"
+    hook_com[branch]+=" %F{cyan}$commits%{⇡ %2G%}%f"
   fi
 }
 # Gets the number of commits behind remote

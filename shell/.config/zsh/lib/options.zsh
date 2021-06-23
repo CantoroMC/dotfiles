@@ -40,6 +40,9 @@ setopt noprintexitvalue    # for non-zero exit status
 setopt promptsubst         # parameter expansion, command substitution and arithmetic
                            #   expansion are performed in prompts
 
+# Prompt used for spelling correction.
+SPROMPT="zsh: correct %F{red}'%R'%f to %F{green}'%r'%f [%B%Un%u%bo, %B%Uy%u%bes, %B%Ue%u%bdit, %B%Ua%u%bbort]? "
+
 # Widget for support of pasting and url insertion
 for d in $fpath; do
   if [[ -e "$d/url-quote-magic" ]]; then
@@ -58,3 +61,4 @@ zstyle :sticky-note maxnotes 1000
 zstyle :sticky-note theme \
   bg blue \
   fg $fg_bold[white]
+

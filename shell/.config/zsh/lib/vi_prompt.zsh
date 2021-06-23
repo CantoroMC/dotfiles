@@ -158,8 +158,8 @@ vim-mode-set-up-indicators () {
   if [[ -n $indicator || $set > 0 ]]; then
     if (( ! $set )); then
       if [[ $indicator = DEFAULT ]]; then
-        MODE_INDICATOR_VIINS='%F{4}I%f'
-        MODE_INDICATOR_VICMD='%F{2}N%f'
+        MODE_INDICATOR_VIINS='%F{2}I%f'
+        MODE_INDICATOR_VICMD='%F{3}N%f'
         MODE_INDICATOR_REPLACE='%F{1}R%f'
         MODE_INDICATOR_SEARCH='%F{5}S%f'
         MODE_INDICATOR_VISUAL='%F{4}V%f'
@@ -236,10 +236,9 @@ vim-mode-update-prompt () {
 vim-mode-set-up-indicators
 vim_mode_keymap_funcs+=vim-mode-update-prompt
 
-# Restore shell option 'aliases'. This must be the last thing here. {{{1
+# Restore shell option 'aliases'. This must be the last thing here.
 if [[ $_vim_mode_shopt_aliases = 1 ]]; then
   unset _vim_mode_shopt_aliases
   set -o aliases
 fi
-# }}}
 

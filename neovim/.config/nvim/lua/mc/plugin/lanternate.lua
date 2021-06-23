@@ -8,6 +8,7 @@ local plug_settings = {
   ["yes"]   = "no",
   ["right"] = "left",
   ["pre"]   = "post",
+  ["up"]    = "down",
 }
 
 plug_settings = vim.tbl_add_reverse_lookup(plug_settings)

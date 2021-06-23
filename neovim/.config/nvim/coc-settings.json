@@ -72,7 +72,7 @@
 	"coc.source.tmuxcomplete.priority": 10,
 	"coc.source.tmuxcomplete.shortcut": "",
 	"coc.source.latex_symbols.enable": false,
-	"snippets.priority": 80,
+	"snippets.priority": 99,
 	"snippets.shortcut": " זּ ",
 
 	"solargraph.trace.server": "messages",

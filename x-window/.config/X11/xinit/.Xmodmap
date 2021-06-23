@@ -221,6 +221,7 @@ keycode 227 = XF86Finance NoSymbol XF86Finance
 keycode 228 = XF86Game NoSymbol XF86Game
 keycode 229 = XF86Shop NoSymbol XF86Shop
 keycode 230 =
+<<<<<<< HEAD
 keycode 231 = Cancel NoSymbol Cancel
 keycode 232 = XF86MonBrightnessDown NoSymbol XF86MonBrightnessDown
 keycode 233 = XF86MonBrightnessUp NoSymbol XF86MonBrightnessUp
@@ -242,6 +243,29 @@ keycode 248 =
 keycode 249 =
 keycode 250 =
 keycode 251 = XF86MonBrightnessCycle NoSymbol XF86MonBrightnessCycle
+=======
+keycode 231 = Cancel NoSymbol Cancel NoSymbol Cancel
+keycode 232 = XF86MonBrightnessDown NoSymbol XF86MonBrightnessDown NoSymbol XF86MonBrightnessDown
+keycode 233 = XF86MonBrightnessUp NoSymbol XF86MonBrightnessUp NoSymbol XF86MonBrightnessUp
+keycode 234 = XF86AudioMedia NoSymbol XF86AudioMedia NoSymbol XF86AudioMedia
+keycode 235 = XF86Display NoSymbol XF86Display NoSymbol XF86Display
+keycode 236 = XF86KbdLightOnOff NoSymbol XF86KbdLightOnOff NoSymbol XF86KbdLightOnOff
+keycode 237 = XF86KbdBrightnessDown NoSymbol XF86KbdBrightnessDown NoSymbol XF86KbdBrightnessDown
+keycode 238 = XF86KbdBrightnessUp NoSymbol XF86KbdBrightnessUp NoSymbol XF86KbdBrightnessUp
+keycode 239 = XF86Send NoSymbol XF86Send NoSymbol XF86Send
+keycode 240 = XF86Reply NoSymbol XF86Reply NoSymbol XF86Reply
+keycode 241 = XF86MailForward NoSymbol XF86MailForward NoSymbol XF86MailForward
+keycode 242 = XF86Save NoSymbol XF86Save NoSymbol XF86Save
+keycode 243 = XF86Documents NoSymbol XF86Documents NoSymbol XF86Documents
+keycode 244 = XF86Battery NoSymbol XF86Battery NoSymbol XF86Battery
+keycode 245 = XF86Bluetooth NoSymbol XF86Bluetooth NoSymbol XF86Bluetooth
+keycode 246 = XF86WLAN NoSymbol XF86WLAN NoSymbol XF86WLAN
+keycode 247 = XF86UWB NoSymbol XF86UWB NoSymbol XF86UWB
+keycode 248 =
+keycode 249 = XF86Next_VMode NoSymbol XF86Next_VMode NoSymbol XF86Next_VMode
+keycode 250 = XF86Prev_VMode NoSymbol XF86Prev_VMode NoSymbol XF86Prev_VMode
+keycode 251 = XF86MonBrightnessCycle NoSymbol XF86MonBrightnessCycle NoSymbol XF86MonBrightnessCycle
+>>>>>>> master
 keycode 252 =
 keycode 253 =
 keycode 254 = XF86WWAN NoSymbol XF86WWAN

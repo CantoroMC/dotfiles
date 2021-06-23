@@ -1,14 +1,7 @@
---[[ Main Repo: https://github.com/nvim-treesitter/nvim-treesitter
--- Check for adding queries and modules.
-
--- https://github.com/nvim-treesitter/module-template
--- A repository template to create your own tree-sitter module.
---]]
-
-
 require'nvim-treesitter.configs'.setup {
   ensure_installed = 'maintained',
-
+  -- TreeSitter: {{{1
+  -- HIGHLIGHT: {{{2
   highlight = {
     enable = true,
     disable = {"bash"},
@@ -17,7 +10,8 @@ require'nvim-treesitter.configs'.setup {
       -- ["capture.group"] = "HighlightGroup",
     -- },
   },
-
+  -- }}}
+  -- INC_SEL: {{{2
   incremental_selection = {
     enable = true,
     disable = {},
@@ -28,19 +22,22 @@ require'nvim-treesitter.configs'.setup {
       node_decremental  = '<M-p>',   -- decrement to the previous node
     },
   },
-
+  -- }}}
+  -- INDENT: {{{2
   indent = {
     enable = true,
     disable = {"python"},
   },
-
+  -- }}}
+  -- }}}
+  -- Refactor: {{{1
   refactor = { -- Tree-Sitter Refactor
     highlight_definitions = { enable = true },
     highlight_current_scope = { enable = false },
+
     smart_rename = {
       enable = true,
       keymaps = {
-        -- mapping to rename reference under cursor
         smart_rename = 'grr',
       },
     },
@@ -56,12 +53,12 @@ require'nvim-treesitter.configs'.setup {
       },
     },
   },
-
-  textobjects = { -- Tree-Sitter TextObject: syntax-aware textobjects
+  -- }}}
+  -- TextObjects {{{1
+  textobjects = {
     select = {
       enable = true,
       keymaps = {
-        -- or you use the queries from supported languages with textobjects.scm
         ['af'] = '@function.outer',
         ['if'] = '@function.inner',
         ['aC'] = '@class.outer',
@@ -124,21 +121,27 @@ require'nvim-treesitter.configs'.setup {
       },
     },
   },
-
+  -- }}}
+  -- Playground {{{1
   playground = { -- Tree-Sitter Playground
     enable = true,
     disable = {},
     updatetime = 25,
     persist_queries = false,
   },
-
   query_linter = { -- Tree-Sitter Playground
     enable = true,
     use_virtual_text = true,
     lint_events = {"BufWrite", "CursorHold"},
   },
-
+  -- }}}
+  -- Rainbow Parenthesis {{{1
   rainbow = {
     enable = true,
+    extended_mode = true,
+    max_file_lines = 1500,
   },
+  -- }}}
 }
+
+-- vim:fdm=marker

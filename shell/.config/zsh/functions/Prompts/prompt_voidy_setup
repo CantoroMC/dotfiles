@@ -1,9 +1,12 @@
 # Create a hash table for globally stashing variables without polluting main
 # scope with a bunch of identifiers.
-typeset -A __FMT
 
+autoload -Uz async; async
+
+typeset -A __FMT
 __FMT[ITALIC_ON]=$'\e[3m'
 __FMT[ITALIC_OFF]=$'\e[23m'
+
 
 prompt_voidy_precmd() {
   local exitstatus=$?
@@ -11,25 +14,69 @@ prompt_voidy_precmd() {
   psvar=(SIG)
   [[ $exitstatus -gt 128 ]] && psvar[1]=SIG$signals[$exitstatus-127]
   [[ $psvar[1] = SIG ]] && psvar[1]=$exitstatus
+
+  async_job vcs_updater_worker
 }
 
 prompt_voidy_help () {
   cat <<EOH
+  This prompt is color-scheme-able.  You can invoke it thus:
 
-This prompt is color-scheme-able.  You can invoke it thus:
+    prompt voidy [<color1> [<color2> [<color3>]]]
 
-  prompt voidy [<color1> [<color2> [<color3>]]]
+  where the parameters are the colors for the theme-bar and current
+  working directory, user@host text, and color3 text respectively.
+  The default colors are blue, white, and green.
+  This theme works best with a dark background.
 
-where the parameters are the colors for the theme-bar and current
-working directory, user@host text, and color3 text respectively.
-The default colors are blue, white, and green.
-This theme works best with a dark background.
-
-Recommended fonts for this theme: NerdFont.
-If you don't have any of these, the 8-bit characters will probably look
-stupid.
-
+  Recommended fonts for this theme: NerdFont.
+  If you don't have any of these, the 8-bit characters will probably look
+  stupid.
 EOH
+}
+
+vcs_update() {
+  vcs_info
+  zle reset-prompt
+}
+
+#
+# Timer: added as starting element to the right side prompt
+#
+typeset -F SECONDS
+function __record-start-time() {
+  ZSH_START_TIME=${ZSH_START_TIME:-$SECONDS}
+}
+
+function __report-start-time() {
+  if [ $ZSH_START_TIME ]; then
+    local DELTA=$(($SECONDS - $ZSH_START_TIME))
+    local DAYS=$((~~($DELTA / 60 / 60 / 24)))
+    local HOURS=$((~~(($DELTA - $DAYS * 86400) / 3600)))
+    local MINUTES=$((~~(($DELTA - $DAYS * 86400 - $HOURS * 3600) / 60)))
+    local SECS=$(($DELTA - $DAYS * 86400 - $HOURS * 3600 - $MINUTES * 60))
+    local ELAPSED=''
+    test "$DAYS" != '0' && ELAPSED="${DAYS}d"
+    test "$HOURS" != '0' && ELAPSED="${ELAPSED}${HOURS}h"
+    test "$MINUTES" != '0' && ELAPSED="${ELAPSED}${MINUTES}m"
+    if [ "$ELAPSED" = '' ]; then
+      SECS="$(print -f "%.2f" $SECS) s"
+    elif [ "$DAYS" != '0' ]; then
+      SECS=''
+    else
+      SECS="$((~~$SECS)) s"
+    fi
+    ELAPSED="${ELAPSED}${SECS}"
+    if [ $ELAPSED = '0,00 s' ]; then
+      PS1="$LEFT_PS1$RIGHT_PS1"
+    else
+      PS1=" $PROMPT_BASE"
+      PS1="$LEFT_PS1%F{cyan}%{$__FMT[ITALIC_ON]%}${ELAPSED}%{$__FMT[ITALIC_OFF]%}%f $RIGHT_PS1"
+    fi
+    unset ZSH_START_TIME
+  else
+    PS1="$LEFT_PS1$RIGHT_PS1"
+  fi
 }
 
 prompt_voidy_setup () {
@@ -51,67 +98,36 @@ prompt_voidy_setup () {
     LVL=$(($LVL - 1))
   fi
 
-  # return code and ❯ (according to shell levels)
-  local start="%F{$color1}╰─%f%B%(?.%F{$color1}.%F{red}%v)%{"$(printf '❯%.0s' {1..$LVL})'%'$LVL'G%} %f%b'
-  # username and hostname if on an ssh session
-  # current directory with shaded bar
-  local dir_bar=" %F{$color1}╭─ %n%f at %F{$color1}%m%f in %F{$color3}%(7~|%-3~/.../%3~|%~)%f"
-
+  local who=" %F{$color1}╭─ %n%f at %F{$color1}%m%f"
+  local dir="in %F{$color3}%(7~|%-3~/.../%3~|%~)%f"
+  local hist="%B%F{$color2}    %h%f%b"
+  local curvim="%F{$color1}╰─%f $MODE_INDICATOR_PROMPT"
+  local arrow="%B%(?.%F{$color1}.%F{red}%v)%{"$(printf '❯%.0s' {1..$LVL})'%'$LVL'G%}%f%b'
   local nr_jobs="%B%F{$color3}%(1j.%(2j.%j.)*.)%f%b"
-  local hist_len="%B%F{$color2}%{ %2G%}%h%f%b"
 
+  #
   # Primary Prompt, printed before a command is read.
-  PS1="$dir_bar$prompt_newline $start$nr_jobs$MODE_INDICATOR_PROMPT "
-  # Secondary Prompt, printed when the shell needs more information to complete
-  # a command
+  #
+  LEFT_PS1="$who $dir $hist$prompt_newline $curvim "
+  RIGHT_PS1="$arrow$nr_jobs "
+  add-zsh-hook preexec __record-start-time
+  add-zsh-hook precmd  __report-start-time
+
+  #
+  # Secondary Prompt
+  #
   PS2="%F{$color1}%_%f> "
 
   #
   # Right-Hand side prompt: VcsInfo, Timer
   #
-  RPROMPT_BASE="$hist_len \${vcs_info_msg_0_}"
-  RPS1=$RPROMPT_BASE
+  async_start_worker vcs_updater_worker
+  async_register_callback vcs_updater_worker vcs_update
+  RPS1="\${vcs_info_msg_0_}"
 
   #
-  # Timer: added as starting element to the right side prompt
+  # Closure
   #
-  typeset -F SECONDS
-  function __record-start-time() {
-    ZSH_START_TIME=${ZSH_START_TIME:-$SECONDS}
-  }
-
-  function __report-start-time() {
-    if [ $ZSH_START_TIME ]; then
-      local DELTA=$(($SECONDS - $ZSH_START_TIME))
-      local DAYS=$((~~($DELTA / 60 / 60 / 24)))
-      local HOURS=$((~~(($DELTA - $DAYS * 86400) / 3600)))
-      local MINUTES=$((~~(($DELTA - $DAYS * 86400 - $HOURS * 3600) / 60)))
-      local SECS=$(($DELTA - $DAYS * 86400 - $HOURS * 3600 - $MINUTES * 60))
-      local ELAPSED=''
-      test "$DAYS" != '0' && ELAPSED="${DAYS}d"
-      test "$HOURS" != '0' && ELAPSED="${ELAPSED}${HOURS}h"
-      test "$MINUTES" != '0' && ELAPSED="${ELAPSED}${MINUTES}m"
-      if [ "$ELAPSED" = '' ]; then
-        SECS="$(print -f "%.2f" $SECS)s"
-      elif [ "$DAYS" != '0' ]; then
-        SECS=''
-      else
-        SECS="$((~~$SECS))s"
-      fi
-      ELAPSED="${ELAPSED}${SECS}"
-      RPS1="%F{cyan}%{$__FMT[ITALIC_ON]%}${ELAPSED}%{$__FMT[ITALIC_OFF]%}%f $RPROMPT_BASE"
-      unset ZSH_START_TIME
-    else
-      RPS1="$RPROMPT_BASE"
-    fi
-  }
-
-  add-zsh-hook preexec __record-start-time
-  add-zsh-hook precmd __report-start-time
-
-  # Prompt used for spelling correction.
-  SPROMPT="zsh: correct %F{red}'%R'%f to %F{green}'%r'%f [%B%Un%u%bo, %B%Uy%u%bes, %B%Ue%u%bdit, %B%Ua%u%bbort]? "
-
   prompt_opts=(cr subst percent)
   add-zsh-hook precmd prompt_voidy_precmd
 }
@@ -126,7 +142,7 @@ prompt_voidy_preview () {
       prompt_preview_theme voidy $color
       print
     done
-    prompt_preview_theme voidy white grey blue
+    prompt_preview_theme voidy green white blue
   else
     prompt_preview_theme voidy "$@"
   fi
