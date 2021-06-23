@@ -9,7 +9,7 @@ _arguments \
 case $state in
 	cmds)
 		_values "dotman command" \
-      "aur_helper[Install the define AUR helper]" \
+      "aur_helper[Install the defined AUR helper]" \
 			"prepare[create directory on branches of the home directory]" \
 			"pkg[Install packages with pacman]" \
       "stow[Use stow to refresh all of the dotfiles packages]" \

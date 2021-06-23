@@ -68,13 +68,14 @@ function __report-start-time() {
     fi
     ELAPSED="${ELAPSED}${SECS}"
     if [ $ELAPSED = '0,00 s' ]; then
-      RPS1="$RPROMPT_BASE"
+      PS1="$LEFT_PS1$RIGHT_PS1"
     else
-      RPS1="%F{cyan}%{$__FMT[ITALIC_ON]%}${ELAPSED}%{$__FMT[ITALIC_OFF]%}%f $RPROMPT_BASE"
+      PS1=" $PROMPT_BASE"
+      PS1="$LEFT_PS1%F{cyan}%{$__FMT[ITALIC_ON]%}${ELAPSED}%{$__FMT[ITALIC_OFF]%}%f $RIGHT_PS1"
     fi
     unset ZSH_START_TIME
   else
-    RPS1="$RPROMPT_BASE"
+    PS1="$LEFT_PS1$RIGHT_PS1"
   fi
 }
 
@@ -97,32 +98,36 @@ prompt_voidy_setup () {
     LVL=$(($LVL - 1))
   fi
 
-  # current directory, host and username
-  local upper_line=" %F{$color1}╭─ %n%f at %F{$color1}%m%f in %F{$color3}%(7~|%-3~/.../%3~|%~)%f"
-  # return code and ❯ (according to shell levels)
-  local cmd_line="%F{$color1}╰─%f $MODE_INDICATOR_PROMPT %B%(?.%F{$color1}.%F{red}%v)%{"$(printf '❯%.0s' {1..$LVL})'%'$LVL'G%}%f%b'
+  local who=" %F{$color1}╭─ %n%f at %F{$color1}%m%f"
+  local dir="in %F{$color3}%(7~|%-3~/.../%3~|%~)%f"
+  local hist="%B%F{$color2}    %h%f%b"
+  local curvim="%F{$color1}╰─%f $MODE_INDICATOR_PROMPT"
+  local arrow="%B%(?.%F{$color1}.%F{red}%v)%{"$(printf '❯%.0s' {1..$LVL})'%'$LVL'G%}%f%b'
   local nr_jobs="%B%F{$color3}%(1j.%(2j.%j.)*.)%f%b"
-  local hist_len="%B%F{$color2}    %h%f%b"
 
+  #
   # Primary Prompt, printed before a command is read.
-  PS1="$upper_line $hist_len$prompt_newline $cmd_line$nr_jobs "
-  # Secondary Prompt, printed when the shell needs more information to complete
-  # a command
+  #
+  LEFT_PS1="$who $dir $hist$prompt_newline $curvim "
+  RIGHT_PS1="$arrow$nr_jobs "
+  add-zsh-hook preexec __record-start-time
+  add-zsh-hook precmd  __report-start-time
+
+  #
+  # Secondary Prompt
+  #
   PS2="%F{$color1}%_%f> "
 
   #
   # Right-Hand side prompt: VcsInfo, Timer
   #
-
   async_start_worker vcs_updater_worker
   async_register_callback vcs_updater_worker vcs_update
+  RPS1="\${vcs_info_msg_0_}"
 
-  RPROMPT_BASE="\${vcs_info_msg_0_}"
-  RPS1=$RPROMPT_BASE
-  add-zsh-hook preexec __record-start-time
-  add-zsh-hook precmd  __report-start-time
-
+  #
   # Closure
+  #
   prompt_opts=(cr subst percent)
   add-zsh-hook precmd prompt_voidy_precmd
 }

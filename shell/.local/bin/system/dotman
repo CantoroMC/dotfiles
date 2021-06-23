@@ -1,10 +1,41 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
-AUR_HELPER=${AUR_HELPER:-'auracle-git'}
 DOTFILES=${DOTFILES:-$HOME'/dotfiles'}
+
+#
+## Pacman Wrapper
+#
 PKG_LISTS_DIR=$DOTFILES/deploy/pacman-pkgs
 PKGS=(bull-pkgs gtk-pkgs xmonad-extra-pkgs programming-pkgs)
-BOXES=(git emacs neovim texlive music mail shell haskell x-window)
+
+wrap_pacman() {
+  sudo pacman -S --needed - < ${1}
+}
+
+packages_pacman() {
+  sudo pacman -Syu
+  for pkg ($PKGS); do
+    wrap_pacman "$PKG_LISTS_DIR"/"$pkg".txt
+  done
+  sudo pacman -S --needed --asdeps - < "$PKG_LISTS_DIR"/dependent-pkgs.txt
+}
+
+#
+## Aur Helper
+#
+AUR_HELPER=${AUR_HELPER:-'auracle-git'}
+
+aur_helper() {
+  cd /tmp
+  git clone https://aur.archlinux.org/$AUR_HELPER
+  cd $AUR_HELPER
+  makepkg -sri
+}
+
+
+#
+## Create directories
+#
 XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME'/.config'}
 XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME'/.local/share'}
 HOMIES=(
@@ -36,27 +67,6 @@ DATAS=(
   stack
 )
 
-
-wrap_pacman() {
-  sudo pacman -S --needed - < ${1}
-}
-
-packages_pacman() {
-  sudo pacman -Syu
-  for pkg ($PKGS); do
-    wrap_pacman "$PKG_LISTS_DIR"/"$pkg".txt
-  done
-  sudo pacman -S --needed --asdeps - < "$PKG_LISTS_DIR"/dependent-pkgs.txt
-}
-
-aur_helper() {
-  cd /tmp
-  git clone https://aur.archlinux.org/$AUR_HELPER
-  cd $AUR_HELPER
-  makepkg -sri
-}
-
-
 check_mkdir() {
   [ ! -d "${1}" ] && mkdir -p "${1}" || \
     echo -e "\e[1;34m:: \e[0m\e[1;97m${1} already exists.\e[0m"
@@ -74,12 +84,17 @@ prepare_ft(){
   done
 }
 
+#
+## Symlinking
+#
+BOXES=(git emacs neovim texlive music mail shell haskell x-window)
+
 use_stow() {
   cd $DOTFILES
   stow -R ${BOXES[@]}
 }
 
-helper(){
+dotman_help(){
   cat << _EOF_
   pkg:         Install pacman packages
   aur_helper:  Install aur helper
@@ -89,7 +104,7 @@ helper(){
 _EOF_
 }
 
-main() {
+dotman() {
   case ${1} in
     "pkg")
       packages_pacman
@@ -104,12 +119,12 @@ main() {
       use_stow
       ;;
     "help")
-      helper
+      dotman_help
       ;;
     *)
-      helper
+      dotman_help
       ;;
   esac
 }
 
-main "$@"
+dotman "$@"

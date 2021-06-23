@@ -63,12 +63,12 @@ _nnn_cmd () {
 }
 zle -N _nnn_cmd
 
-_rcn_cmd () {
-  BUFFER="rcn"
+_nnncd_cmd () {
+  BUFFER="nnncd"
   zle end-of-line
   zle accept-line
 }
-zle -N _rcn_cmd
+zle -N _nnncd_cmd
 
 _tmux_cmd () {
   BUFFER="tmux"
@@ -110,7 +110,7 @@ zle -N insert-datestamp
 
 _zle_disown() {
   [[ -z $BUFFER ]] && zle up-history
-	BUFFER="$BUFFER& disown"
+  BUFFER="$BUFFER& disown"
 }
 zle -N _zle_disown
 # }}}
@@ -181,8 +181,8 @@ bindkey -M viins      '^X^B' fzf-editor
 bindkey -M vicmd      '^X^B' fzf-editor
 bindkey -M viins      '^X^E' edit-command-line
 bindkey -M vicmd      '^X^E' edit-command-line
-bindkey -M viins      '^X^F' _rcn_cmd
-bindkey -M vicmd      '^X^F' _rcn_cmd
+bindkey -M viins      '^X^F' _nnncd_cmd
+bindkey -M vicmd      '^X^F' _nnncd_cmd
 bindkey -M viins      '^X^I' insert-datestamp
 bindkey -M viins      '^X^K' fzf-bindkey
 bindkey -M viins      '^X^L' _nnn_cmd
