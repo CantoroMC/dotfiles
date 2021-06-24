@@ -148,6 +148,9 @@ export XMONAD_CONFIG_DIR="${DOTFILES}/deploy/XMonad/Xwm"
 export XMONAD_DATA_DIR="${XMONAD_CONFIG_DIR}/data"
 export XMONAD_CACHE_DIR="${XMONAD_DATA_DIR}/cache"
 export XMOBAR_CONFIG_DIR="${DOTFILES}/deploy/XMonad/XBar"
+
+# Aurutils
+export AUR_PAGER="nnn"
 # }}}
 
 # Path {{{1
