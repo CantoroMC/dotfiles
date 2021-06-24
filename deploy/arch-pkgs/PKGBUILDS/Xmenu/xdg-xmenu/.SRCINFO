@@ -1,0 +1,19 @@
+pkgbase = xdg-xmenu-bull-git
+	pkgdesc = A shell script to generate menu for xmenu
+	pkgver = 1.0
+	pkgrel = 1
+	url = https://github.com/OliverLew/xdg-xmenu
+	arch = x86_64
+	license = unknown
+	makedepends = git
+	depends = xmenu
+	optdepends = rsvg-convert: svg to png conversion
+	optdepends = imagemagick: svg to png conversion
+	optdepends = inkscape: svg to png conversion
+	provides = xdg-xmenu
+	conflicts = xdg-xmenu
+	source = git+https://github.com/CantoroMC/xdg-xmenu
+	md5sums = SKIP
+
+pkgname = xdg-xmenu-bull-git
+

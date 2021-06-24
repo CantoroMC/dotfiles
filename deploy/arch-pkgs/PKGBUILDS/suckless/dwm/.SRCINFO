@@ -1,0 +1,34 @@
+pkgbase = dwm-bull-git
+	pkgdesc = Dynamic window manager for X
+	pkgver = 6.2
+	pkgrel = 1
+	url = https://dwm.suckless.org
+	arch = x86_64
+	license = MIT
+	makedepends = git
+	depends = dmenu
+	depends = expat
+	depends = fontconfig
+	depends = freetype2
+	depends = glib2
+	depends = graphite
+	depends = harfbuzz
+	depends = libpng
+	depends = libx11
+	depends = libxau
+	depends = libxcb
+	depends = libxdmcp
+	depends = libxext
+	depends = libxft
+	depends = libxinerama
+	depends = libxrender
+	depends = pcre
+	depends = st
+	depends = zlib
+	provides = dwm
+	conflicts = dwm
+	source = git+https://github.com/CantoroMC/dwm
+	md5sums = SKIP
+
+pkgname = dwm-bull-git
+

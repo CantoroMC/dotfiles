@@ -1,0 +1,18 @@
+pkgbase = slstatus-bull-git
+	pkgdesc = Status monitor for window managers that use WM_NAME or stdin to fill the status bar
+	pkgver = 1.0
+	pkgrel = 1
+	url = https://tools.suckless.org/slstatus
+	arch = x86_64
+	license = custom:ISC
+	makedepends = git
+	depends = libxau
+	depends = libxcb
+	depends = libxdmcp
+	provides = slstatus
+	conflicts = slstatus
+	source = git+https://github.com/CantoroMC/slstatus
+	md5sums = SKIP
+
+pkgname = slstatus-bull-git
+
