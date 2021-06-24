@@ -11,3 +11,5 @@ surf-bull-git
 tabbed-bull-git
 xdg-xmenu-bull-git
 xmenu-bull-git
+
+# vim:ft=sh:fdm=marker

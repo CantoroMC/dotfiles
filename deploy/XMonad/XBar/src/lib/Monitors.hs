@@ -41,7 +41,7 @@ import Util
 -------------------------------------------------------------------------------
     -- Commands
 trayerPad :: Command
-trayerPad = Com (xBarConfigDir ++ "/utilities/scripts/padding-icon") [] "trayerpad" 3600
+trayerPad = Com "/bin/sh" ["-c", xBarConfigDir ++ "/utilities/scripts/padding-icon"] "trayerPad" 60
 
 pacman :: Command
 pacman = Com "/bin/sh" ["-c", xBarConfigDir ++ "/utilities/scripts/xmPacman"] "pacman" 600

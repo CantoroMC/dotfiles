@@ -3,8 +3,7 @@ import Xmobar
 import Colors (Palette(..), palette)
 import Config (baseConfig)
 import Monitors
-    ( trayerPad
-    , pacman
+    ( pacman
     , sound
     , battery
     , brightness
@@ -18,6 +17,7 @@ import Monitors
     , weather
     , clock
     , keyboard
+    , trayerPad
     )
 import Util (action)
 
@@ -69,8 +69,7 @@ xBarConfig p = (baseConfig p)
                )
         ++ " |bright|"
         ++ " |battery0|"
-        ++ "   "
-        ++ "|trayerPad|"
+        ++ " |trayerPad|"
     }
 
 main :: IO ()
