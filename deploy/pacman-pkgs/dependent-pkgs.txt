@@ -1,2 +1,0 @@
-zathura-pdf-mupdf
-zathura-ps

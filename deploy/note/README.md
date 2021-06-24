@@ -103,6 +103,7 @@ Add matching entries to `/etc/hosts`
 ```
 
 #### Install remaining packages
+Before, check `/etc/pacman.conf`
 They contain also network management softwares, grub ...
 Look at `./packages/*`
 
@@ -132,24 +133,24 @@ passwd USERNAME
 
 Edit `/etc/sudoers` with `EDITOR=vi visudo` and uncomment wheel.. to allow
 user of the weel group to execute sudo.
+Then log-in
 
-### Log in with the create user
-### Network
-#### Activate network services
+### System Management
+
+#### Network
+
+##### Activate network services
 ```sh
 systemctl enable --now systemd-networkd
 systemctl enable --now systemd-resolved
 systemctl enable --now NetworkManager
 ```
 
-#### Wifi
+##### Wifi
 ```sh
   nmtui
 ```
-
-### Package-Management
-
-#### Retrieve the latest Pacman mirrorlist
+#### Pacman mirrorlist
 ```sh
 sudo reflector --protocol http,https --fastest 5 --latest 100 --age 24 --country Italy,France,German,Spain,Switzerland --save /etc/pacman.d/mirrorlist
 ```
@@ -166,59 +167,62 @@ sudo pacman -Fy
 ```
 to use with `command_not_found_handler`
 
-#### Pacman pkgs
-#### Aur pkgs
+#### Configuration Files
+
+##### Reflector
 ```sh
-auracle clone $(< ~/dotfiles/deploy/arch-repo/aur-packages.txt)
+sudo cp ~/dotfiles/deploy/note/root/etc/xdg/reflector/reflector.conf /etc/xdg/reflector/
 ```
 
-#### More pkgs
+##### Audio devices
 
-##### Haskell and XMonad
-
-###### Setup stack and install cabal-install
+###### Speakers
+Check kernel driver for audio device
 ```sh
-stack setup --system-ghc --resolver <resolver>
-stack install --system-ghc --resolver <resolver> cabal-install
-
-cabal update
-cabal install cabal-uninstall
-```
-`ghc-pkg list` to check if you have installed only statically linked Haskell packages.
-Now you re ready to go!
-
-###### Pandoc
-```sh
-cabal install pandoc
+lspci -knn|grep -iA2 audio
 ```
 
-###### Utilitites
+If it is `snd_hda_intel` add kernel module
 ```sh
-cabal install hlint
-cabal install hoogle
-cabal install brittany
-cabal install --lib haddock
+sudo cp ~/dotfiles/deploy/note/root/etc/modprobe.d/default.conf /etc/modprobe.d/
 ```
 
-##### Python
+###### Avoid annoying fn key beeping
 ```sh
-pip install neovim-remote
+sudo cp ~/dotfiles/deploy/note/root/etc/modprobe.d/nobeep.conf /etc/modprobe.d/
 ```
 
-##### Ruby
+###### Load /dev/mixer module
 ```sh
-gem install neovim solargraph
+sudo cp ~/dotfiles/deploy/note/root/etc/modules-load.d/modules.conf /etc/modules-load.d/
 ```
 
-##### Node
+##### Swappiness
+Reduce the swappiness to improve system responsiveness
 ```sh
-npm install -g neovim
-npm install -g vim-language-server
+sudo cp ~/dotfiles/deploy/note/root/etc/sysctl.d/99-swappiness.conf /etc/sysctl.d/
+```
+`sysctl vm.swappiness` to check the current swappiness value (0-200)
+
+##### Pacman Hooks
+
+###### paccache
+```sh
+sudo cp ~/dotfiles/deploy/note/root/usr/share/libalpm/hooks/paccache.hook /usr/share/libalpm/hooks/
 ```
 
-#### Btrfs Utilitites
-**pacman**: snapper grub-btrfs snap-pac<br>
-**aur**: snap-pac-grub snapper-gui-git
+##### Autologin on tty2
+```sh
+sudo cp ~/dotfiles/deploy/note/root/etc/systemd/system/getty@tty2.service.d/override.conf /etc/systemd/system/getty@tty2.service.d/
+```
+
+##### XDG-base-directory specifications
+
+###### `/etc/gemrc`
+Comment `gem: --user-install`
+
+###### `/etc/xboard.conf`
+Modify `saveSettingsFile` and `settingsFile` to `~/.config/xboardrc`
 
 ##### Snapper configuration
 Create the config
@@ -239,87 +243,68 @@ chmod a+rx /.snapshots
 chown :users /.snapshots
 ```
 
-Enable systemd services for snapper
-```sh
-systemctl enable --now snapper-timeline.timer
-systemctl enable --now snapper-cleanup.timer
-```
+#### Systemd services
 
-### Systemd services
-#### Reflector services
-```sh
-sudo cp ~/dotfiles/deploy/note/root/etc/xdg/reflector/reflector.conf /etc/xdg/reflector/
-```
-
+##### Reflector
 ```sh
 systemctl enable --now reflector.service
 systemctl enable --now reflector.timer
 ```
 
-#### Bluetooth service
+##### Bluetooth service
 ```sh
 systemctl enable --now bluetooth.service
 ```
 
-#### Ssh service
+##### Ssh service
 ```sh
 systemctl enable --now sshd.service
 ```
 
-### Configuration Files
-
-#### Audio devices
-
-##### Speakers
-Check kernel driver for audio device
+##### Snapper
+Enable systemd services for snapper
 ```sh
-lspci -knn|grep -iA2 audio
+systemctl enable --now snapper-timeline.timer
+systemctl enable --now snapper-cleanup.timer
+```
+### External Package Management
+
+#### Haskell and XMonad
+
+##### Setup stack and install cabal-install
+```sh
+stack setup --system-ghc --resolver <resolver>
+stack install --system-ghc --resolver <resolver> cabal-install
+
+cabal update
 ```
 
-If it is `snd_hda_intel` add kernel module
+##### Bin and Lib
 ```sh
-sudo cp ~/dotfiles/deploy/note/root/etc/modprobe.d/default.conf /etc/modprobe.d/
+cabal install cabal-uninstall
+cabal install --lib haddock
+cabal install hlint
+cabal install hoogle
+cabal install brittany
+cabal install pandoc
+```
+[Haskell Language Server Protocol](https://github.com/haskell/haskell-language-server)
+
+#### Python
+```sh
+pip install neovim-remote
 ```
 
-##### Avoid annoying fn key beeping
+#### Ruby
 ```sh
-sudo cp ~/dotfiles/deploy/note/root/etc/modprobe.d/nobeep.conf /etc/modprobe.d/
+gem install neovim solargraph
 ```
 
-##### Load /dev/mixer module
+#### Node
 ```sh
-sudo cp ~/dotfiles/deploy/note/root/etc/modules-load.d/modules.conf /etc/modules-load.d/
+npm install -g neovim
+npm install -g vim-language-server
 ```
-
-#### Swappiness
-Reduce the swappiness to improve system responsiveness
-```sh
-sudo cp ~/dotfiles/deploy/note/root/etc/sysctl.d/99-swappiness.conf /etc/sysctl.d/
-```
-`sysctl vm.swappiness` to check the current swappiness value (0-200)
-
-#### Pacman
-##### Hooks
-
-###### paccache
-```sh
-sudo cp ~/dotfiles/deploy/note/root/usr/share/libalpm/hooks/paccache.hook /usr/share/libalpm/hooks/
-```
-
-#### Autologin on tty2
-```sh
-sudo cp ~/dotfiles/deploy/note/root/etc/systemd/system/getty@tty2.service.d/override.conf /etc/systemd/system/getty@tty2.service.d/
-```
-
-#### XDG-base-directory specifications
-
-##### `/etc/gemrc`
-Comment `gem: --user-install`
-
-##### `/etc/xboard.conf`
-Modify `saveSettingsFile` and `settingsFile` to `~/.config/xboardrc`
-
-### Note
 
 #### OpenFOAM: download from github and compile it
 ( requires AUR `scotch-git` and base `cgal` and `paraview` )

@@ -1,128 +1,51 @@
 #!/usr/bin/env zsh
 
 DOTFILES=${DOTFILES:-$HOME'/dotfiles'}
+DOTMAN_PKG_DIR=${DOTMAN_PKG_DIR:-$DOTFILES/deploy/arch-pkgs}
 
-#
-## Pacman Wrapper
-#
-PKG_LISTS_DIR=$DOTFILES/deploy/pacman-pkgs
-PKGS=(bull-pkgs gtk-pkgs xmonad-extra-pkgs programming-pkgs)
-
-wrap_pacman() {
-  sudo pacman -S --needed - < ${1}
-}
-
-packages_pacman() {
+dotman::pkgs() {
   sudo pacman -Syu
-  for pkg ($PKGS); do
-    wrap_pacman "$PKG_LISTS_DIR"/"$pkg".txt
-  done
-  sudo pacman -S --needed --asdeps - < "$PKG_LISTS_DIR"/dependent-pkgs.txt
+  sudo pacman -S --needed \
+    $(cat "$DOTMAN_PKG_DIR/explicit" | sed '/^[[:blank:]]*#.*/d;s/#.*//;/^[[:blank:]]*$/d')
+  sudo pacman -S --needed --asdeps \
+    $(cat "$DOTMAN_PKG_DIR/dependent" | sed '/^[[:blank:]]*#.*/d;s/#.*//;/^[[:blank:]]*$/d')
 }
 
-#
-## Aur Helper
-#
-AUR_HELPER=${AUR_HELPER:-'auracle-git'}
-
-aur_helper() {
-  cd /tmp
-  git clone https://aur.archlinux.org/$AUR_HELPER
-  cd $AUR_HELPER
-  makepkg -sri
+dotman::skels(){
+  mkdir -p \
+    "$HOME"/.{cabal,ghc,local/bin} \
+    "${XDG_CONFIG_HOME:-$HOME/.config}"/{emacs,git,gtk-2.0,gtk-3.0,mpd/playlists,ncmpcpp,neomutt,nnn,nvim,radiotray-ng,surf,vivaldi,zsh} \
+    "{$XDG_DATA_HOME:-$HOME/.local/share}"/{nvim/site/pack,nvim/site/spell,xorg,fonts,surf,stack}
 }
 
-
-#
-## Create directories
-#
-XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME'/.config'}
-XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME'/.local/share'}
-HOMIES=(
-  .cabal
-  .ghc
-  .local/bin
-)
-CONFIGS=(
-  emacs
-  git
-  gtk-2.0
-  gtk-3.0
-  mpd/playlists
-  ncmpcpp
-  neomutt
-  nnn
-  nvim
-  radiotray-ng
-  surf
-  vivaldi
-  zsh
-)
-DATAS=(
-  nvim/site/pack
-  nvim/site/spell
-  xorg
-  fonts
-  surf
-  stack
-)
-
-check_mkdir() {
-  [ ! -d "${1}" ] && mkdir -p "${1}" || \
-    echo -e "\e[1;34m:: \e[0m\e[1;97m${1} already exists.\e[0m"
-}
-
-prepare_ft(){
-  for dir ($HOMIES); do
-    check_mkdir "$HOME"/"$dir"
-  done
-  for dir ($CONFIGS); do
-    check_mkdir "$XDG_CONFIG_HOME"/"$dir"
-  done
-  for dir ($DATAS); do
-    check_mkdir "$XDG_DATA_HOME"/"$dir"
-  done
-}
-
-#
-## Symlinking
-#
-BOXES=(git emacs neovim texlive music mail shell haskell x-window)
-
-use_stow() {
+dotman::stow() {
   cd $DOTFILES
-  stow -R ${BOXES[@]}
+  dot_pkg=(${$(ls)/deploy})
+  stow -R $dot_pkg
 }
 
-dotman_help(){
+dotman::help(){
   cat << _EOF_
-  pkg:         Install pacman packages
-  aur_helper:  Install aur helper
-  prepare:     Create directories for stowing
-  stow:        Stow all the dotfiles packages
-  help:        Show this help message
+  pkgs        - Install pacman packages
+  skels       - Create user directories for successive stowing
+  stow        - Stow all the dotfiles packages
+  help        - Show this help message
 _EOF_
 }
 
 dotman() {
   case ${1} in
-    "pkg")
-      packages_pacman
+    "pkgs")
+      dotman::pkgs
       ;;
-    "aur_helper")
-      aur_helper
-      ;;
-    "prepare")
-      prepare_ft
+    "skels")
+      dotman::skels
       ;;
     "stow")
-      use_stow
+      dotman::stow
       ;;
-    "help")
-      dotman_help
-      ;;
-    *)
-      dotman_help
+    "help"|*)
+      dotman::help
       ;;
   esac
 }

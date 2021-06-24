@@ -20,7 +20,8 @@ iabbrev _tod  <C-R>=strftime("%b %d, %y")<CR><Esc>4bgUl$a
 " Section: Insert Mode Abolishments
 Abolish _mail                                 marco.cantoro92@outlook.it
 Abolish _me                                   Marco Cantoro
-Abolish _git                                  https://github.com/
+Abolish _git                                  https://github.com
+Abolish _aur                                  https://aur.archlinux.org
 Abolish a{los,slo}                            a{lso}
 Abolish anomol{y,ies}                         anomal{}
 Abolish austrail{a,an,ia,ian}                 austral{ia,ian}

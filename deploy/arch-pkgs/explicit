@@ -1,0 +1,284 @@
+# Base {{{
+
+# Linux {{{2
+linux-atm
+linux-zen-docs
+linux-zen-headers
+lsb-release
+# }}}
+
+# ArchLinux-Utils {{{2
+man-db
+man-pages
+pacman-contrib
+python
+reflector
+# }}}
+
+# Firm/Hard-ware {{{
+b43-fwcutter
+ipw2100-fw
+ipw2200-fw
+r8168
+xf86-input-libinput
+xf86-input-synaptics
+xf86-video-fbdev
+xf86-video-intel
+xf86-video-nouveau
+xf86-video-vesa
+# }}}
+
+# FileSystem {{{2
+dosfstools
+f2fs-tools
+grub
+intel-ucode
+jfsutils
+libgsf
+libopenraw
+mkinitcpio-nfs-utils
+mtools
+ntfs-3g
+os-prober
+reiserfsprogs
+smartmontools
+solid
+usb_modeswitch
+# }}}
+
+# Xdg {{{2
+xdg-user-dirs
+xdg-user-dirs-gtk
+xdg-utils
+# }}}
+
+# Shell {{{2
+bash-completion
+bc
+bind
+dialog
+libwnck3
+lynx
+pulsemixer
+time
+unrar
+unzip
+wget
+xclip
+xorg-server
+xorg-xdpyinfo
+xorg-xinit
+xorg-xinput
+xorg-xkill
+xorg-xrandr
+xorg-xfontsel
+xsel
+yad
+zip
+# }}}
+
+# Monitors
+acpi
+acpilight
+glances
+hardinfo
+htop
+hwinfo
+logrotate
+mlocate
+s-tui
+tlp
+upower
+# }}}
+
+# Network {{{2
+dhclient
+dnsmasq
+ethtool
+geoip
+gnu-netcat
+inetutils
+iwd
+modemmanager
+ndisc6
+net-tools
+netctl
+networkmanager
+networkmanager-openvpn
+nss-mdns
+openconnect
+openssh
+openvpn
+ppp
+pptpclient
+rp-pppoe
+s-nail
+vpnc
+whois
+wireless-regdb
+wireless_tools
+wpa_supplicant
+wvdial
+xl2tpd
+# }}}
+
+# Sound {{{2
+alsa-firmware
+alsa-plugins
+alsa-utils
+bluez
+bluez-utils
+blueberry
+bluez-hid2hci
+paprefs
+pavucontrol
+pulseaudio
+# }}}
+
+# Multimedia {{{2
+ffmpegthumbnailer
+gst-libav
+gst-plugins-bad
+gst-plugins-ugly
+libdvdcss
+mplayer
+poppler-glib
+timidity++
+# }}}
+
+# Fonts {{{2
+cantarell-fonts
+freetype2
+gnu-free-fonts
+noto-fonts
+ttf-bitstream-vera
+ttf-caladea
+ttf-carlito
+ttf-croscore
+ttf-dejavu
+ttf-liberation
+# }}}
+
+# }}}
+
+# Xorg - Window Managers {{{1
+arandr
+arc-gtk-theme
+archlinux-xdg-menu
+bluez-utils
+dex
+dunst
+feh
+gtk-engine-murrine
+jq
+lxappearance-gtk3
+network-manager-applet
+papirus-icon-theme
+picom
+polkit-gnome
+pulseaudio-bluetooth
+rofi
+scrot
+sysstat
+system-config-printer
+wmctrl
+xautolock
+xcursor-neutral
+xdotool
+xorg-mkfontscale
+xorg-xev
+xorg-xmessage
+xorg-xsetroot
+xorg-xwininfo
+# }}}
+
+# Bull {{{1
+bat
+biber
+calibre
+cmus
+conky
+ctags
+diff-so-fancy
+easytag
+emacs
+evince
+exa
+fzf
+gimp
+github-cli
+kitty
+mpc
+mpd
+mpv
+neofetch
+neomutt
+ncmpcpp
+redshift
+ripgrep
+rsync
+stalonetray
+stow
+sxiv
+texlive-most
+the_silver_searcher
+tmux
+tree
+vint
+vivaldi
+vivaldi-ffmpeg-codecs
+youtube-dl
+xboard
+zathura
+# Btrfs: {{{3
+snapper
+grub-btrfs
+snap-pac
+# }}}
+# }}}
+
+# Gtk {{{1
+gnome-disk-utility
+gnome-themes-extra
+gcolor2
+parcellite
+transmission-gtk
+# }}}
+
+# Programming {{{1
+bash-language-server
+boost
+clang
+cmake
+extra-cmake-modules
+gdb
+ghc
+ghc-libs
+ghc-static
+go
+go-tools
+gopls
+lua
+ldoc
+ninja
+npm
+ipython
+jupyter-notebook
+python-matplotlib
+python-pip
+python-pygame
+python-ueberzug
+python-language-server
+python-pycodestyle
+python-rope
+python-pyflakes
+python-pylint
+python-pynvim
+ruby-docs
+ruby-rake
+ruby-rdoc
+texlab
+tree-sitter
+# }}}
+
+# vim:ft=sh:fdm=marker

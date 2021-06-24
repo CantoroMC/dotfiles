@@ -30,7 +30,7 @@ lightPalette = Palette
     { pFont       = "xft:Operator Mono Lig:style=Italic:size=8"
     , pForeground = "#151a1e"
     , pBackground = "#eaeaea"
-    , pAlpha      = 255
+    , pAlpha      = 200
     , pBorder     = "#36a3d9"
     , pIconRoot   = icons
     , pLow        = "#151a1e"
@@ -44,7 +44,7 @@ darkPalette = Palette
     { pFont       = "xft:Operator Mono Lig:style=Italic:size=8"
     , pForeground = "#eaeaea"
     , pBackground = "#151a1e"
-    , pAlpha      = 255
+    , pAlpha      = 200
     , pBorder     = "#b8cc52"
     , pIconRoot   = icons
     , pLow        = "#fafafa"
