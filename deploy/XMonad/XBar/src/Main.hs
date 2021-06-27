@@ -3,8 +3,7 @@ import Xmobar
 import Colors (Palette(..), palette)
 import Config (baseConfig)
 import Monitors
-    ( trayerPad
-    , pacman
+    ( pacman
     , sound
     , battery
     , brightness
@@ -18,6 +17,7 @@ import Monitors
     , weather
     , clock
     , keyboard
+    , trayerPad
     )
 import Util (action)
 
@@ -47,7 +47,7 @@ xBarConfig p = (baseConfig p)
         "|UnsafeXMonadLog|"
         ++ "   "
         ++ "|music|"
-        ++ action "st sudo pacman -Syu" 3 " |pacman|"
+        ++ action "kitty -e sudo pacman -Syu" 3 " |pacman|"
         ++ "}"
         ++ "|date|"
         ++ " |LIML|"
@@ -63,7 +63,7 @@ xBarConfig p = (baseConfig p)
         ++ action "pactl set-sink-volume @DEFAULT_SINK@ -5%" 5
                (action "pactl set-sink-volume @DEFAULT_SINK@ +5%" 4
                    (action "pactl set-sink-mute @DEFAULT_SINK@ toggle" 2
-                       (action "st -n volume -t volume pulsemixer" 1
+                       (action "kitty --name volume --title volume -e pulsemixer" 1
                            (action "pavucontrol" 3 " |sound|")
                        )
                    )
@@ -71,8 +71,7 @@ xBarConfig p = (baseConfig p)
         ++ " |bright|"
         ++ " |battery0|"
         ++ " |battery1|"
-        ++ "   "
-        ++ "|trayerPad|"
+        ++ " |trayerPad|"
     }
 
 main :: IO ()

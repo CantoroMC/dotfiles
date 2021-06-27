@@ -97,7 +97,7 @@ export ZLS_COLORS LS_COLORS
 # }}}
 
 # Language/Programs Specifics {{{1
-if [ $(date +%H) -ge 18 ] || [ $(date +%H) -lt 14 ]; then
+if [ $(date +%H) -ge 16 ] || [ $(date +%H) -lt 14 ]; then
   export BACKGROUND_COLOR="dark"
 else
   export BACKGROUND_COLOR="light"
@@ -110,11 +110,12 @@ export MPD_HOST=$HOME/.config/mpd/socket
 export TERMINAL='/usr/bin/kitty'
 # Nnn
 export NNN_OPTS="AHGRUdeu"
+export NNN_ARCHIVE="\\.(7z|bz2|lz4|lzma|gz|tar|tgz|tlz|txz|xz|zip|zst)$"
 export NNN_BMS='b:~/.local/bin;c:~/.config;D:~/Documents;d:~/dotfiles;M:~/Music;m:/mnt;p:~/Documents/programming;s:~/.config/zsh;V:~/Videos'
 export NNN_PLUG='a:mp3conv;b:oldbigfile;c:fzcd;d:-!git diff;e:-!&emacs $nnn;f:-!&pickOne;g:-!git status;i:imgview;m:mimelist;o:fzopen;p:-preview-tui;t:-preview-tabbed'
 export USE_VIDEOTHUMB='1'
 export NNN_COLORS='7342'
-export NNN_FCOLORS='c1e2192e006033f7c6d6abc4'
+export NNN_FCOLORS="0404042e00000600010F0F02"
 export NNN_ARCHIVE="\\.(7z|bz2|gz|tar|tgz|zip)$"
 export NNN_FIFO='/tmp/nnn.fifo'
 
@@ -148,6 +149,9 @@ export XMONAD_CONFIG_DIR="${DOTFILES}/deploy/XMonad/Xwm"
 export XMONAD_DATA_DIR="${XMONAD_CONFIG_DIR}/data"
 export XMONAD_CACHE_DIR="${XMONAD_DATA_DIR}/cache"
 export XMOBAR_CONFIG_DIR="${DOTFILES}/deploy/XMonad/XBar"
+
+# Aurutils
+export AUR_PAGER="nnn"
 # }}}
 
 # Path {{{1

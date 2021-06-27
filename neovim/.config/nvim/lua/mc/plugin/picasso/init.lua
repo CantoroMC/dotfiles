@@ -25,7 +25,7 @@ local plug_confs = {
     }
   },
   theme = {
-    [ "ayu" ] = 'ayu'
+    [ "srcery" ] = 'srcery',
   },
   add_highlight = {
   }

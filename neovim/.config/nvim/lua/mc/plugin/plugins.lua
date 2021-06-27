@@ -180,7 +180,8 @@ local function init()
     cmd = {
       'SlimuxREPLConfigure',
       'SlimuxShellConfigure',
-      'SlimuxGlobalConfigure'
+      'SlimuxGlobalConfigure',
+      'SlimuxSendKeysConfigure',
     },
   }
   -- Terminal Wrapper
@@ -317,6 +318,10 @@ local function init()
   usepackage {
     'KeitaNakamura/tex-conceal.vim',
     ft = { 'tex', 'context', 'plaintex' }
+  }
+  usepackage {
+    'LnL7/vim-nix',
+    ft = { 'nix' }
   }
   -- }}}
 

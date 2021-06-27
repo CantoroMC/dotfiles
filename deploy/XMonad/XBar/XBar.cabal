@@ -13,7 +13,7 @@ bug-reports:        https://github.com/CantoroMC/dotfiles
 synopsis:           XMobar Configuration
 description:        Custom build of Xmobar using cabal
 category:           System
-tested-with:        GHC == 8.10.4
+tested-with:        GHC == 8.10.4, GHC == 8.10.5
 extra-source-files: README.md
                     utilities/scripts/padding-icon
                     utilities/scripts/xmPacman

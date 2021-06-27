@@ -1,0 +1,135 @@
+# Maintainer: cdude
+# Contributor: sekret
+
+pkgname=surf-bull-git
+pkgver=2.0
+pkgrel=1
+pkgdesc="a simple web browser based on WebKit2/GTK+"
+arch=('x86_64')
+url="https://surf.suckless.org"
+license=('MIT')
+depends=(
+  'at-spi2-atk'
+  'at-spi2-core'
+  'atk'
+  'brotli'
+  'cairo'
+  'dbus'
+  'e2fsprogs'
+  'enchant'
+  'expat'
+  'fontconfig'
+  'freetype2'
+  'fribidi'
+  'gcr'
+  'gdk-pixbuf2'
+  'glib2'
+  'graphite'
+  'gst-plugins-base-libs'
+  'gstreamer'
+  'gtk3'
+  'harfbuzz'
+  'harfbuzz-icu'
+  'hyphen'
+  'icu'
+  'keyutils'
+  'krb5'
+  'libcap'
+  'libcloudproviders'
+  'libdatrie'
+  'libdrm'
+  'libelf'
+  'libepoxy'
+  'libevdev'
+  'libffi'
+  'libgcrypt'
+  'libglvnd'
+  'libglvnd'
+  'libgpg-error'
+  'libgudev'
+  'libidn2'
+  'libjpeg-turbo'
+  'libmanette'
+  'libnotify'
+  'libp11-kit'
+  'libpng'
+  'libpsl'
+  'libseccomp'
+  'libsecret'
+  'libsoup'
+  'libtasn1'
+  'libthai'
+  'libtiff'
+  'libunistring'
+  'libunwind'
+  'libwebp'
+  'libwpe'
+  'libx11'
+  'libxau'
+  'libxcb'
+  'libxcomposite'
+  'libxdamage'
+  'libxdmcp'
+  'libxext'
+  'libxfixes'
+  'libxi'
+  'libxinerama'
+  'libxkbcommon'
+  'libxml2'
+  'libxrandr'
+  'libxrender'
+  'libxslt'
+  'lz4'
+  'mesa'
+  'openjpeg2'
+  'orc'
+  'pango'
+  'pcre'
+  'pixman'
+  'sqlite'
+  'systemd-libs'
+  'util-linux-libs'
+  'wayland'
+  'webkit2gtk'
+  'woff2'
+  'wpebackend-fdo'
+  'zlib'
+  'zstd'
+)
+makedepends=('git')
+optdepends=(
+  'ca-certificates: SSL verification'
+  'curl: default download handler'
+  'dmenu: url bar and search'
+  'mpv: default video player'
+  'st: default terminal for the download handler'
+  'tabbed: tab browsing'
+  'xorg-xprop: url bar and search'
+)
+provides=("${pkgname%-bull-git}")
+conflicts=("${pkgname%-bull-git}")
+source=('git+https://github.com/CantoroMC/surf')
+md5sums=('SKIP')
+
+pkgver() {
+  cd "$srcdir/${pkgname%-bull-git}"
+  printf "2.0.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+  cd "$srcdir/${pkgname%-bull-git}"
+  make
+}
+
+package() {
+  local licdir="$pkgdir/usr/share/licenses/${pkgname%-bull-git}"
+  local docdir="$pkgdir/usr/share/doc/${pkgname%-bull-git}"
+
+  cd "$srcdir/${pkgname%-bull-git}"
+  make PREFIX=/usr DESTDIR="$pkgdir" install
+
+  install --mode 0644 -D --target-directory "$licdir" "$srcdir/${pkgname%-bull-git}/LICENSE"
+  install --mode 0644 -D --target-directory "$docdir" "$srcdir/${pkgname%-bull-git}/README"
+  install --mode 0644 -D --target-directory "$docdir" "$srcdir/${pkgname%-bull-git}/TODO.md"
+  install --mode 0644 -D --target-directory "$docdir" "$srcdir/${pkgname%-bull-git}/FAQ.md"
+}

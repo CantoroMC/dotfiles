@@ -1,0 +1,15 @@
+abook
+auracle-git
+bibtool
+imagewriter-git
+lua-language-server-git
+onlyoffice-bin
+polyglot-winboard-git
+radiotray-ng
+snap-pac-grub
+snapper-gui-git
+stack-static
+texlive-most-doc
+ttf-font-awesome-4
+
+# vim:ft=sh:fdm=marker

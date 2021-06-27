@@ -9,12 +9,11 @@ _arguments \
 case $state in
 	cmds)
 		_values "dotman command" \
-      "aur_helper[Install the defined AUR helper]" \
-			"prepare[create directory on branches of the home directory]" \
-			"pkg[Install packages with pacman]" \
-      "stow[Use stow to refresh all of the dotfiles packages]" \
-			"help[Describe available tasks or one specific task]"
-		ret=0
+			"help[Show this help message]" \
+			"pkgs[Install packages defined in DOTFILES/deploy/arch-pkgs/{explicit,dependent}]" \
+			"skels[Create HOME subdirectories necessary for stow]" \
+      "stow[stow -R on all directories in DOTFILES except from deploy]" && \
+		  ret=0
 		;;
   args)
     case $line[1] in

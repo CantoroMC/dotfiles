@@ -41,7 +41,7 @@ import Util
 -------------------------------------------------------------------------------
     -- Commands
 trayerPad :: Command
-trayerPad = Com (xBarConfigDir ++ "/utilities/scripts/padding-icon") [] "trayerpad" 3600
+trayerPad = Com "/bin/sh" ["-c", xBarConfigDir ++ "/utilities/scripts/padding-icon"] "trayerPad" 600
 
 pacman :: Command
 pacman = Com "/bin/sh" ["-c", xBarConfigDir ++ "/utilities/scripts/xmPacman"] "pacman" 600
@@ -101,7 +101,7 @@ dynNet p = DynNetwork
 memory :: Palette -> Monitors
 memory p = Memory
     ( withHighArgs p
-        [ "--template", action "st htop" 3 ("<usedipat>" ++ fn 2 " <usedratio>")
+        [ "--template", action "kitty -e htop" 3 ("<usedipat>" ++ fn 2 " <usedratio>")
         , "--ppad", "2"
         , "--suffix", "True"
         ]

@@ -1,0 +1,56 @@
+# Maintainer: Marco Cantoro <marco dot cantoro92 at outlook dot it>
+
+pkgname=st-bull-git
+pkgver=0.8.4
+pkgrel=1
+pkgdesc="A simple terminal implementation for X"
+arch=('x86_64')
+url="https://st.suckless.org"
+license=('MIT')
+depends=(
+  'expat'
+  'fontconfig'
+  'freetype2'
+  'glib2'
+  'graphite'
+  'harfbuzz'
+  'libpng'
+  'libxau'
+  'libxcb'
+  'libxdmcp'
+  'libx11'
+  'libxft'
+  'libxrender'
+  'pcre'
+  'zlib'
+)
+makedepends=('git')
+optdepends=('dmenu: for integration with key-bindings')
+provides=("${pkgname%-bull-git}")
+conflicts=("${pkgname%-bull-git}")
+source=('git+https://github.com/CantoroMC/st')
+md5sums=('SKIP')
+
+pkgver() {
+  cd "$srcdir/${pkgname%-bull-git}"
+  printf "0.8.4.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+  cd "$srcdir/${pkgname%-bull-git}"
+  make
+}
+
+package() {
+  local licdir="$pkgdir/usr/share/licenses/${pkgname%-bull-git}"
+  local docdir="$pkgdir/usr/share/doc/${pkgname%-bull-git}"
+
+  cd "$srcdir/${pkgname%-bull-git}"
+  make PREFIX=/usr DESTDIR="$pkgdir" install
+
+  install --mode 0644 -D --target-directory "$licdir" "$srcdir/${pkgname%-bull-git}/LICENSE"
+  install --mode 0644 -D --target-directory "$docdir" "$srcdir/${pkgname%-bull-git}/README.md"
+  install --mode 0644 -D --target-directory "$docdir" "$srcdir/${pkgname%-bull-git}/FAQ"
+  install --mode 0644 -D --target-directory "$docdir" "$srcdir/${pkgname%-bull-git}/LEGACY"
+  install --mode 0644 -D --target-directory "$docdir" "$srcdir/${pkgname%-bull-git}/TODO"
+}

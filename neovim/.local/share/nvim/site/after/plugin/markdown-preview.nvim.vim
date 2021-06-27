@@ -5,6 +5,8 @@ let g:mkdp_command_for_global = 0
 let g:mkdp_open_to_the_world  = 0
 let g:mkdp_page_title         = '[Nvim: ${name}]'
 let g:mkdp_filetypes          = ['markdown']
+let g:mkdp_markdown_css  = expand('~/dotfiles/neovim/.config/nvim/data/mkdp/markdown.css')
+let g:mkdp_highlight_css = expand('~/dotfiles/neovim/.config/nvim/data/mkdp/highlight.css')
 
 augroup mkdp_commands
   autocmd!

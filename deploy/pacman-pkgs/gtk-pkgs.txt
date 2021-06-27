@@ -1,5 +1,0 @@
-gnome-disk-utility
-gnome-themes-extra
-gcolor2
-parcellite
-transmission-gtk
