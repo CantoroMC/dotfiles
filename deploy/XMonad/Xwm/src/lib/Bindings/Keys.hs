@@ -438,7 +438,7 @@ xwmKeys mask = do
               term <- terminalFromConf
               spawn $
                 term
-                <> " --name keysheet --title keysheet sh -c \"echo '"
+                <> " --override font_size=9 --name keysheet --title keysheet sh -c \"echo '"
                 <> doc
                 <> "' | less\""
     bind $ noModMask ... XF86.xF86XK_AudioMute

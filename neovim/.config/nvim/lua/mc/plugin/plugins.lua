@@ -180,7 +180,8 @@ local function init()
     cmd = {
       'SlimuxREPLConfigure',
       'SlimuxShellConfigure',
-      'SlimuxGlobalConfigure'
+      'SlimuxGlobalConfigure',
+      'SlimuxSendKeysConfigure',
     },
   }
   -- Terminal Wrapper
