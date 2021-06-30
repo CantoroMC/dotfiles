@@ -15,7 +15,7 @@ dotman::pkgs() {
 
 dotman::skels(){
   mkdir -p "$HOME"/.{cabal,ghc,local/bin}
-  mkdir - p "${XDG_CONFIG_HOME:-$HOME/.config}"/{emacs,git,gtk-2.0,gtk-3.0,mpd/playlists,ncmpcpp,neomutt,nnn,nvim,radiotray-ng,surf,vivaldi,zsh}
+  mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}"/{emacs,git,gtk-2.0,gtk-3.0,mpd/playlists,ncmpcpp,neomutt,nnn,nvim,radiotray-ng,surf,vivaldi,zsh}
   mkdir -p "{$XDG_DATA_HOME:-$HOME/.local/share}"/{nvim/site/pack,nvim/site/spell,xorg,fonts,surf,stack}
 }
 
