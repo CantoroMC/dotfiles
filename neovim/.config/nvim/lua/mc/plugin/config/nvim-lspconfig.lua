@@ -182,19 +182,20 @@ lspconfig.texlab.setup{
   settings = {
     texlab = {
       auxDirectory = ".",
-      build = {
-        executable = "latexmk",
-        args = {
-          "-pdf",
-          "-shell-escape",
-          "-interaction=nonstopmode",
-          "-synctex=1",
-          "-file-line-error",
-          "%f"
-        },
-        onSave = false,
-        forwardSearchAfter = false,
-      },
+      build = require'mc.ftplugin.tex.magic_comments'.setup{},
+      -- build = {
+      --   executable = "latexmk",
+      --   args = {
+      --     "-pdf",
+      --     "-shell-escape",
+      --     "-interaction=nonstopmode",
+      --     "-synctex=1",
+      --     "-file-line-error",
+      --     "%f"
+      --   },
+      --   onSave = false,
+      --   forwardSearchAfter = false,
+      -- },
       chktex = {
         onOpenAndSave = true,
         onEdit = false,

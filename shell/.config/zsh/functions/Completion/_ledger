@@ -1,0 +1,360 @@
+#compdef ledger
+
+local curcontext="$curcontext" state line ret=1
+
+_arguments -C \
+  '--abbrev-len[set the minimum length an account can be abbreviated to]' \
+  '--account[Prepend expr to all accounts reported]' \
+  '--account-width[Set the width of the account column in the register report]' \
+  '(--actual -L)'{--actual,-L}'[Report only real transactions, with no automated or virtual transactions used]'\
+  '--add-budget[Show only un-budgeted postings]' \
+  '1: :->cmds' && ret=0
+
+
+
+case $state in
+  cmds)
+    _values "ledger command" \
+    "accounts[List all accounts for postings that match the report-query]"\
+    "b[Print a balance report showing totals for postings that match report-query, and aggregate totals for parents of those accounts]" \
+    "bal[Print a balance report showing totals for postings that match report-query, and aggregate totals for parents of those accounts]" \
+    "balance[Print a balance report showing totals for postings that match report-query, and aggregate totals for parents of those accounts]" \
+    "budget[A special balance report which includes three extra columns: the amount budgeted during the reporting period, how spending differed from the budget, and the percentage of budget spent (exceeds 100% if you go over budget)]"\
+    "cleared[A special balance report which adds two extra columns: the cleared balance for each account, and the date of the most recent cleared posting in that account]"\
+    "commodities[List all commodities for postings matching the report-query]"\
+    "convert[Reads data from a CSV file and generates ledger transactions]"\
+    "csv[Report of postings matching the report-query in CSV format]"\
+    "entry[Generate and display a new, properly formatted ledger transaction by comparing the entry-template to the transactions in your data file(s)]"\
+    "xact[Generate and display a new, properly formatted ledger transaction by comparing the entry-template to the transactions in your data file(s)]"\
+    "emacs[Output posting and transaction data in a format readily consumed by the Emacs editor, in a series of Lisp forms]"\
+    "equity[Print a transaction with a series of postings that balance current totals for accounts matching the report-query in a special account called Equity:Opening Balances]"\
+    "payees[List all payees for postings matching the report-query]"\
+    "pricemap[Produce a file which can be used to generate a graph with graphviz showing the relationship of commodities in the ledger file]"\
+    "prices[Report prices for all commodities in postings matching the report-query]"\
+    "pricedb[Report prices for all commodities in postings matching the report-query]"\
+    "print[Print out the full transactions of any matching postings using the same format as they would appear in a data file]"\
+    "push[In the REPL, push a set of command-line options, so that they will apply to all subsequent reports]"\
+    "pop[In the REPL, pop any option settings that have been pushed]"\
+    "r[List all postings matching the report-query]"\
+    "reg[List all postings matching the report-query]"\
+    "register[List all postings matching the report-query]"\
+    "server[Starts up an HTTP server listening for requests on port 9000]"\
+    "select[List all postings matching the sql-query]"\
+    "source[Parse a journal file and checks it for errors]"\
+    "stats[Provide summary information about all the postings matching report-query]"\
+    "xml[Output data relating to the current report in XML format]" &&\
+    ret=0
+    ;;
+esac
+
+return ret
+
+# --amount EXPR (-t)
+# Apply the given value expression to the posting amount.  Using --amount EXPR you can apply an arbitrary transformation to the postings.
+# --amount-data (-j)
+# On a register report print only the dates and amount of postings.  Useful for graphing and spreadsheet applications.
+# --amount-width INT
+# Set the width in characters of the amount column in the register report.
+# --anon   Anonymize registry output, mostly for sending in bug reports.
+# --ansi   Use color if the terminal supports it.  Alias for --color
+# --args-only
+# Ignore init files and environment variables for the ledger run.
+# --auto-match
+# When generating a ledger transaction from a CSV file using the convert command, automatically match an account from the Ledger journal.
+# --aux-date
+# Show auxiliary dates for all calculations.  Alias for --effective
+# --average (-A)
+# Print average values over the number of transactions instead of running totals.
+# --average-lot-prices
+# Report the average price at which each commodity was purchased in a balance report.
+# --balance-format FMT
+# Specify the format to use for the balance report.
+# --base   Reduce convertible commodities down the bottom of the conversion, e.g.  display time in seconds.
+# --basis (-B)
+# Report the cost basis on all posting.  Alias for --cost
+# --begin DATE (-b)
+# Specify the start DATE of all calculations.  Transactions before that date will be ignored.
+# --bold-if EXPR
+# Print the entire line in bold if the given value expression is true.
+# --budget
+# Only display budgeted items.  In a register report this displays transaction in the budget, in a balance report this displays accounts in the budget.
+# --budget-format FMT
+# Specify the format to use for the budget report.
+# --by-payee (-P)
+# Group postings in the register report by common payee names.
+# --check-payees
+# Enable strict and pedantic checking for payees as well as accounts, commodities and tags.
+# --cleared (-C)
+# Display only cleared postings.
+# --cleared-format FMT
+# Specify the format to use for the cleared report
+# --collapse (-n)
+# Print only the top level accounts.
+# --collapse-if-zero
+# Collapse the account display only if it has a zero balance.
+# --color  Use color if the terminal supports it.  Alias for --ansi
+# --columns INT
+# Make the register report INT characters wide.  By default ledger will use all available columns in your terminal.
+# --cost   Report the cost basis on all posting.  Alias for --basis.
+# --count  Direct ledger to report the number of items when appended to the commodities, accounts or payees commands.
+# --csv-format FMT
+# Format csv report according to FMT.
+# --current (-c)
+# Shorthand for --limit 'date <= today'.
+# --daily (-D)
+# Shorthand for --period daily.
+# --date EXPR
+# Transform the date of the transaction using EXPR.
+# --date-format DATEFMT (-y)
+# Print dates using DATEFMT.  Refer to strftime(3) for details on the format string syntax.
+# --datetime-format DATETIMEFMT
+# Print datetimes using DATETIMEFMT.  Refer to strftime(3) for details on the format string syntax.
+# --date-width INT
+# Specify the width, in characters, of the date column in the register report.
+# --day-break
+# Break up register report of timelog entries that span multiple days by day.
+# --days-of-week
+# Group transactions by the days of the week.  Alias for --dow.
+# --dc     Display register or balance in debit/credit format If you use --dc with either the register or balance commands, you
+# will now get separate columns for debits and credits.
+# --debug STR
+# If ledger has been built with debug options this will provide extra data during the run.
+# --decimal-comma
+# Direct ledger to parse journals using the European standard comma as decimal separator, vice a period.
+# --depth INT
+# Limit the depth of the account tree.  In a balance report, for example, --depth 2 will print balances only for accounts with two levels, i.e.  Expenses:Entertainment but not Expenses:Entertainment:Dining.  This is a display predicate, which means it only affects display, not the total calculations.
+# --detail
+# Related to convert command. Synonym to --rich-data option.
+# --deviation
+# Report each posting s deviation from the average.  It is only meaningful in the register and prices reports.
+# --display EXPR (-d)
+# Display lines that satisfy the expression EXPR.
+# --display-amount EXPR
+# Apply a transformation to the displayed amount.  This occurs after calculations occur.
+# --display-total EXPR
+# Apply a transformation to the displayed total.  This occurs after calculations occur.
+# --dow    Group transactions by the days of the week.  Alias for --days-of-week.
+# --download
+# Cause quotes to be automagically downloaded, as needed, by running a script named getquote and expecting that script to return a value understood by ledger.  A sample implementation of a getquote script, implemented in Perl, is provided in the distribution.  Downloaded quote price are then appended to the price database, usually specified using the environment variable LEDGER_PRICE_DB.
+# --effective
+# Show auxiliary dates for all calculations.  Alias for --aux-date.
+# --empty (-E)
+# Include empty accounts in report.
+# --end DATE (-e)
+# Constrain the report so that transactions on or after DATE are not considered.
+# --equity
+# Related to the equity command.  Gives current account balances in the form of a register report.
+# --exact  Report beginning and ending of periods by the date of the first and last posting occurring in that period.
+# --exchange COMMODITY [, COMMODITY, ...] (-X)
+# Display values in terms of the given COMMODITY.  The latest available price is used.
+# --file FILE (-f)
+# Read journal data from FILE.
+# --first INT
+# Print the first INT entries.  Opposite of --last INT.  Alias for --head.
+# --flat   Force the full names of accounts to be used in the balance report.  The balance report will not use an indented
+# tree.
+# --force-color
+# Output TTY color codes even if the TTY doesn't support them.  Useful for TTYs that don't advertise their capabili‐
+# ties correctly.
+# --force-pager
+# Force ledger to paginate its output.
+# --forecast-while EXPR
+# Continue forecasting while VEXPR is true.  Alias for --forecast.
+# --forecast-years INT
+# Forecast at most INT years into the future.
+# --format FMT (-F)
+# Use the given format string FMT to print output.
+# --gain (-G)
+# Report net gain or loss for commodities that have a price history.
+# --generated
+# Include auto-generated postings (such as those from automated transactions) in the report, in cases where you nor‐
+# mally wouldnt want them.
+# --group-by EXPR
+# Group transaction together in the register report.  EXPR can be anything, although most common would be payee or
+# commodity.  The tag() function is also useful here.
+# --group-title-format FMT
+# Set the format for the headers that separate reports section of a grouped report.  Only has effect with a --group-by
+# EXPR register report.
+# --head INT
+# Print the first INT entries.  Opposite of --tail INT.  Alias for --first
+# --help   Print this man page.
+# --immediate
+# Evaluate calculations immediately rather than lazily.
+# --import FILE
+# Import FILE as Python module.
+# --init-file FILE (-i)
+# Read FILE before any other ledger file.  This file may not contain any postings, but it may contain option settings.  To specify options in the init file, use the same syntax as the command-line, but put each option on its own line.
+# --inject STR
+# Use STR amounts in calculations.  In case you know what amount a transaction should be, but the actual transaction has the wrong value you can use metadata STR to specify the expected amount.
+# --input-date-format DATEFMT
+# Specify the input date format for journal entries.
+# --invert
+# Change the sign of all reported values.
+# --last INT.
+# Report only the last INT entries.  Opposite of --first INT.  Only useful on a register report.  Alias for --tail.
+# --leeway INT (-Z)
+# Alias for --price-expr.
+# --limit EXPR (-l)
+# Limit postings in calculations.
+# --lot-dates
+# Report the date on which each commodity in a balance report was purchased.
+# --lot-notes
+# Report the tag attached to each commodity in a balance report.
+# --lot-prices
+# Report the price at which each commodity in a balance report was purchased.
+# --lots   Report the date and price at which each commodity was purchased in a balance report.
+# --lots-actual
+# Preserve the uniqueness of commodities so they are not merged during reporting without printing the lot annotations.
+# --market (-V)
+# Use the latest market value for all commodities.
+# --master-account STR
+# Prepend all account names with STR
+# --meta STR
+# In the register report, prepend the transaction with the value of the given tag STR.
+# --meta-width INT
+# Specify the width of the Meta column used for the --meta TAG options.
+# --monthly (-M)
+# Shorthand for --period monthly.
+# --no-aliases
+# Aliases are completely ignored.
+# --no-color
+# Suppress any color TTY output.
+# --no-pager
+# Disables the pager on TTY output.
+# --no-revalued
+# Stop ledger from showing <Revalued> postings.
+# --no-rounding
+# Do not output "<Adjustment>" postings.  Note that this will cause the running total to often not add up!  Its main use is for --amount-data (-j) and --total-data (-J) reports.
+# --no-titles
+# Suppress the output of group titles.
+# --no-total
+# Suppress printing the final total line in a balance report.
+# --now DATE
+# Use DATE as the current date.  This affects the output when using --period, --begin, --end, or --current to decide which dates lie in the past or future.
+# --only EXPR
+# This is a postings predicate that applies after certain transforms have been executed, such as periodic gathering.
+# --options
+# Display the options in effect for this ledger invocation, along with their values and the source of those values.
+# --output FILE (-o)
+# Redirect the output of ledger to FILE.
+# --pager STR
+# Use STR as the pager program.
+# --payee  Sets a value expression for formatting the payee.  In the register report this prevents the second entry from having a date and payee for each transaction.
+# --payee-width INT
+# Set the number of columns dedicated to the payee in the register report to INT.
+# --pedantic
+# Accounts, tags or commodities not previously declared will cause errors.
+# --pending
+# Use only postings that are marked pending.
+# --percent (-%)
+# Calculate the percentage value of each account in a balance reports.  Only works for account that have a single commodity.
+# --period PERIOD (-p)
+# Define a period expression that sets the time period during which transactions are to be accounted.  For a register report only the transactions that satisfy the period expression with be displayed.  For a balance report only those transactions will be accounted in the final balances.
+# --period-sort
+# Sort the posting within transactions using the given value expression.
+# --permissive
+# Quiet balance assertions.
+# --pivot TAG
+# Produce a balance pivot report "around" the given TAG.
+# --plot-amount-format FMT
+# Define the output format for an amount data plot.
+# --plot-total-format FMT
+# Define the output format for a total data plot.
+# --prepend-format FMT
+# Prepend FMT to every line of the output.
+# --prepend-width INT
+# Reserve INT spaces at the beginning of each line of the output.
+# --price (-I)
+# Use the price of the commodity purchase for performing calculations.
+# --price-db FILE
+# --price-exp STR (-Z)
+# Set the expected freshness of price quotes, in INT minutes.  That is, if the last known quote for any commodity is older than this value, and if --download is being used, then the Internet will be consulted again for a newer price.  Otherwise, the old price is still considered to be fresh enough.  Alias for --leeway.
+# --prices-format FMT
+# Set the format for the prices report.
+# --pricedb-format FMT
+# Set the format expected for the historical price file.
+# --primary-date
+# Show primary dates for all calculations.  Alias for --actual-dates
+# --quantity (-O)
+# Report commodity totals (this is the default).
+# --quarterly
+# Shorthand for --period quarterly.
+# --raw    In the print report, show transactions using the exact same syntax as specified by the user in their data file.  Do not do any massaging or interpreting.  Can be useful for minor cleanups, like just aligning amounts.
+# --real (-R)
+# Account using only real transactions ignoring virtual and automatic transactions.
+# --recursive-aliases
+# Causes ledger to try to expand aliases recursively, i.e. try to expand the result of an earlier expansion again, until no more expansions apply.
+# --register-format FMT
+# Define the output format for the register report.
+# --related (-r)
+# In a register report show the related account.  This is the other side of the transaction.
+# --related-all
+# Show all postings in a transaction, similar to --related but show both sides of each transaction.
+# --revalued
+# Report discrepancy in values for manual reports by inserting <Revalued> postings.  This is implied when using the --exchange (-X) or --market (-V) option.
+# --revalued-only
+# Show only <Revalued> postings.
+# --revalued-total
+# Display the sum of the revalued postings as the running total, which serves to show unrealized capital in a gain/losses report.
+# --rich-data
+# When generating a ledger transaction from a CSV file using the convert command, add CSV, Imported, and UUID metadata.
+# --seed INT
+# Set the random seed to INT for the generate command.  Used as part of development testing.
+# --script FILE
+# Execute a ledger script.
+# --sort EXPR (-S)
+# Sort the register report based on the value expression EXPR.
+# --sort-xacts
+# Sort the posting within transactions using the given value expression.
+# --start-of-week STR
+# Use STR as the particular day of the week to start when using the --weekly option.  STR can be day names, their abbreviations like "Mon", or the weekday number starting at 0 for Sunday.
+# --strict
+# Accounts, tags or commodities not previously declared will cause warnings.
+# --subtotal (-s)
+# Report register as a single subtotal.
+# --tail INT
+# Report only the last INT entries.  Only useful on a register report.  Alias for --last INT
+# --time-colon
+# Display the value for commodities based on seconds as hours and minutes.  Thus 8100s will be displayed as 2:15h instead of 2.25h.
+# --time-report
+# Add two columns to the balance report to show the earliest checkin and checkout times for timelog entries.
+# --total EXPR (-T)
+# Define a value expression used to calculate the total in reports.
+# --total-data (-J)
+# Show only dates and totals to format the output for plots.
+# --total-width INT
+# Set the width of the total field in the register report.
+# --trace INT
+# Enable tracing.  The INT specifies the level of trace desired.
+# --truncate STR
+# Indicates how truncation should happen when the contents of columns exceed their width.  Valid arguments for STR are leading, middle, and trailing.  The default is smarter than any of these three, as it considers sub-names within the account name (that style is called "abbreviate").
+# --unbudgeted
+# Show only un-budgeted postings.
+# --uncleared (-U)
+# Use only uncleared transactions in calculations and reports.
+# --unrealized
+# Show generated unrealized gain and loss accounts in the balance report.
+# --unrealized-gains
+# Allow the user to specify what account name should be used for unrealized gains.  Defaults to Equity:Unrealized Gains.  Often set in one s ~/.ledgerrc file to change the default.
+# --unrealized-losses
+# Allow the user to specify what account name should be used for unrealized losses.  Defaults to Equity:Unrealized Losses.  Often set in one s ~/.ledgerrc file to change the default.
+# --unround
+# Perform all calculations without rounding and display results to full precision.
+# --values
+# Show the values used by each tag when used in combination with the tags command.
+# --value-expr EXPR
+# Set a global value expression annotation.
+# --verbose
+# Print detailed information on the execution of ledger.
+# --verify
+# Enable additional assertions during run-time.  This causes a significant slowdown.  When combined with --debug CODE ledger will produce memory trace information.
+# --verify-memory
+# Verify that every constructed object is properly destructed.  This is for debugging purposes only.
+# --version
+# Print version information and exit.
+# --weekly (-W)
+# Shorthand for --period weekly.
+# --wide (-w)
+# Assume 132 columns instead of the TTY width.
+# --yearly (-Y)
+# Shorthand for --period yearly.

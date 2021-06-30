@@ -26,3 +26,7 @@ UUID=f62af340-f530-4ae9-97a0-232249e07f87	none      	swap      	defaults  	0 0
 
 # CD-Rom External Disk
 UUID=7cc94e5d-9383-444b-90e6-1c8dcf49ae12	/mnt/backup	btrfs      	rw,noatime,nosuid,nodev,noauto,x-systemd.automount,x-systemd.mount-timeout=30,_netdev,nofail,x-systemd.device-timeout=1ms,x-gvfs-show	0 2
+
+# zram
+/dev/zram0	none	swap	defaults	0	0
+/dev/zram1	none	swap	defaults	0	0
