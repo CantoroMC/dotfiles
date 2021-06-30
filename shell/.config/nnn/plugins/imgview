@@ -49,25 +49,23 @@ make_thumbs() {
   if [ "$1" -eq 4 ]; then
     mime="$(file -bL --mime-type -- "$2")"
     case "$mime" in
-      audio/*)
+      audio/*) 
         ffmpeg -i "$2" ".nthumbs/${2%%.*}.jpg" -y >/dev/null 2>&1
-        ret=".nthumbs/${2%%.*}.jpg"
+        ret=".nthumbs/${2%%.*}.jpg" 
         ;;
       video/*)
         ffmpegthumbnailer -i "$2" -o .nthumbs/"${2%%.*}".jpg 2> /dev/null
-        ret=".nthumbs/${2%%.*}.jpg"
+        ret=".nthumbs/${2%%.*}.jpg" 
         ;;
       *)
-        ret="$2"
+        ret="$2" 
         ;;
     esac
   fi
   for file in *; do
     case "$(file -bL --mime-type -- "$file")" in
-      audio/*)
-        [ "$1" -ne 0 ] && ffmpeg -i "$file" ".nthumbs/${file%%.*}.jpg" -y >/dev/null 2>&1 ;;
-      video/*)
-        [ "$1" -ne 1 ] && ffmpegthumbnailer -i "$file" -o .nthumbs/"${file%%.*}".jpg 2> /dev/null ;;
+          audio/*) [ "$1" -ne 0 ] && ffmpeg -i "$file" ".nthumbs/${file%%.*}.jpg" -y >/dev/null 2>&1 ;;
+          video/*) [ "$1" -ne 1 ] && ffmpegthumbnailer -i "$file" -o .nthumbs/"${file%%.*}".jpg 2> /dev/null ;;
     esac
   done
 }
@@ -98,7 +96,7 @@ elif type ucollage >/dev/null 2>&1; then
 elif type sxiv >/dev/null 2>&1; then
   make_thumbs 0
   if [ -f "$target" ]; then
-    view_files sxiv >/dev/null 2>&1 &
+        view_files sxiv -a >/dev/null 2>&1 &
   elif [ -d "$target" ]; then
     view_files sxiv -aqt >/dev/null 2>&1 &
   fi

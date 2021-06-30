@@ -72,6 +72,8 @@
 	"coc.source.tmuxcomplete.priority": 10,
 	"coc.source.tmuxcomplete.shortcut": "",
 	"coc.source.latex_symbols.enable": false,
+	"coc.source.nvim_lua.priority": 100,
+	"coc.source.nvim_lua.shortcut": "",
 	"snippets.priority": 99,
 	"snippets.shortcut": " זּ ",
 
