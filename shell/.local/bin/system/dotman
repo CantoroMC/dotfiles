@@ -9,13 +9,14 @@ dotman::pkgs() {
     $(cat "$DOTMAN_PKG_DIR/explicit" | sed '/^[[:blank:]]*#.*/d;s/#.*//;/^[[:blank:]]*$/d')
   sudo pacman -S --needed --asdeps \
     $(cat "$DOTMAN_PKG_DIR/dependent" | sed '/^[[:blank:]]*#.*/d;s/#.*//;/^[[:blank:]]*$/d')
+  sudo pacman -S --needed \
+    $(cat "$DOTMAN_PKG_DIR/custom" | sed '/^[[:blank:]]*#.*/d;s/#.*//;/^[[:blank:]]*$/d')
 }
 
 dotman::skels(){
-  mkdir -p \
-    "$HOME"/.{cabal,ghc,local/bin} \
-    "${XDG_CONFIG_HOME:-$HOME/.config}"/{emacs,git,gtk-2.0,gtk-3.0,mpd/playlists,ncmpcpp,neomutt,nnn,nvim,radiotray-ng,surf,vivaldi,zsh} \
-    "{$XDG_DATA_HOME:-$HOME/.local/share}"/{nvim/site/pack,nvim/site/spell,xorg,fonts,surf,stack}
+  mkdir -p "$HOME"/.{cabal,ghc,local/bin}
+  mkdir - p "${XDG_CONFIG_HOME:-$HOME/.config}"/{emacs,git,gtk-2.0,gtk-3.0,mpd/playlists,ncmpcpp,neomutt,nnn,nvim,radiotray-ng,surf,vivaldi,zsh}
+  mkdir -p "{$XDG_DATA_HOME:-$HOME/.local/share}"/{nvim/site/pack,nvim/site/spell,xorg,fonts,surf,stack}
 }
 
 dotman::stow() {

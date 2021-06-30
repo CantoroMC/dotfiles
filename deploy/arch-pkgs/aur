@@ -11,5 +11,3 @@ snapper-gui-git
 stack-static
 texlive-most-doc
 ttf-font-awesome-4
-
-# vim:ft=sh:fdm=marker
