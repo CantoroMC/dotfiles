@@ -85,6 +85,7 @@ manageFloatings =
                 , "imagewriter"
                 , "Lxappearance"
                 , "MPlayer"
+                , "Nibbler"
                 , "Nm-connection-editor"
                 , "ParaView"
                 , "Parcellite"

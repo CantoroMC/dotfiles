@@ -16,7 +16,6 @@ command! -nargs=1 EvalAsHex echomsg evalnu#eval_base_number(16, <f-args>)
 
 command! -nargs=0 BaseNumbers
       \ :call evalnu#float_base_numbers(expand('<cword>'))
-nnoremap <silent> <Leader>ga :<C-U>BaseNumbers<CR>
 command! GetCharEnc :call evalnu#get_char_encoding()
 
 inoremap <silent> <F2> <C-r>=evalnu#uuid()<CR>
