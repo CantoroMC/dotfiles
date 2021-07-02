@@ -22,7 +22,7 @@ local plug_confs = {
     }
   },
   theme = {
-    [ "material" ]   = 'material',
+    [ "ayu" ]        = 'ayu',
   },
   add_highlight = {
   }

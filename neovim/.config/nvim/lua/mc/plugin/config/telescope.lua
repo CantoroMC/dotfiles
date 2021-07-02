@@ -25,7 +25,7 @@ telescope.setup{
       end,
 
       height = function(_, _, max_lines)
-        return math.min(max_lines - 4, 15)
+        return math.min(max_lines - 4, 23)
       end,
     },
     -- Sorting
@@ -71,7 +71,8 @@ wk.register(
     a = { "<cmd>Telescope current_buffer_fuzzy_find<CR>", "Fuzzy find current buffer" },
     b = { "<cmd>Telescope buffers<CR>",                   "List buffers" },
     c = { "<cmd>Telescope command<CR>",                   "Vim commands" },
-    d = { "<cmd>lua luv_picker.dotfiles()<CR>",           "Dotfiles" },
+    d = { "<cmd>lua luv_picker.neovim_config()<CR>",      "Neovim Dotfiles" },
+    D = { "<cmd>lua luv_picker.dotfiles()<CR>",           "Dotfiles" },
     f = { "<cmd>Telescope find_files<CR>",                "Files in pwd" },
     F = { "<cmd>Telescope file_browser<CR>",              "Fuzzy browser" },
     g = { "<cmd>Telescope live_grep<CR>",                 "Live grep in pwd" },

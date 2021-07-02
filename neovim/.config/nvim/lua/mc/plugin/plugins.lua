@@ -196,10 +196,11 @@ local function init()
 
   -- GUI UTILITIES {{{3
   -- Colorschemes {{{4
-  usepackage { 'CantoroMC/srcery-nvim' }
-  usepackage { 'CantoroMC/ayu-nvim', as = 'ayu' }
+  usepackage { 'CantoroMC/srcery-nvim',       as = 'srcery' }
+  usepackage { 'CantoroMC/ayu-nvim',          as = 'ayu' }
   usepackage { 'marko-cerovac/material.nvim', as = 'material' }
-  usepackage { 'NLKNguyen/papercolor-theme' }
+  usepackage { 'NLKNguyen/papercolor-theme',  as = 'papercolor' }
+  -- usepackage { '~/Desktop/dracula-nvim',      as = 'dracula' }
   -- }}}
   -- File Explorer
   usepackage {
