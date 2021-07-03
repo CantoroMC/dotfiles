@@ -299,6 +299,13 @@ pip install neovim-remote
 ```sh
 gem install neovim solargraph
 ```
+#### Go
+```sh
+go get github.com/msprev/fzf-bibtex/cmd/bibtex-ls
+go install github.com/msprev/fzf-bibtex/cmd/bibtex-ls
+go install github.com/msprev/fzf-bibtex/cmd/bibtex-markdown
+go install github.com/msprev/fzf-bibtex/cmd/bibtex-cite
+```
 
 #### Node
 ```sh

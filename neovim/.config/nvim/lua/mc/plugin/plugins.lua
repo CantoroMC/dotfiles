@@ -37,46 +37,9 @@ local function init()
       --[[
       -- Float Window {{{3
       display = {
-        open_fn = function(name)
-          -- main window
-          local last_win = vim.api.nvim_get_current_win()
-          local last_pos = vim.api.nvim_win_get_cursor(last_win)
-
-          local columns = vim.o.columns
-          local lines   = vim.o.lines
-
-          local width  = math.ceil(columns * 0.8)
-          local height = math.ceil(lines * 0.8 - 4)
-          local left   = math.ceil((columns - width) * 0.5)
-          local top    = math.ceil((lines - height) * 0.5 - 1)
-
-          local opts = {
-            relative = 'editor',
-            style    = 'minimal',
-            border   = {"╔", "═" ,"╗", "║", "╝", "═", "╚", "║"},
-            width    = width,
-            height   = height,
-            col      = left,
-            row      = top,
-          }
-
-          local buf = vim.api.nvim_create_buf(false, false)
-
-          local win = vim.api.nvim_open_win(buf, true, opts)
-          vim.api.nvim_buf_set_name(buf, name)
-          vim.api.nvim_win_set_option(win, 'winhighlight', 'Normal:Normal')
-          vim.api.nvim_win_set_option(win, 'winblend', 10)
-
-          -- post tasks
-          function restore_cursor()
-            vim.api.nvim_set_current_win(last_win)
-            vim.api.nvim_win_set_cursor(last_win, last_pos)
-          end
-
-          vim.cmd('autocmd! BufWipeout <buffer> lua restore_cursor()')
-
-          return true, win, buf
-        end
+        open_fn = function()
+          return require'packer.util'.float({ border = 'single' })
+        end,
       -- }}}
       },
       --]]
@@ -164,6 +127,13 @@ local function init()
       'nvim-lua/popup.nvim',
       'nvim-lua/plenary.nvim'
     }
+  }
+  -- }}}
+  -- FZF: {{{4
+  usepackage 'junegunn/fzf'
+  usepackage {
+    'junegunn/fzf.vim',
+    requires = { 'junegunn/fzf' },
   }
   -- }}}
   -- Tag Viewer with Ctags
