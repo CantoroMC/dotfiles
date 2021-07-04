@@ -185,6 +185,8 @@ local tab_three_spaces = { -- {{{3
 -- }}}
 local tab_four_spaces  = { -- {{{3
   'go',
+  'gitconfig',
+  'ledger',
 }
 -- }}}
 
@@ -254,11 +256,24 @@ local syntax      = { -- {{{3
   'gitcommit',
 }
 -- }}}
+local treesitter  = {
+  -- 'bash',
+  -- 'c',
+  -- 'cpp',
+  -- 'go',
+  'ledger',
+  -- 'lua',
+  -- 'nix',
+  -- 'python',
+  -- 'ruby',
+  -- 'tex',
+}
 
 local foldmethod_table = { -- {{{3
   { markers,     "setlocal foldmethod=marker" },
   { indentation, "setlocal foldmethod=indent" },
   { syntax,      "setlocal foldmethod=syntax" },
+  { treesitter,  "setlocal foldmethod=expr   foldexpr=nvim_treesitter#foldexpr()" },
 }
 -- }}}
 

@@ -181,7 +181,6 @@ local function init()
   -- Indent line and Leading spaces
   usepackage {
     'lukas-reineke/indent-blankline.nvim',
-    branch = 'lua',
     as = 'indent-blankline'
   }
   -- Mapping Suggestions

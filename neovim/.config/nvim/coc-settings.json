@@ -86,6 +86,8 @@
 	"solargraph.references": true,
 	"solargraph.definitions": true,
 	"solargraph.symbols": true,
+	"solargraph.logLevel": "warn",
+	"solargraph.rename": true,
 
 	"vimlsp.diagnostic.enable": false,
 

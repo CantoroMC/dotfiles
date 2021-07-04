@@ -22,8 +22,8 @@ local plug_confs = {
     }
   },
   theme = {
-    -- [ "ayu" ]        = 'ayu',
-    [ "material" ]   = 'material',
+    [ "ayu" ]        = 'ayu',
+    -- [ "material" ]   = 'material',
   },
   add_highlight = {
   }
