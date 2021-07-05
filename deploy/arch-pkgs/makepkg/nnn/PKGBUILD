@@ -1,7 +1,7 @@
 # Maintainer: Marco Cantoro <marco dot cantoro92 at outlook dot it>
 
 pkgname=nnn-bull-git
-pkgver=4.1
+pkgver=4.1.r3543.d4a4c72e
 pkgrel=1
 pkgdesc="The unorthodox terminal file manager"
 arch=('x86_64')
@@ -32,8 +32,20 @@ optdepends=(
 makedepends=('git')
 provides=("${pkgname%-bull-git}")
 conflicts=("${pkgname%-bull-git}")
-source=('git+https://github.com/CantoroMC/nnn')
-md5sums=('SKIP')
+source=(
+  'git+https://github.com/jarun/nnn'
+  'git+file///home/cantoro/dotfiles/deploy/arch-pkgs/makepkg/nnn/nnn-bull.patch'
+  )
+md5sums=(
+  'SKIP'
+  'd994d79e6fba3d6b6093e1ef929596d6'
+  )
+
+prepare() {
+  cd "$srcdir/${pkgname%-bull-git}"
+  git checkout d4a4c72
+  patch --forward --strip=1 --input=../../nnn-bull.patch
+}
 
 pkgver() {
   cd "$srcdir/${pkgname%-bull-git}"

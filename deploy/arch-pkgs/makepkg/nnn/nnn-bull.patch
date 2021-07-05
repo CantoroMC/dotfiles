@@ -1,0 +1,255 @@
+From 191febe502d56e5cc6e340395353d4839ef9ca1c Mon Sep 17 00:00:00 2001
+From: Marco Cantoro <marco.cantoro92@outlook.it>
+Date: Mon, 5 Jul 2021 05:18:48 +0200
+Subject: [PATCH] my config, less then namefirst patches
+
+---
+ Makefile                        |  8 ++++----
+ patches/gitstatus/mainline.diff |  2 +-
+ src/icons-nerdfont.h            | 21 +++++++++++++--------
+ src/icons.h                     | 13 ++++++++++---
+ src/nnn.c                       |  8 ++------
+ 5 files changed, 30 insertions(+), 22 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 4423373..ab0f392 100644
+--- a/Makefile
++++ b/Makefile
+@@ -15,20 +15,20 @@ O_DEBUG := 0  # debug binary
+ O_NORL := 0  # no readline support
+ O_PCRE := 0  # link with PCRE library
+ O_NOLC := 0  # no locale support
+-O_NOMOUSE := 0  # no mouse support
++O_NOMOUSE := 1  # no mouse support
+ O_NOBATCH := 0  # no built-in batch renamer
+ O_NOFIFO := 0  # no FIFO previewer support
+ O_CTX8 := 0  # enable 8 contexts
+ O_ICONS := 0  # support icons-in-terminal
+-O_NERD := 0  # support icons-nerdfont
+-O_QSORT := 0  # use Alexey Tourbin's QSORT implementation
++O_NERD := 1  # support icons-nerdfont
++O_QSORT := 1  # use Alexey Tourbin's QSORT implementation
+ O_BENCH := 0  # benchmark mode (stops at first user input)
+ O_NOSSN := 0  # enable session support
+ O_NOUG := 0  # disable user, group name in status bar
+ O_NOX11 := 0  # disable X11 integration
+
+ # User patches
+-O_GITSTATUS := 0 # add git status to detail view
++O_GITSTATUS := 1 # add git status to detail view
+ O_NAMEFIRST := 0 # print file name first, add uid and guid to detail view
+
+ ifeq ($(strip $(O_GITSTATUS)),1)
+diff --git a/patches/gitstatus/mainline.diff b/patches/gitstatus/mainline.diff
+index f574dc5..0dde307 100644
+--- a/patches/gitstatus/mainline.diff
++++ b/patches/gitstatus/mainline.diff
+@@ -140,7 +140,7 @@ index 67523fe6..c965bd1c 100644
+ +		print_gitstatus(ent->git_status);
+ +	}
+ +
+- 	addch((ent->flags & FILE_SELECTED) ? '+' | A_REVERSE | A_BOLD : ' ');
++	addch((ent->flags & FILE_SELECTED) ? '+' | A_BOLD : ' ');
+
+  	if (g_state.oldcolor)
+ @@ -5160,6 +5242,10 @@ static int dentfill(char *path, struct entry **ppdents)
+diff --git a/src/icons-nerdfont.h b/src/icons-nerdfont.h
+index 42b3ca0..7303d52 100644
+--- a/src/icons-nerdfont.h
++++ b/src/icons-nerdfont.h
+@@ -17,28 +17,28 @@
+ 
+ // Top level and common icons
+ #define ICON_GIT           "\ue5fb"
+-#define ICON_DESKTOP       "\ufcbe"
++#define ICON_DESKTOP       "\uf108"
+ #define ICON_BRIEFCASE     "\uf5d5"
+ #define ICON_DOCUMENT      "\uf718"
+ #define ICON_DOWNLOADS     "\uf5d7"
+ #define ICON_MUSIC         "\uf832"
+ #define ICON_MUSICFILE     "\uf886"
+ #define ICON_PICTURES      "\uf753"
+-#define ICON_PICTUREFILE   "\uf71e"
++#define ICON_PICTUREFILE   "\uf03e"
+ #define ICON_PUBLIC        "\ue5ff"
+ #define ICON_TEMPLATES     "\ufac6"
+ #define ICON_VIDEOS        "\uf72f"
+-#define ICON_VIDEOFILE     "\ufcdc"
++#define ICON_VIDEOFILE     "\uf72a"
+ #define ICON_CHANGELOG     "\uf7d9"
+ #define ICON_CONFIGURE     "\uf423"
+ #define ICON_LICENSE       "\uf718"
+ #define ICON_MAKEFILE      "\uf68c"
+-#define ICON_ARCHIVE       "\uf53b"
+-#define ICON_SCRIPT        "\ue795"
++#define ICON_ARCHIVE       "\ufac3"
++#define ICON_SCRIPT        "\uf977"
+ #define ICON_CPLUSPLUS     "\ue61d"
+ #define ICON_JAVA          "\ue738"
+ #define ICON_CLOJURE       "\ue76a"
+-#define ICON_JAVASCRIPT    "\ue74e"
++#define ICON_JAVASCRIPT    "\uf81d"
+ #define ICON_LINUX         "\uf83c"
+ #define ICON_FSHARP        "\ue7a7"
+ #define ICON_RUBY          "\ue23e"
+@@ -52,6 +52,7 @@
+ #define ICON_WORDDOC       "\uf72b"
+ #define ICON_PLAYLIST      "\uf910"
+ #define ICON_OPTICALDISK   "\ue271"
++#define ICON_SHELL         "\ue795"
+ 
+ 
+ /* Numbers */
+@@ -87,7 +88,7 @@
+ #define ICON_EXT_CONF      ICON_CONFIGURE
+ #define ICON_EXT_CPIO      ICON_ARCHIVE
+ #define ICON_EXT_CPP       ICON_CPLUSPLUS
+-#define ICON_EXT_CSS       "\ue614"
++#define ICON_EXT_CSS       "\ue749"
+ #define ICON_EXT_CUE       ICON_PLAYLIST
+ #define ICON_EXT_CVS       ICON_CONFIGURE
+ #define ICON_EXT_CXX       ICON_CPLUSPLUS
+@@ -161,8 +162,10 @@
+ #define ICON_EXT_LZMA      ICON_ARCHIVE
+ 
+ /* M */
++#define ICON_EXT_M         "\ufb27"
+ #define ICON_EXT_M4A       ICON_MUSICFILE
+ #define ICON_EXT_M4V       ICON_VIDEOFILE
++#define ICON_EXT_MAT       "\uf0ce"
+ #define ICON_EXT_MD        "\ue609"
+ #define ICON_EXT_MK        ICON_MAKEFILE
+ #define ICON_EXT_MKV       ICON_VIDEOFILE
+@@ -174,6 +177,7 @@
+ #define ICON_EXT_MSI       "\uf871"
+ 
+ /* N */
++#define ICON_EXT_NIX       "\uf313"
+ 
+ /* O */
+ #define ICON_EXT_O         ICON_MANUAL
+@@ -212,7 +216,7 @@
+ #define ICON_EXT_SCSS      "\ue603"
+ #define ICON_EXT_SO        ICON_MANUAL
+ #define ICON_EXT_SCALA     "\ue737"
+-#define ICON_EXT_SH        ICON_SCRIPT
++#define ICON_EXT_SH        ICON_SHELL
+ #define ICON_EXT_SLIM      ICON_SCRIPT
+ #define ICON_EXT_SLN       "\ue70c"
+ #define ICON_EXT_SQL       ICON_DATABASE
+@@ -257,5 +261,6 @@
+ 
+ /* Z */
+ #define ICON_EXT_ZIP       ICON_ARCHIVE
++#define ICON_EXT_ZSH       ICON_SHELL
+ 
+ #endif // ICONS_NERDFONT
+diff --git a/src/icons.h b/src/icons.h
+index 0edb61b..1d02f9e 100644
+--- a/src/icons.h
++++ b/src/icons.h
+@@ -74,6 +74,7 @@ static const struct icon_pair icons_name[] = {
+ 	{"Videos",       FA_FILM,       0},
+ 	{"CHANGELOG",    FA_HISTORY,    COLOR_DOCS},
+ 	{"configure",    FILE_CONFIG,   0},
++	{"dotfiles",     FA_GIT,        0},
+ 	{"License",      FA_COPYRIGHT,  COLOR_DOCS},
+ 	{"Makefile",     FILE_CMAKE,    0},
+ #elif defined(NERD)
+@@ -88,6 +89,7 @@ static const struct icon_pair icons_name[] = {
+ 	{"Videos",       ICON_VIDEOS,    0},
+ 	{"CHANGELOG",    ICON_CHANGELOG, COLOR_DOCS},
+ 	{"configure",    ICON_CONFIGURE, 0},
++	{"dotfiles",     ICON_GIT,       0},
+ 	{"License",      ICON_LICENSE,   COLOR_DOCS},
+ 	{"Makefile",     ICON_MAKEFILE,  0},
+ #endif
+@@ -322,6 +324,7 @@ static const struct icon_pair icons_ext[] = {
+ 	 /* C */
+ 	{"c",          ICON_EXT_C,         COLOR_C},
+ 	{"c++",        ICON_EXT_CPLUSPLUS, COLOR_C},
++	{"cabal",      ICON_EXT_HS,        COLOR_VIDEO},
+ 	{"cab",        ICON_EXT_CAB,       COLOR_ARCHIVE},
+ 	{"cbr",        ICON_EXT_CBR,       COLOR_ARCHIVE},
+ 	{"cbz",        ICON_EXT_CBZ,       COLOR_ARCHIVE},
+@@ -334,7 +337,7 @@ static const struct icon_pair icons_ext[] = {
+ 	{"coffee",     ICON_EXT_COFFEE,    0},
+ 	{"conf",       ICON_EXT_CONF,      0},
+ 	{"cpio",       ICON_EXT_CPIO,      COLOR_ARCHIVE},
+-	{"cpp",        ICON_EXT_CPP,       0},
++	{"cpp",        ICON_EXT_CPP,       COLOR_JAVA},
+ 	{"css",        ICON_EXT_CSS,       COLOR_CSS},
+ 	{"cue",        ICON_EXT_CUE,       COLOR_AUDIO},
+ 	{"cvs",        ICON_EXT_CVS,       0},
+@@ -404,14 +407,16 @@ static const struct icon_pair icons_ext[] = {
+ 	{"lha",        ICON_EXT_LHA,       COLOR_ARCHIVE},
+ 	{"lhs",        ICON_EXT_LHS,       COLOR_VIM},
+ 	{"log",        ICON_EXT_LOG,       0},
+-	{"lua",        ICON_EXT_LUA,       0},
++	{"lua",        ICON_EXT_LUA,       COLOR_LUA},
+ 	{"lzh",        ICON_EXT_LZH,       COLOR_ARCHIVE},
+ 	{"lzma",       ICON_EXT_LZMA,      COLOR_ARCHIVE},
+ 
+ 	/* M */
++	{"m",          ICON_EXT_M,         COLOR_JAVA},
+ 	{"m4a",        ICON_EXT_M4A,       COLOR_AUDIO},
+ 	{"m4v",        ICON_EXT_M4V,       COLOR_VIDEO},
+ 	{"markdown",   ICON_EXT_MD,        COLOR_DOCS},
++	{"mat",        ICON_EXT_MAT,       COLOR_JAVA},
+ 	{"md",         ICON_EXT_MD,        COLOR_DOCS},
+ 	{"mk",         ICON_EXT_MK,        0},
+ 	{"mkv",        ICON_EXT_MKV,       COLOR_VIDEO},
+@@ -423,6 +428,7 @@ static const struct icon_pair icons_ext[] = {
+ 	{"msi",        ICON_EXT_MSI,       0},
+ 
+ 	/* N */
++	{"nix",        ICON_EXT_NIX,       COLOR_FSHARP},
+ 
+ 	/* O */
+ 	{"o",          ICON_EXT_O,         0},
+@@ -461,7 +467,7 @@ static const struct icon_pair icons_ext[] = {
+ 	{"scss",       ICON_EXT_SCSS,      COLOR_CSS},
+ 	{"so",         ICON_EXT_SO,        0},
+ 	{"scala",      ICON_EXT_SCALA,     COLOR_SCALA},
+-	{"sh",         ICON_EXT_SH,        0},
++	{"sh",         ICON_EXT_SH,        COLOR_JAVASCRIPT},
+ 	{"slim",       ICON_EXT_SLIM,      COLOR_DOCUMENT},
+ 	{"sln",        ICON_EXT_SLN,       0},
+ 	{"sql",        ICON_EXT_SQL,       0},
+@@ -507,6 +513,7 @@ static const struct icon_pair icons_ext[] = {
+ 
+ 	/* Z */
+ 	{"zip",        ICON_EXT_ZIP,       COLOR_ARCHIVE},
++	{"zsh",        ICON_EXT_ZSH,       COLOR_JAVASCRIPT},
+ 
+ 	/* Other */
+ #endif
+diff --git a/src/nnn.c b/src/nnn.c
+index 82e199c..8fbdbc5 100644
+--- a/src/nnn.c
++++ b/src/nnn.c
+@@ -3843,7 +3843,7 @@ static void printent(const struct entry *ent, uint_t namecols, bool sel)
+ 
+ 	uchar_t color_pair = get_color_pair_name_ind(ent, &ind, &attrs);
+ 
+-	addch((ent->flags & FILE_SELECTED) ? '+' | A_REVERSE | A_BOLD : ' ');
++	addch((ent->flags & FILE_SELECTED) ? '+' | A_BOLD : ' ');
+ 
+ 	if (g_state.oldcolor)
+ 		resetdircolor(ent->flags);
+@@ -5875,11 +5875,7 @@ static inline void markhovered(void)
+ {
+ 	if (cfg.showdetail && ndents) { /* Reversed block for hovered entry */
+ 		tocursor();
+-#ifdef ICONS_ENABLED
+-		addstr(MD_ARROW_FORWARD);
+-#else
+-		addch(' ' | A_REVERSE);
+-#endif
++		addch('>' | A_BOLD);
+ 	}
+ }
+ 
+-- 
+2.32.0
+
