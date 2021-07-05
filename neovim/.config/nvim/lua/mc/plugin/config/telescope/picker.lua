@@ -33,6 +33,27 @@ function M.dotfiles()
   }
 end
 
+function M.neovim_config()
+  require('telescope.builtin').find_files {
+    prompt_title = "Neovim Config",
+    shorten_path = false,
+    cwd = "~/dotfiles/neovim",
+    find_command = {
+      'rg',
+      '--hidden',
+      '--files',
+      '--glob=!.git/*',
+      '-l',
+    },
+
+    attach_mappings = function(_, map)
+      map('i', '<c-y>', set_prompt_to_entry_value)
+
+      return true
+    end,
+  }
+end
+
 function M.skeletons()
   require'telescope.builtin'.find_files {
     prompt_title = 'Skeletons',

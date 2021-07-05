@@ -5,7 +5,6 @@ telescope.setup{
     -- Layout
     initial_mode    = "insert",
     scroll_startegy = 'cycle',
-    prompt_position = "top",
     prompt_prefix   = "❯ ",
     selection_caret = "❯ ",
     entry_prefix    = "  ",
@@ -18,22 +17,16 @@ telescope.setup{
       preview = { '═', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
     },
     color_devicons  = true,
-    -- IN PROGRESS:
-    -- width = 0.90,
-    preview_cutoff = 1,
-    -- results_height = 1,
-    results_width = 0.4,
     layout_strategy = "bottom_pane",
     layout_config = {
-      height = 25,
-    },
-    layout_defaults = {
-      horizontal = {
-        mirror = false,
-      },
-      vertical = {
-        mirror = false,
-      },
+      prompt_position = "top",
+      width = function(_, max_columns, _)
+        return math.min(max_columns - 3, 80)
+      end,
+
+      height = function(_, _, max_lines)
+        return math.min(max_lines - 4, 23)
+      end,
     },
     -- Sorting
     selection_strategy   = "reset",
@@ -78,7 +71,8 @@ wk.register(
     a = { "<cmd>Telescope current_buffer_fuzzy_find<CR>", "Fuzzy find current buffer" },
     b = { "<cmd>Telescope buffers<CR>",                   "List buffers" },
     c = { "<cmd>Telescope command<CR>",                   "Vim commands" },
-    d = { "<cmd>lua luv_picker.dotfiles()<CR>",           "Dotfiles" },
+    d = { "<cmd>lua luv_picker.neovim_config()<CR>",      "Neovim Dotfiles" },
+    D = { "<cmd>lua luv_picker.dotfiles()<CR>",           "Dotfiles" },
     f = { "<cmd>Telescope find_files<CR>",                "Files in pwd" },
     F = { "<cmd>Telescope file_browser<CR>",              "Fuzzy browser" },
     g = { "<cmd>Telescope live_grep<CR>",                 "Live grep in pwd" },

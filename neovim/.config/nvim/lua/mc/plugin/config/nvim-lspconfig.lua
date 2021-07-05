@@ -68,21 +68,18 @@ local custom_lsp_attach = function(client)
   lsp_remap('n', vim.g.maplocalleader..'dq'   , 'vim.lsp.buf.document_symbol()')
   lsp_remap('n', vim.g.maplocalleader..'ws'   , 'vim.lsp.buf.workspace_symbol()')
 
-  -- TODO: Define LspCommands
-
   if client.resolved_capabilities.document_formatting then
     -- Formatting mapping
     lsp_remap('n', vim.g.maplocalleader..'gq', 'vim.lsp.buf.formatting()')
-    -- [[ Autoformat on save
-    if vim.tbl_contains({ "cpp" }, filetype) then
-      vim.api.nvim_exec([[
-        augroup lsp_format_on_save
-          autocmd!
-          autocmd! BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync(nil,1000)
-        augroup END
-        ]], false)
-    end
-    -- ]]
+    -- Autoformat on save
+    -- if vim.tbl_contains({ "cpp" }, filetype) then
+    --   vim.api.nvim_exec([[
+    --     augroup lsp_format_on_save
+    --       autocmd!
+    --       autocmd! BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync(nil,1000)
+    --     augroup END
+    --     ]], false)
+    -- end
   end
   if client.resolved_capabilities.document_range_formatting then
     lsp_remap('n', vim.g.maplocalleader..'gw', 'vim.lsp.buf.range_formatting()')

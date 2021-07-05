@@ -52,47 +52,76 @@ vim.g.nvim_tree_icons = {
     ["unmerged"]  = '',
     ["renamed"]   = '➜',
     ["untracked"] = '★',
+    ["deleted"]   = "",
+    ["ignored"]   = "◌"
   },
   ["folder"] = {
-    ["default"] = '',
-    ["open"   ] = '',
-    ["symlink"] = '',
+    ["arrow_open" ]   = "",
+    ["arrow_closed" ] = "",
+    ["default" ]      = "",
+    ["open" ]         = "",
+    ["empty" ]        = "",
+    ["empty_open" ]   = "",
+    ["symlink" ]      = "",
+    ["symlink_open" ] = "",
   },
+  ["lsp"] = {
+    ["hint"]    = "",
+    ["info"]    = "",
+    ["warning"] = "",
+    ["error"]   = "",
+  }
 }
 
 
 -- KEYMAP:
-local function get_lua_cb(cb_name)
-  return string.format(":lua require'nvim-tree'.on_keypress('%s')<CR>", cb_name)
+function _G.NvimTreeOSOpen()
+  local lib = require "nvim-tree.lib"
+  local node = lib.get_node_at_cursor()
+  if node then
+    vim.fn.jobstart("xdg-open '" .. node.absolute_path .. "' &", {detach = true})
+  end
 end
 
+local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 vim.g.nvim_tree_bindings = {
-  ["<CR>"]   = get_lua_cb("edit"),
-  ["<C-v>"]  = get_lua_cb("vsplit"),
-  ["<C-b>"]  = get_lua_cb("split"),
-  ["<C-t>"]  = get_lua_cb("tabnew"),
-  ["<BS>"]   = get_lua_cb("close_node"),
-  ["<S-CR>"] = get_lua_cb("close_node"),
-  ["I"]      = get_lua_cb("toggle_ignored"),
-  ["."]      = get_lua_cb("toggle_dotfiles"),
-  ["R"]      = get_lua_cb("refresh"),
-  ["<Tab>"]  = get_lua_cb("preview"),
-  ["o"]      = get_lua_cb("cd"),
-  ["a"]      = get_lua_cb("create"),
-  ["d"]      = get_lua_cb("remove"),
-  ["r"]      = get_lua_cb("rename"),
-  ["x"]      = get_lua_cb("cut"),
-  ["c"]      = get_lua_cb("copy"),
-  ["p"]      = get_lua_cb("paste"),
-  ["y"]      = get_lua_cb("copy_name"),
-  ["Y"]      = get_lua_cb("copy_path"),
-  ["gy"]     = get_lua_cb("copy_absolute_path"),
-  ["[g"]     = get_lua_cb("prev_git_item"),
-  ["]g"]     = get_lua_cb("next_git_item"),
-  ["<C-P>"]  = get_lua_cb("dir_up"),
-  ["q"]      = get_lua_cb("close"),
-}
+  { key = "<CR>",             cb = tree_cb("edit") },
+  { key = "<C-v>",            cb = tree_cb("vsplit") },
+  { key = "<C-b>",            cb = tree_cb("split") },
+  { key = "<C-t>",            cb = tree_cb("tabnew") },
+  { key = "<Tab>",            cb = tree_cb("preview") },
 
+  { key = "K",                cb = tree_cb("first_sibling") },
+  { key = "J",                cb = tree_cb("last_sibling") },
+  { key = "<",                cb = tree_cb("prev_sibling") },
+  { key = ">",                cb = tree_cb("next_sibling") },
+
+  { key = "I",                cb = tree_cb("toggle_ignored") },
+  { key = ".",                cb = tree_cb("toggle_dotfiles") },
+
+  { key = "R",                cb = tree_cb("refresh") },
+  { key = "a",                cb = tree_cb("create") },
+  { key = "d",                cb = tree_cb("remove") },
+  { key = "r",                cb = tree_cb("rename") },
+  { key = "<C->",             cb = tree_cb("full_rename") },
+
+  { key = "x",                cb = tree_cb("cut") },
+  { key = "c",                cb = tree_cb("copy") },
+  { key = "p",                cb = tree_cb("paste") },
+  { key = "y",                cb = tree_cb("copy_name") },
+  { key = "Y",                cb = tree_cb("copy_path") },
+  { key = "gy",               cb = tree_cb("copy_absolute_path") },
+
+  { key = "[g",               cb = tree_cb("prev_git_item") },
+  { key = "]g",               cb = tree_cb("next_git_item") },
+  { key = "<C-p>",            cb = tree_cb("dir_up") },
+  { key = "o",                cb = tree_cb("cd") },
+  { key = "O",                cb = ":lua NvimTreeOSOpen()<cr>" },
+  { key = {"<BS>", "<S-CR>"}, cb = tree_cb("close_node") },
+  { key = "P",                cb = tree_cb("parent_node") },
+  { key = "q",                cb = tree_cb("close") },
+  { key = "g?",               cb = tree_cb("toggle_help") },
+}
 
 -- BINDINGS:
 vim.api.nvim_set_keymap('n', '<C-c>f',

@@ -4,8 +4,8 @@ require'nvim-treesitter.configs'.setup {
   -- HIGHLIGHT: {{{2
   highlight = {
     enable = true,
-    disable = {"bash"},
-    use_languagetree = false,
+    disable = { "bash" },
+    use_languagetree = true,
     -- custom_captures = {
       -- ["capture.group"] = "HighlightGroup",
     -- },

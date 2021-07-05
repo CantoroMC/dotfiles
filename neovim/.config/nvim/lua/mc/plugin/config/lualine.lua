@@ -49,6 +49,7 @@ require'lualine'.setup{
       }
     },
     lualine_x = {
+      monitors.treesitter,
       {
         'diagnostics',
         sources  = { 'nvim_lsp', 'coc' },
@@ -72,7 +73,10 @@ require'lualine'.setup{
         icons_enabled = false,
 
       },
-      'filetype',
+      {
+        'filetype',
+        colored = true,
+      },
       monitors.whitespaces,
     },
     lualine_z = {

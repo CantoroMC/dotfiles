@@ -207,6 +207,7 @@ exa
 fzf
 gimp
 github-cli
+lazygit
 kitty
 mpc
 mpd
@@ -214,6 +215,7 @@ mpv
 neofetch
 neomutt
 ncmpcpp
+neovim
 redshift
 ripgrep
 rsync
@@ -230,7 +232,7 @@ vivaldi-ffmpeg-codecs
 youtube-dl
 xboard
 zathura
-# Btrfs: {{{3
+# Btrfs: {{{2
 snapper
 grub-btrfs
 snap-pac
