@@ -4,6 +4,7 @@ require('mc.util.globals')
 
 -- SETTINGS AND MAPPINGS
 require('mc.util.options')
+require('mc.util.keymap')
 vim.cmd(string.format('source %s/keymap.vim',   vim.fn.stdpath('config')))
 
 -- PLUGINS SETTINGS
