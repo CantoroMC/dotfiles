@@ -1,10 +1,3 @@
-" Section: Window And Tabs
-
-" Windows: {{{1
-
-" Window Splitting:
-nnoremap <silent> <Leader>h :<C-U>split <bar> bp<CR>
-nnoremap <silent> <Leader>v :<C-U>vsplit <bar> bp<CR>
 " Window Resizing
 noremap <silent> <S-Left>
       \ :<C-U>execute v:count1.'wincmd <'<CR>
@@ -15,8 +8,6 @@ noremap <silent> <S-Up>
 noremap <silent> <S-Down>
       \ :<C-U>execute v:count1.'wincmd -'<CR>
 cnoremap wbd write <Bar> bdelete
-
-" }}}
 
 " Tabs: {{{1
 

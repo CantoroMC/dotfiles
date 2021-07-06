@@ -1,6 +1,6 @@
 pkgbase = nnn-bull-git
 	pkgdesc = The unorthodox terminal file manager
-	pkgver = 4.1
+	pkgver = 4.1.r3543.d4a4c72e
 	pkgrel = 1
 	url = https://github.com/jarun/nnn
 	arch = x86_64
@@ -27,8 +27,10 @@ pkgbase = nnn-bull-git
 	provides = nnn
 	conflicts = nnn
 	source = git+https://github.com/jarun/nnn
-	source = git+file///home/cantoro/dotfiles/deploy/arch-pkgs/makepkg/nnn/nnn-bull.patch
+	source = git+file///home/cantoro/dotfiles/deploy/arch-pkgs/makepkg/nnn/01-config.patch
+	source = git+file///home/cantoro/dotfiles/deploy/arch-pkgs/makepkg/nnn/02-patches_fix.patch
 	md5sums = SKIP
-	md5sums = d994d79e6fba3d6b6093e1ef929596d6
+	md5sums = 1de2025c1f1a1000dfd15265f9aec286
+	md5sums = 3da25dec6305335825502118dc36e42e
 
 pkgname = nnn-bull-git

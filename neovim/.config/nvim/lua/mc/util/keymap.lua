@@ -102,6 +102,12 @@ keymap("t", "<C-W>l", [[<C-\><C-N><C-w>l]], { noremap = true })
 
 -- SECTION: Window And Tabs
 
+-- Windows {{{1
+-- Window Splitting
+keymap("n", "<Leader>h", "<Cmd>split  <bar> bp<CR>", { noremap = true, silent = true })
+keymap("n", "<Leader>v", "<Cmd>vsplit <bar> bp<CR>", { noremap = true, silent = true })
+-- Window Resizing
+-- }}}
 
 
 -- SECTION: Editing

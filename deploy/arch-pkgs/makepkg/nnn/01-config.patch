@@ -1,21 +1,20 @@
-From 191febe502d56e5cc6e340395353d4839ef9ca1c Mon Sep 17 00:00:00 2001
+From 7f0fe34441f7940b104f2b9d74a60e4d65592cc2 Mon Sep 17 00:00:00 2001
 From: Marco Cantoro <marco.cantoro92@outlook.it>
-Date: Mon, 5 Jul 2021 05:18:48 +0200
-Subject: [PATCH] my config, less then namefirst patches
+Date: Tue, 6 Jul 2021 07:20:51 +0200
+Subject: [PATCH] bull-nnn
 
 ---
- Makefile                        |  8 ++++----
- patches/gitstatus/mainline.diff |  2 +-
- src/icons-nerdfont.h            | 21 +++++++++++++--------
- src/icons.h                     | 13 ++++++++++---
- src/nnn.c                       |  8 ++------
- 5 files changed, 30 insertions(+), 22 deletions(-)
+ Makefile             |  6 +++---
+ src/icons-nerdfont.h | 21 +++++++++++++--------
+ src/icons.h          | 13 ++++++++++---
+ src/nnn.c            |  8 ++------
+ 4 files changed, 28 insertions(+), 20 deletions(-)
 
 diff --git a/Makefile b/Makefile
-index 4423373..ab0f392 100644
+index 4423373..ce6aa11 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -15,20 +15,20 @@ O_DEBUG := 0  # debug binary
+@@ -15,13 +15,13 @@ O_DEBUG := 0  # debug binary
  O_NORL := 0  # no readline support
  O_PCRE := 0  # link with PCRE library
  O_NOLC := 0  # no locale support
@@ -32,27 +31,6 @@ index 4423373..ab0f392 100644
  O_BENCH := 0  # benchmark mode (stops at first user input)
  O_NOSSN := 0  # enable session support
  O_NOUG := 0  # disable user, group name in status bar
- O_NOX11 := 0  # disable X11 integration
-
- # User patches
--O_GITSTATUS := 0 # add git status to detail view
-+O_GITSTATUS := 1 # add git status to detail view
- O_NAMEFIRST := 0 # print file name first, add uid and guid to detail view
-
- ifeq ($(strip $(O_GITSTATUS)),1)
-diff --git a/patches/gitstatus/mainline.diff b/patches/gitstatus/mainline.diff
-index f574dc5..0dde307 100644
---- a/patches/gitstatus/mainline.diff
-+++ b/patches/gitstatus/mainline.diff
-@@ -140,7 +140,7 @@ index 67523fe6..c965bd1c 100644
- +		print_gitstatus(ent->git_status);
- +	}
- +
-- 	addch((ent->flags & FILE_SELECTED) ? '+' | A_REVERSE | A_BOLD : ' ');
-+	addch((ent->flags & FILE_SELECTED) ? '+' | A_BOLD : ' ');
-
-  	if (g_state.oldcolor)
- @@ -5160,6 +5242,10 @@ static int dentfill(char *path, struct entry **ppdents)
 diff --git a/src/icons-nerdfont.h b/src/icons-nerdfont.h
 index 42b3ca0..7303d52 100644
 --- a/src/icons-nerdfont.h
@@ -225,7 +203,7 @@ index 0edb61b..1d02f9e 100644
  	/* Other */
  #endif
 diff --git a/src/nnn.c b/src/nnn.c
-index 82e199c..8fbdbc5 100644
+index c4bced5..358ba27 100644
 --- a/src/nnn.c
 +++ b/src/nnn.c
 @@ -3843,7 +3843,7 @@ static void printent(const struct entry *ent, uint_t namecols, bool sel)

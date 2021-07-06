@@ -34,17 +34,19 @@ provides=("${pkgname%-bull-git}")
 conflicts=("${pkgname%-bull-git}")
 source=(
   'git+https://github.com/jarun/nnn'
-  'git+file///home/cantoro/dotfiles/deploy/arch-pkgs/makepkg/nnn/nnn-bull.patch'
+  'git+file///home/cantoro/dotfiles/deploy/arch-pkgs/makepkg/nnn/01-config.patch'
+  'git+file///home/cantoro/dotfiles/deploy/arch-pkgs/makepkg/nnn/02-patches_fix.patch'
   )
 md5sums=(
   'SKIP'
-  'd994d79e6fba3d6b6093e1ef929596d6'
-  )
+  '1de2025c1f1a1000dfd15265f9aec286'
+  '3da25dec6305335825502118dc36e42e'
+)
 
 prepare() {
   cd "$srcdir/${pkgname%-bull-git}"
-  git checkout d4a4c72
-  patch --forward --strip=1 --input=../../nnn-bull.patch
+  patch --forward --strip=1 --input=../../01-config.patch
+  patch --forward --strip=1 --input=../../02-patches_fix.patch
 }
 
 pkgver() {

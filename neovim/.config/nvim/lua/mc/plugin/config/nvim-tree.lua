@@ -75,6 +75,7 @@ vim.g.nvim_tree_icons = {
 
 
 -- KEYMAP:
+vim.g.nvim_tree_disable_default_keybindings = 1
 function _G.NvimTreeOSOpen()
   local lib = require "nvim-tree.lib"
   local node = lib.get_node_at_cursor()
