@@ -27,10 +27,8 @@ pkgbase = nnn-bull-git
 	provides = nnn
 	conflicts = nnn
 	source = git+https://github.com/jarun/nnn
-	source = git+file///home/cantoro/dotfiles/deploy/arch-pkgs/makepkg/nnn/01-config.patch
-	source = git+file///home/cantoro/dotfiles/deploy/arch-pkgs/makepkg/nnn/02-patches_fix.patch
+	source = git+file///home/cantoro/dotfiles/deploy/arch-pkgs/makepkg/nnn/01-personal-tweaks.patch
 	md5sums = SKIP
-	md5sums = 1de2025c1f1a1000dfd15265f9aec286
-	md5sums = 3da25dec6305335825502118dc36e42e
+	md5sums = 537b5cd56696fc9297f4b17f6a8d5e42
 
 pkgname = nnn-bull-git

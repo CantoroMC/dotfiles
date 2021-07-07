@@ -1,4 +1,4 @@
-vim.g.ayu_mirage          = true
+vim.g.ayu_mirage          = false
 vim.g.ayu_disable_bg      = false
 vim.g.ayu_borders         = true
 vim.g.ayu_italic_comments = true
