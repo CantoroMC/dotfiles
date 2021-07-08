@@ -1,42 +1,31 @@
-local c = require('onedark.colors')
+local c = require'onedark.colors'
 
-local colors = {
-  bg     = c.bg0,
-  fg     = c.fg,
-  red    = c.red,
-  green  = c.green,
-  yellow = c.yellow,
-  blue   = c.blue,
-  purple = c.purple,
-  cyan   = c.cyan,
-  gray   = c.grey
-}
-
-local one_dark = {
-  inactive = {
-    a = { fg = colors.gray, bg = colors.bg, gui = 'bold' },
-    b = { fg = colors.gray, bg = colors.bg },
-    c = { fg = colors.bg, bg = colors.bg, gui = 'italic' },
-    z = { fg = colors.gray, bg = colors.bg }
-  },
+local onedark = {
   normal = {
-    a = { fg = colors.bg, bg = colors.green, gui = 'bold' },
-    b = { fg = colors.fg, bg = colors.bg },
-    c = { fg = colors.fg, bg = colors.bg, gui = 'italic' },
-    z = { fg = colors.fg, bg = colors.bg }
+    a = { fg = c.bg,      bg = c.green,  gui = 'bold' },
+    b = { fg = c.fg,      bg = c.colorcolumn },
+    c = { fg = c.comment, bg = c.bg,     gui = 'italic' },
   },
-  visual  = {
-    a = { fg = colors.bg, bg = colors.purple, gui = 'bold' }
+  insert = {
+    a = { fg = c.black,   bg = c.purple, gui = 'bold' },
+    b = { fg = c.fg,      bg = c.colorcolumn },
+    c = { fg = c.comment, bg = c.bg,     gui = 'italic' },
   },
   replace = {
-    a = { fg = colors.bg, bg = colors.red,    gui = 'bold' }
+    a = { fg = c.black,   bg = c.cyan, gui = 'bold' },
+    b = { fg = c.fg,      bg = c.colorcolumn },
+    c = { fg = c.white,   bg = c.bg,     gui = 'italic' },
   },
-  insert  = {
-    a = { fg = colors.bg, bg = colors.blue,   gui = 'bold' }
+  visual = {
+    a = { fg = c.black,   bg = c.cyan,   gui = 'bold' },
+    b = { fg = c.fg,      bg = c.colorcolumn },
+    c = { fg = c.comment, bg = c.bg,     gui = 'italic' },
   },
-  command = {
-    a = { fg = colors.bg, bg = colors.yellow, gui = 'bold' }
+  inactive = {
+    a = { fg = c.black,   bg = c.gray,   gui = 'bold' },
+    b = { fg = c.fg,      bg = c.colorcolumn },
+    c = { fg = c.comment, bg = c.bg,     gui = 'italic' },
   }
 }
 
-return one_dark
+return onedark

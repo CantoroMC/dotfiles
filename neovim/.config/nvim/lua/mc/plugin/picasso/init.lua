@@ -5,13 +5,14 @@ require(folderOfThisFile .. 'picasso.colorschemes')
 
 local bgs = { 'dark', 'light' }
 local plug_confs = {
-  active     = false,
-  light_time = { 13, 14 },
+  active     = true,
+  light_time = { 10, 14 },
   themes     = {
     [ "dark" ]  = {
       [ "ayu" ]        = 'ayu',
       [ "material" ]   = 'material',
       [ "srcery" ]     = 'srcery',
+      [ "onedark" ]     = 'onedark',
       -- [ "jellybeans" ] = 'codedark',
       -- [ "PaperColor" ] = 'papercolor_dark',
     },
@@ -22,7 +23,8 @@ local plug_confs = {
     }
   },
   theme = {
-    [ "ayu" ]    = "ayu",
+    -- [ "ayu" ]    = "ayu",
+    [ "onedark" ]     = 'onedark',
   },
   add_highlight = {
   }
