@@ -87,6 +87,35 @@ function! s:common_options(prompt, ...) abort " {{{1
 endfunction
 " }}}
 
+" Texdoc: -> run {{{1
+
+function s:Texdoc() abort " {{{2
+  let source = split(globpath(expand('$TEXMFDIST/doc/'), '**/*.pdf'))
+  return map(source, "fnamemodify(v:val, ':s?'.$TEXMFDIST.'/doc/??')")
+endfunction
+" }}}
+
+function! s:xdg_open_texdoc(file) abort " {{{2
+  execute '!xdg-open '. $TEXMFDIST .'/doc/'.a:file. '& disown'
+endfunction
+" }}}
+
+" Texdoc {{{2
+command! -bang -nargs=0 Texdoc
+      \ call fzf#run(fzf#wrap('texdoc', {
+      \   'source': s:Texdoc(),
+      \   'sink': function('<SID>xdg_open_texdoc'),
+      \   'options': s:common_options(
+      \     'Texdoc >',
+      \     '--preview='.
+      \       'pdftotext -l 10 -nopgbrk -q -- ' . $TEXMFDIST . '/doc/{} - | fmt -w $FZF_PREVIEW_COLUMNS | bat --paging=never --decorations=always --color=always --file-name ' . $TEXMFDIST . '/doc/{} --style header,grid'
+      \   ),
+      \   'dir': $TEXMFDIST,
+      \ },
+      \ <bang>0))
+" }}}
+
+" }}}
 
 " Bins: -> run {{{1
 
