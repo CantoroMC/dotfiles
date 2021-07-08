@@ -107,10 +107,48 @@ keymap("t", "<C-W>l", [[<C-\><C-N><C-w>l]], { noremap = true })
 keymap("n", "<Leader>h", "<Cmd>split  <bar> bp<CR>", { noremap = true, silent = true })
 keymap("n", "<Leader>v", "<Cmd>vsplit <bar> bp<CR>", { noremap = true, silent = true })
 -- Window Resizing
+keymap("", "<S-Left>",  ':<C-U>execute v:count1 "wincmd <"<CR>', { noremap = true, silent = true } )
+keymap("", "<S-Right>", ':<C-U>execute v:count1 "wincmd >"<CR>', { noremap = true, silent = true } )
+keymap("", "<S-Up>",    ':<C-U>execute v:count1 "wincmd +"<CR>', { noremap = true, silent = true } )
+keymap("", "<S-Down>",  ':<C-U>execute v:count1 "wincmd -"<CR>', { noremap = true, silent = true } )
+-- }}}
+
+-- Tabs {{{1
+keymap("n", "<C-W>t",     "<Cmd>tabnew<CR>",   { noremap = true, silent = true })
+keymap("n", "<C-W><C-T>", "<Cmd>tabnew<CR>",   { noremap = true, silent = true })
+keymap("n", "<C-W>Q",     "<Cmd>tabclose<CR>", { noremap = true, silent = true })
+keymap("n", "<C-N>",      "gt",                { noremap = true, silent = true })
+keymap("n", "<C-P>",      "gT",                { noremap = true, silent = true })
+-- Tab version of gf
+keymap("n", "gtf", "<C-W>gf", { noremap = true, silent = true })
+-- Tab version of gF
+keymap("n", "gtF", "<C-W>gF", { noremap = true, silent = true })
+-- Tab version `<C-]>`.
+keymap("n", "<C-]><C-T>", "<C-W><C-]><C-W>T", { noremap = true, silent = true })
 -- }}}
 
 
 -- SECTION: Editing
 
+-- Some Editing Tricks {{{1
+-- Substitutions with ease.
+keymap("n", "<Leader>ra", ":%s///g<Left><Left><Left>", { noremap = true })
+-- Swap two words.
+keymap("n", "<Leader>sw", [["_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR>]], { noremap = true })
+-- Overwrite the current line with yanked text.
+keymap("n", "go", 'pk"_dd', { noremap = true, silent = true })
+-- Indent continuously.
+keymap("v", "<", "<gv", { noremap = true })
+keymap("v", ">", ">gv", { noremap = true })
+-- Moving lines up and down.
+keymap("v", "K", ":move '<-2<CR>gv=gv", { noremap = true })
+keymap("v", "J", ":move '>+1<CR>gv=gv", { noremap = true })
+-- Assist input normal command on visual mode.
+keymap("v", "n", ":normal<Space>", { noremap = true })
+-- Search something in the current visual range only.
+keymap("v", "/", [[<Esc>/\%V]], { noremap = true })
+-- Global substitution in visual mode.
+keymap("v", "<C-S>", [["hy:%s/\V<C-R>h//g<left><left>]], { noremap = true })
+-- }}}
 
 -- vim:fdm=marker

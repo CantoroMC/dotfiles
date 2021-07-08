@@ -1,68 +1,29 @@
-" Window Resizing
-noremap <silent> <S-Left>
-      \ :<C-U>execute v:count1.'wincmd <'<CR>
-noremap <silent> <S-Right>
-      \ :<C-U>execute v:count1.'wincmd >'<CR>
-noremap <silent> <S-Up>
-      \ :<C-U>execute v:count1.'wincmd +'<CR>
-noremap <silent> <S-Down>
-      \ :<C-U>execute v:count1.'wincmd -'<CR>
-cnoremap wbd write <Bar> bdelete
-
-" Tabs: {{{1
-
-nnoremap <silent> <C-W>t     :<C-u>tabnew<CR>
-nnoremap <silent> <C-W><C-T> :<C-u>tabnew<CR>
-nnoremap <silent> <C-W>Q     :<C-u>tabclose<CR>
-nnoremap <silent> <C-N>      gt
-nnoremap <silent> <C-P>      gT
-" Tab version of gf
-nnoremap <silent> gtf        <C-W>gf
-" Tab version of gF
-nnoremap <silent> gtF        <C-W>gF
-" Tab version `<C-]>`.
-nnoremap <C-]><C-T> <C-W><C-]><C-W>T
-
-" }}}
+" plugin/clipboard.vim
+" File: clipboard.vim
+" Author: Marco Cantoro <marco dot cantoro92 at outlook dot it>
+" Description: Copy and Paste to the + register
+" Last Modified: Lug 08, 21
 
 
-" Section: Editing
+" Section: Plugin Guards
 
-" Some Editing Tricks: {{{1
+if exists('g:loaded_clipboard')
+  finish
+endif
+let g:loaded_clipboard = 1
 
-" Substitutions with ease.
-nnoremap <Leader>ra :%s///g<Left><Left><Left>
-" Swap two words.
-nnoremap <silent> <Leader>sw "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR>
-" Overwrite the current line with yanked text.
-nnoremap <silent> go  pk"_dd
-" Indent continuously.
-vnoremap < <gv
-vnoremap > >gv
-" Moving lines up and down.
-vnoremap K :move '<-2<CR>gv=gv
-vnoremap J :move '>+1<CR>gv=gv
-" Assist input normal command on visual mode.
-vnoremap n :normal<Space>
-" Search something in the current visual range only.
-vnoremap / <Esc>/\%V
-" Global substitution in visual mode.
-vnoremap <C-S> "hy:%s/\V<C-R>h//g<left><left>
 
-" }}}
 
-" Yank And Paste: {{{1
-
-function! s:paste_with_register(register, paste_type, paste_cmd) abort " {{{2
+" Section: Auxiliary Functions
+function! s:paste_with_register(register, paste_type, paste_cmd) abort
   let l:reg_type = getregtype(a:register)
   let l:store    = getreg(a:register)
   call setreg(a:register, l:store, a:paste_type)
   exe 'normal! "'.a:register.a:paste_cmd
   call setreg(a:register, l:store, l:reg_type)
 endfunction
-" }}}
 
-function! s:yank_to_plus_operator(type, ...) abort " {{{2
+function! s:yank_to_plus_operator(type, ...) abort
   let l:sel_save = &selection
   let &selection = 'inclusive'
   let l:reg_save = @@
@@ -80,9 +41,10 @@ function! s:yank_to_plus_operator(type, ...) abort " {{{2
   let &selection = l:sel_save
   let @@         = l:reg_save
 endfunction
-" }}}
 
-" Paste To Plus Register: {{{2
+
+
+" Section: Paste To Plus Register:
 " Character Wise:
 nnoremap <silent> <Leader>p
       \ :<C-U>call <SID>paste_with_register('+', 'c', 'p')<CR>
@@ -109,9 +71,10 @@ nnoremap <silent> <Leader>lgp
       \ :<C-U>call <SID>paste_with_register('+', 'l', 'gp')<CR>
 nnoremap <silent> <Leader>lgP
       \ :<C-U>call <SID>paste_with_register('+', 'l', 'gP')<CR>
-" }}}
 
-" Copy To Plus Register: {{{2
+
+
+" Section: Copy To Plus Register:
 nnoremap <silent> <Leader>y
       \ :<C-U>set operatorfunc=<SID>yank_to_plus_operator<CR>g@
 nnoremap <silent> <Leader>yy
@@ -122,8 +85,3 @@ nnoremap <silent> <Leader>Y
       \ <Bar> execute 'normal! 0'.v:count1.'g@_'<CR>
 xnoremap <silent> <Leader>y
       \ :<C-U>call <SID>yank_to_plus_operator(visualmode(), 1)<CR>
-" }}}
-
-" }}}
-
-" vim:fdm=marker

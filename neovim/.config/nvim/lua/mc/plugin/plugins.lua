@@ -265,6 +265,10 @@ local function init()
     ft = { 'haskell', 'lhaskell' }
   }
   usepackage {
+    'monkoose/fzf-hoogle.vim',
+    requires = { 'junegunn/fzf' },
+  }
+  usepackage {
     'iamcco/markdown-preview.nvim',    -- Markdown
     run = ':call mkdp#util#install()',
     ft = 'markdown'

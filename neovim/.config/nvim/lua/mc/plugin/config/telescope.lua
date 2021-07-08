@@ -34,7 +34,7 @@ telescope.setup{
     file_sorter          = require'telescope.sorters'.get_fuzzy_file,
     generic_sorter       = require'telescope.sorters'.get_generic_fuzzy_sorter,
     file_ignore_patterns = {},
-    shorten_path         = true,
+    path_display         = { "absolute" },
     -- Searching
     grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
     vimgrep_arguments = {
