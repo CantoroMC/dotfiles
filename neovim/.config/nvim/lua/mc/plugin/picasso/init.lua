@@ -20,6 +20,7 @@ local plug_confs = {
       [ "mayansmoke" ] = 'iceberg_light',
       [ "ayu" ]        = 'ayu',
       [ "PaperColor" ] = 'papercolor_light',
+      [ "onedark" ]    = 'onedark',
     }
   },
   theme = {

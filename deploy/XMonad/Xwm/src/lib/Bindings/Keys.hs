@@ -14,7 +14,8 @@ import qualified XMonad.StackSet as XMSS
 import XMonad.Actions.CopyWindow (copy, kill1, copyToAll, killAllOtherCopies)
 import XMonad.Actions.CycleWS
     ( Direction1D(Next, Prev)
-    , WSType(NonEmptyWS, WSIs)
+    , emptyWS
+    , WSType(Not, WSIs)
     , moveTo
     , shiftTo
     , toggleWS'
@@ -209,7 +210,6 @@ xwmKeys mask = do
             , ((noModMask, xK_m),     spawn =<< inTerminalFromConf "pulsemixer")
             , ((noModMask, xK_q),     spawn "mpv_bulk_quit")
             , ((noModMask, xK_t),     spawn "mpv_bulk_toggle")
-            , ((noModMask, xK_q),     spawn "mpv_bulk_quit")
             ]
     bind $ mask .|. shiftMask ... xK_p
         |/- "Submap for XMonad prompt"
@@ -358,10 +358,10 @@ xwmKeys mask = do
         ^> sendMessage $ IncMasterN (-1)
     bind $ mask .|. shiftMask ... xK_comma
         |/- "Go to previous non-empty workspace"
-        ^> moveTo Prev NonEmptyWS
+        ^> moveTo Prev (Not emptyWS)
     bind $ mask .|. shiftMask ... xK_period
         |/- "Go to next non-empty workspace"
-        ^> moveTo Next NonEmptyWS
+        ^> moveTo Next (Not emptyWS)
     bind $ mask ... xK_Print
         |/- "Take fullscreen screenshot"
         ^> unGrab >> spawn (
