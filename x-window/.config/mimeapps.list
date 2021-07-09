@@ -6,6 +6,7 @@ image/jpeg=sxiv.desktop;
 image/png=sxiv.desktop;
 text/plain=nvim.desktop;
 video/mp4=mpv.desktop;
+video/x-msvideos=mpv.desktop;
 
 [Added Associations]
 application/json=nvim.desktop;
@@ -17,4 +18,5 @@ image/png=sxiv.desktop;
 inode/directory=exo-file-manager.desktop;
 text/plain=nvim.desktop;
 video/mp4=mpv.desktop;
+video/x-msvideos=mpv.desktop;
 x-scheme-handler/trash=exo-file-manager.desktop;

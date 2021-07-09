@@ -69,6 +69,10 @@ picom -cb &
 # xautolock -detectsleep -time 18 -notifier "notify-send -u critical -t 2000 -- 'Locking Screen...'" -notify 50 -locker 'slock' &
 # }}}
 
+# Lenovo Docking Station Daemon {{{2
+dockd --daemon &
+# }}}
+
 # }}}
 
 # vim:ft=sh:fdm=marker

@@ -1,0 +1,66 @@
+# Status Line {{{1
+set-option -g status on
+set-option -g status-keys vi
+set-option -g status-interval 0
+set-option -g status-justify left
+set-option -g status-position bottom
+set-option -g status-style bg=#1e1e1e,fg=#262626
+# Left Side
+set-option -g status-left-length 50
+set-option -g status-left \
+"#[fg=#262626, bg=#619955, italics, bold]  #S:#I.#P/#{window_panes} \
+#[fg=#619955, bg=#262626, nobold, noitalics, nounderscore]"
+# Right Side
+set -g status-right-length 50
+set-option -g status-right \
+"#[fg=#f44747, bg=#1e1e1e, nobold, nounderscore, noitalics]#{?client_prefix,\ue0ba,}\
+#[fg=#262626,bg=#f44747, italics]#{?client_prefix, ... ,}\
+#[fg=#619955, bg=#{?client_prefix,#f44747,#1e1e1e}, nobold, nounderscore, noitalics]\ue0ba\
+#[fg=#1e1e1e,bg=#619955, italics] %H:%M %d-%b-%Y "
+# }}}
+
+# Panes {{{1
+set -g display-panes-active-colour "#5cb6f8"
+set -g display-panes-colour "#ffaf00"
+set -g display-panes-time 1000
+# }}}
+
+# Pane Borders {{{1
+set -g pane-active-border-style fg=#5cb6f8
+set -g pane-border-style fg=#619955
+# }}}
+
+# Messages {{{1
+set -g message-style fg=#ffaf00,bg=#1e1e1e,bright
+set -g message-command-style fg=#ffaf00,bg=#1e1e1e,bright
+# }}}
+
+# Clock {{{1
+set-window-option -g clock-mode-colour "#ffaf00"
+set-window-option -g clock-mode-style 24
+# }}}
+
+# Window style {{{1
+# Activity and Bell {{{2
+set-window-option -g window-status-activity-style bg=#5cb6f8,fg=#373737
+set-window-option -g window-status-bell-style bg=#5cb6f8,fg=#373737
+# }}}
+# Window list {{{2
+set-window-option -g window-status-current-style bg=#3f3f46,fg=#ffaf00
+set-window-option -g window-status-current-format \
+"#[fg=#a37acc, bg=#3f3f46, nobold, noitalics, nounderscore]\
+#[fg=#619955, bg=#262626, nobold, italics] #I:\
+#[fg=#619955, bg=#262626, nobold, italics]#W \
+#[fg=#262626, bg=#1e1e1e, nobold, noitalics, nounderscore]"
+set-window-option -g window-status-style fg=#5cb6f8,bg=#1e1e1e
+set-window-option -g window-status-format \
+"#[fg=#1e1e1e, bg=#1e1e1e, nobold, noitalics, nounderscore] \
+#[fg=#5cb6f8,bg=#1e1e1e]#I.#{window_panes}:\
+#[fg=#5cb6f8, bg=#1e1e1e]#W \
+#[fg=#0a7acc, bg=#3f3f46, nobold, noitalics, nounderscore]"
+set-window-option -g window-status-last-style fg=#5cb6f8,bg=#1e1e1e,bold,italics
+set-window-option -g window-status-separator "|"
+# }}}
+# }}}
+
+# vim:ft=tmux

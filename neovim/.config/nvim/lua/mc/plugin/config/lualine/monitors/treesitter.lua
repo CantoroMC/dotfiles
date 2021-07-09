@@ -4,7 +4,7 @@ local M = {}
 
 function M.treesitter()
   return vim.fn['nvim_treesitter#statusline']({
-    indicator_size = 100,
+    indicator_size = 60,
     type_patterns  = { 'class', 'function', 'method' },
     transform_fn   =
       function(line)

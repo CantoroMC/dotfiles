@@ -168,9 +168,9 @@ local function init()
   -- Colorschemes {{{4
   usepackage { 'CantoroMC/srcery-nvim',       as = 'srcery' }
   usepackage { 'CantoroMC/ayu-nvim',          as = 'ayu' }
+  usepackage { 'CantoroMC/nvim-onedark',      as = 'onedark' }
   usepackage { 'marko-cerovac/material.nvim', as = 'material' }
   usepackage { 'NLKNguyen/papercolor-theme',  as = 'papercolor' }
-  -- usepackage { '~/Desktop/dracula-nvim',      as = 'dracula' }
   -- }}}
   -- File Explorer
   usepackage {
