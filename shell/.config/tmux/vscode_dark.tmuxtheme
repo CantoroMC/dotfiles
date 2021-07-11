@@ -49,7 +49,7 @@ set-window-option -g window-status-bell-style bg=#5cb6f8,fg=#373737
 set-window-option -g window-status-current-style bg=#3f3f46,fg=#ffaf00
 set-window-option -g window-status-current-format \
 "#[fg=#a37acc, bg=#3f3f46, nobold, noitalics, nounderscore]\
-#[fg=#619955, bg=#262626, nobold, italics] #I:\
+#[fg=#619955, bg=#262626, nobold, italics] ● #I:\
 #[fg=#619955, bg=#262626, nobold, italics]#W \
 #[fg=#262626, bg=#1e1e1e, nobold, noitalics, nounderscore]"
 set-window-option -g window-status-style fg=#5cb6f8,bg=#1e1e1e

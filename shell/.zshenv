@@ -132,6 +132,7 @@ export CHKTEXRC="$XDG_CONFIG_HOME/chktex"
 # Ruby
 export GEM_HOME="$XDG_DATA_HOME"/gem
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
+export IRBRC="$XDG_CONFIG_HOME/irb/irbrc"
 # Go
 export GOPATH="$XDG_DATA_HOME/go"
 # Node

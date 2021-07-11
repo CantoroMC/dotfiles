@@ -34,6 +34,7 @@ alias -g W="|wc -l"
 # Program Alias {{{1
 alias abook='abook --config ~/.config/abook/abookrc --datafile ~/Documents/organization/contacts/addressbook'
 alias irssi='irssi --config "$XDG_CONFIG_HOME"/irssi/config --home="$XDG_DATA_HOME/irssi"'
+alias ledger='ledger --init-file "$XDG_CONFIG_HOME"/ledgerrc'
 alias mpm='ncmpcpp'
 alias mutt='neomutt'
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'

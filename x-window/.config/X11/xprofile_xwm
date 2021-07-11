@@ -1,22 +1,6 @@
 # System Tray
-[ $BACKGROUND_COLOR = 'light' ] && stalonetray -c $XDG_CONFIG_HOME/stalonetray/light.config &
-[ $BACKGROUND_COLOR = 'dark' ] && stalonetray -c $XDG_CONFIG_HOME/stalonetray/dark.config &
-# Network manager-applet
-nm-applet &
-# Bluetooth
-blueberry-tray &
-# System Clipboard
-parcellite &
-
-# Set the default X cursor to the usual pointer
+stalonetray -c "${XDG_CONFIG_HOME:-$HOME/.config}/stalonetray/${BACKGROUND_COLOR:-dark}.config" &
+# X cursor to the usual pointer
 xsetroot -cursor_name left_ptr
-
-# Screen configuration and wallpaper
-# Xrandr wrapper to setup the native monitor even when on a dock station
-Thinkpad &
-# Redshift
-redshift -l 45.48:9.19 -t 6500:3500 -m randr &
-# Feh wrapper to pick a random wallpaper from ~/Pictures/wallpapers
-setbg &
 
 # vim:ft=sh

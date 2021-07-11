@@ -65,14 +65,26 @@ dunst &
 picom -cb &
 # }}}
 
-# Screen Auto locker {{{2
-# xautolock -detectsleep -time 18 -notifier "notify-send -u critical -t 2000 -- 'Locking Screen...'" -notify 50 -locker 'slock' &
+# System-Tray Items {{{2
+# Network manager-applet
+nm-applet &
+# Bluetooth
+blueberry-tray &
+# System Clipboard
+parcellite &
 # }}}
 
-# Lenovo Docking Station Daemon {{{2
+# Screen Configuration {{{2
+# Screen Auto locker
+xautolock -detectsleep -time 18 -notifier "notify-send -u critical -t 2000 -- 'Locking Screen...'" -notify 50 -locker 'slock' &
+# Lenovo Docking Station Daemon
 dockd --daemon &
-# }}}
-
+# Redshift
+redshift -l 45.48:9.19 -t 6500:3500 -m randr &
+# Xrandr wrapper to setup the native monitor even when on a dock station
+Thinkpad &
+# Feh wrapper to pick a random wallpaper from ~/Pictures/wallpapers
+setbg &
 # }}}
 
 # vim:ft=sh:fdm=marker
