@@ -1,21 +1,21 @@
-From bf012d007649d30253a6cf8699afbf13dff3272f Mon Sep 17 00:00:00 2001
+From 5d9db4dee868dfef430e2c4de7d262e671711dae Mon Sep 17 00:00:00 2001
 From: Marco Cantoro <marco.cantoro92@outlook.it>
-Date: Tue, 6 Jul 2021 16:49:13 +0200
-Subject: [PATCH] personal tweaks
+Date: Sun, 11 Jul 2021 15:02:43 +0200
+Subject: [PATCH] personal-tweaks
 
 ---
  Makefile                        |  8 ++++----
  patches/gitstatus/mainline.diff |  2 +-
- src/icons-nerdfont.h            | 21 +++++++++++++--------
+ src/icons-nerdfont.h            | 25 +++++++++++++++----------
  src/icons.h                     | 13 ++++++++++---
  src/nnn.c                       |  8 ++------
- 5 files changed, 30 insertions(+), 22 deletions(-)
+ 5 files changed, 32 insertions(+), 24 deletions(-)
 
 diff --git a/Makefile b/Makefile
-index 6595f61..a5625d3 100644
+index 3f4eeb9..04ebc60 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -15,20 +15,20 @@ O_DEBUG := 0  # debug binary
+@@ -15,13 +15,13 @@ O_DEBUG := 0  # debug binary
  O_NORL := 0  # no readline support
  O_PCRE := 0  # link with PCRE library
  O_NOLC := 0  # no locale support
@@ -32,7 +32,8 @@ index 6595f61..a5625d3 100644
  O_BENCH := 0  # benchmark mode (stops at first user input)
  O_NOSSN := 0  # enable session support
  O_NOUG := 0  # disable user, group name in status bar
- O_NOX11 := 0  # disable X11 integration
+@@ -29,7 +29,7 @@ O_NOX11 := 0  # disable X11 integration
+ O_LARGESEL := 0 # set threshold for large selection
  
  # User patches
 -O_GITSTATUS := 0 # add git status to detail view
@@ -54,7 +55,7 @@ index d8e930a..b16a345 100644
   	if (g_state.oldcolor)
  @@ -5177,6 +5227,10 @@ static int dentfill(char *path, struct entry **ppdents)
 diff --git a/src/icons-nerdfont.h b/src/icons-nerdfont.h
-index 42b3ca0..7303d52 100644
+index 42b3ca0..f33151d 100644
 --- a/src/icons-nerdfont.h
 +++ b/src/icons-nerdfont.h
 @@ -17,28 +17,28 @@
@@ -109,6 +110,15 @@ index 42b3ca0..7303d52 100644
  #define ICON_EXT_CUE       ICON_PLAYLIST
  #define ICON_EXT_CVS       ICON_CONFIGURE
  #define ICON_EXT_CXX       ICON_CPLUSPLUS
+@@ -95,7 +96,7 @@
+ /* D */
+ #define ICON_EXT_DB        ICON_DATABASE
+ #define ICON_EXT_DEB       "\ue77d"
+-#define ICON_EXT_DIFF      "\uf440"
++#define ICON_EXT_DIFF      "\uf47f"
+ #define ICON_EXT_DLL       ICON_SCRIPT
+ #define ICON_EXT_DOC       ICON_WORDDOC
+ #define ICON_EXT_DOCX      ICON_WORDDOC
 @@ -161,8 +162,10 @@
  #define ICON_EXT_LZMA      ICON_ARCHIVE
  
@@ -128,6 +138,15 @@ index 42b3ca0..7303d52 100644
  
  /* O */
  #define ICON_EXT_O         ICON_MANUAL
+@@ -183,7 +187,7 @@
+ 
+ /* P */
+ #define ICON_EXT_PART      ICON_DOWNLOADS
+-#define ICON_EXT_PATCH     "\uf440"
++#define ICON_EXT_PATCH     "\uf47f"
+ #define ICON_EXT_PDF       "\uf724"
+ #define ICON_EXT_PGN       ICON_CHESS
+ #define ICON_EXT_PHP       "\ue73d"
 @@ -212,7 +216,7 @@
  #define ICON_EXT_SCSS      "\ue603"
  #define ICON_EXT_SO        ICON_MANUAL
@@ -221,23 +240,23 @@ index 0edb61b..1d02f9e 100644
  	/* Z */
  	{"zip",        ICON_EXT_ZIP,       COLOR_ARCHIVE},
 +	{"zsh",        ICON_EXT_ZSH,       COLOR_JAVASCRIPT},
-
+ 
  	/* Other */
  #endif
 diff --git a/src/nnn.c b/src/nnn.c
-index c4bced5..358ba27 100644
+index 4d9a60b..be4c18c 100644
 --- a/src/nnn.c
 +++ b/src/nnn.c
-@@ -3843,7 +3843,7 @@ static void printent(const struct entry *ent, uint_t namecols, bool sel)
-
+@@ -3975,7 +3975,7 @@ static void printent(const struct entry *ent, uint_t namecols, bool sel)
+ 
  	uchar_t color_pair = get_color_pair_name_ind(ent, &ind, &attrs);
-
+ 
 -	addch((ent->flags & FILE_SELECTED) ? '+' | A_REVERSE | A_BOLD : ' ');
 +	addch((ent->flags & FILE_SELECTED) ? '+' | A_BOLD : ' ');
-
+ 
  	if (g_state.oldcolor)
  		resetdircolor(ent->flags);
-@@ -5875,11 +5875,7 @@ static inline void markhovered(void)
+@@ -6019,11 +6019,7 @@ static inline void markhovered(void)
  {
  	if (cfg.showdetail && ndents) { /* Reversed block for hovered entry */
  		tocursor();

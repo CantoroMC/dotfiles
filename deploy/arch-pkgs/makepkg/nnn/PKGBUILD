@@ -38,7 +38,7 @@ source=(
   )
 md5sums=(
   'SKIP'
-  '537b5cd56696fc9297f4b17f6a8d5e42'
+  'ff837ee2a040c3474669ab7696c7fe0f'
 )
 
 prepare() {

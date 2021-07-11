@@ -317,7 +317,7 @@ npm install -g vim-language-server
 ( requires AUR `scotch-git` and base `cgal` and `paraview` )
 
 #### Matlab
-can be installed by donwloading it and run the installer with administrator privileges
+can be installed by downloading it and run the installer with administrator privileges
 The temp directory may run out of space so you can
 ```sh
 mkdir "$HOME/matlabdl"
