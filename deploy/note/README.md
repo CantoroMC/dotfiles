@@ -127,7 +127,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 ### Add user and add it to important groups
 ```sh
-useradd -m -G video,log,adm,lp,power,network,users,sys,wheel,rfkill -s /bin/zsh USERNAME
+useradd -m -G video,log,adm,lp,power,network,users,sys,wheel,rfkill,storage -s /bin/zsh USERNAME
 passwd USERNAME
 ```
 
