@@ -102,3 +102,5 @@ done
 
 unset zplug_conf plugin Mods mod
 unset -f handle_completion_insecurities isMod
+
+zmodload zsh/zpty

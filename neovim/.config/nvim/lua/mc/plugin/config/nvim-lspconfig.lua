@@ -68,6 +68,14 @@ local custom_lsp_attach = function(client)
   lsp_remap('n', vim.g.maplocalleader..'dq'   , 'vim.lsp.buf.document_symbol()')
   lsp_remap('n', vim.g.maplocalleader..'ws'   , 'vim.lsp.buf.workspace_symbol()')
 
+  if vim.tbl_contains({ "haskell", "lhaskell" }, filetype) then
+    vim.api.nvim_exec([[
+      augroup show_code_lens
+        autocmd!
+        autocmd CursorHold,CursorHoldI,InsertLeave <buffer> lua vim.lsp.codelens.refresh()
+      augroup END
+      ]], false)
+  end
   if client.resolved_capabilities.document_formatting then
     -- Formatting mapping
     lsp_remap('n', vim.g.maplocalleader..'gq', 'vim.lsp.buf.formatting()')
@@ -76,7 +84,7 @@ local custom_lsp_attach = function(client)
     --   vim.api.nvim_exec([[
     --     augroup lsp_format_on_save
     --       autocmd!
-    --       autocmd! BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync(nil,1000)
+    --       autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync(nil,1000)
     --     augroup END
     --     ]], false)
     -- end
@@ -122,7 +130,23 @@ lspconfig.clangd.setup({
   capabilities = capabilities,
 })
 
---- LUA
+-- HASKELL
+lspconfig.hls.setup{
+  cmd = { 'haskell-language-server-wrapper', '--lsp' },
+  filetypes = { "haskell", "lhaskell" },
+  root_dir = lspconfig.util.root_pattern("*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"),
+  settings = {
+    languageServerHaskell = {
+      completionSnippetsOn = true,
+      formattingProvider = 'brittany',
+      diagnosticsOnChange = false,
+    },
+  },
+  on_attach = custom_lsp_attach,
+  capabilities = capabilities,
+}
+
+-- LUA
 lspconfig.sumneko_lua.setup {
   cmd = { 'lua-language-server' };
   filetypes = { 'lua', '-E', '/usr/share/lua-language-server/main.lua' },
@@ -161,6 +185,38 @@ lspconfig.sumneko_lua.setup {
   capabilities = capabilities,
 }
 
+-- PYTHON
+lspconfig.pyls.setup{
+  cmd = { 'pyls' },
+  filetypes = { 'python' },
+  on_attach = custom_lsp_attach,
+  capabilities = capabilities,
+}
+
+-- RUBY
+lspconfig.solargraph.setup{
+  cmd = { "solargraph", "stdio" },
+  filetypes = { "ruby" },
+  root_dir = lspconfig.util.root_pattern("Gemfile", ".git", vim.fn.getcwd() ),
+  settings = {
+    solargraph = {
+      checkGemVersion = true,
+      completion = true,
+      definitions = true,
+      diagnostics = true,
+      folding = true,
+      formatting = true,
+      hover = true,
+      logLevel = "warn",
+      references = true,
+      rename = true,
+      symbols = true,
+    }
+  },
+  on_attach = custom_lsp_attach,
+  capabilities = capabilities,
+}
+
 -- SHELL
 lspconfig.bashls.setup{
   cmd = { "bash-language-server", "start" },
@@ -172,7 +228,7 @@ lspconfig.bashls.setup{
   capabilities = capabilities,
 }
 
---- TEX
+-- TEX
 lspconfig.texlab.setup{
   cmd = { 'texlab' },
   filetypes = { 'tex', 'bib', 'plaintex' },
@@ -210,92 +266,8 @@ lspconfig.texlab.setup{
   on_attach = custom_lsp_attach,
   capabilities = capabilities,
 }
-
---- VIM
+-- VIM
 lspconfig.vimls.setup{
   on_attach = custom_lsp_attach,
   capabilities = capabilities,
 }
-
---[==[ Temporary Taken up by coc
-
--- GO
-lspconfig.gopls.setup{
-  cmd = { "gopls" },
-  filetypes = { "go", "gomod" },
-  root_dir = lspconfig.util.root_pattern("go.mod", ".git", vim.fn.getcwd() ),
-  on_attach = custom_lsp_attach,
-}
-
--- PYTHON
-lspconfig.pyls.setup{
-  cmd = { 'pyls' },
-  filetypes = { 'python' },
-  on_attach = custom_lsp_attach,
-  capabilities = capabilities,
-}
-
--- PERL
-lspconfig.perlls.setup{
-  on_attach = custom_lsp_attach,
-}
-
--- RUBY
-lspconfig.solargraph.setup{
-  cmd = { "solargraph", "stdio" },
-  filetypes = { "ruby" },
-  root_dir = lspconfig.util.root_pattern("Gemfile", ".git", vim.fn.getcwd() ),
-  settings = {
-    solargraph = {
-      checkGemVersion = true,
-      completion = true,
-      definitions = true,
-      diagnostics = true,
-      folding = true,
-      formatting = true,
-      hover = true,
-      references = true,
-      rename = true,
-      symbols = true,
-    }
-  },
-  on_attach = custom_lsp_attach,
-}
-
---- HASKELL
-lspconfig.hls.setup{
-  cmd = { 'haskell-language-server-wrapper', '--lsp' },
-  filetypes = { "haskell", "lhaskell" },
-  root_dir = lspconfig.util.root_pattern("*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"),
-  settings = {
-    haskell = {
-      formattingProvider = 'brittany'
-    },
-  },
-  on_attach = custom_lsp_attach,
-  capabilities = capabilities,
-}
-
--- HTML
-require'lspconfig'.html.setup {
-  capabilities = capabilities,
-}
-
--- CSS
-require'lspconfig'.cssls.setup{}
-
--- Java/TypeScript
-require'lspconfig'.tsserver.setup{}
-
--- Json
-require'lspconfig'.jsonls.setup {
-  commands = {
-    Format = {
-      function()
-        vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
-      end
-    }
-  },
-  capabilities = capabilities,
-}
--- ]==]

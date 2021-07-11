@@ -62,26 +62,23 @@ local function init()
   }
 
   -- UTILITIES {{{3
-  -- Conquer Of Completion {{{4
+  -- Completion {{{4
+  usepackage "hrsh7th/nvim-compe"
   usepackage {
-    'neoclide/coc.nvim',
-    branch = 'release'
+    "GoldsteinE/compe-latex-symbols",
+    requires = { 'hrsh7th/nvim-compe' }
   }
   usepackage {
-    'rafcamlet/coc-nvim-lua',
-    require = {
-      'neoclide/coc.nvim', branch = 'release'
-    }
+    'tamago324/compe-zsh',
+    requires = { 'hrsh7th/nvim-compe', 'nvim-lua/plenary.nvim' },
   }
-  usepackage { 'wellle/tmux-complete.vim',
-    require = {
-      'neoclide/coc.nvim', branch = 'release'
-    }
+  usepackage {
+    'andersevenrud/compe-tmux',
+    requires = { 'hrsh7th/nvim-compe' }
   }
-  usepackage { 'CantoroMC/coc-latex_symbols',
-    require = {
-      'neoclide/coc.nvim', branch = 'release'
-    }
+  usepackage {
+    "onsails/lspkind-nvim",
+    requires = {'hrsh7th/nvim-compe'}
   }
   -- }}}
   -- NeoVim Language Server Protocol And Completion {{{4
